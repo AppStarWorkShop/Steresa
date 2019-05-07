@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{39CC89E4-0829-4D5B-9A54-BE6F571B7AD5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>St.Teresa_LIS_2019</RootNamespace>
+    <AssemblyName>St.Teresa_LIS_2019</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form_AdditionalTests.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_AdditionalTests.Designer.cs">
+      <DependentUpon>Form_AdditionalTests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BXCYFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BXCYFile.Designer.cs">
+      <DependentUpon>Form_BXCYFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BXCYFile2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BXCYFile2.Designer.cs">
+      <DependentUpon>Form_BXCYFile2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BXCYRecordSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BXCYRecordSearch.Designer.cs">
+      <DependentUpon>Form_BXCYRecordSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CaseSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CaseSearch.Designer.cs">
+      <DependentUpon>Form_CaseSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ChangePicturePath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ChangePicturePath.Designer.cs">
+      <DependentUpon>Form_ChangePicturePath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Cobas4800System.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Cobas4800System.Designer.cs">
+      <DependentUpon>Form_Cobas4800System.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ConfirmMerge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ConfirmMerge.Designer.cs">
+      <DependentUpon>Form_ConfirmMerge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CYReportMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CYReportMaintenance.Designer.cs">
+      <DependentUpon>Form_CYReportMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CytologicalDiagnosis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CytologicalDiagnosis.Designer.cs">
+      <DependentUpon>Form_CytologicalDiagnosis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CYTOLOGYFileGyname.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CYTOLOGYFileGyname.Designer.cs">
+      <DependentUpon>Form_CYTOLOGYFileGyname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_CytologyFindings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_CytologyFindings.Designer.cs">
+      <DependentUpon>Form_CytologyFindings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DailyLogReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DailyLogReport.Designer.cs">
+      <DependentUpon>Form_DailyLogReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DailyLogReportCutOff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DailyLogReportCutOff.Designer.cs">
+      <DependentUpon>Form_DailyLogReportCutOff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DailyLogReportForBiopsyCytolgyMokculurCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DailyLogReportForBiopsyCytolgyMokculurCase.Designer.cs">
+      <DependentUpon>Form_DailyLogReportForBiopsyCytolgyMokculurCase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DailyLogReportForBXCY.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DailyLogReportForBXCY.Designer.cs">
+      <DependentUpon>Form_DailyLogReportForBXCY.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Description.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Description.Designer.cs">
+      <DependentUpon>Form_Description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DigitalSignature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DigitalSignature.Designer.cs">
+      <DependentUpon>Form_DigitalSignature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DoctorFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DoctorFileMaintenance.Designer.cs">
+      <DependentUpon>Form_DoctorFileMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DoctorsSignatureMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DoctorsSignatureMaintenance.Designer.cs">
+      <DependentUpon>Form_DoctorsSignatureMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_EBVDiagnosisFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_EBVDiagnosisFileMaintenance.Designer.cs">
+      <DependentUpon>Form_EBVDiagnosisFileMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_EBVFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_EBVFile.Designer.cs">
+      <DependentUpon>Form_EBVFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_FeeCalculationPrivate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FeeCalculationPrivate.Designer.cs">
+      <DependentUpon>Form_FeeCalculationPrivate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_FeeCalculationSTH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FeeCalculationSTH.Designer.cs">
+      <DependentUpon>Form_FeeCalculationSTH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_FindingComments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FindingComments.Designer.cs">
+      <DependentUpon>Form_FindingComments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_FrozenSectionDianosis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FrozenSectionDianosis.Designer.cs">
+      <DependentUpon>Form_FrozenSectionDianosis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_GynecologicalHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_GynecologicalHistory.Designer.cs">
+      <DependentUpon>Form_GynecologicalHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ImportExportDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ImportExportDate.Designer.cs">
+      <DependentUpon>Form_ImportExportDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_InvoiceAndOtherReportMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_InvoiceAndOtherReportMenu.Designer.cs">
+      <DependentUpon>Form_InvoiceAndOtherReportMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_InvoiceGenerationAndReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_InvoiceGenerationAndReport.Designer.cs">
+      <DependentUpon>Form_InvoiceGenerationAndReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_InvoicePayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_InvoicePayment.Designer.cs">
+      <DependentUpon>Form_InvoicePayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_InvoicePaymentForSTHCases.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_InvoicePaymentForSTHCases.Designer.cs">
+      <DependentUpon>Form_InvoicePaymentForSTHCases.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_LabelPrinting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_LabelPrinting.Designer.cs">
+      <DependentUpon>Form_LabelPrinting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ClientFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ClientFileMaintenance.Designer.cs">
+      <DependentUpon>Form_ClientFileMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_LabelSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_LabelSetting.Designer.cs">
+      <DependentUpon>Form_LabelSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_LocateCaseNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_LocateCaseNo.Designer.cs">
+      <DependentUpon>Form_LocateCaseNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_LoginDigitalSignature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_LoginDigitalSignature.Designer.cs">
+      <DependentUpon>Form_LoginDigitalSignature.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_MacroscopicTemplateMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_MacroscopicTemplateMaintenance.Designer.cs">
+      <DependentUpon>Form_MacroscopicTemplateMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_MainMenu.Designer.cs">
+      <DependentUpon>Form_MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Login.Designer.cs">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_MicroscopicCYTemplateMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_MicroscopicCYTemplateMaintenance.Designer.cs">
+      <DependentUpon>Form_MicroscopicCYTemplateMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_NatureOfSpecimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_NatureOfSpecimen.Designer.cs">
+      <DependentUpon>Form_NatureOfSpecimen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_PatientFileMaintenancecs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PatientFileMaintenancecs.Designer.cs">
+      <DependentUpon>Form_PatientFileMaintenancecs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_Picture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Picture.Designer.cs">
+      <DependentUpon>Form_Picture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_PictureCaptionMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PictureCaptionMaintenance.Designer.cs">
+      <DependentUpon>Form_PictureCaptionMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_PrevoiusCasesCondition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PrevoiusCasesCondition.Designer.cs">
+      <DependentUpon>Form_PrevoiusCasesCondition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_ResultFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ResultFileMaintenance.Designer.cs">
+      <DependentUpon>Form_ResultFileMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SelectClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SelectClient.Designer.cs">
+      <DependentUpon>Form_SelectClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SelectClientInstitute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SelectClientInstitute.Designer.cs">
+      <DependentUpon>Form_SelectClientInstitute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SelectDoctor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SelectDoctor.Designer.cs">
+      <DependentUpon>Form_SelectDoctor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SelectPatient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SelectPatient.Designer.cs">
+      <DependentUpon>Form_SelectPatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SnopCodeMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SnopCodeMaintenance.Designer.cs">
+      <DependentUpon>Form_SnopCodeMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SurgicalProcedure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SurgicalProcedure.Designer.cs">
+      <DependentUpon>Form_SurgicalProcedure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_UploadDateMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_UploadDateMenu.Designer.cs">
+      <DependentUpon>Form_UploadDateMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_UploadSTHSpecimensByWebService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_UploadSTHSpecimensByWebService.Designer.cs">
+      <DependentUpon>Form_UploadSTHSpecimensByWebService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_UserFileSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_UserFileSetup.Designer.cs">
+      <DependentUpon>Form_UserFileSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="medlabDataSet.cs">
+      <DependentUpon>medlabDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="medlabDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>medlabDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="medlabDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>medlabDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form_AdditionalTests.resx">
+      <DependentUpon>Form_AdditionalTests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BXCYFile.resx">
+      <DependentUpon>Form_BXCYFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BXCYFile2.resx">
+      <DependentUpon>Form_BXCYFile2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BXCYRecordSearch.resx">
+      <DependentUpon>Form_BXCYRecordSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CaseSearch.resx">
+      <DependentUpon>Form_CaseSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ChangePicturePath.resx">
+      <DependentUpon>Form_ChangePicturePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Cobas4800System.resx">
+      <DependentUpon>Form_Cobas4800System.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ConfirmMerge.resx">
+      <DependentUpon>Form_ConfirmMerge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CYReportMaintenance.resx">
+      <DependentUpon>Form_CYReportMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CytologicalDiagnosis.resx">
+      <DependentUpon>Form_CytologicalDiagnosis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CYTOLOGYFileGyname.resx">
+      <DependentUpon>Form_CYTOLOGYFileGyname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_CytologyFindings.resx">
+      <DependentUpon>Form_CytologyFindings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DailyLogReport.resx">
+      <DependentUpon>Form_DailyLogReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DailyLogReportCutOff.resx">
+      <DependentUpon>Form_DailyLogReportCutOff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DailyLogReportForBiopsyCytolgyMokculurCase.resx">
+      <DependentUpon>Form_DailyLogReportForBiopsyCytolgyMokculurCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DailyLogReportForBXCY.resx">
+      <DependentUpon>Form_DailyLogReportForBXCY.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Description.resx">
+      <DependentUpon>Form_Description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DigitalSignature.resx">
+      <DependentUpon>Form_DigitalSignature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DoctorFileMaintenance.resx">
+      <DependentUpon>Form_DoctorFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ClientFileMaintenance.resx">
+      <DependentUpon>Form_ClientFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DoctorsSignatureMaintenance.resx">
+      <DependentUpon>Form_DoctorsSignatureMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_EBVDiagnosisFileMaintenance.resx">
+      <DependentUpon>Form_EBVDiagnosisFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_EBVFile.resx">
+      <DependentUpon>Form_EBVFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_FeeCalculationPrivate.resx">
+      <DependentUpon>Form_FeeCalculationPrivate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_FeeCalculationSTH.resx">
+      <DependentUpon>Form_FeeCalculationSTH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_FindingComments.resx">
+      <DependentUpon>Form_FindingComments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_FrozenSectionDianosis.resx">
+      <DependentUpon>Form_FrozenSectionDianosis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_GynecologicalHistory.resx">
+      <DependentUpon>Form_GynecologicalHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ImportExportDate.resx">
+      <DependentUpon>Form_ImportExportDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_InvoiceAndOtherReportMenu.resx">
+      <DependentUpon>Form_InvoiceAndOtherReportMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_InvoiceGenerationAndReport.resx">
+      <DependentUpon>Form_InvoiceGenerationAndReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_InvoicePayment.resx">
+      <DependentUpon>Form_InvoicePayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_InvoicePaymentForSTHCases.resx">
+      <DependentUpon>Form_InvoicePaymentForSTHCases.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_LabelPrinting.resx">
+      <DependentUpon>Form_LabelPrinting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_LabelSetting.resx">
+      <DependentUpon>Form_LabelSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_LocateCaseNo.resx">
+      <DependentUpon>Form_LocateCaseNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Login.resx">
+      <DependentUpon>Form_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_LoginDigitalSignature.resx">
+      <DependentUpon>Form_LoginDigitalSignature.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_MacroscopicTemplateMaintenance.resx">
+      <DependentUpon>Form_MacroscopicTemplateMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_MainMenu.resx">
+      <DependentUpon>Form_MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_MicroscopicCYTemplateMaintenance.resx">
+      <DependentUpon>Form_MicroscopicCYTemplateMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_NatureOfSpecimen.resx">
+      <DependentUpon>Form_NatureOfSpecimen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PatientFileMaintenancecs.resx">
+      <DependentUpon>Form_PatientFileMaintenancecs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_Picture.resx">
+      <DependentUpon>Form_Picture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PictureCaptionMaintenance.resx">
+      <DependentUpon>Form_PictureCaptionMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PrevoiusCasesCondition.resx">
+      <DependentUpon>Form_PrevoiusCasesCondition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ResultFileMaintenance.resx">
+      <DependentUpon>Form_ResultFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SelectClient.resx">
+      <DependentUpon>Form_SelectClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SelectClientInstitute.resx">
+      <DependentUpon>Form_SelectClientInstitute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SelectDoctor.resx">
+      <DependentUpon>Form_SelectDoctor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SelectPatient.resx">
+      <DependentUpon>Form_SelectPatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SnopCodeMaintenance.resx">
+      <DependentUpon>Form_SnopCodeMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SurgicalProcedure.resx">
+      <DependentUpon>Form_SurgicalProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_UploadDateMenu.resx">
+      <DependentUpon>Form_UploadDateMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_UploadSTHSpecimensByWebService.resx">
+      <DependentUpon>Form_UploadSTHSpecimensByWebService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_UserFileSetup.resx">
+      <DependentUpon>Form_UserFileSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="medlabDataSet.xsc">
+      <DependentUpon>medlabDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="medlabDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>medlabDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="medlabDataSet.xss">
+      <DependentUpon>medlabDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="medlabDataSet1.xsc">
+      <DependentUpon>medlabDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="medlabDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>medlabDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="medlabDataSet1.xss">
+      <DependentUpon>medlabDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
