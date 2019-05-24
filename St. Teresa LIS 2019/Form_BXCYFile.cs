@@ -12,7 +12,7 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_BXCYFile : Form
     {
-        SqlConnection connection = new SqlConnection("Data Source = PACMOBILE-PC/SQLEXPRESS; Initial Catalog = medlab; Integrated Security = False;");
+        SqlConnection connection = new SqlConnection("Data Source = MSI/SQLEXPRESS; Initial Catalog = medlab; Integrated Security = False;");
         SqlCommand command;
         SqlDataReader mdr;
         public string selected { get; private set; }
