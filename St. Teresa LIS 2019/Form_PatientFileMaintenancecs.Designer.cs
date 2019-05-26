@@ -64,11 +64,8 @@
             this.button_Back = new System.Windows.Forms.Button();
             this.button_Top = new System.Windows.Forms.Button();
             this.button_Merge = new System.Windows.Forms.Button();
-            this.medlabDataSet2 = new St.Teresa_LIS_2019.medlabDataSet2();
             this.pATIENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pATIENTTableAdapter = new St.Teresa_LIS_2019.medlabDataSet2TableAdapters.PATIENTTableAdapter();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pATIENTBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -429,6 +426,7 @@
             this.button_End.Text = "End";
             this.button_End.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_End.UseVisualStyleBackColor = true;
+            this.button_End.Click += new System.EventHandler(this.button_End_Click);
             // 
             // button_Next
             // 
@@ -473,6 +471,7 @@
             this.button_Top.Text = "Top";
             this.button_Top.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Top.UseVisualStyleBackColor = true;
+            this.button_Top.Click += new System.EventHandler(this.button_Top_Click);
             // 
             // button_Merge
             // 
@@ -485,20 +484,6 @@
             this.button_Merge.Text = "Merge";
             this.button_Merge.UseVisualStyleBackColor = true;
             this.button_Merge.Click += new System.EventHandler(this.button_Merge_Click);
-            // 
-            // medlabDataSet2
-            // 
-            this.medlabDataSet2.DataSetName = "medlabDataSet2";
-            this.medlabDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // pATIENTBindingSource
-            // 
-            this.pATIENTBindingSource.DataMember = "PATIENT";
-            this.pATIENTBindingSource.DataSource = this.medlabDataSet2;
-            // 
-            // pATIENTTableAdapter
-            // 
-            this.pATIENTTableAdapter.ClearBeforeFill = true;
             // 
             // Form_PatientFileMaintenancecs
             // 
@@ -541,7 +526,6 @@
             this.Load += new System.EventHandler(this.Form_PatientFileMaintenancecs_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pATIENTBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -584,8 +568,6 @@
         private System.Windows.Forms.Button button_Back;
         private System.Windows.Forms.Button button_Top;
         private System.Windows.Forms.Button button_Merge;
-        private medlabDataSet2 medlabDataSet2;
         private System.Windows.Forms.BindingSource pATIENTBindingSource;
-        private medlabDataSet2TableAdapters.PATIENTTableAdapter pATIENTTableAdapter;
     }
 }

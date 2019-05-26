@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace St.Teresa_LIS_2019
 {
     public partial class Form_BXCYFile : Form
     {
-        SqlConnection connection = new SqlConnection("Data Source = MSI/SQLEXPRESS; Initial Catalog = medlab; Integrated Security = False;");
+        SqlConnection connection = new SqlConnection(ConfigurationManager.AppSettings["medlabConnectionString"]);
         SqlCommand command;
         SqlDataReader mdr;
         public string selected { get; private set; }
@@ -29,6 +25,7 @@ namespace St.Teresa_LIS_2019
 
         private void Form_BXCYFile_Load(object sender, EventArgs e)
         {
+            Console.WriteLine("testtesttest");
             // TODO: This line of code loads data into the 'medlabDataSet1.BXCY_SPECIMEN' table. You can move, or remove it, as needed.
             this.bXCY_SPECIMENTableAdapter.Fill(this.medlabDataSet1.BXCY_SPECIMEN);
             // TODO: This line of code loads data into the 'medlabDataSet.BXCY_SPECIMEN' table. You can move, or remove it, as needed.
@@ -39,8 +36,10 @@ namespace St.Teresa_LIS_2019
 
 
         }
+
         private void LoadDateMDR()
         {
+            Console.WriteLine("testtesttest123");
             this.selected = Form_BXCYRecordSearch.selected;
             connection.Open();
             string selectQuery = "SELECT * FROM [medlab].[dbo].[BXCY_SPECIMEN] WHERE case_no = '" + selected+"'";

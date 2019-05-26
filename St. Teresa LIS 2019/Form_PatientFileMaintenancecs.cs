@@ -2,8 +2,8 @@
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
-using System.Globalization;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace St.Teresa_LIS_2019
 {
@@ -14,12 +14,21 @@ namespace St.Teresa_LIS_2019
         private DataSet patientDataSet = new DataSet();
         private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         public static Boolean merge;
-        List<Patient> patientList { get; set; }
-        public CurrencyManager bm;
+        public CurrencyManager currencyManager;
 
         public class Patient
         {
-            public string name { get; set; }
+            public string patientName { get; set; }
+            public string patientChineseName { get; set; }
+            public Double? sequence { get; set; }
+            public string sex { get; set; }
+            public DateTime? birthday { get; set; }
+            public Double? age { get; set; }
+            public string hkid { get; set; }
+            public string updateBy { get; set; }
+            public DateTime? updateAt { get; set; }
+            public string updateCtr { get; set; }
+            public string updated { get; set; }
         }
 
         public Form_PatientFileMaintenancecs()
@@ -48,27 +57,23 @@ namespace St.Teresa_LIS_2019
 
         private void Form_PatientFileMaintenancecs_Load(object sender, EventArgs e)
         {
-            // TODO: 这行代码将数据加载到表“medlabDataSet2.PATIENT”中。您可以根据需要移动或删除它。
-            initDataSet("SELECT * FROM [medlab].[dbo].[PATIENT]");
-            patientList = getAllPatients(patientDataSet);
+            fetchDataIntoDataSet("SELECT * FROM [medlab].[dbo].[PATIENT]");
+            List<Patient> patientList = getAllPatients(patientDataSet);
 
-            textBox_Patient.DataBindings.Add("Text", patientList, "name", false);
+            textBox_Patient.DataBindings.Add("Text", patientList, "patientName", false);
+            textBox_Chinese_Name.DataBindings.Add("Text", patientList, "patientChineseName", false);
+            textBox_No.DataBindings.Add("Text", patientList, "sequence", false);
+            textBox_Sex.DataBindings.Add("Text", patientList, "sex", false);
+            textBox_DOB.DataBindings.Add("Text", patientList, "birthday", false);
+            textBox_Age.DataBindings.Add("Text", patientList, "age", false);
+            textBox_HKID.DataBindings.Add("Text", patientList, "hkid", false);
+            textBox_Last_Updated_By.DataBindings.Add("Text", patientList, "updateBy", false);
+            textBox_Update_At.DataBindings.Add("Text", patientList, "updateAt", false);
 
-            bm = (CurrencyManager)this.BindingContext[patientList];
-            /*
-            connection.Open();
-            string selectQuery = "SELECT * FROM [medlab].[dbo].[PATIENT]";
-            command = new SqlCommand(selectQuery, connection);
-            mdr = command.ExecuteReader();
-            if (mdr.Read())
-            {
-
-            }
-            connection.Close();
-            */
+            currencyManager = (CurrencyManager)this.BindingContext[patientList];
         }
 
-        private void initDataSet(string selectCommand) 
+        private void fetchDataIntoDataSet(string selectCommand) 
         {
             try
             {
@@ -81,8 +86,6 @@ namespace St.Teresa_LIS_2019
 
                 // Populate a new data table and bind it to the BindingSource.
                 dataAdapter.Fill(patientDataSet, "patient");
-
-                // Resize the DataGridView columns to fit the newly loaded content.
             }
             catch (SqlException)
             {
@@ -94,28 +97,40 @@ namespace St.Teresa_LIS_2019
 
         private List<Patient> getAllPatients(DataSet dataSet)
         {
-            patientList = new List<Patient>();
             DataTable dt = patientDataSet.Tables["patient"];
-
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                string name = dt.Rows[i]["PATIENT"].ToString();
-                Patient p = new Patient();
-                p.name = name;
-                patientList.Add(p);
-            }
-            
-            return patientList;
+            return dt.AsEnumerable().Select(dataRow => new Patient {
+                patientName = dataRow.Field<string>("PATIENT"),
+                patientChineseName = dataRow.Field<string>("CNAME"),
+                sequence = dataRow.Field<double>("SEQ"),
+                sex = dataRow.Field<string>("SEX"),
+                birthday = dataRow.Field<DateTime?>("BIRTH"),
+                age = dataRow.Field<Double?>("AGE"),
+                hkid = dataRow.Field<string>("HKID"),
+                updateBy = dataRow.Field<string>("UPDATE_BY"),
+                updateAt = dataRow.Field<DateTime?>("UPDATE_AT"),
+                updateCtr = dataRow.Field<string>("UPDATE_CTR"),
+                updated = dataRow.Field<string>("UPDATED")
+            }).ToList();
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            bm.Position++;
+            currencyManager.Position++;
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            bm.Position--;
+            currencyManager.Position--;
+        }
+
+        private void button_Top_Click(object sender, EventArgs e)
+        {
+            currencyManager.Position = 0;
+        }
+
+        private void button_End_Click(object sender, EventArgs e)
+        {
+            currencyManager.Position = currencyManager.Count - 1;
         }
     }
 }
