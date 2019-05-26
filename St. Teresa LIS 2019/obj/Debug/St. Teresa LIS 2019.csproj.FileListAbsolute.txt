@@ -128,3 +128,68 @@ D:\WorkStation\Pacmobile\StTeresa\LIS_20190314\St. Teresa LIS 2019\St. Teresa LI
 D:\WorkStation\Pacmobile\StTeresa\LIS_20190314\St. Teresa LIS 2019\St. Teresa LIS 2019\obj\Debug\St. Teresa LIS 2019.csproj.CoreCompileInputs.cache
 D:\WorkStation\Pacmobile\StTeresa\LIS_20190314\St. Teresa LIS 2019\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.exe
 D:\WorkStation\Pacmobile\StTeresa\LIS_20190314\St. Teresa LIS 2019\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.pdb
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\St.Teresa_LIS_2019.exe.config
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\St.Teresa_LIS_2019.exe
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\St.Teresa_LIS_2019.pdb
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St. Teresa LIS 2019.csprojAssemblyReference.cache
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_AdditionalTests.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_BXCYFile.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_BXCYFile2.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_BXCYRecordSearch.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_CaseSearch.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_ChangePicturePath.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_Cobas4800System.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_ConfirmMerge.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_CYReportMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_CytologicalDiagnosis.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_CYTOLOGYFileGyname.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_CytologyFindings.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DailyLogReport.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DailyLogReportCutOff.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DailyLogReportForBiopsyCytolgyMokculurCase.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DailyLogReportForBXCY.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_Description.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DigitalSignature.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DoctorFileMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_ClientFileMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DoctorsSignatureMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_EBVDiagnosisFileMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_EBVFile.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_FeeCalculationPrivate.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_FeeCalculationSTH.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_FindingComments.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_FrozenSectionDianosis.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_GynecologicalHistory.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_ImportExportDate.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_InvoiceAndOtherReportMenu.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_InvoiceGenerationAndReport.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_InvoicePayment.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_InvoicePaymentForSTHCases.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_LabelPrinting.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_LabelSetting.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_LocateCaseNo.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_Login.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_LoginDigitalSignature.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_MacroscopicTemplateMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_MainMenu.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_MicroscopicCYTemplateMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_NatureOfSpecimen.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_PatientFileMaintenancecs.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_Picture.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_PictureCaptionMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_PrevoiusCasesCondition.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_ResultFileMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SelectClient.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SelectClientInstitute.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SelectDoctor.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SelectPatient.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SnopCodeMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SurgicalProcedure.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_UploadDateMenu.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_UploadSTHSpecimensByWebService.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_UserFileSetup.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Properties.Resources.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St. Teresa LIS 2019.csproj.GenerateResource.cache
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St. Teresa LIS 2019.csproj.CoreCompileInputs.cache
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.exe
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.pdb

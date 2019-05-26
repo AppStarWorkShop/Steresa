@@ -13137,7 +13137,7 @@ SELECT userid, loginName, userName, createdate, active FROM adminUser WHERE (use
                          snopcode_t, desc_t, snopcode_m, desc_m, er, em, remind, remark, initial, priv_case, supp, mt, print_by, print_at, print_ctr, issue_by, issue_at, update_by, 
                          update_at, update_ctr, updated, uploaded, snopcode_t2, desc_t2, snopcode_t3, desc_t3, snopcode_m2, desc_m2, snopcode_m3, desc_m3
 FROM            BXCY_SPECIMEN
-WHERE        (rpt_date > '2018-jan-01') AND (case_no LIKE 'BX%')
+WHERE        (rpt_date > '2018-01-01') AND (case_no LIKE 'BX%')
 ORDER BY case_no DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
