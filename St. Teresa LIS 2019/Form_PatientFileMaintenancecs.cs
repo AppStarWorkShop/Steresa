@@ -57,6 +57,7 @@ namespace St.Teresa_LIS_2019
 
         private void Form_PatientFileMaintenancecs_Load(object sender, EventArgs e)
         {
+            // fetch patient data
             fetchDataIntoDataSet("SELECT * FROM [medlab].[dbo].[PATIENT]");
             List<Patient> patientList = getAllPatients(patientDataSet);
 
