@@ -16,7 +16,9 @@ namespace St.Teresa_LIS_2019
         public static Boolean merge;
         public CurrencyManager currencyManager;
         private DataRow newDr;
-        private List<Patient> patientList;
+        private DataRow copyDr;
+        //private List<Patient> patientList;
+        private int currentStatus;
 
         public class Patient
         {
@@ -61,12 +63,13 @@ namespace St.Teresa_LIS_2019
         {
             // fetch patient data
             reloadDBData();
+            setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
         private void reloadDBData()
         {
             fetchDataIntoDataSet("SELECT TOP 10 * FROM [medlab].[dbo].[PATIENT]");
-            patientList = getAllPatients(patientDataSet);
+            /*patientList = getAllPatients(patientDataSet);
 
             textBox_Patient.DataBindings.Add("Text", patientList, "patientName", false);
             textBox_Chinese_Name.DataBindings.Add("Text", patientList, "patientChineseName", false);
@@ -77,11 +80,27 @@ namespace St.Teresa_LIS_2019
             textBox_HKID.DataBindings.Add("Text", patientList, "hkid", false);
             textBox_Last_Updated_By.DataBindings.Add("Text", patientList, "updateBy", false);
             textBox_Update_At.DataBindings.Add("Text", patientList, "updateAt", false);
+            
+             
+             currencyManager = (CurrencyManager)this.BindingContext[patientList];*/
 
-            currencyManager = (CurrencyManager)this.BindingContext[patientList];
+
+            DataTable dt = patientDataSet.Tables["patient"];
+
+            textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
+            textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
+            textBox_No.DataBindings.Add("Text", dt, "SEQ", false);
+            textBox_Sex.DataBindings.Add("Text", dt, "SEX", false);
+            textBox_DOB.DataBindings.Add("Text", dt, "BIRTH", false);
+            textBox_Age.DataBindings.Add("Text", dt, "AGE", false);
+            textBox_HKID.DataBindings.Add("Text", dt, "HKID", false);
+            textBox_Last_Updated_By.DataBindings.Add("Text", dt, "UPDATE_BY", false);
+            textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
+
+            currencyManager = (CurrencyManager)this.BindingContext[dt];
         }
 
-        private void fetchDataIntoDataSet(string selectCommand) 
+        private void fetchDataIntoDataSet(string selectCommand)
         {
             try
             {
@@ -147,9 +166,7 @@ namespace St.Teresa_LIS_2019
             int currentPosition = patientDataSet.Tables["patient"].Rows.IndexOf(newDr);
             currencyManager.Position = currentPosition;
 
-            dataAdapter.Fill(patientDataSet, "patient");
-
-            button_Save.Enabled = true;*/
+            dataAdapter.Fill(patientDataSet, "patient");*/
 
             //patientList = new;
 
@@ -162,6 +179,8 @@ namespace St.Teresa_LIS_2019
             button_Save.Enabled = true;*/
 
             //currencyManager.AddNew();
+
+            setButtonStatus(PageStatus.STATUS_NEW);
 
             textBox_Patient.DataBindings.Clear();
             textBox_Chinese_Name.DataBindings.Clear();
@@ -176,7 +195,7 @@ namespace St.Teresa_LIS_2019
             textBox_Patient.Text = "";
             textBox_Chinese_Name.Text = "";
             textBox_No.Text = "";
-            textBox_Sex.Text = "";
+            textBox_Sex.Text = "M";
             textBox_DOB.Text = "";
             textBox_Age.Text = "";
             textBox_HKID.Text = "";
@@ -189,24 +208,163 @@ namespace St.Teresa_LIS_2019
         private void button_Save_Click(object sender, EventArgs e)
         {
             //dataAdapter.Update(patientDataSet, "patient");
-            DataRow drow = patientDataSet.Tables["patient"].NewRow();
-            //int t = dataGridView1.Rows.Count;
-            drow["PATIENT"] = textBox_Patient.Text;
-            drow["CNAME"] = textBox_Chinese_Name.Text;
-            drow["SEQ"] = textBox_No.Text;
-            drow["SEX"] = textBox_Sex.Text;
-            drow["BIRTH"] = textBox_DOB.Text;
-            drow["AGE"] = textBox_Age.Text;
-            drow["HKID"] = textBox_HKID.Text;
-            drow["UPDATE_BY"] = "Addward";
-            drow["UPDATE_AT"] = DateTime.Now.ToString("");
-            patientDataSet.Tables["patient"].Rows.Add(drow);
+            if (currentStatus == PageStatus.STATUS_NEW)
+            {
+                DataRow drow = patientDataSet.Tables["patient"].NewRow();
+                //int t = dataGridView1.Rows.Count;
+                drow["PATIENT"] = textBox_Patient.Text;
+                drow["CNAME"] = textBox_Chinese_Name.Text;
+                drow["SEQ"] = textBox_No.Text;
+                drow["SEX"] = textBox_Sex.Text;
+                drow["BIRTH"] = textBox_DOB.Text;
+                drow["AGE"] = textBox_Age.Text;
+                drow["HKID"] = textBox_HKID.Text;
+                drow["UPDATE_BY"] = "Addward";//TODO: set the current login user here
+                drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                patientDataSet.Tables["patient"].Rows.Add(drow);
+                dataAdapter.Update(patientDataSet, "patient");
 
-            dataAdapter.Update(patientDataSet, "patient");
+                MessageBox.Show("New patient saved");
 
-            MessageBox.Show("New patient saved");
+                reloadDBData();
+            }
+            else
+            {
+                if (currentStatus == PageStatus.STATUS_EDIT)
+                {
+                    //DataRow drow = patientDataSet.Tables["patient"].Rows.Find("LEUNG BARBARA JOYCE");
+                    dataAdapter.Update(patientDataSet, "patient");
+                    MessageBox.Show("patient updated");
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+            }
+        }
 
-            reloadDBData();
+        private void setButtonStatus(int status)
+        {
+            currentStatus = status;
+
+            if (status == PageStatus.STATUS_VIEW) { 
+                button_Top.Enabled = true;
+                button_Back.Enabled = true;
+                button_Next.Enabled = true;
+                button_End.Enabled = true;
+                button_Save.Enabled = false;
+                button_New.Enabled = true;
+                button_Edit.Enabled = true;
+                button_Delete.Enabled = true;
+                button_Undo.Enabled = false;
+
+                textBox_Patient.Enabled = false;
+                textBox_Chinese_Name.Enabled = false;
+                textBox_No.Enabled = false;
+                textBox_Sex.Enabled = false;
+                textBox_DOB.Enabled = false;
+                textBox_Age.Enabled = false;
+                textBox_HKID.Enabled = false;
+                
+            }
+            else
+            {
+                if (status == PageStatus.STATUS_NEW)
+                {
+                    button_Top.Enabled = false;
+                    button_Back.Enabled = false;
+                    button_Next.Enabled = false;
+                    button_End.Enabled = false;
+                    button_Save.Enabled = true;
+                    button_New.Enabled = false;
+                    button_Edit.Enabled = false;
+                    button_Delete.Enabled = false;
+                    button_Undo.Enabled = true;
+
+                    textBox_Patient.Enabled = true;
+                    textBox_Chinese_Name.Enabled = true;
+                    textBox_No.Enabled = true;
+                    textBox_Sex.Enabled = true;
+                    textBox_DOB.Enabled = true;
+                    textBox_Age.Enabled = true;
+                    textBox_HKID.Enabled = true;
+                }
+                else
+                {
+                    if (status == PageStatus.STATUS_EDIT)
+                    {
+                        button_Top.Enabled = false;
+                        button_Back.Enabled = false;
+                        button_Next.Enabled = false;
+                        button_End.Enabled = false;
+                        button_Save.Enabled = true;
+                        button_New.Enabled = false;
+                        button_Edit.Enabled = false;
+                        button_Delete.Enabled = false;
+                        button_Undo.Enabled = true;
+
+                        textBox_Patient.Enabled = true;
+                        textBox_Chinese_Name.Enabled = true;
+                        textBox_No.Enabled = true;
+                        textBox_Sex.Enabled = true;
+                        textBox_DOB.Enabled = true;
+                        textBox_Age.Enabled = true;
+                        textBox_HKID.Enabled = true;
+                    }
+                }
+            }
+        }
+
+        public class PageStatus
+        {
+            public const int STATUS_VIEW = 1;
+            public const int STATUS_NEW = 2;
+            public const int STATUS_EDIT = 3;
+        }
+
+        private void button_Edit_Click(object sender, EventArgs e)
+        {
+            copyDr = patientDataSet.Tables["patient"].NewRow();
+            copyDr["PATIENT"] = textBox_Patient.Text;
+            copyDr["CNAME"] = textBox_Chinese_Name.Text;
+            copyDr["SEQ"] = textBox_No.Text;
+            copyDr["SEX"] = textBox_Sex.Text;
+            copyDr["BIRTH"] = textBox_DOB.Text;
+            copyDr["AGE"] = textBox_Age.Text;
+            copyDr["HKID"] = textBox_HKID.Text;
+            //copyDr["UPDATE_BY"] = textBox_Last_Updated_By;
+            //copyDr["UPDATE_AT"] = textBox_Update_At;
+
+            setButtonStatus(PageStatus.STATUS_EDIT);
+        }
+
+        private void button_Undo_Click(object sender, EventArgs e)
+        {
+            if (currentStatus == PageStatus.STATUS_NEW)
+            {
+                textBox_Patient.Text = "";
+                textBox_Chinese_Name.Text = "";
+                textBox_No.Text = "";
+                textBox_Sex.Text = "M";
+                textBox_DOB.Text = "";
+                textBox_Age.Text = "";
+                textBox_HKID.Text = "";
+                textBox_Last_Updated_By.Text = "";
+                textBox_Update_At.Text = "";
+            }
+            else
+            {
+                if (currentStatus == PageStatus.STATUS_EDIT)
+                {
+                    if(copyDr != null)
+                    {
+                        textBox_Patient.Text = copyDr["PATIENT"].ToString();
+                        textBox_Chinese_Name.Text = copyDr["CNAME"].ToString();
+                        textBox_No.Text = copyDr["SEQ"].ToString();
+                        textBox_Sex.Text = copyDr["SEX"].ToString();
+                        textBox_DOB.Text = copyDr["BIRTH"].ToString();
+                        textBox_Age.Text = copyDr["AGE"].ToString();
+                        textBox_HKID.Text = copyDr["HKID"].ToString();
+                    }
+                }
+            }
         }
     }
 }

@@ -287,11 +287,11 @@
             // 
             this.label_Line.AutoSize = true;
             this.label_Line.BackColor = System.Drawing.Color.Transparent;
-            this.label_Line.Font = new System.Drawing.Font("Palace Script MT", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_Line.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Line.ForeColor = System.Drawing.SystemColors.GrayText;
             this.label_Line.Location = new System.Drawing.Point(7, 174);
             this.label_Line.Name = "label_Line";
-            this.label_Line.Size = new System.Drawing.Size(572, 47);
+            this.label_Line.Size = new System.Drawing.Size(671, 54);
             this.label_Line.TabIndex = 152;
             this.label_Line.Text = "________________________";
             // 
@@ -385,11 +385,12 @@
             this.button_Edit.Text = "Edit";
             this.button_Edit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Edit.UseVisualStyleBackColor = true;
+            this.button_Edit.Click += new System.EventHandler(this.button_Edit_Click);
             // 
             // button_Undo
             // 
             this.button_Undo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_Undo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.button_Undo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Undo.Image = ((System.Drawing.Image)(resources.GetObject("button_Undo.Image")));
             this.button_Undo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Undo.Location = new System.Drawing.Point(469, 240);
@@ -399,6 +400,7 @@
             this.button_Undo.Text = "Undo";
             this.button_Undo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Undo.UseVisualStyleBackColor = true;
+            this.button_Undo.Click += new System.EventHandler(this.button_Undo_Click);
             // 
             // button_Exit
             // 
