@@ -37,7 +37,6 @@
             this.textBox_Age = new System.Windows.Forms.TextBox();
             this.label_Age = new System.Windows.Forms.Label();
             this.textBox_Chinese_Name = new System.Windows.Forms.TextBox();
-            this.textBox_DOB = new System.Windows.Forms.TextBox();
             this.label_DOB = new System.Windows.Forms.Label();
             this.button_F1 = new System.Windows.Forms.Button();
             this.textBox_Patient = new System.Windows.Forms.TextBox();
@@ -65,6 +64,8 @@
             this.button_Top = new System.Windows.Forms.Button();
             this.button_Merge = new System.Windows.Forms.Button();
             this.pATIENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.textBox_ID = new System.Windows.Forms.TextBox();
+            this.datePicker_DOB = new System.Windows.Forms.DateTimePicker();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pATIENTBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -145,16 +146,6 @@
             this.textBox_Chinese_Name.Size = new System.Drawing.Size(253, 23);
             this.textBox_Chinese_Name.TabIndex = 144;
             this.textBox_Chinese_Name.Text = "陳大文";
-            // 
-            // textBox_DOB
-            // 
-            this.textBox_DOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_DOB.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_DOB.Location = new System.Drawing.Point(110, 128);
-            this.textBox_DOB.Name = "textBox_DOB";
-            this.textBox_DOB.Size = new System.Drawing.Size(149, 23);
-            this.textBox_DOB.TabIndex = 143;
-            this.textBox_DOB.Text = "1987 / 06 / 22";
             // 
             // label_DOB
             // 
@@ -341,6 +332,7 @@
             this.button_Delete.Text = "Delete";
             this.button_Delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
             // button_Save
             // 
@@ -489,6 +481,24 @@
             this.button_Merge.UseVisualStyleBackColor = true;
             this.button_Merge.Click += new System.EventHandler(this.button_Merge_Click);
             // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Enabled = false;
+            this.textBox_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_ID.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_ID.Location = new System.Drawing.Point(591, 48);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(10, 23);
+            this.textBox_ID.TabIndex = 197;
+            // 
+            // datePicker_DOB
+            // 
+            this.datePicker_DOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.datePicker_DOB.Location = new System.Drawing.Point(108, 128);
+            this.datePicker_DOB.Name = "datePicker_DOB";
+            this.datePicker_DOB.Size = new System.Drawing.Size(164, 23);
+            this.datePicker_DOB.TabIndex = 198;
+            // 
             // Form_PatientFileMaintenancecs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -496,6 +506,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(190)))));
             this.ClientSize = new System.Drawing.Size(584, 288);
             this.ControlBox = false;
+            this.Controls.Add(this.datePicker_DOB);
+            this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Merge);
             this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.button_Save);
@@ -519,7 +531,6 @@
             this.Controls.Add(this.textBox_Age);
             this.Controls.Add(this.label_Age);
             this.Controls.Add(this.textBox_Chinese_Name);
-            this.Controls.Add(this.textBox_DOB);
             this.Controls.Add(this.label_DOB);
             this.Controls.Add(this.button_F1);
             this.Controls.Add(this.textBox_Patient);
@@ -545,7 +556,6 @@
         private System.Windows.Forms.TextBox textBox_Age;
         private System.Windows.Forms.Label label_Age;
         private System.Windows.Forms.TextBox textBox_Chinese_Name;
-        private System.Windows.Forms.TextBox textBox_DOB;
         private System.Windows.Forms.Label label_DOB;
         private System.Windows.Forms.Button button_F1;
         private System.Windows.Forms.TextBox textBox_Patient;
@@ -573,5 +583,7 @@
         private System.Windows.Forms.Button button_Top;
         private System.Windows.Forms.Button button_Merge;
         private System.Windows.Forms.BindingSource pATIENTBindingSource;
+        private System.Windows.Forms.TextBox textBox_ID;
+        private System.Windows.Forms.DateTimePicker datePicker_DOB;
     }
 }

@@ -10,18 +10,17 @@ namespace St.Teresa_LIS_2019
 
     public partial class Form_PatientFileMaintenancecs : Form
     {
-        SqlConnection connection = new SqlConnection(Properties.Settings.Default.medlabConnectionString);
         private DataSet patientDataSet = new DataSet();
-        private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        //private SqlDataAdapter dataAdapter = new SqlDataAdapter();
         public static Boolean merge;
         public CurrencyManager currencyManager;
-        private DataRow newDr;
-        private DataRow copyDr;
-        //private List<Patient> patientList;
+        private PatientStr copyPatient;
         private int currentStatus;
+        private DataTable dt;
 
         public class Patient
         {
+            public int id { get; set; }
             public string patientName { get; set; }
             public string patientChineseName { get; set; }
             public Double? sequence { get; set; }
@@ -31,6 +30,22 @@ namespace St.Teresa_LIS_2019
             public string hkid { get; set; }
             public string updateBy { get; set; }
             public DateTime? updateAt { get; set; }
+            public string updateCtr { get; set; }
+            public string updated { get; set; }
+        }
+
+        public class PatientStr
+        {
+            public int id { get; set; }
+            public string patientName { get; set; }
+            public string patientChineseName { get; set; }
+            public string sequence { get; set; }
+            public string sex { get; set; }
+            public string birthday { get; set; }
+            public string age { get; set; }
+            public string hkid { get; set; }
+            public string updateBy { get; set; }
+            public string updateAt { get; set; }
             public string updateCtr { get; set; }
             public string updated { get; set; }
         }
@@ -62,36 +77,35 @@ namespace St.Teresa_LIS_2019
         private void Form_PatientFileMaintenancecs_Load(object sender, EventArgs e)
         {
             // fetch patient data
-            reloadDBData();
+            reloadAndBindingDBData();
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadDBData()
+        private void reloadAndBindingDBData()
         {
-            fetchDataIntoDataSet("SELECT TOP 10 * FROM [medlab].[dbo].[PATIENT]");
-            /*patientList = getAllPatients(patientDataSet);
+            //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]",patientDataSet);
+            DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]",patientDataSet);
 
-            textBox_Patient.DataBindings.Add("Text", patientList, "patientName", false);
-            textBox_Chinese_Name.DataBindings.Add("Text", patientList, "patientChineseName", false);
-            textBox_No.DataBindings.Add("Text", patientList, "sequence", false);
-            textBox_Sex.DataBindings.Add("Text", patientList, "sex", false);
-            textBox_DOB.DataBindings.Add("Text", patientList, "birthday", false);
-            textBox_Age.DataBindings.Add("Text", patientList, "age", false);
-            textBox_HKID.DataBindings.Add("Text", patientList, "hkid", false);
-            textBox_Last_Updated_By.DataBindings.Add("Text", patientList, "updateBy", false);
-            textBox_Update_At.DataBindings.Add("Text", patientList, "updateAt", false);
-            
-             
-             currencyManager = (CurrencyManager)this.BindingContext[patientList];*/
+            textBox_ID.DataBindings.Clear();
+            textBox_Patient.DataBindings.Clear();
+            textBox_Chinese_Name.DataBindings.Clear();
+            textBox_No.DataBindings.Clear();
+            textBox_Sex.DataBindings.Clear();
+            datePicker_DOB.DataBindings.Clear();
+            textBox_Age.DataBindings.Clear();
+            textBox_HKID.DataBindings.Clear();
+            textBox_Last_Updated_By.DataBindings.Clear();
+            textBox_Update_At.DataBindings.Clear();
 
+            dt = patientDataSet.Tables["patient"];
+            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
 
-            DataTable dt = patientDataSet.Tables["patient"];
-
+            textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_No.DataBindings.Add("Text", dt, "SEQ", false);
             textBox_Sex.DataBindings.Add("Text", dt, "SEX", false);
-            textBox_DOB.DataBindings.Add("Text", dt, "BIRTH", false);
+            datePicker_DOB.DataBindings.Add("Text", dt, "BIRTH", false);
             textBox_Age.DataBindings.Add("Text", dt, "AGE", false);
             textBox_HKID.DataBindings.Add("Text", dt, "HKID", false);
             textBox_Last_Updated_By.DataBindings.Add("Text", dt, "UPDATE_BY", false);
@@ -100,32 +114,22 @@ namespace St.Teresa_LIS_2019
             currencyManager = (CurrencyManager)this.BindingContext[dt];
         }
 
-        private void fetchDataIntoDataSet(string selectCommand)
+        private void reloadDBData()
         {
-            try
-            {
-                // Create a new data adapter based on the specified query.
-                dataAdapter = new SqlDataAdapter(selectCommand, connection);
-
-                // Create a command builder to generate SQL update, insert, and
-                // delete commands based on selectCommand. 
-                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
-
-                // Populate a new data table and bind it to the BindingSource.
-                dataAdapter.Fill(patientDataSet, "patient");
-            }
-            catch (SqlException)
-            {
-                MessageBox.Show("To run this example, replace the value of the " +
-                    "connectionString variable with a connection string that is " +
-                    "valid for your system.");
-            }
+            //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]", patientDataSet);
+            DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]", patientDataSet);
+            DataTable dt = patientDataSet.Tables["patient"];
+            currencyManager = (CurrencyManager)this.BindingContext[dt];
         }
 
         private List<Patient> getAllPatients(DataSet dataSet)
         {
-            DataTable dt = patientDataSet.Tables["patient"];
+            dt = patientDataSet.Tables["patient"];
+
+            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+
             return dt.AsEnumerable().Select(dataRow => new Patient {
+                id = dataRow.Field<int>("id"),
                 patientName = dataRow.Field<string>("PATIENT"),
                 patientChineseName = dataRow.Field<string>("CNAME"),
                 sequence = dataRow.Field<double>("SEQ"),
@@ -162,79 +166,67 @@ namespace St.Teresa_LIS_2019
 
         private void button_New_Click(object sender, EventArgs e)
         {
-            /*newDr = patientDataSet.Tables["patient"].NewRow();
-            int currentPosition = patientDataSet.Tables["patient"].Rows.IndexOf(newDr);
-            currencyManager.Position = currentPosition;
-
-            dataAdapter.Fill(patientDataSet, "patient");*/
-
-            //patientList = new;
-
-            /*Patient newPatient = new Patient();
-
-            patientList.Add(newPatient);
-
-            currencyManager.Position = currencyManager.Count - 1;
-
-            button_Save.Enabled = true;*/
-
-            //currencyManager.AddNew();
-
             setButtonStatus(PageStatus.STATUS_NEW);
 
+            textBox_ID.DataBindings.Clear();
             textBox_Patient.DataBindings.Clear();
             textBox_Chinese_Name.DataBindings.Clear();
             textBox_No.DataBindings.Clear();
             textBox_Sex.DataBindings.Clear();
-            textBox_DOB.DataBindings.Clear();
+            datePicker_DOB.DataBindings.Clear();
             textBox_Age.DataBindings.Clear();
             textBox_HKID.DataBindings.Clear();
             textBox_Last_Updated_By.DataBindings.Clear();
             textBox_Update_At.DataBindings.Clear();
 
+            textBox_ID.Text = "";
             textBox_Patient.Text = "";
             textBox_Chinese_Name.Text = "";
             textBox_No.Text = "";
             textBox_Sex.Text = "M";
-            textBox_DOB.Text = "";
+            datePicker_DOB.Text = "";
             textBox_Age.Text = "";
             textBox_HKID.Text = "";
             textBox_Last_Updated_By.Text = "";
             textBox_Update_At.Text = "";
-
-            //this.BindingContext.
         }
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            //dataAdapter.Update(patientDataSet, "patient");
             if (currentStatus == PageStatus.STATUS_NEW)
             {
-                DataRow drow = patientDataSet.Tables["patient"].NewRow();
-                //int t = dataGridView1.Rows.Count;
-                drow["PATIENT"] = textBox_Patient.Text;
-                drow["CNAME"] = textBox_Chinese_Name.Text;
-                drow["SEQ"] = textBox_No.Text;
-                drow["SEX"] = textBox_Sex.Text;
-                drow["BIRTH"] = textBox_DOB.Text;
-                drow["AGE"] = textBox_Age.Text;
-                drow["HKID"] = textBox_HKID.Text;
-                drow["UPDATE_BY"] = "Addward";//TODO: set the current login user here
-                drow["UPDATE_AT"] = DateTime.Now.ToString("");
-                patientDataSet.Tables["patient"].Rows.Add(drow);
-                dataAdapter.Update(patientDataSet, "patient");
+                DateTime birthDate = DateTime.Parse(datePicker_DOB.Text.ToString());
 
-                MessageBox.Show("New patient saved");
+                string insertSql = string.Format("INSERT INTO PATIENT(PATIENT,CNAME,SEQ,SEX,BIRTH,AGE,HKID,UPDATE_BY,UPDATE_AT) VALUES('{0}','{1}',{2},'{3}','{4}',{5},'{6}','{7}','{8}')", textBox_Patient.Text, textBox_Chinese_Name.Text, textBox_No.Text, textBox_Sex.Text, birthDate.ToString("yyyy-MM-dd"), textBox_Age.Text, textBox_HKID.Text, "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"));
+                if (DBConn.executeUpdate(insertSql))
+                {
+                    MessageBox.Show("New patient saved");
+                }
+                else
+                {
+                    MessageBox.Show("Patient updated fail, please contact Admin");
+                }
 
-                reloadDBData();
+                setButtonStatus(PageStatus.STATUS_VIEW);
+                reloadAndBindingDBData();
             }
             else
             {
                 if (currentStatus == PageStatus.STATUS_EDIT)
                 {
-                    //DataRow drow = patientDataSet.Tables["patient"].Rows.Find("LEUNG BARBARA JOYCE");
-                    dataAdapter.Update(patientDataSet, "patient");
-                    MessageBox.Show("patient updated");
+                    DateTime birthDate = DateTime.Parse(datePicker_DOB.Text.ToString());
+
+                    string updateSql = string.Format("UPDATE PATIENT SET  PATIENT = '{0}',CNAME='{1}',SEQ={2},SEX='{3}',BIRTH='{4}',AGE={5},HKID='{6}',UPDATE_BY='{7}',UPDATE_AT='{8}' WHERE id={9}", textBox_Patient.Text, textBox_Chinese_Name.Text, textBox_No.Text, textBox_Sex.Text, birthDate.ToString("yyyy-MM-dd"), textBox_Age.Text, textBox_HKID.Text, "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"), textBox_ID.Text);
+
+                    if (DBConn.executeUpdate(updateSql))
+                    {
+                        MessageBox.Show("Patient updated");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Patient updated fail, please contact Admin");
+                    }
+
                     setButtonStatus(PageStatus.STATUS_VIEW);
                 }
             }
@@ -259,7 +251,7 @@ namespace St.Teresa_LIS_2019
                 textBox_Chinese_Name.Enabled = false;
                 textBox_No.Enabled = false;
                 textBox_Sex.Enabled = false;
-                textBox_DOB.Enabled = false;
+                datePicker_DOB.Enabled = false;
                 textBox_Age.Enabled = false;
                 textBox_HKID.Enabled = false;
                 
@@ -282,7 +274,7 @@ namespace St.Teresa_LIS_2019
                     textBox_Chinese_Name.Enabled = true;
                     textBox_No.Enabled = true;
                     textBox_Sex.Enabled = true;
-                    textBox_DOB.Enabled = true;
+                    datePicker_DOB.Enabled = true;
                     textBox_Age.Enabled = true;
                     textBox_HKID.Enabled = true;
                 }
@@ -304,7 +296,7 @@ namespace St.Teresa_LIS_2019
                         textBox_Chinese_Name.Enabled = true;
                         textBox_No.Enabled = true;
                         textBox_Sex.Enabled = true;
-                        textBox_DOB.Enabled = true;
+                        datePicker_DOB.Enabled = true;
                         textBox_Age.Enabled = true;
                         textBox_HKID.Enabled = true;
                     }
@@ -312,25 +304,16 @@ namespace St.Teresa_LIS_2019
             }
         }
 
-        public class PageStatus
-        {
-            public const int STATUS_VIEW = 1;
-            public const int STATUS_NEW = 2;
-            public const int STATUS_EDIT = 3;
-        }
-
         private void button_Edit_Click(object sender, EventArgs e)
         {
-            copyDr = patientDataSet.Tables["patient"].NewRow();
-            copyDr["PATIENT"] = textBox_Patient.Text;
-            copyDr["CNAME"] = textBox_Chinese_Name.Text;
-            copyDr["SEQ"] = textBox_No.Text;
-            copyDr["SEX"] = textBox_Sex.Text;
-            copyDr["BIRTH"] = textBox_DOB.Text;
-            copyDr["AGE"] = textBox_Age.Text;
-            copyDr["HKID"] = textBox_HKID.Text;
-            //copyDr["UPDATE_BY"] = textBox_Last_Updated_By;
-            //copyDr["UPDATE_AT"] = textBox_Update_At;
+            copyPatient = new PatientStr();
+            copyPatient.patientName = textBox_Patient.Text;
+            copyPatient.patientChineseName = textBox_Chinese_Name.Text;
+            copyPatient.sequence = textBox_No.Text;
+            copyPatient.sex = textBox_Sex.Text;
+            copyPatient.birthday = datePicker_DOB.Text;
+            copyPatient.age = textBox_Age.Text;
+            copyPatient.hkid = textBox_HKID.Text;
 
             setButtonStatus(PageStatus.STATUS_EDIT);
         }
@@ -339,31 +322,50 @@ namespace St.Teresa_LIS_2019
         {
             if (currentStatus == PageStatus.STATUS_NEW)
             {
-                textBox_Patient.Text = "";
-                textBox_Chinese_Name.Text = "";
-                textBox_No.Text = "";
-                textBox_Sex.Text = "M";
-                textBox_DOB.Text = "";
-                textBox_Age.Text = "";
-                textBox_HKID.Text = "";
-                textBox_Last_Updated_By.Text = "";
-                textBox_Update_At.Text = "";
+                setButtonStatus(PageStatus.STATUS_VIEW);
+                reloadAndBindingDBData();
             }
             else
             {
                 if (currentStatus == PageStatus.STATUS_EDIT)
                 {
-                    if(copyDr != null)
+                    if(copyPatient != null)
                     {
-                        textBox_Patient.Text = copyDr["PATIENT"].ToString();
-                        textBox_Chinese_Name.Text = copyDr["CNAME"].ToString();
-                        textBox_No.Text = copyDr["SEQ"].ToString();
-                        textBox_Sex.Text = copyDr["SEX"].ToString();
-                        textBox_DOB.Text = copyDr["BIRTH"].ToString();
-                        textBox_Age.Text = copyDr["AGE"].ToString();
-                        textBox_HKID.Text = copyDr["HKID"].ToString();
+                        textBox_Patient.Text = copyPatient.patientName;
+                        textBox_Chinese_Name.Text = copyPatient.patientChineseName;
+                        textBox_No.Text = copyPatient.sequence;
+                        textBox_Sex.Text = copyPatient.sex;
+                        datePicker_DOB.Text = copyPatient.birthday;
+                        textBox_Age.Text = copyPatient.age;
+                        textBox_HKID.Text = copyPatient.hkid;
                     }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
                 }
+            }
+        }
+
+        private void button_Delete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string deleteSql = string.Format("DELETE FROM PATIENT WHERE id = '{0}'", textBox_ID.Text);
+
+                if (DBConn.executeUpdate(deleteSql))
+                {
+                    DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
+                    rowToDelete.Delete();
+                    currencyManager.Position = 0;
+
+                    MessageBox.Show("Patient deleted");
+                }
+                else
+                {
+                    MessageBox.Show("Patient deleted fail, please contact Admin");
+                }
+
+                setButtonStatus(PageStatus.STATUS_VIEW);
+                //reloadDBData();
             }
         }
     }
