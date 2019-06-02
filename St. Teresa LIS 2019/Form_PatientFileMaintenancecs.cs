@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
 
 namespace St.Teresa_LIS_2019
 {
@@ -11,12 +12,14 @@ namespace St.Teresa_LIS_2019
     public partial class Form_PatientFileMaintenancecs : Form
     {
         private DataSet patientDataSet = new DataSet();
-        //private SqlDataAdapter dataAdapter = new SqlDataAdapter();
+        private SqlDataAdapter dataAdapter;
         public static Boolean merge;
         public CurrencyManager currencyManager;
         private PatientStr copyPatient;
         private int currentStatus;
         private DataTable dt;
+        private int currentPosition;
+        private DataRow currentEditRow;
 
         public class Patient
         {
@@ -81,10 +84,10 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData()
+        private void reloadAndBindingDBData(int position = 1)
         {
             //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]",patientDataSet);
-            DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]",patientDataSet);
+            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]",patientDataSet,"patient");
 
             textBox_ID.DataBindings.Clear();
             textBox_Patient.DataBindings.Clear();
@@ -99,6 +102,8 @@ namespace St.Teresa_LIS_2019
 
             dt = patientDataSet.Tables["patient"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+            dt.Columns["id"].AutoIncrement = true;
+            dt.Columns["id"].AutoIncrementStep = 1;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
@@ -112,14 +117,22 @@ namespace St.Teresa_LIS_2019
             textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
 
             currencyManager = (CurrencyManager)this.BindingContext[dt];
+
+            currencyManager.Position = position;
         }
 
-        private void reloadDBData()
+        private void reloadDBData(int position = 1)
         {
             //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]", patientDataSet);
-            DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]", patientDataSet);
+            DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]", patientDataSet,"patient");
+
             DataTable dt = patientDataSet.Tables["patient"];
+            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+            dt.Columns["id"].AutoIncrement = true;
+            dt.Columns["id"].AutoIncrementStep = 1;
             currencyManager = (CurrencyManager)this.BindingContext[dt];
+
+            currencyManager.Position = position;
         }
 
         private List<Patient> getAllPatients(DataSet dataSet)
@@ -168,7 +181,7 @@ namespace St.Teresa_LIS_2019
         {
             setButtonStatus(PageStatus.STATUS_NEW);
 
-            textBox_ID.DataBindings.Clear();
+            /*textBox_ID.DataBindings.Clear();
             textBox_Patient.DataBindings.Clear();
             textBox_Chinese_Name.DataBindings.Clear();
             textBox_No.DataBindings.Clear();
@@ -188,16 +201,22 @@ namespace St.Teresa_LIS_2019
             textBox_Age.Text = "";
             textBox_HKID.Text = "";
             textBox_Last_Updated_By.Text = "";
-            textBox_Update_At.Text = "";
+            textBox_Update_At.Text = "";*/
+
+            currentEditRow = patientDataSet.Tables["patient"].NewRow();
+            //currentEditRow["id"] = 0;
+            patientDataSet.Tables["patient"].Rows.Add(currentEditRow);
+
+            currencyManager.Position = currencyManager.Count - 1;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
         {
             if (currentStatus == PageStatus.STATUS_NEW)
             {
-                DateTime birthDate = DateTime.Parse(datePicker_DOB.Text.ToString());
+                //DateTime birthDate = DateTime.Parse(datePicker_DOB.Text.ToString());
 
-                string insertSql = string.Format("INSERT INTO PATIENT(PATIENT,CNAME,SEQ,SEX,BIRTH,AGE,HKID,UPDATE_BY,UPDATE_AT) VALUES('{0}','{1}',{2},'{3}','{4}',{5},'{6}','{7}','{8}')", textBox_Patient.Text, textBox_Chinese_Name.Text, textBox_No.Text, textBox_Sex.Text, birthDate.ToString("yyyy-MM-dd"), textBox_Age.Text, textBox_HKID.Text, "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"));
+                /*string insertSql = string.Format("INSERT INTO PATIENT(PATIENT,CNAME,SEQ,SEX,BIRTH,AGE,HKID,UPDATE_BY,UPDATE_AT) VALUES('{0}','{1}',{2},'{3}','{4}',{5},'{6}','{7}','{8}')", textBox_Patient.Text, textBox_Chinese_Name.Text, textBox_No.Text, textBox_Sex.Text, birthDate.ToString("yyyy-MM-dd"), textBox_Age.Text, textBox_HKID.Text, "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"));
                 if (DBConn.executeUpdate(insertSql))
                 {
                     MessageBox.Show("New patient saved");
@@ -205,18 +224,43 @@ namespace St.Teresa_LIS_2019
                 else
                 {
                     MessageBox.Show("Patient updated fail, please contact Admin");
-                }
+                }*/
 
-                setButtonStatus(PageStatus.STATUS_VIEW);
-                reloadAndBindingDBData();
+                /*DataRow drow = patientDataSet.Tables["patient"].NewRow();
+                drow["PATIENT"] = textBox_Patient.Text;
+                drow["CNAME"] = textBox_Chinese_Name.Text;
+                drow["SEQ"] = textBox_No.Text;
+                drow["SEX"] = textBox_Sex.Text;
+                drow["BIRTH"] = birthDate;
+                drow["AGE"] = textBox_Age.Text;
+                drow["HKID"] = textBox_HKID.Text;*/
+
+                if (currentEditRow != null)
+                {
+                    currentEditRow["UPDATE_BY"] = "Admin";
+                    currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                    textBox_ID.BindingContext[dt].Position++;
+
+                    if (DBConn.updateObject(dataAdapter, patientDataSet, "patient"))
+                    {
+                        reloadDBData(currencyManager.Count - 1);
+                        MessageBox.Show("New patient saved");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Patient saved fail, please contact Admin");
+                    }
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+                //reloadAndBindingDBData(currencyManager.Count - 1);
             }
             else
             {
                 if (currentStatus == PageStatus.STATUS_EDIT)
                 {
-                    DateTime birthDate = DateTime.Parse(datePicker_DOB.Text.ToString());
+                    //DateTime birthDate = DateTime.Parse(datePicker_DOB.Text.ToString());
 
-                    string updateSql = string.Format("UPDATE PATIENT SET  PATIENT = '{0}',CNAME='{1}',SEQ={2},SEX='{3}',BIRTH='{4}',AGE={5},HKID='{6}',UPDATE_BY='{7}',UPDATE_AT='{8}' WHERE id={9}", textBox_Patient.Text, textBox_Chinese_Name.Text, textBox_No.Text, textBox_Sex.Text, birthDate.ToString("yyyy-MM-dd"), textBox_Age.Text, textBox_HKID.Text, "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"), textBox_ID.Text);
+                    /*string updateSql = string.Format("UPDATE PATIENT SET  PATIENT = '{0}',CNAME='{1}',SEQ={2},SEX='{3}',BIRTH='{4}',AGE={5},HKID='{6}',UPDATE_BY='{7}',UPDATE_AT='{8}' WHERE id={9}", textBox_Patient.Text, textBox_Chinese_Name.Text, textBox_No.Text, textBox_Sex.Text, birthDate.ToString("yyyy-MM-dd"), textBox_Age.Text, textBox_HKID.Text, "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"), textBox_ID.Text);
 
                     if (DBConn.executeUpdate(updateSql))
                     {
@@ -225,9 +269,34 @@ namespace St.Teresa_LIS_2019
                     else
                     {
                         MessageBox.Show("Patient updated fail, please contact Admin");
+                    }*/
+
+                    DataRow drow = patientDataSet.Tables["patient"].Rows.Find(textBox_ID.Text);
+                    if (drow != null)
+                    {
+                        /*drow["PATIENT"] = textBox_Patient.Text;
+                        drow["CNAME"] = textBox_Chinese_Name.Text;
+                        drow["SEQ"] = textBox_No.Text;
+                        drow["SEX"] = textBox_Sex.Text;
+                        drow["BIRTH"] = birthDate;
+                        drow["AGE"] = textBox_Age.Text;
+                        drow["HKID"] = textBox_HKID.Text;*/
+                        drow["UPDATE_BY"] = "Admin";
+                        drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                        textBox_ID.BindingContext[dt].Position++;
+
+                        if (DBConn.updateObject(dataAdapter, patientDataSet, "patient"))
+                        {
+                            MessageBox.Show("Patient updated");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Patient updated fail, please contact Admin");
+                        }
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
+                    //reloadAndBindingDBData(currentPosition);
                 }
             }
         }
@@ -246,6 +315,7 @@ namespace St.Teresa_LIS_2019
                 button_Edit.Enabled = true;
                 button_Delete.Enabled = true;
                 button_Undo.Enabled = false;
+                button_Exit.Enabled = true;
 
                 textBox_Patient.Enabled = false;
                 textBox_Chinese_Name.Enabled = false;
@@ -254,7 +324,8 @@ namespace St.Teresa_LIS_2019
                 datePicker_DOB.Enabled = false;
                 textBox_Age.Enabled = false;
                 textBox_HKID.Enabled = false;
-                
+
+                disedit_modle();
             }
             else
             {
@@ -269,6 +340,7 @@ namespace St.Teresa_LIS_2019
                     button_Edit.Enabled = false;
                     button_Delete.Enabled = false;
                     button_Undo.Enabled = true;
+                    button_Exit.Enabled = false;
 
                     textBox_Patient.Enabled = true;
                     textBox_Chinese_Name.Enabled = true;
@@ -277,6 +349,8 @@ namespace St.Teresa_LIS_2019
                     datePicker_DOB.Enabled = true;
                     textBox_Age.Enabled = true;
                     textBox_HKID.Enabled = true;
+
+                    edit_modle();
                 }
                 else
                 {
@@ -291,6 +365,7 @@ namespace St.Teresa_LIS_2019
                         button_Edit.Enabled = false;
                         button_Delete.Enabled = false;
                         button_Undo.Enabled = true;
+                        button_Exit.Enabled = false;
 
                         textBox_Patient.Enabled = true;
                         textBox_Chinese_Name.Enabled = true;
@@ -299,6 +374,8 @@ namespace St.Teresa_LIS_2019
                         datePicker_DOB.Enabled = true;
                         textBox_Age.Enabled = true;
                         textBox_HKID.Enabled = true;
+
+                        edit_modle();
                     }
                 }
             }
@@ -306,6 +383,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Edit_Click(object sender, EventArgs e)
         {
+            currentPosition = currencyManager.Position;
+
             copyPatient = new PatientStr();
             copyPatient.patientName = textBox_Patient.Text;
             copyPatient.patientChineseName = textBox_Chinese_Name.Text;
@@ -315,6 +394,17 @@ namespace St.Teresa_LIS_2019
             copyPatient.age = textBox_Age.Text;
             copyPatient.hkid = textBox_HKID.Text;
 
+            /*textBox_ID.DataBindings.Clear();
+            textBox_Patient.DataBindings.Clear();
+            textBox_Chinese_Name.DataBindings.Clear();
+            textBox_No.DataBindings.Clear();
+            textBox_Sex.DataBindings.Clear();
+            datePicker_DOB.DataBindings.Clear();
+            textBox_Age.DataBindings.Clear();
+            textBox_HKID.DataBindings.Clear();
+            textBox_Last_Updated_By.DataBindings.Clear();
+            textBox_Update_At.DataBindings.Clear();*/
+
             setButtonStatus(PageStatus.STATUS_EDIT);
         }
 
@@ -322,8 +412,12 @@ namespace St.Teresa_LIS_2019
         {
             if (currentStatus == PageStatus.STATUS_NEW)
             {
+                if (currentEditRow != null)
+                {
+                    patientDataSet.Tables["patient"].Rows.Remove(currentEditRow);
+                }
                 setButtonStatus(PageStatus.STATUS_VIEW);
-                reloadAndBindingDBData();
+                //reloadAndBindingDBData();
             }
             else
             {
@@ -367,6 +461,53 @@ namespace St.Teresa_LIS_2019
                 setButtonStatus(PageStatus.STATUS_VIEW);
                 //reloadDBData();
             }
+        }
+
+        private void edit_modle()
+        {
+            button_Top.Image = Image.FromFile("Resources/topGra.png");
+            button_Top.ForeColor = Color.Gray;
+            button_Back.Image = Image.FromFile("Resources/backGra.png");
+            button_Back.ForeColor = Color.Gray;
+            button_Next.Image = Image.FromFile("Resources/nextGra.png");
+            button_Next.ForeColor = Color.Gray;
+            button_End.Image = Image.FromFile("Resources/endGra.png");
+            button_End.ForeColor = Color.Gray;
+            button_Save.Image = Image.FromFile("Resources/save.png");
+            button_Save.ForeColor = Color.Black;
+            button_New.Image = Image.FromFile("Resources/newGra.png");
+            button_New.ForeColor = Color.Gray;
+            button_Edit.Image = Image.FromFile("Resources/editGra.png");
+            button_Edit.ForeColor = Color.Gray;
+            button_Delete.Image = Image.FromFile("Resources/deleteGra.png");
+            button_Delete.ForeColor = Color.Gray;
+            button_Undo.Image = Image.FromFile("Resources/undo.png");
+            button_Undo.ForeColor = Color.Black;
+            button_Exit.Image = Image.FromFile("Resources/exitGra.png");
+            button_Exit.ForeColor = Color.Gray;
+        }
+        private void disedit_modle()
+        {
+            button_Top.Image = Image.FromFile("Resources/top.png");
+            button_Top.ForeColor = Color.Black;
+            button_Back.Image = Image.FromFile("Resources/back.png");
+            button_Back.ForeColor = Color.Black;
+            button_Next.Image = Image.FromFile("Resources/next.png");
+            button_Next.ForeColor = Color.Black;
+            button_End.Image = Image.FromFile("Resources/end.png");
+            button_End.ForeColor = Color.Black;
+            button_Save.Image = Image.FromFile("Resources/saveGra.png");
+            button_Save.ForeColor = Color.Gray;
+            button_New.Image = Image.FromFile("Resources/new.png");
+            button_New.ForeColor = Color.Black;
+            button_Edit.Image = Image.FromFile("Resources/edit.png");
+            button_Edit.ForeColor = Color.Black;
+            button_Delete.Image = Image.FromFile("Resources/delete.png");
+            button_Delete.ForeColor = Color.Black;
+            button_Undo.Image = Image.FromFile("Resources/undoGra.png");
+            button_Undo.ForeColor = Color.Gray;
+            button_Exit.Image = Image.FromFile("Resources/exit.png");
+            button_Exit.ForeColor = Color.Black;
         }
     }
 }
