@@ -198,13 +198,15 @@ namespace St.Teresa_LIS_2019
             textBox_No.Text = "";
             textBox_Sex.Text = "M";
             datePicker_DOB.Text = "";
-            textBox_Age.Text = "";
+            textBox_Age.Text = "0";
             textBox_HKID.Text = "";
             textBox_Last_Updated_By.Text = "";
             textBox_Update_At.Text = "";*/
 
             currentEditRow = patientDataSet.Tables["patient"].NewRow();
             //currentEditRow["id"] = 0;
+            currentEditRow["AGE"] = 0;
+            currentEditRow["SEX"] = "M";
             patientDataSet.Tables["patient"].Rows.Add(currentEditRow);
 
             currencyManager.Position = currencyManager.Count - 1;
@@ -451,6 +453,7 @@ namespace St.Teresa_LIS_2019
                     rowToDelete.Delete();
                     currencyManager.Position = 0;
 
+                    reloadDBData(1);
                     MessageBox.Show("Patient deleted");
                 }
                 else
@@ -508,6 +511,12 @@ namespace St.Teresa_LIS_2019
             button_Undo.ForeColor = Color.Gray;
             button_Exit.Image = Image.FromFile("Resources/exit.png");
             button_Exit.ForeColor = Color.Black;
+        }
+
+        private void datePicker_DOB_ValueChanged(object sender, EventArgs e)
+        {
+            int age = CommonFunction.GetAgeByBirthdate(datePicker_DOB.Value);
+            textBox_Age.Text = age.ToString();
         }
     }
 }

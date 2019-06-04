@@ -498,6 +498,7 @@
             this.datePicker_DOB.Name = "datePicker_DOB";
             this.datePicker_DOB.Size = new System.Drawing.Size(164, 23);
             this.datePicker_DOB.TabIndex = 198;
+            this.datePicker_DOB.ValueChanged += new System.EventHandler(this.datePicker_DOB_ValueChanged);
             // 
             // Form_PatientFileMaintenancecs
             // 
