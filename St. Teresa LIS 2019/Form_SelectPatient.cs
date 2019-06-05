@@ -13,6 +13,10 @@ namespace St.Teresa_LIS_2019
     {
         public Boolean mergeSlavee;
         private DataTable dt;
+        private DataSet patientDataSet = new DataSet();
+
+        public delegate void PatientSelectedMore(string idStr);
+        public PatientSelectedMore OnPatientSelectedMore;
 
         public Form_SelectPatient()
         {
@@ -21,6 +25,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Cancel_Click(object sender, EventArgs e)
         {
+            //OnPatientSelectedMore(null);
             this.Close();
         }
 
@@ -32,14 +37,15 @@ namespace St.Teresa_LIS_2019
             {
                 merging();
             }
-            dataGridViewInputTestDate();
+            loadDataGridViewDate();
             dataGridViewFormat();
         }
-        private void dataGridViewInputTestDate()
+        private void loadDataGridViewDate()
         {
+            string sql = "SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT]";
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, patientDataSet, "patient");
 
             DataTable dt = new DataTable();
-
             dt.Columns.Add("Select",typeof(bool));
             dt.Columns.Add("Patient's Name");
             dt.Columns.Add("Chinese Name");
@@ -48,10 +54,12 @@ namespace St.Teresa_LIS_2019
             dt.Columns.Add("Sex");
             dt.Columns.Add("Birth");
             dt.Columns.Add("Age");
+            dt.Columns.Add("Id");
 
-            dt.Rows.Add(new object[] { "false", "Chan Tai Man", "陳大文", "D1234567(8)", "1", "M", "22/06/1987", "46.56" });
-            dt.Rows.Add(new object[] { "false", "CHAN TAI MAN", "陳大文", "D1234567(8)", "1", "M", "25/06/1987", "46.56" });
-            dt.Rows.Add(new object[] { "false", "CHAN Taai Man, Tom", "陳太文", "D1234567(8)", "1", "M", "22/09/1982", "41.56"});
+            foreach (DataRow mDr in patientDataSet.Tables["patient"].Rows)
+            {
+                dt.Rows.Add( new object[] { "false", mDr["patient"], mDr["cname"], mDr["hkid"], mDr["seq"], mDr["sex"], mDr["birth"], mDr["age"], mDr["id"] });
+            }
 
             dataGridView1.DataSource = dt;
         }
@@ -80,6 +88,9 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column7 = dataGridView1.Columns[7];
             column7.Width = 60;
             column7.ReadOnly = true;
+            DataGridViewColumn column8 = dataGridView1.Columns[8];
+            column8.Width = 1;
+            column8.ReadOnly = true;
             this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 11, FontStyle.Bold);
@@ -99,35 +110,62 @@ namespace St.Teresa_LIS_2019
         }
         private void dismerge()
         {
-
             label_merge.Visible = false;
-
         }
 
         private void mergeSlave()
         {
-
             label_merge.Text = "Select merge Slave patient";
             label_merge.ForeColor = Color.Green;
         }
 
         private void button_OK_Click(object sender, EventArgs e)
         {
-            if (Form_PatientFileMaintenancecs.merge)
+            string idStr = "";
+            for (int i=0; i < dataGridView1.Rows.Count; i++)
             {
-                if (!mergeSlavee)
+                if (bool.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()) == true)
                 {
-                    mergeSlavee = true;
-                    mergeSlave();
-                }
-                else
-                {
-                    Form_ConfirmMerge open = new Form_ConfirmMerge();
-                    open.Show();
-                    this.Hide();
+                    if (dataGridView1.Rows[i].Cells[8].Value.ToString() != "")
+                    {
+                        if (idStr == "")
+                        {
+                            idStr += dataGridView1.Rows[i].Cells[8].Value.ToString();
+                        }
+                        else
+                        {
+                            idStr += "," + dataGridView1.Rows[i].Cells[8].Value.ToString();
+                        }
+
+                    }
                 }
             }
+            OnPatientSelectedMore(idStr);
+            this.Close();
         }
 
+        private void textBox_Serch_Patient_TextChanged(object sender, EventArgs e)
+        {
+            string sql = string.Format("SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT] WHERE PATIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%'", textBox_Serch_Patient.Text.Trim());
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, patientDataSet, "patient");
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Select", typeof(bool));
+            dt.Columns.Add("Patient's Name");
+            dt.Columns.Add("Chinese Name");
+            dt.Columns.Add("HKid");
+            dt.Columns.Add("No.");
+            dt.Columns.Add("Sex");
+            dt.Columns.Add("Birth");
+            dt.Columns.Add("Age");
+            dt.Columns.Add("Id");
+
+            foreach (DataRow mDr in patientDataSet.Tables["patient"].Rows)
+            {
+                dt.Rows.Add(new object[] { "false", mDr["patient"], mDr["cname"], mDr["hkid"], mDr["seq"], mDr["sex"], mDr["birth"], mDr["age"], mDr["id"] });
+            }
+
+            dataGridView1.DataSource = dt;
+        }
     }
 }

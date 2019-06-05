@@ -67,7 +67,35 @@ namespace St.Teresa_LIS_2019
         {
             merge = false;
             Form_SelectPatient open = new Form_SelectPatient();
+            open.OnPatientSelectedMore += OnPatientSelected;
             open.Show();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys)Shortcut.F1)
+            {
+                button_F1.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void OnPatientSelected(string idStr)
+        {
+            if (idStr != null)
+            {
+                string sql = string.Format("SELECT * FROM [PATIENT] WHERE ID IN({0})", idStr);
+                DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
+
+                DataTable dt = patientDataSet.Tables["patient"];
+                dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+                dt.Columns["id"].AutoIncrement = true;
+                dt.Columns["id"].AutoIncrementStep = 1;
+                currencyManager = (CurrencyManager)this.BindingContext[dt];
+
+                currencyManager.Position = 0;
+            }
         }
 
         private void button_Merge_Click(object sender, EventArgs e)
@@ -84,10 +112,12 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData(int position = 1)
+        private void reloadAndBindingDBData(int position = 0)
         {
             //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]",patientDataSet);
-            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]",patientDataSet,"patient");
+            string sql = "SELECT * FROM [PATIENT]";
+            //string sql = string.Format("SELECT * FROM [PATIENT] WHERE ID IN({0})", "1,2,3,4,6,7,8,9,10");
+            DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
 
             textBox_ID.DataBindings.Clear();
             textBox_Patient.DataBindings.Clear();
@@ -99,6 +129,7 @@ namespace St.Teresa_LIS_2019
             textBox_HKID.DataBindings.Clear();
             textBox_Last_Updated_By.DataBindings.Clear();
             textBox_Update_At.DataBindings.Clear();
+            textBox_Last_Updated_By_No.DataBindings.Clear();
 
             dt = patientDataSet.Tables["patient"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -115,16 +146,19 @@ namespace St.Teresa_LIS_2019
             textBox_HKID.DataBindings.Add("Text", dt, "HKID", false);
             textBox_Last_Updated_By.DataBindings.Add("Text", dt, "UPDATE_BY", false);
             textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
+            textBox_Last_Updated_By_No.DataBindings.Add("Text", dt, "UPDATE_CTR", false);
 
             currencyManager = (CurrencyManager)this.BindingContext[dt];
 
             currencyManager.Position = position;
         }
 
-        private void reloadDBData(int position = 1)
+        private void reloadDBData(int position = 0)
         {
             //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]", patientDataSet);
-            DBConn.fetchDataIntoDataSet("SELECT * FROM [PATIENT]", patientDataSet,"patient");
+            string sql = "SELECT * FROM [PATIENT]";
+            //string sql = string.Format("SELECT * FROM [PATIENT] WHERE ID IN({0})", "1,2,3,4,5,6,7,8,9,10");
+            DBConn.fetchDataIntoDataSet(sql, patientDataSet,"patient");
 
             DataTable dt = patientDataSet.Tables["patient"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -135,7 +169,7 @@ namespace St.Teresa_LIS_2019
             currencyManager.Position = position;
         }
 
-        private List<Patient> getAllPatients(DataSet dataSet)
+        /*private List<Patient> getAllPatients(DataSet dataSet)
         {
             dt = patientDataSet.Tables["patient"];
 
@@ -155,7 +189,7 @@ namespace St.Teresa_LIS_2019
                 updateCtr = dataRow.Field<string>("UPDATE_CTR"),
                 updated = dataRow.Field<string>("UPDATED")
             }).ToList();
-        }
+        }*/
 
         private void button_Next_Click(object sender, EventArgs e)
         {
@@ -204,7 +238,7 @@ namespace St.Teresa_LIS_2019
             textBox_Update_At.Text = "";*/
 
             currentEditRow = patientDataSet.Tables["patient"].NewRow();
-            //currentEditRow["id"] = 0;
+            currentEditRow["id"] = -1;
             currentEditRow["AGE"] = 0;
             currentEditRow["SEX"] = "M";
             patientDataSet.Tables["patient"].Rows.Add(currentEditRow);
@@ -326,6 +360,7 @@ namespace St.Teresa_LIS_2019
                 datePicker_DOB.Enabled = false;
                 textBox_Age.Enabled = false;
                 textBox_HKID.Enabled = false;
+                textBox_Update_At.Enabled = false;
 
                 disedit_modle();
             }
@@ -351,6 +386,7 @@ namespace St.Teresa_LIS_2019
                     datePicker_DOB.Enabled = true;
                     textBox_Age.Enabled = true;
                     textBox_HKID.Enabled = true;
+                    textBox_Update_At.Enabled = true;
 
                     edit_modle();
                 }
@@ -376,6 +412,7 @@ namespace St.Teresa_LIS_2019
                         datePicker_DOB.Enabled = true;
                         textBox_Age.Enabled = true;
                         textBox_HKID.Enabled = true;
+                        textBox_Update_At.Enabled = false;
 
                         edit_modle();
                     }
@@ -517,6 +554,11 @@ namespace St.Teresa_LIS_2019
         {
             int age = CommonFunction.GetAgeByBirthdate(datePicker_DOB.Value);
             textBox_Age.Text = age.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            reloadDBData();
         }
     }
 }

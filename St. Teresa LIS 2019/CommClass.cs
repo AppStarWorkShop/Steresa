@@ -77,6 +77,27 @@ namespace St.Teresa_LIS_2019
                 return null;
             }
         }
+
+        public static SqlDataAdapter fetchDataIntoDataSetSelectOnly(string selectCommandStr, DataSet dataSet, string tableName)
+        {
+            try
+            {
+                // Create a new data adapter based on the specified query.
+                SqlCommand selectCommand = new SqlCommand();
+                selectCommand.Connection = getConnection();
+                selectCommand.CommandText = selectCommandStr;
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(selectCommand);
+
+                // Populate a new data table and bind it to the BindingSource.
+                dataSet.Clear();
+                dataAdapter.Fill(dataSet, tableName);
+                return dataAdapter;
+            }
+            catch (SqlException)
+            {
+                return null;
+            }
+        }
     }
 
     public static class PageStatus
