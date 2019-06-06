@@ -144,28 +144,48 @@ namespace St.Teresa_LIS_2019
             this.Close();
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                if (textBox_Serch_Patient.Focused) { 
+                    string sql = string.Format("SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT] WHERE PATIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%'", textBox_Serch_Patient.Text.Trim());
+                    DBConn.fetchDataIntoDataSetSelectOnly(sql, patientDataSet, "patient");
+
+                    DataTable dt = new DataTable();
+                    dt.Columns.Add("Select", typeof(bool));
+                    dt.Columns.Add("Patient's Name");
+                    dt.Columns.Add("Chinese Name");
+                    dt.Columns.Add("HKid");
+                    dt.Columns.Add("No.");
+                    dt.Columns.Add("Sex");
+                    dt.Columns.Add("Birth");
+                    dt.Columns.Add("Age");
+                    dt.Columns.Add("Id");
+
+                    foreach (DataRow mDr in patientDataSet.Tables["patient"].Rows)
+                    {
+                        dt.Rows.Add(new object[] { "false", mDr["patient"], mDr["cname"], mDr["hkid"], mDr["seq"], mDr["sex"], mDr["birth"], mDr["age"], mDr["id"] });
+                    }
+
+                    dataGridView1.DataSource = dt;
+                }
+                else
+                {
+                    if (button_OK.Focused)
+                    {
+                        button_OK.PerformClick();
+                        
+                    }
+                }
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void textBox_Serch_Patient_TextChanged(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT] WHERE PATIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%'", textBox_Serch_Patient.Text.Trim());
-            DBConn.fetchDataIntoDataSetSelectOnly(sql, patientDataSet, "patient");
-
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Select", typeof(bool));
-            dt.Columns.Add("Patient's Name");
-            dt.Columns.Add("Chinese Name");
-            dt.Columns.Add("HKid");
-            dt.Columns.Add("No.");
-            dt.Columns.Add("Sex");
-            dt.Columns.Add("Birth");
-            dt.Columns.Add("Age");
-            dt.Columns.Add("Id");
-
-            foreach (DataRow mDr in patientDataSet.Tables["patient"].Rows)
-            {
-                dt.Rows.Add(new object[] { "false", mDr["patient"], mDr["cname"], mDr["hkid"], mDr["seq"], mDr["sex"], mDr["birth"], mDr["age"], mDr["id"] });
-            }
-
-            dataGridView1.DataSource = dt;
+            
         }
     }
 }

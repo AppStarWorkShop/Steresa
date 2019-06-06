@@ -201,7 +201,7 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData(int position = 1)
+        private void reloadAndBindingDBData(int position = 0)
         {
             //dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [client]", clientDataSet, "client");
             dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [client]", clientDataSet, "client");
@@ -227,6 +227,7 @@ namespace St.Teresa_LIS_2019
             textBox_EBV.DataBindings.Clear();
             textBox_Last_Updated_By.DataBindings.Clear();
             textBox_Update_At.DataBindings.Clear();
+            textBox_Last_Updated_By_No.DataBindings.Clear();
 
             dt = clientDataSet.Tables["client"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -253,13 +254,14 @@ namespace St.Teresa_LIS_2019
             textBox_EBV.DataBindings.Add("Text", dt, "PRICE_EBV", false);
             textBox_Last_Updated_By.DataBindings.Add("Text", dt, "UPDATE_BY", false);
             textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
+            textBox_Last_Updated_By_No.DataBindings.Add("Text", dt, "UPDATE_CTR", false);
 
             currencyManager = (CurrencyManager)this.BindingContext[dt];
 
             currencyManager.Position = position;
         }
 
-        private void reloadDBData(int position = 1)
+        private void reloadDBData(int position = 0)
         {
             //dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [client]", clientDataSet, "client");
             dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [client]", clientDataSet, "client");
@@ -383,6 +385,7 @@ namespace St.Teresa_LIS_2019
             textBox_Update_At.Text = "";*/
 
             currentEditRow = clientDataSet.Tables["client"].NewRow();
+            currentEditRow["id"] = -1;
             clientDataSet.Tables["client"].Rows.Add(currentEditRow);
 
             currencyManager.Position = currencyManager.Count - 1;
@@ -571,7 +574,35 @@ namespace St.Teresa_LIS_2019
         private void button_F1_Click(object sender, EventArgs e)
         {
             Form_SelectClient open = new Form_SelectClient();
+            open.OnClientSelectedMore += OnClientSelected;
             open.Show();
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys)Shortcut.F1)
+            {
+                button_F1.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void OnClientSelected(string idStr)
+        {
+            if (idStr != null)
+            {
+                string sql = string.Format("SELECT * FROM [CLIENT] WHERE ID IN({0})", idStr);
+                DBConn.fetchDataIntoDataSet(sql, clientDataSet, "client");
+
+                DataTable dt = clientDataSet.Tables["client"];
+                dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+                dt.Columns["id"].AutoIncrement = true;
+                dt.Columns["id"].AutoIncrementStep = 1;
+                currencyManager = (CurrencyManager)this.BindingContext[dt];
+
+                currencyManager.Position = 0;
+            }
         }
 
         private void button_Next_Click(object sender, EventArgs e)
@@ -691,6 +722,11 @@ namespace St.Teresa_LIS_2019
                     setButtonStatus(PageStatus.STATUS_VIEW);
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            reloadDBData();
         }
     }
 }
