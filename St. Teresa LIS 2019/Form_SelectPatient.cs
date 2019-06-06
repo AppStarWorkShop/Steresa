@@ -172,11 +172,8 @@ namespace St.Teresa_LIS_2019
                 }
                 else
                 {
-                    if (button_OK.Focused)
-                    {
-                        button_OK.PerformClick();
+                    button_OK.PerformClick();
                         
-                    }
                 }
                 return true;
             }
