@@ -490,7 +490,7 @@ namespace St.Teresa_LIS_2019
                     rowToDelete.Delete();
                     currencyManager.Position = 0;
 
-                    reloadDBData(1);
+                    reloadDBData(0);
                     MessageBox.Show("Patient deleted");
                 }
                 else
