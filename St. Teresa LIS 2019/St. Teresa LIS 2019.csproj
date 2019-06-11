@@ -200,6 +200,12 @@
     <Compile Include="Form_FrozenSectionDianosis.Designer.cs">
       <DependentUpon>Form_FrozenSectionDianosis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_GynaecologicalCytologyReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_GynaecologicalCytologyReport.Designer.cs">
+      <DependentUpon>Form_GynaecologicalCytologyReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_GynecologicalHistory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,6 +301,12 @@
     </Compile>
     <Compile Include="Form_NatureOfSpecimen.Designer.cs">
       <DependentUpon>Form_NatureOfSpecimen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_PathologyReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PathologyReport.Designer.cs">
+      <DependentUpon>Form_PathologyReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_PatientFileMaintenancecs.cs">
       <SubType>Form</SubType>
@@ -477,6 +489,9 @@
     <EmbeddedResource Include="Form_FrozenSectionDianosis.resx">
       <DependentUpon>Form_FrozenSectionDianosis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_GynaecologicalCytologyReport.resx">
+      <DependentUpon>Form_GynaecologicalCytologyReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_GynecologicalHistory.resx">
       <DependentUpon>Form_GynecologicalHistory.cs</DependentUpon>
     </EmbeddedResource>
@@ -521,6 +536,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_NatureOfSpecimen.resx">
       <DependentUpon>Form_NatureOfSpecimen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PathologyReport.resx">
+      <DependentUpon>Form_PathologyReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_PatientFileMaintenancecs.resx">
       <DependentUpon>Form_PatientFileMaintenancecs.cs</DependentUpon>

@@ -26,5 +26,11 @@ namespace St.Teresa_LIS_2019
         {
             this.Close();
         }
+
+        private void button_Print_Click(object sender, EventArgs e)
+        {
+            Form_GynaecologicalCytologyReport open = new Form_GynaecologicalCytologyReport();
+            open.Show();
+        }
     }
 }

@@ -4007,6 +4007,7 @@
             this.button_Print.Text = "Print";
             this.button_Print.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Print.UseVisualStyleBackColor = true;
+            this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
             // 
             // Form_CytologicalDiagnosis
             // 
