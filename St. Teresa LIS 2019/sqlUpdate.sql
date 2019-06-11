@@ -22,3 +22,11 @@ GO
 ALTER TABLE DOCTOR ADD CONSTRAINT [PK_DOCTOR] primary key (ID)
 
 GO
+
+ALTER TABLE result ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE result ADD CONSTRAINT [PK_result] primary key (ID)
+
+GO
