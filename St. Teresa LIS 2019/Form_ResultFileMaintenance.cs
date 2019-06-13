@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Drawing;
 using System.Data.SqlClient;
 
 namespace St.Teresa_LIS_2019
@@ -62,21 +61,25 @@ namespace St.Teresa_LIS_2019
         private void button_Top_Click(object sender, EventArgs e)
         {
             currencyManager.Position = 0;
+            comboBox_Report_Code.SelectedIndex = 0;
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
             currencyManager.Position--;
+            comboBox_Report_Code.SelectedIndex = currencyManager.Position;
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
             currencyManager.Position++;
+            comboBox_Report_Code.SelectedIndex = currencyManager.Position;
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
             currencyManager.Position = currencyManager.Count - 1;
+            comboBox_Report_Code.SelectedIndex = currencyManager.Position;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -87,11 +90,13 @@ namespace St.Teresa_LIS_2019
                 {
                     currentEditRow["UPDATE_BY"] = "Admin";
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                    currentEditRow["RESULT"] = comboBox_Report_Code.Text;
                     textBox_ID.BindingContext[dt].Position++;
 
                     if (DBConn.updateObject(dataAdapter, resultDataSet, "result"))
                     {
-                        reloadDBData(currencyManager.Count - 1);
+                        reloadAndBindingDBData(currentPosition + 1);
+                        //comboBox_Report_Code.SelectedIndex = currentPosition+1;
                         MessageBox.Show("New result saved");
                     }
                     else
@@ -111,10 +116,13 @@ namespace St.Teresa_LIS_2019
                     {
                         drow["UPDATE_BY"] = "Admin";
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                        drow["RESULT"] = comboBox_Report_Code.Text;
                         textBox_ID.BindingContext[dt].Position++;
 
                         if (DBConn.updateObject(dataAdapter, resultDataSet, "result"))
                         {
+                            reloadAndBindingDBData(currentPosition);
+                            //comboBox_Report_Code.SelectedIndex = currentPosition;
                             MessageBox.Show("Result updated");
                         }
                         else
@@ -131,7 +139,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_New_Click(object sender, EventArgs e)
         {
+            currentPosition = currencyManager.Count - 1;
+            comboBox_Report_Code.SelectedIndex = 0;
             setButtonStatus(PageStatus.STATUS_NEW);
+
+            comboBox_Report_Code.Text = "";
 
             currentEditRow = resultDataSet.Tables["result"].NewRow();
             currentEditRow["id"] = -1;
@@ -150,6 +162,8 @@ namespace St.Teresa_LIS_2019
             copyResult.desc2 = textBox_Desc2.Text;
             copyResult.desc3 = textBox_Desc3.Text;
 
+            comboBox_Report_Code.Text = comboBox_Report_Code.SelectedValue.ToString();
+
             setButtonStatus(PageStatus.STATUS_EDIT);
         }
 
@@ -163,9 +177,9 @@ namespace St.Teresa_LIS_2019
                 {
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
-                    currencyManager.Position = 0;
+                    //currencyManager.Position = 0;
 
-                    reloadDBData(0);
+                    reloadDBData();
                     MessageBox.Show("Result deleted");
                 }
                 else
@@ -187,6 +201,9 @@ namespace St.Teresa_LIS_2019
                     resultDataSet.Tables["result"].Rows.Remove(currentEditRow);
                 }
                 setButtonStatus(PageStatus.STATUS_VIEW);
+
+                currencyManager.Position = currencyManager.Count - 1;
+                comboBox_Report_Code.SelectedIndex = currencyManager.Position;
                 //reloadAndBindingDBData();
             }
             else
@@ -199,6 +216,8 @@ namespace St.Teresa_LIS_2019
                         textBox_Desc1.Text = copyResult.desc1;
                         textBox_Desc2.Text = copyResult.desc2;
                         textBox_Desc3.Text = copyResult.desc3;
+
+                        //comboBox_Report_Code.Text = copyResult.result;
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
@@ -223,7 +242,7 @@ namespace St.Teresa_LIS_2019
                 button_Undo.Enabled = false;
                 button_Exit.Enabled = true;
 
-                comboBox_Report_Code.Enabled = false;
+                //comboBox_Report_Code.Enabled = false;
                 textBox_Desc1.Enabled = false;
                 textBox_Desc2.Enabled = false;
                 textBox_Desc3.Enabled = false;
@@ -245,7 +264,7 @@ namespace St.Teresa_LIS_2019
                     button_Undo.Enabled = true;
                     button_Exit.Enabled = false;
 
-                    comboBox_Report_Code.Enabled = true;
+                    //comboBox_Report_Code.Enabled = true;
                     textBox_Desc1.Enabled = true;
                     textBox_Desc2.Enabled = true;
                     textBox_Desc3.Enabled = true;
@@ -267,7 +286,7 @@ namespace St.Teresa_LIS_2019
                         button_Undo.Enabled = true;
                         button_Exit.Enabled = false;
 
-                        comboBox_Report_Code.Enabled = true;
+                        //comboBox_Report_Code.Enabled = true;
                         textBox_Desc1.Enabled = true;
                         textBox_Desc2.Enabled = true;
                         textBox_Desc3.Enabled = true;
@@ -345,7 +364,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrementStep = 1;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
-            comboBox_Report_Code.DataBindings.Add("Text", dt, "RESULT", false);
+            //comboBox_Report_Code.DataBindings.Add("Text", dt, "RESULT", false);
             textBox_Desc1.DataBindings.Add("Text", dt, "DESC1", false);
             textBox_Desc2.DataBindings.Add("Text", dt, "DESC2", false);
             textBox_Desc3.DataBindings.Add("Text", dt, "DESC3", false);
@@ -356,6 +375,19 @@ namespace St.Teresa_LIS_2019
             currencyManager = (CurrencyManager)this.BindingContext[dt];
 
             currencyManager.Position = position;
+
+            DataTable newDt = new DataTable();
+            newDt.Columns.Add("DESC");
+            newDt.Columns.Add("RESULT");
+
+            foreach (DataRow mDr in resultDataSet.Tables["result"].Rows)
+            {
+                newDt.Rows.Add(new object[] { mDr["RESULT"] + "-" + mDr["DESC1"] , mDr["RESULT"] });
+            }
+
+            comboBox_Report_Code.DataSource = newDt;
+
+            comboBox_Report_Code.SelectedIndex = currencyManager.Position;
         }
 
         private void reloadDBData(int position = 0)
@@ -370,12 +402,41 @@ namespace St.Teresa_LIS_2019
             currencyManager = (CurrencyManager)this.BindingContext[dt];
 
             currencyManager.Position = position;
+
+            DataTable newDt = new DataTable();
+            newDt.Columns.Add("DESC");
+            newDt.Columns.Add("RESULT");
+
+            foreach (DataRow mDr in resultDataSet.Tables["result"].Rows)
+            {
+                newDt.Rows.Add(new object[] { mDr["RESULT"] + "-" + mDr["DESC1"], mDr["RESULT"] });
+            }
+
+            comboBox_Report_Code.DataSource = newDt;
+
+            comboBox_Report_Code.SelectedIndex = currencyManager.Position;
         }
 
         private void Form_ResultFileMaintenance_Load(object sender, EventArgs e)
         {
             reloadAndBindingDBData();
             setButtonStatus(PageStatus.STATUS_VIEW);
+        }
+
+        private void comboBox_Report_Code_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("comboBox_Report_Code_SelectedIndexChanged");
+            try
+            {
+                if (currencyManager.Position != comboBox_Report_Code.SelectedIndex)
+                {
+                    currencyManager.Position = comboBox_Report_Code.SelectedIndex;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

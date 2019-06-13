@@ -219,14 +219,17 @@
             // 
             // comboBox_Report_Code
             // 
+            this.comboBox_Report_Code.DisplayMember = "DESC";
             this.comboBox_Report_Code.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Report_Code.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Report_Code.FormattingEnabled = true;
             this.comboBox_Report_Code.Location = new System.Drawing.Point(209, 32);
             this.comboBox_Report_Code.Name = "comboBox_Report_Code";
-            this.comboBox_Report_Code.Size = new System.Drawing.Size(135, 26);
+            this.comboBox_Report_Code.Size = new System.Drawing.Size(278, 26);
             this.comboBox_Report_Code.TabIndex = 173;
             this.comboBox_Report_Code.Text = "NPIGA";
+            this.comboBox_Report_Code.ValueMember = "RESULT";
+            this.comboBox_Report_Code.SelectedIndexChanged += new System.EventHandler(this.comboBox_Report_Code_SelectedIndexChanged);
             // 
             // label_Report_Code
             // 
