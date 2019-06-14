@@ -229,7 +229,7 @@
             this.comboBox_Report_Code.TabIndex = 173;
             this.comboBox_Report_Code.Text = "NPIGA";
             this.comboBox_Report_Code.ValueMember = "RESULT";
-            this.comboBox_Report_Code.SelectedIndexChanged += new System.EventHandler(this.comboBox_Report_Code_SelectedIndexChanged);
+            this.comboBox_Report_Code.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Report_Code_SelectionChangeCommitted);
             // 
             // label_Report_Code
             // 

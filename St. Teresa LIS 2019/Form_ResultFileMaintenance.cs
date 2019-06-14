@@ -423,9 +423,9 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void comboBox_Report_Code_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBox_Report_Code_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Console.WriteLine("comboBox_Report_Code_SelectedIndexChanged");
+            Console.WriteLine("comboBox_Report_Code_SelectionChangeCommitted");
             try
             {
                 if (currencyManager.Position != comboBox_Report_Code.SelectedIndex)
