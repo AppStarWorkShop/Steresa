@@ -12,37 +12,42 @@ namespace St.Teresa_LIS_2019
     public partial class Form_SelectPatient : Form
     {
         public Boolean mergeSlavee;
-        private DataTable dt;
         private DataSet patientDataSet = new DataSet();
 
         public delegate void PatientSelectedMore(string idStr);
         public PatientSelectedMore OnPatientSelectedMore;
 
-        public Form_SelectPatient()
+        public Form_SelectPatient(bool isMerge=false, bool isMasterSelect=true, string searchStr = "")
         {
             InitializeComponent();
+            if (isMerge)
+            {
+                if (isMasterSelect)
+                {
+                    merging();
+                }
+                else
+                {
+                    mergeSlave();
+                }
+            }
+            textBox_Serch_Patient.Text = searchStr;
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)
         {
-            //OnPatientSelectedMore(null);
             this.Close();
         }
 
         private void Form_SelectPatient_Load(object sender, EventArgs e)
         {
-            dismerge();
-            mergeSlavee = false;
-            if (Form_PatientFileMaintenancecs.merge)
-            {
-                merging();
-            }
             loadDataGridViewDate();
             dataGridViewFormat();
         }
+
         private void loadDataGridViewDate()
         {
-            string sql = "SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT]";
+            string sql = string.Format("SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT] WHERE PATIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%' OR HKID LIKE '%{0}%'", textBox_Serch_Patient.Text.Trim());
             DBConn.fetchDataIntoDataSetSelectOnly(sql, patientDataSet, "patient");
 
             DataTable dt = new DataTable();
@@ -77,16 +82,16 @@ namespace St.Teresa_LIS_2019
             column3.Width = 130;
             column3.ReadOnly = true;
             DataGridViewColumn column4 = dataGridView1.Columns[4];
-            column4.Width = 30;
+            column4.Width = 60;
             column4.ReadOnly = true;
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            column5.Width = 30;
+            column5.Width = 60;
             column5.ReadOnly = true;
             DataGridViewColumn column6 = dataGridView1.Columns[6];
             column6.Width = 130;
             column6.ReadOnly = true;
             DataGridViewColumn column7 = dataGridView1.Columns[7];
-            column7.Width = 60;
+            column7.Width = 100;
             column7.ReadOnly = true;
             DataGridViewColumn column8 = dataGridView1.Columns[8];
             column8.Width = 1;
@@ -115,6 +120,7 @@ namespace St.Teresa_LIS_2019
 
         private void mergeSlave()
         {
+            label_merge.Visible = true;
             label_merge.Text = "Select merge Slave patient";
             label_merge.ForeColor = Color.Green;
         }
@@ -140,6 +146,12 @@ namespace St.Teresa_LIS_2019
                     }
                 }
             }
+
+            if(idStr == "")
+            {
+                MessageBox.Show("No record selected");
+                return;
+            }
             OnPatientSelectedMore(idStr);
             this.Close();
         }
@@ -149,7 +161,7 @@ namespace St.Teresa_LIS_2019
             if (keyData == Keys.Enter)
             {
                 if (textBox_Serch_Patient.Focused) { 
-                    string sql = string.Format("SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT] WHERE PATIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%'", textBox_Serch_Patient.Text.Trim());
+                    string sql = string.Format("SELECT patient,cname,hkid,seq,sex,birth,age,id FROM [PATIENT] WHERE PATIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%' OR HKID LIKE '%{0}%'", textBox_Serch_Patient.Text.Trim());
                     DBConn.fetchDataIntoDataSetSelectOnly(sql, patientDataSet, "patient");
 
                     DataTable dt = new DataTable();

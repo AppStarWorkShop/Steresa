@@ -109,15 +109,27 @@ namespace St.Teresa_LIS_2019
 
     public static class CommonFunction
     {
-        public static int GetAgeByBirthdate(DateTime birthdate)
+        public static int GetAgeByBirthdate(string birthdate)
         {
-            DateTime now = DateTime.Now;
-            int age = now.Year - birthdate.Year;
-            if (now.Month < birthdate.Month || (now.Month == birthdate.Month && now.Day < birthdate.Day))
+            int returnAge = 0;
+            try
             {
-                age--;
+                DateTime now = DateTime.Now;
+                DateTime birth = DateTime.Parse(birthdate);
+                int age = now.Year - birth.Year;
+                if (now.Month < birth.Month || (now.Month == birth.Month && now.Day < birth.Day))
+                {
+                    age--;
+                }
+                returnAge = age < 0 ? 0 : age;
+                return returnAge;
             }
-            return age < 0 ? 0 : age;
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                returnAge = 0;
+                return returnAge;
+            }
         }
     }
 }
