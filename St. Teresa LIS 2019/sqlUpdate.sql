@@ -30,3 +30,11 @@ GO
 ALTER TABLE result ADD CONSTRAINT [PK_result] primary key (ID)
 
 GO
+
+ALTER TABLE cyreport ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE cyreport ADD CONSTRAINT [PK_cyreport] primary key (ID)
+
+GO
