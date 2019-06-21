@@ -20,5 +20,11 @@ namespace St.Teresa_LIS_2019
         {
             this.Close();
         }
+
+        private void button_Add_Edit_Click(object sender, EventArgs e)
+        {
+            Form_NatureOfSpecimenReportMaintenance open = new Form_NatureOfSpecimenReportMaintenance();
+            open.Show();
+        }
     }
 }

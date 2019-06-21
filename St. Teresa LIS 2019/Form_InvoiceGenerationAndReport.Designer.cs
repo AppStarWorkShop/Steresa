@@ -68,6 +68,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label_Invoice_Date = new System.Windows.Forms.Label();
+            this.textBox_Invoice_Date = new System.Windows.Forms.TextBox();
             this.panel_Update.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -223,7 +225,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(30, 124);
+            this.checkBox1.Location = new System.Drawing.Point(30, 134);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(283, 20);
             this.checkBox1.TabIndex = 202;
@@ -234,7 +236,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(30, 150);
+            this.checkBox2.Location = new System.Drawing.Point(30, 160);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(209, 20);
             this.checkBox2.TabIndex = 203;
@@ -245,7 +247,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox2.Location = new System.Drawing.Point(319, 122);
+            this.textBox2.Location = new System.Drawing.Point(319, 132);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(102, 23);
             this.textBox2.TabIndex = 204;
@@ -256,7 +258,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(28, 209);
+            this.label5.Location = new System.Drawing.Point(28, 219);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 16);
             this.label5.TabIndex = 205;
@@ -275,7 +277,7 @@
             this.panel_Update.Controls.Add(this.radioButton3);
             this.panel_Update.Controls.Add(this.radioButton2);
             this.panel_Update.Controls.Add(this.radioButton1);
-            this.panel_Update.Location = new System.Drawing.Point(160, 176);
+            this.panel_Update.Location = new System.Drawing.Point(160, 186);
             this.panel_Update.Name = "panel_Update";
             this.panel_Update.Size = new System.Drawing.Size(304, 83);
             this.panel_Update.TabIndex = 206;
@@ -540,6 +542,27 @@
             this.button3.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // label_Invoice_Date
+            // 
+            this.label_Invoice_Date.AutoSize = true;
+            this.label_Invoice_Date.BackColor = System.Drawing.Color.Transparent;
+            this.label_Invoice_Date.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Invoice_Date.ForeColor = System.Drawing.Color.Black;
+            this.label_Invoice_Date.Location = new System.Drawing.Point(50, 110);
+            this.label_Invoice_Date.Name = "label_Invoice_Date";
+            this.label_Invoice_Date.Size = new System.Drawing.Size(104, 16);
+            this.label_Invoice_Date.TabIndex = 219;
+            this.label_Invoice_Date.Text = "Invoice Date :";
+            // 
+            // textBox_Invoice_Date
+            // 
+            this.textBox_Invoice_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_Invoice_Date.ForeColor = System.Drawing.Color.DarkBlue;
+            this.textBox_Invoice_Date.Location = new System.Drawing.Point(160, 107);
+            this.textBox_Invoice_Date.Name = "textBox_Invoice_Date";
+            this.textBox_Invoice_Date.Size = new System.Drawing.Size(102, 23);
+            this.textBox_Invoice_Date.TabIndex = 218;
+            // 
             // Form_InvoiceGenerationAndReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -547,6 +570,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(239)))), ((int)(((byte)(185)))));
             this.ClientSize = new System.Drawing.Size(534, 462);
             this.ControlBox = false;
+            this.Controls.Add(this.label_Invoice_Date);
+            this.Controls.Add(this.textBox_Invoice_Date);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.textBox4);
@@ -627,5 +652,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label_Invoice_Date;
+        private System.Windows.Forms.TextBox textBox_Invoice_Date;
     }
 }

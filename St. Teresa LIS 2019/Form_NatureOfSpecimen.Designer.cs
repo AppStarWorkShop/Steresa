@@ -32,6 +32,9 @@
             this.button_F8_Back_To_Main = new System.Windows.Forms.Button();
             this.label_Nature_Of_Specimen = new System.Windows.Forms.Label();
             this.textBox_Nature_Of_Specimen = new System.Windows.Forms.TextBox();
+            this.button_Add_Edit = new System.Windows.Forms.Button();
+            this.label_Add = new System.Windows.Forms.Label();
+            this.comboBox_Nature_Of_Specimen = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // button_F8_Back_To_Main
@@ -40,7 +43,7 @@
             this.button_F8_Back_To_Main.ForeColor = System.Drawing.Color.Black;
             this.button_F8_Back_To_Main.Image = ((System.Drawing.Image)(resources.GetObject("button_F8_Back_To_Main.Image")));
             this.button_F8_Back_To_Main.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_F8_Back_To_Main.Location = new System.Drawing.Point(223, 218);
+            this.button_F8_Back_To_Main.Location = new System.Drawing.Point(220, 249);
             this.button_F8_Back_To_Main.Name = "button_F8_Back_To_Main";
             this.button_F8_Back_To_Main.Size = new System.Drawing.Size(134, 37);
             this.button_F8_Back_To_Main.TabIndex = 188;
@@ -72,13 +75,56 @@
             this.textBox_Nature_Of_Specimen.Size = new System.Drawing.Size(557, 184);
             this.textBox_Nature_Of_Specimen.TabIndex = 240;
             // 
+            // button_Add_Edit
+            // 
+            this.button_Add_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_Add_Edit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button_Add_Edit.Location = new System.Drawing.Point(498, 218);
+            this.button_Add_Edit.Name = "button_Add_Edit";
+            this.button_Add_Edit.Size = new System.Drawing.Size(71, 24);
+            this.button_Add_Edit.TabIndex = 247;
+            this.button_Add_Edit.Text = "Edit";
+            this.button_Add_Edit.UseVisualStyleBackColor = true;
+            this.button_Add_Edit.Click += new System.EventHandler(this.button_Add_Edit_Click);
+            // 
+            // label_Add
+            // 
+            this.label_Add.AutoSize = true;
+            this.label_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_Add.Location = new System.Drawing.Point(9, 222);
+            this.label_Add.Name = "label_Add";
+            this.label_Add.Size = new System.Drawing.Size(41, 17);
+            this.label_Add.TabIndex = 246;
+            this.label_Add.Text = "Add :";
+            // 
+            // comboBox_Nature_Of_Specimen
+            // 
+            this.comboBox_Nature_Of_Specimen.DropDownWidth = 300;
+            this.comboBox_Nature_Of_Specimen.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_Nature_Of_Specimen.ForeColor = System.Drawing.Color.Blue;
+            this.comboBox_Nature_Of_Specimen.FormattingEnabled = true;
+            this.comboBox_Nature_Of_Specimen.Items.AddRange(new object[] {
+            "Gastric biopsy.",
+            "Gastric polyp.",
+            "1) Gastric biopsy. 2) Gastric polyp.",
+            "Colonic biopsy.",
+            "Colonic polyp.",
+            "Colonic polypi."});
+            this.comboBox_Nature_Of_Specimen.Location = new System.Drawing.Point(56, 217);
+            this.comboBox_Nature_Of_Specimen.Name = "comboBox_Nature_Of_Specimen";
+            this.comboBox_Nature_Of_Specimen.Size = new System.Drawing.Size(436, 26);
+            this.comboBox_Nature_Of_Specimen.TabIndex = 249;
+            // 
             // Form_NatureOfSpecimen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(188)))), ((int)(((byte)(218)))));
-            this.ClientSize = new System.Drawing.Size(584, 262);
+            this.ClientSize = new System.Drawing.Size(584, 296);
             this.ControlBox = false;
+            this.Controls.Add(this.comboBox_Nature_Of_Specimen);
+            this.Controls.Add(this.button_Add_Edit);
+            this.Controls.Add(this.label_Add);
             this.Controls.Add(this.textBox_Nature_Of_Specimen);
             this.Controls.Add(this.button_F8_Back_To_Main);
             this.Controls.Add(this.label_Nature_Of_Specimen);
@@ -93,5 +139,8 @@
         private System.Windows.Forms.Button button_F8_Back_To_Main;
         private System.Windows.Forms.Label label_Nature_Of_Specimen;
         private System.Windows.Forms.TextBox textBox_Nature_Of_Specimen;
+        private System.Windows.Forms.Button button_Add_Edit;
+        private System.Windows.Forms.Label label_Add;
+        private System.Windows.Forms.ComboBox comboBox_Nature_Of_Specimen;
     }
 }

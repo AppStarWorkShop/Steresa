@@ -35,6 +35,7 @@
             this.label_Add = new System.Windows.Forms.Label();
             this.comboBox_Add = new System.Windows.Forms.ComboBox();
             this.textBox_Gynecological_History = new System.Windows.Forms.TextBox();
+            this.button_Add_Edit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_Findings_and_Comnents
@@ -96,7 +97,7 @@
             this.comboBox_Add.FormattingEnabled = true;
             this.comboBox_Add.Location = new System.Drawing.Point(62, 444);
             this.comboBox_Add.Name = "comboBox_Add";
-            this.comboBox_Add.Size = new System.Drawing.Size(568, 26);
+            this.comboBox_Add.Size = new System.Drawing.Size(633, 26);
             this.comboBox_Add.TabIndex = 274;
             // 
             // textBox_Gynecological_History
@@ -110,6 +111,18 @@
             this.textBox_Gynecological_History.Size = new System.Drawing.Size(756, 404);
             this.textBox_Gynecological_History.TabIndex = 295;
             // 
+            // button_Add_Edit
+            // 
+            this.button_Add_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_Add_Edit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button_Add_Edit.Location = new System.Drawing.Point(701, 444);
+            this.button_Add_Edit.Name = "button_Add_Edit";
+            this.button_Add_Edit.Size = new System.Drawing.Size(71, 24);
+            this.button_Add_Edit.TabIndex = 296;
+            this.button_Add_Edit.Text = "Edit";
+            this.button_Add_Edit.UseVisualStyleBackColor = true;
+            this.button_Add_Edit.Click += new System.EventHandler(this.button_Add_Edit_Click);
+            // 
             // Form_FindingComments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,6 +130,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(238)))), ((int)(((byte)(187)))));
             this.ClientSize = new System.Drawing.Size(784, 562);
             this.ControlBox = false;
+            this.Controls.Add(this.button_Add_Edit);
             this.Controls.Add(this.textBox_Gynecological_History);
             this.Controls.Add(this.comboBox_Add);
             this.Controls.Add(this.label_Add);
@@ -137,5 +151,6 @@
         private System.Windows.Forms.Label label_Add;
         private System.Windows.Forms.ComboBox comboBox_Add;
         private System.Windows.Forms.TextBox textBox_Gynecological_History;
+        private System.Windows.Forms.Button button_Add_Edit;
     }
 }

@@ -174,6 +174,7 @@
             this.bxcY_SPECIMENTableAdapter1 = new St.Teresa_LIS_2019.medlabDataSetTableAdapters.BXCY_SPECIMENTableAdapter();
             this.bXCY_SPECIMENTableAdapter = new St.Teresa_LIS_2019.medlabDataSet1TableAdapters.BXCY_SPECIMENTableAdapter();
             this.checkBox_F_S = new System.Windows.Forms.CheckBox();
+            this.button_Clinical_History = new System.Windows.Forms.Button();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet1)).BeginInit();
@@ -945,7 +946,7 @@
             this.button_New.Name = "button_New";
             this.button_New.Size = new System.Drawing.Size(55, 43);
             this.button_New.TabIndex = 103;
-            this.button_New.Text = "New";
+            this.button_New.Text = "Copy";
             this.button_New.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_New.UseVisualStyleBackColor = true;
             // 
@@ -1321,9 +1322,9 @@
             // 
             this.button_F3_Surgical.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F3_Surgical.ForeColor = System.Drawing.Color.Black;
-            this.button_F3_Surgical.Location = new System.Drawing.Point(642, 126);
+            this.button_F3_Surgical.Location = new System.Drawing.Point(629, 121);
             this.button_F3_Surgical.Name = "button_F3_Surgical";
-            this.button_F3_Surgical.Size = new System.Drawing.Size(92, 22);
+            this.button_F3_Surgical.Size = new System.Drawing.Size(92, 27);
             this.button_F3_Surgical.TabIndex = 140;
             this.button_F3_Surgical.Text = "F3:  Surgical";
             this.button_F3_Surgical.UseVisualStyleBackColor = true;
@@ -1333,9 +1334,9 @@
             // 
             this.button_F4_Nature.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F4_Nature.ForeColor = System.Drawing.Color.Black;
-            this.button_F4_Nature.Location = new System.Drawing.Point(740, 125);
+            this.button_F4_Nature.Location = new System.Drawing.Point(727, 120);
             this.button_F4_Nature.Name = "button_F4_Nature";
-            this.button_F4_Nature.Size = new System.Drawing.Size(92, 22);
+            this.button_F4_Nature.Size = new System.Drawing.Size(92, 27);
             this.button_F4_Nature.TabIndex = 141;
             this.button_F4_Nature.Text = "F4:  Nature";
             this.button_F4_Nature.UseVisualStyleBackColor = true;
@@ -1947,6 +1948,18 @@
             this.checkBox_F_S.Text = "F.S.";
             this.checkBox_F_S.UseVisualStyleBackColor = true;
             // 
+            // button_Clinical_History
+            // 
+            this.button_Clinical_History.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_Clinical_History.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button_Clinical_History.Location = new System.Drawing.Point(405, 123);
+            this.button_Clinical_History.Name = "button_Clinical_History";
+            this.button_Clinical_History.Size = new System.Drawing.Size(29, 27);
+            this.button_Clinical_History.TabIndex = 241;
+            this.button_Clinical_History.Text = "?";
+            this.button_Clinical_History.UseVisualStyleBackColor = true;
+            this.button_Clinical_History.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form_BXCYFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1954,6 +1967,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(170)))));
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.ControlBox = false;
+            this.Controls.Add(this.button_Clinical_History);
             this.Controls.Add(this.checkBox_F_S);
             this.Controls.Add(this.button_F11_Add_test);
             this.Controls.Add(this.textBox_Remarks);
@@ -2214,5 +2228,6 @@
         private medlabDataSet1 medlabDataSet1;
         private medlabDataSet1TableAdapters.BXCY_SPECIMENTableAdapter bXCY_SPECIMENTableAdapter;
         private System.Windows.Forms.CheckBox checkBox_F_S;
+        private System.Windows.Forms.Button button_Clinical_History;
     }
 }

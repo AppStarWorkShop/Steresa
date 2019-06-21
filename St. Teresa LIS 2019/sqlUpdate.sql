@@ -38,7 +38,3 @@ GO
 ALTER TABLE cyreport ADD CONSTRAINT [PK_cyreport] primary key (ID)
 
 GO
-
-ALTER TABLE PATIENT ADD [master] [int] NULL
-
-GO

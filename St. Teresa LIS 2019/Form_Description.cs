@@ -104,5 +104,28 @@ namespace St.Teresa_LIS_2019
             Form_PathologyReport open = new Form_PathologyReport();
             open.Show();
         }
+
+        private void button_Detail_3_DIA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Path_Click(object sender, EventArgs e)
+        {
+            Form_ChangePicturePath open = new Form_ChangePicturePath();
+            open.Show();
+        }
+
+        private void button_MAC_Add_Edit_Click(object sender, EventArgs e)
+        {
+            Form_MACROSCOPICReportMaintenance open = new Form_MACROSCOPICReportMaintenance();
+            open.Show();
+        }
+
+        private void button_MIC_Add_Edit_Click(object sender, EventArgs e)
+        {
+            Form_MICROSCOPICReportMaintenance open = new Form_MICROSCOPICReportMaintenance();
+            open.Show();
+        }
     }
 }

@@ -337,6 +337,16 @@ namespace St.Teresa_LIS_2019
             
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Form_ClinicalHistoryEditLog open = new Form_ClinicalHistoryEditLog();
+            open.Show();
+        }
 
+        private void button_Amount_HK_Detail_Click(object sender, EventArgs e)
+        {
+            Form_STHDiagnosticAmount open = new Form_STHDiagnosticAmount();
+            open.Show();
+        }
     }
 }

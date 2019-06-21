@@ -38,5 +38,11 @@ namespace St.Teresa_LIS_2019
             Form_FindingComments open = new Form_FindingComments();
             open.Show();
         }
+
+        private void button_Amount_HK_Detail_Click(object sender, EventArgs e)
+        {
+            Form_STHDiagnosticAmount open = new Form_STHDiagnosticAmount();
+            open.Show();
+        }
     }
 }

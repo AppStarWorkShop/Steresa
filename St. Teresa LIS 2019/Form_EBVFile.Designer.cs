@@ -115,7 +115,7 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_TumourMarker = new System.Windows.Forms.CheckBox();
             this.button_Rpt_Date_Tick = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button_F_S_Detail = new System.Windows.Forms.Button();
@@ -351,6 +351,7 @@
             this.button_F2_Previous.TabIndex = 225;
             this.button_F2_Previous.Text = "F2: Previous";
             this.button_F2_Previous.UseVisualStyleBackColor = true;
+            this.button_F2_Previous.Click += new System.EventHandler(this.button_F2_Previous_Click);
             // 
             // textBox_Chinese_Name
             // 
@@ -592,6 +593,7 @@
             this.button_Label.Text = "Label";
             this.button_Label.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Label.UseVisualStyleBackColor = true;
+            this.button_Label.Click += new System.EventHandler(this.button_Label_Click);
             // 
             // button_Exit
             // 
@@ -825,6 +827,7 @@
             this.button_F1.TabIndex = 195;
             this.button_F1.Text = "F1";
             this.button_F1.UseVisualStyleBackColor = true;
+            this.button_F1.Click += new System.EventHandler(this.button_F1_Click);
             // 
             // textBox_Patient
             // 
@@ -1096,6 +1099,7 @@
             this.button_Sign_By_Dr_1.TabIndex = 251;
             this.button_Sign_By_Dr_1.Text = "Dr.";
             this.button_Sign_By_Dr_1.UseVisualStyleBackColor = true;
+            this.button_Sign_By_Dr_1.Click += new System.EventHandler(this.button_Sign_By_Dr_1_Click);
             // 
             // label7
             // 
@@ -1139,18 +1143,19 @@
             this.textBox8.TabIndex = 256;
             this.textBox8.Text = "N";
             // 
-            // checkBox1
+            // checkBox_TumourMarker
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(233)))), ((int)(((byte)(198)))));
-            this.checkBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.DarkRed;
-            this.checkBox1.Location = new System.Drawing.Point(530, 150);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(109, 19);
-            this.checkBox1.TabIndex = 258;
-            this.checkBox1.Text = "Tumour Marker";
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox_TumourMarker.AutoSize = true;
+            this.checkBox_TumourMarker.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(233)))), ((int)(((byte)(198)))));
+            this.checkBox_TumourMarker.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox_TumourMarker.ForeColor = System.Drawing.Color.DarkRed;
+            this.checkBox_TumourMarker.Location = new System.Drawing.Point(530, 150);
+            this.checkBox_TumourMarker.Name = "checkBox_TumourMarker";
+            this.checkBox_TumourMarker.Size = new System.Drawing.Size(109, 19);
+            this.checkBox_TumourMarker.TabIndex = 258;
+            this.checkBox_TumourMarker.Text = "Tumour Marker";
+            this.checkBox_TumourMarker.UseVisualStyleBackColor = false;
+            this.checkBox_TumourMarker.CheckedChanged += new System.EventHandler(this.checkBox_TumourMarker_CheckedChanged);
             // 
             // button_Rpt_Date_Tick
             // 
@@ -1300,6 +1305,7 @@
             this.button_F9.TabIndex = 151;
             this.button_F9.Text = "F9";
             this.button_F9.UseVisualStyleBackColor = true;
+            this.button_F9.Click += new System.EventHandler(this.button_F9_Click);
             // 
             // textBox_Ref_No
             // 
@@ -1333,6 +1339,7 @@
             this.button_F7.TabIndex = 145;
             this.button_F7.Text = "F7";
             this.button_F7.UseVisualStyleBackColor = true;
+            this.button_F7.Click += new System.EventHandler(this.button_F7_Click);
             // 
             // label_Doctor_I_C
             // 
@@ -1417,7 +1424,7 @@
             this.Controls.Add(this.button_F_S_Detail);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.button_Rpt_Date_Tick);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBox_TumourMarker);
             this.Controls.Add(this.textBox8);
             this.Controls.Add(this.textBox7);
             this.Controls.Add(this.label7);
@@ -1589,7 +1596,7 @@
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox_TumourMarker;
         private System.Windows.Forms.Button button_Rpt_Date_Tick;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button_F_S_Detail;

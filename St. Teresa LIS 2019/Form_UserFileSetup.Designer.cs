@@ -99,6 +99,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button_STH_DIA_Amount_Auto_Fill_Setting = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_User_Level)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -442,6 +443,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(221)))), ((int)(((byte)(240)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.button_STH_DIA_Amount_Auto_Fill_Setting);
             this.panel1.Controls.Add(this.label_for_all_types_of_STH_cases_only);
             this.panel1.Controls.Add(this.checkBox_Auto_Generate_PDF_When_Print_Report);
             this.panel1.Controls.Add(this.checkBox_Auto_Print_Barcode_For_STH_Cases);
@@ -457,7 +459,7 @@
             this.label_for_all_types_of_STH_cases_only.BackColor = System.Drawing.Color.Transparent;
             this.label_for_all_types_of_STH_cases_only.Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_for_all_types_of_STH_cases_only.ForeColor = System.Drawing.Color.Black;
-            this.label_for_all_types_of_STH_cases_only.Location = new System.Drawing.Point(376, 39);
+            this.label_for_all_types_of_STH_cases_only.Location = new System.Drawing.Point(339, 47);
             this.label_for_all_types_of_STH_cases_only.Name = "label_for_all_types_of_STH_cases_only";
             this.label_for_all_types_of_STH_cases_only.Size = new System.Drawing.Size(194, 15);
             this.label_for_all_types_of_STH_cases_only.TabIndex = 181;
@@ -954,6 +956,18 @@
             this.pictureBox1.TabIndex = 198;
             this.pictureBox1.TabStop = false;
             // 
+            // button_STH_DIA_Amount_Auto_Fill_Setting
+            // 
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.ForeColor = System.Drawing.Color.Blue;
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.Location = new System.Drawing.Point(545, 27);
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.Name = "button_STH_DIA_Amount_Auto_Fill_Setting";
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.Size = new System.Drawing.Size(102, 39);
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.TabIndex = 298;
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.Text = "STH DIA Amount Auto Fill Setting";
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.UseVisualStyleBackColor = true;
+            this.button_STH_DIA_Amount_Auto_Fill_Setting.Click += new System.EventHandler(this.button_STH_DIA_Amount_Auto_Fill_Setting_Click);
+            // 
             // Form_UserFileSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1090,5 +1104,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button_STH_DIA_Amount_Auto_Fill_Setting;
     }
 }

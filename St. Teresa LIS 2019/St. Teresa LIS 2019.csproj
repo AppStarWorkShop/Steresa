@@ -80,6 +80,12 @@
     <Compile Include="Form_ChangePicturePath.Designer.cs">
       <DependentUpon>Form_ChangePicturePath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_ClinicalHistoryEditLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ClinicalHistoryEditLog.Designer.cs">
+      <DependentUpon>Form_ClinicalHistoryEditLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Cobas4800System.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,12 @@
     <Compile Include="Form_FindingComments.Designer.cs">
       <DependentUpon>Form_FindingComments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_FindingCommentsReportMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FindingCommentsReportMaintenance.Designer.cs">
+      <DependentUpon>Form_FindingCommentsReportMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_FrozenSectionDianosis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +284,12 @@
     <Compile Include="Form_LoginDigitalSignature.Designer.cs">
       <DependentUpon>Form_LoginDigitalSignature.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_MACROSCOPICReportMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_MACROSCOPICReportMaintenance.Designer.cs">
+      <DependentUpon>Form_MACROSCOPICReportMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_MacroscopicTemplateMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,17 +314,35 @@
     <Compile Include="Form_MicroscopicCYTemplateMaintenance.Designer.cs">
       <DependentUpon>Form_MicroscopicCYTemplateMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_MICROSCOPICReportMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_MICROSCOPICReportMaintenance.Designer.cs">
+      <DependentUpon>Form_MICROSCOPICReportMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_NatureOfSpecimen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_NatureOfSpecimen.Designer.cs">
       <DependentUpon>Form_NatureOfSpecimen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_NatureOfSpecimenReportMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_NatureOfSpecimenReportMaintenance.Designer.cs">
+      <DependentUpon>Form_NatureOfSpecimenReportMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_PathologyReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_PathologyReport.Designer.cs">
       <DependentUpon>Form_PathologyReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_PathologyReportEBV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_PathologyReportEBV.Designer.cs">
+      <DependentUpon>Form_PathologyReportEBV.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_PatientFileMaintenancecs.cs">
       <SubType>Form</SubType>
@@ -368,11 +404,23 @@
     <Compile Include="Form_SnopCodeMaintenance.Designer.cs">
       <DependentUpon>Form_SnopCodeMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_STHDiagnosticAmount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_STHDiagnosticAmount.Designer.cs">
+      <DependentUpon>Form_STHDiagnosticAmount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_SurgicalProcedure.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_SurgicalProcedure.Designer.cs">
       <DependentUpon>Form_SurgicalProcedure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_SurgicalProcedureReportMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SurgicalProcedureReportMaintenance.Designer.cs">
+      <DependentUpon>Form_SurgicalProcedureReportMaintenance.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_UploadDateMenu.cs">
       <SubType>Form</SubType>
@@ -425,6 +473,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_ChangePicturePath.resx">
       <DependentUpon>Form_ChangePicturePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_ClinicalHistoryEditLog.resx">
+      <DependentUpon>Form_ClinicalHistoryEditLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Cobas4800System.resx">
       <DependentUpon>Form_Cobas4800System.cs</DependentUpon>
@@ -486,6 +537,9 @@
     <EmbeddedResource Include="Form_FindingComments.resx">
       <DependentUpon>Form_FindingComments.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_FindingCommentsReportMaintenance.resx">
+      <DependentUpon>Form_FindingCommentsReportMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_FrozenSectionDianosis.resx">
       <DependentUpon>Form_FrozenSectionDianosis.cs</DependentUpon>
     </EmbeddedResource>
@@ -525,6 +579,9 @@
     <EmbeddedResource Include="Form_LoginDigitalSignature.resx">
       <DependentUpon>Form_LoginDigitalSignature.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_MACROSCOPICReportMaintenance.resx">
+      <DependentUpon>Form_MACROSCOPICReportMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_MacroscopicTemplateMaintenance.resx">
       <DependentUpon>Form_MacroscopicTemplateMaintenance.cs</DependentUpon>
     </EmbeddedResource>
@@ -534,11 +591,20 @@
     <EmbeddedResource Include="Form_MicroscopicCYTemplateMaintenance.resx">
       <DependentUpon>Form_MicroscopicCYTemplateMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_MICROSCOPICReportMaintenance.resx">
+      <DependentUpon>Form_MICROSCOPICReportMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_NatureOfSpecimen.resx">
       <DependentUpon>Form_NatureOfSpecimen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_NatureOfSpecimenReportMaintenance.resx">
+      <DependentUpon>Form_NatureOfSpecimenReportMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_PathologyReport.resx">
       <DependentUpon>Form_PathologyReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_PathologyReportEBV.resx">
+      <DependentUpon>Form_PathologyReportEBV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_PatientFileMaintenancecs.resx">
       <DependentUpon>Form_PatientFileMaintenancecs.cs</DependentUpon>
@@ -570,8 +636,14 @@
     <EmbeddedResource Include="Form_SnopCodeMaintenance.resx">
       <DependentUpon>Form_SnopCodeMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_STHDiagnosticAmount.resx">
+      <DependentUpon>Form_STHDiagnosticAmount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_SurgicalProcedure.resx">
       <DependentUpon>Form_SurgicalProcedure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SurgicalProcedureReportMaintenance.resx">
+      <DependentUpon>Form_SurgicalProcedureReportMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_UploadDateMenu.resx">
       <DependentUpon>Form_UploadDateMenu.cs</DependentUpon>

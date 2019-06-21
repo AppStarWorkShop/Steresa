@@ -54,5 +54,11 @@ namespace St.Teresa_LIS_2019
         {
             MessageBox.Show("Next New Receipt No. Will Be : " + "R" + DateTime.Now.ToString("yy") + "-" + textBox_Next_Receipt.Text , "Help Message", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
         }
+
+        private void button_STH_DIA_Amount_Auto_Fill_Setting_Click(object sender, EventArgs e)
+        {
+            Form_STHDiagnosticAmount open = new Form_STHDiagnosticAmount();
+            open.Show();
+        }
     }
 }

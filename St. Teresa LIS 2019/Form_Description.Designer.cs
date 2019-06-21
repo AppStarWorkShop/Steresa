@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Description));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_MACROSCOPIC = new System.Windows.Forms.TabPage();
+            this.button_MAC_Add_Edit = new System.Windows.Forms.Button();
             this.textBox_Remarks = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
@@ -84,8 +85,8 @@
             this.label_Parts = new System.Windows.Forms.Label();
             this.button_Caption_Detail = new System.Windows.Forms.Button();
             this.button_Picture_File_1 = new System.Windows.Forms.Button();
-            this.comboBox_Add = new System.Windows.Forms.ComboBox();
-            this.label_Add = new System.Windows.Forms.Label();
+            this.comboBox_MAC_Add = new System.Windows.Forms.ComboBox();
+            this.label_MAC_Add = new System.Windows.Forms.Label();
             this.label_Caption_1 = new System.Windows.Forms.Label();
             this.comboBox_Caption_1 = new System.Windows.Forms.ComboBox();
             this.button_Picture_File_1_Path = new System.Windows.Forms.Button();
@@ -94,6 +95,9 @@
             this.textBox_Picture_File_1 = new System.Windows.Forms.TextBox();
             this.label_Description = new System.Windows.Forms.Label();
             this.tabPage_MICROSCOPIC_CY = new System.Windows.Forms.TabPage();
+            this.button_MIC_Add_Edit = new System.Windows.Forms.Button();
+            this.comboBox5_MIC_Add = new System.Windows.Forms.ComboBox();
+            this.label_MIC_Add = new System.Windows.Forms.Label();
             this.textBox_Remarks_CY = new System.Windows.Forms.TextBox();
             this.button18 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
@@ -176,6 +180,7 @@
             // tabPage_MACROSCOPIC
             // 
             this.tabPage_MACROSCOPIC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(219)))), ((int)(((byte)(210)))));
+            this.tabPage_MACROSCOPIC.Controls.Add(this.button_MAC_Add_Edit);
             this.tabPage_MACROSCOPIC.Controls.Add(this.textBox_Remarks);
             this.tabPage_MACROSCOPIC.Controls.Add(this.button7);
             this.tabPage_MACROSCOPIC.Controls.Add(this.label7);
@@ -229,8 +234,8 @@
             this.tabPage_MACROSCOPIC.Controls.Add(this.label_Parts);
             this.tabPage_MACROSCOPIC.Controls.Add(this.button_Caption_Detail);
             this.tabPage_MACROSCOPIC.Controls.Add(this.button_Picture_File_1);
-            this.tabPage_MACROSCOPIC.Controls.Add(this.comboBox_Add);
-            this.tabPage_MACROSCOPIC.Controls.Add(this.label_Add);
+            this.tabPage_MACROSCOPIC.Controls.Add(this.comboBox_MAC_Add);
+            this.tabPage_MACROSCOPIC.Controls.Add(this.label_MAC_Add);
             this.tabPage_MACROSCOPIC.Controls.Add(this.label_Caption_1);
             this.tabPage_MACROSCOPIC.Controls.Add(this.comboBox_Caption_1);
             this.tabPage_MACROSCOPIC.Controls.Add(this.button_Picture_File_1_Path);
@@ -247,6 +252,18 @@
             this.tabPage_MACROSCOPIC.TabIndex = 0;
             this.tabPage_MACROSCOPIC.Text = "F1. MACROSCOPIC";
             this.tabPage_MACROSCOPIC.Click += new System.EventHandler(this.tabPage_MACROSCOPIC_Click);
+            // 
+            // button_MAC_Add_Edit
+            // 
+            this.button_MAC_Add_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_MAC_Add_Edit.ForeColor = System.Drawing.Color.Black;
+            this.button_MAC_Add_Edit.Location = new System.Drawing.Point(922, 495);
+            this.button_MAC_Add_Edit.Name = "button_MAC_Add_Edit";
+            this.button_MAC_Add_Edit.Size = new System.Drawing.Size(71, 24);
+            this.button_MAC_Add_Edit.TabIndex = 250;
+            this.button_MAC_Add_Edit.Text = "Edit";
+            this.button_MAC_Add_Edit.UseVisualStyleBackColor = true;
+            this.button_MAC_Add_Edit.Click += new System.EventHandler(this.button_MAC_Add_Edit_Click);
             // 
             // textBox_Remarks
             // 
@@ -849,25 +866,25 @@
             this.button_Picture_File_1.TabIndex = 168;
             this.button_Picture_File_1.UseVisualStyleBackColor = true;
             // 
-            // comboBox_Add
+            // comboBox_MAC_Add
             // 
-            this.comboBox_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.comboBox_Add.ForeColor = System.Drawing.Color.Black;
-            this.comboBox_Add.FormattingEnabled = true;
-            this.comboBox_Add.Location = new System.Drawing.Point(52, 495);
-            this.comboBox_Add.Name = "comboBox_Add";
-            this.comboBox_Add.Size = new System.Drawing.Size(929, 24);
-            this.comboBox_Add.TabIndex = 148;
+            this.comboBox_MAC_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox_MAC_Add.ForeColor = System.Drawing.Color.Black;
+            this.comboBox_MAC_Add.FormattingEnabled = true;
+            this.comboBox_MAC_Add.Location = new System.Drawing.Point(52, 495);
+            this.comboBox_MAC_Add.Name = "comboBox_MAC_Add";
+            this.comboBox_MAC_Add.Size = new System.Drawing.Size(864, 24);
+            this.comboBox_MAC_Add.TabIndex = 148;
             // 
-            // label_Add
+            // label_MAC_Add
             // 
-            this.label_Add.AutoSize = true;
-            this.label_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_Add.Location = new System.Drawing.Point(14, 498);
-            this.label_Add.Name = "label_Add";
-            this.label_Add.Size = new System.Drawing.Size(41, 17);
-            this.label_Add.TabIndex = 147;
-            this.label_Add.Text = "Add :";
+            this.label_MAC_Add.AutoSize = true;
+            this.label_MAC_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_MAC_Add.Location = new System.Drawing.Point(14, 498);
+            this.label_MAC_Add.Name = "label_MAC_Add";
+            this.label_MAC_Add.Size = new System.Drawing.Size(41, 17);
+            this.label_MAC_Add.TabIndex = 147;
+            this.label_MAC_Add.Text = "Add :";
             // 
             // label_Caption_1
             // 
@@ -950,6 +967,9 @@
             // tabPage_MICROSCOPIC_CY
             // 
             this.tabPage_MICROSCOPIC_CY.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(198)))), ((int)(((byte)(208)))), ((int)(((byte)(225)))));
+            this.tabPage_MICROSCOPIC_CY.Controls.Add(this.button_MIC_Add_Edit);
+            this.tabPage_MICROSCOPIC_CY.Controls.Add(this.comboBox5_MIC_Add);
+            this.tabPage_MICROSCOPIC_CY.Controls.Add(this.label_MIC_Add);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.textBox_Remarks_CY);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.button18);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.button19);
@@ -968,13 +988,45 @@
             this.tabPage_MICROSCOPIC_CY.TabIndex = 1;
             this.tabPage_MICROSCOPIC_CY.Text = "F2. MICROSCOPIC - CY";
             // 
+            // button_MIC_Add_Edit
+            // 
+            this.button_MIC_Add_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_MIC_Add_Edit.ForeColor = System.Drawing.Color.Black;
+            this.button_MIC_Add_Edit.Location = new System.Drawing.Point(922, 497);
+            this.button_MIC_Add_Edit.Name = "button_MIC_Add_Edit";
+            this.button_MIC_Add_Edit.Size = new System.Drawing.Size(71, 24);
+            this.button_MIC_Add_Edit.TabIndex = 254;
+            this.button_MIC_Add_Edit.Text = "Edit";
+            this.button_MIC_Add_Edit.UseVisualStyleBackColor = true;
+            this.button_MIC_Add_Edit.Click += new System.EventHandler(this.button_MIC_Add_Edit_Click);
+            // 
+            // comboBox5_MIC_Add
+            // 
+            this.comboBox5_MIC_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.comboBox5_MIC_Add.ForeColor = System.Drawing.Color.Black;
+            this.comboBox5_MIC_Add.FormattingEnabled = true;
+            this.comboBox5_MIC_Add.Location = new System.Drawing.Point(52, 497);
+            this.comboBox5_MIC_Add.Name = "comboBox5_MIC_Add";
+            this.comboBox5_MIC_Add.Size = new System.Drawing.Size(864, 24);
+            this.comboBox5_MIC_Add.TabIndex = 252;
+            // 
+            // label_MIC_Add
+            // 
+            this.label_MIC_Add.AutoSize = true;
+            this.label_MIC_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_MIC_Add.Location = new System.Drawing.Point(14, 500);
+            this.label_MIC_Add.Name = "label_MIC_Add";
+            this.label_MIC_Add.Size = new System.Drawing.Size(41, 17);
+            this.label_MIC_Add.TabIndex = 251;
+            this.label_MIC_Add.Text = "Add :";
+            // 
             // textBox_Remarks_CY
             // 
             this.textBox_Remarks_CY.Location = new System.Drawing.Point(24, 39);
             this.textBox_Remarks_CY.Multiline = true;
             this.textBox_Remarks_CY.Name = "textBox_Remarks_CY";
             this.textBox_Remarks_CY.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Remarks_CY.Size = new System.Drawing.Size(964, 482);
+            this.textBox_Remarks_CY.Size = new System.Drawing.Size(964, 454);
             this.textBox_Remarks_CY.TabIndex = 236;
             // 
             // button18
@@ -1391,6 +1443,7 @@
             this.button_Detail_3_DIA.TabIndex = 218;
             this.button_Detail_3_DIA.Text = "Detail";
             this.button_Detail_3_DIA.UseVisualStyleBackColor = true;
+            this.button_Detail_3_DIA.Click += new System.EventHandler(this.button_Detail_3_DIA_Click);
             // 
             // comboBox_Diagnosis_1
             // 
@@ -1681,6 +1734,7 @@
             this.button_Path.Text = "Path";
             this.button_Path.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Path.UseVisualStyleBackColor = true;
+            this.button_Path.Click += new System.EventHandler(this.button_Path_Click);
             // 
             // label_Total
             // 
@@ -1794,8 +1848,8 @@
         private System.Windows.Forms.Label label_Total;
         private System.Windows.Forms.Label label_Total_Parts;
         private System.Windows.Forms.Label label_Total_Parts_No;
-        private System.Windows.Forms.ComboBox comboBox_Add;
-        private System.Windows.Forms.Label label_Add;
+        private System.Windows.Forms.ComboBox comboBox_MAC_Add;
+        private System.Windows.Forms.Label label_MAC_Add;
         private System.Windows.Forms.TextBox textBox_Parts;
         private System.Windows.Forms.Label label_Parts;
         private System.Windows.Forms.Button button_Picture_File_1;
@@ -1893,5 +1947,9 @@
         private System.Windows.Forms.TextBox textBox_Remarks;
         private System.Windows.Forms.TextBox textBox_Remarks_CY;
         private System.Windows.Forms.Button button_F6_Edit;
+        private System.Windows.Forms.Button button_MAC_Add_Edit;
+        private System.Windows.Forms.Button button_MIC_Add_Edit;
+        private System.Windows.Forms.ComboBox comboBox5_MIC_Add;
+        private System.Windows.Forms.Label label_MIC_Add;
     }
 }

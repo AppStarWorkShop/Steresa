@@ -81,6 +81,7 @@
             this.label_Updated_At = new System.Windows.Forms.Label();
             this.textBox_Updated_By = new System.Windows.Forms.TextBox();
             this.label_Updated_By = new System.Windows.Forms.Label();
+            this.button_Clear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -661,6 +662,19 @@
             this.label_Updated_By.TabIndex = 185;
             this.label_Updated_By.Text = "Upd. By:";
             // 
+            // button_Clear
+            // 
+            this.button_Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_Clear.ForeColor = System.Drawing.Color.Blue;
+            this.button_Clear.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button_Clear.Location = new System.Drawing.Point(528, 63);
+            this.button_Clear.Name = "button_Clear";
+            this.button_Clear.Size = new System.Drawing.Size(61, 23);
+            this.button_Clear.TabIndex = 190;
+            this.button_Clear.Text = "Clear";
+            this.button_Clear.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button_Clear.UseVisualStyleBackColor = true;
+            // 
             // Form_InvoicePayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -668,6 +682,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(223)))), ((int)(((byte)(223)))));
             this.ClientSize = new System.Drawing.Size(719, 562);
             this.ControlBox = false;
+            this.Controls.Add(this.button_Clear);
             this.Controls.Add(this.textBox_Updated_At);
             this.Controls.Add(this.label_Updated_At);
             this.Controls.Add(this.textBox_Updated_By);
@@ -781,5 +796,6 @@
         private System.Windows.Forms.Label label_Updated_At;
         private System.Windows.Forms.TextBox textBox_Updated_By;
         private System.Windows.Forms.Label label_Updated_By;
+        private System.Windows.Forms.Button button_Clear;
     }
 }
