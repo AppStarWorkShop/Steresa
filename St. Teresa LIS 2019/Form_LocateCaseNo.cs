@@ -11,6 +11,9 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_LocateCaseNo : Form
     {
+        private DataTable dt;
+        private DataSet ebv_specimenDataSet = new DataSet();
+
         public Form_LocateCaseNo()
         {
             InitializeComponent();
@@ -23,21 +26,8 @@ namespace St.Teresa_LIS_2019
 
         private void Form_LocateCaseNo_Load(object sender, EventArgs e)
         {
-
-            DataTable dt = new DataTable();
-
-            dt.Columns.Add("Case No.");
-            dt.Columns.Add("Report Date");
-            dt.Columns.Add("Patient");
-            dt.Columns.Add(" ");
-            dt.Columns.Add("Age");
-            dt.Columns.Add("Sex");
-            dt.Columns.Add("HKID No.");
-            dt.Columns.Add("Client");
-
-            dt.Rows.Add(new object[] { "S1912345", "1987 / 06 / 22", "Chan Tai Man", "1", "46.56", "M", "D1234567(8)", "ST. TERESA'S HOSPITAL" });
-
-            dataGridView1.DataSource = dt;
+            loadDataGridViewDate();
+            dataGridViewFormat();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -47,8 +37,101 @@ namespace St.Teresa_LIS_2019
 
         private void button_F6_View_Record_Click(object sender, EventArgs e)
         {
-            Form_EBVFile open = new Form_EBVFile();
-            open.Show();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string id = dataGridView1.SelectedRows[0].Cells[9].Value.ToString();
+                Form_EBVFile open = new Form_EBVFile(id);
+                open.Show();
+            }
+        }
+
+        private void loadDataGridViewDate()
+        {
+            string sql = "SELECT CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM ebv_specimen";
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, ebv_specimenDataSet, "ebv_specimen");
+
+            DataTable dt = new DataTable();
+            //dt.Columns.Add("Select", typeof(bool));
+            dt.Columns.Add("Case No.");
+            dt.Columns.Add("Report Date");
+            dt.Columns.Add("Patient");
+            dt.Columns.Add(" ");
+            dt.Columns.Add("Age");
+            dt.Columns.Add("Sex");
+            dt.Columns.Add("HKID No.");
+            dt.Columns.Add("Client");
+            dt.Columns.Add("Doctor In Charge");
+            dt.Columns.Add("Id");
+
+            foreach (DataRow mDr in ebv_specimenDataSet.Tables["ebv_specimen"].Rows)
+            {
+                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["id"] });
+            }
+
+            dataGridView1.DataSource = dt;
+        }
+
+        private void dataGridViewFormat()
+        {
+            DataGridViewColumn column0 = dataGridView1.Columns[0];
+            column0.Width = 90;
+            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            column1.Width = 120;
+            column1.ReadOnly = true;
+            DataGridViewColumn column2 = dataGridView1.Columns[2];
+            column2.Width = 120;
+            column2.ReadOnly = true;
+            DataGridViewColumn column3 = dataGridView1.Columns[3];
+            column3.Width = 100;
+            column3.ReadOnly = true;
+            DataGridViewColumn column4 = dataGridView1.Columns[4];
+            column4.Width = 100;
+            column4.ReadOnly = true;
+            DataGridViewColumn column5 = dataGridView1.Columns[5];
+            column5.Width = 100;
+            column5.ReadOnly = true;
+            DataGridViewColumn column6 = dataGridView1.Columns[6];
+            column6.Width = 100;
+            column6.ReadOnly = true;
+            DataGridViewColumn column7 = dataGridView1.Columns[7];
+            column7.Width = 100;
+            column7.ReadOnly = true;
+            DataGridViewColumn column8 = dataGridView1.Columns[8];
+            column8.Width = 120;
+            column8.ReadOnly = true;
+            DataGridViewColumn column9 = dataGridView1.Columns[9];
+            column9.Width = 1;
+            column9.ReadOnly = true;
+            this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
+
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 11, FontStyle.Bold);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            
+            return base.ProcessCmdKey(ref msg, keyData);
+            
+        }
+
+        private void button_F2_New_Record_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void buttonF3_Edit_Record_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button_F5_New_Patient_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

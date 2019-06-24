@@ -548,7 +548,7 @@ namespace St.Teresa_LIS_2019
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
                     currencyManager.Position = 0;
-                    reloadDBData(1);
+                    reloadDBData(0);
 
                     MessageBox.Show("Client deleted");
                 }
