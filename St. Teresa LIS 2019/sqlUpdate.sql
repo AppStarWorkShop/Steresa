@@ -47,6 +47,19 @@ ALTER TABLE cyreport ADD CONSTRAINT [PK_cyreport] primary key (ID)
 
 GO
 
-ALTER TABLE PATIENT ADD [master] [int] NULL
+
+ALTER TABLE BXCY_SPECIMEN ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD CONSTRAINT [PK_BXCY_SPECIMEN] primary key (ID)
+
+GO
+
+ALTER TABLE diagnosis ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE diagnosis ADD CONSTRAINT [PK_diagnosis] primary key (ID)
 
 GO
