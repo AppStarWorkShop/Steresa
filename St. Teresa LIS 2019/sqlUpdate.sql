@@ -39,6 +39,14 @@ ALTER TABLE snopcode ADD CONSTRAINT [PK_snopcode] primary key (ID)
 
 GO
 
+ALTER TABLE diagnosis ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE diagnosis ADD CONSTRAINT [PK_diagnosis] primary key (ID)
+
+GO
+
 ALTER TABLE cyreport ADD [id] [int] IDENTITY(1,1) NOT NULL
 
 GO
@@ -47,19 +55,14 @@ ALTER TABLE cyreport ADD CONSTRAINT [PK_cyreport] primary key (ID)
 
 GO
 
-
-ALTER TABLE BXCY_SPECIMEN ADD [id] [int] IDENTITY(1,1) NOT NULL
-
-GO
-
-ALTER TABLE BXCY_SPECIMEN ADD CONSTRAINT [PK_BXCY_SPECIMEN] primary key (ID)
+ALTER TABLE ebv_specimen ADD [id] [int] IDENTITY(1,1) NOT NULL
 
 GO
 
-ALTER TABLE diagnosis ADD [id] [int] IDENTITY(1,1) NOT NULL
+ALTER TABLE ebv_specimen ADD CONSTRAINT [PK_ebv_specimen] primary key (ID)
 
 GO
 
-ALTER TABLE diagnosis ADD CONSTRAINT [PK_diagnosis] primary key (ID)
+ALTER TABLE PATIENT ADD [master] [int] NULL
 
 GO

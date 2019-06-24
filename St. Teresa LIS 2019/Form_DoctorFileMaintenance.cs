@@ -452,7 +452,7 @@ namespace St.Teresa_LIS_2019
             textBox_Tel_No1.DataBindings.Add("Text", dt, "tel1", false);
             textBox_Tel_No2.DataBindings.Add("Text", dt, "tel2", false);
             textBox_Fax_No.DataBindings.Add("Text", dt, "fax", false);
-            //textBox_Code.DataBindings.Add("Text", dt, "", false);
+            textBox_Code.DataBindings.Add("Text", dt, "doctor_id", false);
             textBox_Mobile.DataBindings.Add("Text", dt, "sql_mobile", false);
             textBox_Tel_No_Contact.DataBindings.Add("Text", dt, "sql_phone", false);
             textBox_Pager.DataBindings.Add("Text", dt, "sql_pager", false);

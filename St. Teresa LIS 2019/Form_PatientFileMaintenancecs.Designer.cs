@@ -65,8 +65,11 @@
             this.button_Merge = new System.Windows.Forms.Button();
             this.pATIENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox_ID = new System.Windows.Forms.TextBox();
-            this.datePicker_DOB = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
+            this.textBox_DOB = new System.Windows.Forms.TextBox();
+            this.label_masterLabel = new System.Windows.Forms.Label();
+            this.label_masterEngName = new System.Windows.Forms.Label();
+            this.textBox_Master = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pATIENTBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -214,7 +217,7 @@
             this.panel2.Controls.Add(this.textBox_Last_Updated_By_No);
             this.panel2.Controls.Add(this.textBox_Last_Updated_By);
             this.panel2.Controls.Add(this.label_Last_Updated_By);
-            this.panel2.Location = new System.Drawing.Point(12, 182);
+            this.panel2.Location = new System.Drawing.Point(12, 186);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(563, 27);
             this.panel2.TabIndex = 163;
@@ -492,15 +495,6 @@
             this.textBox_ID.Size = new System.Drawing.Size(10, 23);
             this.textBox_ID.TabIndex = 197;
             // 
-            // datePicker_DOB
-            // 
-            this.datePicker_DOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
-            this.datePicker_DOB.Location = new System.Drawing.Point(108, 128);
-            this.datePicker_DOB.Name = "datePicker_DOB";
-            this.datePicker_DOB.Size = new System.Drawing.Size(164, 23);
-            this.datePicker_DOB.TabIndex = 198;
-            this.datePicker_DOB.ValueChanged += new System.EventHandler(this.datePicker_DOB_ValueChanged);
-            // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -513,6 +507,49 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // textBox_DOB
+            // 
+            this.textBox_DOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_DOB.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_DOB.Location = new System.Drawing.Point(108, 128);
+            this.textBox_DOB.Name = "textBox_DOB";
+            this.textBox_DOB.Size = new System.Drawing.Size(164, 23);
+            this.textBox_DOB.TabIndex = 299;
+            this.textBox_DOB.TextChanged += new System.EventHandler(this.textBox_DOB_TextChanged);
+            // 
+            // label_masterLabel
+            // 
+            this.label_masterLabel.AutoSize = true;
+            this.label_masterLabel.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_masterLabel.Location = new System.Drawing.Point(294, 83);
+            this.label_masterLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_masterLabel.Name = "label_masterLabel";
+            this.label_masterLabel.Size = new System.Drawing.Size(71, 16);
+            this.label_masterLabel.TabIndex = 300;
+            this.label_masterLabel.Text = "Master:";
+            this.label_masterLabel.Visible = false;
+            // 
+            // label_masterEngName
+            // 
+            this.label_masterEngName.AutoSize = true;
+            this.label_masterEngName.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label_masterEngName.Location = new System.Drawing.Point(363, 83);
+            this.label_masterEngName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label_masterEngName.Name = "label_masterEngName";
+            this.label_masterEngName.Size = new System.Drawing.Size(0, 16);
+            this.label_masterEngName.TabIndex = 301;
+            this.label_masterEngName.Visible = false;
+            // 
+            // textBox_Master
+            // 
+            this.textBox_Master.Enabled = false;
+            this.textBox_Master.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Master.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_Master.Location = new System.Drawing.Point(595, 48);
+            this.textBox_Master.Name = "textBox_Master";
+            this.textBox_Master.Size = new System.Drawing.Size(19, 23);
+            this.textBox_Master.TabIndex = 302;
+            // 
             // Form_PatientFileMaintenancecs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -520,8 +557,11 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(233)))), ((int)(((byte)(190)))));
             this.ClientSize = new System.Drawing.Size(584, 288);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_Master);
+            this.Controls.Add(this.label_masterEngName);
+            this.Controls.Add(this.label_masterLabel);
+            this.Controls.Add(this.textBox_DOB);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.datePicker_DOB);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Merge);
             this.Controls.Add(this.button_Delete);
@@ -599,7 +639,10 @@
         private System.Windows.Forms.Button button_Merge;
         private System.Windows.Forms.BindingSource pATIENTBindingSource;
         private System.Windows.Forms.TextBox textBox_ID;
-        private System.Windows.Forms.DateTimePicker datePicker_DOB;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox_DOB;
+        private System.Windows.Forms.Label label_masterLabel;
+        private System.Windows.Forms.Label label_masterEngName;
+        private System.Windows.Forms.TextBox textBox_Master;
     }
 }
