@@ -114,24 +114,96 @@ namespace St.Teresa_LIS_2019
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
-            
+            if (keyData == Keys.F1)
+            {
+                string sql = string.Format("SELECT CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM ebv_specimen WHERE CASE_NO LIKE '%{0}%' OR PATIENT LIKE '%{0}%' OR PAT_HKID LIKE '%{0}%' OR PAT_HIST LIKE '%{0}%' OR CLIENT LIKE '%{0}%' OR DOCTOR_ID LIKE '%{0}%'", textBox_Search_Type.Text.Trim());
+                DBConn.fetchDataIntoDataSetSelectOnly(sql, ebv_specimenDataSet, "ebv_specimen");
+
+                DataTable dt = new DataTable();
+                //dt.Columns.Add("Select", typeof(bool));
+                dt.Columns.Add("Case No.");
+                dt.Columns.Add("Report Date");
+                dt.Columns.Add("Patient");
+                dt.Columns.Add(" ");
+                dt.Columns.Add("Age");
+                dt.Columns.Add("Sex");
+                dt.Columns.Add("HKID No.");
+                dt.Columns.Add("Client");
+                dt.Columns.Add("Doctor In Charge");
+                dt.Columns.Add("Id");
+
+                foreach (DataRow mDr in ebv_specimenDataSet.Tables["ebv_specimen"].Rows)
+                {
+                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["id"] });
+                }
+
+                dataGridView1.DataSource = dt;
+                return true;
+            }
+
+            if (keyData == Keys.F2)
+            {
+                button_F2_New_Record.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F3)
+            {
+                buttonF3_Edit_Record.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F4)
+            {
+                button_F4_Daily_Report.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F5)
+            {
+                button_F5_New_Patient.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F6)
+            {
+                button_F6_View_Record.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F7)
+            {
+                button_F7_Columas.PerformClick();
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
             
         }
 
         private void button_F2_New_Record_Click(object sender, EventArgs e)
         {
-            
+            Form_EBVFile open = new Form_EBVFile();
+            open.Show();
+            open.processNew();
         }
 
         private void buttonF3_Edit_Record_Click(object sender, EventArgs e)
         {
-            
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string id = dataGridView1.SelectedRows[0].Cells[9].Value.ToString();
+                Form_EBVFile open = new Form_EBVFile(id);
+                open.Show();
+                open.processEdit();
+            }
         }
 
         private void button_F5_New_Patient_Click(object sender, EventArgs e)
         {
-            
+            Form_PatientFileMaintenancecs open = new Form_PatientFileMaintenancecs();
+            open.Show();
+            open.processNew();
         }
     }
 }
