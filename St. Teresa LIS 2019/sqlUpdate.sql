@@ -66,3 +66,41 @@ GO
 ALTER TABLE PATIENT ADD [master] [int] NULL
 
 GO
+
+DROP TABLE [dbo].[system_setting]
+GO
+
+CREATE TABLE [dbo].[system_setting](
+	[picture_path] [nvarchar](550) NULL,
+	[invoice_year] [int] NULL,
+	[next_inv] [int] NULL,
+	[next_receipt] [int] NULL,
+	[activate_user_level_control] [bit] NULL,
+	[auto_print_barcode] [bit] NULL,
+	[auto_generate_PDF] [bit] NULL,
+	[PRICE_BX] [float] NULL,
+	[PRICE_BB] [float] NULL,
+	[PRICE_CY] [float] NULL,
+	[PRICE_CC] [float] NULL,
+	[PRICE_CYG] [float] NULL,
+	[PRICE_EBV] [float] NULL
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE system_setting ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE system_setting ADD CONSTRAINT [PK_system_setting] primary key (ID)
+
+GO
+
+
+ALTER TABLE [USER] ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE [USER] ADD CONSTRAINT [PK_USER] primary key (ID)
+
+GO
