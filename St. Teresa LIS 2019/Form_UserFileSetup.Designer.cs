@@ -100,6 +100,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_User_Level)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -111,11 +112,11 @@
             // 
             this.label_Line.AutoSize = true;
             this.label_Line.BackColor = System.Drawing.Color.Transparent;
-            this.label_Line.Font = new System.Drawing.Font("Palace Script MT", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_Line.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Line.ForeColor = System.Drawing.SystemColors.GrayText;
             this.label_Line.Location = new System.Drawing.Point(12, 8);
             this.label_Line.Name = "label_Line";
-            this.label_Line.Size = new System.Drawing.Size(664, 47);
+            this.label_Line.Size = new System.Drawing.Size(779, 54);
             this.label_Line.TabIndex = 155;
             this.label_Line.Text = "____________________________";
             // 
@@ -164,6 +165,7 @@
             this.textBox_Password.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Password.Location = new System.Drawing.Point(146, 116);
             this.textBox_Password.Name = "textBox_Password";
+            this.textBox_Password.PasswordChar = '*';
             this.textBox_Password.Size = new System.Drawing.Size(174, 23);
             this.textBox_Password.TabIndex = 158;
             // 
@@ -594,6 +596,7 @@
             this.textBox_2nd_Level_Password.ForeColor = System.Drawing.Color.Blue;
             this.textBox_2nd_Level_Password.Location = new System.Drawing.Point(513, 168);
             this.textBox_2nd_Level_Password.Name = "textBox_2nd_Level_Password";
+            this.textBox_2nd_Level_Password.PasswordChar = '*';
             this.textBox_2nd_Level_Password.Size = new System.Drawing.Size(127, 23);
             this.textBox_2nd_Level_Password.TabIndex = 176;
             // 
@@ -794,6 +797,7 @@
             this.button_Delete.Text = "Delete";
             this.button_Delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
             // button_Save
             // 
@@ -823,6 +827,7 @@
             this.button_New.Text = "New";
             this.button_New.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_New.UseVisualStyleBackColor = true;
+            this.button_New.Click += new System.EventHandler(this.button_New_Click);
             // 
             // button_Edit
             // 
@@ -837,6 +842,7 @@
             this.button_Edit.Text = "Edit";
             this.button_Edit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Edit.UseVisualStyleBackColor = true;
+            this.button_Edit.Click += new System.EventHandler(this.button_Edit_Click);
             // 
             // button_Undo
             // 
@@ -851,6 +857,7 @@
             this.button_Undo.Text = "Undo";
             this.button_Undo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Undo.UseVisualStyleBackColor = true;
+            this.button_Undo.Click += new System.EventHandler(this.button_Undo_Click);
             // 
             // button_Exit
             // 
@@ -880,6 +887,7 @@
             this.button_End.Text = "End";
             this.button_End.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_End.UseVisualStyleBackColor = true;
+            this.button_End.Click += new System.EventHandler(this.button_End_Click);
             // 
             // button_Next
             // 
@@ -894,6 +902,7 @@
             this.button_Next.Text = "Next";
             this.button_Next.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Next.UseVisualStyleBackColor = true;
+            this.button_Next.Click += new System.EventHandler(this.button_Next_Click);
             // 
             // button_Back
             // 
@@ -908,6 +917,7 @@
             this.button_Back.Text = "Back";
             this.button_Back.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Back.UseVisualStyleBackColor = true;
+            this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
             // 
             // button_Top
             // 
@@ -922,6 +932,7 @@
             this.button_Top.Text = "Top";
             this.button_Top.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Top.UseVisualStyleBackColor = true;
+            this.button_Top.Click += new System.EventHandler(this.button_Top_Click);
             // 
             // label_Min_Max
             // 
@@ -970,6 +981,16 @@
             this.pictureBox1.TabIndex = 198;
             this.pictureBox1.TabStop = false;
             // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Enabled = false;
+            this.textBox_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_ID.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_ID.Location = new System.Drawing.Point(692, 24);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(17, 23);
+            this.textBox_ID.TabIndex = 199;
+            // 
             // Form_UserFileSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -977,6 +998,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(228)))), ((int)(((byte)(183)))));
             this.ClientSize = new System.Drawing.Size(676, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -1108,5 +1130,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_STH_DIA_Amount_Auto_Fill_Setting;
+        private System.Windows.Forms.TextBox textBox_ID;
     }
 }

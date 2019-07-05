@@ -16,7 +16,37 @@ namespace St.Teresa_LIS_2019
         private DataSet userDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         private DataTable dt;
+        private DataTable userDt;
         private int currentStatus;
+        private DataRow currentEditRow;
+
+        public CurrencyManager currencyManager;
+        private int currentPosition;
+        private UserStr copyUser;
+
+        public class User
+        {
+            public string userId { get; set; }
+            public string userName { get; set; }
+            public string department { get; set; }
+            public string initial { get; set; }
+            public string password { get; set; }
+            public Double? level{ get; set; }
+            public string password2 { get; set; }
+            public string picPath { get; set; }
+        }
+
+        public class UserStr
+        {
+            public string userId { get; set; }
+            public string userName { get; set; }
+            public string department { get; set; }
+            public string initial { get; set; }
+            public string password { get; set; }
+            public string level{ get; set; }
+            public string password2 { get; set; }
+            public string picPath { get; set; }
+        }
 
         public Form_UserFileSetup()
         {
@@ -81,7 +111,50 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
+            if (currentStatus == PageStatus.STATUS_NEW)
+            {
+                if (currentEditRow != null)
+                {
+                    currentEditRow["UPDATE_BY"] = "Admin";
+                    currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                    textBox_ID.BindingContext[dt].Position++;
 
+                    if (DBConn.updateObject(dataAdapter, userDataSet, "user"))
+                    {
+                        reloadDBData(currencyManager.Count - 1);
+                        MessageBox.Show("New user saved");
+                    }
+                    else
+                    {
+                        MessageBox.Show("User saved fail, please contact Admin");
+                    }
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+            }
+            else
+            {
+                if (currentStatus == PageStatus.STATUS_EDIT)
+                {
+                    DataRow drow = userDataSet.Tables["user"].Rows.Find(textBox_ID.Text);
+                    if (drow != null)
+                    {
+                        drow["UPDATE_BY"] = "Admin";
+                        drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                        textBox_ID.BindingContext[dt].Position++;
+
+                        if (DBConn.updateObject(dataAdapter, userDataSet, "user"))
+                        {
+                            MessageBox.Show("User updated");
+                        }
+                        else
+                        {
+                            MessageBox.Show("User updated fail, please contact Admin");
+                        }
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+            }
         }
 
         private void setButtonStatus(int status)
@@ -117,7 +190,6 @@ namespace St.Teresa_LIS_2019
                     button_Exit.Enabled = true;
                 }
                 
-
                 textBox_Picture_Path_2.Enabled = false;
                 textBox_Invoice_Year.Enabled = false;
                 textBox_Next_Inv.Enabled = false;
@@ -125,6 +197,7 @@ namespace St.Teresa_LIS_2019
                 checkBox_Activate_User_Level_Control.Enabled = false;
                 checkBox_Auto_Print_Barcode_For_STH_Cases.Enabled = false;
                 checkBox_Auto_Generate_PDF_When_Print_Report.Enabled = false;
+                textBox_2nd_Level_Password.Enabled = false;
                 textBox_BX.Enabled = false;
                 textBox_BB.Enabled = false;
                 textBox_CY.Enabled = false;
@@ -140,6 +213,8 @@ namespace St.Teresa_LIS_2019
                 numericUpDown_User_Level.Enabled = false;
                 checkBox_Pri_Screener.Enabled = false;
                 textBox_Picture_Path.Enabled = false;
+
+                disedit_modle();
             }
             else
             {
@@ -168,7 +243,7 @@ namespace St.Teresa_LIS_2019
                         button_New.Enabled = false;
                         button_Edit.Enabled = true;
                         button_Delete.Enabled = false;
-                        button_Undo.Enabled = false;
+                        button_Undo.Enabled = true;
                         button_Exit.Enabled = true;
                     }
 
@@ -179,6 +254,7 @@ namespace St.Teresa_LIS_2019
                     checkBox_Activate_User_Level_Control.Enabled = false;
                     checkBox_Auto_Print_Barcode_For_STH_Cases.Enabled = false;
                     checkBox_Auto_Generate_PDF_When_Print_Report.Enabled = false;
+                    textBox_2nd_Level_Password.Enabled = false;
                     textBox_BX.Enabled = false;
                     textBox_BB.Enabled = false;
                     textBox_CY.Enabled = false;
@@ -194,6 +270,8 @@ namespace St.Teresa_LIS_2019
                     numericUpDown_User_Level.Enabled = false;
                     checkBox_Pri_Screener.Enabled = false;
                     textBox_Picture_Path.Enabled = false;
+
+                    edit_modle();
                 }
                 else
                 {
@@ -211,6 +289,30 @@ namespace St.Teresa_LIS_2019
                             button_Delete.Enabled = false;
                             button_Undo.Enabled = true;
                             button_Exit.Enabled = false;
+
+                            textBox_Picture_Path_2.Enabled = true;
+                            textBox_Invoice_Year.Enabled = true;
+                            textBox_Next_Inv.Enabled = true;
+                            textBox_Next_Receipt.Enabled = true;
+                            checkBox_Activate_User_Level_Control.Enabled = true;
+                            checkBox_Auto_Print_Barcode_For_STH_Cases.Enabled = true;
+                            checkBox_Auto_Generate_PDF_When_Print_Report.Enabled = true;
+                            textBox_2nd_Level_Password.Enabled = true;
+                            textBox_BX.Enabled = true;
+                            textBox_BB.Enabled = true;
+                            textBox_CY.Enabled = true;
+                            textBox_CC.Enabled = true;
+                            textBox_CYG.Enabled = true;
+                            textBox_EBV.Enabled = true;
+
+                            textBox_User_ID.Enabled = true;
+                            textBox_User_Name.Enabled = true;
+                            textBox_Department.Enabled = true;
+                            textBox_Initial.Enabled = true;
+                            textBox_Password.Enabled = true;
+                            numericUpDown_User_Level.Enabled = true;
+                            checkBox_Pri_Screener.Enabled = true;
+                            textBox_Picture_Path.Enabled = true;
                         }
                         else
                         {
@@ -222,32 +324,34 @@ namespace St.Teresa_LIS_2019
                             button_New.Enabled = false;
                             button_Edit.Enabled = true;
                             button_Delete.Enabled = false;
-                            button_Undo.Enabled = false;
+                            button_Undo.Enabled = true;
                             button_Exit.Enabled = true;
+
+                            textBox_Picture_Path_2.Enabled = false;
+                            textBox_Invoice_Year.Enabled = false;
+                            textBox_Next_Inv.Enabled = false;
+                            textBox_Next_Receipt.Enabled = false;
+                            checkBox_Activate_User_Level_Control.Enabled = false;
+                            checkBox_Auto_Print_Barcode_For_STH_Cases.Enabled = false;
+                            checkBox_Auto_Generate_PDF_When_Print_Report.Enabled = false;
+                            textBox_2nd_Level_Password.Enabled = true;
+                            textBox_BX.Enabled = false;
+                            textBox_BB.Enabled = false;
+                            textBox_CY.Enabled = false;
+                            textBox_CC.Enabled = false;
+                            textBox_CYG.Enabled = false;
+                            textBox_EBV.Enabled = false;
+
+                            textBox_User_ID.Enabled = false;
+                            textBox_User_Name.Enabled = false;
+                            textBox_Department.Enabled = false;
+                            textBox_Initial.Enabled = false;
+                            textBox_Password.Enabled = true;
+                            numericUpDown_User_Level.Enabled = false;
+                            checkBox_Pri_Screener.Enabled = false;
+                            textBox_Picture_Path.Enabled = false;
                         }
-
-                        textBox_Picture_Path_2.Enabled = true;
-                        textBox_Invoice_Year.Enabled = true;
-                        textBox_Next_Inv.Enabled = true;
-                        textBox_Next_Receipt.Enabled = true;
-                        checkBox_Activate_User_Level_Control.Enabled = true;
-                        checkBox_Auto_Print_Barcode_For_STH_Cases.Enabled = true;
-                        checkBox_Auto_Generate_PDF_When_Print_Report.Enabled = true;
-                        textBox_BX.Enabled = true;
-                        textBox_BB.Enabled = true;
-                        textBox_CY.Enabled = true;
-                        textBox_CC.Enabled = true;
-                        textBox_CYG.Enabled = true;
-                        textBox_EBV.Enabled = true;
-
-                        textBox_User_ID.Enabled = true;
-                        textBox_User_Name.Enabled = true;
-                        textBox_Department.Enabled = true;
-                        textBox_Initial.Enabled = true;
-                        textBox_Password.Enabled = true;
-                        numericUpDown_User_Level.Enabled = true;
-                        checkBox_Pri_Screener.Enabled = true;
-                        textBox_Picture_Path.Enabled = true;
+                        edit_modle();
                     }
                 }
             }
@@ -257,6 +361,50 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingSystemDBData()
         {
+            string userSql = "SELECT * FROM [USER]";
+
+            if(CurrentUser.currentUserLevel == 9)
+            {
+                userSql = "SELECT * FROM [USER]";
+            }
+            else
+            {
+                userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentUserId);
+            }
+
+            dataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
+
+            textBox_ID.DataBindings.Clear();
+            textBox_User_ID.DataBindings.Clear();
+            textBox_User_Name.DataBindings.Clear();
+            textBox_Department.DataBindings.Clear();
+            textBox_Initial.DataBindings.Clear();
+            textBox_Password.DataBindings.Clear();
+            numericUpDown_User_Level.DataBindings.Clear();
+            checkBox_Pri_Screener.DataBindings.Clear();
+            textBox_2nd_Level_Password.DataBindings.Clear();
+            textBox_Picture_Path.DataBindings.Clear();
+
+            userDt = userDataSet.Tables["user"];
+            userDt.PrimaryKey = new DataColumn[] { userDt.Columns["id"] };
+            userDt.Columns["id"].AutoIncrement = true;
+            userDt.Columns["id"].AutoIncrementStep = 1;
+
+            textBox_ID.DataBindings.Add("Text", userDt, "id", false);
+            textBox_User_ID.DataBindings.Add("Text", userDt, "USER_ID", false);
+            textBox_User_Name.DataBindings.Add("Text", userDt, "USER_NAME", false);
+            textBox_Department.DataBindings.Add("Text", userDt, "DEPARTMENT", false);
+            textBox_Initial.DataBindings.Add("Text", userDt, "INITIAL", false);
+            textBox_Password.DataBindings.Add("Text", userDt, "PASSWORD", false);
+            numericUpDown_User_Level.DataBindings.Add("Text", userDt, "LEVEL", false);
+            //checkBox_Pri_Screener.DataBindings.Add("Text", userDt, "picture_path", false);
+            textBox_2nd_Level_Password.DataBindings.Add("Text", userDt, "PASSWORD2", false);
+            textBox_Picture_Path.DataBindings.Add("Text", userDt, "PIC_PATH", false);
+
+            currencyManager = (CurrencyManager)this.BindingContext[userDt];
+
+            //currencyManager.Position = position;
+
             string sql = "SELECT TOP 1 * FROM [system_setting]";
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, systemDataSet, "system_setting");
 
@@ -293,6 +441,201 @@ namespace St.Teresa_LIS_2019
             textBox_CYG.DataBindings.Add("Text", dt, "PRICE_CYG", false);
             textBox_EBV.DataBindings.Add("Text", dt, "PRICE_EBV", false);
 
+        }
+
+        private void button_Top_Click(object sender, EventArgs e)
+        {
+            currencyManager.Position = 0;
+        }
+
+        private void button_Back_Click(object sender, EventArgs e)
+        {
+            currencyManager.Position--;
+        }
+
+        private void button_Next_Click(object sender, EventArgs e)
+        {
+            currencyManager.Position++;
+        }
+
+        private void button_End_Click(object sender, EventArgs e)
+        {
+            currencyManager.Position = currencyManager.Count - 1;
+        }
+
+        private void button_New_Click(object sender, EventArgs e)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = userDataSet.Tables["user"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["LEVEL"] = 1;
+            userDataSet.Tables["user"].Rows.Add(currentEditRow);
+
+            currencyManager.Position = currencyManager.Count - 1;
+        }
+
+        private void button_Edit_Click(object sender, EventArgs e)
+        {
+            currentPosition = currencyManager.Position;
+
+            copyUser = new UserStr();
+            copyUser.userId = textBox_User_ID.Text;
+            copyUser.userName = textBox_User_Name.Text;
+            copyUser.department = textBox_Department.Text;
+            copyUser.initial = textBox_Initial.Text;
+            copyUser.password = textBox_Password.Text;
+            copyUser.level = numericUpDown_User_Level.Text;
+            copyUser.password2 = textBox_2nd_Level_Password.Text;
+            copyUser.picPath = textBox_Picture_Path.Text;
+
+            setButtonStatus(PageStatus.STATUS_EDIT);
+        }
+
+        private void button_Delete_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string deleteSql = string.Format("DELETE FROM USER WHERE id = '{0}'", textBox_ID.Text);
+
+                if (DBConn.executeUpdate(deleteSql))
+                {
+                    DataRow rowToDelete = dt.Rows.Find(textBox_User_ID.Text);
+                    rowToDelete.Delete();
+                    currencyManager.Position = 0;
+
+                    reloadDBData(0);
+                    MessageBox.Show("User deleted");
+                }
+                else
+                {
+                    MessageBox.Show("User deleted fail, please contact Admin");
+                }
+
+                setButtonStatus(PageStatus.STATUS_VIEW);
+            }
+        }
+
+        private void reloadDBData(int position = 0)
+        {
+            string userSql = "SELECT * FROM [USER]";
+
+            if (CurrentUser.currentUserLevel == 9)
+            {
+                userSql = "SELECT * FROM [USER]";
+            }
+            else
+            {
+                userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentUserId);
+            }
+
+            dataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
+
+            textBox_User_ID.DataBindings.Clear();
+            textBox_User_Name.DataBindings.Clear();
+            textBox_Department.DataBindings.Clear();
+            textBox_Initial.DataBindings.Clear();
+            textBox_Password.DataBindings.Clear();
+            numericUpDown_User_Level.DataBindings.Clear();
+            checkBox_Pri_Screener.DataBindings.Clear();
+            textBox_2nd_Level_Password.DataBindings.Clear();
+            textBox_Picture_Path.DataBindings.Clear();
+
+            userDt = userDataSet.Tables["user"];
+            userDt.PrimaryKey = new DataColumn[] { userDt.Columns["id"] };
+            userDt.Columns["id"].AutoIncrement = true;
+            userDt.Columns["id"].AutoIncrementStep = 1;
+
+            textBox_User_ID.DataBindings.Add("Text", userDt, "USER_ID", false);
+            textBox_User_Name.DataBindings.Add("Text", userDt, "USER_NAME", false);
+            textBox_Department.DataBindings.Add("Text", userDt, "DEPARTMENT", false);
+            textBox_Initial.DataBindings.Add("Text", userDt, "INITIAL", false);
+            textBox_Password.DataBindings.Add("Text", userDt, "PASSWORD", false);
+            numericUpDown_User_Level.DataBindings.Add("Text", userDt, "LEVEL", false);
+            //checkBox_Pri_Screener.DataBindings.Add("Text", userDt, "picture_path", false);
+            textBox_2nd_Level_Password.DataBindings.Add("Text", userDt, "PASSWORD2", false);
+            textBox_Picture_Path.DataBindings.Add("Text", userDt, "PIC_PATH", false);
+
+            currencyManager = (CurrencyManager)this.BindingContext[userDt];
+        }
+
+        private void button_Undo_Click(object sender, EventArgs e)
+        {
+            if (currentStatus == PageStatus.STATUS_NEW)
+            {
+                if (currentEditRow != null)
+                {
+                    userDataSet.Tables["user"].Rows.Remove(currentEditRow);
+                }
+                setButtonStatus(PageStatus.STATUS_VIEW);
+            }
+            else
+            {
+                if (currentStatus == PageStatus.STATUS_EDIT)
+                {
+                    if (copyUser != null)
+                    {
+                        textBox_User_ID.Text = copyUser.userId;
+                        textBox_User_Name.Text = copyUser.userName;
+                        textBox_Department.Text = copyUser.department;
+                        textBox_Initial.Text = copyUser.initial;
+                        textBox_Password.Text = copyUser.password;
+                        numericUpDown_User_Level.Text = copyUser.level;
+                        textBox_2nd_Level_Password.Text = copyUser.password2;
+                        textBox_Picture_Path.Text = copyUser.picPath;
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+            }
+        }
+
+        private void edit_modle()
+        {
+            button_Top.Image = Image.FromFile("Resources/topGra.png");
+            button_Top.ForeColor = Color.Gray;
+            button_Back.Image = Image.FromFile("Resources/backGra.png");
+            button_Back.ForeColor = Color.Gray;
+            button_Next.Image = Image.FromFile("Resources/nextGra.png");
+            button_Next.ForeColor = Color.Gray;
+            button_End.Image = Image.FromFile("Resources/endGra.png");
+            button_End.ForeColor = Color.Gray;
+            button_Save.Image = Image.FromFile("Resources/save.png");
+            button_Save.ForeColor = Color.Black;
+            button_New.Image = Image.FromFile("Resources/newGra.png");
+            button_New.ForeColor = Color.Gray;
+            button_Edit.Image = Image.FromFile("Resources/editGra.png");
+            button_Edit.ForeColor = Color.Gray;
+            button_Delete.Image = Image.FromFile("Resources/deleteGra.png");
+            button_Delete.ForeColor = Color.Gray;
+            button_Undo.Image = Image.FromFile("Resources/undo.png");
+            button_Undo.ForeColor = Color.Black;
+            button_Exit.Image = Image.FromFile("Resources/exitGra.png");
+            button_Exit.ForeColor = Color.Gray;
+        }
+
+        private void disedit_modle()
+        {
+            button_Top.Image = Image.FromFile("Resources/top.png");
+            button_Top.ForeColor = Color.Black;
+            button_Back.Image = Image.FromFile("Resources/back.png");
+            button_Back.ForeColor = Color.Black;
+            button_Next.Image = Image.FromFile("Resources/next.png");
+            button_Next.ForeColor = Color.Black;
+            button_End.Image = Image.FromFile("Resources/end.png");
+            button_End.ForeColor = Color.Black;
+            button_Save.Image = Image.FromFile("Resources/saveGra.png");
+            button_Save.ForeColor = Color.Gray;
+            button_New.Image = Image.FromFile("Resources/new.png");
+            button_New.ForeColor = Color.Black;
+            button_Edit.Image = Image.FromFile("Resources/edit.png");
+            button_Edit.ForeColor = Color.Black;
+            button_Delete.Image = Image.FromFile("Resources/delete.png");
+            button_Delete.ForeColor = Color.Black;
+            button_Undo.Image = Image.FromFile("Resources/undoGra.png");
+            button_Undo.ForeColor = Color.Gray;
+            button_Exit.Image = Image.FromFile("Resources/exit.png");
+            button_Exit.ForeColor = Color.Black;
         }
     }
 }
