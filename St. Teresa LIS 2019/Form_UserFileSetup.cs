@@ -14,8 +14,9 @@ namespace St.Teresa_LIS_2019
     {
         private DataSet systemDataSet = new DataSet();
         private DataSet userDataSet = new DataSet();
-        private SqlDataAdapter dataAdapter;
-        private DataTable dt;
+        private SqlDataAdapter systemDataAdapter;
+        private SqlDataAdapter userDataAdapter;
+        private DataTable systemDt;
         private DataTable userDt;
         private int currentStatus;
         private DataRow currentEditRow;
@@ -117,9 +118,9 @@ namespace St.Teresa_LIS_2019
                 {
                     currentEditRow["UPDATE_BY"] = "Admin";
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
-                    textBox_ID.BindingContext[dt].Position++;
+                    textBox_ID.BindingContext[userDt].Position++;
 
-                    if (DBConn.updateObject(dataAdapter, userDataSet, "user"))
+                    if (DBConn.updateObject(userDataAdapter, userDataSet, "user"))
                     {
                         reloadDBData(currencyManager.Count - 1);
                         MessageBox.Show("New user saved");
@@ -140,15 +141,35 @@ namespace St.Teresa_LIS_2019
                     {
                         drow["UPDATE_BY"] = "Admin";
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
-                        textBox_ID.BindingContext[dt].Position++;
+                        textBox_ID.BindingContext[userDt].Position++;
 
-                        if (DBConn.updateObject(dataAdapter, userDataSet, "user"))
+                        if (DBConn.updateObject(userDataAdapter, userDataSet, "user"))
                         {
                             MessageBox.Show("User updated");
                         }
                         else
                         {
                             MessageBox.Show("User updated fail, please contact Admin");
+                        }
+                    }
+
+                    if (CurrentUser.currentUserLevel == 9)
+                    {
+                        DataRow drowSystem = systemDataSet.Tables["system_setting"].Rows.Find(textBox_SYSTEM_ID.Text);
+                        if (drowSystem != null)
+                        {
+                            drowSystem["UPDATE_BY"] = "Admin";
+                            drowSystem["UPDATE_AT"] = DateTime.Now.ToString("");
+                            textBox_SYSTEM_ID.BindingContext[systemDt].Position++;
+
+                            if (DBConn.updateObject(systemDataAdapter, systemDataSet, "system_setting"))
+                            {
+                                MessageBox.Show("System setting updated");
+                            }
+                            else
+                            {
+                                MessageBox.Show("System setting updated fail, please contact Admin");
+                            }
                         }
                     }
 
@@ -160,6 +181,14 @@ namespace St.Teresa_LIS_2019
         private void setButtonStatus(int status)
         {
             currentStatus = status;
+            if (CurrentUser.currentUserLevel == 9)
+            {
+                label_You_Can_Only_Change_Your_Own_Password_And_Initial.Visible = false;
+            }
+            else
+            {
+                label_You_Can_Only_Change_Your_Own_Password_And_Initial.Visible = true;
+            }
 
             if (status == PageStatus.STATUS_VIEW)
             {
@@ -372,7 +401,7 @@ namespace St.Teresa_LIS_2019
                 userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentUserId);
             }
 
-            dataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
+            userDataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
 
             textBox_ID.DataBindings.Clear();
             textBox_User_ID.DataBindings.Clear();
@@ -397,7 +426,6 @@ namespace St.Teresa_LIS_2019
             textBox_Initial.DataBindings.Add("Text", userDt, "INITIAL", false);
             textBox_Password.DataBindings.Add("Text", userDt, "PASSWORD", false);
             numericUpDown_User_Level.DataBindings.Add("Text", userDt, "LEVEL", false);
-            //checkBox_Pri_Screener.DataBindings.Add("Text", userDt, "picture_path", false);
             textBox_2nd_Level_Password.DataBindings.Add("Text", userDt, "PASSWORD2", false);
             textBox_Picture_Path.DataBindings.Add("Text", userDt, "PIC_PATH", false);
 
@@ -406,7 +434,7 @@ namespace St.Teresa_LIS_2019
             //currencyManager.Position = position;
 
             string sql = "SELECT TOP 1 * FROM [system_setting]";
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, systemDataSet, "system_setting");
+            systemDataAdapter = DBConn.fetchDataIntoDataSet(sql, systemDataSet, "system_setting");
 
             textBox_Picture_Path_2.DataBindings.Clear();
             textBox_Invoice_Year.DataBindings.Clear();
@@ -422,24 +450,25 @@ namespace St.Teresa_LIS_2019
             textBox_CYG.DataBindings.Clear();
             textBox_EBV.DataBindings.Clear();
 
-            dt = systemDataSet.Tables["system_setting"];
-            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
-            dt.Columns["id"].AutoIncrement = true;
-            dt.Columns["id"].AutoIncrementStep = 1;
+            systemDt = systemDataSet.Tables["system_setting"];
+            systemDt.PrimaryKey = new DataColumn[] { systemDt.Columns["id"] };
+            systemDt.Columns["id"].AutoIncrement = true;
+            systemDt.Columns["id"].AutoIncrementStep = 1;
 
-            textBox_Picture_Path_2.DataBindings.Add("Text", dt, "picture_path", false);
-            textBox_Invoice_Year.DataBindings.Add("Text", dt, "invoice_year", false);
-            textBox_Next_Inv.DataBindings.Add("Text", dt, "next_inv", false);
-            textBox_Next_Receipt.DataBindings.Add("Text", dt, "next_receipt", false);
-            checkBox_Activate_User_Level_Control.DataBindings.Add("Checked", dt, "activate_user_level_control", false);
-            checkBox_Auto_Print_Barcode_For_STH_Cases.DataBindings.Add("Checked", dt, "auto_print_barcode", false);
-            checkBox_Auto_Generate_PDF_When_Print_Report.DataBindings.Add("Checked", dt, "auto_generate_PDF", false);
-            textBox_BX.DataBindings.Add("Text", dt, "PRICE_BX", false);
-            textBox_BB.DataBindings.Add("Text", dt, "PRICE_BB", false);
-            textBox_CY.DataBindings.Add("Text", dt, "PRICE_CY", false);
-            textBox_CC.DataBindings.Add("Text", dt, "PRICE_CC", false);
-            textBox_CYG.DataBindings.Add("Text", dt, "PRICE_CYG", false);
-            textBox_EBV.DataBindings.Add("Text", dt, "PRICE_EBV", false);
+            textBox_SYSTEM_ID.DataBindings.Add("Text", systemDt, "id", false);
+            textBox_Picture_Path_2.DataBindings.Add("Text", systemDt, "picture_path", false);
+            textBox_Invoice_Year.DataBindings.Add("Text", systemDt, "invoice_year", false);
+            textBox_Next_Inv.DataBindings.Add("Text", systemDt, "next_inv", false);
+            textBox_Next_Receipt.DataBindings.Add("Text", systemDt, "next_receipt", false);
+            checkBox_Activate_User_Level_Control.DataBindings.Add("Checked", systemDt, "activate_user_level_control", false);
+            checkBox_Auto_Print_Barcode_For_STH_Cases.DataBindings.Add("Checked", systemDt, "auto_print_barcode", false);
+            checkBox_Auto_Generate_PDF_When_Print_Report.DataBindings.Add("Checked", systemDt, "auto_generate_PDF", false);
+            textBox_BX.DataBindings.Add("Text", systemDt, "PRICE_BX", false);
+            textBox_BB.DataBindings.Add("Text", systemDt, "PRICE_BB", false);
+            textBox_CY.DataBindings.Add("Text", systemDt, "PRICE_CY", false);
+            textBox_CC.DataBindings.Add("Text", systemDt, "PRICE_CC", false);
+            textBox_CYG.DataBindings.Add("Text", systemDt, "PRICE_CYG", false);
+            textBox_EBV.DataBindings.Add("Text", systemDt, "PRICE_EBV", false);
 
         }
 
@@ -500,7 +529,7 @@ namespace St.Teresa_LIS_2019
 
                 if (DBConn.executeUpdate(deleteSql))
                 {
-                    DataRow rowToDelete = dt.Rows.Find(textBox_User_ID.Text);
+                    DataRow rowToDelete = userDt.Rows.Find(textBox_User_ID.Text);
                     rowToDelete.Delete();
                     currencyManager.Position = 0;
 
@@ -529,7 +558,7 @@ namespace St.Teresa_LIS_2019
                 userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentUserId);
             }
 
-            dataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
+            userDataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
 
             textBox_User_ID.DataBindings.Clear();
             textBox_User_Name.DataBindings.Clear();
@@ -552,7 +581,6 @@ namespace St.Teresa_LIS_2019
             textBox_Initial.DataBindings.Add("Text", userDt, "INITIAL", false);
             textBox_Password.DataBindings.Add("Text", userDt, "PASSWORD", false);
             numericUpDown_User_Level.DataBindings.Add("Text", userDt, "LEVEL", false);
-            //checkBox_Pri_Screener.DataBindings.Add("Text", userDt, "picture_path", false);
             textBox_2nd_Level_Password.DataBindings.Add("Text", userDt, "PASSWORD2", false);
             textBox_Picture_Path.DataBindings.Add("Text", userDt, "PIC_PATH", false);
 

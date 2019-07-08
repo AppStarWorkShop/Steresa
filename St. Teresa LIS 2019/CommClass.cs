@@ -136,6 +136,6 @@ namespace St.Teresa_LIS_2019
     public static class CurrentUser
     {
         public static int currentUserLevel;
-        public static int userId;
+        public static int currentUserId;
     }
 }

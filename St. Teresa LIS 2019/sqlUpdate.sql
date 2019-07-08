@@ -83,7 +83,9 @@ CREATE TABLE [dbo].[system_setting](
 	[PRICE_CY] [float] NULL,
 	[PRICE_CC] [float] NULL,
 	[PRICE_CYG] [float] NULL,
-	[PRICE_EBV] [float] NULL
+	[PRICE_EBV] [float] NULL,
+	[UPDATE_AT] [datetime] NULL,
+	[UPDATE_BY] [nvarchar](255) NULL
 ) ON [PRIMARY]
 
 GO

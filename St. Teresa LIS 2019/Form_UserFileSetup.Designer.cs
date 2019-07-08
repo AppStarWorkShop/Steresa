@@ -101,6 +101,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox_ID = new System.Windows.Forms.TextBox();
+            this.textBox_SYSTEM_ID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_User_Level)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -991,6 +992,16 @@
             this.textBox_ID.Size = new System.Drawing.Size(17, 23);
             this.textBox_ID.TabIndex = 199;
             // 
+            // textBox_SYSTEM_ID
+            // 
+            this.textBox_SYSTEM_ID.Enabled = false;
+            this.textBox_SYSTEM_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_SYSTEM_ID.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_SYSTEM_ID.Location = new System.Drawing.Point(692, 62);
+            this.textBox_SYSTEM_ID.Name = "textBox_SYSTEM_ID";
+            this.textBox_SYSTEM_ID.Size = new System.Drawing.Size(14, 23);
+            this.textBox_SYSTEM_ID.TabIndex = 200;
+            // 
             // Form_UserFileSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -998,6 +1009,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(228)))), ((int)(((byte)(183)))));
             this.ClientSize = new System.Drawing.Size(676, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_SYSTEM_ID);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
@@ -1131,5 +1143,6 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button_STH_DIA_Amount_Auto_Fill_Setting;
         private System.Windows.Forms.TextBox textBox_ID;
+        private System.Windows.Forms.TextBox textBox_SYSTEM_ID;
     }
 }

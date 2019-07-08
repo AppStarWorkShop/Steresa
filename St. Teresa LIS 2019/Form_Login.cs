@@ -53,7 +53,7 @@ namespace St.Teresa_LIS_2019
                             DataRow mDr = userDataSet.Tables["USER"].Rows[0];
 
                             CurrentUser.currentUserLevel = int.Parse(mDr["LEVEL"].ToString());
-                            CurrentUser.userId = int.Parse(mDr["id"].ToString());
+                            CurrentUser.currentUserId = int.Parse(mDr["id"].ToString());
                             Form_MainMenu open = new Form_MainMenu();
                             open.Show();
                             this.Hide();
