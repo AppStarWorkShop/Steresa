@@ -14,9 +14,13 @@ namespace St.Teresa_LIS_2019
         private DataTable dt;
         private DataSet ebv_specimenDataSet = new DataSet();
 
+        private string labelSearching = "Locate Case No:";
+        private string contentSearching = "CASE_NO";
+
         public Form_LocateCaseNo()
         {
             InitializeComponent();
+            label_Search_Type.Text = labelSearching;
         }
 
         private void button_Exit_Click(object sender, EventArgs e)
@@ -116,7 +120,49 @@ namespace St.Teresa_LIS_2019
         {
             if (keyData == Keys.F1)
             {
-                string sql = string.Format("SELECT CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM ebv_specimen WHERE CASE_NO LIKE '%{0}%' OR PATIENT LIKE '%{0}%' OR PAT_HKID LIKE '%{0}%' OR PAT_HIST LIKE '%{0}%' OR CLIENT LIKE '%{0}%' OR DOCTOR_ID LIKE '%{0}%'", textBox_Search_Type.Text.Trim());
+                switch (contentSearching)
+                {
+                    case "CASE_NO":
+                        contentSearching = "PATIENT";
+                        labelSearching = "Patient:";
+                        break;
+                    case "PATIENT":
+                        contentSearching = "PAT_HKID";
+                        labelSearching = "Patient HKID:";
+                        break;
+                    case "PAT_HKID":
+                        contentSearching = "LAB_REF";
+                        labelSearching = "Hospital NO.:";
+                        break;
+                    case "hospitalNo":
+                        contentSearching = "client";
+                        labelSearching = "Client:";
+                        break;
+                    case "client":
+                        contentSearching = "DOCTOR_ID";
+                        labelSearching = "Doctor:";
+                        break;
+                    case "DOCTOR_ID":
+                        contentSearching = "CASE_NO";
+                        labelSearching = "Locate Case No:";
+                        break;
+                    default:
+                        contentSearching = "CASE_NO";
+                        labelSearching = "Locate Case No:";
+                        break;
+                }
+
+                label_Search_Type.Text = labelSearching;
+                /*if (contentSearching == "CASE_NO")
+                {
+                    contentSearching == "CASE_NO";
+                    labelSearching = "Locate Case No;";
+                }else*/
+            }
+
+            if (keyData == Keys.Enter && textBox_Search_Type.Focused)
+            {
+                string sql = string.Format("SELECT CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM ebv_specimen WHERE {0} LIKE '%{1}%'", contentSearching, textBox_Search_Type.Text.Trim());
                 DBConn.fetchDataIntoDataSetSelectOnly(sql, ebv_specimenDataSet, "ebv_specimen");
 
                 DataTable dt = new DataTable();

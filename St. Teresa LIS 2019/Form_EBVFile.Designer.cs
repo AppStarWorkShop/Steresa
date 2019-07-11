@@ -353,6 +353,7 @@
             this.button_F2_Previous.TabIndex = 225;
             this.button_F2_Previous.Text = "F2: Previous";
             this.button_F2_Previous.UseVisualStyleBackColor = true;
+            this.button_F2_Previous.Click += new System.EventHandler(this.button_F2_Previous_Click);
             // 
             // textBox_Chinese_Name
             // 
@@ -375,6 +376,7 @@
             // 
             // comboBox_Ethnic
             // 
+            this.comboBox_Ethnic.DisplayMember = "PEOPLE";
             this.comboBox_Ethnic.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Ethnic.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Ethnic.FormattingEnabled = true;
@@ -385,6 +387,7 @@
             this.comboBox_Ethnic.Size = new System.Drawing.Size(173, 26);
             this.comboBox_Ethnic.TabIndex = 221;
             this.comboBox_Ethnic.Text = "Chinese";
+            this.comboBox_Ethnic.ValueMember = "PEOPLE";
             // 
             // label_Ethnic
             // 
@@ -967,6 +970,7 @@
             // 
             // comboBox_Result
             // 
+            this.comboBox_Result.DisplayMember = "RESULT";
             this.comboBox_Result.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Result.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Result.FormattingEnabled = true;
@@ -975,6 +979,7 @@
             this.comboBox_Result.Size = new System.Drawing.Size(135, 26);
             this.comboBox_Result.TabIndex = 240;
             this.comboBox_Result.Text = "NPIGA";
+            this.comboBox_Result.ValueMember = "RESULT";
             // 
             // textBox_ReportDate
             // 
@@ -1166,6 +1171,7 @@
             // 
             // comboBox_Diagnosis
             // 
+            this.comboBox_Diagnosis.DisplayMember = "DIAGNOSIS";
             this.comboBox_Diagnosis.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Diagnosis.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Diagnosis.FormattingEnabled = true;
@@ -1173,6 +1179,7 @@
             this.comboBox_Diagnosis.Name = "comboBox_Diagnosis";
             this.comboBox_Diagnosis.Size = new System.Drawing.Size(228, 26);
             this.comboBox_Diagnosis.TabIndex = 260;
+            this.comboBox_Diagnosis.ValueMember = "DIAGNOSIS";
             // 
             // button_F_S_Detail
             // 

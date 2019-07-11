@@ -141,7 +141,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_F_S_Detail_Click(object sender, EventArgs e)
         {
-            Form_EBVDiagnosisFileMaintenance open = new Form_EBVDiagnosisFileMaintenance();
+            Form_EBVDiagnosisFileMaintenance open = new Form_EBVDiagnosisFileMaintenance(comboBox_Diagnosis.Text);
             open.Show();
         }
 
@@ -160,6 +160,7 @@ namespace St.Teresa_LIS_2019
             }*/
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
 
+            textBox_ID.DataBindings.Clear();
             textBox_Case_No.DataBindings.Clear();
             textBox_Date.DataBindings.Clear();
             comboBox_Ethnic.DataBindings.Clear();
@@ -204,11 +205,52 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrementStep = 1;
 
             //dt.Rows.Find(id)
+            string diagnosisSql = "SELECT DIAGNOSIS FROM [diagnosis]";
+            DataSet diagnosisDataSet = new DataSet();
+            SqlDataAdapter diagnosisDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diagnosisSql, diagnosisDataSet, "diagnosis");
+
+            DataTable newDt = new DataTable();
+            newDt.Columns.Add("DIAGNOSIS");
+
+            foreach (DataRow mDr in diagnosisDataSet.Tables["diagnosis"].Rows)
+            {
+                newDt.Rows.Add(new object[] { mDr["DIAGNOSIS"] });
+            }
+
+            comboBox_Diagnosis.DataSource = newDt;
+
+            string resultSql = "SELECT RESULT FROM [result]";
+            DataSet resultDataSet = new DataSet();
+            SqlDataAdapter resultDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(resultSql, resultDataSet, "result");
+
+            DataTable resultDt = new DataTable();
+            resultDt.Columns.Add("RESULT");
+
+            foreach (DataRow mDr in resultDataSet.Tables["result"].Rows)
+            {
+                resultDt.Rows.Add(new object[] { mDr["RESULT"] });
+            }
+
+            comboBox_Result.DataSource = resultDt;
+
+            string ethnicSql = "SELECT PEOPLE FROM [ethnic]";
+            DataSet ethnicDataSet = new DataSet();
+            SqlDataAdapter ethnicDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(ethnicSql, ethnicDataSet, "ethnic");
+
+            DataTable ethnicDt = new DataTable();
+            ethnicDt.Columns.Add("PEOPLE");
+
+            foreach (DataRow mDr in ethnicDataSet.Tables["ethnic"].Rows)
+            {
+                ethnicDt.Rows.Add(new object[] { mDr["PEOPLE"] });
+            }
+
+            comboBox_Ethnic.DataSource = ethnicDt;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
             textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
-            comboBox_Ethnic.DataBindings.Add("Text", dt, "ETHNIC", false);
+            comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
@@ -232,7 +274,7 @@ namespace St.Teresa_LIS_2019
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             //textBox_Paid_Up.DataBindings.Add("Text", dt, "id", false);
             textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
-            comboBox_Result.DataBindings.Add("Text", dt, "RESULT", false);
+            comboBox_Result.DataBindings.Add("SelectedValue", dt, "RESULT", false);
             textBox_Result1.DataBindings.Add("Text", dt, "RESULT1", false);
             textBox_Result2.DataBindings.Add("Text", dt, "RESULT2", false);
             textBox_Result3.DataBindings.Add("Text", dt, "RESULT3", false);
@@ -242,7 +284,7 @@ namespace St.Teresa_LIS_2019
             textBox_Initial.DataBindings.Add("Text", dt, "INITIAL", false);
             textBox_ReportDate.DataBindings.Add("Text", dt, "RPT_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             comboBox_SignDr.DataBindings.Add("Text", dt, "SIGN_DR", false);
-            comboBox_Diagnosis.DataBindings.Add("Text", dt, "DIAGNOSIS", false);
+            comboBox_Diagnosis.DataBindings.Add("SelectedValue", dt, "DIAGNOSIS", false);
             textBox_Remind.DataBindings.Add("Text", dt, "REMIND", false);
 
             currencyManager = (CurrencyManager)this.BindingContext[dt];
@@ -334,6 +376,7 @@ namespace St.Teresa_LIS_2019
                     if (DBConn.updateObject(dataAdapter, ebv_specimenDataSet, "ebv_specimen"))
                     {
                         reloadDBData(currencyManager.Count - 1);
+                        //reloadAndBindingDBData(currencyManager.Count - 1);
                         MessageBox.Show("New ebv_specimen saved");
                     }
                     else
@@ -366,7 +409,7 @@ namespace St.Teresa_LIS_2019
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
-                    //reloadAndBindingDBData(currentPosition);
+                    reloadAndBindingDBData(currentPosition);
                 }
             }
         }
@@ -731,6 +774,11 @@ namespace St.Teresa_LIS_2019
         {
             reloadAndBindingDBData();
             setButtonStatus(PageStatus.STATUS_VIEW);
+        }
+
+        private void button_F2_Previous_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -21,6 +21,7 @@ namespace St.Teresa_LIS_2019
         private DataTable dt;
         private int currentPosition;
         private DataRow currentEditRow;
+        private string searchDiagnosisStr;
 
         public class Diagnosis
         {
@@ -47,6 +48,18 @@ namespace St.Teresa_LIS_2019
         public Form_EBVDiagnosisFileMaintenance()
         {
             InitializeComponent();
+
+            reloadAndBindingDBData();
+            setButtonStatus(PageStatus.STATUS_VIEW);
+        }
+
+        public Form_EBVDiagnosisFileMaintenance(string diagnosisStr)
+        {
+            searchDiagnosisStr = diagnosisStr;
+            InitializeComponent();
+
+            reloadAndBindingDBData(0, diagnosisStr);
+            setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
         private void button_Exit_Click(object sender, EventArgs e)
@@ -325,7 +338,7 @@ namespace St.Teresa_LIS_2019
             button_Exit.ForeColor = Color.Black;
         }
 
-        private void reloadAndBindingDBData(int position = 0)
+        private void reloadAndBindingDBData(int position = 0, string searchDiagnosis = null)
         {
             string sql = "SELECT * FROM [diagnosis]";
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, diagnosisDataSet, "diagnosis");
@@ -365,6 +378,22 @@ namespace St.Teresa_LIS_2019
             comboBox_Diagnosis.DataSource = newDt;
 
             comboBox_Diagnosis.SelectedIndex = currencyManager.Position;
+
+            if (searchDiagnosis != null)
+            {
+                int currentPosition = 0;
+                foreach (DataRow mDr in dt.Rows)
+                {
+                    if (mDr["DIAGNOSIS"].ToString().Trim() == searchDiagnosis.Trim())
+                    {
+                        break;
+                    }
+                    currentPosition++;
+                }
+
+                currencyManager.Position = currentPosition;
+                comboBox_Diagnosis.SelectedIndex = currencyManager.Position;
+            }
         }
 
         private void reloadDBData(int position = 0)
@@ -396,8 +425,8 @@ namespace St.Teresa_LIS_2019
 
         private void Form_EBVDiagnosisFileMaintenance_Load(object sender, EventArgs e)
         {
-            reloadAndBindingDBData();
-            setButtonStatus(PageStatus.STATUS_VIEW);
+            /*reloadAndBindingDBData();
+            setButtonStatus(PageStatus.STATUS_VIEW);*/
         }
 
         private void comboBox_Diagnosis_SelectionChangeCommitted(object sender, EventArgs e)
