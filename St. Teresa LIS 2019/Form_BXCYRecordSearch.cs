@@ -11,6 +11,12 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_BXCYRecordSearch : Form
     {
+        private DataTable dt;
+        private DataSet bxcy_specimenDataSet = new DataSet();
+
+        private string labelSearching = "Locate Case No:";
+        private string contentSearching = "CASE_NO";
+
         public Boolean edit;
 
         private int SearchTypeCount;
@@ -19,23 +25,52 @@ namespace St.Teresa_LIS_2019
         public Form_BXCYRecordSearch()
         {
             InitializeComponent();
-            edit = false;
+            //edit = false;
         }
 
         public void getSelected()
         {
-            selected = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            MessageBox.Show(selected);
+            /*selected = dataGridView2.CurrentRow.Cells[0].Value.ToString();
+            MessageBox.Show(selected);*/
         }
 
         private void Form_BXCYRecordSearch_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'medlabDataSet.BXCY_SPECIMEN' table. You can move, or remove it, as needed.
-            this.bXCY_SPECIMENTableAdapter.Fill(this.medlabDataSet.BXCY_SPECIMEN);
+            loadDataGridViewDate();
             dataGridViewFormat();
-            SearchTypeCount = 0;
-            radioButton_Data_All.Checked = true;
+        }
 
+        private void loadDataGridViewDate()
+        {
+            string sql = "SELECT CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM BXCY_SPECIMEN";
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_specimenDataSet, "bxcy_specimen");
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Case No.");
+            dt.Columns.Add("Report Date");
+            dt.Columns.Add("Patient");
+            dt.Columns.Add(" ");
+            dt.Columns.Add("Age");
+            dt.Columns.Add("Sex");
+            dt.Columns.Add("HKID No.");
+            dt.Columns.Add("Client");
+            dt.Columns.Add("Doctor In Charge");
+            dt.Columns.Add("Fz Section");
+            dt.Columns.Add("Snopcode M");
+            dt.Columns.Add("Snopcode T");
+            dt.Columns.Add("Cy report");
+            dt.Columns.Add("Sign Dr");
+            dt.Columns.Add("ER");
+            dt.Columns.Add("EM");
+            dt.Columns.Add("Id");
+
+            foreach (DataRow mDr in bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows)
+            {
+                //dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"].ToString()+"/"+ mDr["sign_dr2"].ToString(), mDr["er"], mDr["em"], mDr["id"] });
+                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"] });
+            }
+
+            dataGridView1.DataSource = dt;
         }
 
         private void dataGridViewFormat()
@@ -48,11 +83,11 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             column2.Width = 240;
             DataGridViewColumn column3 = dataGridView1.Columns[3];
-            column3.Width = 30;
+            column3.Width = 60;
             DataGridViewColumn column4 = dataGridView1.Columns[4];
-            column4.Width = 60;
+            column4.Width = 90;
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            column5.Width = 20;
+            column5.Width = 120;
             DataGridViewColumn column6 = dataGridView1.Columns[6];
             column6.Width = 150;
             DataGridViewColumn column7 = dataGridView1.Columns[7];
@@ -75,7 +110,7 @@ namespace St.Teresa_LIS_2019
             column15.Width = 130;
             DataGridViewColumn column16 = dataGridView1.Columns[16];
             column16.Width = 60;
-            DataGridViewColumn column17 = dataGridView1.Columns[17];
+            /*DataGridViewColumn column17 = dataGridView1.Columns[17];
             column17.Width = 130;
             DataGridViewColumn column18 = dataGridView1.Columns[18];
             column18.Width = 60;
@@ -92,39 +127,11 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column24 = dataGridView1.Columns[24];
             column24.Width = 20;
             DataGridViewColumn column25 = dataGridView1.Columns[25];
-            column25.Width = 20;
+            column25.Width = 20;*/
             this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
 
-            /*
-            dataGridView1.Columns[0].HeaderCell.Style.Font = new Font("Tahoma", 18, FontStyle.Bold);
-            dataGridView1.Columns[1].HeaderCell.Style.Font = new Font("Tahoma", 22, FontStyle.Italic);
-            dataGridView1.Columns[2].HeaderCell.Style.Font = new Font("Tahoma", 25, FontStyle.Strikeout);
-            dataGridView1.Columns[3].HeaderCell.Style.Font = new Font("Tahoma", 28, FontStyle.Underline);
-            */
-
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 9, FontStyle.Bold);
-
-            /*
-            
-            dataGridView1.Columns[1].HeaderCell.Style.ForeColor = Color.Green;
-            dataGridView1.Columns[2].HeaderCell.Style.ForeColor = Color.Blue;
-            dataGridView1.Columns[3].HeaderCell.Style.ForeColor = Color.Brown;
-            */
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
-
-
-
-            /*
-            dataGridView1.Columns[0].HeaderCell.Style.BackColor = Color.White;
-            dataGridView1.Columns[1].HeaderCell.Style.BackColor = Color.Yellow;
-            dataGridView1.Columns[2].HeaderCell.Style.BackColor = Color.AliceBlue;
-            dataGridView1.Columns[3].HeaderCell.Style.BackColor = Color.Aqua;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Yellow;
-             */
-
-
-            // center text
-
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
 
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -174,41 +181,121 @@ namespace St.Teresa_LIS_2019
 
         private void button_F1_Search_Click(object sender, EventArgs e)
         {
-            button_F1m();
-            //Form_CaseSearch open = new Form_CaseSearch();
-            //open.Show();
-
-            //switch seach type
-        }
-        private void button_F1m()
-        {
-            SearchTypeCount += 1;
-            switch (SearchTypeCount)
+            switch (contentSearching)
             {
-                case 0:
-                    label_Search_Type.Text = "Locate Case No.";
+                case "CASE_NO":
+                    contentSearching = "PATIENT";
+                    labelSearching = "Patient:";
                     break;
-                case 1:
-                    label_Search_Type.Text = "Patient";
+                case "PATIENT":
+                    contentSearching = "PAT_HKID";
+                    labelSearching = "Patient HKID:";
                     break;
-                case 2:
-                    label_Search_Type.Text = "Patient HKID";
+                case "PAT_HKID":
+                    contentSearching = "LAB_REF";
+                    labelSearching = "Hospital NO.:";
                     break;
-                case 3:
-                    label_Search_Type.Text = "Hospital No.";
+                case "hospitalNo":
+                    contentSearching = "client";
+                    labelSearching = "Client:";
                     break;
-                case 4:
-                    label_Search_Type.Text = "Client";
+                case "client":
+                    contentSearching = "DOCTOR_ID";
+                    labelSearching = "Doctor:";
                     break;
-                case 5:
-                    label_Search_Type.Text = "Doctor";
+                case "DOCTOR_ID":
+                    contentSearching = "CASE_NO";
+                    labelSearching = "Case No:";
                     break;
-                case 6:
-                    SearchTypeCount = 0;
-                    label_Search_Type.Text = "Locate Case No.";
+                default:
+                    contentSearching = "CASE_NO";
+                    labelSearching = "Case No:";
                     break;
             }
+
+            label_Search_Type.Text = labelSearching;
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.F1)
+            {
+                button_F1_Search.PerformClick();
+            }
+
+            if (keyData == Keys.Enter && textBox_Search_Type.Focused)
+            {
+                string sql = string.Format("SELECT CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM bxcy_specimen WHERE {0} LIKE '%{1}%'", contentSearching, textBox_Search_Type.Text.Trim());
+                DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_specimenDataSet, "bxcy_specimen");
+
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Case No.");
+                dt.Columns.Add("Report Date");
+                dt.Columns.Add("Patient");
+                dt.Columns.Add(" ");
+                dt.Columns.Add("Age");
+                dt.Columns.Add("Sex");
+                dt.Columns.Add("HKID No.");
+                dt.Columns.Add("Client");
+                dt.Columns.Add("Doctor In Charge");
+                dt.Columns.Add("Fz Section");
+                dt.Columns.Add("Snopcode M");
+                dt.Columns.Add("Snopcode T");
+                dt.Columns.Add("Cy report");
+                dt.Columns.Add("Sign Dr");
+                dt.Columns.Add("ER");
+                dt.Columns.Add("EM");
+                dt.Columns.Add("Id");
+
+                foreach (DataRow mDr in bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows)
+                {
+                    //dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["id"] });
+                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"] });
+                }
+
+                dataGridView1.DataSource = dt;
+                return true;
+            }
+
+            if (keyData == Keys.F2)
+            {
+                button_F2_New_Record.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F3)
+            {
+                buttonF3_Edit_Record.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F4)
+            {
+                button_F4_Daily_Report.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F5)
+            {
+                button_F5_New_Patient.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F6)
+            {
+                button_F6_View_Record.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F7)
+            {
+                button_F7_Columns.PerformClick();
+                return true;
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
         private void button_F2_New_Record_Click(object sender, EventArgs e)
         {
             button_F2m();
@@ -247,10 +334,17 @@ namespace St.Teresa_LIS_2019
         {
             
         }
+
         private void button_F6_View_Record_Click(object sender, EventArgs e)
         {
-            button_F6m();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
+                Form_BXCYFile open = new Form_BXCYFile(id);
+                open.Show();
+            }
         }
+
         private void button_F6m()
         {
             if (edit)
@@ -262,16 +356,13 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F7_Columas_Click(object sender, EventArgs e)
         {
-            button_F7m();
+            //button_F7m();
         }
-        private void button_F7m()
-        {
-
-        }
+        
 
         private void button_F8_Pic_Path_Click(object sender, EventArgs e)
         {
-            button_F8m();
+            //button_F8m();
         }
         private void button_F8m()
         {
@@ -289,7 +380,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Digital_Signature_Click(object sender, EventArgs e)
         {
-            button_F10m();
+            //button_F10m();
         }
         private void button_F10m()
         {
@@ -304,9 +395,10 @@ namespace St.Teresa_LIS_2019
         {
             this.Close();
         }
+
         private void Form_BXCYRecordSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            /*switch (e.KeyCode)
             {
                 case Keys.F1:
                     button_F1m();
@@ -345,7 +437,7 @@ namespace St.Teresa_LIS_2019
                 default:
                     // do nothing
                     break;
-            }
+            }*/
         }
         
         

@@ -67,6 +67,15 @@ ALTER TABLE PATIENT ADD [master] [int] NULL
 
 GO
 
+ALTER TABLE BXCY_SPECIMEN ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD CONSTRAINT [PK_bxcy_specimen] primary key (ID)
+
+GO
+
+
 DROP TABLE [dbo].[system_setting]
 GO
 
@@ -104,5 +113,39 @@ ALTER TABLE [USER] ADD [id] [int] IDENTITY(1,1) NOT NULL
 GO
 
 ALTER TABLE [USER] ADD CONSTRAINT [PK_USER] primary key (ID)
+
+GO
+
+
+
+ALTER TABLE BXCY_SPECIMEN ADD Clinical_History [nvarchar](255) NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD Class [nvarchar](50) NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic2 [nvarchar](10) NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_id2 [nvarchar](10) NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic3 [nvarchar](10) NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_id3 [nvarchar](10) NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD Histo [nvarchar](50) NULL
+
+GO
+
+ALTER TABLE BXCY_SPECIMEN ADD Cyto_Type [nvarchar](50) NULL
 
 GO
