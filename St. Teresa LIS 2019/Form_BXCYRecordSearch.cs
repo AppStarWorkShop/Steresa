@@ -298,7 +298,13 @@ namespace St.Teresa_LIS_2019
 
         private void button_F2_New_Record_Click(object sender, EventArgs e)
         {
-            button_F2m();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
+                Form_BXCYFile open = new Form_BXCYFile(id);
+                open.Show();
+                open.processNew();
+            }
         }
         private void button_F2m()
         {
@@ -310,7 +316,13 @@ namespace St.Teresa_LIS_2019
         }
         private void buttonF3_Edit_Record_Click(object sender, EventArgs e)
         {
-            button_F3m();
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
+                Form_BXCYFile open = new Form_BXCYFile(id);
+                open.Show();
+                open.processEdit();
+            }
         }
         
         private void button_F3m()
@@ -328,7 +340,9 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F5_New_Patient_Click(object sender, EventArgs e)
         {
-            button_F5m();
+            Form_PatientFileMaintenancecs open = new Form_PatientFileMaintenancecs();
+            open.Show();
+            open.processNew();
         }
         private void button_F5m()
         {

@@ -92,8 +92,15 @@ namespace St.Teresa_LIS_2019
             public string desc_m2 { get; set; }
             public string snopcode_m3 { get; set; }
             public string desc_m3 { get; set; }
-
-        }
+            public string clinical_History { get; set; }
+            public string class1 { get; set; }
+            public string doctor_ic2 { get; set; }
+            public string doctor_id2 { get; set; }
+            public string doctor_ic3 { get; set; }
+            public string doctor_id3 { get; set; }
+            public string histo { get; set; }
+            public string cyto_Type { get; set; }
+    }
 
         public class Bxcy_specimenStr{
             public int id { get; set; }
@@ -163,6 +170,14 @@ namespace St.Teresa_LIS_2019
             public string desc_m2 { get; set; }
             public string snopcode_m3 { get; set; }
             public string desc_m3 { get; set; }
+            public string clinical_History { get; set; }
+            public string class1 { get; set; }
+            public string doctor_ic2 { get; set; }
+            public string doctor_id2 { get; set; }
+            public string doctor_ic3 { get; set; }
+            public string doctor_id3 { get; set; }
+            public string histo { get; set; }
+            public string cyto_Type { get; set; }
         }
 
         public string selected { get; private set; }
@@ -184,7 +199,7 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData(int position = 0)
+        private void reloadAndBindingDBData(int position = -0)
         {
             string sql = "SELECT *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen]";
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
@@ -243,34 +258,55 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
 
-            //dt.Rows.Find(id)
-            /*string diagnosisSql = "SELECT DIAGNOSIS FROM [diagnosis]";
-            DataSet diagnosisDataSet = new DataSet();
-            SqlDataAdapter diagnosisDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diagnosisSql, diagnosisDataSet, "diagnosis");
+            DataTable cytoTypeDt = new DataTable();
+            cytoTypeDt.Columns.Add("cytoType");
+            cytoTypeDt.Rows.Add(new object[] { "G" });
+            cytoTypeDt.Rows.Add(new object[] { "F" });
+            cytoTypeDt.Rows.Add(new object[] { "N" });
+            cytoTypeDt.Rows.Add(new object[] { "HS" });
+            cytoTypeDt.Rows.Add(new object[] { "HQ" });
 
-            DataTable newDt = new DataTable();
-            newDt.Columns.Add("DIAGNOSIS");
+            comboBox_cytoType.DataSource = cytoTypeDt;
 
-            foreach (DataRow mDr in diagnosisDataSet.Tables["diagnosis"].Rows)
+            DataTable classDt = new DataTable();
+            classDt.Columns.Add("classValue");
+            classDt.Rows.Add(new object[] { "classValue1" });
+            classDt.Rows.Add(new object[] { "classValue2" });
+            classDt.Rows.Add(new object[] { "classValue3" });
+
+            comboBox_Class.DataSource = classDt;
+
+            string snopcodeTSql = "SELECT [desc] FROM [snopcode] WHERE SNOPTYPE = 'T' ";
+            DataSet snopcodeTDataSet = new DataSet();
+            SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
+
+            DataTable snopcodeTDt = new DataTable();
+            snopcodeTDt.Columns.Add("desc");
+
+            foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
-                newDt.Rows.Add(new object[] { mDr["DIAGNOSIS"] });
+                snopcodeTDt.Rows.Add(new object[] { mDr["desc"] });
             }
 
-            comboBox_Diagnosis.DataSource = newDt;
+            comboBox_Snop_T1.DataSource = snopcodeTDt;
+            comboBox_Snop_T2.DataSource = snopcodeTDt;
+            comboBox_Snop_T3.DataSource = snopcodeTDt;
 
-            string resultSql = "SELECT RESULT FROM [result]";
-            DataSet resultDataSet = new DataSet();
-            SqlDataAdapter resultDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(resultSql, resultDataSet, "result");
+            string snopcodeMSql = "SELECT [desc] FROM [snopcode] WHERE SNOPTYPE = 'M' ";
+            DataSet snopcodeMDataSet = new DataSet();
+            SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
-            DataTable resultDt = new DataTable();
-            resultDt.Columns.Add("RESULT");
+            DataTable snopcodeMDt = new DataTable();
+            snopcodeMDt.Columns.Add("desc");
 
-            foreach (DataRow mDr in resultDataSet.Tables["result"].Rows)
+            foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                resultDt.Rows.Add(new object[] { mDr["RESULT"] });
+                snopcodeMDt.Rows.Add(new object[] { mDr["desc"] });
             }
 
-            comboBox_Result.DataSource = resultDt;
+            comboBox_Snop_M1.DataSource = snopcodeMDt;
+            comboBox_Snop_M2.DataSource = snopcodeMDt;
+            comboBox_Snop_M3.DataSource = snopcodeMDt;
 
             string ethnicSql = "SELECT PEOPLE FROM [ethnic]";
             DataSet ethnicDataSet = new DataSet();
@@ -298,7 +334,8 @@ namespace St.Teresa_LIS_2019
                 doctorDt.Rows.Add(new object[] { mDr["doctor"] });
             }
 
-            comboBox_SignDr.DataSource = doctorDt;*/
+            comboBox_Sign_By_Dr_1.DataSource = doctorDt;
+            comboBox_Sign_By_Dr_2.DataSource = doctorDt;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
@@ -353,7 +390,10 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             currencyManager = (CurrencyManager)this.BindingContext[dt];
-            currencyManager.Position = position;
+            if (position != -1)
+            {
+                currencyManager.Position = position;
+            }
 
             if (id != null)
             {
@@ -371,6 +411,20 @@ namespace St.Teresa_LIS_2019
 
                 id = null;
             }
+        }
+
+        private void reloadDBData(int position = 0)
+        {
+            string sql = "SELECT * FROM [BXCY_SPECIMEN]";
+            DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
+
+            DataTable dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
+            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+            dt.Columns["id"].AutoIncrement = true;
+            dt.Columns["id"].AutoIncrementStep = 1;
+            currencyManager = (CurrencyManager)this.BindingContext[dt];
+
+            currencyManager.Position = position;
         }
 
         private void LoadDateMDR()
@@ -392,7 +446,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
-            button_Escm();
+            this.Close();
+            //button_Escm();
         }
         private void button_Escm()
         {
@@ -467,12 +522,27 @@ namespace St.Teresa_LIS_2019
 
         private void button_F7_Click(object sender, EventArgs e)
         {
-            button_F7m();
-        }
-        private void button_F7m()
-        {
             Form_SelectClient open = new Form_SelectClient();
+            open.OnClientSelectedMore += OnClientSelected;
             open.Show();
+        }
+
+        private void OnClientSelected(string idStr)
+        {
+            if (idStr != null)
+            {
+                DataSet clientDataSet = new DataSet();
+                string sql = string.Format("SELECT * FROM [CLIENT] WHERE ID IN({0})", idStr);
+                DBConn.fetchDataIntoDataSet(sql, clientDataSet, "client");
+
+                DataTable dt = clientDataSet.Tables["client"];
+                dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+                dt.Columns["id"].AutoIncrement = true;
+                dt.Columns["id"].AutoIncrementStep = 1;
+                currencyManager = (CurrencyManager)this.BindingContext[dt];
+
+                currencyManager.Position = 0;
+            }
         }
 
         private void button_F8_Click(object sender, EventArgs e)
@@ -570,7 +640,7 @@ namespace St.Teresa_LIS_2019
                  // button_F6m();
                     break;
                 case Keys.F7:
-                    button_F7m();
+                    //button_F7m();
                     break;
                 case Keys.F8:
                     button_F8m();
@@ -702,17 +772,182 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
+            if (currentStatus == PageStatus.STATUS_NEW)
+            {
+                if (currentEditRow != null)
+                {
+                    currentEditRow["UPDATE_BY"] = "Admin";
+                    currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                    textBox_ID.BindingContext[dt].Position++;
 
+                    if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                    {
+                        reloadDBData(currencyManager.Count - 1);
+                        //reloadAndBindingDBData(currencyManager.Count - 1);
+                        MessageBox.Show("New ebv_specimen saved");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
+                    }
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+                //reloadAndBindingDBData(currencyManager.Count - 1);
+            }
+            else
+            {
+                if (currentStatus == PageStatus.STATUS_EDIT)
+                {
+                    DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
+                    if (drow != null)
+                    {
+                        drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                        textBox_ID.BindingContext[dt].Position++;
+
+                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                        {
+                            MessageBox.Show("Bxcy_specimen updated");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bxcy_specimen updated fail, please contact Admin");
+                        }
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                    reloadAndBindingDBData(currentPosition);
+                }
+            }
+        }
+
+        public void processEdit()
+        {
+            button_Edit.PerformClick();
+        }
+
+        public void processNew()
+        {
+            button_New.PerformClick();
         }
 
         private void button_New_Click(object sender, EventArgs e)
         {
+            setButtonStatus(PageStatus.STATUS_NEW);
 
+            currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["case_no"] = textBox_Case_No.Text;
+            currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
+            currentEditRow["ethnic"] = comboBox_Ethnic.Text;
+            currentEditRow["cyto_Type"] = comboBox_cytoType.Text;
+            currentEditRow["patient"] = textBox_Patient.Text;
+            currentEditRow["pat_seq"] = textBox_PatSeq.Text;
+            currentEditRow["cname"] = textBox_Chinese_Name.Text;
+            currentEditRow["pat_hkid"] = textBox_HKID.Text;
+            currentEditRow["pat_birth"] = DateTime.ParseExact(textBox_DOB.Text, "dd/MM/yyyy", null);
+            currentEditRow["class"] = comboBox_Class.Text;
+            currentEditRow["pat_age"] = textBox_Age.Text;
+            currentEditRow["pat_sex"] = textBox_Sex.Text;
+            currentEditRow["bed_room"] = textBox_Room.Text;
+            currentEditRow["bed_no"] = textBox_Bed.Text;
+            currentEditRow["clinical_History"] = textBox_Patient_s_Clinical_History.Text;
+
+            currentEditRow["client"] = textBox_Client.Text;
+            currentEditRow["institute"] = textBox_Institute.Text;
+            currentEditRow["lab_ref"] = textBox_Ref_No.Text;
+            currentEditRow["doctor_o"] = textBox_Dr_I_C_Free_Text.Text;
+
+            currentEditRow["doctor_ic"] = textBox_Doctor_I_C.Text;
+            currentEditRow["doctor_id"] = textBox_Doctor_I_C_ID_1.Text;
+
+            currentEditRow["doctor_id2"] = textBox_Doctor_I_C_2.Text;
+            currentEditRow["doctor_id2"] = textBox_Doctor_I_C_ID_2.Text;
+
+            currentEditRow["doctor_id3"] = textBox_Doctor_I_C_3.Text;
+            currentEditRow["doctor_id3"] = textBox_Doctor_I_C_ID_3.Text;
+
+            currentEditRow["inv_no"] = textBox_Involce_No.Text;
+            currentEditRow["receipt"] = textBox_Receipt.Text;
+            currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
+            currentEditRow["inv_amt"] = textBox_Amount_HK.Text;
+
+            currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null); 
+
+            currentEditRow["rpt_date"] = textBox_Rpt_Date.Text; 
+            currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
+            currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
+            currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
+            currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
+            currentEditRow["snopcode_m"] = comboBox_Snop_M1.Text;
+            currentEditRow["snopcode_m2"] = comboBox_Snop_M2.Text;
+            currentEditRow["snopcode_m3"] = comboBox_Snop_M3.Text;
+            currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
+            currentEditRow["histo"] = comboBox_HistoType.Text;
+
+            currentEditRow["remark"] = textBox_Remarks.Text;
+            currentEditRow["initial"] = textBox_Cytology.Text;
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            currencyManager.Position = currencyManager.Count - 1;
         }
 
         private void button_F6_Edit_Click(object sender, EventArgs e)
         {
+            currentPosition = currencyManager.Position;
 
+            copybxcy_specimen = new Bxcy_specimenStr();
+            copybxcy_specimen.case_no = textBox_Case_No.Text;
+            copybxcy_specimen.date = textBox_Date.Text;
+            copybxcy_specimen.ethnic = comboBox_Ethnic.Text;
+            copybxcy_specimen.cyto_Type = comboBox_cytoType.Text;
+            copybxcy_specimen.patient = textBox_Patient.Text;
+            copybxcy_specimen.pat_seq = textBox_PatSeq.Text;
+            copybxcy_specimen.cname = textBox_Chinese_Name.Text;
+            copybxcy_specimen.pat_hkid = textBox_HKID.Text;
+            copybxcy_specimen.pat_birth = textBox_DOB.Text;
+            copybxcy_specimen.class1 = comboBox_Class.Text;
+            copybxcy_specimen.pat_age = textBox_Age.Text;
+            copybxcy_specimen.pat_sex = textBox_Sex.Text;
+            copybxcy_specimen.bed_room = textBox_Room.Text;
+            copybxcy_specimen.bed_no = textBox_Bed.Text;
+            copybxcy_specimen.clinical_History = textBox_Patient_s_Clinical_History.Text;
+
+            copybxcy_specimen.client = textBox_Client.Text;
+            copybxcy_specimen.institute = textBox_Institute.Text;
+            copybxcy_specimen.lab_ref = textBox_Ref_No.Text;
+            copybxcy_specimen.doctor_o = textBox_Dr_I_C_Free_Text.Text;
+
+            copybxcy_specimen.doctor_ic = textBox_Doctor_I_C.Text;
+            copybxcy_specimen.doctor_id = textBox_Doctor_I_C_ID_1.Text;
+
+            copybxcy_specimen.doctor_id2 = textBox_Doctor_I_C_2.Text;
+            copybxcy_specimen.doctor_id2 = textBox_Doctor_I_C_ID_2.Text;
+
+            copybxcy_specimen.doctor_id3 = textBox_Doctor_I_C_3.Text;
+            copybxcy_specimen.doctor_id3 = textBox_Doctor_I_C_ID_3.Text;
+
+            copybxcy_specimen.inv_no = textBox_Involce_No.Text;
+            copybxcy_specimen.receipt = textBox_Receipt.Text;
+            copybxcy_specimen.inv_date = textBox_Invoice_Date.Text;
+            copybxcy_specimen.inv_amt = textBox_Amount_HK.Text;
+            
+            copybxcy_specimen.pay_date = textBox_Paid_Date.Text;
+
+            copybxcy_specimen.rpt_date = textBox_Rpt_Date.Text;
+            copybxcy_specimen.snopcode_t = comboBox_Snop_T1.Text;
+            copybxcy_specimen.snopcode_t2 = comboBox_Snop_T2.Text;
+            copybxcy_specimen.snopcode_t3 = comboBox_Snop_T3.Text;
+            copybxcy_specimen.sign_dr = comboBox_Sign_By_Dr_1.Text;
+            copybxcy_specimen.snopcode_m = comboBox_Snop_M1.Text;
+            copybxcy_specimen.snopcode_m2 = comboBox_Snop_M2.Text;
+            copybxcy_specimen.snopcode_m3 = comboBox_Snop_M3.Text;
+            copybxcy_specimen.sign_dr2 = comboBox_Sign_By_Dr_2.Text;
+            copybxcy_specimen.histo = comboBox_HistoType.Text;
+
+            copybxcy_specimen.remark = textBox_Remarks.Text;
+            copybxcy_specimen.initial = textBox_Cytology.Text;
+
+            setButtonStatus(PageStatus.STATUS_EDIT);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -722,12 +957,102 @@ namespace St.Teresa_LIS_2019
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string deleteSql = string.Format("DELETE FROM BXCY_SPECIMEN WHERE id = '{0}'", textBox_ID.Text);
 
+                if (DBConn.executeUpdate(deleteSql))
+                {
+                    DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
+                    rowToDelete.Delete();
+                    currencyManager.Position = 0;
+
+                    reloadDBData(0);
+                    MessageBox.Show("Bxcy_specimen deleted");
+                }
+                else
+                {
+                    MessageBox.Show("Bxcy_specimen deleted fail, please contact Admin");
+                }
+
+                setButtonStatus(PageStatus.STATUS_VIEW);
+                //reloadDBData();
+            }
         }
 
         private void button_Undo_Click(object sender, EventArgs e)
         {
+            if (currentStatus == PageStatus.STATUS_NEW)
+            {
+                if (currentEditRow != null)
+                {
+                    bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Remove(currentEditRow);
+                }
+                setButtonStatus(PageStatus.STATUS_VIEW);
+                //reloadAndBindingDBData();
+            }
+            else
+            {
+                if (currentStatus == PageStatus.STATUS_EDIT)
+                {
+                    if (copybxcy_specimen != null)
+                    {
+                        //textBox_ID.Text = copybxcy_specimen.id;
+                        textBox_Case_No.Text = copybxcy_specimen.case_no;
+                        textBox_Date.Text = copybxcy_specimen.date;
+                        comboBox_Ethnic.Text = copybxcy_specimen.ethnic;
+                        comboBox_cytoType.Text = copybxcy_specimen.cyto_Type;
+                        textBox_Patient.Text = copybxcy_specimen.patient;
+                        textBox_PatSeq.Text = copybxcy_specimen.pat_seq;
+                        textBox_Chinese_Name.Text = copybxcy_specimen.cname;
+                        textBox_HKID.Text = copybxcy_specimen.pat_hkid;
+                        textBox_DOB.Text = copybxcy_specimen.pat_birth;
+                        comboBox_Class.Text = copybxcy_specimen.class1;
+                        textBox_Age.Text = copybxcy_specimen.pat_age;
+                        textBox_Sex.Text = copybxcy_specimen.pat_sex;
+                        textBox_Room.Text = copybxcy_specimen.bed_room;
+                        textBox_Bed.Text = copybxcy_specimen.bed_no;
+                        textBox_Patient_s_Clinical_History.Text = copybxcy_specimen.clinical_History;
 
+                        textBox_Client.Text = copybxcy_specimen.client;
+                        textBox_Institute.Text = copybxcy_specimen.institute;
+                        textBox_Ref_No.Text = copybxcy_specimen.lab_ref;
+                        textBox_Dr_I_C_Free_Text.Text = copybxcy_specimen.doctor_o;
+
+                        textBox_Doctor_I_C.Text = copybxcy_specimen.doctor_ic;
+                        textBox_Doctor_I_C_ID_1.Text = copybxcy_specimen.doctor_id;
+
+                        textBox_Doctor_I_C_2.Text = copybxcy_specimen.doctor_id2;
+                        textBox_Doctor_I_C_ID_2.Text = copybxcy_specimen.doctor_id2;
+
+                        textBox_Doctor_I_C_3.Text = copybxcy_specimen.doctor_id3;
+                        textBox_Doctor_I_C_ID_3.Text = copybxcy_specimen.doctor_id3;
+
+                        textBox_Involce_No.Text = copybxcy_specimen.inv_no;
+                        textBox_Receipt.Text = copybxcy_specimen.receipt;
+                        textBox_Invoice_Date.Text = copybxcy_specimen.inv_date;
+                        textBox_Amount_HK.Text = copybxcy_specimen.inv_amt;
+                        //textBox_Paid_Up.Text = copybxcy_specimen.pay;
+                        textBox_Paid_Date.Text = copybxcy_specimen.pay_date;
+
+                        textBox_Rpt_Date.Text = copybxcy_specimen.rpt_date;
+                        comboBox_Snop_T1.Text = copybxcy_specimen.snopcode_t;
+                        comboBox_Snop_T2.Text = copybxcy_specimen.snopcode_t2;
+                        comboBox_Snop_T3.Text = copybxcy_specimen.snopcode_t3;
+                        comboBox_Sign_By_Dr_1.Text = copybxcy_specimen.sign_dr;
+                        comboBox_Snop_M1.Text = copybxcy_specimen.snopcode_m;
+                        comboBox_Snop_M2.Text = copybxcy_specimen.snopcode_m2;
+                        comboBox_Snop_M3.Text = copybxcy_specimen.snopcode_m3;
+                        comboBox_Sign_By_Dr_2.Text = copybxcy_specimen.sign_dr2;
+                        comboBox_HistoType.Text = copybxcy_specimen.histo;
+
+                        textBox_Remarks.Text = copybxcy_specimen.remark;
+                        textBox_Cytology.Text = copybxcy_specimen.initial;
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+            }
         }
 
         private void button_Label_Click(object sender, EventArgs e)
