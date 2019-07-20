@@ -472,13 +472,17 @@ namespace St.Teresa_LIS_2019
 
         private void button_F1_Click(object sender, EventArgs e)
         {
-            button_F1m();
+            Form_SelectPatient open = new Form_SelectPatient();
+            open.OnPatientSelectedSingle += OnPatientSelected;
+            open.Show();
         }
 
-        private void button_F1m()
+        private void OnPatientSelected(string str)
         {
-            Form_SelectPatient open = new Form_SelectPatient();
-            open.Show();
+            if (str != null)
+            {
+                textBox_Patient.Text = str;
+            }
         }
 
         private void button_F2_Previous_Click(object sender, EventArgs e)
@@ -523,25 +527,15 @@ namespace St.Teresa_LIS_2019
         private void button_F7_Click(object sender, EventArgs e)
         {
             Form_SelectClient open = new Form_SelectClient();
-            open.OnClientSelectedMore += OnClientSelected;
+            open.OnClientSelectedSingle += OnClientSelected;
             open.Show();
         }
 
-        private void OnClientSelected(string idStr)
+        private void OnClientSelected(string str)
         {
-            if (idStr != null)
+            if (str != null)
             {
-                DataSet clientDataSet = new DataSet();
-                string sql = string.Format("SELECT * FROM [CLIENT] WHERE ID IN({0})", idStr);
-                DBConn.fetchDataIntoDataSet(sql, clientDataSet, "client");
-
-                DataTable dt = clientDataSet.Tables["client"];
-                dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
-                dt.Columns["id"].AutoIncrement = true;
-                dt.Columns["id"].AutoIncrementStep = 1;
-                currencyManager = (CurrencyManager)this.BindingContext[dt];
-
-                currencyManager.Position = 0;
+                textBox_Client.Text = str;
             }
         }
 
@@ -557,8 +551,19 @@ namespace St.Teresa_LIS_2019
 
         private void button_F9_Click(object sender, EventArgs e)
         {
-            button_F9m();
+            Form_SelectDoctor open = new Form_SelectDoctor();
+            open.OnDoctorSelectedSingle += OnDoctorSelected;
+            open.Show();
         }
+
+        private void OnDoctorSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Doctor_I_C.Text = str;
+            }
+        }
+
         private void button_F9_2_Click(object sender, EventArgs e)
         {
             button_F9m();
@@ -619,6 +624,7 @@ namespace St.Teresa_LIS_2019
 
         private void Form_BXCYFile_KeyDown(object sender, KeyEventArgs e)
         {
+            /*
             switch (e.KeyCode)
             {
                 case Keys.F1:
@@ -637,10 +643,10 @@ namespace St.Teresa_LIS_2019
                     button_F5m();
                     break;
                 case Keys.F6:
-                 // button_F6m();
+                    button_F6m();
                     break;
                 case Keys.F7:
-                    //button_F7m();
+                    button_F7m();
                     break;
                 case Keys.F8:
                     button_F8m();
@@ -666,11 +672,9 @@ namespace St.Teresa_LIS_2019
                     }
                     
                     break;
-                //// etc
                 default:
-                    // do nothing
                     break;
-            }
+            }*/
         }
 
         private void button_Shif_Click(object sender, EventArgs e)
@@ -1077,6 +1081,11 @@ namespace St.Teresa_LIS_2019
                 button_Undo.Enabled = false;
                 button_Exit.Enabled = true;
 
+                button_F1.Enabled = false;
+                button_F7.Enabled = false;
+                button_F8.Enabled = false;
+                button_F9.Enabled = false;
+
                 textBox_Case_No.Enabled = false;
                 textBox_Date.Enabled = false;
                 comboBox_Ethnic.Enabled = false;
@@ -1142,6 +1151,11 @@ namespace St.Teresa_LIS_2019
                     button_Undo.Enabled = true;
                     button_Exit.Enabled = false;
 
+                    button_F1.Enabled = true;
+                    button_F7.Enabled = true;
+                    button_F8.Enabled = true;
+                    button_F9.Enabled = true;
+
                     textBox_Case_No.Enabled = true;
                     textBox_Date.Enabled = true;
                     comboBox_Ethnic.Enabled = true;
@@ -1206,6 +1220,11 @@ namespace St.Teresa_LIS_2019
                         button_Delete.Enabled = false;
                         button_Undo.Enabled = true;
                         button_Exit.Enabled = false;
+
+                        button_F1.Enabled = true;
+                        button_F7.Enabled = true;
+                        button_F8.Enabled = true;
+                        button_F9.Enabled = true;
 
                         textBox_Case_No.Enabled = true;
                         textBox_Date.Enabled = true;
@@ -1306,6 +1325,34 @@ namespace St.Teresa_LIS_2019
             button_Undo.ForeColor = Color.Gray;
             button_Exit.Image = Image.FromFile("Resources/exit.png");
             button_Exit.ForeColor = Color.Black;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys)Shortcut.F1 && button_F1.Enabled)
+            {
+                button_F1.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F7 && button_F7.Enabled)
+            {
+                button_F7.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F8 && button_F8.Enabled)
+            {
+                button_F8.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F9 && button_F9.Enabled)
+            {
+                button_F9.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }

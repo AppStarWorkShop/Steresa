@@ -18,6 +18,9 @@ namespace St.Teresa_LIS_2019
         public delegate void ClientSelectedMore(string idStr);
         public ClientSelectedMore OnClientSelectedMore;
 
+        public delegate void ClientSelectedSingle(string str);
+        public ClientSelectedSingle OnClientSelectedSingle;
+
         public Form_SelectClient()
         {
             InitializeComponent();
@@ -148,12 +151,15 @@ namespace St.Teresa_LIS_2019
         private void button_OK_Click(object sender, EventArgs e)
         {
             string idStr = "";
+            string clientStr = "";
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 if (bool.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()) == true)
                 {
                     if (dataGridView1.Rows[i].Cells[7].Value.ToString() != "")
                     {
+                        clientStr = dataGridView1.Rows[i].Cells[1].Value.ToString();
+
                         if (idStr == "")
                         {
                             idStr += dataGridView1.Rows[i].Cells[7].Value.ToString();
@@ -166,7 +172,20 @@ namespace St.Teresa_LIS_2019
                     }
                 }
             }
-            OnClientSelectedMore(idStr);
+
+            if (idStr == "")
+            {
+                MessageBox.Show("No record selected");
+                return;
+            }
+
+            if (OnClientSelectedMore != null) { 
+                OnClientSelectedMore(idStr);
+            }
+            if (OnClientSelectedSingle != null)
+            {
+                OnClientSelectedSingle(clientStr);
+            }
             this.Close();
         }
     }

@@ -17,6 +17,9 @@ namespace St.Teresa_LIS_2019
         public delegate void PatientSelectedMore(string idStr);
         public PatientSelectedMore OnPatientSelectedMore;
 
+        public delegate void PatientSelectedSingle(string str);
+        public PatientSelectedSingle OnPatientSelectedSingle;
+
         public Form_SelectPatient(bool isMerge=false, bool isMasterSelect=true, string searchStr = "")
         {
             InitializeComponent();
@@ -128,10 +131,12 @@ namespace St.Teresa_LIS_2019
         private void button_OK_Click(object sender, EventArgs e)
         {
             string idStr = "";
+            string patientStr = "";
             for (int i=0; i < dataGridView1.Rows.Count; i++)
             {
                 if (bool.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()) == true)
                 {
+                    patientStr = dataGridView1.Rows[i].Cells[1].Value.ToString();
                     if (dataGridView1.Rows[i].Cells[8].Value.ToString() != "")
                     {
                         if (idStr == "")
@@ -152,7 +157,14 @@ namespace St.Teresa_LIS_2019
                 MessageBox.Show("No record selected");
                 return;
             }
-            OnPatientSelectedMore(idStr);
+            if (OnPatientSelectedMore != null)
+            {
+                OnPatientSelectedMore(idStr);
+            }
+            if (OnPatientSelectedSingle != null)
+            {
+                OnPatientSelectedSingle(patientStr);
+            }
             this.Close();
         }
 

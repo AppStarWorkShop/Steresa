@@ -17,6 +17,9 @@ namespace St.Teresa_LIS_2019
         public delegate void DoctorSelectedMore(string idStr);
         public DoctorSelectedMore OnDoctorSelectedMore;
 
+        public delegate void DoctorSelectedSingle(string str);
+        public DoctorSelectedSingle OnDoctorSelectedSingle;
+
         public Form_SelectDoctor()
         {
             InitializeComponent();
@@ -72,10 +75,12 @@ namespace St.Teresa_LIS_2019
         private void button_OK_Click(object sender, EventArgs e)
         {
             string idStr = "";
+            string doctorStr = "";
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 if (bool.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()) == true)
                 {
+                    doctorStr = dataGridView1.Rows[i].Cells[1].Value.ToString();
                     if (dataGridView1.Rows[i].Cells[9].Value.ToString() != "")
                     {
                         if (idStr == "")
@@ -90,7 +95,19 @@ namespace St.Teresa_LIS_2019
                     }
                 }
             }
-            OnDoctorSelectedMore(idStr);
+            if (idStr == "")
+            {
+                MessageBox.Show("No record selected");
+                return;
+            }
+            if (OnDoctorSelectedMore != null)
+            {
+                OnDoctorSelectedMore(idStr);
+            }
+            if (OnDoctorSelectedSingle != null)
+            {
+                OnDoctorSelectedSingle(doctorStr);
+            }
             this.Close();
         }
 
