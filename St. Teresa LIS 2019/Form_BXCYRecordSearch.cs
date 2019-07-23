@@ -293,6 +293,18 @@ namespace St.Teresa_LIS_2019
                 return true;
             }
 
+            if (keyData == Keys.F8)
+            {
+                button_F8_Pic_Path.PerformClick();
+                return true;
+            }
+
+            if (keyData == Keys.F10)
+            {
+                button_Digital_Signature.PerformClick();
+                return true;
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -331,13 +343,10 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F4_Daily_Report_Click(object sender, EventArgs e)
         {
-            button_F4m();
-        }
-        private void button_F4m()
-        {
             Form_DailyLogReportForBiopsyCytolgyMokculurCase open = new Form_DailyLogReportForBiopsyCytolgyMokculurCase();
             open.Show();
         }
+
         private void button_F5_New_Patient_Click(object sender, EventArgs e)
         {
             Form_PatientFileMaintenancecs open = new Form_PatientFileMaintenancecs();
@@ -376,12 +385,12 @@ namespace St.Teresa_LIS_2019
 
         private void button_F8_Pic_Path_Click(object sender, EventArgs e)
         {
-            //button_F8m();
+            Form_ChangePicturePath open = new Form_ChangePicturePath();
+            open.Show();
         }
         private void button_F8m()
         {
-            Form_ChangePicturePath open = new Form_ChangePicturePath();
-            open.Show();
+            
         }
         private void button_F9_Set_BX_CY_Click(object sender, EventArgs e)
         {
@@ -394,13 +403,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_Digital_Signature_Click(object sender, EventArgs e)
         {
-            //button_F10m();
-        }
-        private void button_F10m()
-        {
             Form_LoginDigitalSignature open = new Form_LoginDigitalSignature();
             open.Show();
         }
+
         private void button_Exit_Click(object sender, EventArgs e)
         {
             button_Escm();
@@ -453,15 +459,30 @@ namespace St.Teresa_LIS_2019
                     break;
             }*/
         }
-        
-        
-        
-        
-        
-        
-        
-        
 
-        
+        private void button_BX_Click(object sender, EventArgs e)
+        {
+            textBox_Search_Type.Text = string.Format("BX{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+        }
+
+        private void button_BB_Click(object sender, EventArgs e)
+        {
+            textBox_Search_Type.Text = string.Format("BB{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+        }
+
+        private void button_CY_Click(object sender, EventArgs e)
+        {
+            textBox_Search_Type.Text = string.Format("CY{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+        }
+
+        private void button_CC_Click(object sender, EventArgs e)
+        {
+            textBox_Search_Type.Text = string.Format("CC{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBox_Search_Type.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+        }
     }
 }

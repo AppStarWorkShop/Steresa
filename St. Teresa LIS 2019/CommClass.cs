@@ -137,5 +137,6 @@ namespace St.Teresa_LIS_2019
     {
         public static int currentUserLevel;
         public static int currentUserId;
+        public static string picturePath;
     }
 }

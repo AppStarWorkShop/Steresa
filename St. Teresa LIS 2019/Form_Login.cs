@@ -54,6 +54,7 @@ namespace St.Teresa_LIS_2019
 
                             CurrentUser.currentUserLevel = int.Parse(mDr["LEVEL"].ToString());
                             CurrentUser.currentUserId = int.Parse(mDr["id"].ToString());
+                            CurrentUser.picturePath = mDr["PIC_PATH"].ToString();
                             Form_MainMenu open = new Form_MainMenu();
                             open.Show();
                             this.Hide();

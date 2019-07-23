@@ -40,7 +40,7 @@
             // 
             this.textBox_Picture_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Picture_Path.ForeColor = System.Drawing.Color.DarkRed;
-            this.textBox_Picture_Path.Location = new System.Drawing.Point(175, 66);
+            this.textBox_Picture_Path.Location = new System.Drawing.Point(175, 61);
             this.textBox_Picture_Path.Name = "textBox_Picture_Path";
             this.textBox_Picture_Path.Size = new System.Drawing.Size(361, 29);
             this.textBox_Picture_Path.TabIndex = 196;
@@ -52,7 +52,7 @@
             this.label_Picture_Path.BackColor = System.Drawing.Color.Transparent;
             this.label_Picture_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Picture_Path.ForeColor = System.Drawing.Color.DarkRed;
-            this.label_Picture_Path.Location = new System.Drawing.Point(35, 69);
+            this.label_Picture_Path.Location = new System.Drawing.Point(35, 64);
             this.label_Picture_Path.Name = "label_Picture_Path";
             this.label_Picture_Path.Size = new System.Drawing.Size(134, 24);
             this.label_Picture_Path.TabIndex = 195;
@@ -64,9 +64,9 @@
             this.button_Exit.ForeColor = System.Drawing.Color.DarkRed;
             this.button_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_Exit.Image")));
             this.button_Exit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Exit.Location = new System.Drawing.Point(346, 142);
+            this.button_Exit.Location = new System.Drawing.Point(346, 131);
             this.button_Exit.Name = "button_Exit";
-            this.button_Exit.Size = new System.Drawing.Size(126, 42);
+            this.button_Exit.Size = new System.Drawing.Size(126, 39);
             this.button_Exit.TabIndex = 197;
             this.button_Exit.Text = "Exit";
             this.button_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -79,13 +79,14 @@
             this.button_Save.ForeColor = System.Drawing.Color.Black;
             this.button_Save.Image = ((System.Drawing.Image)(resources.GetObject("button_Save.Image")));
             this.button_Save.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Save.Location = new System.Drawing.Point(138, 142);
+            this.button_Save.Location = new System.Drawing.Point(138, 131);
             this.button_Save.Name = "button_Save";
-            this.button_Save.Size = new System.Drawing.Size(126, 42);
+            this.button_Save.Size = new System.Drawing.Size(126, 39);
             this.button_Save.TabIndex = 198;
             this.button_Save.Text = "Save";
             this.button_Save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // label_by_person
             // 
@@ -93,7 +94,7 @@
             this.label_by_person.BackColor = System.Drawing.Color.Transparent;
             this.label_by_person.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_by_person.ForeColor = System.Drawing.Color.Green;
-            this.label_by_person.Location = new System.Drawing.Point(36, 102);
+            this.label_by_person.Location = new System.Drawing.Point(36, 94);
             this.label_by_person.Name = "label_by_person";
             this.label_by_person.Size = new System.Drawing.Size(102, 17);
             this.label_by_person.TabIndex = 199;
@@ -101,10 +102,10 @@
             // 
             // Form_ChangePicturePath
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(584, 220);
+            this.ClientSize = new System.Drawing.Size(584, 203);
             this.ControlBox = false;
             this.Controls.Add(this.label_by_person);
             this.Controls.Add(this.button_Save);
@@ -113,6 +114,7 @@
             this.Controls.Add(this.label_Picture_Path);
             this.Name = "Form_ChangePicturePath";
             this.Text = "Change Picture Path";
+            this.Load += new System.EventHandler(this.Form_ChangePicturePath_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

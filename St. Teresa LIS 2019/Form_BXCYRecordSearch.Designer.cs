@@ -119,6 +119,7 @@
             this.button_BX.TabIndex = 66;
             this.button_BX.Text = "BX";
             this.button_BX.UseVisualStyleBackColor = true;
+            this.button_BX.Click += new System.EventHandler(this.button_BX_Click);
             // 
             // button_F4_Daily_Report
             // 
@@ -226,6 +227,7 @@
             this.button_BB.TabIndex = 77;
             this.button_BB.Text = "BB";
             this.button_BB.UseVisualStyleBackColor = true;
+            this.button_BB.Click += new System.EventHandler(this.button_BB_Click);
             // 
             // button_CC
             // 
@@ -237,6 +239,7 @@
             this.button_CC.TabIndex = 79;
             this.button_CC.Text = "CC";
             this.button_CC.UseVisualStyleBackColor = true;
+            this.button_CC.Click += new System.EventHandler(this.button_CC_Click);
             // 
             // button_CY
             // 
@@ -248,6 +251,7 @@
             this.button_CY.TabIndex = 78;
             this.button_CY.Text = "CY";
             this.button_CY.UseVisualStyleBackColor = true;
+            this.button_CY.Click += new System.EventHandler(this.button_CY_Click);
             // 
             // button1
             // 
@@ -259,6 +263,7 @@
             this.button1.TabIndex = 80;
             this.button1.Text = "MP";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button_F1_Search
             // 
