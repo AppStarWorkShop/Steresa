@@ -176,6 +176,8 @@
             this.checkBox_F_S = new System.Windows.Forms.CheckBox();
             this.button_Clinical_History = new System.Windows.Forms.Button();
             this.textBox_ID = new System.Windows.Forms.TextBox();
+            this.textBox_Surgical = new System.Windows.Forms.TextBox();
+            this.textBox_Nature = new System.Windows.Forms.TextBox();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet1)).BeginInit();
@@ -1123,7 +1125,7 @@
             this.label_New_Record.BackColor = System.Drawing.Color.Transparent;
             this.label_New_Record.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_New_Record.ForeColor = System.Drawing.Color.Blue;
-            this.label_New_Record.Location = new System.Drawing.Point(484, 21);
+            this.label_New_Record.Location = new System.Drawing.Point(481, 24);
             this.label_New_Record.Name = "label_New_Record";
             this.label_New_Record.Size = new System.Drawing.Size(143, 22);
             this.label_New_Record.TabIndex = 121;
@@ -1335,7 +1337,7 @@
             // 
             this.button_F3_Surgical.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F3_Surgical.ForeColor = System.Drawing.Color.Black;
-            this.button_F3_Surgical.Location = new System.Drawing.Point(629, 112);
+            this.button_F3_Surgical.Location = new System.Drawing.Point(628, 112);
             this.button_F3_Surgical.Name = "button_F3_Surgical";
             this.button_F3_Surgical.Size = new System.Drawing.Size(92, 25);
             this.button_F3_Surgical.TabIndex = 140;
@@ -1347,7 +1349,7 @@
             // 
             this.button_F4_Nature.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F4_Nature.ForeColor = System.Drawing.Color.Black;
-            this.button_F4_Nature.Location = new System.Drawing.Point(727, 111);
+            this.button_F4_Nature.Location = new System.Drawing.Point(726, 112);
             this.button_F4_Nature.Name = "button_F4_Nature";
             this.button_F4_Nature.Size = new System.Drawing.Size(92, 25);
             this.button_F4_Nature.TabIndex = 141;
@@ -2005,6 +2007,22 @@
             this.textBox_ID.Size = new System.Drawing.Size(21, 29);
             this.textBox_ID.TabIndex = 242;
             // 
+            // textBox_Surgical
+            // 
+            this.textBox_Surgical.Enabled = false;
+            this.textBox_Surgical.Location = new System.Drawing.Point(719, 115);
+            this.textBox_Surgical.Name = "textBox_Surgical";
+            this.textBox_Surgical.Size = new System.Drawing.Size(1, 21);
+            this.textBox_Surgical.TabIndex = 243;
+            // 
+            // textBox_Nature
+            // 
+            this.textBox_Nature.Enabled = false;
+            this.textBox_Nature.Location = new System.Drawing.Point(817, 113);
+            this.textBox_Nature.Name = "textBox_Nature";
+            this.textBox_Nature.Size = new System.Drawing.Size(1, 21);
+            this.textBox_Nature.TabIndex = 244;
+            // 
             // Form_BXCYFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2012,6 +2030,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(170)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_Nature);
+            this.Controls.Add(this.textBox_Surgical);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Clinical_History);
             this.Controls.Add(this.checkBox_F_S);
@@ -2276,5 +2296,7 @@
         private System.Windows.Forms.CheckBox checkBox_F_S;
         private System.Windows.Forms.Button button_Clinical_History;
         private System.Windows.Forms.TextBox textBox_ID;
+        private System.Windows.Forms.TextBox textBox_Surgical;
+        private System.Windows.Forms.TextBox textBox_Nature;
     }
 }

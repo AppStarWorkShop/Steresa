@@ -11,13 +11,21 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_NatureOfSpecimen : Form
     {
-        public Form_NatureOfSpecimen()
+        public delegate void NatureSelectedSingle(string str);
+        public NatureSelectedSingle OnNatureSelectedSingle;
+
+        public Form_NatureOfSpecimen(string str)
         {
             InitializeComponent();
+            textBox_Nature_Of_Specimen.Text = str;
         }
 
         private void button_F8_Back_To_Main_Click(object sender, EventArgs e)
         {
+            if (OnNatureSelectedSingle != null)
+            {
+                OnNatureSelectedSingle(textBox_Nature_Of_Specimen.Text);
+            }
             this.Close();
         }
 

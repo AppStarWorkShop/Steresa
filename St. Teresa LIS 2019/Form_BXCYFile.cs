@@ -22,6 +22,7 @@ namespace St.Teresa_LIS_2019
         private int currentPosition;
         private DataRow currentEditRow;
         private string id;
+        private string surgical;
 
         public class Bxcy_specimen
         {
@@ -221,6 +222,9 @@ namespace St.Teresa_LIS_2019
             textBox_Bed.DataBindings.Clear();
             textBox_Patient_s_Clinical_History.DataBindings.Clear();
 
+            textBox_Surgical.DataBindings.Clear();
+            textBox_Nature.DataBindings.Clear();
+
             textBox_Client.DataBindings.Clear();
             textBox_Institute.DataBindings.Clear();
             textBox_Ref_No.DataBindings.Clear();
@@ -353,6 +357,9 @@ namespace St.Teresa_LIS_2019
             textBox_Room.DataBindings.Add("Text", dt, "BED_ROOM", false);
             textBox_Bed.DataBindings.Add("Text", dt, "BED_NO", false);
             textBox_Patient_s_Clinical_History.DataBindings.Add("Text", dt, "Clinical_History", false);
+
+            textBox_Surgical.DataBindings.Add("Text", dt, "surgical", false, DataSourceUpdateMode.OnPropertyChanged, "");
+            textBox_Nature.DataBindings.Add("Text", dt, "nature", false, DataSourceUpdateMode.OnPropertyChanged, "");
 
             textBox_Client.DataBindings.Add("Text", dt, "CLIENT", false);
             textBox_Institute.DataBindings.Add("Text", dt, "Institute", false);
@@ -487,33 +494,50 @@ namespace St.Teresa_LIS_2019
 
         private void button_F2_Previous_Click(object sender, EventArgs e)
         {
-            button_F2m();
-        }
-        private void button_F2m()
-        {
             Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition();
             open.Show();
         }
 
         private void button_F3_Surgical_Click(object sender, EventArgs e)
         {
-            button_F3m();
+            Form_SurgicalProcedure open = new Form_SurgicalProcedure(textBox_Surgical.Text);
+            open.OnSurgicalSelectedSingle += OnSurgicalSelected;
+            open.Show();
         }
+
+        private void OnSurgicalSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Surgical.Text = str;
+            }
+        }
+        /*
         private void button_F3m()
         {
             Form_SurgicalProcedure open = new Form_SurgicalProcedure();
             open.Show();
-        }
+        }*/
 
         private void button_F4_Nature_Click(object sender, EventArgs e)
         {
-            button_F4m();
+            Form_NatureOfSpecimen open = new Form_NatureOfSpecimen(textBox_Nature.Text);
+            open.OnNatureSelectedSingle += OnNatureSelected;
+            open.Show();
         }
-        private void button_F4m()
+
+        private void OnNatureSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Nature.Text = str;
+            }
+        }
+        /*private void button_F4m()
         {
             Form_NatureOfSpecimen open = new Form_NatureOfSpecimen();
             open.Show();
-        }
+        }*/
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
             button_F5m();
@@ -541,8 +565,19 @@ namespace St.Teresa_LIS_2019
 
         private void button_F8_Click(object sender, EventArgs e)
         {
-            button_F8m();
+            Form_SelectClientInstitute open = new Form_SelectClientInstitute();
+            open.OnClientInstituteSelectedSingle += OnClientInstituteSelected;
+            open.Show();
         }
+
+        private void OnClientInstituteSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Institute.Text = str;
+            }
+        }
+
         private void button_F8m()
         {
             Form_SelectClientInstitute open = new Form_SelectClientInstitute();
@@ -856,6 +891,9 @@ namespace St.Teresa_LIS_2019
             currentEditRow["bed_no"] = textBox_Bed.Text;
             currentEditRow["clinical_History"] = textBox_Patient_s_Clinical_History.Text;
 
+            currentEditRow["surgical"] = textBox_Surgical.Text;
+            currentEditRow["nature"] = textBox_Nature.Text;
+
             currentEditRow["client"] = textBox_Client.Text;
             currentEditRow["institute"] = textBox_Institute.Text;
             currentEditRow["lab_ref"] = textBox_Ref_No.Text;
@@ -915,6 +953,9 @@ namespace St.Teresa_LIS_2019
             copybxcy_specimen.bed_room = textBox_Room.Text;
             copybxcy_specimen.bed_no = textBox_Bed.Text;
             copybxcy_specimen.clinical_History = textBox_Patient_s_Clinical_History.Text;
+
+            copybxcy_specimen.surgical = textBox_Surgical.Text;
+            copybxcy_specimen.nature = textBox_Nature.Text;
 
             copybxcy_specimen.client = textBox_Client.Text;
             copybxcy_specimen.institute = textBox_Institute.Text;
@@ -1018,6 +1059,9 @@ namespace St.Teresa_LIS_2019
                         textBox_Bed.Text = copybxcy_specimen.bed_no;
                         textBox_Patient_s_Clinical_History.Text = copybxcy_specimen.clinical_History;
 
+                        textBox_Surgical.Text = copybxcy_specimen.surgical;
+                        textBox_Nature.Text = copybxcy_specimen.nature;
+
                         textBox_Client.Text = copybxcy_specimen.client;
                         textBox_Institute.Text = copybxcy_specimen.institute;
                         textBox_Ref_No.Text = copybxcy_specimen.lab_ref;
@@ -1085,6 +1129,8 @@ namespace St.Teresa_LIS_2019
                 button_F7.Enabled = false;
                 button_F8.Enabled = false;
                 button_F9.Enabled = false;
+                button_F3_Surgical.Enabled = false;
+                button_F4_Nature.Enabled = false;
 
                 textBox_Case_No.Enabled = false;
                 textBox_Date.Enabled = false;
@@ -1155,6 +1201,8 @@ namespace St.Teresa_LIS_2019
                     button_F7.Enabled = true;
                     button_F8.Enabled = true;
                     button_F9.Enabled = true;
+                    button_F3_Surgical.Enabled = true;
+                    button_F4_Nature.Enabled = true;
 
                     textBox_Case_No.Enabled = true;
                     textBox_Date.Enabled = true;
@@ -1225,6 +1273,8 @@ namespace St.Teresa_LIS_2019
                         button_F7.Enabled = true;
                         button_F8.Enabled = true;
                         button_F9.Enabled = true;
+                        button_F3_Surgical.Enabled = true;
+                        button_F4_Nature.Enabled = true;
 
                         textBox_Case_No.Enabled = true;
                         textBox_Date.Enabled = true;
@@ -1332,6 +1382,18 @@ namespace St.Teresa_LIS_2019
             if (keyData == (Keys)Shortcut.F1 && button_F1.Enabled)
             {
                 button_F1.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F3 && button_F3_Surgical.Enabled)
+            {
+                button_F3_Surgical.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F4 && button_F4_Nature.Enabled)
+            {
+                button_F4_Nature.PerformClick();
                 return true;
             }
 

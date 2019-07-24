@@ -435,6 +435,7 @@
             this.button_Printed.Text = "Printed : 0";
             this.button_Printed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Printed.UseVisualStyleBackColor = true;
+            this.button_Printed.Click += new System.EventHandler(this.button_Printed_Click);
             // 
             // label_Remarks
             // 
@@ -829,6 +830,7 @@
             this.button_F1.TabIndex = 195;
             this.button_F1.Text = "F1";
             this.button_F1.UseVisualStyleBackColor = true;
+            this.button_F1.Click += new System.EventHandler(this.button_F1_Click);
             // 
             // textBox_Patient
             // 
@@ -993,6 +995,7 @@
             // 
             // comboBox_SignDr
             // 
+            this.comboBox_SignDr.DisplayMember = "doctor";
             this.comboBox_SignDr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_SignDr.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_SignDr.FormattingEnabled = true;
@@ -1001,6 +1004,7 @@
             this.comboBox_SignDr.Size = new System.Drawing.Size(228, 26);
             this.comboBox_SignDr.TabIndex = 242;
             this.comboBox_SignDr.Text = "Dr. S.H. Fung";
+            this.comboBox_SignDr.ValueMember = "doctor";
             // 
             // label2
             // 
@@ -1102,6 +1106,7 @@
             this.button_Sign_By_Dr_1.TabIndex = 251;
             this.button_Sign_By_Dr_1.Text = "Dr.";
             this.button_Sign_By_Dr_1.UseVisualStyleBackColor = true;
+            this.button_Sign_By_Dr_1.Click += new System.EventHandler(this.button_Sign_By_Dr_1_Click);
             // 
             // label7
             // 
@@ -1308,6 +1313,7 @@
             this.button_F9.TabIndex = 151;
             this.button_F9.Text = "F9";
             this.button_F9.UseVisualStyleBackColor = true;
+            this.button_F9.Click += new System.EventHandler(this.button_F9_Click);
             // 
             // textBox_Ref_No
             // 
@@ -1341,6 +1347,7 @@
             this.button_F7.TabIndex = 145;
             this.button_F7.Text = "F7";
             this.button_F7.UseVisualStyleBackColor = true;
+            this.button_F7.Click += new System.EventHandler(this.button_F7_Click);
             // 
             // label_Doctor_I_C
             // 

@@ -153,7 +153,7 @@ namespace St.Teresa_LIS_2019
         private void reloadAndBindingDBData(int position = 0)
         {
             //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [EBV_SPECIMEN]",ebv_specimenDataSet);
-            string sql = "SELECT * FROM [EBV_SPECIMEN]";
+            string sql = "SELECT *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [EBV_SPECIMEN]";
             /*if (id != null)
             {
                 sql = string.Format("SELECT * FROM [EBV_SPECIMEN] WHERE ID IN({0})", id);
@@ -204,7 +204,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
 
-            //dt.Rows.Find(id)
+            //dt.Rows.Find(id)           
             string diagnosisSql = "SELECT DIAGNOSIS FROM [diagnosis]";
             DataSet diagnosisDataSet = new DataSet();
             SqlDataAdapter diagnosisDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diagnosisSql, diagnosisDataSet, "diagnosis");
@@ -247,6 +247,20 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Ethnic.DataSource = ethnicDt;
 
+            string signDoctorSql = "SELECT doctor FROM sign_doctor WHERE DOC_NO IS NOT NULL";
+            DataSet signDoctorDataSet = new DataSet();
+            SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(signDoctorSql, signDoctorDataSet, "sign_doctor");
+
+            DataTable signDoctorDt = new DataTable();
+            signDoctorDt.Columns.Add("doctor");
+
+            foreach (DataRow mDr in signDoctorDataSet.Tables["sign_doctor"].Rows)
+            {
+                signDoctorDt.Rows.Add(new object[] { mDr["doctor"] });
+            }
+
+            comboBox_SignDr.DataSource = signDoctorDt;
+
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
             textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
@@ -272,7 +286,7 @@ namespace St.Teresa_LIS_2019
             textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
             textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
-            //textBox_Paid_Up.DataBindings.Add("Text", dt, "id", false);
+            textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
             textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             comboBox_Result.DataBindings.Add("SelectedValue", dt, "RESULT", false);
             textBox_Result1.DataBindings.Add("Text", dt, "RESULT1", false);
@@ -283,7 +297,7 @@ namespace St.Teresa_LIS_2019
             textBox_Result6.DataBindings.Add("Text", dt, "RESULT6", false);
             textBox_Initial.DataBindings.Add("Text", dt, "INITIAL", false);
             textBox_ReportDate.DataBindings.Add("Text", dt, "RPT_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
-            comboBox_SignDr.DataBindings.Add("Text", dt, "SIGN_DR", false);
+            comboBox_SignDr.DataBindings.Add("SelectedValue", dt, "SIGN_DR", false);
             comboBox_Diagnosis.DataBindings.Add("SelectedValue", dt, "DIAGNOSIS", false);
             textBox_Remind.DataBindings.Add("Text", dt, "REMIND", false);
 
@@ -308,6 +322,7 @@ namespace St.Teresa_LIS_2019
                 }
 
                 currencyManager.Position = currentPosition;
+                id = null;
             }
         }
 
@@ -391,7 +406,6 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentStatus == PageStatus.STATUS_EDIT)
                 {
-
                     DataRow drow = ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
@@ -430,6 +444,9 @@ namespace St.Teresa_LIS_2019
                 button_Delete.Enabled = true;
                 button_Undo.Enabled = false;
                 button_Exit.Enabled = true;
+                button_F1.Enabled = false;
+                button_F7.Enabled = false;
+                button_F9.Enabled = false;
 
                 textBox_Case_No.Enabled = false;
                 textBox_Date.Enabled = false;
@@ -485,6 +502,9 @@ namespace St.Teresa_LIS_2019
                     button_Delete.Enabled = false;
                     button_Undo.Enabled = true;
                     button_Exit.Enabled = false;
+                    button_F1.Enabled = true;
+                    button_F7.Enabled = true;
+                    button_F9.Enabled = true;
 
                     textBox_Case_No.Enabled = true;
                     textBox_Date.Enabled = true;
@@ -540,6 +560,9 @@ namespace St.Teresa_LIS_2019
                         button_Delete.Enabled = false;
                         button_Undo.Enabled = true;
                         button_Exit.Enabled = false;
+                        button_F1.Enabled = true;
+                        button_F7.Enabled = true;
+                        button_F9.Enabled = true;
 
                         textBox_Case_No.Enabled = true;
                         textBox_Date.Enabled = true;
@@ -777,6 +800,83 @@ namespace St.Teresa_LIS_2019
         }
 
         private void button_F2_Previous_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Sign_By_Dr_1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_F7_Click(object sender, EventArgs e)
+        {
+            Form_SelectClient open = new Form_SelectClient();
+            open.OnClientSelectedSingle += OnClientSelected;
+            open.Show();
+        }
+
+        private void OnClientSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Client.Text = str;
+            }
+        }
+
+        private void button_F9_Click(object sender, EventArgs e)
+        {
+            Form_SelectDoctor open = new Form_SelectDoctor();
+            open.OnDoctorSelectedSingle += OnDoctorSelected;
+            open.Show();
+        }
+
+        private void OnDoctorSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Doctor_I_C.Text = str;
+            }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys)Shortcut.F1 && button_F1.Enabled)
+            {
+                button_F1.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F7 && button_F7.Enabled)
+            {
+                button_F7.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F9 && button_F9.Enabled)
+            {
+                button_F9.PerformClick();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void button_F1_Click(object sender, EventArgs e)
+        {
+            Form_SelectPatient open = new Form_SelectPatient();
+            open.OnPatientSelectedSingle += OnPatientSelected;
+            open.Show();
+        }
+
+        private void OnPatientSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Patient.Text = str;
+            }
+        }
+
+        private void button_Printed_Click(object sender, EventArgs e)
         {
 
         }
