@@ -236,3 +236,63 @@ update BXCY_SPECIMEN SET snopcode_t2 = LTRIM(RTRIM(snopcode_t2));
 update BXCY_SPECIMEN SET snopcode_t3 = LTRIM(RTRIM(snopcode_t3));
 update BXCY_SPECIMEN SET snopcode_m2 = LTRIM(RTRIM(snopcode_m2));
 update BXCY_SPECIMEN SET snopcode_m3 = LTRIM(RTRIM(snopcode_m3));
+
+
+
+CREATE PROCEDURE [dbo].[sp_searchBXCYSpecimentRecord]
+	@caseDateFrom nvarchar(20)=NULL,
+	@caseDateTo nvarchar(20)=NULL,
+	@reportDateFrom nvarchar(20)=NULL,
+	@reportDateTo nvarchar(20)=NULL,
+	@caseNoFrom nvarchar(20)=NULL,
+	@caseNoTo nvarchar(20)=NULL,
+	@group nvarchar(20)=NULL,
+	@tCode1 nvarchar(50)=NULL,
+	@tCode2 nvarchar(50)=NULL,
+	@tCode3 nvarchar(50)=NULL,
+	@mCode1 nvarchar(50)=NULL,
+	@mCode2 nvarchar(50)=NULL,
+	@mCode3 nvarchar(50)=NULL,
+	@cytoType nvarchar(50)=NULL,
+	@histoType nvarchar(50)=NULL,
+	@frozenSection nvarchar(10)=NULL,
+	@keywordSite nvarchar(50)=NULL,
+	@keywordOperation nvarchar(50)=NULL,
+	@keywordDiagnosis text = NULL
+AS
+BEGIN
+	SELECT * FROM BXCY_SPECIMEN
+	WHERE (@caseDateFrom IS NULL OR @caseDateFrom = '' OR date >= convert(date,@caseDateFrom))
+	AND (@caseDateTo IS NULL OR @caseDateTo ='' OR date <= convert(date,@caseDateTo))
+	AND (@reportDateFrom IS NULL OR @reportDateFrom='' OR rpt_date >= convert(date,@reportDateFrom))
+	AND (@reportDateTo IS NULL OR @reportDateTo='' OR rpt_date <= convert(date,@reportDateTo))
+	AND (@caseNoFrom IS NULL OR @caseNoFrom='' OR case_no >= @caseNoFrom)
+	AND (@caseNoTo IS NULL OR @caseNoTo='' OR case_no <= @caseNoTo)
+	AND (@group IS NULL OR @group='' OR LOWER(LEFT(barcode,2)) = LOWER(@group))
+	AND (@tCode1 IS NULL OR @tCode1='' OR LOWER(@tCode1) = LOWER(snopcode_t))
+	AND (@tCode2 IS NULL OR @tCode2='' OR LOWER(@tCode2) = LOWER(snopcode_t2))
+	AND (@tCode3 IS NULL OR @tCode3='' OR LOWER(@tCode3) = LOWER(snopcode_t3))
+	AND (@mCode1 IS NULL OR @mCode1='' OR LOWER(@mCode1) = LOWER(snopcode_m))
+	AND (@mCode2 IS NULL OR @mCode2='' OR LOWER(@mCode2) = LOWER(snopcode_m2))
+	AND (@mCode3 IS NULL OR @mCode3='' OR LOWER(@mCode3) = LOWER(snopcode_m3))
+	AND (@cytoType IS NULL OR @cytoType='' OR LOWER(Cyto_Type) = LOWER(@cytoType))
+	AND (@histoType IS NULL OR @histoType='' OR LOWER(Histo) = LOWER(@histoType))
+	AND (@frozenSection IS NULL OR @frozenSection ='' OR LOWER(fz_section) = LOWER(@frozenSection))
+	AND (@keywordSite IS NULL OR @keywordSite = '' OR @keywordOperation IS NULL OR @keywordOperation = ''
+	OR @keywordDiagnosis IS NULL 
+	OR case_no IN
+	(SELECT case_no FROM BXCY_DIAG
+	WHERE (@keywordSite IS NULL OR @keywordSite = '' OR LOWER(site) = LOWER(@keywordSite))
+	AND (@keywordOperation IS NULL OR @keywordOperation = '' OR LOWER(operation) = LOWER(@keywordOperation))
+	--AND (@keywordDiagnosis IS NULL OR diagnosis = @keywordDiagnosis)
+	))
+END
+
+
+ALTER TABLE BXCY_DIAG ADD [id] [int] IDENTITY(1,1) NOT NULL
+
+GO
+
+ALTER TABLE BXCY_DIAG ADD CONSTRAINT [PK_bxcy_diag] primary key (ID)
+
+GO

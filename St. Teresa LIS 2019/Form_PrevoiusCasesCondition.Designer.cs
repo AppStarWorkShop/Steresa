@@ -46,7 +46,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(686, 322);
+            this.dataGridView1.Size = new System.Drawing.Size(686, 297);
             this.dataGridView1.TabIndex = 0;
             // 
             // button_F8_Confirm_Exit
@@ -55,9 +55,9 @@
             this.button_F8_Confirm_Exit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_F8_Confirm_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_F8_Confirm_Exit.Image")));
             this.button_F8_Confirm_Exit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_F8_Confirm_Exit.Location = new System.Drawing.Point(353, 335);
+            this.button_F8_Confirm_Exit.Location = new System.Drawing.Point(353, 309);
             this.button_F8_Confirm_Exit.Name = "button_F8_Confirm_Exit";
-            this.button_F8_Confirm_Exit.Size = new System.Drawing.Size(126, 42);
+            this.button_F8_Confirm_Exit.Size = new System.Drawing.Size(126, 39);
             this.button_F8_Confirm_Exit.TabIndex = 164;
             this.button_F8_Confirm_Exit.Text = "F8: Confirm Exit";
             this.button_F8_Confirm_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -70,7 +70,7 @@
             this.label_Total.BackColor = System.Drawing.Color.Transparent;
             this.label_Total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Total.ForeColor = System.Drawing.Color.Blue;
-            this.label_Total.Location = new System.Drawing.Point(568, 348);
+            this.label_Total.Location = new System.Drawing.Point(568, 321);
             this.label_Total.Name = "label_Total";
             this.label_Total.Size = new System.Drawing.Size(59, 20);
             this.label_Total.TabIndex = 165;
@@ -82,7 +82,7 @@
             this.label_Total_No.BackColor = System.Drawing.Color.Transparent;
             this.label_Total_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Total_No.ForeColor = System.Drawing.Color.Blue;
-            this.label_Total_No.Location = new System.Drawing.Point(624, 348);
+            this.label_Total_No.Location = new System.Drawing.Point(624, 321);
             this.label_Total_No.Name = "label_Total_No";
             this.label_Total_No.Size = new System.Drawing.Size(19, 20);
             this.label_Total_No.TabIndex = 166;
@@ -94,13 +94,14 @@
             this.button_F6_View_Diagnosis.ForeColor = System.Drawing.Color.Purple;
             this.button_F6_View_Diagnosis.Image = ((System.Drawing.Image)(resources.GetObject("button_F6_View_Diagnosis.Image")));
             this.button_F6_View_Diagnosis.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_F6_View_Diagnosis.Location = new System.Drawing.Point(89, 335);
+            this.button_F6_View_Diagnosis.Location = new System.Drawing.Point(89, 309);
             this.button_F6_View_Diagnosis.Name = "button_F6_View_Diagnosis";
-            this.button_F6_View_Diagnosis.Size = new System.Drawing.Size(126, 42);
+            this.button_F6_View_Diagnosis.Size = new System.Drawing.Size(126, 39);
             this.button_F6_View_Diagnosis.TabIndex = 167;
             this.button_F6_View_Diagnosis.Text = "F6: View Diagnosis";
             this.button_F6_View_Diagnosis.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_F6_View_Diagnosis.UseVisualStyleBackColor = true;
+            this.button_F6_View_Diagnosis.Click += new System.EventHandler(this.button_F6_View_Diagnosis_Click);
             // 
             // button_F7_View_Details
             // 
@@ -108,9 +109,9 @@
             this.button_F7_View_Details.ForeColor = System.Drawing.Color.Blue;
             this.button_F7_View_Details.Image = ((System.Drawing.Image)(resources.GetObject("button_F7_View_Details.Image")));
             this.button_F7_View_Details.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_F7_View_Details.Location = new System.Drawing.Point(221, 335);
+            this.button_F7_View_Details.Location = new System.Drawing.Point(221, 309);
             this.button_F7_View_Details.Name = "button_F7_View_Details";
-            this.button_F7_View_Details.Size = new System.Drawing.Size(126, 42);
+            this.button_F7_View_Details.Size = new System.Drawing.Size(126, 39);
             this.button_F7_View_Details.TabIndex = 168;
             this.button_F7_View_Details.Text = "F7: View Details";
             this.button_F7_View_Details.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -119,10 +120,10 @@
             // 
             // Form_PrevoiusCasesCondition
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(215)))), ((int)(((byte)(226)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(684, 389);
+            this.ClientSize = new System.Drawing.Size(684, 359);
             this.ControlBox = false;
             this.Controls.Add(this.button_F7_View_Details);
             this.Controls.Add(this.button_F6_View_Diagnosis);

@@ -79,5 +79,9 @@ namespace St.Teresa_LIS_2019
             dataGridView1.EnableHeadersVisualStyles = false;
         }
 
+        private void button_F6_View_Diagnosis_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

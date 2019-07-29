@@ -11,13 +11,21 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_SurgicalProcedure : Form
     {
-        public Form_SurgicalProcedure()
+        public delegate void SurgicalSelectedSingle(string str);
+        public SurgicalSelectedSingle OnSurgicalSelectedSingle;
+
+        public Form_SurgicalProcedure(string str)
         {
             InitializeComponent();
+            textBox_Surgical_Procedure.Text = str;
         }
 
         private void button_F8_Back_To_Main_Click(object sender, EventArgs e)
         {
+            if (OnSurgicalSelectedSingle != null)
+            {
+                OnSurgicalSelectedSingle(textBox_Surgical_Procedure.Text);
+            }
             this.Close();
         }
 
