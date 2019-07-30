@@ -30,8 +30,8 @@ namespace St.Teresa_LIS_2019
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "報表文件(*.csv)|*.csv";
                 sfd.RestoreDirectory = true;
-                sfd.FileName = "report.csv";
-                string localFilePath = "c:\\temp\\report.csv";
+                sfd.FileName = "bxcy_report.csv";
+                string localFilePath = "c:\\temp\\bxcy_report.csv";
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
                     localFilePath = sfd.FileName.ToString();
@@ -95,24 +95,23 @@ namespace St.Teresa_LIS_2019
                     if (dt != null && dt.Rows.Count > 0)
                     {
                         FileStream fs = new FileStream(localFilePath, FileMode.Create, FileAccess.Write);
-                        StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.GetEncoding("gb2312"));
-                        sw.WriteLine("case no,barcode");
+                        StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.GetEncoding("UTF-8"));
+                        sw.WriteLine("case_no,barcode,ver,date,rpt_date,sign_dr,sign_dr2,client,institute,doctor_id,doctor_ic,doctor_o,lab_ref,ethnic,patient,cname,pat_seq,pat_birth,pat_age,pat_sex,pat_hkid,bed_room,bed_no,discharge,receipt,inv_no,inv_amt,inv_date,pay_date,fz_section,fz_detail,cy_type,cy_report,snopcode_t,desc_t,snopcode_m,desc_m,er,em,remind,initial,priv_case,supp,mt,print_by,print_at,print_ctr,issue_by,issue_at,update_by,update_at,update_ctr,updated,uploaded");
 
                         for (int j = 0; j < dt.Rows.Count; j++)
                         {
                             DataRow item = dt.Rows[j];
                             string rowValue = "";
-                            rowValue += item["case_no"] + "," + item["barcode"] + "," + item["ver"] + "," + item["date"] + "," + item["rpt_date"] + "," + item["sign_dr"] + "," + item["sign_dr2"] + "," + item["client"] + "," + item["institute"] + "," + item["doctor_id"] + "," + item["doctor_ic"] + "," + item["doctor_o"] + "," + item["lab_ref"] + "," + item["ethnic"] + "," + item["patient"] + "," + item["cname"] + "," + item["pat_seq"] + "," + item["pat_birth"] + "," + item["pat_age"] + "," + item["pat_sex"] + "," + item["pat_hkid"] + "," + item["bed_room"] + "," + item["bed_no"] + "," + item["discharge"] + "," + item["receipt"] + "," + item["inv_no"] + "," + item["inv_amt"] + "," + item["inv_date"] + "," + item["pay_date"] + "," + item["fz_section"] + "," + item["fz_detail"] + "," + item["cy_type"] + "," + item["cy_report"] + "," + item["snopcode_t"] + "," + item["desc_t"] + "," + item["snopcode_m"] + "," + item["desc_m"] + "," + item["er"] + "," + item["em"] + "," + item["remind"] + "," + item["initial"] + "," + item["priv_case"] + "," + item["supp"] + "," + item["mt"] + "," + item["print_by"] + "," + item["print_at"] + "," + item["print_ctr"] + "," + item["issue_by"] + "," + item["issue_at"] + "," + item["update_by"] + "," + item["update_at"] + "," + item["update_ctr"] + "," + item["updated"] + "," + item["uploaded"];
-                            //rowValue += item["shopName"] + "," + item["orderDatetime"] + "," + item["productCode"] + "," + item["productName"] + "," + item["isConsignment"] + "," + item["categoryCode"] + "," + item["mainCategoryCode"] + "," + item["brandCode"] + "," + item["supplierCode"] + "," + item["extRefCode"] + "," + item["orderDatetime"] + "," + item["receiptCode"] + "," + item["noOfItem"] + "," + item["productCost"] + "," + item["stockCostValue"] + "," + item["itemAmountOrg"] + "," + item["itemAmountReal"] + "," + item["totalAmountReal"] + "," + item["stockInDatetime"] + "," + item["stockInCode"] + "," + item["tripName"];
-                            //rowValue += "," + item["travelAgencyCode"] + "," + item["tourGuideCode"] + "," + item["tourGuideTel"] + "," + item["arrivalTime"] + "," + item["departureTime"] + "," + item["passportId"] + "," + item["tourguideGroup"] + "," + item["staffCode"] + "," + item["discountRate"] + "," + item["buyingMode"] + "," + item["productCommC1Rate"] + "," + item["productCommTourguideRate"] + "," + item["productCommEscortRate"] + "," + item["productCommC1Bonus"] + "," + item["productCommTourguideBonus"] + "," + item["productCommEscortBonus"] + "," + item["categoryCommC1Rate"] + "," + item["categoryCommTourguideRate"] + "," + item["categoryCommEscortRate"];
-                            //rowValue += "," + item["categoryCommC1Bonus"] + "," + item["categoryCommTourguideBonus"] + "," + item["categoryCommEscortBonus"] + "," + item["mainCategoryCommC1Rate"] + "," + item["mainCategoryCommTourguideRate"] + "," + item["mainCategoryCommEscortRate"] + "," + item["mainCategoryCommC1Bonus"] + "," + item["mainCategoryCommTourguideBonus"] + "," + item["mainCategoryCommEscortBonus"] + "," + item["itemAmountReal"] + "," + item["totalAmountReal"] + "," + item["commC1Real"] + "," + item["commTourGuideReal"] + "," + item["commEscortReal"] + "," + item["totalItemCommReal"] + "," + item["totalCommReal"] + "," + item["mappingCommRateC1"] + "," + item["mappingCommRateTourGuide"] + "," + item["mappingCommRateEscort"] + "," + item["remark"] + "," + item["mappingCommType"] + "," + item["mappingCommEffectDate"];
-                            
+                            rowValue += item["case_no"] + "," + item["barcode"] + "," + item["ver"] + "," + Convert.ToDateTime(item["date"]).ToString("yyyy-MM-dd") + "," + Convert.ToDateTime(item["rpt_date"]).ToString("yyyy-MM-dd") + "," + item["sign_dr"] + "," + item["sign_dr2"] + "," + item["client"] + "," + item["institute"] + "," + item["doctor_id"] + "," + item["doctor_ic"] + "," + item["doctor_o"] + "," + item["lab_ref"] + "," + item["ethnic"] + "," + item["patient"] + "," + item["cname"] + "," + item["pat_seq"] + "," + item["pat_birth"] + "," + item["pat_age"] + "," + item["pat_sex"] + "," + item["pat_hkid"] + "," + item["bed_room"] + "," + item["bed_no"] + "," + item["discharge"] + "," + item["receipt"] + "," + item["inv_no"] + "," + item["inv_amt"] + "," + Convert.ToDateTime(item["inv_date"]).ToString("yyyy-MM-dd") + "," + Convert.ToDateTime(item["pay_date"]).ToString("yyyy-MM-dd") + "," + item["fz_section"] + "," + item["fz_detail"] + "," + item["cy_type"] + "," + item["cy_report"] + "," + item["snopcode_t"] + "," + item["desc_t"] + "," + item["snopcode_m"] + "," + item["desc_m"] + "," + item["er"] + "," + item["em"] + "," + item["remind"] + "," + item["initial"] + "," + item["priv_case"] + "," + item["supp"] + "," + item["mt"] + "," + item["print_by"] + "," + item["print_at"] + "," + item["print_ctr"] + "," + item["issue_by"] + "," + Convert.ToDateTime(item["issue_at"]).ToString("yyyy-MM-dd") + "," + item["update_by"] + "," + Convert.ToDateTime(item["update_at"]).ToString("yyyy-MM-dd") + "," + item["update_ctr"] + "," + item["updated"] + "," + item["uploaded"];
+
                             sw.WriteLine(rowValue);
                         }
-
-                        //sw.WriteLine(",,,,,,,,,,,Sub-total:," + SubNoOfItem.ToString() + ",," + subStockCostValue.ToString() + ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,," + subTotalAmountReal.ToString() + "," + subCommC1Real.ToString() + "," + subCommTourGuideReal.ToString() + "," + subCommEscortReal.ToString() + ",," + subTotalCommReal.ToString());
                         sw.Close();
                         MessageBox.Show("Export done");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record found");
                     }
                 }
             }
@@ -126,6 +125,10 @@ namespace St.Teresa_LIS_2019
         {
             radioButton_By_Case_Receipt_Date.Checked = true;
             setFieldStatus();
+            textBox_ReceiptDateFrom.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            textBox_ReceiptDateTo.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            textBox_ReportDateFrom.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            textBox_ReportDateTo.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private void radioButton_By_Case_Report_Date_CheckedChanged(object sender, EventArgs e)
