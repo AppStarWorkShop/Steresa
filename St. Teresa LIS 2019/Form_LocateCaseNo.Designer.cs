@@ -63,6 +63,7 @@
             this.button_F7_Columas.TabIndex = 86;
             this.button_F7_Columas.Text = "F7. Columas";
             this.button_F7_Columas.UseVisualStyleBackColor = true;
+            this.button_F7_Columas.Click += new System.EventHandler(this.button_F7_Columas_Click);
             // 
             // button_F2_New_Record
             // 
@@ -122,6 +123,7 @@
             this.button_F4_Daily_Report.TabIndex = 81;
             this.button_F4_Daily_Report.Text = "F4. Daily Report";
             this.button_F4_Daily_Report.UseVisualStyleBackColor = true;
+            this.button_F4_Daily_Report.Click += new System.EventHandler(this.button_F4_Daily_Report_Click);
             // 
             // button_Exit
             // 

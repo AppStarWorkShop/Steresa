@@ -7,6 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.IO;
+using NPOI.HSSF.UserModel;
+using NPOI.XSSF.UserModel;
+using NPOI.SS.UserModel;
 
 namespace St.Teresa_LIS_2019
 {
@@ -727,6 +733,103 @@ namespace St.Teresa_LIS_2019
         private void button1_Click(object sender, EventArgs e)
         {
             reloadDBData();
+        }
+
+        private void button_Excel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "報表文件(*.xlsx)|*.xlsx";
+                sfd.RestoreDirectory = true;
+                sfd.FileName = "client_report.xlsx";
+                string localFilePath = "c:\\temp\\client_report.xlsx";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    localFilePath = sfd.FileName.ToString();
+
+                    string checkSql = string.Format("select * from client");
+                    SqlCommand checkCmd = new SqlCommand(checkSql, DBConn.getConnection());
+                    checkCmd.CommandTimeout = 600;
+
+                    SqlDataAdapter sdap = new SqlDataAdapter();
+                    sdap.SelectCommand = checkCmd;
+
+                    DataTable dt = new DataTable();
+                    sdap.Fill(dt);
+
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        IWorkbook workbook = new XSSFWorkbook();
+                        ISheet sheet = (ISheet)workbook.CreateSheet("client_report");
+                        FileStream fs = new FileStream(localFilePath, FileMode.Create, FileAccess.Write);
+
+                        IRow sheetRow = (IRow)sheet.CreateRow(0);
+                        sheetRow.CreateCell(0).SetCellValue("client");
+                        sheetRow.CreateCell(1).SetCellValue("cname");
+                        sheetRow.CreateCell(2).SetCellValue("address1");
+                        sheetRow.CreateCell(3).SetCellValue("address2");
+                        sheetRow.CreateCell(4).SetCellValue("address3");
+                        sheetRow.CreateCell(5).SetCellValue("address4");
+                        sheetRow.CreateCell(6).SetCellValue("tel1");
+                        sheetRow.CreateCell(7).SetCellValue("tel2");
+                        sheetRow.CreateCell(8).SetCellValue("fax");
+                        sheetRow.CreateCell(9).SetCellValue("contact");
+                        sheetRow.CreateCell(10).SetCellValue("remark");
+
+                        /*FileStream fs = new FileStream(localFilePath, FileMode.Create, FileAccess.Write);
+                        StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.GetEncoding("UTF-8"));
+                        sw.WriteLine("client,cname,address1,address2,address3,address4,tel1,tel2,fax,contact,remark");*/
+
+                        //int rowNo = 1;
+                        for (int j = 0; j < dt.Rows.Count; j++)
+                        {
+                            DataRow item = dt.Rows[j];
+                            sheetRow = (IRow)sheet.CreateRow(j+1);
+
+                            sheetRow.CreateCell(0).SetCellValue(CommonFunction.getDataRowStrVal(item, "client"));
+                            sheetRow.CreateCell(1).SetCellValue(CommonFunction.getDataRowStrVal(item, "cname"));
+                            //sheetRow.CreateCell(2).SetCellValue(CommonFunction.getDataRowStrVal(item, "address1"));
+                            //sheetRow.CreateCell(3).SetCellValue(CommonFunction.getDataRowStrVal(item, "address2"));
+                            //sheetRow.CreateCell(4).SetCellValue(CommonFunction.getDataRowStrVal(item, "address3"));
+                            //sheetRow.CreateCell(5).SetCellValue(CommonFunction.getDataRowStrVal(item, "address4"));
+                            sheetRow.CreateCell(6).SetCellValue(CommonFunction.getDataRowStrVal(item, "tel"));
+                            sheetRow.CreateCell(7).SetCellValue(CommonFunction.getDataRowStrVal(item, "tel2"));
+                            sheetRow.CreateCell(8).SetCellValue(CommonFunction.getDataRowStrVal(item, "fax"));
+                            sheetRow.CreateCell(9).SetCellValue(CommonFunction.getDataRowStrVal(item, "contact"));
+                            sheetRow.CreateCell(10).SetCellValue(CommonFunction.getDataRowStrVal(item, "remark"));
+
+
+                            /*DataRow item = dt.Rows[j];
+                            string rowValue = "";
+                            rowValue += item["client"] + "," + item["cname"] + "," + item["address1"] + "," + item["address2"] + "," + item["address3"] + "," + item["address4"] + "," + item["tel"] + "," + item["tel2"] + "," + item["fax"] + "," + item["contact"] + "," + item["remark"];
+
+                            sw.WriteLine(rowValue);*/
+                        }
+
+                        workbook.Write(fs);
+                        //long fileSize = fs.Length;
+                        //context.Response.AddHeader("Content-Length", fileSize.ToString());
+
+                        workbook = null;
+                        fs.Close();
+                        fs.Dispose();
+
+                        //sw.Close();
+                        MessageBox.Show("Export done");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record found");
+                    }
+
+                    
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
         }
     }
 }

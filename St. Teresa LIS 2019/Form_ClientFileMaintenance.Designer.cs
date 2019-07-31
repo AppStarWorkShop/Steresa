@@ -687,6 +687,7 @@
             this.button_Excel.Text = "Excel";
             this.button_Excel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Excel.UseVisualStyleBackColor = true;
+            this.button_Excel.Click += new System.EventHandler(this.button_Excel_Click);
             // 
             // button_Delete
             // 

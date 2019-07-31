@@ -153,11 +153,7 @@ namespace St.Teresa_LIS_2019
                 }
 
                 label_Search_Type.Text = labelSearching;
-                /*if (contentSearching == "CASE_NO")
-                {
-                    contentSearching == "CASE_NO";
-                    labelSearching = "Locate Case No;";
-                }else*/
+
             }
 
             if (keyData == Keys.Enter && textBox_Search_Type.Focused)
@@ -250,6 +246,16 @@ namespace St.Teresa_LIS_2019
             Form_PatientFileMaintenancecs open = new Form_PatientFileMaintenancecs();
             open.Show();
             open.processNew();
+        }
+
+        private void button_F4_Daily_Report_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_F7_Columas_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

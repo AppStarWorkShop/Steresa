@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace St.Teresa_LIS_2019
 {
@@ -599,6 +600,59 @@ namespace St.Teresa_LIS_2019
         private void button1_Click(object sender, EventArgs e)
         {
             reloadDBData();
+        }
+
+        private void button_Excel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "報表文件(*.csv)|*.csv";
+                sfd.RestoreDirectory = true;
+                sfd.FileName = "doctor_report.csv";
+                string localFilePath = "c:\\temp\\doctor_report.csv";
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    localFilePath = sfd.FileName.ToString();
+
+                    string checkSql = string.Format("select * from doctor");
+                    SqlCommand checkCmd = new SqlCommand(checkSql, DBConn.getConnection());
+                    checkCmd.CommandTimeout = 600;
+
+                    SqlDataAdapter sdap = new SqlDataAdapter();
+                    sdap.SelectCommand = checkCmd;
+
+                    DataTable dt = new DataTable();
+                    sdap.Fill(dt);
+
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        FileStream fs = new FileStream(localFilePath, FileMode.Create, FileAccess.Write);
+                        StreamWriter sw = new StreamWriter(fs, System.Text.Encoding.GetEncoding("UTF-8"));
+                        sw.WriteLine("doctor,doctor_id,cname,initial,address1,address2,address3,address4,tel1,tel2,fax,contact,remark");
+
+                        for (int j = 0; j < dt.Rows.Count; j++)
+                        {
+                            DataRow item = dt.Rows[j];
+                            string rowValue = "";
+                            rowValue += item["doctor"] + "," + item["doctor_id"] + "," + item["cname"] + "," + item["initial"] + "," + item["address1"] + "," + item["address2"] + "," + item["address3"] + "," + item["address4"] + "," + item["tel1"] + "," + item["tel2"] + "," + item["fax"] + "," + item["contact"] + "," + item["remark"];
+
+                            sw.WriteLine(rowValue);
+                        }
+
+                        sw.Close();
+                        MessageBox.Show("Export done");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No record found");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Write(ex.Message);
+            }
         }
     }
 }

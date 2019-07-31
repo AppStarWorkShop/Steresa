@@ -131,6 +131,25 @@ namespace St.Teresa_LIS_2019
                 return returnAge;
             }
         }
+
+        public static string getDataRowStrVal(DataRow dr, string fieldName)
+        {
+            if (dr != null)
+            {
+                if (dr[fieldName] != null && !Convert.IsDBNull(dr[fieldName]))
+                {
+                    return dr[fieldName].ToString();
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 
     public static class CurrentUser
