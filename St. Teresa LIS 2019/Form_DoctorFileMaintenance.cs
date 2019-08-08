@@ -652,6 +652,7 @@ namespace St.Teresa_LIS_2019
             catch (Exception ex)
             {
                 Console.Write(ex.Message);
+                MessageBox.Show("Fail to export the file");
             }
         }
     }

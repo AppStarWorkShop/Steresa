@@ -257,8 +257,8 @@ CREATE PROCEDURE [dbo].[sp_searchBXCYSpecimentRecord]
 	@histoType nvarchar(50)=NULL,
 	@frozenSection nvarchar(10)=NULL,
 	@keywordSite nvarchar(50)=NULL,
-	@keywordOperation nvarchar(50)=NULL,
-	@keywordDiagnosis text = NULL
+	@keywordOperation nvarchar(50)=NULL--,
+	--@keywordDiagnosis text = NULL
 AS
 BEGIN
 	SELECT * FROM BXCY_SPECIMEN
@@ -279,7 +279,7 @@ BEGIN
 	AND (@histoType IS NULL OR @histoType='' OR LOWER(Histo) = LOWER(@histoType))
 	AND (@frozenSection IS NULL OR @frozenSection ='' OR LOWER(fz_section) = LOWER(@frozenSection))
 	AND (@keywordSite IS NULL OR @keywordSite = '' OR @keywordOperation IS NULL OR @keywordOperation = ''
-	OR @keywordDiagnosis IS NULL 
+	--OR @keywordDiagnosis IS NULL 
 	OR case_no IN
 	(SELECT case_no FROM BXCY_DIAG
 	WHERE (@keywordSite IS NULL OR @keywordSite = '' OR LOWER(site) = LOWER(@keywordSite))
@@ -296,3 +296,27 @@ GO
 ALTER TABLE BXCY_DIAG ADD CONSTRAINT [PK_bxcy_diag] primary key (ID)
 
 GO
+
+CREATE PROCEDURE [dbo].[sp_searchEBVSpecimentRecord]
+	@caseDateFrom nvarchar(20)=NULL,
+	@caseDateTo nvarchar(20)=NULL,
+	@reportDateFrom nvarchar(20)=NULL,
+	@reportDateTo nvarchar(20)=NULL,
+	@caseNoFrom nvarchar(20)=NULL,
+	@caseNoTo nvarchar(20)=NULL,
+	@group nvarchar(20)=NULL,
+	@keywordRemind nvarchar(50)=NULL,
+	@keywordDiagnosis nvarchar(50) = NULL
+AS
+BEGIN
+	SELECT * FROM EBV_SPECIMEN
+	WHERE (@caseDateFrom IS NULL OR @caseDateFrom = '' OR date >= convert(date,@caseDateFrom))
+	AND (@caseDateTo IS NULL OR @caseDateTo ='' OR date <= convert(date,@caseDateTo))
+	AND (@reportDateFrom IS NULL OR @reportDateFrom='' OR rpt_date >= convert(date,@reportDateFrom))
+	AND (@reportDateTo IS NULL OR @reportDateTo='' OR rpt_date <= convert(date,@reportDateTo))
+	AND (@caseNoFrom IS NULL OR @caseNoFrom='' OR case_no >= @caseNoFrom)
+	AND (@caseNoTo IS NULL OR @caseNoTo='' OR case_no <= @caseNoTo)
+	AND (@group IS NULL OR @group='' OR LOWER(LEFT(barcode,2)) = LOWER(@group))
+	AND (@keywordDiagnosis IS NULL OR @keywordDiagnosis = '' OR LOWER(diagnosis) = LOWER(@keywordDiagnosis))
+	AND (@keywordRemind IS NULL OR @keywordRemind = '' OR LOWER(remind) = LOWER(@keywordRemind))
+END

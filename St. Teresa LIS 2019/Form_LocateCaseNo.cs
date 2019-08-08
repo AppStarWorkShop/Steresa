@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace St.Teresa_LIS_2019
 {
@@ -250,7 +251,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_F4_Daily_Report_Click(object sender, EventArgs e)
         {
-
+            Form_DailyLogReportForEBV open = new Form_DailyLogReportForEBV();
+            open.Show();
         }
 
         private void button_F7_Columas_Click(object sender, EventArgs e)
