@@ -42,7 +42,7 @@ namespace St.Teresa_LIS_2019
 
         private void loadDataGridViewDate()
         {
-            string sql = "SELECT CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM BXCY_SPECIMEN";
+            string sql = "SELECT CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM BXCY_SPECIMEN ORDER BY ID";
             DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             DataTable dt = new DataTable();

@@ -98,6 +98,20 @@ namespace St.Teresa_LIS_2019
                 return null;
             }
         }
+
+        public static int getSqlRecordCount(string tableNameAndStatement)
+        {
+            string countSql = string.Format("SELECT COUNT(*) AS recordCount FROM {0} ", tableNameAndStatement);
+            int count = 0;
+            SqlCommand command = new SqlCommand(countSql, getConnection());
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read())
+            {
+                count = reader.GetInt32(0);
+            }
+            reader.Close();
+            return count;
+        }
     }
 
     public static class PageStatus

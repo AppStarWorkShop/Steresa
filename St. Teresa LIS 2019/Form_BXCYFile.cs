@@ -15,7 +15,7 @@ namespace St.Teresa_LIS_2019
         private DataSet bxcy_specimenDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         public static Boolean merge;
-        public CurrencyManager currencyManager;
+        //public CurrencyManager currencyManager;
         private Bxcy_specimenStr copybxcy_specimen;
         private int currentStatus;
         private DataTable dt;
@@ -200,9 +200,14 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData(int position = -0)
+        private void reloadAndBindingDBData(int position = 0)
         {
-            string sql = "SELECT *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen]";
+            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY ID";
+            if(this.id != null)
+            {
+                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} ORDER BY ID",this.id);
+                id = null;
+            }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             textBox_ID.DataBindings.Clear();
@@ -396,7 +401,7 @@ namespace St.Teresa_LIS_2019
             textBox_Remarks.DataBindings.Add("Text", dt, "Remark", false);
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
             if (position != -1)
             {
                 currencyManager.Position = position;
@@ -417,21 +422,21 @@ namespace St.Teresa_LIS_2019
                 currencyManager.Position = currentPosition;
 
                 id = null;
-            }
+            }*/
         }
 
         private void reloadDBData(int position = 0)
         {
-            string sql = "SELECT * FROM [BXCY_SPECIMEN]";
+            string sql = "SELECT TOP 1 * FROM [BXCY_SPECIMEN] ORDER BY ID";
             DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             DataTable dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void LoadDateMDR()
@@ -791,22 +796,38 @@ namespace St.Teresa_LIS_2019
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            currencyManager.Position++;
+            //currencyManager.Position++;
+            string countSql = string.Format(" [bxcy_specimen] WHERE id > {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            currencyManager.Position--;
+            //currencyManager.Position--;
+            string countSql = string.Format(" [bxcy_specimen] WHERE id < {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
+            }
         }
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = 0;
+            //currencyManager.Position = 0;
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY ID", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY ID DESC", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -821,7 +842,9 @@ namespace St.Teresa_LIS_2019
 
                     if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                     {
-                        reloadDBData(currencyManager.Count - 1);
+                        //reloadDBData(currencyManager.Count - 1);
+                        reloadAndBindingDBData();
+                        button_End.PerformClick();
                         //reloadAndBindingDBData(currencyManager.Count - 1);
                         MessageBox.Show("New ebv_specimen saved");
                     }
@@ -854,7 +877,7 @@ namespace St.Teresa_LIS_2019
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
-                    reloadAndBindingDBData(currentPosition);
+                    reloadAndBindingDBData();
                 }
             }
         }
@@ -928,14 +951,15 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["remark"] = textBox_Remarks.Text;
             currentEditRow["initial"] = textBox_Cytology.Text;
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
 
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
         }
 
         private void button_F6_Edit_Click(object sender, EventArgs e)
         {
-            currentPosition = currencyManager.Position;
+            //currentPosition = currencyManager.Position;
 
             copybxcy_specimen = new Bxcy_specimenStr();
             copybxcy_specimen.case_no = textBox_Case_No.Text;
@@ -1010,8 +1034,8 @@ namespace St.Teresa_LIS_2019
                 {
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
-                    currencyManager.Position = 0;
-
+                    //currencyManager.Position = 0;
+                    button_Top.PerformClick();
                     reloadDBData(0);
                     MessageBox.Show("Bxcy_specimen deleted");
                 }
@@ -1034,7 +1058,7 @@ namespace St.Teresa_LIS_2019
                     bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Remove(currentEditRow);
                 }
                 setButtonStatus(PageStatus.STATUS_VIEW);
-                //reloadAndBindingDBData();
+                reloadAndBindingDBData();
             }
             else
             {

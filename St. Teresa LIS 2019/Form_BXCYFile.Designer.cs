@@ -2002,7 +2002,7 @@
             this.textBox_ID.Enabled = false;
             this.textBox_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_ID.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_ID.Location = new System.Drawing.Point(1024, 110);
+            this.textBox_ID.Location = new System.Drawing.Point(1016, 59);
             this.textBox_ID.Name = "textBox_ID";
             this.textBox_ID.Size = new System.Drawing.Size(21, 29);
             this.textBox_ID.TabIndex = 242;
