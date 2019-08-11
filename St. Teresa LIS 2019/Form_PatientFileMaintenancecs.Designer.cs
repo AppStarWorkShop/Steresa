@@ -65,7 +65,6 @@
             this.button_Merge = new System.Windows.Forms.Button();
             this.pATIENTBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.textBox_ID = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox_DOB = new System.Windows.Forms.TextBox();
             this.label_masterLabel = new System.Windows.Forms.Label();
             this.label_masterEngName = new System.Windows.Forms.Label();
@@ -495,18 +494,6 @@
             this.textBox_ID.Size = new System.Drawing.Size(10, 23);
             this.textBox_ID.TabIndex = 197;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(540, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 25);
-            this.button1.TabIndex = 199;
-            this.button1.Text = "All";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // textBox_DOB
             // 
             this.textBox_DOB.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -561,7 +548,6 @@
             this.Controls.Add(this.label_masterEngName);
             this.Controls.Add(this.label_masterLabel);
             this.Controls.Add(this.textBox_DOB);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Merge);
             this.Controls.Add(this.button_Delete);
@@ -639,7 +625,6 @@
         private System.Windows.Forms.Button button_Merge;
         private System.Windows.Forms.BindingSource pATIENTBindingSource;
         private System.Windows.Forms.TextBox textBox_ID;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox_DOB;
         private System.Windows.Forms.Label label_masterLabel;
         private System.Windows.Forms.Label label_masterEngName;

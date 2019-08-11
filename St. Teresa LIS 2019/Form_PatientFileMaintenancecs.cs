@@ -14,7 +14,7 @@ namespace St.Teresa_LIS_2019
         private DataSet patientDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         public static Boolean merge;
-        public CurrencyManager currencyManager;
+        //public CurrencyManager currencyManager;
         private PatientStr copyPatient;
         private int currentStatus;
         private DataTable dt;
@@ -88,16 +88,16 @@ namespace St.Teresa_LIS_2019
         {
             if (idStr != null)
             {
-                string sql = string.Format("SELECT * FROM [PATIENT] WHERE ID IN({0})", idStr);
+                string sql = string.Format("SELECT * FROM [PATIENT] WHERE ID IN({0}) ORDER BY ID", idStr);
                 DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
 
                 DataTable dt = patientDataSet.Tables["patient"];
                 dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
                 dt.Columns["id"].AutoIncrement = true;
                 dt.Columns["id"].AutoIncrementStep = 1;
-                currencyManager = (CurrencyManager)this.BindingContext[dt];
+                /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-                currencyManager.Position = 0;
+                currencyManager.Position = 0;*/
             }
         }
 
@@ -162,7 +162,7 @@ namespace St.Teresa_LIS_2019
         private void reloadAndBindingDBData(int position = 0)
         {
             //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]",patientDataSet);
-            string sql = "SELECT * FROM [PATIENT]";
+            string sql = "SELECT TOP 1 * FROM [PATIENT] ORDER BY ID";
             //string sql = string.Format("SELECT * FROM [PATIENT] WHERE ID IN({0})", "1,2,3,4,6,7,8,9,10");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
 
@@ -197,9 +197,9 @@ namespace St.Teresa_LIS_2019
             textBox_Last_Updated_By_No.DataBindings.Add("Text", dt, "UPDATE_CTR", false);
             textBox_Master.DataBindings.Add("Text",dt,"master",false);
 
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void reloadDBData(int position = 0)
@@ -213,32 +213,48 @@ namespace St.Teresa_LIS_2019
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            currencyManager.Position++;
+            //currencyManager.Position++;
+            string countSql = string.Format(" [patient] WHERE id > {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 * FROM [patient] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
+            }
             checkMasterEngName();
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            currencyManager.Position--;
+            //currencyManager.Position--;
+            string countSql = string.Format(" [patient] WHERE id < {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 * FROM [patient] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
+            }
             checkMasterEngName();
         }
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = 0;
+            //currencyManager.Position = 0;
+            string sql = string.Format("SELECT TOP 1 * FROM [PATIENT] ORDER BY ID", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
             checkMasterEngName();
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
+            string sql = string.Format("SELECT TOP 1 * FROM [PATIENT] ORDER BY ID DESC", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, patientDataSet, "patient");
             checkMasterEngName();
         }
 
@@ -252,7 +268,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["SEX"] = "M";
             patientDataSet.Tables["patient"].Rows.Add(currentEditRow);
 
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
         }
 
         public void processNew()
@@ -272,7 +288,9 @@ namespace St.Teresa_LIS_2019
 
                     if (DBConn.updateObject(dataAdapter, patientDataSet, "patient"))
                     {
-                        reloadDBData(currencyManager.Count - 1);
+                        //reloadDBData(currencyManager.Count - 1);
+                        reloadAndBindingDBData();
+                        button_End.PerformClick();
                         MessageBox.Show("New patient saved");
                     }
                     else
@@ -393,7 +411,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Edit_Click(object sender, EventArgs e)
         {
-            currentPosition = currencyManager.Position;
+            //currentPosition = currencyManager.Position;
 
             copyPatient = new PatientStr();
             copyPatient.patientName = textBox_Patient.Text;
@@ -416,6 +434,7 @@ namespace St.Teresa_LIS_2019
                     patientDataSet.Tables["patient"].Rows.Remove(currentEditRow);
                 }
                 setButtonStatus(PageStatus.STATUS_VIEW);
+                reloadAndBindingDBData();
             }
             else
             {
@@ -447,7 +466,7 @@ namespace St.Teresa_LIS_2019
                 {
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
-                    currencyManager.Position = 0;
+                    //currencyManager.Position = 0;
 
                     reloadDBData(0);
                     MessageBox.Show("Patient deleted");
