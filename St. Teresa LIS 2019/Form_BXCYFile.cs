@@ -892,6 +892,18 @@ namespace St.Teresa_LIS_2019
             button_New.PerformClick();
         }
 
+        public void newRecord()
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["Pat_age"] = 0;
+            currentEditRow["Pat_sex"] = "M";
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+        }
+
         private void button_New_Click(object sender, EventArgs e)
         {
             setButtonStatus(PageStatus.STATUS_NEW);
@@ -1204,6 +1216,14 @@ namespace St.Teresa_LIS_2019
                 textBox_Remarks.Enabled = false;
                 textBox_Cytology.Enabled = false;
 
+                label_New_Record.Visible = false;
+
+                button_Shif.Enabled = false;
+                button_F9_2.Enabled = false;
+                button_Shif_2.Enabled = false;
+                button_Shif_3.Enabled = false;
+                button3.Enabled = false;
+
                 disedit_modle();
             }
             else
@@ -1276,6 +1296,15 @@ namespace St.Teresa_LIS_2019
                     textBox_Remarks.Enabled = true;
                     textBox_Cytology.Enabled = true;
 
+                    label_New_Record.Text = "<New Record>";
+                    label_New_Record.Visible = true;
+
+                    button_Shif.Enabled = true;
+                    button_F9_2.Enabled = true;
+                    button_Shif_2.Enabled = true;
+                    button_Shif_3.Enabled = true;
+                    button3.Enabled = true;
+
                     edit_modle();
                 }
                 else
@@ -1347,6 +1376,15 @@ namespace St.Teresa_LIS_2019
 
                         textBox_Remarks.Enabled = true;
                         textBox_Cytology.Enabled = true;
+
+                        label_New_Record.Text = "<Edit Record>";
+                        label_New_Record.Visible = true;
+
+                        button_Shif.Enabled = true;
+                        button_F9_2.Enabled = true;
+                        button_Shif_2.Enabled = true;
+                        button_Shif_3.Enabled = true;
+                        button3.Enabled = true;
 
                         edit_modle();
                     }
