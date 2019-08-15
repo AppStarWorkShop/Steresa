@@ -16,7 +16,7 @@ namespace St.Teresa_LIS_2019
         private DataSet doctorDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         public static Boolean merge;
-        public CurrencyManager currencyManager;
+        //public CurrencyManager currencyManager;
         private DoctorStr copyDoctor;
         private int currentStatus;
         private DataTable dt;
@@ -307,7 +307,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             doctorDataSet.Tables["doctor"].Rows.Add(currentEditRow);
 
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
         }
 
 
@@ -343,9 +343,9 @@ namespace St.Teresa_LIS_2019
                 dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
                 dt.Columns["id"].AutoIncrement = true;
                 dt.Columns["id"].AutoIncrementStep = 1;
-                currencyManager = (CurrencyManager)this.BindingContext[dt];
+                /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-                currencyManager.Position = 0;
+                currencyManager.Position = 0;*/
             }
         }
 
@@ -362,7 +362,7 @@ namespace St.Teresa_LIS_2019
 
                     if (DBConn.updateObject(dataAdapter, doctorDataSet, "doctor"))
                     {
-                        reloadDBData(currencyManager.Count - 1);
+                        reloadDBData(0);
                         MessageBox.Show("New doctor saved");
                     }
                     else
@@ -409,7 +409,7 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(int position = 1)
         {
-            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [doctor]", doctorDataSet, "doctor");
+            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 1 * FROM [doctor] ORDER BY ID", doctorDataSet, "doctor");
             //dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [doctor]", doctorDataSet, "doctor");
             //fetchDataIntoDataSet("SELECT * FROM [PATIENT]");
 
@@ -464,43 +464,59 @@ namespace St.Teresa_LIS_2019
             textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
             textBox_Last_Updated_By_No.DataBindings.Add("Text", dt, "UPDATE_CTR", false);
 
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void reloadDBData(int position = 1)
         {
             //dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [doctor]", doctorDataSet, "doctor");
-            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [doctor]", doctorDataSet, "doctor");
+            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 1 * FROM [doctor] ORDER BY ID", doctorDataSet, "doctor");
             dt = doctorDataSet.Tables["doctor"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
 
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            currencyManager.Position++;
+            //currencyManager.Position++;
+            string countSql = string.Format(" [doctor] WHERE id > {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 * FROM [doctor] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, doctorDataSet, "doctor");
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            currencyManager.Position--;
+            //currencyManager.Position--;
+            string countSql = string.Format(" [doctor] WHERE id < {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 * FROM [doctor] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, doctorDataSet, "doctor");
+            }
         }
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = 0;
+            //currencyManager.Position = 0;
+            string sql = string.Format("SELECT TOP 1 * FROM [doctor] ORDER BY ID", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, doctorDataSet, "doctor");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
+            string sql = string.Format("SELECT TOP 1 * FROM [doctor] ORDER BY ID DESC", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, doctorDataSet, "doctor");
         }
 
         private void button_Undo_Click(object sender, EventArgs e)
@@ -556,7 +572,7 @@ namespace St.Teresa_LIS_2019
                 {
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
-                    currencyManager.Position = 0;
+                    //currencyManager.Position = 0;
                     reloadDBData(0);
 
                     MessageBox.Show("Doctor deleted");
@@ -572,7 +588,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Edit_Click_1(object sender, EventArgs e)
         {
-            currentPosition = currencyManager.Position;
+            //currentPosition = currencyManager.Position;
 
             copyDoctor = new DoctorStr();
             copyDoctor.doctor = textBox_Doctor.Text;

@@ -262,6 +262,10 @@ namespace St.Teresa_LIS_2019
             textBox_Remarks.DataBindings.Clear();
             textBox_Cytology.DataBindings.Clear();
 
+            textBox_Updated_By_1.DataBindings.Clear();
+            textBox_Updated_At.DataBindings.Clear();
+            textBox_Issued_By.DataBindings.Clear();
+
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
@@ -401,6 +405,10 @@ namespace St.Teresa_LIS_2019
             textBox_Remarks.DataBindings.Add("Text", dt, "Remark", false);
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
+            textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
+
             /*currencyManager = (CurrencyManager)this.BindingContext[dt];
             if (position != -1)
             {
@@ -485,7 +493,7 @@ namespace St.Teresa_LIS_2019
         private void button_F1_Click(object sender, EventArgs e)
         {
             Form_SelectPatient open = new Form_SelectPatient();
-            open.OnPatientSelectedSingle += OnPatientSelected;
+            open.OnPatientSelectedMore += OnPatientSelected;
             open.Show();
         }
 
@@ -493,7 +501,25 @@ namespace St.Teresa_LIS_2019
         {
             if (str != null)
             {
-                textBox_Patient.Text = str;
+                string sql = string.Format("SELECT patient,seq,cname,hkid,birth,age,sex FROM patient WHERE id={0}", str);
+
+                SqlCommand command = new SqlCommand(sql, DBConn.getConnection());
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    textBox_Patient.Text = reader.GetValue(0).ToString();
+                    textBox_PatSeq.Text = reader.GetValue(1).ToString();
+                    textBox_Chinese_Name.Text = reader.GetValue(2).ToString();
+                    textBox_HKID.Text = reader.GetValue(3).ToString();
+                    DateTime recordDate;
+                    if(DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
+                    {
+                        textBox_DOB.Text = recordDate.ToString("yyyy/MM/dd");
+                    }
+                    textBox_Age.Text = reader.GetValue(5).ToString();
+                    textBox_Sex.Text = reader.GetValue(6).ToString();
+                }
+                reader.Close();
             }
         }
 
@@ -592,15 +618,20 @@ namespace St.Teresa_LIS_2019
         private void button_F9_Click(object sender, EventArgs e)
         {
             Form_SelectDoctor open = new Form_SelectDoctor();
-            open.OnDoctorSelectedSingle += OnDoctorSelected;
+            open.OnDoctorSelectedWithNameAndId += OnDoctorSelected;
             open.Show();
         }
 
-        private void OnDoctorSelected(string str)
+        private void OnDoctorSelected(string doctorNameStr, string doctroIdStr)
         {
-            if (str != null)
+            if (doctorNameStr != null)
             {
-                textBox_Doctor_I_C.Text = str;
+                textBox_Doctor_I_C.Text = doctorNameStr;
+            }
+
+            if (doctroIdStr != null)
+            {
+                textBox_Doctor_I_C_ID_1.Text = doctroIdStr;
             }
         }
 
@@ -836,6 +867,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
+                    currentEditRow["ISSUE_BY"] = "Admin";
                     currentEditRow["UPDATE_BY"] = "Admin";
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
                     textBox_ID.BindingContext[dt].Position++;
@@ -863,6 +895,7 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
+                        drow["UPDATE_BY"] = "Admin";
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         textBox_ID.BindingContext[dt].Position++;
 
@@ -1223,6 +1256,7 @@ namespace St.Teresa_LIS_2019
                 button_Shif_2.Enabled = false;
                 button_Shif_3.Enabled = false;
                 button3.Enabled = false;
+                button_F9_3.Enabled = false;
 
                 disedit_modle();
             }
@@ -1304,6 +1338,7 @@ namespace St.Teresa_LIS_2019
                     button_Shif_2.Enabled = true;
                     button_Shif_3.Enabled = true;
                     button3.Enabled = true;
+                    button_F9_3.Enabled = true;
 
                     edit_modle();
                 }
@@ -1385,6 +1420,7 @@ namespace St.Teresa_LIS_2019
                         button_Shif_2.Enabled = true;
                         button_Shif_3.Enabled = true;
                         button3.Enabled = true;
+                        button_F9_3.Enabled = true;
 
                         edit_modle();
                     }
@@ -1447,6 +1483,12 @@ namespace St.Teresa_LIS_2019
                 return true;
             }
 
+            if (keyData == (Keys)Shortcut.F2 && button_F2_Previous.Enabled)
+            {
+                button_F2_Previous.PerformClick();
+                return true;
+            }
+
             if (keyData == (Keys)Shortcut.F3 && button_F3_Surgical.Enabled)
             {
                 button_F3_Surgical.PerformClick();
@@ -1456,6 +1498,12 @@ namespace St.Teresa_LIS_2019
             if (keyData == (Keys)Shortcut.F4 && button_F4_Nature.Enabled)
             {
                 button_F4_Nature.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F5 && button_F5_Description.Enabled)
+            {
+                button_F5_Description.PerformClick();
                 return true;
             }
 
@@ -1474,6 +1522,12 @@ namespace St.Teresa_LIS_2019
             if (keyData == (Keys)Shortcut.F9 && button_F9.Enabled)
             {
                 button_F9.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F10 && button_Cytology.Enabled)
+            {
+                button_Cytology.PerformClick();
                 return true;
             }
             return base.ProcessCmdKey(ref msg, keyData);

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_BXCYRecordSearch));
             this.bXCYSPECIMENBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.medlabDataSet = new St.Teresa_LIS_2019.medlabDataSet();
             this.textBox_Search_Type = new System.Windows.Forms.TextBox();
@@ -59,9 +60,23 @@
             this.textBox_Data_From = new System.Windows.Forms.TextBox();
             this.textBox_Data_To = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BindingNavigate = new System.Windows.Forms.BindingNavigator(this.components);
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.txtCurrentPage = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.lblPageCount = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingNavigate)).BeginInit();
+            this.BindingNavigate.SuspendLayout();
             this.SuspendLayout();
             // 
             // bXCYSPECIMENBindingSource
@@ -394,14 +409,119 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 80);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 80);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(984, 582);
+            this.dataGridView1.Size = new System.Drawing.Size(1008, 566);
             this.dataGridView1.TabIndex = 244;
             this.dataGridView1.VirtualMode = true;
+            // 
+            // BindingNavigate
+            // 
+            this.BindingNavigate.AddNewItem = null;
+            this.BindingNavigate.CountItem = null;
+            this.BindingNavigate.DeleteItem = null;
+            this.BindingNavigate.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.BindingNavigate.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.BindingNavigate.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton3,
+            this.bindingNavigatorSeparator2,
+            this.toolStripButton1,
+            this.toolStripSeparator4,
+            this.txtCurrentPage,
+            this.toolStripLabel1,
+            this.lblPageCount,
+            this.toolStripSeparator2,
+            this.toolStripButton2,
+            this.bindingNavigatorSeparator1,
+            this.toolStripButton4});
+            this.BindingNavigate.Location = new System.Drawing.Point(0, 649);
+            this.BindingNavigate.MoveFirstItem = null;
+            this.BindingNavigate.MoveLastItem = null;
+            this.BindingNavigate.MoveNextItem = null;
+            this.BindingNavigate.MovePreviousItem = null;
+            this.BindingNavigate.Name = "BindingNavigate";
+            this.BindingNavigate.PositionItem = null;
+            this.BindingNavigate.Size = new System.Drawing.Size(1008, 25);
+            this.BindingNavigate.TabIndex = 245;
+            this.BindingNavigate.Text = "bindingNavigator1";
+            this.BindingNavigate.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.BindingNavigate_ItemClicked);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(35, 22);
+            this.toolStripButton3.Text = "Top";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(61, 22);
+            this.toolStripButton1.Text = "Previous";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // txtCurrentPage
+            // 
+            this.txtCurrentPage.AutoSize = false;
+            this.txtCurrentPage.Name = "txtCurrentPage";
+            this.txtCurrentPage.Size = new System.Drawing.Size(40, 25);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(13, 22);
+            this.toolStripLabel1.Text = "/";
+            // 
+            // lblPageCount
+            // 
+            this.lblPageCount.AutoSize = false;
+            this.lblPageCount.Name = "lblPageCount";
+            this.lblPageCount.Size = new System.Drawing.Size(40, 22);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(39, 22);
+            this.toolStripButton2.Text = "Next";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(34, 22);
+            this.toolStripButton4.Text = "End";
             // 
             // Form_BXCYRecordSearch
             // 
@@ -410,6 +530,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(216)))), ((int)(((byte)(171)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.BindingNavigate);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox_Data_To);
             this.Controls.Add(this.textBox_Data_From);
@@ -439,12 +560,16 @@
             this.Controls.Add(this.label_Search_Type);
             this.KeyPreview = true;
             this.Name = "Form_BXCYRecordSearch";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BX/CY Record Search";
             this.Load += new System.EventHandler(this.Form_BXCYRecordSearch_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_BXCYRecordSearch_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BindingNavigate)).EndInit();
+            this.BindingNavigate.ResumeLayout(false);
+            this.BindingNavigate.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -481,5 +606,17 @@
         private System.Windows.Forms.TextBox textBox_Data_From;
         private System.Windows.Forms.TextBox textBox_Data_To;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingNavigator BindingNavigate;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripTextBox txtCurrentPage;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel lblPageCount;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }

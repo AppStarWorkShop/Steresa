@@ -320,3 +320,66 @@ BEGIN
 	AND (@keywordDiagnosis IS NULL OR @keywordDiagnosis = '' OR LOWER(diagnosis) = LOWER(@keywordDiagnosis))
 	AND (@keywordRemind IS NULL OR @keywordRemind = '' OR LOWER(remind) = LOWER(@keywordRemind))
 END
+
+
+CREATE PROCEDURE getBXCYSpecimentByPage
+	-- Add the parameters for the stored procedure here
+	@pageCount int = 30,
+	@pageNum int = 1,
+	@whereStr nvarchar(100) = '',
+	@whereVal nvarchar(100) = ''
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @pageSum INT
+	DECLARE @sqlQuery NVARCHAR(max)=''
+	DECLARE @sqlQueryCount NVARCHAR(max)=''
+
+	IF @pageNum < 1
+	BEGIN
+		SET @pageNum = 1
+	END
+
+	IF @whereStr <> ''
+	BEGIN
+		SET @sqlQuery = 
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id FROM BXCY_SPECIMEN
+		WHERE id >
+		(
+		 SELECT ISNULL(MAX(id),0)
+		 FROM 
+		  (
+		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'' ORDER BY id
+		  ) A
+		)
+		AND ' + @whereStr + ' LIKE ''%' + @whereVal + '%''
+		ORDER BY id'
+		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'''
+
+		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int', @pageCount,@pageNum
+
+		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int', @pageSum out,@pageCount
+	END
+	ELSE
+	BEGIN
+		SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM BXCY_SPECIMEN
+		WHERE id >
+		(
+		 SELECT ISNULL(MAX(id),0)
+		 FROM 
+		  (
+		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN ORDER BY id
+		  ) A
+		)
+		ORDER BY id
+		
+		SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN
+	END
+
+	--SET @recordCount = @pageSum
+	RETURN @pageSum
+END
+

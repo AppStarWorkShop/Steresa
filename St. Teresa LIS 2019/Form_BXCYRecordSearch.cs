@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace St.Teresa_LIS_2019
 {
@@ -19,7 +20,18 @@ namespace St.Teresa_LIS_2019
 
         public Boolean edit;
 
-        private int SearchTypeCount;
+        private string whereStr = "";
+        private string whereVal = "";
+
+        int pageSize = 30;     //每页显示行数
+        int nMax = 0;         //总记录数
+        int pageCount = 0;    //页数＝总记录数/每页显示行数
+        int pageCurrent = 0;   //当前页号
+        int nCurrent = 0;      //当前记录行
+        /*DataSet ds = new DataSet();
+        DataTable dtInfo = new DataTable();*/
+
+        //private int SearchTypeCount;
         public static string selected { get; private set; }
 
         public Form_BXCYRecordSearch()
@@ -36,16 +48,39 @@ namespace St.Teresa_LIS_2019
 
         private void Form_BXCYRecordSearch_Load(object sender, EventArgs e)
         {
+            whereStr = "";
+            whereVal = "";
+            pageCurrent = 1;
             loadDataGridViewDate();
             dataGridViewFormat();
         }
 
-        private void loadDataGridViewDate()
+        private void loadDataGridViewDate(int currentPageNum = 1)
         {
-            string sql = "SELECT CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM BXCY_SPECIMEN ORDER BY ID";
-            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_specimenDataSet, "bxcy_specimen");
+            string sql = string.Format("getBXCYSpecimentByPage");
+            SqlCommand checkCmd = new SqlCommand(sql, DBConn.getConnection());
+            checkCmd.CommandType = CommandType.StoredProcedure;
 
-            DataTable dt = new DataTable();
+            checkCmd.Parameters.Add(new SqlParameter("@pageCount", SqlDbType.Int));
+            checkCmd.Parameters.Add(new SqlParameter("@pageNum", SqlDbType.Int));
+            checkCmd.Parameters.Add(new SqlParameter("@whereStr", SqlDbType.NVarChar));
+            checkCmd.Parameters.Add(new SqlParameter("@whereVal", SqlDbType.NVarChar));
+
+            checkCmd.Parameters["@pageCount"].Value = pageSize;
+            checkCmd.Parameters["@pageNum"].Value = currentPageNum;
+            checkCmd.Parameters["@whereStr"].Value = whereStr;
+            checkCmd.Parameters["@whereVal"].Value = whereVal;
+
+            checkCmd.Parameters.Add("@RETURN_VALUE",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            checkCmd.CommandTimeout = 600;
+            SqlDataAdapter sdap = new SqlDataAdapter();
+            sdap.SelectCommand = checkCmd;
+            DataTable dtDb = new DataTable();
+            sdap.Fill(dtDb);
+
+            pageCount = (int)checkCmd.Parameters["@RETURN_VALUE"].Value;
+
+            dt = new DataTable();
             dt.Columns.Add("Case No.");
             dt.Columns.Add("Report Date");
             dt.Columns.Add("Patient");
@@ -64,13 +99,14 @@ namespace St.Teresa_LIS_2019
             dt.Columns.Add("EM");
             dt.Columns.Add("Id");
 
-            foreach (DataRow mDr in bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows)
+            foreach (DataRow mDr in dtDb.Rows)
             {
                 //dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"].ToString()+"/"+ mDr["sign_dr2"].ToString(), mDr["er"], mDr["em"], mDr["id"] });
                 dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"] });
             }
 
             dataGridView1.DataSource = dt;
+            LoadData();
         }
 
         private void dataGridViewFormat()
@@ -225,35 +261,31 @@ namespace St.Teresa_LIS_2019
 
             if (keyData == Keys.Enter && textBox_Search_Type.Focused)
             {
-                string sql = string.Format("SELECT CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM bxcy_specimen WHERE {0} LIKE '%{1}%'", contentSearching, textBox_Search_Type.Text.Trim());
-                DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_specimenDataSet, "bxcy_specimen");
+                whereStr = contentSearching;
+                whereVal = textBox_Search_Type.Text.Trim();
+                loadDataGridViewDate();
+                return true;
+            }
 
-                DataTable dt = new DataTable();
-                dt.Columns.Add("Case No.");
-                dt.Columns.Add("Report Date");
-                dt.Columns.Add("Patient");
-                dt.Columns.Add(" ");
-                dt.Columns.Add("Age");
-                dt.Columns.Add("Sex");
-                dt.Columns.Add("HKID No.");
-                dt.Columns.Add("Client");
-                dt.Columns.Add("Doctor In Charge");
-                dt.Columns.Add("Fz Section");
-                dt.Columns.Add("Snopcode M");
-                dt.Columns.Add("Snopcode T");
-                dt.Columns.Add("Cy report");
-                dt.Columns.Add("Sign Dr");
-                dt.Columns.Add("ER");
-                dt.Columns.Add("EM");
-                dt.Columns.Add("Id");
-
-                foreach (DataRow mDr in bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows)
-                {
-                    //dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["id"] });
-                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"] });
+            if (keyData == Keys.Enter && txtCurrentPage.Focused)
+            {
+                int inputPage;
+                bool result = int.TryParse(txtCurrentPage.Text, out inputPage);
+                if (result) {
+                    if (inputPage > 0 && inputPage <= pageCount)
+                    {
+                        pageCurrent = inputPage;
+                        loadDataGridViewDate(pageCurrent);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid page num");
+                    }
                 }
-
-                dataGridView1.DataSource = dt;
+                else
+                {
+                    MessageBox.Show("Invalid page num");
+                }
                 return true;
             }
 
@@ -312,12 +344,12 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
-                Form_BXCYFile open = new Form_BXCYFile(id);
+                Form_BXCYFile open = new Form_BXCYFile();
                 open.Show();
-                open.processNew();
+                open.newRecord();
             }
         }
+
         private void button_F2m()
         {
             if (edit)
@@ -483,6 +515,54 @@ namespace St.Teresa_LIS_2019
         private void button1_Click(object sender, EventArgs e)
         {
             textBox_Search_Type.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+        }
+
+        private void LoadData()
+        {
+            lblPageCount.Text = pageCount.ToString();
+            txtCurrentPage.Text = Convert.ToString(pageCurrent);
+        }
+
+        private void BindingNavigate_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            if (e.ClickedItem.Text == "Top")
+            {
+                pageCurrent = 1;
+                loadDataGridViewDate(pageCurrent);
+            }
+            if (e.ClickedItem.Text == "End")
+            {
+                pageCurrent = pageCount;
+                loadDataGridViewDate(pageCurrent);
+            }
+            if (e.ClickedItem.Text == "Previous")
+            {
+                pageCurrent--;
+                if (pageCurrent <= 0)
+                {
+                    MessageBox.Show("It is the first page");
+                    return;
+                }
+                else
+                {
+                    loadDataGridViewDate(pageCurrent);
+                    //nCurrent = pageSize * (pageCurrent - 1);
+                }
+            }
+            if (e.ClickedItem.Text == "Next")
+            {
+                pageCurrent++;
+                if (pageCurrent > pageCount)
+                {
+                    MessageBox.Show("It is the last page");
+                    return;
+                }
+                else
+                {
+                    loadDataGridViewDate(pageCurrent);
+                    //nCurrent = pageSize * (pageCurrent - 1);
+                }
+            }
         }
     }
 }

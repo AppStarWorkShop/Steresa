@@ -205,7 +205,7 @@ namespace St.Teresa_LIS_2019
         private void reloadDBData(int position = 0)
         {
             //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [PATIENT]", patientDataSet);
-            string sql = "SELECT * FROM [PATIENT]";
+            string sql = "SELECT TOP 1 * FROM [PATIENT] ORDER BY ID";
             //string sql = string.Format("SELECT * FROM [PATIENT] WHERE ID IN({0})", "1,2,3,4,5,6,7,8,9,10");
             DBConn.fetchDataIntoDataSet(sql, patientDataSet,"patient");
 
