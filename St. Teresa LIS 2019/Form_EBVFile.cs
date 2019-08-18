@@ -15,7 +15,7 @@ namespace St.Teresa_LIS_2019
         private DataSet ebv_specimenDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         public static Boolean merge;
-        public CurrencyManager currencyManager;
+        //public CurrencyManager currencyManager;
         private Ebv_specimenStr copyEbv_specimen;
         private int currentStatus;
         private DataTable dt;
@@ -152,12 +152,12 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(int position = 0)
         {
-            //DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [EBV_SPECIMEN]",ebv_specimenDataSet);
-            string sql = "SELECT *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [EBV_SPECIMEN]";
-            /*if (id != null)
+            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [EBV_SPECIMEN] ORDER BY ID";
+            if (this.id != null)
             {
-                sql = string.Format("SELECT * FROM [EBV_SPECIMEN] WHERE ID IN({0})", id);
-            }*/
+                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [EBV_SPECIMEN] WHERE id={0} ORDER BY ID", this.id);
+                id = null;
+            }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
 
             textBox_ID.DataBindings.Clear();
@@ -198,6 +198,10 @@ namespace St.Teresa_LIS_2019
             comboBox_SignDr.DataBindings.Clear();
             comboBox_Diagnosis.DataBindings.Clear();
             textBox_Remind.DataBindings.Clear();
+
+            textBox_Updated_By_1.DataBindings.Clear();
+            textBox_Updated_At.DataBindings.Clear();
+            textBox_Issued_By.DataBindings.Clear();
 
             dt = ebv_specimenDataSet.Tables["ebv_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -301,15 +305,19 @@ namespace St.Teresa_LIS_2019
             comboBox_Diagnosis.DataBindings.Add("SelectedValue", dt, "DIAGNOSIS", false);
             textBox_Remind.DataBindings.Add("Text", dt, "REMIND", false);
 
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
+
+            //currencyManager = (CurrencyManager)this.BindingContext[dt];
 
             //currencyManager.List.
 
-            currencyManager.Position = position;
+            //currencyManager.Position = position;
 
             //currencyManager.mo
 
-            if (id != null)
+            /*if (id != null)
             {
                 int currentPosition = 0;
                 foreach (DataRow mDr in dt.Rows)
@@ -323,7 +331,7 @@ namespace St.Teresa_LIS_2019
 
                 currencyManager.Position = currentPosition;
                 id = null;
-            }
+            }*/
         }
 
         private void reloadDBData(int position = 0)
@@ -335,29 +343,45 @@ namespace St.Teresa_LIS_2019
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            currencyManager.Position++;
+            //currencyManager.Position++;
+            string countSql = string.Format(" [ebv_specimen] WHERE id > {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            currencyManager.Position--;
+            //currencyManager.Position--;
+            string countSql = string.Format(" [ebv_specimen] WHERE id < {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
+            }
         }
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = 0;
+            //currencyManager.Position = 0;
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY ID", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY ID DESC", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
         }
 
         private void button_New_Click(object sender, EventArgs e)
@@ -368,9 +392,11 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
+
+            ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Clear();
             ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Add(currentEditRow);
 
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
         }
 
         public void processNew()
@@ -384,14 +410,16 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
+                    currentEditRow["ISSUE_BY"] = "Admin";
                     currentEditRow["UPDATE_BY"] = "Admin";
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
                     textBox_ID.BindingContext[dt].Position++;
 
                     if (DBConn.updateObject(dataAdapter, ebv_specimenDataSet, "ebv_specimen"))
                     {
-                        reloadDBData(currencyManager.Count - 1);
-                        //reloadAndBindingDBData(currencyManager.Count - 1);
+                        //reloadDBData(currencyManager.Count - 1);
+                        reloadAndBindingDBData();
+                        button_End.PerformClick();
                         MessageBox.Show("New ebv_specimen saved");
                     }
                     else
@@ -409,6 +437,7 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
+                        drow["UPDATE_BY"] = "Admin";
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         textBox_ID.BindingContext[dt].Position++;
 
@@ -610,7 +639,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Edit_Click(object sender, EventArgs e)
         {
-            currentPosition = currencyManager.Position;
+            //currentPosition = currencyManager.Position;
 
             copyEbv_specimen = new Ebv_specimenStr();
             copyEbv_specimen.CASE_NO = textBox_Case_No.Text;
@@ -666,7 +695,7 @@ namespace St.Teresa_LIS_2019
                     ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Remove(currentEditRow);
                 }
                 setButtonStatus(PageStatus.STATUS_VIEW);
-                //reloadAndBindingDBData();
+                reloadAndBindingDBData();
             }
             else
             {
@@ -726,7 +755,7 @@ namespace St.Teresa_LIS_2019
                 {
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
-                    currencyManager.Position = 0;
+                    //currencyManager.Position = 0;
 
                     reloadDBData(0);
                     MessageBox.Show("Ebv_specimen deleted");
