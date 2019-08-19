@@ -41,7 +41,7 @@ namespace St.Teresa_LIS_2019
                     DBConn.fetchDataIntoDataSetSelectOnly(sql, clientDataSet, "client");
 
                     DataTable dt = new DataTable();
-                    dt.Columns.Add("Select", typeof(bool));
+                    //dt.Columns.Add("Select", typeof(bool));
                     dt.Columns.Add("Client's Name");
                     dt.Columns.Add("Chinese Name");
                     dt.Columns.Add("Address");
@@ -52,7 +52,7 @@ namespace St.Teresa_LIS_2019
 
                     foreach (DataRow mDr in clientDataSet.Tables["client"].Rows)
                     {
-                        dt.Rows.Add(new object[] { "false", mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
+                        dt.Rows.Add(new object[] { mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
                     }
 
                     dataGridView1.DataSource = dt;
@@ -89,7 +89,7 @@ namespace St.Teresa_LIS_2019
             DBConn.fetchDataIntoDataSetSelectOnly(sql, clientDataSet, "client");
 
             DataTable dt = new DataTable();
-            dt.Columns.Add("Select", typeof(bool));
+            //dt.Columns.Add("Select", typeof(bool));
             dt.Columns.Add("Client's Name");
             dt.Columns.Add("Chinese Name");
             dt.Columns.Add("Address");
@@ -100,34 +100,34 @@ namespace St.Teresa_LIS_2019
 
             foreach (DataRow mDr in clientDataSet.Tables["client"].Rows)
             {
-                dt.Rows.Add(new object[] { "false", mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
+                dt.Rows.Add(new object[] { mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
             }
 
             dataGridView1.DataSource = dt;
         }
         private void dataGridViewFormat()
         {
-            DataGridViewColumn column0 = dataGridView1.Columns[0];
-            column0.Width = 30;
-            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            /*DataGridViewColumn column0 = dataGridView1.Columns[0];
+            column0.Width = 30;*/
+            DataGridViewColumn column1 = dataGridView1.Columns[0];
             column1.Width = 190;
             column1.ReadOnly = true;
-            DataGridViewColumn column2 = dataGridView1.Columns[2];
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
             column2.Width = 145;
             column2.ReadOnly = true;
-            DataGridViewColumn column3 = dataGridView1.Columns[3];
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
             column3.Width = 130;
             column3.ReadOnly = true;
-            DataGridViewColumn column4 = dataGridView1.Columns[4];
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
             column4.Width = 30;
             column4.ReadOnly = true;
-            DataGridViewColumn column5 = dataGridView1.Columns[5];
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
             column5.Width = 30;
             column5.ReadOnly = true;
-            DataGridViewColumn column6 = dataGridView1.Columns[6];
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
             column6.Width = 130;
             column6.ReadOnly = true;
-            DataGridViewColumn column7 = dataGridView1.Columns[7];
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
             column7.Width = 1;
             column7.ReadOnly = true;
             this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
@@ -152,7 +152,7 @@ namespace St.Teresa_LIS_2019
         {
             string idStr = "";
             string clientStr = "";
-            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            /*for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 if (bool.Parse(dataGridView1.Rows[i].Cells[0].Value.ToString()) == true)
                 {
@@ -171,6 +171,12 @@ namespace St.Teresa_LIS_2019
 
                     }
                 }
+            }*/
+
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                idStr = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
+                clientStr = dataGridView1.Rows[0].Cells[0].Value.ToString();
             }
 
             if (idStr == "")

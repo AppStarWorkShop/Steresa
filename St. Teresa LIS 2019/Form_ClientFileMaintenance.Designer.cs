@@ -83,7 +83,6 @@
             this.button_Delete = new System.Windows.Forms.Button();
             this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_Remark = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -724,18 +723,6 @@
             this.textBox_Remark.Size = new System.Drawing.Size(510, 47);
             this.textBox_Remark.TabIndex = 64;
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(703, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(29, 25);
-            this.button1.TabIndex = 65;
-            this.button1.Text = "All";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form_ClientFileMaintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -743,7 +730,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(218)))), ((int)(((byte)(213)))));
             this.ClientSize = new System.Drawing.Size(784, 519);
             this.ControlBox = false;
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_Remark);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Delete);
@@ -849,6 +835,5 @@
         private System.Windows.Forms.Button button_Delete;
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.TextBox textBox_Remark;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -266,6 +266,8 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["AGE"] = 0;
             currentEditRow["SEX"] = "M";
+
+            patientDataSet.Tables["patient"].Rows.Clear();
             patientDataSet.Tables["patient"].Rows.Add(currentEditRow);
 
             //currencyManager.Position = currencyManager.Count - 1;

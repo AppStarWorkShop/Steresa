@@ -305,6 +305,8 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = doctorDataSet.Tables["doctor"].NewRow();
             currentEditRow["id"] = -1;
+
+            doctorDataSet.Tables["doctor"].Rows.Clear();
             doctorDataSet.Tables["doctor"].Rows.Add(currentEditRow);
 
             //currencyManager.Position = currencyManager.Count - 1;
@@ -528,7 +530,7 @@ namespace St.Teresa_LIS_2019
                     doctorDataSet.Tables["doctor"].Rows.Remove(currentEditRow);
                 }
                 setButtonStatus(PageStatus.STATUS_VIEW);
-                //reloadAndBindingDBData();
+                reloadAndBindingDBData();
             }
             else
             {

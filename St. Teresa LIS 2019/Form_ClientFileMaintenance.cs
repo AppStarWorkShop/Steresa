@@ -22,7 +22,7 @@ namespace St.Teresa_LIS_2019
         private DataSet clientDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         public static Boolean merge;
-        public CurrencyManager currencyManager;
+        //public CurrencyManager currencyManager;
         private ClientStr copyClient;
         private int currentStatus;
         private DataTable dt;
@@ -210,7 +210,7 @@ namespace St.Teresa_LIS_2019
         private void reloadAndBindingDBData(int position = 0)
         {
             //dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [client]", clientDataSet, "client");
-            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [client]", clientDataSet, "client");
+            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 1 * FROM [client] ORDER BY ID", clientDataSet, "client");
             //fetchDataIntoDataSet("SELECT * FROM [PATIENT]");
 
             textBox_ID.DataBindings.Clear();
@@ -262,23 +262,23 @@ namespace St.Teresa_LIS_2019
             textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
             textBox_Last_Updated_By_No.DataBindings.Add("Text", dt, "UPDATE_CTR", false);
 
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void reloadDBData(int position = 0)
         {
             //dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 100 * FROM [client]", clientDataSet, "client");
-            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT * FROM [client]", clientDataSet, "client");
+            dataAdapter = DBConn.fetchDataIntoDataSet("SELECT TOP 1 * FROM [client] ORDER BY ID", clientDataSet, "client");
             dt = clientDataSet.Tables["client"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
 
-            currencyManager = (CurrencyManager)this.BindingContext[dt];
+            /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-            currencyManager.Position = position;
+            currencyManager.Position = position;*/
         }
 
         private void button_Label_Click(object sender, EventArgs e)
@@ -298,7 +298,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Edit_Click(object sender, EventArgs e)
         {
-            currentPosition = currencyManager.Position;
+            //currentPosition = currencyManager.Position;
 
             copyClient = new ClientStr();
             copyClient.CLIENT = textBox_Client.Text;
@@ -319,27 +319,6 @@ namespace St.Teresa_LIS_2019
             copyClient.PRICE_EBV = textBox_CYG.Text;
             copyClient.PRICE_CYG = textBox_EBV.Text;
 
-            /*textBox_ID.DataBindings.Clear();
-            textBox_Client.DataBindings.Clear();
-            textBox_Chi_Name.DataBindings.Clear();
-            textBox_Addess1.DataBindings.Clear();
-            textBox_Addess2.DataBindings.Clear();
-            textBox_Addess3.DataBindings.Clear();
-            textBox_Addess4.DataBindings.Clear();
-            textBox_Tel_No1.DataBindings.Clear();
-            textBox_Tel_No2.DataBindings.Clear();
-            textBox_Fax_No.DataBindings.Clear();
-            textBox_Contact_Info.DataBindings.Clear();
-            textBox_Remark.DataBindings.Clear();
-            textBox_BX.DataBindings.Clear();
-            textBox_BB.DataBindings.Clear();
-            textBox_CY.DataBindings.Clear();
-            textBox_CC.DataBindings.Clear();
-            textBox_CYG.DataBindings.Clear();
-            textBox_EBV.DataBindings.Clear();
-            textBox_Last_Updated_By.DataBindings.Clear();
-            textBox_Update_At.DataBindings.Clear();*/
-
             setButtonStatus(PageStatus.STATUS_EDIT);
 
         }
@@ -348,125 +327,21 @@ namespace St.Teresa_LIS_2019
         {
             setButtonStatus(PageStatus.STATUS_NEW);
 
-            /*textBox_ID.DataBindings.Clear();
-            textBox_Client.DataBindings.Clear();
-            textBox_Chi_Name.DataBindings.Clear();
-            textBox_Addess1.DataBindings.Clear();
-            textBox_Addess2.DataBindings.Clear();
-            textBox_Addess3.DataBindings.Clear();
-            textBox_Addess4.DataBindings.Clear();
-            textBox_Tel_No1.DataBindings.Clear();
-            textBox_Tel_No2.DataBindings.Clear();
-            textBox_Fax_No.DataBindings.Clear();
-            textBox_Contact_Info.DataBindings.Clear();
-            textBox_Remark.DataBindings.Clear();
-            textBox_BX.DataBindings.Clear();
-            textBox_BB.DataBindings.Clear();
-            textBox_CY.DataBindings.Clear();
-            textBox_CC.DataBindings.Clear();
-            textBox_CYG.DataBindings.Clear();
-            textBox_EBV.DataBindings.Clear();
-            textBox_Last_Updated_By.DataBindings.Clear();
-            textBox_Update_At.DataBindings.Clear();
-
-            textBox_ID.Text = "";
-            textBox_Client.Text = "";
-            textBox_Chi_Name.Text = "";
-            textBox_Addess1.Text = "";
-            textBox_Addess2.Text = "";
-            textBox_Addess3.Text = "";
-            textBox_Addess4.Text = "";
-            textBox_Tel_No1.Text = "";
-            textBox_Tel_No2.Text = "";
-            textBox_Fax_No.Text = "";
-            textBox_Contact_Info.Text = "";
-            textBox_Remark.Text = "";
-            textBox_BX.Text = "";
-            textBox_BB.Text = "";
-            textBox_CY.Text = "";
-            textBox_CC.Text = "";
-            textBox_CYG.Text = "";
-            textBox_EBV.Text = "";
-            textBox_Last_Updated_By.Text = "";
-            textBox_Update_At.Text = "";*/
-
             currentEditRow = clientDataSet.Tables["client"].NewRow();
             currentEditRow["id"] = -1;
+
+            clientDataSet.Tables["client"].Rows.Clear();
             clientDataSet.Tables["client"].Rows.Add(currentEditRow);
 
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
         {
             if (currentStatus == PageStatus.STATUS_NEW)
             {
-
-                /*string insertSql = string.Format("INSERT INTO client (CLIENT,CNAME,ADDRESS1,ADDRESS2,ADDRESS3,ADDRESS4,TEL,TEL2,FAX,CONTACT,REMARK,UPDATE_BY,UPDATE_AT,PRICE_BX,PRICE_BB,PRICE_CY,PRICE_CC,PRICE_EBV,PRICE_CYG) VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}',{13},'{14}',{15},{16},{17},{18},{19},{20})", textBox_Client.Text, textBox_Chi_Name.Text, textBox_Addess1.Text, textBox_Addess2.Text, textBox_Addess3.Text, textBox_Addess4.Text, textBox_Tel_No1.Text, textBox_Tel_No2.Text, textBox_Fax_No.Text, textBox_Contact_Info.Text, textBox_Remark.Text, "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"), textBox_BX.Text, textBox_BB.Text, textBox_CY.Text, textBox_CC.Text, textBox_CYG.Text, textBox_EBV.Text);
-                if (DBConn.executeUpdate(insertSql))
-                {
-                    MessageBox.Show("New Client saved");
-                }
-                else
-                {
-                    MessageBox.Show("Client updated fail, please contact Admin");
-                }*/
-
-                /*DataRow drow = clientDataSet.Tables["client"].NewRow();
-                drow["CLIENT"] = textBox_Client.Text;
-                drow["CNAME"] = textBox_Chi_Name.Text;
-                drow["ADDRESS1"] = textBox_Addess1.Text;
-                drow["ADDRESS2"] = textBox_Addess2.Text;
-                drow["ADDRESS3"] = textBox_Addess3.Text;
-                drow["ADDRESS4"] = textBox_Addess4.Text;
-                drow["TEL"] = textBox_Tel_No1.Text;
-                drow["TEL2"] = textBox_Tel_No2.Text;
-                drow["FAX"] = textBox_Fax_No.Text;
-                drow["CONTACT"] = textBox_Contact_Info.Text;
-                drow["REMARK"] = textBox_Remark.Text;
-                drow["PRICE_BX"] = textBox_BX.Text == "" ? "0" : textBox_BX.Text;
-                drow["PRICE_BB"] = textBox_BB.Text == "" ? "0" : textBox_BB.Text;
-                drow["PRICE_CY"] = textBox_CY.Text == "" ? "0" : textBox_CY.Text;
-                drow["PRICE_CC"] = textBox_CC.Text == "" ? "0" : textBox_CC.Text;
-                drow["PRICE_EBV"] = textBox_CYG.Text == "" ? "0" : textBox_CYG.Text;
-                drow["PRICE_CYG"] = textBox_EBV.Text == "" ? "0" : textBox_EBV.Text;
-                drow["UPDATE_BY"] = "Admin";
-                drow["UPDATE_AT"] = DateTime.Now.ToString("yyyy-MM-dd HH:MM");
-                drow["ID"] = 0;
-
-                clientDataSet.Tables["client"].Rows.Add(drow);
-                if (DBConn.updateObject(dataAdapter, clientDataSet, "client"))
-                {
-                    MessageBox.Show("New client saved");
-                }
-                else
-                {
-                    MessageBox.Show("Client saved fail, please contact Admin");
-                }
-
-                setButtonStatus(PageStatus.STATUS_VIEW);
-                reloadAndBindingDBData(currencyManager.Count - 1);*/
-
                 if (currentEditRow != null)
                 {
-                    /*currentEditRow["CLIENT"] = textBox_Client.Text;
-                    currentEditRow["CNAME"] = textBox_Chi_Name.Text;
-                    currentEditRow["ADDRESS1"] = textBox_Addess1.Text;
-                    currentEditRow["ADDRESS2"] = textBox_Addess2.Text;
-                    currentEditRow["ADDRESS3"] = textBox_Addess3.Text;
-                    currentEditRow["ADDRESS4"] = textBox_Addess4.Text;
-                    currentEditRow["TEL"] = textBox_Tel_No1.Text;
-                    currentEditRow["TEL2"] = textBox_Tel_No2.Text;
-                    currentEditRow["FAX"] = textBox_Fax_No.Text;
-                    currentEditRow["CONTACT"] = textBox_Contact_Info.Text;
-                    currentEditRow["REMARK"] = textBox_Remark.Text;
-                    currentEditRow["PRICE_BX"] = textBox_BX.Text == "" ? "0" : textBox_BX.Text;
-                    currentEditRow["PRICE_BB"] = textBox_BB.Text == "" ? "0" : textBox_BB.Text;
-                    currentEditRow["PRICE_CY"] = textBox_CY.Text == "" ? "0" : textBox_CY.Text;
-                    currentEditRow["PRICE_CC"] = textBox_CC.Text == "" ? "0" : textBox_CC.Text;
-                    currentEditRow["PRICE_EBV"] = textBox_CYG.Text == "" ? "0" : textBox_CYG.Text;
-                    currentEditRow["PRICE_CYG"] = textBox_EBV.Text == "" ? "0" : textBox_EBV.Text;*/
-
                     currentEditRow["UPDATE_BY"] = "Admin";
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("yyyy-MM-dd HH:MM");
 
@@ -474,7 +349,7 @@ namespace St.Teresa_LIS_2019
 
                     if (DBConn.updateObject(dataAdapter, clientDataSet, "client"))
                     {
-                        reloadDBData(currencyManager.Count - 1);
+                        reloadDBData();
                         MessageBox.Show("New client saved");
                     }
                     else
@@ -489,39 +364,9 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentStatus == PageStatus.STATUS_EDIT)
                 {
-                    //DateTime birthDate = DateTime.Parse(datePicker_DOB.Text.ToString());
-                    /*string remarkChange = textBox_Remark.Text.Replace("'", "\'");
-                    string updateSql = string.Format("UPDATE client SET CLIENT = '{0}',CNAME = '{1}',ADDRESS1='{2}',ADDRESS2='{3}',ADDRESS3='{4}',ADDRESS4='{5}',TEL='{6}',TEL2='{7}',FAX='{8}',CONTACT='{9}',REMARK='{10}',UPDATE_BY='{11}',UPDATE_AT='{12}',PRICE_BX={13},PRICE_BB={14},PRICE_CY={15},PRICE_CC={16},PRICE_EBV={17},PRICE_CYG={18} WHERE ID={19}", textBox_Client.Text, textBox_Chi_Name.Text, textBox_Addess1.Text, textBox_Addess2.Text, textBox_Addess3.Text, textBox_Addess4.Text, textBox_Tel_No1.Text, textBox_Tel_No2.Text, textBox_Fax_No.Text, textBox_Contact_Info.Text, textBox_Remark.Text.Replace("'", "\'"), "Admin", DateTime.Now.ToString("yyyy-MM-dd HH:MM"), textBox_BX.Text == "" ? "0" : textBox_BX.Text, textBox_BB.Text == "" ? "0" : textBox_BB.Text, textBox_CY.Text == "" ? "0" : textBox_CY.Text, textBox_CC.Text == "" ? "0" : textBox_CC.Text, textBox_CYG.Text == "" ? "0" : textBox_CYG.Text, textBox_EBV.Text == "" ? "0" : textBox_EBV.Text, textBox_ID.Text);
-
-                    if (DBConn.executeUpdate(updateSql))
-                    {
-                        MessageBox.Show("Client updated");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Client updated fail, please contact Admin");
-                    }*/
-
                     DataRow drow = clientDataSet.Tables["client"].Rows.Find(textBox_ID.Text);
                     if(drow != null)
                     {
-                        /*drow["CLIENT"] = textBox_Client.Text;
-                        drow["CNAME"] = textBox_Chi_Name.Text;
-                        drow["ADDRESS1"] = textBox_Addess1.Text;
-                        drow["ADDRESS2"] = textBox_Addess2.Text;
-                        drow["ADDRESS3"] = textBox_Addess3.Text;
-                        drow["ADDRESS4"] = textBox_Addess4.Text;
-                        drow["TEL"] = textBox_Tel_No1.Text;
-                        drow["TEL2"] = textBox_Tel_No2.Text;
-                        drow["FAX"] = textBox_Fax_No.Text;
-                        drow["CONTACT"] = textBox_Contact_Info.Text;
-                        drow["REMARK"] = textBox_Remark.Text;
-                        drow["PRICE_BX"] = textBox_BX.Text == "" ? "0" : textBox_BX.Text;
-                        drow["PRICE_BB"] = textBox_BB.Text == "" ? "0" : textBox_BB.Text;
-                        drow["PRICE_CY"] = textBox_CY.Text == "" ? "0" : textBox_CY.Text;
-                        drow["PRICE_CC"] = textBox_CC.Text == "" ? "0" : textBox_CC.Text;
-                        drow["PRICE_EBV"] = textBox_CYG.Text == "" ? "0" : textBox_CYG.Text;
-                        drow["PRICE_CYG"] = textBox_EBV.Text == "" ? "0" : textBox_EBV.Text;*/
                         drow["UPDATE_BY"] = "Admin";
                         drow["UPDATE_AT"] = DateTime.Now.ToString("yyyy-MM-dd HH:MM");
 
@@ -553,7 +398,7 @@ namespace St.Teresa_LIS_2019
                 {
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
-                    currencyManager.Position = 0;
+                    //currencyManager.Position = 0;
                     reloadDBData(0);
 
                     MessageBox.Show("Client deleted");
@@ -562,17 +407,6 @@ namespace St.Teresa_LIS_2019
                 {
                     MessageBox.Show("Client deleted fail, please contact Admin");
                 }
-
-                /*DataRow drow = clientDataSet.Tables["client"].Rows.Find(textBox_ID.Text);
-                if (drow != null)
-                {
-                    clientDataSet.Tables["client"].Rows.Remove(drow);
-                    textBox_ID.BindingContext[dt].Position++;
-
-                    DBConn.updateObject(dataAdapter, clientDataSet, "client");
-                    MessageBox.Show("Client deleted");
-                }*/
-
                 setButtonStatus(PageStatus.STATUS_VIEW);
             }
         }
@@ -605,30 +439,46 @@ namespace St.Teresa_LIS_2019
                 dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
                 dt.Columns["id"].AutoIncrement = true;
                 dt.Columns["id"].AutoIncrementStep = 1;
-                currencyManager = (CurrencyManager)this.BindingContext[dt];
+                /*currencyManager = (CurrencyManager)this.BindingContext[dt];
 
-                currencyManager.Position = 0;
+                currencyManager.Position = 0;*/
             }
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            currencyManager.Position++;
+            //currencyManager.Position++;
+            string countSql = string.Format(" [client] WHERE id > {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 * FROM [client] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, clientDataSet, "client");
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            currencyManager.Position--;
+            //currencyManager.Position--;
+            string countSql = string.Format(" [client] WHERE id < {0}", textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string sql = string.Format("SELECT TOP 1 * FROM [client] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, clientDataSet, "client");
+            }
         }
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = 0;
+            //currencyManager.Position = 0;
+            string sql = string.Format("SELECT TOP 1 * FROM [client] ORDER BY ID", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, clientDataSet, "client");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            currencyManager.Position = currencyManager.Count - 1;
+            //currencyManager.Position = currencyManager.Count - 1;
+            string sql = string.Format("SELECT TOP 1 * FROM [client] ORDER BY ID DESC", textBox_ID.Text);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, clientDataSet, "client");
         }
 
         private void edit_modle()
@@ -697,7 +547,7 @@ namespace St.Teresa_LIS_2019
                     clientDataSet.Tables["client"].Rows.Remove(currentEditRow);
                 }
                 setButtonStatus(PageStatus.STATUS_VIEW);
-                //reloadAndBindingDBData();
+                reloadAndBindingDBData();
             }
             else
             {
