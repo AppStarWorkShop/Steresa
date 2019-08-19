@@ -265,6 +265,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_By_1.DataBindings.Clear();
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
+            textBox_Issued_At.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -408,6 +409,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
             /*currencyManager = (CurrencyManager)this.BindingContext[dt];
             if (position != -1)
@@ -1198,8 +1200,8 @@ namespace St.Teresa_LIS_2019
                 button_F7.Enabled = false;
                 button_F8.Enabled = false;
                 button_F9.Enabled = false;
-                button_F3_Surgical.Enabled = false;
-                button_F4_Nature.Enabled = false;
+                button_F3_Surgical.Enabled = true;
+                button_F4_Nature.Enabled = true;
 
                 textBox_Case_No.Enabled = false;
                 textBox_Date.Enabled = false;

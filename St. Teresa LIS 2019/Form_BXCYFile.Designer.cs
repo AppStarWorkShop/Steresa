@@ -178,6 +178,7 @@
             this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_Surgical = new System.Windows.Forms.TextBox();
             this.textBox_Nature = new System.Windows.Forms.TextBox();
+            this.textBox_Issued_At = new System.Windows.Forms.TextBox();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet1)).BeginInit();
@@ -1649,6 +1650,7 @@
             // 
             this.panel_Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(244)))));
             this.panel_Update.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_Update.Controls.Add(this.textBox_Issued_At);
             this.panel_Update.Controls.Add(this.textBox_Issued_By);
             this.panel_Update.Controls.Add(this.label_Issued_By);
             this.panel_Update.Controls.Add(this.textBox_Updated_At);
@@ -1667,7 +1669,7 @@
             this.textBox_Issued_By.Location = new System.Drawing.Point(79, 38);
             this.textBox_Issued_By.Name = "textBox_Issued_By";
             this.textBox_Issued_By.ReadOnly = true;
-            this.textBox_Issued_By.Size = new System.Drawing.Size(145, 21);
+            this.textBox_Issued_By.Size = new System.Drawing.Size(79, 21);
             this.textBox_Issued_By.TabIndex = 6;
             this.textBox_Issued_By.Text = " -  /  /     :  :  AM";
             // 
@@ -2023,6 +2025,15 @@
             this.textBox_Nature.Size = new System.Drawing.Size(1, 21);
             this.textBox_Nature.TabIndex = 244;
             // 
+            // textBox_Issued_At
+            // 
+            this.textBox_Issued_At.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bXCYSPECIMENBindingSource, "update_ctr", true));
+            this.textBox_Issued_At.Location = new System.Drawing.Point(158, 38);
+            this.textBox_Issued_At.Name = "textBox_Issued_At";
+            this.textBox_Issued_At.ReadOnly = true;
+            this.textBox_Issued_At.Size = new System.Drawing.Size(66, 21);
+            this.textBox_Issued_At.TabIndex = 7;
+            // 
             // Form_BXCYFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2298,5 +2309,6 @@
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.TextBox textBox_Surgical;
         private System.Windows.Forms.TextBox textBox_Nature;
+        private System.Windows.Forms.TextBox textBox_Issued_At;
     }
 }
