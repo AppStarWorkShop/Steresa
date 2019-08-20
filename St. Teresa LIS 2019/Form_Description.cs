@@ -6,13 +6,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace St.Teresa_LIS_2019
 {
     public partial class Form_Description : Form
     {
+        private string caseNo;
+        private DataSet ebv_diagDataSet = new DataSet();
+        private SqlDataAdapter dataAdapter;
+        private DataTable dt;
+
         public Form_Description()
         {
+            InitializeComponent();
+        }
+
+        public Form_Description(string caseNo)
+        {
+            this.caseNo = caseNo;
             InitializeComponent();
         }
 
@@ -126,6 +138,47 @@ namespace St.Teresa_LIS_2019
         {
             Form_MICROSCOPICReportMaintenance open = new Form_MICROSCOPICReportMaintenance();
             open.Show();
+        }
+
+        private void Form_Description_Load(object sender, EventArgs e)
+        {
+            reloadAndBindingDBData();
+        }
+
+        private void reloadAndBindingDBData(int position = 0)
+        {
+            string sql = string.Format("SELECT TOP 1 * FROM [BXCY_DIAG] WHERE case_no = '{0}' ORDER BY ID",caseNo);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_diagDataSet, "ebv_diag");
+
+            dt = ebv_diagDataSet.Tables["ebv_diag"];
+            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+            dt.Columns["id"].AutoIncrement = true;
+            dt.Columns["id"].AutoIncrementStep = 1;
+
+            textBox_Picture_File_1.DataBindings.Clear();
+
+            textBox_Picture_File_1.DataBindings.Add("Text", dt, "id", false);
+            
+        }
+
+        private void button_Top_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Back_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Next_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_End_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -202,10 +202,10 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(int position = 0)
         {
-            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY ID";
+            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no,id";
             if(this.id != null)
             {
-                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} ORDER BY ID",this.id);
+                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} ORDER BY  case_no,id", this.id);
                 id = null;
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
@@ -437,7 +437,7 @@ namespace St.Teresa_LIS_2019
 
         private void reloadDBData(int position = 0)
         {
-            string sql = "SELECT TOP 1 * FROM [BXCY_SPECIMEN] ORDER BY ID";
+            string sql = "SELECT TOP 1 * FROM [BXCY_SPECIMEN] ORDER BY  case_no,id";
             DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             DataTable dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
@@ -577,7 +577,7 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F5m()
         {
-            Form_Description open = new Form_Description();
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim());
             open.Show();
         }
 
@@ -830,10 +830,10 @@ namespace St.Teresa_LIS_2019
         private void button_Next_Click(object sender, EventArgs e)
         {
             //currencyManager.Position++;
-            string countSql = string.Format(" [bxcy_specimen] WHERE id > {0}", textBox_ID.Text);
+            string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}' ORDER BY  case_no,id", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
             }
         }
@@ -841,10 +841,10 @@ namespace St.Teresa_LIS_2019
         private void button_Back_Click(object sender, EventArgs e)
         {
             //currencyManager.Position--;
-            string countSql = string.Format(" [bxcy_specimen] WHERE id < {0}", textBox_ID.Text);
+            string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}' ORDER BY case_no DESC,id DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
             }
         }
@@ -852,14 +852,14 @@ namespace St.Teresa_LIS_2019
         private void button_Top_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = 0;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY ID", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no,id");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = currencyManager.Count - 1;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY ID DESC", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no DESC,id DESC");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
         }
 

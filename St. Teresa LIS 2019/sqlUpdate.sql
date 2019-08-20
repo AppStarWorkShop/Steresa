@@ -88,70 +88,58 @@ update BXCY_SPECIMEN SET snopcode_m3 = LTRIM(RTRIM(snopcode_m3));
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='PATIENT')
 BEGIN
 ALTER TABLE PATIENT ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE PATIENT ADD CONSTRAINT [PK_PATIENT] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='CLIENT')
+BEGIN
 ALTER TABLE CLIENT ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE CLIENT ADD CONSTRAINT [PK_CLIENT] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DOCTOR')
+BEGIN
 ALTER TABLE DOCTOR ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE DOCTOR ADD CONSTRAINT [PK_DOCTOR] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='RESULT')
+BEGIN
 ALTER TABLE result ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE result ADD CONSTRAINT [PK_result] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='SNOPCODE')
+BEGIN
 ALTER TABLE snopcode ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE snopcode ADD CONSTRAINT [PK_snopcode] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAGNOSIS')
+BEGIN
 ALTER TABLE diagnosis ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE diagnosis ADD CONSTRAINT [PK_diagnosis] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='CYREPORT')
+BEGIN
 ALTER TABLE cyreport ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE cyreport ADD CONSTRAINT [PK_cyreport] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='EBV_SPECIMEN')
+BEGIN
 ALTER TABLE ebv_specimen ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE ebv_specimen ADD CONSTRAINT [PK_ebv_specimen] primary key (ID)
-GO
 END
 
-IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='MASTER')
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'master' AND LTRIM(b.name)='PATIENT')
 ALTER TABLE PATIENT ADD [master] [int] NULL
-GO
-END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
 ALTER TABLE BXCY_SPECIMEN ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE BXCY_SPECIMEN ADD CONSTRAINT [PK_bxcy_specimen] primary key (ID)
-GO
 END
 
 IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[system_setting]') AND type in (N'U'))
@@ -175,55 +163,45 @@ CREATE TABLE [dbo].[system_setting](
 GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='SYSTEM_SETTING')
+BEGIN
 ALTER TABLE system_setting ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE system_setting ADD CONSTRAINT [PK_system_setting] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='USER')
+BEGIN
 ALTER TABLE [USER] ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE [USER] ADD CONSTRAINT [PK_USER] primary key (ID)
-GO
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Clinical_History' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD Clinical_History [nvarchar](255) NULL
-GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = '[Class]' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD [Class] [nvarchar](50) NULL
-GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_ic2' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic2 [nvarchar](10) NULL
-GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_id2' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD Doctor_id2 [nvarchar](10) NULL
-GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_ic3' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic3 [nvarchar](10) NULL
-GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_id3' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD Doctor_id3 [nvarchar](10) NULL
-GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Histo' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD Histo [nvarchar](50) NULL
-GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Cyto_Type' AND LTRIM(b.name)='BXCY_SPECIMEN')
 ALTER TABLE BXCY_SPECIMEN ADD Cyto_Type [nvarchar](50) NULL
-GO
 
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_searchBXCYSpecimentRecord]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_searchBXCYSpecimentRecord]
-GO
+
 CREATE PROCEDURE [dbo].[sp_searchBXCYSpecimentRecord]
 	@caseDateFrom nvarchar(20)=NULL,
 	@caseDateTo nvarchar(20)=NULL,
@@ -276,14 +254,12 @@ END
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='BXCY_DIAG')
 BEGIN
 ALTER TABLE BXCY_DIAG ADD [id] [int] IDENTITY(1,1) NOT NULL
-GO
 ALTER TABLE BXCY_DIAG ADD CONSTRAINT [PK_bxcy_diag] primary key (ID)
-GO
 END
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_searchEBVSpecimentRecord]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[sp_searchEBVSpecimentRecord]
-GO
+
 CREATE PROCEDURE [dbo].[sp_searchEBVSpecimentRecord]
 	@caseDateFrom nvarchar(20)=NULL,
 	@caseDateTo nvarchar(20)=NULL,
@@ -312,7 +288,7 @@ GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[getBXCYSpecimentByPage]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[getBXCYSpecimentByPage]
-GO
+
 CREATE PROCEDURE getBXCYSpecimentByPage
 	-- Add the parameters for the stored procedure here
 	@pageCount int = 30,
@@ -347,7 +323,7 @@ BEGIN
 		  ) A
 		)
 		AND ' + @whereStr + ' LIKE ''%' + @whereVal + '%''
-		ORDER BY id'
+		ORDER BY case_no,id'
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'''
 
 		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int', @pageCount,@pageNum
@@ -362,10 +338,10 @@ BEGIN
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN ORDER BY id
+		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN ORDER BY case_no,id
 		  ) A
 		)
-		ORDER BY id
+		ORDER BY case_no,id
 		
 		SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN
 	END
@@ -378,7 +354,7 @@ GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[getEBVSpecimentByPage]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[getEBVSpecimentByPage]
-GO
+
 CREATE PROCEDURE getEBVSpecimentByPage
 	-- Add the parameters for the stored procedure here
 	@pageCount int = 30,
@@ -413,7 +389,7 @@ BEGIN
 		  ) A
 		)
 		AND ' + @whereStr + ' LIKE ''%' + @whereVal + '%''
-		ORDER BY id'
+		ORDER BY case_no,id'
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'''
 
 		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int', @pageCount,@pageNum
@@ -428,10 +404,10 @@ BEGIN
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN ORDER BY id
+		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN ORDER BY case_no,id
 		  ) A
 		)
-		ORDER BY id
+		ORDER BY case_no,id
 		
 		SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN
 	END

@@ -351,10 +351,10 @@ namespace St.Teresa_LIS_2019
         private void button_Next_Click(object sender, EventArgs e)
         {
             //currencyManager.Position++;
-            string countSql = string.Format(" [ebv_specimen] WHERE id > {0}", textBox_ID.Text);
+            string countSql = string.Format(" [ebv_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}' ORDER BY CASE_NO,ID", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
             }
         }
@@ -362,10 +362,10 @@ namespace St.Teresa_LIS_2019
         private void button_Back_Click(object sender, EventArgs e)
         {
             //currencyManager.Position--;
-            string countSql = string.Format(" [ebv_specimen] WHERE id < {0}", textBox_ID.Text);
+            string countSql = string.Format(" [ebv_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}' ORDER BY CASE_NO DESC,ID DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
             }
         }
@@ -373,14 +373,14 @@ namespace St.Teresa_LIS_2019
         private void button_Top_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = 0;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY ID", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY CASE_NO,ID");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = currencyManager.Count - 1;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY ID DESC", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY CASE_NO DESC,ID DESC");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
         }
 
