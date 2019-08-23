@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Description));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_MACROSCOPIC = new System.Windows.Forms.TabPage();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.button_MAC_Add_Edit = new System.Windows.Forms.Button();
             this.textBox_Remarks = new System.Windows.Forms.TextBox();
             this.button7 = new System.Windows.Forms.Button();
@@ -105,9 +106,9 @@
             this.comboBox13 = new System.Windows.Forms.ComboBox();
             this.comboBox14 = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox_Parts1 = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
+            this.comboBox_Description2 = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.tabPage_DIAGNOSIS = new System.Windows.Forms.TabPage();
             this.textBox_Diagnosis = new System.Windows.Forms.TextBox();
@@ -180,6 +181,7 @@
             // tabPage_MACROSCOPIC
             // 
             this.tabPage_MACROSCOPIC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(219)))), ((int)(((byte)(210)))));
+            this.tabPage_MACROSCOPIC.Controls.Add(this.textBox_ID);
             this.tabPage_MACROSCOPIC.Controls.Add(this.button_MAC_Add_Edit);
             this.tabPage_MACROSCOPIC.Controls.Add(this.textBox_Remarks);
             this.tabPage_MACROSCOPIC.Controls.Add(this.button7);
@@ -252,6 +254,13 @@
             this.tabPage_MACROSCOPIC.TabIndex = 0;
             this.tabPage_MACROSCOPIC.Text = "F1. MACROSCOPIC";
             this.tabPage_MACROSCOPIC.Click += new System.EventHandler(this.tabPage_MACROSCOPIC_Click);
+            // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Location = new System.Drawing.Point(1194, 4);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(17, 29);
+            this.textBox_ID.TabIndex = 251;
             // 
             // button_MAC_Add_Edit
             // 
@@ -934,6 +943,7 @@
             // 
             // comboBox_Description
             // 
+            this.comboBox_Description.DisplayMember = "marco_name";
             this.comboBox_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Description.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Description.FormattingEnabled = true;
@@ -941,6 +951,7 @@
             this.comboBox_Description.Name = "comboBox_Description";
             this.comboBox_Description.Size = new System.Drawing.Size(553, 26);
             this.comboBox_Description.TabIndex = 126;
+            this.comboBox_Description.ValueMember = "marco_name";
             // 
             // textBox_Picture_File_1
             // 
@@ -977,9 +988,9 @@
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.comboBox13);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.comboBox14);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.label18);
-            this.tabPage_MICROSCOPIC_CY.Controls.Add(this.textBox8);
+            this.tabPage_MICROSCOPIC_CY.Controls.Add(this.textBox_Parts1);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.label16);
-            this.tabPage_MICROSCOPIC_CY.Controls.Add(this.comboBox11);
+            this.tabPage_MICROSCOPIC_CY.Controls.Add(this.comboBox_Description2);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.label17);
             this.tabPage_MICROSCOPIC_CY.Location = new System.Drawing.Point(4, 29);
             this.tabPage_MICROSCOPIC_CY.Name = "tabPage_MICROSCOPIC_CY";
@@ -1106,16 +1117,16 @@
             this.label18.TabIndex = 220;
             this.label18.Text = "Doctor / Organ / Template :";
             // 
-            // textBox8
+            // textBox_Parts1
             // 
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.ForeColor = System.Drawing.Color.DarkViolet;
-            this.textBox8.Location = new System.Drawing.Point(962, 8);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(31, 24);
-            this.textBox8.TabIndex = 219;
-            this.textBox8.Text = "99";
+            this.textBox_Parts1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Parts1.ForeColor = System.Drawing.Color.DarkViolet;
+            this.textBox_Parts1.Location = new System.Drawing.Point(962, 8);
+            this.textBox_Parts1.Name = "textBox_Parts1";
+            this.textBox_Parts1.ReadOnly = true;
+            this.textBox_Parts1.Size = new System.Drawing.Size(31, 24);
+            this.textBox_Parts1.TabIndex = 219;
+            this.textBox_Parts1.Text = "99";
             // 
             // label16
             // 
@@ -1129,15 +1140,17 @@
             this.label16.TabIndex = 217;
             this.label16.Text = "Parts :";
             // 
-            // comboBox11
+            // comboBox_Description2
             // 
-            this.comboBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox11.ForeColor = System.Drawing.Color.Blue;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Location = new System.Drawing.Point(116, 6);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(553, 26);
-            this.comboBox11.TabIndex = 216;
+            this.comboBox_Description2.DisplayMember = "marco_name";
+            this.comboBox_Description2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox_Description2.ForeColor = System.Drawing.Color.Blue;
+            this.comboBox_Description2.FormattingEnabled = true;
+            this.comboBox_Description2.Location = new System.Drawing.Point(116, 6);
+            this.comboBox_Description2.Name = "comboBox_Description2";
+            this.comboBox_Description2.Size = new System.Drawing.Size(553, 26);
+            this.comboBox_Description2.TabIndex = 216;
+            this.comboBox_Description2.ValueMember = "marco_name";
             // 
             // label17
             // 
@@ -1204,6 +1217,7 @@
             // 
             // comboBox_Snop_M2
             // 
+            this.comboBox_Snop_M2.DisplayMember = "desc";
             this.comboBox_Snop_M2.DropDownWidth = 300;
             this.comboBox_Snop_M2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M2.ForeColor = System.Drawing.Color.Blue;
@@ -1223,6 +1237,7 @@
             this.comboBox_Snop_M2.Name = "comboBox_Snop_M2";
             this.comboBox_Snop_M2.Size = new System.Drawing.Size(191, 26);
             this.comboBox_Snop_M2.TabIndex = 233;
+            this.comboBox_Snop_M2.ValueMember = "desc";
             // 
             // label_Snop_M2
             // 
@@ -1238,6 +1253,7 @@
             // 
             // comboBox_Snop_M3
             // 
+            this.comboBox_Snop_M3.DisplayMember = "desc";
             this.comboBox_Snop_M3.DropDownWidth = 300;
             this.comboBox_Snop_M3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M3.ForeColor = System.Drawing.Color.Blue;
@@ -1257,6 +1273,7 @@
             this.comboBox_Snop_M3.Name = "comboBox_Snop_M3";
             this.comboBox_Snop_M3.Size = new System.Drawing.Size(154, 26);
             this.comboBox_Snop_M3.TabIndex = 231;
+            this.comboBox_Snop_M3.ValueMember = "desc";
             // 
             // label_Snop_M3
             // 
@@ -1272,6 +1289,7 @@
             // 
             // comboBox_Snop_T2
             // 
+            this.comboBox_Snop_T2.DisplayMember = "desc";
             this.comboBox_Snop_T2.DropDownWidth = 300;
             this.comboBox_Snop_T2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T2.ForeColor = System.Drawing.Color.Blue;
@@ -1289,6 +1307,7 @@
             this.comboBox_Snop_T2.Name = "comboBox_Snop_T2";
             this.comboBox_Snop_T2.Size = new System.Drawing.Size(191, 26);
             this.comboBox_Snop_T2.TabIndex = 229;
+            this.comboBox_Snop_T2.ValueMember = "desc";
             // 
             // label_Snop_T2
             // 
@@ -1304,6 +1323,7 @@
             // 
             // comboBox_Snop_T3
             // 
+            this.comboBox_Snop_T3.DisplayMember = "desc";
             this.comboBox_Snop_T3.DropDownWidth = 300;
             this.comboBox_Snop_T3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T3.ForeColor = System.Drawing.Color.Blue;
@@ -1321,6 +1341,7 @@
             this.comboBox_Snop_T3.Name = "comboBox_Snop_T3";
             this.comboBox_Snop_T3.Size = new System.Drawing.Size(154, 26);
             this.comboBox_Snop_T3.TabIndex = 227;
+            this.comboBox_Snop_T3.ValueMember = "desc";
             // 
             // label_Snop_T3
             // 
@@ -1336,6 +1357,7 @@
             // 
             // comboBox_Snop_M1
             // 
+            this.comboBox_Snop_M1.DisplayMember = "desc";
             this.comboBox_Snop_M1.DropDownWidth = 300;
             this.comboBox_Snop_M1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M1.ForeColor = System.Drawing.Color.Blue;
@@ -1355,9 +1377,11 @@
             this.comboBox_Snop_M1.Name = "comboBox_Snop_M1";
             this.comboBox_Snop_M1.Size = new System.Drawing.Size(172, 26);
             this.comboBox_Snop_M1.TabIndex = 225;
+            this.comboBox_Snop_M1.ValueMember = "desc";
             // 
             // comboBox_Snop_T1
             // 
+            this.comboBox_Snop_T1.DisplayMember = "desc";
             this.comboBox_Snop_T1.DropDownWidth = 300;
             this.comboBox_Snop_T1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T1.ForeColor = System.Drawing.Color.Blue;
@@ -1375,6 +1399,7 @@
             this.comboBox_Snop_T1.Name = "comboBox_Snop_T1";
             this.comboBox_Snop_T1.Size = new System.Drawing.Size(172, 26);
             this.comboBox_Snop_T1.TabIndex = 224;
+            this.comboBox_Snop_T1.ValueMember = "desc";
             // 
             // label_Snop_M1
             // 
@@ -1490,6 +1515,7 @@
             // 
             // comboBox_Operation
             // 
+            this.comboBox_Operation.DisplayMember = "operation";
             this.comboBox_Operation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Operation.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Operation.FormattingEnabled = true;
@@ -1497,6 +1523,7 @@
             this.comboBox_Operation.Name = "comboBox_Operation";
             this.comboBox_Operation.Size = new System.Drawing.Size(798, 26);
             this.comboBox_Operation.TabIndex = 212;
+            this.comboBox_Operation.ValueMember = "operation";
             // 
             // label_Operation
             // 
@@ -1576,6 +1603,7 @@
             // 
             // comboBox_Site
             // 
+            this.comboBox_Site.DisplayMember = "site";
             this.comboBox_Site.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Site.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Site.FormattingEnabled = true;
@@ -1583,6 +1611,7 @@
             this.comboBox_Site.Name = "comboBox_Site";
             this.comboBox_Site.Size = new System.Drawing.Size(798, 26);
             this.comboBox_Site.TabIndex = 201;
+            this.comboBox_Site.ValueMember = "site";
             // 
             // label_Site
             // 
@@ -1944,9 +1973,9 @@
         private System.Windows.Forms.ComboBox comboBox13;
         private System.Windows.Forms.ComboBox comboBox14;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox_Parts1;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.ComboBox comboBox11;
+        private System.Windows.Forms.ComboBox comboBox_Description2;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox_Diagnosis;
         private System.Windows.Forms.TextBox textBox_Remarks;
@@ -1956,5 +1985,6 @@
         private System.Windows.Forms.Button button_MIC_Add_Edit;
         private System.Windows.Forms.ComboBox comboBox5_MIC_Add;
         private System.Windows.Forms.Label label_MIC_Add;
+        private System.Windows.Forms.TextBox textBox_ID;
     }
 }

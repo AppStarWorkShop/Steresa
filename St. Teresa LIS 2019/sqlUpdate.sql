@@ -416,3 +416,45 @@ BEGIN
 	RETURN @pageSum
 END
 GO
+
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[description]') AND type in (N'U'))
+CREATE TABLE [dbo].[description](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[description] [nchar](10) NULL,
+ CONSTRAINT [PK_description] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+INSERT INTO description(description) VALUES('Figure 1');
+INSERT INTO description(description) VALUES('Figure 2');
+INSERT INTO description(description) VALUES('Figure 3');
+INSERT INTO description(description) VALUES('Figure 4');
+INSERT INTO description(description) VALUES('Figure 5');
+INSERT INTO description(description) VALUES('Figure 6');
+INSERT INTO description(description) VALUES('Figure 7');
+INSERT INTO description(description) VALUES('Figure 8');
+INSERT INTO description(description) VALUES('Figure 9');
+INSERT INTO description(description) VALUES('Figure 10');
+INSERT INTO description(description) VALUES('Figure 11');
+INSERT INTO description(description) VALUES('Figure 12');
+INSERT INTO description(description) VALUES('Figure 13');
+INSERT INTO description(description) VALUES('Figure 14');
+GO
+
+
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[marco_name]') AND type in (N'U'))
+CREATE TABLE [dbo].[marco_name](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[marco_name] [nvarchar](200) NULL,
+ CONSTRAINT [PK_marco_name] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+INSERT INTO marco_name(marco_name) VALUES('MACROSCOPIC EXAMINATION:');
+INSERT INTO marco_name(marco_name) VALUES('FROZEN SECION REPORT:');
+INSERT INTO marco_name(marco_name) VALUES('SUPPLEMENTARY REPORT:');
+GO

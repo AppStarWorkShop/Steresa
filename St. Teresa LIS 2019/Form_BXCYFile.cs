@@ -19,10 +19,10 @@ namespace St.Teresa_LIS_2019
         private Bxcy_specimenStr copybxcy_specimen;
         private int currentStatus;
         private DataTable dt;
-        private int currentPosition;
+        //private int currentPosition;
         private DataRow currentEditRow;
         private string id;
-        private string surgical;
+        //private string surgical;
 
         public class Bxcy_specimen
         {
@@ -577,7 +577,7 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F5m()
         {
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim());
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim());
             open.Show();
         }
 
