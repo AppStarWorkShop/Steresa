@@ -70,6 +70,12 @@
     <Compile Include="Form_AdditionalTests.Designer.cs">
       <DependentUpon>Form_AdditionalTests.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_Authorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Authorization.Designer.cs">
+      <DependentUpon>Form_Authorization.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_BXCYFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="Form_BXCYRecordSearch.Designer.cs">
       <DependentUpon>Form_BXCYRecordSearch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_BXeHRCCSPFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_BXeHRCCSPFile.Designer.cs">
+      <DependentUpon>Form_BXeHRCCSPFile.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_CaseSearch.cs">
       <SubType>Form</SubType>
@@ -177,6 +189,18 @@
     </Compile>
     <Compile Include="Form_Description.Designer.cs">
       <DependentUpon>Form_Description.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DescriptionBXeHRCCSP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DescriptionBXeHRCCSP.Designer.cs">
+      <DependentUpon>Form_DescriptionBXeHRCCSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_DiagnosisDictionaryMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_DiagnosisDictionaryMaintenance.Designer.cs">
+      <DependentUpon>Form_DiagnosisDictionaryMaintenance.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_DigitalSignature.cs">
       <SubType>Form</SubType>
@@ -358,6 +382,12 @@
     <Compile Include="Form_NatureOfSpecimenReportMaintenance.Designer.cs">
       <DependentUpon>Form_NatureOfSpecimenReportMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_OperationFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_OperationFileMaintenance.Designer.cs">
+      <DependentUpon>Form_OperationFileMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_PathologyReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -424,6 +454,12 @@
     <Compile Include="Form_SelectPatient.Designer.cs">
       <DependentUpon>Form_SelectPatient.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_SiteFileMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SiteFileMaintenance.Designer.cs">
+      <DependentUpon>Form_SiteFileMaintenance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_SnopCodeMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -453,6 +489,12 @@
     </Compile>
     <Compile Include="Form_UploadDateMenu.Designer.cs">
       <DependentUpon>Form_UploadDateMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_UploadeHRCCSPSpecimensByWebService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_UploadeHRCCSPSpecimensByWebService.Designer.cs">
+      <DependentUpon>Form_UploadeHRCCSPSpecimensByWebService.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_UploadSTHSpecimensByWebService.cs">
       <SubType>Form</SubType>
@@ -485,6 +527,9 @@
     <EmbeddedResource Include="Form_AdditionalTests.resx">
       <DependentUpon>Form_AdditionalTests.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_Authorization.resx">
+      <DependentUpon>Form_Authorization.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_BXCYFile.resx">
       <DependentUpon>Form_BXCYFile.cs</DependentUpon>
     </EmbeddedResource>
@@ -493,6 +538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_BXCYRecordSearch.resx">
       <DependentUpon>Form_BXCYRecordSearch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_BXeHRCCSPFile.resx">
+      <DependentUpon>Form_BXeHRCCSPFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_CaseSearch.resx">
       <DependentUpon>Form_CaseSearch.cs</DependentUpon>
@@ -538,6 +586,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Description.resx">
       <DependentUpon>Form_Description.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DescriptionBXeHRCCSP.resx">
+      <DependentUpon>Form_DescriptionBXeHRCCSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_DiagnosisDictionaryMaintenance.resx">
+      <DependentUpon>Form_DiagnosisDictionaryMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_DigitalSignature.resx">
       <DependentUpon>Form_DigitalSignature.cs</DependentUpon>
@@ -629,6 +683,9 @@
     <EmbeddedResource Include="Form_NatureOfSpecimenReportMaintenance.resx">
       <DependentUpon>Form_NatureOfSpecimenReportMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_OperationFileMaintenance.resx">
+      <DependentUpon>Form_OperationFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_PathologyReport.resx">
       <DependentUpon>Form_PathologyReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -662,6 +719,9 @@
     <EmbeddedResource Include="Form_SelectPatient.resx">
       <DependentUpon>Form_SelectPatient.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_SiteFileMaintenance.resx">
+      <DependentUpon>Form_SiteFileMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_SnopCodeMaintenance.resx">
       <DependentUpon>Form_SnopCodeMaintenance.cs</DependentUpon>
     </EmbeddedResource>
@@ -676,6 +736,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_UploadDateMenu.resx">
       <DependentUpon>Form_UploadDateMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_UploadeHRCCSPSpecimensByWebService.resx">
+      <DependentUpon>Form_UploadeHRCCSPSpecimensByWebService.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_UploadSTHSpecimensByWebService.resx">
       <DependentUpon>Form_UploadSTHSpecimensByWebService.cs</DependentUpon>

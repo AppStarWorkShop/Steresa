@@ -49,6 +49,7 @@
             this.label_Description = new System.Windows.Forms.Label();
             this.comboBox_MACROSCOPIC = new System.Windows.Forms.ComboBox();
             this.label_MACROSCOPIC = new System.Windows.Forms.Label();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,9 +61,9 @@
             this.panel2.Controls.Add(this.textBox_Last_Updated_By_No);
             this.panel2.Controls.Add(this.textBox_Last_Updated_By);
             this.panel2.Controls.Add(this.label_Last_Updated_By);
-            this.panel2.Location = new System.Drawing.Point(12, 226);
+            this.panel2.Location = new System.Drawing.Point(12, 209);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(563, 29);
+            this.panel2.Size = new System.Drawing.Size(563, 27);
             this.panel2.TabIndex = 301;
             // 
             // textBox_Update_At
@@ -81,7 +82,7 @@
             this.label_Update_At.AutoSize = true;
             this.label_Update_At.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.label_Update_At.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_Update_At.Location = new System.Drawing.Point(305, 7);
+            this.label_Update_At.Location = new System.Drawing.Point(305, 6);
             this.label_Update_At.Name = "label_Update_At";
             this.label_Update_At.Size = new System.Drawing.Size(66, 15);
             this.label_Update_At.TabIndex = 64;
@@ -115,7 +116,7 @@
             this.label_Last_Updated_By.AutoSize = true;
             this.label_Last_Updated_By.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.label_Last_Updated_By.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_Last_Updated_By.Location = new System.Drawing.Point(7, 7);
+            this.label_Last_Updated_By.Location = new System.Drawing.Point(7, 6);
             this.label_Last_Updated_By.Name = "label_Last_Updated_By";
             this.label_Last_Updated_By.Size = new System.Drawing.Size(108, 15);
             this.label_Last_Updated_By.TabIndex = 61;
@@ -125,11 +126,11 @@
             // 
             this.textBox_Desc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Desc.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Desc.Location = new System.Drawing.Point(142, 45);
+            this.textBox_Desc.Location = new System.Drawing.Point(142, 42);
             this.textBox_Desc.Multiline = true;
             this.textBox_Desc.Name = "textBox_Desc";
             this.textBox_Desc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Desc.Size = new System.Drawing.Size(416, 174);
+            this.textBox_Desc.Size = new System.Drawing.Size(416, 161);
             this.textBox_Desc.TabIndex = 300;
             // 
             // button_Delete
@@ -138,13 +139,14 @@
             this.button_Delete.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Delete.Image = ((System.Drawing.Image)(resources.GetObject("button_Delete.Image")));
             this.button_Delete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Delete.Location = new System.Drawing.Point(404, 259);
+            this.button_Delete.Location = new System.Drawing.Point(404, 239);
             this.button_Delete.Name = "button_Delete";
-            this.button_Delete.Size = new System.Drawing.Size(58, 40);
+            this.button_Delete.Size = new System.Drawing.Size(58, 37);
             this.button_Delete.TabIndex = 299;
             this.button_Delete.Text = "Delete";
             this.button_Delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Delete.UseVisualStyleBackColor = true;
+            this.button_Delete.Click += new System.EventHandler(this.button_Delete_Click);
             // 
             // button_Save
             // 
@@ -152,13 +154,14 @@
             this.button_Save.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button_Save.Image = ((System.Drawing.Image)(resources.GetObject("button_Save.Image")));
             this.button_Save.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Save.Location = new System.Drawing.Point(242, 259);
+            this.button_Save.Location = new System.Drawing.Point(242, 239);
             this.button_Save.Name = "button_Save";
-            this.button_Save.Size = new System.Drawing.Size(48, 40);
+            this.button_Save.Size = new System.Drawing.Size(48, 37);
             this.button_Save.TabIndex = 298;
             this.button_Save.Text = "Save";
             this.button_Save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // button_New
             // 
@@ -166,13 +169,14 @@
             this.button_New.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_New.Image = ((System.Drawing.Image)(resources.GetObject("button_New.Image")));
             this.button_New.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_New.Location = new System.Drawing.Point(296, 259);
+            this.button_New.Location = new System.Drawing.Point(296, 239);
             this.button_New.Name = "button_New";
-            this.button_New.Size = new System.Drawing.Size(48, 40);
+            this.button_New.Size = new System.Drawing.Size(48, 37);
             this.button_New.TabIndex = 297;
             this.button_New.Text = "New";
             this.button_New.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_New.UseVisualStyleBackColor = true;
+            this.button_New.Click += new System.EventHandler(this.button_New_Click);
             // 
             // button_Edit
             // 
@@ -180,13 +184,14 @@
             this.button_Edit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Edit.Image = ((System.Drawing.Image)(resources.GetObject("button_Edit.Image")));
             this.button_Edit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Edit.Location = new System.Drawing.Point(350, 259);
+            this.button_Edit.Location = new System.Drawing.Point(350, 239);
             this.button_Edit.Name = "button_Edit";
-            this.button_Edit.Size = new System.Drawing.Size(48, 40);
+            this.button_Edit.Size = new System.Drawing.Size(48, 37);
             this.button_Edit.TabIndex = 296;
             this.button_Edit.Text = "Edit";
             this.button_Edit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Edit.UseVisualStyleBackColor = true;
+            this.button_Edit.Click += new System.EventHandler(this.button_Edit_Click);
             // 
             // button_Undo
             // 
@@ -194,13 +199,14 @@
             this.button_Undo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button_Undo.Image = ((System.Drawing.Image)(resources.GetObject("button_Undo.Image")));
             this.button_Undo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Undo.Location = new System.Drawing.Point(468, 259);
+            this.button_Undo.Location = new System.Drawing.Point(468, 239);
             this.button_Undo.Name = "button_Undo";
-            this.button_Undo.Size = new System.Drawing.Size(52, 40);
+            this.button_Undo.Size = new System.Drawing.Size(52, 37);
             this.button_Undo.TabIndex = 295;
             this.button_Undo.Text = "Undo";
             this.button_Undo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Undo.UseVisualStyleBackColor = true;
+            this.button_Undo.Click += new System.EventHandler(this.button_Undo_Click);
             // 
             // button_Exit
             // 
@@ -208,9 +214,9 @@
             this.button_Exit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_Exit.Image")));
             this.button_Exit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Exit.Location = new System.Drawing.Point(526, 259);
+            this.button_Exit.Location = new System.Drawing.Point(526, 239);
             this.button_Exit.Name = "button_Exit";
-            this.button_Exit.Size = new System.Drawing.Size(48, 40);
+            this.button_Exit.Size = new System.Drawing.Size(48, 37);
             this.button_Exit.TabIndex = 294;
             this.button_Exit.Text = "Exit";
             this.button_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -223,13 +229,14 @@
             this.button_End.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_End.Image = ((System.Drawing.Image)(resources.GetObject("button_End.Image")));
             this.button_End.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_End.Location = new System.Drawing.Point(172, 259);
+            this.button_End.Location = new System.Drawing.Point(172, 239);
             this.button_End.Name = "button_End";
-            this.button_End.Size = new System.Drawing.Size(48, 40);
+            this.button_End.Size = new System.Drawing.Size(48, 37);
             this.button_End.TabIndex = 293;
             this.button_End.Text = "End";
             this.button_End.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_End.UseVisualStyleBackColor = true;
+            this.button_End.Click += new System.EventHandler(this.button_End_Click);
             // 
             // button_Next
             // 
@@ -237,13 +244,14 @@
             this.button_Next.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Next.Image = ((System.Drawing.Image)(resources.GetObject("button_Next.Image")));
             this.button_Next.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Next.Location = new System.Drawing.Point(118, 259);
+            this.button_Next.Location = new System.Drawing.Point(118, 239);
             this.button_Next.Name = "button_Next";
-            this.button_Next.Size = new System.Drawing.Size(48, 40);
+            this.button_Next.Size = new System.Drawing.Size(48, 37);
             this.button_Next.TabIndex = 292;
             this.button_Next.Text = "Next";
             this.button_Next.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Next.UseVisualStyleBackColor = true;
+            this.button_Next.Click += new System.EventHandler(this.button_Next_Click);
             // 
             // button_Back
             // 
@@ -251,13 +259,14 @@
             this.button_Back.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Back.Image = ((System.Drawing.Image)(resources.GetObject("button_Back.Image")));
             this.button_Back.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Back.Location = new System.Drawing.Point(64, 259);
+            this.button_Back.Location = new System.Drawing.Point(64, 239);
             this.button_Back.Name = "button_Back";
-            this.button_Back.Size = new System.Drawing.Size(48, 40);
+            this.button_Back.Size = new System.Drawing.Size(48, 37);
             this.button_Back.TabIndex = 291;
             this.button_Back.Text = "Back";
             this.button_Back.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Back.UseVisualStyleBackColor = true;
+            this.button_Back.Click += new System.EventHandler(this.button_Back_Click);
             // 
             // button_Top
             // 
@@ -265,13 +274,14 @@
             this.button_Top.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Top.Image = ((System.Drawing.Image)(resources.GetObject("button_Top.Image")));
             this.button_Top.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Top.Location = new System.Drawing.Point(10, 259);
+            this.button_Top.Location = new System.Drawing.Point(10, 239);
             this.button_Top.Name = "button_Top";
-            this.button_Top.Size = new System.Drawing.Size(48, 40);
+            this.button_Top.Size = new System.Drawing.Size(48, 37);
             this.button_Top.TabIndex = 290;
             this.button_Top.Text = "Top";
             this.button_Top.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Top.UseVisualStyleBackColor = true;
+            this.button_Top.Click += new System.EventHandler(this.button_Top_Click);
             // 
             // label_Description
             // 
@@ -279,7 +289,7 @@
             this.label_Description.BackColor = System.Drawing.Color.Transparent;
             this.label_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Description.ForeColor = System.Drawing.Color.Black;
-            this.label_Description.Location = new System.Drawing.Point(22, 45);
+            this.label_Description.Location = new System.Drawing.Point(22, 42);
             this.label_Description.Name = "label_Description";
             this.label_Description.Size = new System.Drawing.Size(104, 18);
             this.label_Description.TabIndex = 289;
@@ -287,16 +297,17 @@
             // 
             // comboBox_MACROSCOPIC
             // 
-            this.comboBox_MACROSCOPIC.DisplayMember = "DESC";
+            this.comboBox_MACROSCOPIC.DisplayMember = "MACROSCOPIC";
             this.comboBox_MACROSCOPIC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_MACROSCOPIC.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_MACROSCOPIC.FormattingEnabled = true;
-            this.comboBox_MACROSCOPIC.Location = new System.Drawing.Point(170, 13);
+            this.comboBox_MACROSCOPIC.Location = new System.Drawing.Point(170, 12);
             this.comboBox_MACROSCOPIC.Name = "comboBox_MACROSCOPIC";
             this.comboBox_MACROSCOPIC.Size = new System.Drawing.Size(388, 26);
             this.comboBox_MACROSCOPIC.TabIndex = 288;
             this.comboBox_MACROSCOPIC.Tag = "Surgical Procedure";
-            this.comboBox_MACROSCOPIC.ValueMember = "REPORT";
+            this.comboBox_MACROSCOPIC.ValueMember = "MACROSCOPIC";
+            this.comboBox_MACROSCOPIC.SelectedIndexChanged += new System.EventHandler(this.comboBox_MACROSCOPIC_SelectedIndexChanged);
             // 
             // label_MACROSCOPIC
             // 
@@ -304,19 +315,27 @@
             this.label_MACROSCOPIC.BackColor = System.Drawing.Color.Transparent;
             this.label_MACROSCOPIC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_MACROSCOPIC.ForeColor = System.Drawing.Color.Black;
-            this.label_MACROSCOPIC.Location = new System.Drawing.Point(22, 16);
+            this.label_MACROSCOPIC.Location = new System.Drawing.Point(22, 15);
             this.label_MACROSCOPIC.Name = "label_MACROSCOPIC";
             this.label_MACROSCOPIC.Size = new System.Drawing.Size(142, 18);
             this.label_MACROSCOPIC.TabIndex = 287;
             this.label_MACROSCOPIC.Text = "MACROSCOPIC :";
             // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Location = new System.Drawing.Point(665, 12);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(10, 21);
+            this.textBox_ID.TabIndex = 302;
+            // 
             // Form_MACROSCOPICReportMaintenance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(584, 312);
+            this.ClientSize = new System.Drawing.Size(584, 288);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.textBox_Desc);
             this.Controls.Add(this.button_Delete);
@@ -334,6 +353,7 @@
             this.Controls.Add(this.label_MACROSCOPIC);
             this.Name = "Form_MACROSCOPICReportMaintenance";
             this.Text = "MACROSCOPIC Report Maintenance";
+            this.Load += new System.EventHandler(this.Form_MACROSCOPICReportMaintenance_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -363,5 +383,6 @@
         private System.Windows.Forms.Label label_Description;
         private System.Windows.Forms.ComboBox comboBox_MACROSCOPIC;
         private System.Windows.Forms.Label label_MACROSCOPIC;
+        private System.Windows.Forms.TextBox textBox_ID;
     }
 }

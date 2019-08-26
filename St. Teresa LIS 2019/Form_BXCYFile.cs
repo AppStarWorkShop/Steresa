@@ -573,12 +573,15 @@ namespace St.Teresa_LIS_2019
         }*/
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
-            button_F5m();
-        }
-        private void button_F5m()
-        {
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim());
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus);
+            open.OnBxcyDiagExit += OnStatusReturn;
             open.Show();
+        }
+
+        private void OnStatusReturn(int status)
+        {
+            currentStatus = status;
+            setButtonStatus(currentStatus);
         }
 
         private void button_F7_Click(object sender, EventArgs e)
@@ -1534,5 +1537,12 @@ namespace St.Teresa_LIS_2019
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
+        private void button_Advance_Click(object sender, EventArgs e)
+        {
+            Form_Authorization open = new Form_Authorization();
+            open.Show();
+        }
+
     }
 }

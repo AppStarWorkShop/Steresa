@@ -343,3 +343,20 @@ C:\Steresa2\St. Teresa LIS 2019\bin\Debug\St.Teresa_LIS_2019.exe
 C:\Steresa2\St. Teresa LIS 2019\bin\Debug\St.Teresa_LIS_2019.pdb
 C:\Steresa2\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.exe
 C:\Steresa2\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.pdb
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\NPOI.dll
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\NPOI.OOXML.dll
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Steresa1\St. Teresa LIS 2019\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_ClinicalHistoryEditLog.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DailyLogReportForEBV.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_FindingCommentsReportMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_GynaecologicalCytologyReport.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_MACROSCOPICReportMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_MICROSCOPICReportMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_NatureOfSpecimenReportMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_PathologyReport.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_PathologyReportEBV.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_STHDiagnosticAmount.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SurgicalProcedureReportMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St. Teresa LIS 2019.csproj.CopyComplete

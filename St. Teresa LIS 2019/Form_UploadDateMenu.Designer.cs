@@ -32,15 +32,16 @@
             this.button_2_Upload_PDF_Report = new System.Windows.Forms.Button();
             this.button_1_Upload_Date_To_STH_WS = new System.Windows.Forms.Button();
             this.label_Line_2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_Exit
             // 
             this.button_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Exit.ForeColor = System.Drawing.Color.DarkRed;
-            this.button_Exit.Location = new System.Drawing.Point(56, 241);
+            this.button_Exit.Location = new System.Drawing.Point(43, 240);
             this.button_Exit.Name = "button_Exit";
-            this.button_Exit.Size = new System.Drawing.Size(238, 29);
+            this.button_Exit.Size = new System.Drawing.Size(251, 29);
             this.button_Exit.TabIndex = 83;
             this.button_Exit.Text = "0. Exit";
             this.button_Exit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -51,11 +52,11 @@
             // 
             this.button_2_Upload_PDF_Report.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_2_Upload_PDF_Report.ForeColor = System.Drawing.Color.DarkViolet;
-            this.button_2_Upload_PDF_Report.Location = new System.Drawing.Point(56, 140);
+            this.button_2_Upload_PDF_Report.Location = new System.Drawing.Point(43, 139);
             this.button_2_Upload_PDF_Report.Name = "button_2_Upload_PDF_Report";
-            this.button_2_Upload_PDF_Report.Size = new System.Drawing.Size(238, 29);
+            this.button_2_Upload_PDF_Report.Size = new System.Drawing.Size(251, 29);
             this.button_2_Upload_PDF_Report.TabIndex = 85;
-            this.button_2_Upload_PDF_Report.Text = "2. Upload PDF Report";
+            this.button_2_Upload_PDF_Report.Text = "3. Upload PDF Report";
             this.button_2_Upload_PDF_Report.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button_2_Upload_PDF_Report.UseVisualStyleBackColor = true;
             // 
@@ -63,9 +64,9 @@
             // 
             this.button_1_Upload_Date_To_STH_WS.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_1_Upload_Date_To_STH_WS.ForeColor = System.Drawing.Color.Blue;
-            this.button_1_Upload_Date_To_STH_WS.Location = new System.Drawing.Point(56, 65);
+            this.button_1_Upload_Date_To_STH_WS.Location = new System.Drawing.Point(43, 38);
             this.button_1_Upload_Date_To_STH_WS.Name = "button_1_Upload_Date_To_STH_WS";
-            this.button_1_Upload_Date_To_STH_WS.Size = new System.Drawing.Size(238, 29);
+            this.button_1_Upload_Date_To_STH_WS.Size = new System.Drawing.Size(251, 29);
             this.button_1_Upload_Date_To_STH_WS.TabIndex = 84;
             this.button_1_Upload_Date_To_STH_WS.Text = "1. Upload Date To STH - by WS";
             this.button_1_Upload_Date_To_STH_WS.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -84,6 +85,18 @@
             this.label_Line_2.TabIndex = 86;
             this.label_Line_2.Text = "__________________________";
             // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Blue;
+            this.button1.Location = new System.Drawing.Point(43, 87);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(251, 29);
+            this.button1.TabIndex = 87;
+            this.button1.Text = "2. Upload Date To STH - DH eHR";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Form_UploadDateMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +104,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(224)))), ((int)(((byte)(183)))));
             this.ClientSize = new System.Drawing.Size(352, 317);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label_Line_2);
             this.Controls.Add(this.button_Exit);
             this.Controls.Add(this.button_2_Upload_PDF_Report);
@@ -108,5 +122,6 @@
         private System.Windows.Forms.Button button_2_Upload_PDF_Report;
         private System.Windows.Forms.Button button_1_Upload_Date_To_STH_WS;
         private System.Windows.Forms.Label label_Line_2;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -35,7 +35,6 @@
             this.panel_BX_CY_SPECIMEN = new System.Windows.Forms.Panel();
             this.label_Upload_info = new System.Windows.Forms.Label();
             this.button_Upload_To_Server = new System.Windows.Forms.Button();
-            this.button_Autogen_Barcodres = new System.Windows.Forms.Button();
             this.label_Or = new System.Windows.Forms.Label();
             this.textBox_Case_No = new System.Windows.Forms.TextBox();
             this.label_Case_No = new System.Windows.Forms.Label();
@@ -45,13 +44,14 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button_Upload = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label_Uploaded = new System.Windows.Forms.Label();
             this.label_Uploaded_no = new System.Windows.Forms.Label();
+            this.label_Uploaded = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label_Total_Rec_no = new System.Windows.Forms.Label();
-            this.label_Total_Rec = new System.Windows.Forms.Label();
             this.label_Failure_PDF_no = new System.Windows.Forms.Label();
             this.label_Failure_PDF = new System.Windows.Forms.Label();
+            this.label_Total_Rec_no = new System.Windows.Forms.Label();
+            this.label_Total_Rec = new System.Windows.Forms.Label();
+            this.button_Autogen_Barcodres = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -120,17 +120,6 @@
             this.button_Upload_To_Server.TabIndex = 160;
             this.button_Upload_To_Server.Text = "...";
             this.button_Upload_To_Server.UseVisualStyleBackColor = true;
-            // 
-            // button_Autogen_Barcodres
-            // 
-            this.button_Autogen_Barcodres.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_Autogen_Barcodres.ForeColor = System.Drawing.Color.DarkRed;
-            this.button_Autogen_Barcodres.Location = new System.Drawing.Point(649, 69);
-            this.button_Autogen_Barcodres.Name = "button_Autogen_Barcodres";
-            this.button_Autogen_Barcodres.Size = new System.Drawing.Size(123, 22);
-            this.button_Autogen_Barcodres.TabIndex = 159;
-            this.button_Autogen_Barcodres.Text = "Autogen Barcodres";
-            this.button_Autogen_Barcodres.UseVisualStyleBackColor = true;
             // 
             // label_Or
             // 
@@ -241,18 +230,6 @@
             this.panel1.Size = new System.Drawing.Size(138, 42);
             this.panel1.TabIndex = 157;
             // 
-            // label_Uploaded
-            // 
-            this.label_Uploaded.AutoSize = true;
-            this.label_Uploaded.BackColor = System.Drawing.Color.Transparent;
-            this.label_Uploaded.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Uploaded.ForeColor = System.Drawing.Color.Blue;
-            this.label_Uploaded.Location = new System.Drawing.Point(6, 12);
-            this.label_Uploaded.Name = "label_Uploaded";
-            this.label_Uploaded.Size = new System.Drawing.Size(93, 19);
-            this.label_Uploaded.TabIndex = 218;
-            this.label_Uploaded.Text = "Uploaded :";
-            // 
             // label_Uploaded_no
             // 
             this.label_Uploaded_no.AutoSize = true;
@@ -264,6 +241,18 @@
             this.label_Uploaded_no.Size = new System.Drawing.Size(18, 19);
             this.label_Uploaded_no.TabIndex = 219;
             this.label_Uploaded_no.Text = "0";
+            // 
+            // label_Uploaded
+            // 
+            this.label_Uploaded.AutoSize = true;
+            this.label_Uploaded.BackColor = System.Drawing.Color.Transparent;
+            this.label_Uploaded.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Uploaded.ForeColor = System.Drawing.Color.Blue;
+            this.label_Uploaded.Location = new System.Drawing.Point(6, 12);
+            this.label_Uploaded.Name = "label_Uploaded";
+            this.label_Uploaded.Size = new System.Drawing.Size(93, 19);
+            this.label_Uploaded.TabIndex = 218;
+            this.label_Uploaded.Text = "Uploaded :";
             // 
             // panel2
             // 
@@ -277,6 +266,30 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(138, 48);
             this.panel2.TabIndex = 220;
+            // 
+            // label_Failure_PDF_no
+            // 
+            this.label_Failure_PDF_no.AutoSize = true;
+            this.label_Failure_PDF_no.BackColor = System.Drawing.Color.Transparent;
+            this.label_Failure_PDF_no.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Failure_PDF_no.ForeColor = System.Drawing.Color.Red;
+            this.label_Failure_PDF_no.Location = new System.Drawing.Point(99, 22);
+            this.label_Failure_PDF_no.Name = "label_Failure_PDF_no";
+            this.label_Failure_PDF_no.Size = new System.Drawing.Size(16, 16);
+            this.label_Failure_PDF_no.TabIndex = 221;
+            this.label_Failure_PDF_no.Text = "0";
+            // 
+            // label_Failure_PDF
+            // 
+            this.label_Failure_PDF.AutoSize = true;
+            this.label_Failure_PDF.BackColor = System.Drawing.Color.Transparent;
+            this.label_Failure_PDF.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_Failure_PDF.ForeColor = System.Drawing.Color.Red;
+            this.label_Failure_PDF.Location = new System.Drawing.Point(7, 22);
+            this.label_Failure_PDF.Name = "label_Failure_PDF";
+            this.label_Failure_PDF.Size = new System.Drawing.Size(92, 16);
+            this.label_Failure_PDF.TabIndex = 220;
+            this.label_Failure_PDF.Text = "Failure PDF :";
             // 
             // label_Total_Rec_no
             // 
@@ -302,29 +315,16 @@
             this.label_Total_Rec.TabIndex = 218;
             this.label_Total_Rec.Text = "Total Rec. :";
             // 
-            // label_Failure_PDF_no
+            // button_Autogen_Barcodres
             // 
-            this.label_Failure_PDF_no.AutoSize = true;
-            this.label_Failure_PDF_no.BackColor = System.Drawing.Color.Transparent;
-            this.label_Failure_PDF_no.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Failure_PDF_no.ForeColor = System.Drawing.Color.Red;
-            this.label_Failure_PDF_no.Location = new System.Drawing.Point(99, 22);
-            this.label_Failure_PDF_no.Name = "label_Failure_PDF_no";
-            this.label_Failure_PDF_no.Size = new System.Drawing.Size(16, 16);
-            this.label_Failure_PDF_no.TabIndex = 221;
-            this.label_Failure_PDF_no.Text = "0";
-            // 
-            // label_Failure_PDF
-            // 
-            this.label_Failure_PDF.AutoSize = true;
-            this.label_Failure_PDF.BackColor = System.Drawing.Color.Transparent;
-            this.label_Failure_PDF.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_Failure_PDF.ForeColor = System.Drawing.Color.Red;
-            this.label_Failure_PDF.Location = new System.Drawing.Point(7, 22);
-            this.label_Failure_PDF.Name = "label_Failure_PDF";
-            this.label_Failure_PDF.Size = new System.Drawing.Size(92, 16);
-            this.label_Failure_PDF.TabIndex = 220;
-            this.label_Failure_PDF.Text = "Failure PDF :";
+            this.button_Autogen_Barcodres.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_Autogen_Barcodres.ForeColor = System.Drawing.Color.DarkRed;
+            this.button_Autogen_Barcodres.Location = new System.Drawing.Point(649, 69);
+            this.button_Autogen_Barcodres.Name = "button_Autogen_Barcodres";
+            this.button_Autogen_Barcodres.Size = new System.Drawing.Size(123, 22);
+            this.button_Autogen_Barcodres.TabIndex = 159;
+            this.button_Autogen_Barcodres.Text = "Autogen Barcodres";
+            this.button_Autogen_Barcodres.UseVisualStyleBackColor = true;
             // 
             // Form_UploadSTHSpecimensByWebService
             // 
@@ -372,7 +372,6 @@
         private System.Windows.Forms.Panel panel_BX_CY_SPECIMEN;
         private System.Windows.Forms.Label label_Upload_info;
         private System.Windows.Forms.Button button_Upload_To_Server;
-        private System.Windows.Forms.Button button_Autogen_Barcodres;
         private System.Windows.Forms.Label label_Or;
         private System.Windows.Forms.TextBox textBox_Case_No;
         private System.Windows.Forms.Label label_Case_No;
@@ -389,5 +388,6 @@
         private System.Windows.Forms.Label label_Failure_PDF;
         private System.Windows.Forms.Label label_Total_Rec_no;
         private System.Windows.Forms.Label label_Total_Rec;
+        private System.Windows.Forms.Button button_Autogen_Barcodres;
     }
 }
