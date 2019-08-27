@@ -295,6 +295,7 @@
             this.button_Picture_File_8.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_8.TabIndex = 223;
             this.button_Picture_File_8.UseVisualStyleBackColor = true;
+            this.button_Picture_File_8.Click += new System.EventHandler(this.button_Picture_File_8_Click);
             // 
             // label7
             // 
@@ -310,6 +311,7 @@
             // 
             // comboBox_Caption_8
             // 
+            this.comboBox_Caption_8.DisplayMember = "CAPTION";
             this.comboBox_Caption_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_8.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_8.FormattingEnabled = true;
@@ -318,6 +320,7 @@
             this.comboBox_Caption_8.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_8.TabIndex = 221;
             this.comboBox_Caption_8.Text = "Figure 12";
+            this.comboBox_Caption_8.ValueMember = "CAPTION";
             // 
             // button_Picture_File_8_Path
             // 
@@ -329,6 +332,7 @@
             this.button_Picture_File_8_Path.TabIndex = 220;
             this.button_Picture_File_8_Path.Text = "...";
             this.button_Picture_File_8_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_8_Path.Click += new System.EventHandler(this.button_Picture_File_8_Path_Click);
             // 
             // label8
             // 
@@ -362,6 +366,7 @@
             this.button_Picture_File_7.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_7.TabIndex = 217;
             this.button_Picture_File_7.UseVisualStyleBackColor = true;
+            this.button_Picture_File_7.Click += new System.EventHandler(this.button_Picture_File_7_Click);
             // 
             // label10
             // 
@@ -377,6 +382,7 @@
             // 
             // comboBox_Caption_7
             // 
+            this.comboBox_Caption_7.DisplayMember = "CAPTION";
             this.comboBox_Caption_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_7.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_7.FormattingEnabled = true;
@@ -385,6 +391,7 @@
             this.comboBox_Caption_7.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_7.TabIndex = 215;
             this.comboBox_Caption_7.Text = "Figure 12";
+            this.comboBox_Caption_7.ValueMember = "CAPTION";
             // 
             // button_Picture_File_7_Path
             // 
@@ -396,6 +403,7 @@
             this.button_Picture_File_7_Path.TabIndex = 214;
             this.button_Picture_File_7_Path.Text = "...";
             this.button_Picture_File_7_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_7_Path.Click += new System.EventHandler(this.button_Picture_File_7_Path_Click);
             // 
             // label11
             // 
@@ -429,6 +437,7 @@
             this.button_Picture_File_6.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_6.TabIndex = 211;
             this.button_Picture_File_6.UseVisualStyleBackColor = true;
+            this.button_Picture_File_6.Click += new System.EventHandler(this.button_Picture_File_6_Click);
             // 
             // label12
             // 
@@ -444,6 +453,7 @@
             // 
             // comboBox_Caption_6
             // 
+            this.comboBox_Caption_6.DisplayMember = "CAPTION";
             this.comboBox_Caption_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_6.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_6.FormattingEnabled = true;
@@ -452,6 +462,7 @@
             this.comboBox_Caption_6.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_6.TabIndex = 209;
             this.comboBox_Caption_6.Text = "Figure 12";
+            this.comboBox_Caption_6.ValueMember = "CAPTION";
             // 
             // button_Picture_File_6_Path
             // 
@@ -463,6 +474,7 @@
             this.button_Picture_File_6_Path.TabIndex = 208;
             this.button_Picture_File_6_Path.Text = "...";
             this.button_Picture_File_6_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_6_Path.Click += new System.EventHandler(this.button_Picture_File_6_Path_Click);
             // 
             // label13
             // 
@@ -496,6 +508,7 @@
             this.button_Picture_File_5.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_5.TabIndex = 205;
             this.button_Picture_File_5.UseVisualStyleBackColor = true;
+            this.button_Picture_File_5.Click += new System.EventHandler(this.button_Picture_File_5_Click);
             // 
             // label14
             // 
@@ -511,6 +524,7 @@
             // 
             // comboBox_Caption_5
             // 
+            this.comboBox_Caption_5.DisplayMember = "CAPTION";
             this.comboBox_Caption_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_5.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_5.FormattingEnabled = true;
@@ -519,6 +533,7 @@
             this.comboBox_Caption_5.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_5.TabIndex = 203;
             this.comboBox_Caption_5.Text = "Figure 12";
+            this.comboBox_Caption_5.ValueMember = "CAPTION";
             // 
             // button_Picture_File_5_Path
             // 
@@ -530,6 +545,7 @@
             this.button_Picture_File_5_Path.TabIndex = 202;
             this.button_Picture_File_5_Path.Text = "...";
             this.button_Picture_File_5_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_5_Path.Click += new System.EventHandler(this.button_Picture_File_5_Path_Click);
             // 
             // label15
             // 
@@ -563,6 +579,7 @@
             this.button_Picture_File_4.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_4.TabIndex = 199;
             this.button_Picture_File_4.UseVisualStyleBackColor = true;
+            this.button_Picture_File_4.Click += new System.EventHandler(this.button_Picture_File_4_Click);
             // 
             // label3
             // 
@@ -578,6 +595,7 @@
             // 
             // comboBox_Caption_4
             // 
+            this.comboBox_Caption_4.DisplayMember = "CAPTION";
             this.comboBox_Caption_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_4.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_4.FormattingEnabled = true;
@@ -586,6 +604,7 @@
             this.comboBox_Caption_4.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_4.TabIndex = 197;
             this.comboBox_Caption_4.Text = "Figure 12";
+            this.comboBox_Caption_4.ValueMember = "CAPTION";
             // 
             // button_Picture_File_4_Path
             // 
@@ -597,6 +616,7 @@
             this.button_Picture_File_4_Path.TabIndex = 196;
             this.button_Picture_File_4_Path.Text = "...";
             this.button_Picture_File_4_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_4_Path.Click += new System.EventHandler(this.button_Picture_File_4_Path_Click);
             // 
             // label4
             // 
@@ -630,6 +650,7 @@
             this.button_Picture_File_3.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_3.TabIndex = 193;
             this.button_Picture_File_3.UseVisualStyleBackColor = true;
+            this.button_Picture_File_3.Click += new System.EventHandler(this.button_Picture_File_3_Click);
             // 
             // label5
             // 
@@ -645,6 +666,7 @@
             // 
             // comboBox_Caption_3
             // 
+            this.comboBox_Caption_3.DisplayMember = "CAPTION";
             this.comboBox_Caption_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_3.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_3.FormattingEnabled = true;
@@ -653,6 +675,7 @@
             this.comboBox_Caption_3.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_3.TabIndex = 191;
             this.comboBox_Caption_3.Text = "Figure 12";
+            this.comboBox_Caption_3.ValueMember = "CAPTION";
             // 
             // button_Picture_File_3_Path
             // 
@@ -664,6 +687,7 @@
             this.button_Picture_File_3_Path.TabIndex = 190;
             this.button_Picture_File_3_Path.Text = "...";
             this.button_Picture_File_3_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_3_Path.Click += new System.EventHandler(this.button_Picture_File_3_Path_Click);
             // 
             // label6
             // 
@@ -697,6 +721,7 @@
             this.button_Picture_File_2.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_2.TabIndex = 187;
             this.button_Picture_File_2.UseVisualStyleBackColor = true;
+            this.button_Picture_File_2.Click += new System.EventHandler(this.button_Picture_File_2_Click);
             // 
             // label1
             // 
@@ -712,6 +737,7 @@
             // 
             // comboBox_Caption_2
             // 
+            this.comboBox_Caption_2.DisplayMember = "CAPTION";
             this.comboBox_Caption_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_2.FormattingEnabled = true;
@@ -720,6 +746,7 @@
             this.comboBox_Caption_2.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_2.TabIndex = 185;
             this.comboBox_Caption_2.Text = "Figure 12";
+            this.comboBox_Caption_2.ValueMember = "CAPTION";
             // 
             // button_Picture_File_2_Path
             // 
@@ -731,6 +758,7 @@
             this.button_Picture_File_2_Path.TabIndex = 184;
             this.button_Picture_File_2_Path.Text = "...";
             this.button_Picture_File_2_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_2_Path.Click += new System.EventHandler(this.button_Picture_File_2_Path_Click);
             // 
             // label2
             // 
@@ -764,6 +792,7 @@
             this.button_Add_Template.TabIndex = 181;
             this.button_Add_Template.Text = "Add Template";
             this.button_Add_Template.UseVisualStyleBackColor = true;
+            this.button_Add_Template.Click += new System.EventHandler(this.button_Add_Template_Click);
             // 
             // button_Detail
             // 
@@ -779,6 +808,7 @@
             // 
             // comboBox_Template
             // 
+            this.comboBox_Template.DisplayMember = "TEMPLATE";
             this.comboBox_Template.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Template.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Template.FormattingEnabled = true;
@@ -794,9 +824,11 @@
             this.comboBox_Template.Name = "comboBox_Template";
             this.comboBox_Template.Size = new System.Drawing.Size(167, 24);
             this.comboBox_Template.TabIndex = 179;
+            this.comboBox_Template.ValueMember = "TEMPLATE";
             // 
             // comboBox_Organ
             // 
+            this.comboBox_Organ.DisplayMember = "ORGAN";
             this.comboBox_Organ.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Organ.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Organ.FormattingEnabled = true;
@@ -806,9 +838,12 @@
             this.comboBox_Organ.Name = "comboBox_Organ";
             this.comboBox_Organ.Size = new System.Drawing.Size(148, 24);
             this.comboBox_Organ.TabIndex = 178;
+            this.comboBox_Organ.ValueMember = "ORGAN";
+            this.comboBox_Organ.SelectedIndexChanged += new System.EventHandler(this.comboBox_Organ_SelectedIndexChanged);
             // 
             // comboBox_Doctor
             // 
+            this.comboBox_Doctor.DisplayMember = "DOCTOR";
             this.comboBox_Doctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Doctor.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Doctor.FormattingEnabled = true;
@@ -820,6 +855,8 @@
             this.comboBox_Doctor.Name = "comboBox_Doctor";
             this.comboBox_Doctor.Size = new System.Drawing.Size(196, 24);
             this.comboBox_Doctor.TabIndex = 177;
+            this.comboBox_Doctor.ValueMember = "DOCTOR";
+            this.comboBox_Doctor.SelectedIndexChanged += new System.EventHandler(this.comboBox_Doctor_SelectedIndexChanged);
             // 
             // label_Doctor_Organ_Template
             // 
@@ -876,6 +913,7 @@
             this.button_Picture_File_1.Size = new System.Drawing.Size(27, 20);
             this.button_Picture_File_1.TabIndex = 168;
             this.button_Picture_File_1.UseVisualStyleBackColor = true;
+            this.button_Picture_File_1.Click += new System.EventHandler(this.button_Picture_File_1_Click);
             // 
             // comboBox_MAC_Add
             // 
@@ -914,6 +952,7 @@
             // 
             // comboBox_Caption_1
             // 
+            this.comboBox_Caption_1.DisplayMember = "CAPTION";
             this.comboBox_Caption_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_1.FormattingEnabled = true;
@@ -922,6 +961,7 @@
             this.comboBox_Caption_1.Size = new System.Drawing.Size(171, 21);
             this.comboBox_Caption_1.TabIndex = 129;
             this.comboBox_Caption_1.Text = "Figure 12";
+            this.comboBox_Caption_1.ValueMember = "CAPTION";
             // 
             // button_Picture_File_1_Path
             // 
@@ -933,6 +973,7 @@
             this.button_Picture_File_1_Path.TabIndex = 128;
             this.button_Picture_File_1_Path.Text = "...";
             this.button_Picture_File_1_Path.UseVisualStyleBackColor = true;
+            this.button_Picture_File_1_Path.Click += new System.EventHandler(this.button_Picture_File_1_Path_Click);
             // 
             // label_Picture_File_1
             // 
@@ -1058,6 +1099,7 @@
             this.button_Add_Template2.TabIndex = 225;
             this.button_Add_Template2.Text = "Add Template";
             this.button_Add_Template2.UseVisualStyleBackColor = true;
+            this.button_Add_Template2.Click += new System.EventHandler(this.button_Add_Template2_Click);
             // 
             // button_Detail2
             // 
@@ -1073,6 +1115,7 @@
             // 
             // comboBox_Template2
             // 
+            this.comboBox_Template2.DisplayMember = "TEMPLATE";
             this.comboBox_Template2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Template2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Template2.FormattingEnabled = true;
@@ -1088,9 +1131,11 @@
             this.comboBox_Template2.Name = "comboBox_Template2";
             this.comboBox_Template2.Size = new System.Drawing.Size(167, 24);
             this.comboBox_Template2.TabIndex = 223;
+            this.comboBox_Template2.ValueMember = "TEMPLATE";
             // 
             // comboBox_Organ2
             // 
+            this.comboBox_Organ2.DisplayMember = "ORGAN";
             this.comboBox_Organ2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Organ2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Organ2.FormattingEnabled = true;
@@ -1100,9 +1145,12 @@
             this.comboBox_Organ2.Name = "comboBox_Organ2";
             this.comboBox_Organ2.Size = new System.Drawing.Size(148, 24);
             this.comboBox_Organ2.TabIndex = 222;
+            this.comboBox_Organ2.ValueMember = "ORGAN";
+            this.comboBox_Organ2.SelectedIndexChanged += new System.EventHandler(this.comboBox_Organ2_SelectedIndexChanged);
             // 
             // comboBox_Doctor2
             // 
+            this.comboBox_Doctor2.DisplayMember = "DOCTOR";
             this.comboBox_Doctor2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Doctor2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Doctor2.FormattingEnabled = true;
@@ -1114,6 +1162,8 @@
             this.comboBox_Doctor2.Name = "comboBox_Doctor2";
             this.comboBox_Doctor2.Size = new System.Drawing.Size(196, 24);
             this.comboBox_Doctor2.TabIndex = 221;
+            this.comboBox_Doctor2.ValueMember = "DOCTOR";
+            this.comboBox_Doctor2.SelectedIndexChanged += new System.EventHandler(this.comboBox_Doctor2_SelectedIndexChanged);
             // 
             // label18
             // 
@@ -1150,7 +1200,7 @@
             // 
             // comboBox_Description2
             // 
-            this.comboBox_Description2.DisplayMember = "marco_name";
+            this.comboBox_Description2.DisplayMember = "micro_name";
             this.comboBox_Description2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Description2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Description2.FormattingEnabled = true;
@@ -1158,7 +1208,7 @@
             this.comboBox_Description2.Name = "comboBox_Description2";
             this.comboBox_Description2.Size = new System.Drawing.Size(553, 26);
             this.comboBox_Description2.TabIndex = 216;
-            this.comboBox_Description2.ValueMember = "marco_name";
+            this.comboBox_Description2.ValueMember = "micro_name";
             // 
             // label17
             // 
@@ -1455,9 +1505,11 @@
             this.button_Detail_4_DIA.TabIndex = 220;
             this.button_Detail_4_DIA.Text = "Detail";
             this.button_Detail_4_DIA.UseVisualStyleBackColor = true;
+            this.button_Detail_4_DIA.Click += new System.EventHandler(this.button_Detail_4_DIA_Click);
             // 
             // comboBox_Diagnosis_2
             // 
+            this.comboBox_Diagnosis_2.DisplayMember = "C_DESC";
             this.comboBox_Diagnosis_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Diagnosis_2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Diagnosis_2.FormattingEnabled = true;
@@ -1465,6 +1517,7 @@
             this.comboBox_Diagnosis_2.Name = "comboBox_Diagnosis_2";
             this.comboBox_Diagnosis_2.Size = new System.Drawing.Size(429, 26);
             this.comboBox_Diagnosis_2.TabIndex = 219;
+            this.comboBox_Diagnosis_2.ValueMember = "C_DESC";
             // 
             // button_Detail_3_DIA
             // 
@@ -1480,6 +1533,7 @@
             // 
             // comboBox_Diagnosis_1
             // 
+            this.comboBox_Diagnosis_1.DisplayMember = "C_DESC";
             this.comboBox_Diagnosis_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Diagnosis_1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Diagnosis_1.FormattingEnabled = true;
@@ -1487,6 +1541,7 @@
             this.comboBox_Diagnosis_1.Name = "comboBox_Diagnosis_1";
             this.comboBox_Diagnosis_1.Size = new System.Drawing.Size(415, 26);
             this.comboBox_Diagnosis_1.TabIndex = 217;
+            this.comboBox_Diagnosis_1.ValueMember = "C_DESC";
             // 
             // label_Diagnosis
             // 
@@ -1555,6 +1610,7 @@
             this.button_Detail_2_DIA.TabIndex = 214;
             this.button_Detail_2_DIA.Text = "Detail";
             this.button_Detail_2_DIA.UseVisualStyleBackColor = true;
+            this.button_Detail_2_DIA.Click += new System.EventHandler(this.button_Detail_2_DIA_Click);
             // 
             // textBox_Parts3
             // 
@@ -1643,6 +1699,7 @@
             this.button_Detail_1_DIA.TabIndex = 204;
             this.button_Detail_1_DIA.Text = "Detail";
             this.button_Detail_1_DIA.UseVisualStyleBackColor = true;
+            this.button_Detail_1_DIA.Click += new System.EventHandler(this.button_Detail_1_DIA_Click);
             // 
             // button_Delete
             // 

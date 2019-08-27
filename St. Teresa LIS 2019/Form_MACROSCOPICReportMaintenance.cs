@@ -241,6 +241,7 @@ namespace St.Teresa_LIS_2019
                     MACROSCOPIC_ReportDataSet.Tables["MACROSCOPIC_Report"].Rows.Remove(currentEditRow);
                 }
                 setButtonStatus(PageStatus.STATUS_VIEW);
+                reloadAndBindingDBData();
             }
             else
             {

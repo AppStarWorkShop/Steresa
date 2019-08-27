@@ -228,7 +228,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Detail_3_DIA_Click(object sender, EventArgs e)
         {
-
+            Form_DiagnosisDictionaryMaintenance open = new Form_DiagnosisDictionaryMaintenance();
+            open.Show();
         }
 
         private void button_Path_Click(object sender, EventArgs e)
@@ -347,7 +348,20 @@ namespace St.Teresa_LIS_2019
             }
 
             comboBox_Description.DataSource = marco_nameDt;
-            comboBox_Description2.DataSource = marco_nameDt;
+
+            string micro_nameSql = "SELECT [micro_name] FROM [micro_name]";
+            DataSet micro_nameDataSet = new DataSet();
+            SqlDataAdapter micro_nameDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_nameSql, micro_nameDataSet, "micro_name");
+
+            DataTable micro_nameDt = new DataTable();
+            micro_nameDt.Columns.Add("micro_name");
+
+            foreach (DataRow mDr in micro_nameDataSet.Tables["micro_name"].Rows)
+            {
+                micro_nameDt.Rows.Add(new object[] { mDr["micro_name"] });
+            }
+
+            comboBox_Description2.DataSource = micro_nameDt;
 
             string MACROSCOPIC_ReportSql = "SELECT [MACROSCOPIC],[Description] FROM [MACROSCOPIC_Report]";
             DataSet MACROSCOPIC_ReportDataSet = new DataSet();
@@ -379,6 +393,85 @@ namespace St.Teresa_LIS_2019
 
             comboBox_MIC_Add2.DataSource = MICROSCOPIC_ReportDt;
 
+
+            string macro_templateSql = "SELECT distinct DOCTOR FROM [macro_template]";
+            DataSet macro_templateDataSet = new DataSet();
+            SqlDataAdapter macro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(macro_templateSql, macro_templateDataSet, "macro_template");
+
+            DataTable macro_templateDt = new DataTable();
+            macro_templateDt.Columns.Add("DOCTOR");
+
+            foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
+            {
+                macro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
+            }
+
+            comboBox_Doctor.DataSource = macro_templateDt;
+
+            string micro_templateSql = "SELECT distinct DOCTOR FROM [micro_template]";
+            DataSet micro_templateDataSet = new DataSet();
+            SqlDataAdapter micro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_templateSql, micro_templateDataSet, "micro_template");
+
+            DataTable micro_templateDt = new DataTable();
+            micro_templateDt.Columns.Add("DOCTOR");
+
+            foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
+            {
+                micro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
+            }
+
+            comboBox_Doctor2.DataSource = micro_templateDt;
+
+            string diag_descSql = "SELECT C_DESC FROM [diag_desc]";
+            DataSet diag_descDataSet = new DataSet();
+            SqlDataAdapter diag_descDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diag_descSql, diag_descDataSet, "diag_desc");
+
+            DataTable diag_descDt = new DataTable();
+            diag_descDt.Columns.Add("C_DESC");
+
+            foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
+            {
+                diag_descDt.Rows.Add(new object[] { mDr["C_DESC"] });
+            }
+
+            comboBox_Diagnosis_1.DataSource = diag_descDt;
+            comboBox_Diagnosis_2.DataSource = diag_descDt;
+
+            string picture_capSql = "SELECT [CAPTION] FROM [picture_cap]";
+            DataSet picture_capDataSet = new DataSet();
+            SqlDataAdapter picture_capDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(picture_capSql, picture_capDataSet, "picture_cap");
+
+            DataTable picture_capDt1 = new DataTable();
+            picture_capDt1.Columns.Add("CAPTION");
+            DataTable picture_capDt2 = picture_capDt1.Clone();
+            DataTable picture_capDt3 = picture_capDt1.Clone();
+            DataTable picture_capDt4 = picture_capDt1.Clone();
+            DataTable picture_capDt5 = picture_capDt1.Clone();
+            DataTable picture_capDt6 = picture_capDt1.Clone();
+            DataTable picture_capDt7 = picture_capDt1.Clone();
+            DataTable picture_capDt8 = picture_capDt1.Clone();
+
+            foreach (DataRow mDr in picture_capDataSet.Tables["picture_cap"].Rows)
+            {
+                picture_capDt1.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt2.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt3.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt4.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt5.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt6.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt7.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt8.Rows.Add(new object[] { mDr["CAPTION"] });
+            }
+
+            comboBox_Caption_1.DataSource = picture_capDt1;
+            comboBox_Caption_2.DataSource = picture_capDt2;
+            comboBox_Caption_3.DataSource = picture_capDt3;
+            comboBox_Caption_4.DataSource = picture_capDt4;
+            comboBox_Caption_5.DataSource = picture_capDt5;
+            comboBox_Caption_6.DataSource = picture_capDt6;
+            comboBox_Caption_7.DataSource = picture_capDt7;
+            comboBox_Caption_8.DataSource = picture_capDt8;
+
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             comboBox_Description.DataBindings.Add("Text", dt, "macro_name", false);
             comboBox_Description2.DataBindings.Add("Text", dt, "macro_name", false);
@@ -389,19 +482,19 @@ namespace St.Teresa_LIS_2019
             textBox_Picture_File_2.DataBindings.Add("Text", dt, "macro_pic2", false);
             textBox_Picture_File_3.DataBindings.Add("Text", dt, "macro_pic3", false);
             textBox_Picture_File_4.DataBindings.Add("Text", dt, "macro_pic4", false);
-            textBox_Picture_File_5.DataBindings.Add("Text", dt, "macro_pic1", false);
-            textBox_Picture_File_6.DataBindings.Add("Text", dt, "macro_pic2", false);
-            textBox_Picture_File_7.DataBindings.Add("Text", dt, "macro_pic3", false);
-            textBox_Picture_File_8.DataBindings.Add("Text", dt, "macro_pic4", false);
+            textBox_Picture_File_5.DataBindings.Add("Text", dt, "micro_pic1", false);
+            textBox_Picture_File_6.DataBindings.Add("Text", dt, "micro_pic2", false);
+            textBox_Picture_File_7.DataBindings.Add("Text", dt, "micro_pic3", false);
+            textBox_Picture_File_8.DataBindings.Add("Text", dt, "micro_pic4", false);
 
             comboBox_Caption_1.DataBindings.Add("Text", dt, "macro_cap1", false);
             comboBox_Caption_2.DataBindings.Add("Text", dt, "macro_cap2", false);
             comboBox_Caption_3.DataBindings.Add("Text", dt, "macro_cap3", false);
             comboBox_Caption_4.DataBindings.Add("Text", dt, "macro_cap4", false);
-            comboBox_Caption_5.DataBindings.Add("Text", dt, "macro_cap1", false);
-            comboBox_Caption_6.DataBindings.Add("Text", dt, "macro_cap2", false);
-            comboBox_Caption_7.DataBindings.Add("Text", dt, "macro_cap3", false);
-            comboBox_Caption_8.DataBindings.Add("Text", dt, "macro_cap4", false);
+            comboBox_Caption_5.DataBindings.Add("Text", dt, "micro_cap1", false);
+            comboBox_Caption_6.DataBindings.Add("Text", dt, "micro_cap2", false);
+            comboBox_Caption_7.DataBindings.Add("Text", dt, "micro_cap3", false);
+            comboBox_Caption_8.DataBindings.Add("Text", dt, "micro_cap4", false);
 
             textBox_Remarks.DataBindings.Add("Text", dt, "macro_desc", false);
 
@@ -634,7 +727,7 @@ namespace St.Teresa_LIS_2019
                 comboBox_Template.Enabled = false;
                 button_Add_Template.Enabled = false;
                 button_MAC_Add_Edit.Enabled = true;
-                button_Detail.Enabled = false;
+                button_Detail.Enabled = true;
 
                 comboBox_Description2.Enabled = false;
                 textBox_Parts2.Enabled = false;
@@ -646,7 +739,7 @@ namespace St.Teresa_LIS_2019
 
                 button_MIC_Add_Edit2.Enabled = true;
                 //button_MAC_Add_Edit2.Enabled = false;
-                button_Detail2.Enabled = false;
+                button_Detail2.Enabled = true;
                 //comboBox5_MIC_Add.Enabled = false;
 
                 textBox_Site_frort.Enabled = false;
@@ -658,9 +751,9 @@ namespace St.Teresa_LIS_2019
                 textBox_Chinese_Description_2_DIA.Enabled = false;
                 textBox_Diagnosis.Enabled = false;
                 comboBox_Diagnosis_1.Enabled = false;
-                button_Detail_3_DIA.Enabled = false;
+                button_Detail_3_DIA.Enabled = true;
                 comboBox_Diagnosis_2.Enabled = false;
-                button_Detail_4_DIA.Enabled = false;
+                button_Detail_4_DIA.Enabled = true;
                 textBox_Parts3.Enabled = false;
 
                 comboBox_Snop_T1.Enabled = false;
@@ -925,8 +1018,8 @@ namespace St.Teresa_LIS_2019
             button_Delete.ForeColor = Color.Gray;
             button_Undo.Image = Image.FromFile("Resources/undo.png");
             button_Undo.ForeColor = Color.Black;
-            button_F8_Back_To_Main.Image = Image.FromFile("Resources/exitGra.png");
-            button_F8_Back_To_Main.ForeColor = Color.Gray;
+            button_F8_Back_To_Main.Image = Image.FromFile("Resources/exit.png");
+            button_F8_Back_To_Main.ForeColor = Color.Black;
         }
 
         private void disedit_modle()
@@ -1062,12 +1155,226 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox_Remarks.Text = comboBox_MAC_Add.SelectedValue.ToString();
+            textBox_Remarks.Text = textBox_Remarks.Text + comboBox_MAC_Add.SelectedValue.ToString();
         }
 
         private void comboBox_MIC_Add2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox_Remarks_CY.Text = comboBox_MIC_Add2.SelectedValue.ToString();
+            textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + comboBox_MIC_Add2.SelectedValue.ToString();
+        }
+
+        private void comboBox_Doctor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string macro_templateSql = string.Format("SELECT distinct ORGAN FROM [macro_template] WHERE DOCTOR = '{0}'", comboBox_Doctor.SelectedValue.ToString());
+            DataSet macro_templateDataSet = new DataSet();
+            SqlDataAdapter macro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(macro_templateSql, macro_templateDataSet, "macro_template");
+
+            DataTable macro_templateDt = new DataTable();
+            macro_templateDt.Columns.Add("ORGAN");
+
+            foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
+            {
+                macro_templateDt.Rows.Add(new object[] { mDr["ORGAN"] });
+            }
+
+            comboBox_Organ.DataSource = macro_templateDt;
+        }
+
+        private void comboBox_Organ_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string macro_templateSql = string.Format("SELECT distinct TEMPLATE FROM [macro_template] WHERE DOCTOR = '{0}' AND ORGAN = '{1}'", comboBox_Doctor.SelectedValue.ToString(), comboBox_Organ.SelectedValue.ToString());
+            DataSet macro_templateDataSet = new DataSet();
+            SqlDataAdapter macro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(macro_templateSql, macro_templateDataSet, "macro_template");
+
+            DataTable macro_templateDt = new DataTable();
+            macro_templateDt.Columns.Add("TEMPLATE");
+
+            foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
+            {
+                macro_templateDt.Rows.Add(new object[] { mDr["TEMPLATE"] });
+            }
+
+            comboBox_Template.DataSource = macro_templateDt;
+        }
+
+        private void button_Add_Template_Click(object sender, EventArgs e)
+        {
+            string macro_templateSql = string.Format("SELECT TOP 1 MACRO_DESC FROM [macro_template] WHERE DOCTOR = '{0}' AND ORGAN = '{1}' AND TEMPLATE = '{2}'", comboBox_Doctor.SelectedValue.ToString(), comboBox_Organ.SelectedValue.ToString(), comboBox_Template.SelectedValue.ToString());
+            DataSet macro_templateDataSet = new DataSet();
+            SqlDataAdapter macro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(macro_templateSql, macro_templateDataSet, "macro_template");
+
+            if(macro_templateDataSet.Tables["macro_template"].Rows.Count > 0)
+            {
+                textBox_Remarks.Text = macro_templateDataSet.Tables["macro_template"].Rows[0]["MACRO_DESC"].ToString();
+            }
+        }
+
+        private void comboBox_Doctor2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string micro_templateSql = string.Format("SELECT distinct ORGAN FROM [micro_template] WHERE DOCTOR = '{0}'", comboBox_Doctor2.SelectedValue.ToString());
+            DataSet micro_templateDataSet = new DataSet();
+            SqlDataAdapter micro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_templateSql, micro_templateDataSet, "micro_template");
+
+            DataTable micro_templateDt = new DataTable();
+            micro_templateDt.Columns.Add("ORGAN");
+
+            foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
+            {
+                micro_templateDt.Rows.Add(new object[] { mDr["ORGAN"] });
+            }
+
+            comboBox_Organ2.DataSource = micro_templateDt;
+        }
+
+        private void comboBox_Organ2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string micro_templateSql = string.Format("SELECT distinct TEMPLATE FROM [micro_template] WHERE DOCTOR = '{0}' AND ORGAN = '{1}'", comboBox_Doctor2.SelectedValue.ToString(), comboBox_Organ2.SelectedValue.ToString());
+            DataSet micro_templateDataSet = new DataSet();
+            SqlDataAdapter micro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_templateSql, micro_templateDataSet, "micro_template");
+
+            DataTable micro_templateDt = new DataTable();
+            micro_templateDt.Columns.Add("TEMPLATE");
+
+            foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
+            {
+                micro_templateDt.Rows.Add(new object[] { mDr["TEMPLATE"] });
+            }
+
+            comboBox_Template2.DataSource = micro_templateDt;
+        }
+
+        private void button_Add_Template2_Click(object sender, EventArgs e)
+        {
+            string micro_templateSql = string.Format("SELECT TOP 1 micro_DESC FROM [micro_template] WHERE DOCTOR = '{0}' AND ORGAN = '{1}' AND TEMPLATE = '{2}'", comboBox_Doctor2.SelectedValue.ToString(), comboBox_Organ2.SelectedValue.ToString(), comboBox_Template2.SelectedValue.ToString());
+            DataSet micro_templateDataSet = new DataSet();
+            SqlDataAdapter micro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_templateSql, micro_templateDataSet, "micro_template");
+
+            if (micro_templateDataSet.Tables["micro_template"].Rows.Count > 0)
+            {
+                textBox_Remarks_CY.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+            }
+        }
+
+        private void button_Detail_4_DIA_Click(object sender, EventArgs e)
+        {
+            Form_DiagnosisDictionaryMaintenance open = new Form_DiagnosisDictionaryMaintenance();
+            open.Show();
+        }
+
+        private void button_Detail_1_DIA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Detail_2_DIA_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private string getPicFileName()
+        {
+            string fileName = "";
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();     //显示选择文件对话框
+            openFileDialog1.InitialDirectory = CurrentUser.picturePath;
+            openFileDialog1.Filter = "TIFF (*.tiff)|*.tiff|Jpg (*.jpg)|*.jpg";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fileName  = System.IO.Path.GetFileName(openFileDialog1.FileName);
+            }
+
+            return fileName;
+        }
+
+        private void button_Picture_File_1_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_1.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_2_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_2.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_3_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_3.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_4_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_4.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_5_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_5.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_6_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_6.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_7_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_7.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_8_Path_Click(object sender, EventArgs e)
+        {
+            textBox_Picture_File_8.Text = getPicFileName();
+        }
+
+        private void button_Picture_File_1_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_1.Text.Trim());
+            open.Show();
+        }
+
+        private void button_Picture_File_2_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_2.Text.Trim());
+            open.Show();
+        }
+
+        private void button_Picture_File_3_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_3.Text.Trim());
+            open.Show();
+
+        }
+
+        private void button_Picture_File_4_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_4.Text.Trim());
+            open.Show();
+        }
+
+        private void button_Picture_File_5_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_5.Text.Trim());
+            open.Show();
+        }
+
+        private void button_Picture_File_6_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_6.Text.Trim());
+            open.Show();
+        }
+
+        private void button_Picture_File_7_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_7.Text.Trim());
+            open.Show();
+        }
+
+        private void button_Picture_File_8_Click(object sender, EventArgs e)
+        {
+            ShowPicture open = new ShowPicture(textBox_Picture_File_8.Text.Trim());
+            open.Show();
         }
     }
 }

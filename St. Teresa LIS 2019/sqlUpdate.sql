@@ -87,59 +87,59 @@ update BXCY_SPECIMEN SET snopcode_m3 = LTRIM(RTRIM(snopcode_m3));
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='PATIENT')
 BEGIN
-ALTER TABLE PATIENT ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE PATIENT ADD CONSTRAINT [PK_PATIENT] primary key (ID)
+ALTER TABLE PATIENT ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE PATIENT ADD CONSTRAINT [PK_PATIENT] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='CLIENT')
 BEGIN
-ALTER TABLE CLIENT ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE CLIENT ADD CONSTRAINT [PK_CLIENT] primary key (ID)
+ALTER TABLE CLIENT ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE CLIENT ADD CONSTRAINT [PK_CLIENT] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DOCTOR')
 BEGIN
-ALTER TABLE DOCTOR ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE DOCTOR ADD CONSTRAINT [PK_DOCTOR] primary key (ID)
+ALTER TABLE DOCTOR ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE DOCTOR ADD CONSTRAINT [PK_DOCTOR] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='RESULT')
 BEGIN
-ALTER TABLE result ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE result ADD CONSTRAINT [PK_result] primary key (ID)
+ALTER TABLE result ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE result ADD CONSTRAINT [PK_result] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='SNOPCODE')
 BEGIN
-ALTER TABLE snopcode ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE snopcode ADD CONSTRAINT [PK_snopcode] primary key (ID)
+ALTER TABLE snopcode ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE snopcode ADD CONSTRAINT [PK_snopcode] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAGNOSIS')
 BEGIN
-ALTER TABLE diagnosis ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE diagnosis ADD CONSTRAINT [PK_diagnosis] primary key (ID)
+ALTER TABLE diagnosis ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE diagnosis ADD CONSTRAINT [PK_diagnosis] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='CYREPORT')
 BEGIN
-ALTER TABLE cyreport ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE cyreport ADD CONSTRAINT [PK_cyreport] primary key (ID)
+ALTER TABLE cyreport ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE cyreport ADD CONSTRAINT [PK_cyreport] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='EBV_SPECIMEN')
 BEGIN
-ALTER TABLE ebv_specimen ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE ebv_specimen ADD CONSTRAINT [PK_ebv_specimen] primary key (ID)
+ALTER TABLE ebv_specimen ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE ebv_specimen ADD CONSTRAINT [PK_ebv_specimen] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'master' AND LTRIM(b.name)='PATIENT')
-ALTER TABLE PATIENT ADD [master] [int] NULL
+ALTER TABLE PATIENT ADD [master] [int] NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='BXCY_SPECIMEN')
 BEGIN
-ALTER TABLE BXCY_SPECIMEN ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE BXCY_SPECIMEN ADD CONSTRAINT [PK_bxcy_specimen] primary key (ID)
+ALTER TABLE BXCY_SPECIMEN ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE BXCY_SPECIMEN ADD CONSTRAINT [PK_bxcy_specimen] primary key (ID);
 END
 
 IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[system_setting]') AND type in (N'U'))
@@ -164,39 +164,39 @@ GO
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='SYSTEM_SETTING')
 BEGIN
-ALTER TABLE system_setting ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE system_setting ADD CONSTRAINT [PK_system_setting] primary key (ID)
+ALTER TABLE system_setting ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE system_setting ADD CONSTRAINT [PK_system_setting] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='USER')
 BEGIN
-ALTER TABLE [USER] ADD [id] [int] IDENTITY(1,1) NOT NULL
-ALTER TABLE [USER] ADD CONSTRAINT [PK_USER] primary key (ID)
+ALTER TABLE [USER] ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE [USER] ADD CONSTRAINT [PK_USER] primary key (ID);
 END
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Clinical_History' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD Clinical_History [nvarchar](255) NULL
+ALTER TABLE BXCY_SPECIMEN ADD Clinical_History [nvarchar](255) NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = '[Class]' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD [Class] [nvarchar](50) NULL
+ALTER TABLE BXCY_SPECIMEN ADD [Class] [nvarchar](50) NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_ic2' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic2 [nvarchar](10) NULL
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic2 [nvarchar](10) NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_id2' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD Doctor_id2 [nvarchar](10) NULL
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_id2 [nvarchar](10) NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_ic3' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic3 [nvarchar](10) NULL
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_ic3 [nvarchar](10) NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Doctor_id3' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD Doctor_id3 [nvarchar](10) NULL
+ALTER TABLE BXCY_SPECIMEN ADD Doctor_id3 [nvarchar](10) NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Histo' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD Histo [nvarchar](50) NULL
+ALTER TABLE BXCY_SPECIMEN ADD Histo [nvarchar](50) NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'Cyto_Type' AND LTRIM(b.name)='BXCY_SPECIMEN')
-ALTER TABLE BXCY_SPECIMEN ADD Cyto_Type [nvarchar](50) NULL
+ALTER TABLE BXCY_SPECIMEN ADD Cyto_Type [nvarchar](50) NULL;
 
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[sp_searchBXCYSpecimentRecord]') AND type in (N'P', N'PC'))
@@ -490,3 +490,38 @@ CREATE TABLE [dbo].[MICROSCOPIC_Report](
 ) ON [PRIMARY]
 
 GO
+
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='macro_template')
+BEGIN
+ALTER TABLE macro_template ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE macro_template ADD CONSTRAINT [PK_macro_template] primary key (ID);
+END
+
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='micro_template')
+BEGIN
+ALTER TABLE micro_template ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE micro_template ADD CONSTRAINT [PK_micro_template] primary key (ID);
+END
+
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[micro_name]') AND type in (N'U'))
+CREATE TABLE [dbo].[micro_name](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[micro_name] [nvarchar](200) NULL,
+ CONSTRAINT [PK_micro_name] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+INSERT INTO micro_name(micro_name) VALUES('MICROSCOPIC EXAMINATION:');
+INSERT INTO micro_name(micro_name) VALUES('CYTOLOGICAL EXAMINATION:');
+INSERT INTO micro_name(micro_name) VALUES('IMMUNOFLUORESCENCE EXAMIN:');
+GO
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='diag_desc')
+BEGIN
+ALTER TABLE diag_desc ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE diag_desc ADD CONSTRAINT [PK_diag_desc] primary key (ID);
+END
