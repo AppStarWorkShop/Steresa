@@ -307,6 +307,7 @@
             this.comboBox_MICROSCOPIC.TabIndex = 303;
             this.comboBox_MICROSCOPIC.Tag = "Surgical Procedure";
             this.comboBox_MICROSCOPIC.ValueMember = "MICROSCOPIC";
+            this.comboBox_MICROSCOPIC.SelectionChangeCommitted += new System.EventHandler(this.comboBox_MICROSCOPIC_SelectionChangeCommitted);
             // 
             // label_MICROSCOPICR
             // 

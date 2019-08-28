@@ -463,8 +463,10 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_MICROSCOPIC_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //reloadAndBindingDBData(comboBox_MICROSCOPIC.SelectedValue.ToString());
+        }
 
+        private void comboBox_MICROSCOPIC_SelectionChangeCommitted(object sender, EventArgs e)
+        {
             string sql = string.Format("SELECT TOP 1 * FROM [MICROSCOPIC_Report] WHERE MICROSCOPIC = '{0}' ORDER BY ID", comboBox_MICROSCOPIC.SelectedValue.ToString());
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, MICROSCOPIC_ReportDataSet, "MICROSCOPIC_Report");
 

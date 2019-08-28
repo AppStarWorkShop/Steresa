@@ -308,6 +308,7 @@
             this.comboBox_MACROSCOPIC.Tag = "Surgical Procedure";
             this.comboBox_MACROSCOPIC.ValueMember = "MACROSCOPIC";
             this.comboBox_MACROSCOPIC.SelectedIndexChanged += new System.EventHandler(this.comboBox_MACROSCOPIC_SelectedIndexChanged);
+            this.comboBox_MACROSCOPIC.SelectionChangeCommitted += new System.EventHandler(this.comboBox_MACROSCOPIC_SelectionChangeCommitted);
             // 
             // label_MACROSCOPIC
             // 

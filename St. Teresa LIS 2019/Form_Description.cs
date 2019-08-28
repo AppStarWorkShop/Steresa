@@ -426,16 +426,18 @@ namespace St.Teresa_LIS_2019
             DataSet diag_descDataSet = new DataSet();
             SqlDataAdapter diag_descDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diag_descSql, diag_descDataSet, "diag_desc");
 
-            DataTable diag_descDt = new DataTable();
-            diag_descDt.Columns.Add("C_DESC");
+            DataTable diag_descDt1 = new DataTable();
+            diag_descDt1.Columns.Add("C_DESC");
+            DataTable diag_descDt2 = diag_descDt1.Clone();
 
             foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
             {
-                diag_descDt.Rows.Add(new object[] { mDr["C_DESC"] });
+                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"] });
+                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"] });
             }
 
-            comboBox_Diagnosis_1.DataSource = diag_descDt;
-            comboBox_Diagnosis_2.DataSource = diag_descDt;
+            comboBox_Diagnosis_1.DataSource = diag_descDt1;
+            comboBox_Diagnosis_2.DataSource = diag_descDt2;
 
             string picture_capSql = "SELECT [CAPTION] FROM [picture_cap]";
             DataSet picture_capDataSet = new DataSet();
@@ -476,7 +478,9 @@ namespace St.Teresa_LIS_2019
             comboBox_Description.DataBindings.Add("Text", dt, "macro_name", false);
             comboBox_Description2.DataBindings.Add("Text", dt, "macro_name", false);
             textBox_Remarks_CY.DataBindings.Add("Text", dt, "micro_desc", false);
+            textBox_Parts.DataBindings.Add("Text", dt, "group", false);
             textBox_Parts2.DataBindings.Add("Text", dt, "group", false);
+            textBox_Parts3.DataBindings.Add("Text", dt, "group", false);
 
             textBox_Picture_File_1.DataBindings.Add("Text", dt, "macro_pic1", false);
             textBox_Picture_File_2.DataBindings.Add("Text", dt, "macro_pic2", false);
@@ -511,33 +515,41 @@ namespace St.Teresa_LIS_2019
             DataSet snopcodeTDataSet = new DataSet();
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
 
-            DataTable snopcodeTDt = new DataTable();
-            snopcodeTDt.Columns.Add("desc");
+            DataTable snopcodeTDt1 = new DataTable();
+            snopcodeTDt1.Columns.Add("desc");
+            DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
+            DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
 
             foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeTDt.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeTDt1.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeTDt2.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeTDt3.Rows.Add(new object[] { mDr["desc"] });
             }
 
-            comboBox_Snop_T1.DataSource = snopcodeTDt;
-            comboBox_Snop_T2.DataSource = snopcodeTDt;
-            comboBox_Snop_T3.DataSource = snopcodeTDt;
+            comboBox_Snop_T1.DataSource = snopcodeTDt1;
+            comboBox_Snop_T2.DataSource = snopcodeTDt2;
+            comboBox_Snop_T3.DataSource = snopcodeTDt3;
 
             string snopcodeMSql = "SELECT [desc] FROM [snopcode] WHERE SNOPTYPE = 'M' ";
             DataSet snopcodeMDataSet = new DataSet();
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
-            DataTable snopcodeMDt = new DataTable();
-            snopcodeMDt.Columns.Add("desc");
+            DataTable snopcodeMDt1 = new DataTable();
+            snopcodeMDt1.Columns.Add("desc");
+            DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
+            DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
 
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeMDt2.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeMDt3.Rows.Add(new object[] { mDr["desc"] });
             }
 
-            comboBox_Snop_M1.DataSource = snopcodeMDt;
-            comboBox_Snop_M2.DataSource = snopcodeMDt;
-            comboBox_Snop_M3.DataSource = snopcodeMDt;
+            comboBox_Snop_M1.DataSource = snopcodeMDt1;
+            comboBox_Snop_M2.DataSource = snopcodeMDt2;
+            comboBox_Snop_M3.DataSource = snopcodeMDt3;
 
             string bxcy_sql = string.Format("SELECT * FROM [bxcy_specimen] WHERE id={0}", bxcy_id);
             bxcy_specimentDataAdapter = DBConn.fetchDataIntoDataSet(bxcy_sql, bxcy_specimenDataSet, "bxcy_specimen");
@@ -553,6 +565,19 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M1.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_m", false);
             comboBox_Snop_M2.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_m2", false);
             comboBox_Snop_M3.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_m3", false);
+
+            label_Total_Parts_No.DataBindings.Clear();
+            string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+            DataSet groupDataSet = new DataSet();
+            SqlDataAdapter groupDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet, "bxcy_diag");
+
+            DataTable groupDt = groupDataSet.Tables["bxcy_diag"];
+            label_Total_Parts_No.DataBindings.Add("Text", groupDt, "maxGroup", false);
+
+            /*if (groupDt != null && groupDt.Rows.Count > 0)
+            {
+                label_Total_Parts_No.Text = groupDt.Rows[0]["maxGroup"].ToString();
+            }*/
         }
 
         private void reloadDBData(int position = 0)
@@ -564,6 +589,14 @@ namespace St.Teresa_LIS_2019
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
+
+            label_Total_Parts_No.DataBindings.Clear();
+            string groupSql = string.Format("SELECT max([group]) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+            DataSet groupDataSet = new DataSet();
+            SqlDataAdapter groupDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet, "bxcy_diag");
+
+            DataTable groupDt = bxcy_diagDataSet.Tables["bxcy_diag"];
+            label_Total_Parts_No.DataBindings.Add("Text", groupDt, "maxGroup", false);
         }
 
         private void button_Next_Click(object sender, EventArgs e)
@@ -594,7 +627,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0} ORDER BY ID DESC", caseNo);
+            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY ID DESC", caseNo);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
         }
 
@@ -744,10 +777,10 @@ namespace St.Teresa_LIS_2019
 
                 textBox_Site_frort.Enabled = false;
                 comboBox_Site.Enabled = false;
-                button_Detail_1_DIA.Enabled = false;
+                button_Detail_1_DIA.Enabled = true;
                 textBox_Chinese_Description_1_DIA.Enabled = false;
                 comboBox_Operation.Enabled = false;
-                button_Detail_2_DIA.Enabled = false;
+                button_Detail_2_DIA.Enabled = true;
                 textBox_Chinese_Description_2_DIA.Enabled = false;
                 textBox_Diagnosis.Enabled = false;
                 comboBox_Diagnosis_1.Enabled = false;
@@ -1263,12 +1296,14 @@ namespace St.Teresa_LIS_2019
 
         private void button_Detail_1_DIA_Click(object sender, EventArgs e)
         {
-
+            Form_SiteFileMaintenance open = new Form_SiteFileMaintenance();
+            open.Show();
         }
 
         private void button_Detail_2_DIA_Click(object sender, EventArgs e)
         {
-
+            Form_OperationFileMaintenance open = new Form_OperationFileMaintenance();
+            open.Show();
         }
 
         private string getPicFileName()

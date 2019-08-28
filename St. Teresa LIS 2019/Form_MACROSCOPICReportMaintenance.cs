@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
 using System.Data.SqlClient;
 
 namespace St.Teresa_LIS_2019
@@ -467,6 +466,10 @@ namespace St.Teresa_LIS_2019
         {
             //reloadAndBindingDBData(comboBox_MACROSCOPIC.SelectedValue.ToString());
 
+        }
+
+        private void comboBox_MACROSCOPIC_SelectionChangeCommitted(object sender, EventArgs e)
+        {
             string sql = string.Format("SELECT TOP 1 * FROM [MACROSCOPIC_Report] WHERE MACROSCOPIC = '{0}' ORDER BY ID", comboBox_MACROSCOPIC.SelectedValue.ToString());
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, MACROSCOPIC_ReportDataSet, "MACROSCOPIC_Report");
 

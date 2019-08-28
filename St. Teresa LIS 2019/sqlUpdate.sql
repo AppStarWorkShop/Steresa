@@ -525,3 +525,23 @@ BEGIN
 ALTER TABLE diag_desc ADD [id] [int] IDENTITY(1,1) NOT NULL;
 ALTER TABLE diag_desc ADD CONSTRAINT [PK_diag_desc] primary key (ID);
 END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='picture_cap')
+BEGIN
+ALTER TABLE picture_cap ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE picture_cap ADD CONSTRAINT [PK_picture_cap] primary key (ID);
+END
+
+DELETE FROM picture_cap WHERE CAPTION IS NULL;
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='site')
+BEGIN
+ALTER TABLE site ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE site ADD CONSTRAINT [PK_site] primary key (ID);
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='operation')
+BEGIN
+ALTER TABLE operation ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE operation ADD CONSTRAINT [PK_operation] primary key (ID);
+END
