@@ -270,7 +270,9 @@ namespace St.Teresa_LIS_2019
             comboBox_Description.DataBindings.Clear();
             comboBox_Description2.DataBindings.Clear();
             textBox_Remarks_CY.DataBindings.Clear();
+            textBox_Parts.DataBindings.Clear();
             textBox_Parts2.DataBindings.Clear();
+            textBox_Parts3.DataBindings.Clear();
 
             textBox_Picture_File_1.DataBindings.Clear();
             textBox_Picture_File_2.DataBindings.Clear();
@@ -307,30 +309,33 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
-            string siteSql = "SELECT [site] FROM [site]";
+            string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
             DataSet siteDataSet = new DataSet();
             SqlDataAdapter siteDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(siteSql, siteDataSet, "site");
 
             DataTable siteDt = new DataTable();
             siteDt.Columns.Add("site");
+            siteDt.Columns.Add("siteAndDesc");
 
             foreach (DataRow mDr in siteDataSet.Tables["site"].Rows)
             {
-                siteDt.Rows.Add(new object[] { mDr["site"] });
+                siteDt.Rows.Add(new object[] { mDr["site"], string.Format("{0}--{1}",mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Site.DataSource = siteDt;
+            //comboBox_Site.SelectedValue
 
-            string operationSql = "SELECT [operation] FROM [operation]";
+            string operationSql = "SELECT [operation],[desc] FROM [operation] WHERE operation is not null ORDER BY operation";
             DataSet operationDataSet = new DataSet();
             SqlDataAdapter operationDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(operationSql, operationDataSet, "operation");
 
             DataTable operationDt = new DataTable();
             operationDt.Columns.Add("operation");
+            operationDt.Columns.Add("operationAndDesc");
 
             foreach (DataRow mDr in operationDataSet.Tables["operation"].Rows)
             {
-                operationDt.Rows.Add(new object[] { mDr["operation"] });
+                operationDt.Rows.Add(new object[] { mDr["operation"], string.Format("{0}--{1}", mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Operation.DataSource = operationDt;
@@ -422,18 +427,19 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Doctor2.DataSource = micro_templateDt;
 
-            string diag_descSql = "SELECT C_DESC FROM [diag_desc]";
+            string diag_descSql = "SELECT C_DESC,E_DESC FROM [diag_desc] WHERE E_DESC is not null ORDER BY E_DESC";
             DataSet diag_descDataSet = new DataSet();
             SqlDataAdapter diag_descDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diag_descSql, diag_descDataSet, "diag_desc");
 
             DataTable diag_descDt1 = new DataTable();
             diag_descDt1.Columns.Add("C_DESC");
+            diag_descDt1.Columns.Add("C_DESCAndE_DESC");
             DataTable diag_descDt2 = diag_descDt1.Clone();
 
             foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
             {
-                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"] });
-                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"] });
+                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
+                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
             }
 
             comboBox_Diagnosis_1.DataSource = diag_descDt1;
@@ -503,48 +509,50 @@ namespace St.Teresa_LIS_2019
             textBox_Remarks.DataBindings.Add("Text", dt, "macro_desc", false);
 
             textBox_Site_frort.DataBindings.Add("Text", dt, "seq", false);
-            comboBox_Site.DataBindings.Add("Text", dt, "site", false);
+            comboBox_Site.DataBindings.Add("SelectedValue", dt, "site", false);
             textBox_Chinese_Description_1_DIA.DataBindings.Add("Text", dt, "Site2", false);
-            comboBox_Operation.DataBindings.Add("Text", dt, "Operation", false);
+            comboBox_Operation.DataBindings.Add("SelectedValue", dt, "Operation", false);
             textBox_Chinese_Description_2_DIA.DataBindings.Add("Text", dt, "Operation2", false);
             textBox_Diagnosis.DataBindings.Add("Text", dt, "Diagnosis", false);
-            comboBox_Diagnosis_1.DataBindings.Add("Text", dt, "Diag_desc1", false);
-            comboBox_Diagnosis_2.DataBindings.Add("Text", dt, "Diag_desc2", false);
+            comboBox_Diagnosis_1.DataBindings.Add("SelectedValue", dt, "Diag_desc1", false);
+            comboBox_Diagnosis_2.DataBindings.Add("SelectedValue", dt, "Diag_desc2", false);
 
-            string snopcodeTSql = "SELECT [desc] FROM [snopcode] WHERE SNOPTYPE = 'T' ";
+            string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ";
             DataSet snopcodeTDataSet = new DataSet();
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
 
             DataTable snopcodeTDt1 = new DataTable();
             snopcodeTDt1.Columns.Add("desc");
+            snopcodeTDt1.Columns.Add("snopcodeAndDesc");
             DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
             DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
 
             foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeTDt1.Rows.Add(new object[] { mDr["desc"] });
-                snopcodeTDt2.Rows.Add(new object[] { mDr["desc"] });
-                snopcodeTDt3.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeTDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt2.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt3.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Snop_T1.DataSource = snopcodeTDt1;
             comboBox_Snop_T2.DataSource = snopcodeTDt2;
             comboBox_Snop_T3.DataSource = snopcodeTDt3;
 
-            string snopcodeMSql = "SELECT [desc] FROM [snopcode] WHERE SNOPTYPE = 'M' ";
+            string snopcodeMSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'M' ";
             DataSet snopcodeMDataSet = new DataSet();
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
             DataTable snopcodeMDt1 = new DataTable();
             snopcodeMDt1.Columns.Add("desc");
+            snopcodeMDt1.Columns.Add("snopcodeAndDesc");
             DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
             DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
 
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt1.Rows.Add(new object[] { mDr["desc"] });
-                snopcodeMDt2.Rows.Add(new object[] { mDr["desc"] });
-                snopcodeMDt3.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt2.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt3.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Snop_M1.DataSource = snopcodeMDt1;
@@ -559,12 +567,12 @@ namespace St.Teresa_LIS_2019
             /*bxcy_specimentDt.Columns["id"].AutoIncrement = true;
             bxcy_specimentDt.Columns["id"].AutoIncrementStep = 1;*/
 
-            comboBox_Snop_T1.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_t", false);
-            comboBox_Snop_T2.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_t2", false);
-            comboBox_Snop_T3.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_t3", false);
-            comboBox_Snop_M1.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_m", false);
-            comboBox_Snop_M2.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_m2", false);
-            comboBox_Snop_M3.DataBindings.Add("Text", bxcy_specimentDt, "Snopcode_m3", false);
+            comboBox_Snop_T1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
+            comboBox_Snop_T2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t2", false);
+            comboBox_Snop_T3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t3", false);
+            comboBox_Snop_M1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
+            comboBox_Snop_M2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m2", false);
+            comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);
 
             label_Total_Parts_No.DataBindings.Clear();
             string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
@@ -679,6 +687,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
             currentEditRow["id"] = -1;
             currentEditRow["case_no"] = caseNo;
+            //currentEditRow["group"] = 0;
 
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
@@ -1144,6 +1153,14 @@ namespace St.Teresa_LIS_2019
                 {
                     /*currentEditRow["UPDATE_BY"] = "Admin";
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");*/
+                    if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
+                    {
+                        currentEditRow["group"] = "1";
+                    }
+                    else
+                    {
+                        currentEditRow["group"] = label_Total_Parts_No.Text;
+                    }
                     textBox_ID.BindingContext[dt].Position++;
 
                     if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
@@ -1169,6 +1186,14 @@ namespace St.Teresa_LIS_2019
                     {
                         /*drow["UPDATE_BY"] = "Admin";
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");*/
+                        if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
+                        {
+                            drow["group"] = (Convert.ToInt32(textBox_Parts.Text) + 1).ToString();
+                        }
+                        else
+                        {
+                            drow["group"] = label_Total_Parts_No.Text;
+                        }
                         textBox_ID.BindingContext[dt].Position++;
 
                         if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))

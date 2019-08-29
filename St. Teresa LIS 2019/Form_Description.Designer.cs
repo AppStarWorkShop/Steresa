@@ -1275,7 +1275,7 @@
             // 
             // comboBox_Snop_M2
             // 
-            this.comboBox_Snop_M2.DisplayMember = "desc";
+            this.comboBox_Snop_M2.DisplayMember = "snopcodeAndDesc";
             this.comboBox_Snop_M2.DropDownWidth = 300;
             this.comboBox_Snop_M2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M2.ForeColor = System.Drawing.Color.Blue;
@@ -1311,7 +1311,7 @@
             // 
             // comboBox_Snop_M3
             // 
-            this.comboBox_Snop_M3.DisplayMember = "desc";
+            this.comboBox_Snop_M3.DisplayMember = "snopcodeAndDesc";
             this.comboBox_Snop_M3.DropDownWidth = 300;
             this.comboBox_Snop_M3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M3.ForeColor = System.Drawing.Color.Blue;
@@ -1347,7 +1347,7 @@
             // 
             // comboBox_Snop_T2
             // 
-            this.comboBox_Snop_T2.DisplayMember = "desc";
+            this.comboBox_Snop_T2.DisplayMember = "snopcodeAndDesc";
             this.comboBox_Snop_T2.DropDownWidth = 300;
             this.comboBox_Snop_T2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T2.ForeColor = System.Drawing.Color.Blue;
@@ -1381,7 +1381,7 @@
             // 
             // comboBox_Snop_T3
             // 
-            this.comboBox_Snop_T3.DisplayMember = "desc";
+            this.comboBox_Snop_T3.DisplayMember = "snopcodeAndDesc";
             this.comboBox_Snop_T3.DropDownWidth = 300;
             this.comboBox_Snop_T3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T3.ForeColor = System.Drawing.Color.Blue;
@@ -1415,7 +1415,7 @@
             // 
             // comboBox_Snop_M1
             // 
-            this.comboBox_Snop_M1.DisplayMember = "desc";
+            this.comboBox_Snop_M1.DisplayMember = "snopcodeAndDesc";
             this.comboBox_Snop_M1.DropDownWidth = 300;
             this.comboBox_Snop_M1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M1.ForeColor = System.Drawing.Color.Blue;
@@ -1439,7 +1439,7 @@
             // 
             // comboBox_Snop_T1
             // 
-            this.comboBox_Snop_T1.DisplayMember = "desc";
+            this.comboBox_Snop_T1.DisplayMember = "snopcodeAndDesc";
             this.comboBox_Snop_T1.DropDownWidth = 300;
             this.comboBox_Snop_T1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T1.ForeColor = System.Drawing.Color.Blue;
@@ -1509,7 +1509,7 @@
             // 
             // comboBox_Diagnosis_2
             // 
-            this.comboBox_Diagnosis_2.DisplayMember = "C_DESC";
+            this.comboBox_Diagnosis_2.DisplayMember = "C_DESCAndE_DESC";
             this.comboBox_Diagnosis_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Diagnosis_2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Diagnosis_2.FormattingEnabled = true;
@@ -1533,7 +1533,7 @@
             // 
             // comboBox_Diagnosis_1
             // 
-            this.comboBox_Diagnosis_1.DisplayMember = "C_DESC";
+            this.comboBox_Diagnosis_1.DisplayMember = "C_DESCAndE_DESC";
             this.comboBox_Diagnosis_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Diagnosis_1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Diagnosis_1.FormattingEnabled = true;
@@ -1578,7 +1578,7 @@
             // 
             // comboBox_Operation
             // 
-            this.comboBox_Operation.DisplayMember = "operation";
+            this.comboBox_Operation.DisplayMember = "operationAndDesc";
             this.comboBox_Operation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Operation.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Operation.FormattingEnabled = true;
@@ -1667,7 +1667,7 @@
             // 
             // comboBox_Site
             // 
-            this.comboBox_Site.DisplayMember = "site";
+            this.comboBox_Site.DisplayMember = "siteAndDesc";
             this.comboBox_Site.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Site.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Site.FormattingEnabled = true;

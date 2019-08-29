@@ -290,37 +290,47 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Class.DataSource = classDt;
 
-            string snopcodeTSql = "SELECT [desc] FROM [snopcode] WHERE SNOPTYPE = 'T' ";
+            string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ";
             DataSet snopcodeTDataSet = new DataSet();
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
 
-            DataTable snopcodeTDt = new DataTable();
-            snopcodeTDt.Columns.Add("desc");
+            DataTable snopcodeTDt1 = new DataTable();
+            snopcodeTDt1.Columns.Add("desc");
+            snopcodeTDt1.Columns.Add("snopcodeAndDesc");
+            DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
+            DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
 
             foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeTDt.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeTDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt2.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt3.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
-            comboBox_Snop_T1.DataSource = snopcodeTDt;
-            comboBox_Snop_T2.DataSource = snopcodeTDt;
-            comboBox_Snop_T3.DataSource = snopcodeTDt;
+            comboBox_Snop_T1.DataSource = snopcodeTDt1;
+            comboBox_Snop_T2.DataSource = snopcodeTDt2;
+            comboBox_Snop_T3.DataSource = snopcodeTDt3;
 
-            string snopcodeMSql = "SELECT [desc] FROM [snopcode] WHERE SNOPTYPE = 'M' ";
+            string snopcodeMSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'M' ";
             DataSet snopcodeMDataSet = new DataSet();
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
-            DataTable snopcodeMDt = new DataTable();
-            snopcodeMDt.Columns.Add("desc");
+            DataTable snopcodeMDt1 = new DataTable();
+            snopcodeMDt1.Columns.Add("desc");
+            snopcodeMDt1.Columns.Add("snopcodeAndDesc");
+            DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
+            DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
 
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt.Rows.Add(new object[] { mDr["desc"] });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt2.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt3.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
-            comboBox_Snop_M1.DataSource = snopcodeMDt;
-            comboBox_Snop_M2.DataSource = snopcodeMDt;
-            comboBox_Snop_M3.DataSource = snopcodeMDt;
+            comboBox_Snop_M1.DataSource = snopcodeMDt1;
+            comboBox_Snop_M2.DataSource = snopcodeMDt2;
+            comboBox_Snop_M3.DataSource = snopcodeMDt3;
 
             string ethnicSql = "SELECT PEOPLE FROM [ethnic]";
             DataSet ethnicDataSet = new DataSet();
@@ -393,13 +403,13 @@ namespace St.Teresa_LIS_2019
             textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
             textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
-            comboBox_Snop_T1.DataBindings.Add("Text", dt, "snopcode_t", false);
-            comboBox_Snop_T2.DataBindings.Add("Text", dt, "snopcode_t2", false);
-            comboBox_Snop_T3.DataBindings.Add("Text", dt, "snopcode_t3", false);
+            comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
+            comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
+            comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
             comboBox_Sign_By_Dr_1.DataBindings.Add("Text", dt, "Sign_dr", false);
-            comboBox_Snop_M1.DataBindings.Add("Text", dt, "Snopcode_m", false);
-            comboBox_Snop_M2.DataBindings.Add("Text", dt, "Snopcode_m2", false);
-            comboBox_Snop_M3.DataBindings.Add("Text", dt, "Snopcode_m3", false);
+            comboBox_Snop_M1.DataBindings.Add("SelectedValue", dt, "Snopcode_m", false);
+            comboBox_Snop_M2.DataBindings.Add("SelectedValue", dt, "Snopcode_m2", false);
+            comboBox_Snop_M3.DataBindings.Add("SelectedValue", dt, "Snopcode_m3", false);
             comboBox_Sign_By_Dr_2.DataBindings.Add("Text", dt, "Sign_dr2", false);
             comboBox_HistoType.DataBindings.Add("SelectedValue", dt, "Histo", false);
 
