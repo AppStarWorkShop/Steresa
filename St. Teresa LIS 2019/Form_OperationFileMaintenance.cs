@@ -125,7 +125,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
-                    currentEditRow["UPDATE_BY"] = "Admin";
+                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserName;
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
                     currentEditRow["operation"] = comboBox_Operation.Text;
                     textBox_ID.BindingContext[dt].Position++;
@@ -149,7 +149,7 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = operationDataSet.Tables["operation"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        drow["UPDATE_BY"] = "Admin";
+                        drow["UPDATE_BY"] = CurrentUser.currentUserName;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         drow["operation"] = comboBox_Operation.Text;
                         textBox_ID.BindingContext[dt].Position++;

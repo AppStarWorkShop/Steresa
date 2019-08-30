@@ -882,8 +882,8 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
-                    currentEditRow["ISSUE_BY"] = "Admin";
-                    currentEditRow["UPDATE_BY"] = "Admin";
+                    currentEditRow["ISSUE_BY"] = CurrentUser.currentUserName;
+                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserName;
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
                     textBox_ID.BindingContext[dt].Position++;
 
@@ -910,7 +910,8 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        drow["UPDATE_BY"] = "Admin";
+                        //drow["UPDATE_BY"] = CurrentUser.currentUserName;
+                        drow["UPDATE_BY"] = CurrentUser.currentUserName;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         textBox_ID.BindingContext[dt].Position++;
 

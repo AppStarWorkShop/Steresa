@@ -124,7 +124,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
-                    currentEditRow["UPDATE_BY"] = "Admin";
+                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserName;
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
                     currentEditRow["CAPTION"] = comboBox_Caption.Text;
                     textBox_ID.BindingContext[dt].Position++;
@@ -150,7 +150,7 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = picture_capDataSet.Tables["picture_cap"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        drow["UPDATE_BY"] = "Admin";
+                        drow["UPDATE_BY"] = CurrentUser.currentUserName;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         drow["CAPTION"] = comboBox_Caption.Text;
                         textBox_ID.BindingContext[dt].Position++;
