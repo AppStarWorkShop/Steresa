@@ -354,7 +354,6 @@
             this.textBox_Picture_File_8.Name = "textBox_Picture_File_8";
             this.textBox_Picture_File_8.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_8.TabIndex = 218;
-            this.textBox_Picture_File_8.Text = "P123456789012345.JPG";
             // 
             // button_Picture_File_7
             // 
@@ -425,7 +424,6 @@
             this.textBox_Picture_File_7.Name = "textBox_Picture_File_7";
             this.textBox_Picture_File_7.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_7.TabIndex = 212;
-            this.textBox_Picture_File_7.Text = "P123456789012345.JPG";
             // 
             // button_Picture_File_6
             // 
@@ -496,7 +494,6 @@
             this.textBox_Picture_File_6.Name = "textBox_Picture_File_6";
             this.textBox_Picture_File_6.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_6.TabIndex = 206;
-            this.textBox_Picture_File_6.Text = "P123456789012345.JPG";
             // 
             // button_Picture_File_5
             // 
@@ -567,7 +564,6 @@
             this.textBox_Picture_File_5.Name = "textBox_Picture_File_5";
             this.textBox_Picture_File_5.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_5.TabIndex = 200;
-            this.textBox_Picture_File_5.Text = "P123456789012345.JPG";
             // 
             // button_Picture_File_4
             // 
@@ -638,7 +634,6 @@
             this.textBox_Picture_File_4.Name = "textBox_Picture_File_4";
             this.textBox_Picture_File_4.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_4.TabIndex = 194;
-            this.textBox_Picture_File_4.Text = "P123456789012345.JPG";
             // 
             // button_Picture_File_3
             // 
@@ -709,7 +704,6 @@
             this.textBox_Picture_File_3.Name = "textBox_Picture_File_3";
             this.textBox_Picture_File_3.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_3.TabIndex = 188;
-            this.textBox_Picture_File_3.Text = "P123456789012345.JPG";
             // 
             // button_Picture_File_2
             // 
@@ -780,7 +774,6 @@
             this.textBox_Picture_File_2.Name = "textBox_Picture_File_2";
             this.textBox_Picture_File_2.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_2.TabIndex = 182;
-            this.textBox_Picture_File_2.Text = "P123456789012345.JPG";
             // 
             // button_Add_Template
             // 
@@ -877,7 +870,6 @@
             this.textBox_Parts.ReadOnly = true;
             this.textBox_Parts.Size = new System.Drawing.Size(31, 24);
             this.textBox_Parts.TabIndex = 175;
-            this.textBox_Parts.Text = "99";
             // 
             // label_Parts
             // 
@@ -927,6 +919,7 @@
             this.comboBox_MAC_Add.TabIndex = 148;
             this.comboBox_MAC_Add.ValueMember = "Description";
             this.comboBox_MAC_Add.SelectedIndexChanged += new System.EventHandler(this.comboBox_MAC_Add_SelectedIndexChanged);
+            this.comboBox_MAC_Add.SelectionChangeCommitted += new System.EventHandler(this.comboBox_MAC_Add_SelectionChangeCommitted);
             // 
             // label_MAC_Add
             // 
@@ -1007,7 +1000,6 @@
             this.textBox_Picture_File_1.Name = "textBox_Picture_File_1";
             this.textBox_Picture_File_1.Size = new System.Drawing.Size(171, 20);
             this.textBox_Picture_File_1.TabIndex = 22;
-            this.textBox_Picture_File_1.Text = "P123456789012345.JPG";
             // 
             // label_Description
             // 
@@ -1069,6 +1061,7 @@
             this.comboBox_MIC_Add2.TabIndex = 252;
             this.comboBox_MIC_Add2.ValueMember = "Description";
             this.comboBox_MIC_Add2.SelectedIndexChanged += new System.EventHandler(this.comboBox_MIC_Add2_SelectedIndexChanged);
+            this.comboBox_MIC_Add2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_MIC_Add2_SelectionChangeCommitted);
             // 
             // label_MIC_Add
             // 
@@ -1184,7 +1177,6 @@
             this.textBox_Parts2.ReadOnly = true;
             this.textBox_Parts2.Size = new System.Drawing.Size(31, 24);
             this.textBox_Parts2.TabIndex = 219;
-            this.textBox_Parts2.Text = "99";
             // 
             // label16
             // 
@@ -1621,7 +1613,6 @@
             this.textBox_Parts3.ReadOnly = true;
             this.textBox_Parts3.Size = new System.Drawing.Size(31, 24);
             this.textBox_Parts3.TabIndex = 210;
-            this.textBox_Parts3.Text = "99";
             // 
             // label_Parts_DIA
             // 
@@ -1869,9 +1860,8 @@
             this.label_Total_Parts_No.ForeColor = System.Drawing.Color.DarkViolet;
             this.label_Total_Parts_No.Location = new System.Drawing.Point(965, 572);
             this.label_Total_Parts_No.Name = "label_Total_Parts_No";
-            this.label_Total_Parts_No.Size = new System.Drawing.Size(31, 22);
+            this.label_Total_Parts_No.Size = new System.Drawing.Size(2, 22);
             this.label_Total_Parts_No.TabIndex = 149;
-            this.label_Total_Parts_No.Text = "99";
             // 
             // button_F6_Edit
             // 

@@ -590,7 +590,7 @@ namespace St.Teresa_LIS_2019
 
         private void reloadDBData(int position = 0)
         {
-            string sql = "SELECT TOP 1 * FROM BXCY_DIAG ORDER BY ID";
+            string sql = string.Format("SELECT TOP 1 * FROM BXCY_DIAG WHERE case_no = '{0}' ORDER BY ID",caseNo);
             DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "BXCY_DIAG");
 
             DataTable dt = bxcy_diagDataSet.Tables["BXCY_DIAG"];
@@ -599,31 +599,37 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrementStep = 1;
 
             label_Total_Parts_No.DataBindings.Clear();
-            string groupSql = string.Format("SELECT max([group]) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+            string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
             DataSet groupDataSet = new DataSet();
             SqlDataAdapter groupDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet, "bxcy_diag");
 
-            DataTable groupDt = bxcy_diagDataSet.Tables["bxcy_diag"];
+            DataTable groupDt = groupDataSet.Tables["bxcy_diag"];
             label_Total_Parts_No.DataBindings.Add("Text", groupDt, "maxGroup", false);
         }
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            string countSql = string.Format(" [bxcy_diag] WHERE id > {0} and case_no = '{1}'", textBox_ID.Text, caseNo);
-            if (DBConn.getSqlRecordCount(countSql) > 0)
+            if (textBox_ID.Text.Trim() != "")
             {
-                string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id > {0} and case_no = '{1}' ORDER BY ID", textBox_ID.Text, caseNo);
-                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                string countSql = string.Format(" [bxcy_diag] WHERE id > {0} and case_no = '{1}'", textBox_ID.Text, caseNo);
+                if (DBConn.getSqlRecordCount(countSql) > 0)
+                {
+                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id > {0} and case_no = '{1}' ORDER BY ID", textBox_ID.Text, caseNo);
+                    dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                }
             }
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            string countSql = string.Format(" [bxcy_diag] WHERE id < {0} and case_no = '{1}'", textBox_ID.Text, caseNo);
-            if (DBConn.getSqlRecordCount(countSql) > 0)
+            if (textBox_ID.Text.Trim() != "")
             {
-                string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id < {0} and case_no = '{1}' ORDER BY ID DESC", textBox_ID.Text, caseNo);
-                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                string countSql = string.Format(" [bxcy_diag] WHERE id < {0} and case_no = '{1}'", textBox_ID.Text, caseNo);
+                if (DBConn.getSqlRecordCount(countSql) > 0)
+                {
+                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id < {0} and case_no = '{1}' ORDER BY ID DESC", textBox_ID.Text, caseNo);
+                    dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                }
             }
         }
 
@@ -641,43 +647,50 @@ namespace St.Teresa_LIS_2019
 
         private void button_F6_Edit_Click(object sender, EventArgs e)
         {
-            copyBxcy_diagStr = new Bxcy_diagStr();
+            if (textBox_ID.Text.Trim() == "")
+            {
+                button_New.PerformClick();
+            }
+            else
+            {
+                copyBxcy_diagStr = new Bxcy_diagStr();
 
-            copyBxcy_diagStr.macro_name = comboBox_Description.Text;
-            copyBxcy_diagStr.macro_name = comboBox_Description2.Text;
-            copyBxcy_diagStr.micro_desc = textBox_Remarks_CY.Text;
-            copyBxcy_diagStr.group = textBox_Parts2.Text;
+                copyBxcy_diagStr.macro_name = comboBox_Description.Text;
+                copyBxcy_diagStr.macro_name = comboBox_Description2.Text;
+                copyBxcy_diagStr.micro_desc = textBox_Remarks_CY.Text;
+                copyBxcy_diagStr.group = textBox_Parts2.Text;
 
-            copyBxcy_diagStr.macro_pic1 = textBox_Picture_File_1.Text;
-            copyBxcy_diagStr.macro_pic2 = textBox_Picture_File_2.Text;
-            copyBxcy_diagStr.macro_pic3 = textBox_Picture_File_3.Text;
-            copyBxcy_diagStr.macro_pic4 = textBox_Picture_File_4.Text;
-            copyBxcy_diagStr.macro_pic1 = textBox_Picture_File_5.Text;
-            copyBxcy_diagStr.macro_pic2 = textBox_Picture_File_6.Text;
-            copyBxcy_diagStr.macro_pic3 = textBox_Picture_File_7.Text;
-            copyBxcy_diagStr.macro_pic4 = textBox_Picture_File_8.Text;
+                copyBxcy_diagStr.macro_pic1 = textBox_Picture_File_1.Text;
+                copyBxcy_diagStr.macro_pic2 = textBox_Picture_File_2.Text;
+                copyBxcy_diagStr.macro_pic3 = textBox_Picture_File_3.Text;
+                copyBxcy_diagStr.macro_pic4 = textBox_Picture_File_4.Text;
+                copyBxcy_diagStr.macro_pic1 = textBox_Picture_File_5.Text;
+                copyBxcy_diagStr.macro_pic2 = textBox_Picture_File_6.Text;
+                copyBxcy_diagStr.macro_pic3 = textBox_Picture_File_7.Text;
+                copyBxcy_diagStr.macro_pic4 = textBox_Picture_File_8.Text;
 
-            copyBxcy_diagStr.macro_cap1 = comboBox_Caption_1.Text;
-            copyBxcy_diagStr.macro_cap2 = comboBox_Caption_2.Text;
-            copyBxcy_diagStr.macro_cap3 = comboBox_Caption_3.Text;
-            copyBxcy_diagStr.macro_cap4 = comboBox_Caption_4.Text;
-            copyBxcy_diagStr.macro_cap1 = comboBox_Caption_5.Text;
-            copyBxcy_diagStr.macro_cap2 = comboBox_Caption_6.Text;
-            copyBxcy_diagStr.macro_cap3 = comboBox_Caption_7.Text;
-            copyBxcy_diagStr.macro_cap4 = comboBox_Caption_8.Text;
+                copyBxcy_diagStr.macro_cap1 = comboBox_Caption_1.Text;
+                copyBxcy_diagStr.macro_cap2 = comboBox_Caption_2.Text;
+                copyBxcy_diagStr.macro_cap3 = comboBox_Caption_3.Text;
+                copyBxcy_diagStr.macro_cap4 = comboBox_Caption_4.Text;
+                copyBxcy_diagStr.macro_cap1 = comboBox_Caption_5.Text;
+                copyBxcy_diagStr.macro_cap2 = comboBox_Caption_6.Text;
+                copyBxcy_diagStr.macro_cap3 = comboBox_Caption_7.Text;
+                copyBxcy_diagStr.macro_cap4 = comboBox_Caption_8.Text;
 
-            copyBxcy_diagStr.macro_desc = textBox_Remarks.Text;
+                copyBxcy_diagStr.macro_desc = textBox_Remarks.Text;
 
-            copyBxcy_diagStr.seq = textBox_Site_frort.Text;
-            copyBxcy_diagStr.site = comboBox_Site.Text;
-            copyBxcy_diagStr.site2 = textBox_Chinese_Description_1_DIA.Text;
-            copyBxcy_diagStr.operation = comboBox_Operation.Text;
-            copyBxcy_diagStr.operation2 = textBox_Chinese_Description_2_DIA.Text;
-            copyBxcy_diagStr.diagnosis = textBox_Diagnosis.Text;
-            copyBxcy_diagStr.diag_desc1 = comboBox_Diagnosis_1.Text;
-            copyBxcy_diagStr.diag_desc2 = comboBox_Diagnosis_2.Text;
+                copyBxcy_diagStr.seq = textBox_Site_frort.Text;
+                copyBxcy_diagStr.site = comboBox_Site.Text;
+                copyBxcy_diagStr.site2 = textBox_Chinese_Description_1_DIA.Text;
+                copyBxcy_diagStr.operation = comboBox_Operation.Text;
+                copyBxcy_diagStr.operation2 = textBox_Chinese_Description_2_DIA.Text;
+                copyBxcy_diagStr.diagnosis = textBox_Diagnosis.Text;
+                copyBxcy_diagStr.diag_desc1 = comboBox_Diagnosis_1.Text;
+                copyBxcy_diagStr.diag_desc2 = comboBox_Diagnosis_2.Text;
 
-            setButtonStatus(PageStatus.STATUS_EDIT);
+                setButtonStatus(PageStatus.STATUS_EDIT);
+            }
         }
 
         private void button_New_Click(object sender, EventArgs e)
@@ -1155,7 +1168,7 @@ namespace St.Teresa_LIS_2019
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");*/
                     if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
                     {
-                        currentEditRow["group"] = "1";
+                        currentEditRow["group"] = (Convert.ToInt32(label_Total_Parts_No.Text) + 1).ToString();
                     }
                     else
                     {
@@ -1213,12 +1226,12 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox_Remarks.Text = textBox_Remarks.Text + comboBox_MAC_Add.SelectedValue.ToString();
+            
         }
 
         private void comboBox_MIC_Add2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + comboBox_MIC_Add2.SelectedValue.ToString();
+            
         }
 
         private void comboBox_Doctor_SelectedIndexChanged(object sender, EventArgs e)
@@ -1435,6 +1448,16 @@ namespace St.Teresa_LIS_2019
         {
             ShowPicture open = new ShowPicture(textBox_Picture_File_8.Text.Trim());
             open.Show();
+        }
+
+        private void comboBox_MAC_Add_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            textBox_Remarks.Text = textBox_Remarks.Text + comboBox_MAC_Add.SelectedValue.ToString();
+        }
+
+        private void comboBox_MIC_Add2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + comboBox_MIC_Add2.SelectedValue.ToString();
         }
     }
 }
