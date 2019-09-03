@@ -482,7 +482,7 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             comboBox_Description.DataBindings.Add("Text", dt, "macro_name", false);
-            comboBox_Description2.DataBindings.Add("Text", dt, "macro_name", false);
+            comboBox_Description2.DataBindings.Add("Text", dt, "micro_name", false);
             textBox_Remarks_CY.DataBindings.Add("Text", dt, "micro_desc", false);
             textBox_Parts.DataBindings.Add("Text", dt, "group", false);
             textBox_Parts2.DataBindings.Add("Text", dt, "group", false);
@@ -1199,14 +1199,14 @@ namespace St.Teresa_LIS_2019
                     {
                         /*drow["UPDATE_BY"] = CurrentUser.currentUserName;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");*/
-                        if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
+                        /*if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
                         {
                             drow["group"] = (Convert.ToInt32(textBox_Parts.Text) + 1).ToString();
                         }
                         else
                         {
                             drow["group"] = label_Total_Parts_No.Text;
-                        }
+                        }*/
                         textBox_ID.BindingContext[dt].Position++;
 
                         if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
