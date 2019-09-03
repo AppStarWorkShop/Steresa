@@ -482,7 +482,7 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             comboBox_Description.DataBindings.Add("Text", dt, "macro_name", false);
-            comboBox_Description2.DataBindings.Add("Text", dt, "macro_name", false);
+            comboBox_Description2.DataBindings.Add("Text", dt, "micro_name", false);
             textBox_Remarks_CY.DataBindings.Add("Text", dt, "micro_desc", false);
             textBox_Parts.DataBindings.Add("Text", dt, "group", false);
             textBox_Parts2.DataBindings.Add("Text", dt, "group", false);
