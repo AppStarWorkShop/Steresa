@@ -133,6 +133,14 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
+        public Form_Description(string caseNo, string bxcy_id)
+        {
+            this.caseNo = caseNo;
+            this.bxcy_id = bxcy_id;
+            currentStatus = PageStatus.STATUS_VIEW;
+            InitializeComponent();
+        }
+
         private void button_F8_Back_To_Main_Click(object sender, EventArgs e)
         {
             if (OnBxcyDiagExit != null)
@@ -1075,6 +1083,9 @@ namespace St.Teresa_LIS_2019
             button_Undo.ForeColor = Color.Black;
             button_F8_Back_To_Main.Image = Image.FromFile("Resources/exit.png");
             button_F8_Back_To_Main.ForeColor = Color.Black;
+
+            /*button_Label.Image = Image.FromFile("Resources/print.png");
+            button_Label.ForeColor = Color.Black;*/
         }
 
         private void disedit_modle()
@@ -1099,6 +1110,11 @@ namespace St.Teresa_LIS_2019
             button_Undo.ForeColor = Color.Gray;
             button_F8_Back_To_Main.Image = Image.FromFile("Resources/exit.png");
             button_F8_Back_To_Main.ForeColor = Color.Black;
+
+            /*button_Label.Image = Image.FromFile("Resources/print.png");
+            button_Label.ForeColor = Color.Black;*/
+            /*button_Label.Image = Image.FromFile("Resources/print.png");
+            button_Label.ForeColor = Color.Black;*/
         }
 
         private void button_Undo_Click(object sender, EventArgs e)

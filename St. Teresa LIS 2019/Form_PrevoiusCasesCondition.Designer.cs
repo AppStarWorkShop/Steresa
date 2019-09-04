@@ -46,6 +46,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(686, 297);
             this.dataGridView1.TabIndex = 0;
             // 
@@ -84,9 +85,8 @@
             this.label_Total_No.ForeColor = System.Drawing.Color.Blue;
             this.label_Total_No.Location = new System.Drawing.Point(624, 321);
             this.label_Total_No.Name = "label_Total_No";
-            this.label_Total_No.Size = new System.Drawing.Size(19, 20);
+            this.label_Total_No.Size = new System.Drawing.Size(0, 20);
             this.label_Total_No.TabIndex = 166;
-            this.label_Total_No.Text = "1";
             // 
             // button_F6_View_Diagnosis
             // 
