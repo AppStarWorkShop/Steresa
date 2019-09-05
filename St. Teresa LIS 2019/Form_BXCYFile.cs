@@ -295,16 +295,16 @@ namespace St.Teresa_LIS_2019
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
 
             DataTable snopcodeTDt1 = new DataTable();
-            snopcodeTDt1.Columns.Add("desc");
+            snopcodeTDt1.Columns.Add("SNOPCODE");
             snopcodeTDt1.Columns.Add("snopcodeAndDesc");
             DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
             DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
 
             foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeTDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeTDt2.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeTDt3.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt2.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt3.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Snop_T1.DataSource = snopcodeTDt1;
@@ -316,16 +316,16 @@ namespace St.Teresa_LIS_2019
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
             DataTable snopcodeMDt1 = new DataTable();
-            snopcodeMDt1.Columns.Add("desc");
+            snopcodeMDt1.Columns.Add("SNOPCODE");
             snopcodeMDt1.Columns.Add("snopcodeAndDesc");
             DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
             DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
 
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeMDt2.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeMDt3.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt2.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt3.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Snop_M1.DataSource = snopcodeMDt1;

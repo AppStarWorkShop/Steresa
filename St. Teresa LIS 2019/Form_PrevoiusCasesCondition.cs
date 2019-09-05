@@ -38,7 +38,7 @@ namespace St.Teresa_LIS_2019
 
         private void loadDataGridViewDate(int currentPageNum = 1)
         {
-            string sql = string.Format("select bs.[case_no], [date], ISNULL(bs.[snopcode_t],'')+' '+ISNULL(bs.[snopcode_t2],'') +' ' + ISNULL(bs.[snopcode_t3],'') as Tcode, ISNULL(bs.[snopcode_m],'')+' '+ISNULL(bs.[snopcode_m2],'') +' ' + ISNULL(bs.[snopcode_m3],'') as Mcode, bd.[site] as Site, bd.[diagnosis] as Diagnosis,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs, [BXCY_DIAG] bd Where bs.[case_no] = bd.[case_no] and bs.pat_hkid = '{0}' Order by bs.[case_no] desc", hkid);
+            string sql = string.Format("select bs.[case_no], [date], ISNULL(bs.[snopcode_t],'') as Tcode1, ISNULL(bs.[snopcode_t2],'') as Tcode2, ISNULL(bs.[snopcode_t3],'') as Tcode3, ISNULL(bs.[snopcode_m],'') as Mcode1, ISNULL(bs.[snopcode_m2],'') as Mcode2, ISNULL(bs.[snopcode_m3],'') as Mcode3,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' Order by bs.[case_no] desc", hkid);
             SqlCommand checkCmd = new SqlCommand(sql, DBConn.getConnection());
             checkCmd.CommandType = CommandType.Text;
 
@@ -57,9 +57,85 @@ namespace St.Teresa_LIS_2019
             dt.Columns.Add("Diagnosis");
             dt.Columns.Add("Id");
 
+            string Tcode = "";
+            string Mcode = "";
             foreach (DataRow mDr in dtDb.Rows)
             {
-                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["date"], mDr["Tcode"], mDr["Mcode"], mDr["site"], mDr["Diagnosis"], mDr["id"] });
+                Tcode = "";
+                Mcode = "";
+
+                Tcode = mDr["Tcode1"].ToString().Trim();
+                if(Tcode != "" && mDr["Tcode2"].ToString().Trim() != "")
+                {
+                    Tcode = Tcode + System.Environment.NewLine + mDr["Tcode2"].ToString().Trim();
+                }
+                else
+                {
+                    Tcode = Tcode + mDr["Tcode2"].ToString().Trim();
+                }
+
+                if (Tcode != "" && mDr["Tcode3"].ToString().Trim() != "")
+                {
+                    Tcode = Tcode + System.Environment.NewLine + mDr["Tcode3"].ToString().Trim();
+                }
+                else
+                {
+                    Tcode = Tcode + mDr["Tcode3"].ToString().Trim();
+                }
+
+                Mcode = mDr["Mcode1"].ToString().Trim();
+                if (Mcode != "" && mDr["Mcode2"].ToString().Trim() != "")
+                {
+                    Mcode = Mcode + System.Environment.NewLine + mDr["Mcode2"].ToString().Trim();
+                }
+                else
+                {
+                    Mcode = Mcode + mDr["Mcode2"].ToString().Trim();
+                }
+
+                if (Mcode != "" && mDr["Mcode3"].ToString().Trim() != "")
+                {
+                    Mcode = Mcode + System.Environment.NewLine + mDr["Mcode3"].ToString().Trim();
+                }
+                else
+                {
+                    Mcode = Mcode + mDr["Mcode3"].ToString().Trim();
+                }
+
+                string sqlExt = string.Format("SELECT bd.[site] as Site, bd.[diagnosis] as Diagnosis From [BXCY_DIAG] bd WHERE case_no = '{0}'", mDr["CASE_NO"].ToString().Trim());
+                SqlCommand checkCmdExt = new SqlCommand(sqlExt, DBConn.getConnection());
+                checkCmd.CommandType = CommandType.Text;
+
+                checkCmdExt.CommandTimeout = 600;
+                SqlDataAdapter sdapExt = new SqlDataAdapter();
+                sdapExt.SelectCommand = checkCmdExt;
+                DataTable dtDbExt = new DataTable();
+                sdapExt.Fill(dtDbExt);
+
+                string site = "";
+                string diagnosis = "";
+                foreach (DataRow mDrExt in dtDbExt.Rows)
+                {
+                    if (site != "" && mDrExt["site"].ToString().Trim() != "")
+                    {
+                        site = site + System.Environment.NewLine + mDrExt["site"].ToString().Trim();
+                    }
+                    else
+                    {
+                        site = site + mDrExt["site"].ToString().Trim();
+                    }
+
+                    if (diagnosis != "" && mDrExt["diagnosis"].ToString().Trim() != "")
+                    {
+                        diagnosis = diagnosis + System.Environment.NewLine + mDrExt["diagnosis"].ToString().Trim();
+                    }
+                    else
+                    {
+                        diagnosis = diagnosis + mDrExt["diagnosis"].ToString().Trim();
+                    }
+                }
+
+                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["date"], Tcode, Mcode, site, diagnosis, mDr["id"] });
             }
             dataGridView1.DataSource = dt;
             dataGridViewFormat();

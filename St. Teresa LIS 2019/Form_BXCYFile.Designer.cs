@@ -1489,7 +1489,7 @@
             this.comboBox_Snop_T1.Name = "comboBox_Snop_T1";
             this.comboBox_Snop_T1.Size = new System.Drawing.Size(192, 26);
             this.comboBox_Snop_T1.TabIndex = 162;
-            this.comboBox_Snop_T1.ValueMember = "desc";
+            this.comboBox_Snop_T1.ValueMember = "SNOPCODE";
             // 
             // comboBox_Snop_M1
             // 
@@ -1514,7 +1514,7 @@
             this.comboBox_Snop_M1.Name = "comboBox_Snop_M1";
             this.comboBox_Snop_M1.Size = new System.Drawing.Size(192, 26);
             this.comboBox_Snop_M1.TabIndex = 163;
-            this.comboBox_Snop_M1.ValueMember = "desc";
+            this.comboBox_Snop_M1.ValueMember = "SNOPCODE";
             // 
             // checkBox_Supp
             // 
@@ -1562,7 +1562,7 @@
             this.comboBox_Snop_T3.Name = "comboBox_Snop_T3";
             this.comboBox_Snop_T3.Size = new System.Drawing.Size(190, 26);
             this.comboBox_Snop_T3.TabIndex = 176;
-            this.comboBox_Snop_T3.ValueMember = "desc";
+            this.comboBox_Snop_T3.ValueMember = "SNOPCODE";
             // 
             // label_Snop_T3
             // 
@@ -1597,7 +1597,7 @@
             this.comboBox_Snop_T2.Name = "comboBox_Snop_T2";
             this.comboBox_Snop_T2.Size = new System.Drawing.Size(189, 26);
             this.comboBox_Snop_T2.TabIndex = 178;
-            this.comboBox_Snop_T2.ValueMember = "desc";
+            this.comboBox_Snop_T2.ValueMember = "SNOPCODE";
             // 
             // label_Snop_T2
             // 
@@ -1760,7 +1760,7 @@
             this.comboBox_Snop_M2.Name = "comboBox_Snop_M2";
             this.comboBox_Snop_M2.Size = new System.Drawing.Size(189, 26);
             this.comboBox_Snop_M2.TabIndex = 186;
-            this.comboBox_Snop_M2.ValueMember = "desc";
+            this.comboBox_Snop_M2.ValueMember = "SNOPCODE";
             // 
             // label_Snop_M2
             // 
@@ -1797,7 +1797,7 @@
             this.comboBox_Snop_M3.Name = "comboBox_Snop_M3";
             this.comboBox_Snop_M3.Size = new System.Drawing.Size(190, 26);
             this.comboBox_Snop_M3.TabIndex = 184;
-            this.comboBox_Snop_M3.ValueMember = "desc";
+            this.comboBox_Snop_M3.ValueMember = "SNOPCODE";
             // 
             // label_Snop_M3
             // 
