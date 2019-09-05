@@ -1770,7 +1770,7 @@
             // button_Label
             // 
             this.button_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button_Label.ForeColor = System.Drawing.Color.Gray;
+            this.button_Label.ForeColor = System.Drawing.Color.Black;
             this.button_Label.Image = ((System.Drawing.Image)(resources.GetObject("button_Label.Image")));
             this.button_Label.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Label.Location = new System.Drawing.Point(628, 558);

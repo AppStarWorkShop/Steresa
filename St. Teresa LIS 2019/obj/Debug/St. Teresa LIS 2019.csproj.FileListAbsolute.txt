@@ -360,3 +360,11 @@ C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_PathologyRepor
 C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_STHDiagnosticAmount.resources
 C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SurgicalProcedureReportMaintenance.resources
 C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St. Teresa LIS 2019.csproj.CopyComplete
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_Authorization.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_BXeHRCCSPFile.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DescriptionBXeHRCCSP.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_DiagnosisDictionaryMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_OperationFileMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_SiteFileMaintenance.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_UploadeHRCCSPSpecimensByWebService.resources
+C:\Steresa1\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.ShowPicture.resources

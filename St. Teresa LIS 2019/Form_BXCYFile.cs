@@ -537,8 +537,19 @@ namespace St.Teresa_LIS_2019
 
         private void button_F2_Previous_Click(object sender, EventArgs e)
         {
-            Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition();
+            Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition(textBox_HKID.Text.Trim());
+            open.OnBxcySpecimentSelectedSingle += OnBxcySpecimentSelected;
             open.Show();
+        }
+
+        private void OnBxcySpecimentSelected(string idStr)
+        {
+            if (idStr != null)
+            {
+                this.id = idStr;
+                reloadAndBindingDBData();
+                setButtonStatus(PageStatus.STATUS_VIEW);
+            }
         }
 
         private void button_F3_Surgical_Click(object sender, EventArgs e)
