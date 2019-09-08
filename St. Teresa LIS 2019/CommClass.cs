@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 using System.Data;
+using BarcodeLib;
+using System.Drawing;
 
 namespace St.Teresa_LIS_2019
 {
@@ -163,6 +165,43 @@ namespace St.Teresa_LIS_2019
             {
                 return "";
             }
+        }
+
+        public static Image CreateBarCode(string content)
+        {
+            using (var barcode = new Barcode()
+            {
+                //true显示content，false反之
+                IncludeLabel = true,
+
+                //content的位置
+                Alignment = AlignmentPositions.CENTER,
+
+                //条形码的宽高
+                Width = 150,
+                Height = 50,
+
+                //类型
+                RotateFlipType = RotateFlipType.RotateNoneFlipNone,
+
+                //颜色
+                BackColor = System.Drawing.Color.White,
+                ForeColor = System.Drawing.Color.Black,
+            })
+            {
+                return barcode.Encode(TYPE.CODE128B, content);
+            }
+        }
+
+        public static System.Drawing.Image CreateBarcodePicture(string BarcodeString)
+        {
+            BarcodeLib.Barcode b = new BarcodeLib.Barcode();//实例化一个条码对象
+            BarcodeLib.TYPE type = BarcodeLib.TYPE.CODE128;//编码类型
+
+            //获取条码图片
+            System.Drawing.Image BarcodePicture = b.Encode(type, BarcodeString, System.Drawing.Color.Black, System.Drawing.Color.White, 150, 50);
+
+            return BarcodePicture;
         }
     }
 
