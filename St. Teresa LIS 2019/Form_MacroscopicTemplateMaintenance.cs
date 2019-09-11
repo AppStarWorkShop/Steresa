@@ -21,6 +21,11 @@ namespace St.Teresa_LIS_2019
         private DataRow currentEditRow;
         private string searchmacro_template;
 
+        public delegate void RecordUpdateDone(bool isUpdted);
+        public RecordUpdateDone OnRecordUpdateDone;
+
+        private bool isNeedRefreshMotherPage = false;
+
         public class macro_template
         {
             public string DOCTOR { get; set; }
@@ -74,6 +79,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
+            if (OnRecordUpdateDone != null)
+            {
+                OnRecordUpdateDone(isNeedRefreshMotherPage);
+            }
             this.Close();
         }
 
@@ -143,6 +152,7 @@ namespace St.Teresa_LIS_2019
                     {
                         reloadAndBindingDBData();
                         //comboBox_Diagnosis.SelectedIndex = currentPosition+1;
+                        isNeedRefreshMotherPage = true;
                         MessageBox.Show("New MACROSCOPIC Report saved");
                     }
                     else
@@ -169,6 +179,7 @@ namespace St.Teresa_LIS_2019
                         {
                             reloadAndBindingDBData();
                             //comboBox_Diagnosis.SelectedIndex = currentPosition;
+                            isNeedRefreshMotherPage = true;
                             MessageBox.Show("MACROSCOPIC Report updated");
                         }
                         else
@@ -217,6 +228,7 @@ namespace St.Teresa_LIS_2019
                     rowToDelete.Delete();
 
                     reloadDBData();
+                    isNeedRefreshMotherPage = true;
                     MessageBox.Show("Macro template deleted");
                 }
                 else

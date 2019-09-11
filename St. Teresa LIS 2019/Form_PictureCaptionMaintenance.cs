@@ -24,6 +24,11 @@ namespace St.Teresa_LIS_2019
         private DataSet picture_capDataSetFull = new DataSet();
         private SqlDataAdapter dataAdapterFull;
 
+        public delegate void RecordUpdateDone(bool isUpdted);
+        public RecordUpdateDone OnRecordUpdateDone;
+
+        private bool isNeedRefreshMotherPage = false;
+
         public class picture_cap
         {
             public int id { get; set; }
@@ -54,6 +59,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
+            if (OnRecordUpdateDone != null)
+            {
+                OnRecordUpdateDone(isNeedRefreshMotherPage);
+            }
             this.Close();
         }
 
@@ -133,6 +142,7 @@ namespace St.Teresa_LIS_2019
                     {
                         reloadAndBindingDBData();
                         //comboBox_Diagnosis.SelectedIndex = currentPosition+1;
+                        isNeedRefreshMotherPage = true;
                         MessageBox.Show("New Picture Cap saved");
                     }
                     else
@@ -159,6 +169,7 @@ namespace St.Teresa_LIS_2019
                         {
                             reloadAndBindingDBData();
                             //comboBox_Diagnosis.SelectedIndex = currentPosition;
+                            isNeedRefreshMotherPage = true;
                             MessageBox.Show("Picture Cap updated");
                         }
                         else
@@ -211,6 +222,7 @@ namespace St.Teresa_LIS_2019
                     rowToDelete.Delete();
 
                     reloadDBData();
+                    isNeedRefreshMotherPage = true;
                     MessageBox.Show("Picture Cap deleted");
                 }
                 else

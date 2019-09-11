@@ -153,8 +153,49 @@ namespace St.Teresa_LIS_2019
         private void button_Detail_5_Click(object sender, EventArgs e)
         {
             Form_MacroscopicTemplateMaintenance open = new Form_MacroscopicTemplateMaintenance();
+            open.OnRecordUpdateDone += onMacroscopicTemplateRecordUpdateDone;
             open.Show();
         }
+
+        private void onMacroscopicTemplateRecordUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadMacroscopicTemplateRecord();
+            }
+        }
+
+        private void reloadMacroscopicTemplateRecord()
+        {
+            string macro_templateSql = "SELECT distinct DOCTOR FROM [macro_template]";
+            DataSet macro_templateDataSet = new DataSet();
+            SqlDataAdapter macro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(macro_templateSql, macro_templateDataSet, "macro_template");
+
+            DataTable macro_templateDt = new DataTable();
+            macro_templateDt.Columns.Add("DOCTOR");
+
+            foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
+            {
+                macro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
+            }
+
+            comboBox_Doctor.DataSource = macro_templateDt;
+
+            string micro_templateSql = "SELECT distinct DOCTOR FROM [micro_template]";
+            DataSet micro_templateDataSet = new DataSet();
+            SqlDataAdapter micro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_templateSql, micro_templateDataSet, "micro_template");
+
+            DataTable micro_templateDt = new DataTable();
+            micro_templateDt.Columns.Add("DOCTOR");
+
+            foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
+            {
+                micro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
+            }
+
+            comboBox_Doctor2.DataSource = micro_templateDt;
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
 
         {
@@ -214,7 +255,54 @@ namespace St.Teresa_LIS_2019
         private void button_Caption_Detail_Click(object sender, EventArgs e)
         {
             Form_PictureCaptionMaintenance open = new Form_PictureCaptionMaintenance();
+            open.OnRecordUpdateDone += onPictureCaptionUpdateDone;
             open.Show();
+        }
+
+        private void onPictureCaptionUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadPictureCaptionUpdate();
+            }
+        }
+
+        private void reloadPictureCaptionUpdate()
+        {
+            string picture_capSql = "SELECT [CAPTION] FROM [picture_cap]";
+            DataSet picture_capDataSet = new DataSet();
+            SqlDataAdapter picture_capDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(picture_capSql, picture_capDataSet, "picture_cap");
+
+            DataTable picture_capDt1 = new DataTable();
+            picture_capDt1.Columns.Add("CAPTION");
+            DataTable picture_capDt2 = picture_capDt1.Clone();
+            DataTable picture_capDt3 = picture_capDt1.Clone();
+            DataTable picture_capDt4 = picture_capDt1.Clone();
+            DataTable picture_capDt5 = picture_capDt1.Clone();
+            DataTable picture_capDt6 = picture_capDt1.Clone();
+            DataTable picture_capDt7 = picture_capDt1.Clone();
+            DataTable picture_capDt8 = picture_capDt1.Clone();
+
+            foreach (DataRow mDr in picture_capDataSet.Tables["picture_cap"].Rows)
+            {
+                picture_capDt1.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt2.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt3.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt4.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt5.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt6.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt7.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt8.Rows.Add(new object[] { mDr["CAPTION"] });
+            }
+
+            comboBox_Caption_1.DataSource = picture_capDt1;
+            comboBox_Caption_2.DataSource = picture_capDt2;
+            comboBox_Caption_3.DataSource = picture_capDt3;
+            comboBox_Caption_4.DataSource = picture_capDt4;
+            comboBox_Caption_5.DataSource = picture_capDt5;
+            comboBox_Caption_6.DataSource = picture_capDt6;
+            comboBox_Caption_7.DataSource = picture_capDt7;
+            comboBox_Caption_8.DataSource = picture_capDt8;
         }
 
         private void button19_Click(object sender, EventArgs e)
@@ -237,7 +325,37 @@ namespace St.Teresa_LIS_2019
         private void button_Detail_3_DIA_Click(object sender, EventArgs e)
         {
             Form_DiagnosisDictionaryMaintenance open = new Form_DiagnosisDictionaryMaintenance();
+            open.OnRecordUpdateDone += onDiagnosisUpdateDone;
             open.Show();
+        }
+
+        private void onDiagnosisUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadDiagnosisUpdate();
+            }
+        }
+
+        private void reloadDiagnosisUpdate()
+        {
+            string diag_descSql = "SELECT C_DESC,E_DESC FROM [diag_desc] WHERE E_DESC is not null ORDER BY E_DESC";
+            DataSet diag_descDataSet = new DataSet();
+            SqlDataAdapter diag_descDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diag_descSql, diag_descDataSet, "diag_desc");
+
+            DataTable diag_descDt1 = new DataTable();
+            diag_descDt1.Columns.Add("C_DESC");
+            diag_descDt1.Columns.Add("C_DESCAndE_DESC");
+            DataTable diag_descDt2 = diag_descDt1.Clone();
+
+            foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
+            {
+                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
+                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
+            }
+
+            comboBox_Diagnosis_1.DataSource = diag_descDt1;
+            comboBox_Diagnosis_2.DataSource = diag_descDt2;
         }
 
         private void button_Path_Click(object sender, EventArgs e)
@@ -249,7 +367,34 @@ namespace St.Teresa_LIS_2019
         private void button_MAC_Add_Edit_Click(object sender, EventArgs e)
         {
             Form_MACROSCOPICReportMaintenance open = new Form_MACROSCOPICReportMaintenance();
+            open.OnRecordUpdateDone += onMACROSCOPICReportUpdateDone;
             open.Show();
+        }
+
+        private void onMACROSCOPICReportUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadMACROSCOPIC_Report();
+            }
+        }
+
+        private void reloadMACROSCOPIC_Report()
+        {
+            string MACROSCOPIC_ReportSql = "SELECT [MACROSCOPIC],[Description] FROM [MACROSCOPIC_Report]";
+            DataSet MACROSCOPIC_ReportDataSet = new DataSet();
+            SqlDataAdapter MACROSCOPIC_ReportDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(MACROSCOPIC_ReportSql, MACROSCOPIC_ReportDataSet, "MACROSCOPIC_Report");
+
+            DataTable MACROSCOPIC_ReportDt = new DataTable();
+            MACROSCOPIC_ReportDt.Columns.Add("MACROSCOPIC");
+            MACROSCOPIC_ReportDt.Columns.Add("Description");
+
+            foreach (DataRow mDr in MACROSCOPIC_ReportDataSet.Tables["MACROSCOPIC_Report"].Rows)
+            {
+                MACROSCOPIC_ReportDt.Rows.Add(new object[] { mDr["MACROSCOPIC"], mDr["Description"] });
+            }
+
+            comboBox_MAC_Add.DataSource = MACROSCOPIC_ReportDt;
         }
 
         private void button_MIC_Add_Edit_Click(object sender, EventArgs e)
@@ -1190,6 +1335,8 @@ namespace St.Teresa_LIS_2019
                     {
                         currentEditRow["group"] = label_Total_Parts_No.Text;
                     }
+
+                    currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
                     textBox_ID.BindingContext[dt].Position++;
 
                     if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
@@ -1345,19 +1492,74 @@ namespace St.Teresa_LIS_2019
         private void button_Detail_4_DIA_Click(object sender, EventArgs e)
         {
             Form_DiagnosisDictionaryMaintenance open = new Form_DiagnosisDictionaryMaintenance();
+            open.OnRecordUpdateDone += onDiagnosisUpdateDone;
             open.Show();
         }
 
         private void button_Detail_1_DIA_Click(object sender, EventArgs e)
         {
             Form_SiteFileMaintenance open = new Form_SiteFileMaintenance();
+            open.OnRecordUpdateDone += onSiteUpdateDone;
             open.Show();
+        }
+
+        private void onSiteUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadSiteUpdate();
+            }
+        }
+
+        private void reloadSiteUpdate()
+        {
+            string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
+            DataSet siteDataSet = new DataSet();
+            SqlDataAdapter siteDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(siteSql, siteDataSet, "site");
+
+            DataTable siteDt = new DataTable();
+            siteDt.Columns.Add("site");
+            siteDt.Columns.Add("siteAndDesc");
+
+            foreach (DataRow mDr in siteDataSet.Tables["site"].Rows)
+            {
+                siteDt.Rows.Add(new object[] { mDr["site"], string.Format("{0}--{1}", mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+            }
+
+            comboBox_Site.DataSource = siteDt;
         }
 
         private void button_Detail_2_DIA_Click(object sender, EventArgs e)
         {
             Form_OperationFileMaintenance open = new Form_OperationFileMaintenance();
+            open.OnRecordUpdateDone += onOperationUpdateDone;
             open.Show();
+        }
+
+        private void onOperationUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadOperationUpdate();
+            }
+        }
+
+        private void reloadOperationUpdate()
+        {
+            string operationSql = "SELECT [operation],[desc] FROM [operation] WHERE operation is not null ORDER BY operation";
+            DataSet operationDataSet = new DataSet();
+            SqlDataAdapter operationDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(operationSql, operationDataSet, "operation");
+
+            DataTable operationDt = new DataTable();
+            operationDt.Columns.Add("operation");
+            operationDt.Columns.Add("operationAndDesc");
+
+            foreach (DataRow mDr in operationDataSet.Tables["operation"].Rows)
+            {
+                operationDt.Rows.Add(new object[] { mDr["operation"], string.Format("{0}--{1}", mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+            }
+
+            comboBox_Operation.DataSource = operationDt;
         }
 
         private string getPicFileName()

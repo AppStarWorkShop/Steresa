@@ -24,6 +24,11 @@ namespace St.Teresa_LIS_2019
         private DataSet siteDataSetFull = new DataSet();
         private SqlDataAdapter dataAdapterFull;
 
+        public delegate void RecordUpdateDone(bool isUpdted);
+        public RecordUpdateDone OnRecordUpdateDone;
+
+        private bool isNeedRefreshMotherPage = false;
+
         public class site
         {
             public int id { get; set; }
@@ -56,6 +61,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
+            if (OnRecordUpdateDone != null)
+            {
+                OnRecordUpdateDone(isNeedRefreshMotherPage);
+            }
             this.Close();
         }
 
@@ -133,6 +142,7 @@ namespace St.Teresa_LIS_2019
                     if (DBConn.updateObject(dataAdapter, siteDataSet, "site"))
                     {
                         reloadAndBindingDBData();
+                        isNeedRefreshMotherPage = true;
                         MessageBox.Show("New Site saved");
                     }
                     else
@@ -157,6 +167,7 @@ namespace St.Teresa_LIS_2019
                         if (DBConn.updateObject(dataAdapter, siteDataSet, "site"))
                         {
                             reloadAndBindingDBData();
+                            isNeedRefreshMotherPage = true;
                             MessageBox.Show("Site updated");
                         }
                         else
@@ -210,6 +221,7 @@ namespace St.Teresa_LIS_2019
                     rowToDelete.Delete();
 
                     reloadDBData();
+                    isNeedRefreshMotherPage = true;
                     MessageBox.Show("Site deleted");
                 }
                 else

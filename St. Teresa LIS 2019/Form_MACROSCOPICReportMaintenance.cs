@@ -24,6 +24,11 @@ namespace St.Teresa_LIS_2019
         private DataSet MACROSCOPIC_ReportDataSetFull = new DataSet();
         private SqlDataAdapter dataAdapterFull;
 
+        public delegate void RecordUpdateDone(bool isUpdted);
+        public RecordUpdateDone OnRecordUpdateDone;
+
+        private bool isNeedRefreshMotherPage = false;
+
         public class MACROSCOPIC_Report
         {
             public int id { get; set; }
@@ -54,6 +59,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
+            if (OnRecordUpdateDone != null)
+            {
+                OnRecordUpdateDone(isNeedRefreshMotherPage);
+            }
             this.Close();
         }
 
@@ -140,6 +149,7 @@ namespace St.Teresa_LIS_2019
                     {
                         reloadAndBindingDBData();
                         //comboBox_Diagnosis.SelectedIndex = currentPosition+1;
+                        isNeedRefreshMotherPage = true;
                         MessageBox.Show("New MACROSCOPIC Report saved");
                     }
                     else
@@ -165,6 +175,7 @@ namespace St.Teresa_LIS_2019
                         if (DBConn.updateObject(dataAdapter, MACROSCOPIC_ReportDataSet, "MACROSCOPIC_Report"))
                         {
                             reloadAndBindingDBData();
+                            isNeedRefreshMotherPage = true;
                             //comboBox_Diagnosis.SelectedIndex = currentPosition;
                             MessageBox.Show("MACROSCOPIC Report updated");
                         }
@@ -220,6 +231,7 @@ namespace St.Teresa_LIS_2019
                     rowToDelete.Delete();
 
                     reloadDBData();
+                    isNeedRefreshMotherPage = true;
                     MessageBox.Show("MACROSCOPIC Report deleted");
                 }
                 else

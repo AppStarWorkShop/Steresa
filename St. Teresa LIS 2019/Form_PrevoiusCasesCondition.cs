@@ -163,11 +163,14 @@ namespace St.Teresa_LIS_2019
                 return;
             }
 
-            if (OnBxcySpecimentSelectedSingle != null)
+            /*if (OnBxcySpecimentSelectedSingle != null)
             {
                 OnBxcySpecimentSelectedSingle(idStr);
             }
-            this.Close();
+            this.Close();*/
+
+            Form_BXCYFile open = new Form_BXCYFile(idStr);
+            open.Show();
         }
         private void dataGridViewFormat()
         {

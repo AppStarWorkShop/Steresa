@@ -25,6 +25,11 @@ namespace St.Teresa_LIS_2019
         private DataSet diag_descDataSetFull = new DataSet();
         private SqlDataAdapter dataAdapterFull;
 
+        public delegate void RecordUpdateDone(bool isUpdted);
+        public RecordUpdateDone OnRecordUpdateDone;
+
+        private bool isNeedRefreshMotherPage = false;
+
         public class diag_desc
         {
             public int id { get; set; }
@@ -138,6 +143,7 @@ namespace St.Teresa_LIS_2019
                     {
                         reloadAndBindingDBData();
                         //comboBox_Diagnosis.SelectedIndex = currentPosition+1;
+                        isNeedRefreshMotherPage = true;
                         MessageBox.Show("New Diag Desc saved");
                     }
                     else
@@ -164,6 +170,7 @@ namespace St.Teresa_LIS_2019
                         {
                             reloadAndBindingDBData();
                             //comboBox_Diagnosis.SelectedIndex = currentPosition;
+                            isNeedRefreshMotherPage = true;
                             MessageBox.Show("Diag Desc updated");
                         }
                         else
@@ -218,6 +225,7 @@ namespace St.Teresa_LIS_2019
                     rowToDelete.Delete();
 
                     reloadDBData();
+                    isNeedRefreshMotherPage = true;
                     MessageBox.Show("Diag Desc Report deleted");
                 }
                 else
@@ -257,6 +265,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
+            if (OnRecordUpdateDone != null)
+            {
+                OnRecordUpdateDone(isNeedRefreshMotherPage);
+            }
             this.Close();
         }
 
@@ -464,6 +476,23 @@ namespace St.Teresa_LIS_2019
             {
                 comboBox_Description.SelectedIndex = 0;
             }
+        }
+
+        private void comboBox_Description_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string sql = string.Format("SELECT TOP 1 * FROM [diag_desc] WHERE C_DESC = '{0}' ORDER BY ID", comboBox_Description.SelectedValue.ToString());
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, diag_descDataSet, "diag_desc");
+
+            textBox_ID.DataBindings.Clear();
+            textBox_ChineseDescription.DataBindings.Clear();
+
+            dt = diag_descDataSet.Tables["diag_desc"];
+            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+            dt.Columns["id"].AutoIncrement = true;
+            dt.Columns["id"].AutoIncrementStep = 1;
+
+            textBox_ID.DataBindings.Add("Text", dt, "id", false);
+            textBox_ChineseDescription.DataBindings.Add("Text", dt, "E_DESC", false);
         }
     }
 }

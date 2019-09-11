@@ -241,6 +241,7 @@
             this.comboBox_Description.Size = new System.Drawing.Size(488, 26);
             this.comboBox_Description.TabIndex = 265;
             this.comboBox_Description.ValueMember = "C_DESC";
+            this.comboBox_Description.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Description_SelectionChangeCommitted);
             // 
             // label_Description
             // 
