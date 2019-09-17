@@ -1566,5 +1566,9 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
+        private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

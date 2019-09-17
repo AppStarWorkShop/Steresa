@@ -395,8 +395,18 @@ namespace St.Teresa_LIS_2019
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
-                Form_BXCYFile open = new Form_BXCYFile(id);
-                open.Show();
+                string case_no = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+
+                if (case_no != null && case_no.Trim() != "" && case_no.Trim().Substring(case_no.Length - 1, 1).ToLower() == "g")
+                {
+                    Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(id);
+                    open.Show();
+                }
+                else
+                {
+                    Form_BXCYFile open = new Form_BXCYFile(id);
+                    open.Show();
+                }
             }
         }
 
