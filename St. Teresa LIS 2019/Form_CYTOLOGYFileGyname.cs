@@ -293,8 +293,8 @@ namespace St.Teresa_LIS_2019
             copybxcy_specimen.bed_no = textBox_Bed.Text;
             copybxcy_specimen.clinical_History = textBox_Patient_s_Clinical_History.Text;
 
-            /*copybxcy_specimen.surgical = textBox_Surgical.Text;
-            copybxcy_specimen.nature = textBox_Nature.Text;*/
+            //copybxcy_specimen.surgical = textBox_Surgical.Text;
+            copybxcy_specimen.nature = textBox_Nature.Text;
 
             copybxcy_specimen.client = textBox_Client.Text;
             copybxcy_specimen.institute = textBox_Institute.Text;
@@ -399,8 +399,8 @@ namespace St.Teresa_LIS_2019
                         textBox_Bed.Text = copybxcy_specimen.bed_no;
                         textBox_Patient_s_Clinical_History.Text = copybxcy_specimen.clinical_History;
 
-                        /*textBox_Surgical.Text = copybxcy_specimen.surgical;
-                        textBox_Nature.Text = copybxcy_specimen.nature;*/
+                        //textBox_Surgical.Text = copybxcy_specimen.surgical;
+                        textBox_Nature.Text = copybxcy_specimen.nature;
 
                         textBox_Client.Text = copybxcy_specimen.client;
                         textBox_Institute.Text = copybxcy_specimen.institute;
@@ -481,8 +481,8 @@ namespace St.Teresa_LIS_2019
             textBox_Bed.DataBindings.Clear();
             textBox_Patient_s_Clinical_History.DataBindings.Clear();
 
-            /*textBox_Surgical.DataBindings.Clear();
-            textBox_Nature.DataBindings.Clear();*/
+            //textBox_Surgical.DataBindings.Clear();
+            textBox_Nature.DataBindings.Clear();
 
             textBox_Client.DataBindings.Clear();
             textBox_Institute.DataBindings.Clear();
@@ -633,7 +633,7 @@ namespace St.Teresa_LIS_2019
             textBox_Patient_s_Clinical_History.DataBindings.Add("Text", dt, "Clinical_History", false);
 
             //textBox_Surgical.DataBindings.Add("Text", dt, "surgical", false, DataSourceUpdateMode.OnPropertyChanged, "");
-            //textBox_Nature.DataBindings.Add("Text", dt, "nature", false, DataSourceUpdateMode.OnPropertyChanged, "");
+            textBox_Nature.DataBindings.Add("Text", dt, "nature", false, DataSourceUpdateMode.OnPropertyChanged, "");
 
             textBox_Client.DataBindings.Add("Text", dt, "CLIENT", false);
             textBox_Institute.DataBindings.Add("Text", dt, "Institute", false);
@@ -1030,17 +1030,17 @@ namespace St.Teresa_LIS_2019
 
         private void button_F4_Nature_Click(object sender, EventArgs e)
         {
-            /*Form_NatureOfSpecimen open = new Form_NatureOfSpecimen(textBox_Nature.Text);
+            Form_NatureOfSpecimen open = new Form_NatureOfSpecimen(textBox_Nature.Text);
             open.OnNatureSelectedSingle += OnNatureSelected;
-            open.Show();*/
+            open.Show();
         }
 
         private void OnNatureSelected(string str)
         {
-            /*if (str != null)
+            if (str != null)
             {
                 textBox_Nature.Text = str;
-            }*/
+            }
         }
 
         private void button_F7_Click(object sender, EventArgs e)

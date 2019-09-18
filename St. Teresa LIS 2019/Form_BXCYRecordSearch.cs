@@ -397,7 +397,7 @@ namespace St.Teresa_LIS_2019
                 string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
                 string case_no = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
 
-                if (case_no != null && case_no.Trim() != "" && case_no.Trim().Substring(case_no.Length - 1, 1).ToLower() == "g")
+                if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(case_no.Length - 1, 1).ToLower() == "g")
                 {
                     Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(id);
                     open.Show();

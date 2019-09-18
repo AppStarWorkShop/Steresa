@@ -36,6 +36,7 @@
             this.comboBox_Snop_M3 = new System.Windows.Forms.ComboBox();
             this.label_Snop_M3 = new System.Windows.Forms.Label();
             this.panel_Update = new System.Windows.Forms.Panel();
+            this.textBox_Issued_At = new System.Windows.Forms.TextBox();
             this.textBox_Issued_By = new System.Windows.Forms.TextBox();
             this.label_Issued_By = new System.Windows.Forms.Label();
             this.textBox_Updated_At = new System.Windows.Forms.TextBox();
@@ -152,7 +153,7 @@
             this.textBox_Patient_s_Clinical_History = new System.Windows.Forms.TextBox();
             this.textBox_Remarks = new System.Windows.Forms.TextBox();
             this.textBox_ID = new System.Windows.Forms.TextBox();
-            this.textBox_Issued_At = new System.Windows.Forms.TextBox();
+            this.textBox_Nature = new System.Windows.Forms.TextBox();
             this.panel_Update.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -270,6 +271,7 @@
             this.panel_Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(244)))));
             this.panel_Update.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_Update.Controls.Add(this.textBox_Issued_At);
+            this.panel_Update.Controls.Add(this.textBox_ID);
             this.panel_Update.Controls.Add(this.textBox_Issued_By);
             this.panel_Update.Controls.Add(this.label_Issued_By);
             this.panel_Update.Controls.Add(this.textBox_Updated_At);
@@ -281,6 +283,14 @@
             this.panel_Update.Name = "panel_Update";
             this.panel_Update.Size = new System.Drawing.Size(229, 57);
             this.panel_Update.TabIndex = 278;
+            // 
+            // textBox_Issued_At
+            // 
+            this.textBox_Issued_At.Location = new System.Drawing.Point(162, 38);
+            this.textBox_Issued_At.Name = "textBox_Issued_At";
+            this.textBox_Issued_At.ReadOnly = true;
+            this.textBox_Issued_At.Size = new System.Drawing.Size(66, 21);
+            this.textBox_Issued_At.TabIndex = 8;
             // 
             // textBox_Issued_By
             // 
@@ -1679,18 +1689,17 @@
             // 
             // textBox_ID
             // 
-            this.textBox_ID.Location = new System.Drawing.Point(720, 20);
+            this.textBox_ID.Location = new System.Drawing.Point(257, 11);
             this.textBox_ID.Name = "textBox_ID";
             this.textBox_ID.Size = new System.Drawing.Size(17, 21);
             this.textBox_ID.TabIndex = 296;
             // 
-            // textBox_Issued_At
+            // textBox_Nature
             // 
-            this.textBox_Issued_At.Location = new System.Drawing.Point(162, 38);
-            this.textBox_Issued_At.Name = "textBox_Issued_At";
-            this.textBox_Issued_At.ReadOnly = true;
-            this.textBox_Issued_At.Size = new System.Drawing.Size(66, 21);
-            this.textBox_Issued_At.TabIndex = 8;
+            this.textBox_Nature.Location = new System.Drawing.Point(1023, 118);
+            this.textBox_Nature.Name = "textBox_Nature";
+            this.textBox_Nature.Size = new System.Drawing.Size(17, 21);
+            this.textBox_Nature.TabIndex = 297;
             // 
             // Form_CYTOLOGYFileGyname
             // 
@@ -1698,7 +1707,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(204)))), ((int)(((byte)(171)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
-            this.Controls.Add(this.textBox_ID);
+            this.Controls.Add(this.textBox_Nature);
             this.Controls.Add(this.textBox_Remarks);
             this.Controls.Add(this.textBox_Patient_s_Clinical_History);
             this.Controls.Add(this.pictureBox_Has_Previous);
@@ -1927,5 +1936,6 @@
         private System.Windows.Forms.TextBox textBox_Remarks;
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.TextBox textBox_Issued_At;
+        private System.Windows.Forms.TextBox textBox_Nature;
     }
 }
