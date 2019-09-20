@@ -262,6 +262,18 @@ namespace St.Teresa_LIS_2019
 
         }
 
+        public void newRecord()
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["Pat_age"] = 0;
+            currentEditRow["Pat_sex"] = "M";
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+        }
+
         private void button_New_Click(object sender, EventArgs e)
         {
             setButtonStatus(PageStatus.STATUS_NEW);
@@ -519,7 +531,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_By_1.DataBindings.Clear();
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
-            //textBox_Issued_At.DataBindings.Clear();
+            textBox_Issued_At.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };

@@ -331,6 +331,12 @@ namespace St.Teresa_LIS_2019
                 return true;
             }
 
+            if (keyData == Keys.F9)
+            {
+                button_F9_Set_BX_CY.PerformClick();
+                return true;
+            }
+
             if (keyData == Keys.F10)
             {
                 button_Digital_Signature.PerformClick();
@@ -344,9 +350,27 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                Form_BXCYFile open = new Form_BXCYFile();
-                open.Show();
-                open.newRecord();
+                if (label2.Text == "BX/CY")
+                {
+                    Form_BXCYFile open = new Form_BXCYFile();
+                    open.Show();
+                    open.newRecord();
+                }
+                else
+                {
+                    if (label2.Text == "D")
+                    {
+                        Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile();
+                        open.Show();
+                        open.newRecord();
+                    }
+                    else
+                    {
+                        Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname();
+                        open.Show();
+                        open.newRecord();
+                    }
+                }
             }
         }
 
@@ -404,8 +428,16 @@ namespace St.Teresa_LIS_2019
                 }
                 else
                 {
-                    Form_BXCYFile open = new Form_BXCYFile(id);
-                    open.Show();
+                    if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(0, 1).ToLower() == "d")
+                    {
+                        Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(id);
+                        open.Show();
+                    }
+                    else
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile(id);
+                        open.Show();
+                    }
                 }
             }
         }
@@ -436,8 +468,23 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F9_Set_BX_CY_Click(object sender, EventArgs e)
         {
-
+            if(label2.Text == "BX/CY")
+            {
+                label2.Text = "CY-G";
+            }
+            else
+            {
+                if (label2.Text == "CY-G")
+                {
+                    label2.Text = "D";
+                }
+                else
+                {
+                    label2.Text = "BX/CY";
+                }
+            }
         }
+
         private void button_F9m()
         {
             
@@ -573,6 +620,11 @@ namespace St.Teresa_LIS_2019
                     //nCurrent = pageSize * (pageCurrent - 1);
                 }
             }
+        }
+
+        private void button_D_Click(object sender, EventArgs e)
+        {
+            textBox_Search_Type.Text = string.Format("D{0}-", DateTime.Now.ToString("yyyy").Substring(2));
         }
     }
 }
