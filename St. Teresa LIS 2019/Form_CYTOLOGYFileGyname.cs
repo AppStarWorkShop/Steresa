@@ -259,7 +259,57 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
+            if (currentStatus == PageStatus.STATUS_NEW)
+            {
+                if (currentEditRow != null)
+                {
+                    currentEditRow["ISSUE_BY"] = CurrentUser.currentUserName;
+                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserName;
+                    currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                    textBox_ID.BindingContext[dt].Position++;
 
+                    if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                    {
+                        //reloadDBData(currencyManager.Count - 1);
+                        reloadAndBindingDBData();
+                        button_End.PerformClick();
+                        //reloadAndBindingDBData(currencyManager.Count - 1);
+                        MessageBox.Show("New ebv_specimen saved");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
+                    }
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+                //reloadAndBindingDBData(currencyManager.Count - 1);
+            }
+            else
+            {
+                if (currentStatus == PageStatus.STATUS_EDIT)
+                {
+                    DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
+                    if (drow != null)
+                    {
+                        //drow["UPDATE_BY"] = CurrentUser.currentUserName;
+                        drow["UPDATE_BY"] = CurrentUser.currentUserName;
+                        drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                        textBox_ID.BindingContext[dt].Position++;
+
+                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                        {
+                            MessageBox.Show("Bxcy_specimen updated");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bxcy_specimen updated fail, please contact Admin");
+                        }
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                    reloadAndBindingDBData();
+                }
+            }
         }
 
         public void newRecord()
@@ -468,10 +518,10 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(int position = 0)
         {
-            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no,id";
+            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no LIKE '%G' ORDER BY case_no,id";
             if (this.id != null)
             {
-                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} ORDER BY  case_no,id", this.id);
+                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} AND case_no LIKE '%G' ORDER BY  case_no,id", this.id);
                 id = null;
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
@@ -532,6 +582,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
             textBox_Issued_At.DataBindings.Clear();
+            //textBox_Rpt_Date.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -616,16 +667,21 @@ namespace St.Teresa_LIS_2019
             DataSet doctorDataSet = new DataSet();
             SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "doctor");
 
-            DataTable doctorDt = new DataTable();
-            doctorDt.Columns.Add("doctor");
+            DataTable doctorDt1 = new DataTable();
+            doctorDt1.Columns.Add("doctor");
+            DataTable doctorDt2 = doctorDt1.Clone();
+            DataTable doctorDt3 = doctorDt1.Clone();
 
             foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
             {
-                doctorDt.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt3.Rows.Add(new object[] { mDr["doctor"] });
             }
 
-            comboBox_Sign_By_Dr_1.DataSource = doctorDt;
-            comboBox_Sign_By_Dr_2.DataSource = doctorDt;
+            comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
+            comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
+            comboBox_Sign_By_Dr_3.DataSource = doctorDt3;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
@@ -686,6 +742,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
             textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
         }
 
         private void reloadDBData(int position = 0)
@@ -769,6 +826,7 @@ namespace St.Teresa_LIS_2019
                 comboBox_Snop_M2.Enabled = false;
                 comboBox_Snop_M3.Enabled = false;
                 comboBox_Sign_By_Dr_2.Enabled = false;
+                comboBox_Sign_By_Dr_3.Enabled = false;
                 //comboBox_HistoType.Enabled = false;
 
                 textBox_Remarks.Enabled = false;
@@ -850,6 +908,7 @@ namespace St.Teresa_LIS_2019
                     comboBox_Snop_M2.Enabled = true;
                     comboBox_Snop_M3.Enabled = true;
                     comboBox_Sign_By_Dr_2.Enabled = true;
+                    comboBox_Sign_By_Dr_3.Enabled = true;
                     //comboBox_HistoType.Enabled = true;
 
                     textBox_Remarks.Enabled = true;
@@ -932,6 +991,7 @@ namespace St.Teresa_LIS_2019
                         comboBox_Snop_M2.Enabled = true;
                         comboBox_Snop_M3.Enabled = true;
                         comboBox_Sign_By_Dr_2.Enabled = true;
+                        comboBox_Sign_By_Dr_3.Enabled = true;
                         //comboBox_HistoType.Enabled = true;
 
                         textBox_Remarks.Enabled = true;

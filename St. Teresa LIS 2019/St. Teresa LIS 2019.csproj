@@ -332,11 +332,11 @@
     <Compile Include="Form_LabelSetting.Designer.cs">
       <DependentUpon>Form_LabelSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_LocateCaseNo.cs">
+    <Compile Include="Form_EBVRecordSearch.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form_LocateCaseNo.Designer.cs">
-      <DependentUpon>Form_LocateCaseNo.cs</DependentUpon>
+    <Compile Include="Form_EBVRecordSearch.Designer.cs">
+      <DependentUpon>Form_EBVRecordSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_LoginDigitalSignature.cs">
       <SubType>Form</SubType>
@@ -669,8 +669,8 @@
     <EmbeddedResource Include="Form_LabelSetting.resx">
       <DependentUpon>Form_LabelSetting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form_LocateCaseNo.resx">
-      <DependentUpon>Form_LocateCaseNo.cs</DependentUpon>
+    <EmbeddedResource Include="Form_EBVRecordSearch.resx">
+      <DependentUpon>Form_EBVRecordSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_Login.resx">
       <DependentUpon>Form_Login.cs</DependentUpon>

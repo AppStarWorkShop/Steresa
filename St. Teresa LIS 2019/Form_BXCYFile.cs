@@ -202,10 +202,10 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(int position = 0)
         {
-            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no,id";
+            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no,id";
             if(this.id != null)
             {
-                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} ORDER BY  case_no,id", this.id);
+                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY  case_no,id", this.id);
                 id = null;
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
@@ -266,6 +266,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
             textBox_Issued_At.DataBindings.Clear();
+            //textBox_Rpt_Date.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -350,16 +351,18 @@ namespace St.Teresa_LIS_2019
             DataSet doctorDataSet = new DataSet();
             SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "doctor");
 
-            DataTable doctorDt = new DataTable();
-            doctorDt.Columns.Add("doctor");
+            DataTable doctorDt1 = new DataTable();
+            doctorDt1.Columns.Add("doctor");
+            DataTable doctorDt2 = doctorDt1.Clone();
 
             foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
             {
-                doctorDt.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
             }
 
-            comboBox_Sign_By_Dr_1.DataSource = doctorDt;
-            comboBox_Sign_By_Dr_2.DataSource = doctorDt;
+            comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
+            comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
@@ -420,6 +423,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
             textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
 
             /*currencyManager = (CurrencyManager)this.BindingContext[dt];
             if (position != -1)
@@ -857,7 +861,7 @@ namespace St.Teresa_LIS_2019
             string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}' ORDER BY  case_no,id", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id > {1}) or case_no > '{0}') AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY  case_no,id", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
             }
         }
@@ -868,7 +872,7 @@ namespace St.Teresa_LIS_2019
             string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}' ORDER BY case_no DESC,id DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id < {1}) or case_no < '{0}') AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no DESC,id DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
             }
         }
@@ -876,14 +880,14 @@ namespace St.Teresa_LIS_2019
         private void button_Top_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = 0;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no,id");
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no,id");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = currencyManager.Count - 1;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no DESC,id DESC");
+            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no DESC,id DESC");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
         }
 
@@ -970,8 +974,8 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
             currentEditRow["id"] = -1;
-            currentEditRow["case_no"] = textBox_Case_No.Text;
-            currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
+            //currentEditRow["case_no"] = textBox_Case_No.Text;
+            //currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
             currentEditRow["ethnic"] = comboBox_Ethnic.Text;
             currentEditRow["cyto_Type"] = comboBox_cytoType.Text;
             currentEditRow["patient"] = textBox_Patient.Text;
@@ -1010,18 +1014,18 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null); 
 
-            currentEditRow["rpt_date"] = textBox_Rpt_Date.Text; 
+            //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text; 
             currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
             currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
             currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
-            currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
+            //currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
             currentEditRow["snopcode_m"] = comboBox_Snop_M1.Text;
             currentEditRow["snopcode_m2"] = comboBox_Snop_M2.Text;
             currentEditRow["snopcode_m3"] = comboBox_Snop_M3.Text;
-            currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
+            //currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
             currentEditRow["histo"] = comboBox_HistoType.Text;
 
-            currentEditRow["remark"] = textBox_Remarks.Text;
+            //currentEditRow["remark"] = textBox_Remarks.Text;
             currentEditRow["initial"] = textBox_Cytology.Text;
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -1567,6 +1571,11 @@ namespace St.Teresa_LIS_2019
         }
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_Printed_Click(object sender, EventArgs e)
         {
 
         }

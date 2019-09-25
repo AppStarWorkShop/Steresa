@@ -844,7 +844,6 @@
             this.textBox_Rpt_Date.Name = "textBox_Rpt_Date";
             this.textBox_Rpt_Date.Size = new System.Drawing.Size(93, 26);
             this.textBox_Rpt_Date.TabIndex = 74;
-            this.textBox_Rpt_Date.Text = "  /  /    :  :  ";
             // 
             // label_Line_2
             // 
@@ -1119,6 +1118,7 @@
             this.button_Printed.Text = "Printed : 0";
             this.button_Printed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Printed.UseVisualStyleBackColor = true;
+            this.button_Printed.Click += new System.EventHandler(this.button_Printed_Click);
             // 
             // label_New_Record
             // 

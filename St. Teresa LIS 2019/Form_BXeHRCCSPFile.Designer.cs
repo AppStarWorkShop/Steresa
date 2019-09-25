@@ -184,6 +184,7 @@
             this.button_Clinical_History.TabIndex = 278;
             this.button_Clinical_History.Text = "?";
             this.button_Clinical_History.UseVisualStyleBackColor = true;
+            this.button_Clinical_History.Click += new System.EventHandler(this.button_Clinical_History_Click);
             // 
             // textBox_Patient_s_Clinical_History
             // 
@@ -368,6 +369,7 @@
             this.button_F4_Nature.TabIndex = 268;
             this.button_F4_Nature.Text = "F4:  Nature";
             this.button_F4_Nature.UseVisualStyleBackColor = true;
+            this.button_F4_Nature.Click += new System.EventHandler(this.button_F4_Nature_Click);
             // 
             // button_F3_Surgical
             // 
@@ -379,6 +381,7 @@
             this.button_F3_Surgical.TabIndex = 267;
             this.button_F3_Surgical.Text = "F3:  Surgical";
             this.button_F3_Surgical.UseVisualStyleBackColor = true;
+            this.button_F3_Surgical.Click += new System.EventHandler(this.button_F3_Surgical_Click);
             // 
             // label_Patient_s_Clinical_History
             // 
@@ -424,6 +427,7 @@
             this.button_F2_Previous.TabIndex = 263;
             this.button_F2_Previous.Text = "F2: Prev.";
             this.button_F2_Previous.UseVisualStyleBackColor = true;
+            this.button_F2_Previous.Click += new System.EventHandler(this.button_F2_Previous_Click);
             // 
             // textBox_Chinese_Name
             // 
@@ -537,6 +541,7 @@
             this.button_F1.TabIndex = 251;
             this.button_F1.Text = "F1";
             this.button_F1.UseVisualStyleBackColor = true;
+            this.button_F1.Click += new System.EventHandler(this.button_F1_Click);
             // 
             // textBox_Patient
             // 
@@ -687,6 +692,7 @@
             this.button_Cytology.TabIndex = 298;
             this.button_Cytology.Text = "F10 Cytology  HPV";
             this.button_Cytology.UseVisualStyleBackColor = true;
+            this.button_Cytology.Click += new System.EventHandler(this.button_Cytology_Click);
             // 
             // button_F5_Description
             // 
@@ -713,6 +719,7 @@
             this.button_Printed.Text = "Printed : 0";
             this.button_Printed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Printed.UseVisualStyleBackColor = true;
+            this.button_Printed.Click += new System.EventHandler(this.button_Printed_Click);
             // 
             // label_Remarks
             // 
@@ -1147,6 +1154,7 @@
             this.button_Sign_By_Dr_2.TabIndex = 312;
             this.button_Sign_By_Dr_2.Text = "Dr.";
             this.button_Sign_By_Dr_2.UseVisualStyleBackColor = true;
+            this.button_Sign_By_Dr_2.Click += new System.EventHandler(this.button_Sign_By_Dr_2_Click);
             // 
             // button_Sign_By_Dr_1
             // 
@@ -1158,6 +1166,7 @@
             this.button_Sign_By_Dr_1.TabIndex = 309;
             this.button_Sign_By_Dr_1.Text = "Dr.";
             this.button_Sign_By_Dr_1.UseVisualStyleBackColor = true;
+            this.button_Sign_By_Dr_1.Click += new System.EventHandler(this.button_Sign_By_Dr_1_Click);
             // 
             // comboBox_Sign_By_Dr_2
             // 
@@ -1238,7 +1247,6 @@
             this.textBox_Rpt_Date.Name = "textBox_Rpt_Date";
             this.textBox_Rpt_Date.Size = new System.Drawing.Size(93, 26);
             this.textBox_Rpt_Date.TabIndex = 303;
-            this.textBox_Rpt_Date.Text = "  /  /    :  :  ";
             // 
             // panel2
             // 
@@ -1412,6 +1420,7 @@
             this.button_F9.TabIndex = 151;
             this.button_F9.Text = "F9";
             this.button_F9.UseVisualStyleBackColor = true;
+            this.button_F9.Click += new System.EventHandler(this.button_F9_Click);
             // 
             // textBox_Ref_No
             // 
@@ -1445,6 +1454,7 @@
             this.button_F7.TabIndex = 145;
             this.button_F7.Text = "F7";
             this.button_F7.UseVisualStyleBackColor = true;
+            this.button_F7.Click += new System.EventHandler(this.button_F7_Click);
             // 
             // label_LabDoctor
             // 
@@ -1657,7 +1667,7 @@
             // 
             // textBox_ID
             // 
-            this.textBox_ID.Location = new System.Drawing.Point(676, 13);
+            this.textBox_ID.Location = new System.Drawing.Point(1076, 13);
             this.textBox_ID.Name = "textBox_ID";
             this.textBox_ID.Size = new System.Drawing.Size(19, 21);
             this.textBox_ID.TabIndex = 337;

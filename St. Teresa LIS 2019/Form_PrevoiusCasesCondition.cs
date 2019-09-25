@@ -151,10 +151,12 @@ namespace St.Teresa_LIS_2019
         private void button_F7_View_Details_Click(object sender, EventArgs e)
         {
             string idStr = "";
+            string case_no = "";
 
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 idStr = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
+                case_no = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             }
 
             if (idStr == "")
@@ -163,21 +165,31 @@ namespace St.Teresa_LIS_2019
                 return;
             }
 
-            /*if (OnBxcySpecimentSelectedSingle != null)
+            if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(case_no.Length - 1, 1).ToLower() == "g")
             {
-                OnBxcySpecimentSelectedSingle(idStr);
+                Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(idStr);
+                open.Show();
             }
-            this.Close();*/
-
-            Form_BXCYFile open = new Form_BXCYFile(idStr);
-            open.Show();
+            else
+            {
+                if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(0, 1).ToLower() == "d")
+                {
+                    Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(idStr);
+                    open.Show();
+                }
+                else
+                {
+                    Form_BXCYFile open = new Form_BXCYFile(idStr);
+                    open.Show();
+                }
+            }
         }
         private void dataGridViewFormat()
         {
             DataGridViewColumn column0 = dataGridView1.Columns[0];
-            column0.Width = 130;
+            //column0.Width = 130;
             dataGridView1.Columns[0].DefaultCellStyle.ForeColor = Color.Blue;
-            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            /*DataGridViewColumn column1 = dataGridView1.Columns[1];
             column1.Width = 150;
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             column2.Width = 240;
@@ -186,7 +198,7 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column4 = dataGridView1.Columns[4];
             column4.Width = 90;
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            column5.Width = 120;
+            column5.Width = 120;*/
             DataGridViewColumn column6 = dataGridView1.Columns[6];
             column6.Width = 1;
 

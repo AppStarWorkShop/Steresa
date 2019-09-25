@@ -288,22 +288,64 @@ GO
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[getBXCYSpecimentByPage]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[getBXCYSpecimentByPage]
+GO
 
 CREATE PROCEDURE getBXCYSpecimentByPage
 	-- Add the parameters for the stored procedure here
 	@pageCount int = 30,
 	@pageNum int = 1,
 	@whereStr nvarchar(100) = '',
-	@whereVal nvarchar(100) = ''
+	@whereVal nvarchar(100) = '',
+	@snopCode nvarchar(100) ='',
+	@dateMode int = 1,
+	@dateFrom nvarchar(10),
+	@dateTo nvarchar(10)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	DECLARE @pageSum INT
+	DECLARE @pageSum INT=0
 	DECLARE @sqlQuery NVARCHAR(max)=''
 	DECLARE @sqlQueryCount NVARCHAR(max)=''
+	DECLARE @dateQuery NVARCHAR(max)=''
+
+	IF @dateMode < 1 OR @dateMode > 5
+	BEGIN
+		SET @dateMode = 1
+	END
+
+	IF @dateMode = 1
+	BEGIN
+		SET @dateQuery=''
+	END
+	ELSE
+	BEGIN
+		IF @dateMode = 2
+		BEGIN
+			SET @dateQuery=' AND date >= CAST(DATEADD(dd,-7,getDate()) AS date) '
+		END
+		ELSE
+		BEGIN
+			IF @dateMode = 3
+			BEGIN
+				SET @dateQuery=' AND date >= CAST(DATEADD(dd,-14,getDate()) AS date) '
+			END
+			ELSE
+			BEGIN
+				IF @dateMode = 4
+				BEGIN
+					SET @dateQuery=' AND date >= CAST(DATEADD(dd,-28,getDate()) AS date) '
+				END
+				ELSE
+				BEGIN
+					SET @dateQuery=' AND date >= CAST(@dateFrom AS date) AND date <= CAST(@dateTo AS date) '
+				END
+			END
+		END
+	END
+
 
 	IF @pageNum < 1
 	BEGIN
@@ -319,31 +361,36 @@ BEGIN
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'' ORDER BY id
+			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%'' AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'') ORDER BY id
 		  ) A
 		)
-		AND ' + @whereStr + ' LIKE ''%' + @whereVal + '%''
-		ORDER BY case_no,id'
-		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'''
+		AND ' + @whereStr + ' LIKE ''' + @whereVal + '%'' AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery +
+		' ORDER BY id'
+		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + 'AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery
 
-		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int', @pageCount,@pageNum
+		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo
 
-		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int', @pageSum out,@pageCount
+		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@snopCode,@dateFrom,@dateTo
 	END
 	ELSE
 	BEGIN
-		SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'') + '/' + isnull(sign_dr2,'') as sign_dr,er,em,id FROM BXCY_SPECIMEN
+		SET @sqlQuery = 
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id FROM BXCY_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN ORDER BY case_no,id
+			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'') ORDER BY id
 		  ) A
 		)
-		ORDER BY case_no,id
-		
-		SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN
+		AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery +
+		' ORDER BY id'
+		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery
+
+		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo
+
+		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@snopCode,@dateFrom,@dateTo
 	END
 
 	--SET @recordCount = @pageSum
@@ -351,25 +398,64 @@ BEGIN
 END
 GO
 
-
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[getEBVSpecimentByPage]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[getEBVSpecimentByPage]
+GO
 
 CREATE PROCEDURE getEBVSpecimentByPage
 	-- Add the parameters for the stored procedure here
 	@pageCount int = 30,
 	@pageNum int = 1,
 	@whereStr nvarchar(100) = '',
-	@whereVal nvarchar(100) = ''
+	@whereVal nvarchar(100) = '',
+	@dateMode int = 1,
+	@dateFrom nvarchar(10),
+	@dateTo nvarchar(10)
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
 	-- interfering with SELECT statements.
 	SET NOCOUNT ON;
 
-	DECLARE @pageSum INT
+	DECLARE @pageSum INT=0
 	DECLARE @sqlQuery NVARCHAR(max)=''
 	DECLARE @sqlQueryCount NVARCHAR(max)=''
+	DECLARE @dateQuery NVARCHAR(max)=''
+
+	IF @dateMode < 1 OR @dateMode > 5
+	BEGIN
+		SET @dateMode = 1
+	END
+
+	IF @dateMode = 1
+	BEGIN
+		SET @dateQuery=''
+	END
+	ELSE
+	BEGIN
+		IF @dateMode = 2
+		BEGIN
+			SET @dateQuery=' AND date >= CAST(DATEADD(dd,-7,getDate()) AS date) '
+		END
+		ELSE
+		BEGIN
+			IF @dateMode = 3
+			BEGIN
+				SET @dateQuery=' AND date >= CAST(DATEADD(dd,-14,getDate()) AS date) '
+			END
+			ELSE
+			BEGIN
+				IF @dateMode = 4
+				BEGIN
+					SET @dateQuery=' AND date >= CAST(DATEADD(dd,-28,getDate()) AS date) '
+				END
+				ELSE
+				BEGIN
+					SET @dateQuery=' AND date >= CAST(@dateFrom AS date) AND date <= CAST(@dateTo AS date) '
+				END
+			END
+		END
+	END
 
 	IF @pageNum < 1
 	BEGIN
@@ -385,31 +471,36 @@ BEGIN
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'' ORDER BY id
+		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%'' ORDER BY id
 		  ) A
 		)
-		AND ' + @whereStr + ' LIKE ''%' + @whereVal + '%''
-		ORDER BY case_no,id'
-		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''%' + @whereVal + '%'''
+		AND ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery +
+		' ORDER BY id'
+		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery
 
-		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int', @pageCount,@pageNum
+		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@dateFrom,@dateTo
 
-		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int', @pageSum out,@pageCount
+		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@dateFrom,@dateTo
 	END
 	ELSE
 	BEGIN
-		SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM EBV_SPECIMEN
+		SET @sqlQuery = 
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM EBV_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN ORDER BY case_no,id
+		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN WHERE id=id ' + @dateQuery + ' ORDER BY id
 		  ) A
 		)
-		ORDER BY case_no,id
-		
-		SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN
+		' + @dateQuery +
+		' ORDER BY id'
+		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE id=id ' + @dateQuery
+
+		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@dateFrom,@dateTo
+
+		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@dateFrom,@dateTo
 	END
 
 	--SET @recordCount = @pageSum

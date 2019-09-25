@@ -57,8 +57,6 @@
             this.radioButton_Data_Past_28 = new System.Windows.Forms.RadioButton();
             this.radioButton_Data_From = new System.Windows.Forms.RadioButton();
             this.label_Data_To = new System.Windows.Forms.Label();
-            this.textBox_Data_From = new System.Windows.Forms.TextBox();
-            this.textBox_Data_To = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.BindingNavigate = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -75,6 +73,8 @@
             this.button_D = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.dateTimePicker_From = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_To = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -314,6 +314,7 @@
             // radioButton_Data_All
             // 
             this.radioButton_Data_All.AutoSize = true;
+            this.radioButton_Data_All.Checked = true;
             this.radioButton_Data_All.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.radioButton_Data_All.ForeColor = System.Drawing.Color.Blue;
             this.radioButton_Data_All.Location = new System.Drawing.Point(14, 81);
@@ -333,7 +334,6 @@
             this.radioButton_Data_Past_7.Name = "radioButton_Data_Past_7";
             this.radioButton_Data_Past_7.Size = new System.Drawing.Size(105, 20);
             this.radioButton_Data_Past_7.TabIndex = 216;
-            this.radioButton_Data_Past_7.TabStop = true;
             this.radioButton_Data_Past_7.Text = "Past 7 Days";
             this.radioButton_Data_Past_7.UseVisualStyleBackColor = true;
             // 
@@ -346,7 +346,6 @@
             this.radioButton_Data_Past_14.Name = "radioButton_Data_Past_14";
             this.radioButton_Data_Past_14.Size = new System.Drawing.Size(113, 20);
             this.radioButton_Data_Past_14.TabIndex = 217;
-            this.radioButton_Data_Past_14.TabStop = true;
             this.radioButton_Data_Past_14.Text = "Past 14 Days";
             this.radioButton_Data_Past_14.UseVisualStyleBackColor = true;
             // 
@@ -359,7 +358,6 @@
             this.radioButton_Data_Past_28.Name = "radioButton_Data_Past_28";
             this.radioButton_Data_Past_28.Size = new System.Drawing.Size(113, 20);
             this.radioButton_Data_Past_28.TabIndex = 218;
-            this.radioButton_Data_Past_28.TabStop = true;
             this.radioButton_Data_Past_28.Text = "Past 28 Days";
             this.radioButton_Data_Past_28.UseVisualStyleBackColor = true;
             // 
@@ -372,9 +370,9 @@
             this.radioButton_Data_From.Name = "radioButton_Data_From";
             this.radioButton_Data_From.Size = new System.Drawing.Size(62, 20);
             this.radioButton_Data_From.TabIndex = 219;
-            this.radioButton_Data_From.TabStop = true;
             this.radioButton_Data_From.Text = "From";
             this.radioButton_Data_From.UseVisualStyleBackColor = true;
+            this.radioButton_Data_From.CheckedChanged += new System.EventHandler(this.radioButton_Data_From_CheckedChanged);
             // 
             // label_Data_To
             // 
@@ -386,26 +384,6 @@
             this.label_Data_To.Size = new System.Drawing.Size(24, 16);
             this.label_Data_To.TabIndex = 220;
             this.label_Data_To.Text = "To";
-            // 
-            // textBox_Data_From
-            // 
-            this.textBox_Data_From.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Data_From.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Data_From.Location = new System.Drawing.Point(565, 80);
-            this.textBox_Data_From.Name = "textBox_Data_From";
-            this.textBox_Data_From.Size = new System.Drawing.Size(82, 23);
-            this.textBox_Data_From.TabIndex = 242;
-            this.textBox_Data_From.Text = "31/05/2019";
-            // 
-            // textBox_Data_To
-            // 
-            this.textBox_Data_To.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Data_To.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Data_To.Location = new System.Drawing.Point(673, 81);
-            this.textBox_Data_To.Name = "textBox_Data_To";
-            this.textBox_Data_To.Size = new System.Drawing.Size(82, 23);
-            this.textBox_Data_To.TabIndex = 243;
-            this.textBox_Data_To.Text = "31/05/2019";
             // 
             // dataGridView1
             // 
@@ -562,6 +540,23 @@
             this.label2.TabIndex = 248;
             this.label2.Text = "BX/CY";
             // 
+            // dateTimePicker_From
+            // 
+            this.dateTimePicker_From.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateTimePicker_From.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_From.Location = new System.Drawing.Point(554, 81);
+            this.dateTimePicker_From.Name = "dateTimePicker_From";
+            this.dateTimePicker_From.Size = new System.Drawing.Size(97, 21);
+            this.dateTimePicker_From.TabIndex = 249;
+            // 
+            // dateTimePicker_To
+            // 
+            this.dateTimePicker_To.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_To.Location = new System.Drawing.Point(668, 81);
+            this.dateTimePicker_To.Name = "dateTimePicker_To";
+            this.dateTimePicker_To.Size = new System.Drawing.Size(97, 21);
+            this.dateTimePicker_To.TabIndex = 250;
+            // 
             // Form_BXCYRecordSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -569,13 +564,13 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(216)))), ((int)(((byte)(171)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.dateTimePicker_To);
+            this.Controls.Add(this.dateTimePicker_From);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_D);
             this.Controls.Add(this.BindingNavigate);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.textBox_Data_To);
-            this.Controls.Add(this.textBox_Data_From);
             this.Controls.Add(this.label_Data_To);
             this.Controls.Add(this.radioButton_Data_From);
             this.Controls.Add(this.radioButton_Data_Past_28);
@@ -645,8 +640,6 @@
         private System.Windows.Forms.RadioButton radioButton_Data_Past_28;
         private System.Windows.Forms.RadioButton radioButton_Data_From;
         private System.Windows.Forms.Label label_Data_To;
-        private System.Windows.Forms.TextBox textBox_Data_From;
-        private System.Windows.Forms.TextBox textBox_Data_To;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingNavigator BindingNavigate;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
@@ -663,5 +656,7 @@
         private System.Windows.Forms.Button button_D;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_From;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_To;
     }
 }

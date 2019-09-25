@@ -211,8 +211,15 @@ namespace St.Teresa_LIS_2019
 
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
-            Form_DescriptionBXeHRCCSP open = new Form_DescriptionBXeHRCCSP();
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus);
+            open.OnBxcyDiagExit += OnStatusReturn;
             open.Show();
+        }
+
+        private void OnStatusReturn(int status)
+        {
+            currentStatus = status;
+            setButtonStatus(currentStatus);
         }
 
         private void button_Next_Click(object sender, EventArgs e)
@@ -312,7 +319,7 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
             currentEditRow["id"] = -1;
-            currentEditRow["case_no"] = textBox_Case_No.Text;
+            //currentEditRow["case_no"] = textBox_Case_No.Text;
             //currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
             currentEditRow["ethnic"] = comboBox_Ethnic.Text;
             //currentEditRow["cyto_Type"] = comboBox_cytoType.Text;
@@ -352,18 +359,18 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null);*/
 
-            currentEditRow["rpt_date"] = textBox_Rpt_Date.Text;
+            //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text;
             currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
             currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
             currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
-            currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
+            //currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
             currentEditRow["snopcode_m"] = comboBox_Snop_M1.Text;
             currentEditRow["snopcode_m2"] = comboBox_Snop_M2.Text;
             currentEditRow["snopcode_m3"] = comboBox_Snop_M3.Text;
-            currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
+            //currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
             //currentEditRow["histo"] = comboBox_HistoType.Text;
 
-            currentEditRow["remark"] = textBox_Remarks.Text;
+            //currentEditRow["remark"] = textBox_Remarks.Text;
             currentEditRow["initial"] = textBox_Cytology.Text;
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -384,33 +391,25 @@ namespace St.Teresa_LIS_2019
             copybxcy_specimen.class1 = comboBox_Class.Text;
             copybxcy_specimen.pat_age = textBox_Age.Text;
             copybxcy_specimen.pat_sex = textBox_Sex.Text;
-            /*copybxcy_specimen.bed_room = textBox_Room.Text;
-            copybxcy_specimen.bed_no = textBox_Bed.Text;*/
-            copybxcy_specimen.clinical_History = textBox_Patient_s_Clinical_History.Text;
+            copybxcy_specimen.bed_room = textBox_Organization.Text;
+            copybxcy_specimen.pat_hist = textBox_Patient_s_Clinical_History.Text;
+            //copybxcy_specimen.clinical_History = textBox_Patient_s_Clinical_History.Text;
 
             copybxcy_specimen.surgical = textBox_Surgical.Text;
             copybxcy_specimen.nature = textBox_Nature.Text;
 
-            /*copybxcy_specimen.client = textBox_Client.Text;
-            copybxcy_specimen.institute = textBox_Institute.Text;*/
+            copybxcy_specimen.client = textBox_LabHCIName.Text;
+            copybxcy_specimen.institute = textBox_LabHCIID.Text;
             copybxcy_specimen.lab_ref = textBox_Ref_No.Text;
-            //copybxcy_specimen.doctor_o = textBox_Dr_I_C_Free_Text.Text;
+            copybxcy_specimen.doctor_o = textBox_STH_Patient_No.Text;
 
             copybxcy_specimen.doctor_ic = textBox_Doctor_I_C.Text;
             copybxcy_specimen.doctor_id = textBox_Doctor_I_C_ID_1.Text;
 
-            /*copybxcy_specimen.doctor_id2 = textBox_Doctor_I_C_2.Text;
-            copybxcy_specimen.doctor_id2 = textBox_Doctor_I_C_ID_2.Text;
-
-            copybxcy_specimen.doctor_id3 = textBox_Doctor_I_C_3.Text;
-            copybxcy_specimen.doctor_id3 = textBox_Doctor_I_C_ID_3.Text;
-
-            copybxcy_specimen.inv_no = textBox_Involce_No.Text;
-            copybxcy_specimen.receipt = textBox_Receipt.Text;
-            copybxcy_specimen.inv_date = textBox_Invoice_Date.Text;
-            copybxcy_specimen.inv_amt = textBox_Amount_HK.Text;
-
-            copybxcy_specimen.pay_date = textBox_Paid_Date.Text;*/
+            copybxcy_specimen.inv_no = textBox_LabHCIID_2.Text;
+            copybxcy_specimen.remind = textBox_eHR_No.Text;
+            copybxcy_specimen.receipt = textBox_Record_Key.Text;
+            copybxcy_specimen.inv_date = textBox_Date_Requested.Text;
 
             copybxcy_specimen.rpt_date = textBox_Rpt_Date.Text;
             copybxcy_specimen.snopcode_t = comboBox_Snop_T1.Text;
@@ -469,33 +468,25 @@ namespace St.Teresa_LIS_2019
                         comboBox_Class.Text = copybxcy_specimen.class1;
                         textBox_Age.Text = copybxcy_specimen.pat_age;
                         textBox_Sex.Text = copybxcy_specimen.pat_sex;
-                        /*textBox_Room.Text = copybxcy_specimen.bed_room;
-                        textBox_Bed.Text = copybxcy_specimen.bed_no;*/
-                        textBox_Patient_s_Clinical_History.Text = copybxcy_specimen.clinical_History;
+                        textBox_Organization.Text = copybxcy_specimen.bed_room;
+                        textBox_Patient_s_Clinical_History.Text = copybxcy_specimen.pat_hist;
+                        //textBox_Patient_s_Clinical_History.Text = copybxcy_specimen.clinical_History;
 
                         textBox_Surgical.Text = copybxcy_specimen.surgical;
                         textBox_Nature.Text = copybxcy_specimen.nature;
 
-                        /*textBox_Client.Text = copybxcy_specimen.client;
-                        textBox_Institute.Text = copybxcy_specimen.institute;*/
+                        textBox_LabHCIName.Text = copybxcy_specimen.client;
+                        textBox_LabHCIID.Text = copybxcy_specimen.institute;
                         textBox_Ref_No.Text = copybxcy_specimen.lab_ref;
-                        //textBox_Dr_I_C_Free_Text.Text = copybxcy_specimen.doctor_o;
+                        textBox_STH_Patient_No.Text = copybxcy_specimen.doctor_o;
 
                         textBox_Doctor_I_C.Text = copybxcy_specimen.doctor_ic;
                         textBox_Doctor_I_C_ID_1.Text = copybxcy_specimen.doctor_id;
 
-                        /*textBox_Doctor_I_C_2.Text = copybxcy_specimen.doctor_id2;
-                        textBox_Doctor_I_C_ID_2.Text = copybxcy_specimen.doctor_id2;
-
-                        textBox_Doctor_I_C_3.Text = copybxcy_specimen.doctor_id3;
-                        textBox_Doctor_I_C_ID_3.Text = copybxcy_specimen.doctor_id3;
-
-                        textBox_Involce_No.Text = copybxcy_specimen.inv_no;*/
-                        /*textBox_Receipt.Text = copybxcy_specimen.receipt;
-                        textBox_Invoice_Date.Text = copybxcy_specimen.inv_date;
-                        textBox_Amount_HK.Text = copybxcy_specimen.inv_amt;*/
-                        //textBox_Paid_Up.Text = copybxcy_specimen.pay;
-                        //textBox_Paid_Date.Text = copybxcy_specimen.pay_date;
+                        textBox_LabHCIID_2.Text = copybxcy_specimen.inv_no;
+                        textBox_eHR_No.Text = copybxcy_specimen.remind;
+                        textBox_Record_Key.Text = copybxcy_specimen.receipt;
+                        textBox_Date_Requested.Text = copybxcy_specimen.inv_date;
 
                         textBox_Rpt_Date.Text = copybxcy_specimen.rpt_date;
                         comboBox_Snop_T1.Text = copybxcy_specimen.snopcode_t;
@@ -530,17 +521,17 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(int position = 0)
         {
-            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no,id";
+            string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no LIKE 'D%' ORDER BY case_no,id";
             if (this.id != null)
             {
-                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} ORDER BY  case_no,id", this.id);
+                sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} AND case_no LIKE 'D%' ORDER BY  case_no,id", this.id);
                 id = null;
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             textBox_ID.DataBindings.Clear();
             textBox_Case_No.DataBindings.Clear();
-            //textBox_Date.DataBindings.Clear();
+            textBox_Date_Received.DataBindings.Clear();
             comboBox_Ethnic.DataBindings.Clear();
             //comboBox_cytoType.DataBindings.Clear();
             textBox_Patient.DataBindings.Clear();
@@ -551,30 +542,26 @@ namespace St.Teresa_LIS_2019
             //comboBox_Class.DataBindings.Clear();
             textBox_Age.DataBindings.Clear();
             textBox_Sex.DataBindings.Clear();
-            //textBox_Room.DataBindings.Clear();
-            //textBox_Bed.DataBindings.Clear();
+            textBox_Organization.DataBindings.Clear();
             textBox_Patient_s_Clinical_History.DataBindings.Clear();
+            //textBox_Bed.DataBindings.Clear();
+            //textBox_Patient_s_Clinical_History.DataBindings.Clear();
 
             //textBox_Surgical.DataBindings.Clear();
             textBox_Nature.DataBindings.Clear();
 
-            /*textBox_Client.DataBindings.Clear();
-            textBox_Institute.DataBindings.Clear();*/
+            textBox_LabHCIName.DataBindings.Clear();
+            textBox_LabHCIID.DataBindings.Clear();
             textBox_Ref_No.DataBindings.Clear();
-            //textBox_Dr_I_C_Free_Text.DataBindings.Clear();
+            textBox_STH_Patient_No.DataBindings.Clear();
+
             textBox_Doctor_I_C.DataBindings.Clear();
             textBox_Doctor_I_C_ID_1.DataBindings.Clear();
-            //textBox_Doctor_I_C_2.DataBindings.Clear();
-            /*textBox_Doctor_I_C_ID_2.DataBindings.Clear();
-            textBox_Doctor_I_C_3.DataBindings.Clear();
-            textBox_Doctor_I_C_ID_3.DataBindings.Clear();*/
 
-            //textBox_Involce_No.DataBindings.Clear();
-            //textBox_Receipt.DataBindings.Clear();
-            /*textBox_Invoice_Date.DataBindings.Clear();
-            textBox_Amount_HK.DataBindings.Clear();
-            textBox_Paid_Up.DataBindings.Clear();
-            textBox_Paid_Date.DataBindings.Clear();*/
+            textBox_LabHCIID_2.DataBindings.Clear();
+            textBox_eHR_No.DataBindings.Clear();
+            textBox_Record_Key.DataBindings.Clear();
+            textBox_Date_Requested.DataBindings.Clear();
 
             textBox_Rpt_Date.DataBindings.Clear();
             comboBox_Snop_T1.DataBindings.Clear();
@@ -594,6 +581,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
             textBox_Issued_At.DataBindings.Clear();
+            //textBox_Rpt_Date.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -678,20 +666,22 @@ namespace St.Teresa_LIS_2019
             DataSet doctorDataSet = new DataSet();
             SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "doctor");
 
-            DataTable doctorDt = new DataTable();
-            doctorDt.Columns.Add("doctor");
+            DataTable doctorDt1 = new DataTable();
+            doctorDt1.Columns.Add("doctor");
+            DataTable doctorDt2 = doctorDt1.Clone();
 
             foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
             {
-                doctorDt.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
             }
 
-            comboBox_Sign_By_Dr_1.DataSource = doctorDt;
-            comboBox_Sign_By_Dr_2.DataSource = doctorDt;
+            comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
+            comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            //textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Date_Received.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             //comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
@@ -702,43 +692,36 @@ namespace St.Teresa_LIS_2019
             //comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
-            /*textBox_Room.DataBindings.Add("Text", dt, "BED_ROOM", false);
-            textBox_Bed.DataBindings.Add("Text", dt, "BED_NO", false);*/
-            textBox_Patient_s_Clinical_History.DataBindings.Add("Text", dt, "Clinical_History", false);
+            textBox_Organization.DataBindings.Add("Text", dt, "BED_ROOM", false);
+            textBox_Patient_s_Clinical_History.DataBindings.Add("Text", dt, "Pat_hist", false);
+            //textBox_Bed.DataBindings.Add("Text", dt, "BED_NO", false);
+            //textBox_Patient_s_Clinical_History.DataBindings.Add("Text", dt, "Clinical_History", false);
 
             //textBox_Surgical.DataBindings.Add("Text", dt, "surgical", false, DataSourceUpdateMode.OnPropertyChanged, "");
             textBox_Nature.DataBindings.Add("Text", dt, "nature", false, DataSourceUpdateMode.OnPropertyChanged, "");
 
-            /*textBox_Client.DataBindings.Add("Text", dt, "CLIENT", false);
-            textBox_Institute.DataBindings.Add("Text", dt, "Institute", false);*/
+            textBox_LabHCIName.DataBindings.Add("Text", dt, "CLIENT", false);
+            textBox_LabHCIID.DataBindings.Add("Text", dt, "Institute", false);
             textBox_Ref_No.DataBindings.Add("Text", dt, "LAB_REF", false);
-            //textBox_Dr_I_C_Free_Text.DataBindings.Add("Text", dt, "DOCTOR_O", false);
+            textBox_STH_Patient_No.DataBindings.Add("Text", dt, "DOCTOR_O", false);
 
             textBox_Doctor_I_C.DataBindings.Add("Text", dt, "DOCTOR_IC", false);
             textBox_Doctor_I_C_ID_1.DataBindings.Add("Text", dt, "doctor_id", false);
 
-            //textBox_Doctor_I_C_2.DataBindings.Add("Text", dt, "doctor_id2", false);
-            //textBox_Doctor_I_C_ID_2.DataBindings.Add("Text", dt, "doctor_id2", false);
-
-            /*textBox_Doctor_I_C_3.DataBindings.Add("Text", dt, "doctor_id3", false);
-            textBox_Doctor_I_C_ID_3.DataBindings.Add("Text", dt, "doctor_id3", false);*/
-
-            //textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
-            //textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
-            /*textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
-            textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
-            textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
-            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");*/
+            textBox_LabHCIID_2.DataBindings.Add("Text", dt, "Inv_no", false);
+            textBox_eHR_No.DataBindings.Add("Text", dt, "Remind", false);
+            textBox_Record_Key.DataBindings.Add("Text", dt, "RECEIPT", false);
+            textBox_Date_Requested.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
             textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
-            comboBox_Sign_By_Dr_1.DataBindings.Add("Text", dt, "Sign_dr", false);
+            comboBox_Sign_By_Dr_1.DataBindings.Add("SelectedValue", dt, "Sign_dr", false);
             comboBox_Snop_M1.DataBindings.Add("SelectedValue", dt, "Snopcode_m", false);
             comboBox_Snop_M2.DataBindings.Add("SelectedValue", dt, "Snopcode_m2", false);
             comboBox_Snop_M3.DataBindings.Add("SelectedValue", dt, "Snopcode_m3", false);
-            comboBox_Sign_By_Dr_2.DataBindings.Add("Text", dt, "Sign_dr2", false);
+            comboBox_Sign_By_Dr_2.DataBindings.Add("SelectedValue", dt, "Sign_dr2", false);
             //comboBox_HistoType.DataBindings.Add("SelectedValue", dt, "Histo", false);
 
             textBox_Remarks.DataBindings.Add("Text", dt, "Remark", false);
@@ -748,6 +731,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
             textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
         }
 
         private void reloadDBData(int position = 0)
@@ -1060,6 +1044,139 @@ namespace St.Teresa_LIS_2019
             button_Undo.ForeColor = Color.Gray;
             button_Exit.Image = Image.FromFile("Resources/exit.png");
             button_Exit.ForeColor = Color.Black;
+        }
+
+        private void button_F1_Click(object sender, EventArgs e)
+        {
+            Form_SelectPatient open = new Form_SelectPatient();
+            open.OnPatientSelectedMore += OnPatientSelected;
+            open.Show();
+        }
+
+        private void OnPatientSelected(string str)
+        {
+            if (str != null)
+            {
+                string sql = string.Format("SELECT patient,seq,cname,hkid,birth,age,sex FROM patient WHERE id={0}", str);
+
+                SqlCommand command = new SqlCommand(sql, DBConn.getConnection());
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    textBox_Patient.Text = reader.GetValue(0).ToString();
+                    textBox_PatSeq.Text = reader.GetValue(1).ToString();
+                    textBox_Chinese_Name.Text = reader.GetValue(2).ToString();
+                    textBox_HKID.Text = reader.GetValue(3).ToString();
+                    DateTime recordDate;
+                    if (DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
+                    {
+                        textBox_DOB.Text = recordDate.ToString("yyyy/MM/dd");
+                    }
+                    textBox_Age.Text = reader.GetValue(5).ToString();
+                    textBox_Sex.Text = reader.GetValue(6).ToString();
+                }
+                reader.Close();
+            }
+        }
+
+        private void button_Clinical_History_Click(object sender, EventArgs e)
+        {
+            Form_ClinicalHistoryEditLog open = new Form_ClinicalHistoryEditLog();
+            open.Show();
+        }
+
+        private void button_F3_Surgical_Click(object sender, EventArgs e)
+        {
+            Form_SurgicalProcedure open = new Form_SurgicalProcedure(textBox_Surgical.Text);
+            open.OnSurgicalSelectedSingle += OnSurgicalSelected;
+            open.Show();
+        }
+
+        private void OnSurgicalSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Surgical.Text = str;
+            }
+        }
+
+        private void button_F4_Nature_Click(object sender, EventArgs e)
+        {
+            Form_NatureOfSpecimen open = new Form_NatureOfSpecimen(textBox_Nature.Text);
+            open.OnNatureSelectedSingle += OnNatureSelected;
+            open.Show();
+        }
+
+        private void OnNatureSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_Nature.Text = str;
+            }
+        }
+
+        private void button_F2_Previous_Click(object sender, EventArgs e)
+        {
+            Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition(textBox_HKID.Text.Trim());
+            open.Show();
+        }
+
+        private void button_F7_Click(object sender, EventArgs e)
+        {
+            Form_SelectClient open = new Form_SelectClient();
+            open.OnClientSelectedSingle += OnClientSelected;
+            open.Show();
+        }
+
+        private void OnClientSelected(string str)
+        {
+            if (str != null)
+            {
+                textBox_LabHCIName.Text = str;
+            }
+        }
+
+        private void button_F9_Click(object sender, EventArgs e)
+        {
+            Form_SelectDoctor open = new Form_SelectDoctor();
+            open.OnDoctorSelectedWithNameAndId += OnDoctorSelected;
+            open.Show();
+        }
+
+        private void OnDoctorSelected(string doctorNameStr, string doctroIdStr)
+        {
+            if (doctorNameStr != null)
+            {
+                textBox_Doctor_I_C.Text = doctorNameStr;
+            }
+
+            if (doctroIdStr != null)
+            {
+                textBox_Doctor_I_C_ID_1.Text = doctroIdStr;
+            }
+        }
+
+        private void button_Sign_By_Dr_1_Click(object sender, EventArgs e)
+        {
+            Form_DoctorsSignatureMaintenance open = new Form_DoctorsSignatureMaintenance();
+            open.Show();
+        }
+
+        private void button_Sign_By_Dr_2_Click(object sender, EventArgs e)
+        {
+            Form_DoctorsSignatureMaintenance open = new Form_DoctorsSignatureMaintenance();
+            open.Show();
+        }
+
+        private void button_Cytology_Click(object sender, EventArgs e)
+        {
+            Form_CytologyFindings open = new Form_CytologyFindings();
+            open.Show();
+        }
+
+        private void button_Printed_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

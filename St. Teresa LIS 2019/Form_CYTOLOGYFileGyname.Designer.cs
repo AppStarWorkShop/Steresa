@@ -37,6 +37,7 @@
             this.label_Snop_M3 = new System.Windows.Forms.Label();
             this.panel_Update = new System.Windows.Forms.Panel();
             this.textBox_Issued_At = new System.Windows.Forms.TextBox();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_Issued_By = new System.Windows.Forms.TextBox();
             this.label_Issued_By = new System.Windows.Forms.Label();
             this.textBox_Updated_At = new System.Windows.Forms.TextBox();
@@ -152,7 +153,6 @@
             this.button_F2_Previous = new System.Windows.Forms.Button();
             this.textBox_Patient_s_Clinical_History = new System.Windows.Forms.TextBox();
             this.textBox_Remarks = new System.Windows.Forms.TextBox();
-            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_Nature = new System.Windows.Forms.TextBox();
             this.panel_Update.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -291,6 +291,13 @@
             this.textBox_Issued_At.ReadOnly = true;
             this.textBox_Issued_At.Size = new System.Drawing.Size(66, 21);
             this.textBox_Issued_At.TabIndex = 8;
+            // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Location = new System.Drawing.Point(257, 11);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(17, 21);
+            this.textBox_ID.TabIndex = 296;
             // 
             // textBox_Issued_By
             // 
@@ -1190,7 +1197,6 @@
             this.textBox_Rpt_Date.Name = "textBox_Rpt_Date";
             this.textBox_Rpt_Date.Size = new System.Drawing.Size(93, 26);
             this.textBox_Rpt_Date.TabIndex = 203;
-            this.textBox_Rpt_Date.Text = "  /  /    :  :  ";
             // 
             // panel2
             // 
@@ -1686,13 +1692,6 @@
             this.textBox_Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Remarks.Size = new System.Drawing.Size(604, 96);
             this.textBox_Remarks.TabIndex = 295;
-            // 
-            // textBox_ID
-            // 
-            this.textBox_ID.Location = new System.Drawing.Point(257, 11);
-            this.textBox_ID.Name = "textBox_ID";
-            this.textBox_ID.Size = new System.Drawing.Size(17, 21);
-            this.textBox_ID.TabIndex = 296;
             // 
             // textBox_Nature
             // 

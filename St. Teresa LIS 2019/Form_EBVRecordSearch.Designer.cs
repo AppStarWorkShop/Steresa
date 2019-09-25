@@ -1,6 +1,6 @@
 ﻿namespace St.Teresa_LIS_2019
 {
-    partial class Form_LocateCaseNo
+    partial class Form_EBVRecordSearch
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_LocateCaseNo));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_EBVRecordSearch));
             this.label_F1 = new System.Windows.Forms.Label();
             this.button_F7_Columas = new System.Windows.Forms.Button();
             this.button_F2_New_Record = new System.Windows.Forms.Button();
@@ -53,6 +53,14 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.dateTimePicker_To = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker_From = new System.Windows.Forms.DateTimePicker();
+            this.label_Data_To = new System.Windows.Forms.Label();
+            this.radioButton_Data_From = new System.Windows.Forms.RadioButton();
+            this.radioButton_Data_Past_28 = new System.Windows.Forms.RadioButton();
+            this.radioButton_Data_Past_14 = new System.Windows.Forms.RadioButton();
+            this.radioButton_Data_Past_7 = new System.Windows.Forms.RadioButton();
+            this.radioButton_Data_All = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingNavigate)).BeginInit();
             this.BindingNavigate.SuspendLayout();
@@ -158,12 +166,12 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 83);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 106);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(984, 595);
+            this.dataGridView1.Size = new System.Drawing.Size(984, 572);
             this.dataGridView1.TabIndex = 79;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -175,6 +183,7 @@
             this.textBox_Search_Type.Name = "textBox_Search_Type";
             this.textBox_Search_Type.Size = new System.Drawing.Size(254, 27);
             this.textBox_Search_Type.TabIndex = 78;
+            this.textBox_Search_Type.TextChanged += new System.EventHandler(this.textBox_Search_Type_TextChanged);
             // 
             // label_Search_Type
             // 
@@ -293,6 +302,97 @@
             this.toolStripButton4.Size = new System.Drawing.Size(34, 22);
             this.toolStripButton4.Text = "End";
             // 
+            // dateTimePicker_To
+            // 
+            this.dateTimePicker_To.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_To.Location = new System.Drawing.Point(671, 79);
+            this.dateTimePicker_To.Name = "dateTimePicker_To";
+            this.dateTimePicker_To.Size = new System.Drawing.Size(97, 21);
+            this.dateTimePicker_To.TabIndex = 258;
+            // 
+            // dateTimePicker_From
+            // 
+            this.dateTimePicker_From.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateTimePicker_From.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker_From.Location = new System.Drawing.Point(557, 79);
+            this.dateTimePicker_From.Name = "dateTimePicker_From";
+            this.dateTimePicker_From.Size = new System.Drawing.Size(97, 21);
+            this.dateTimePicker_From.TabIndex = 257;
+            // 
+            // label_Data_To
+            // 
+            this.label_Data_To.AutoSize = true;
+            this.label_Data_To.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.label_Data_To.ForeColor = System.Drawing.Color.Blue;
+            this.label_Data_To.Location = new System.Drawing.Point(651, 82);
+            this.label_Data_To.Name = "label_Data_To";
+            this.label_Data_To.Size = new System.Drawing.Size(24, 16);
+            this.label_Data_To.TabIndex = 256;
+            this.label_Data_To.Text = "To";
+            // 
+            // radioButton_Data_From
+            // 
+            this.radioButton_Data_From.AutoSize = true;
+            this.radioButton_Data_From.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radioButton_Data_From.ForeColor = System.Drawing.Color.Blue;
+            this.radioButton_Data_From.Location = new System.Drawing.Point(500, 81);
+            this.radioButton_Data_From.Name = "radioButton_Data_From";
+            this.radioButton_Data_From.Size = new System.Drawing.Size(62, 20);
+            this.radioButton_Data_From.TabIndex = 255;
+            this.radioButton_Data_From.Text = "From";
+            this.radioButton_Data_From.UseVisualStyleBackColor = true;
+            this.radioButton_Data_From.CheckedChanged += new System.EventHandler(this.radioButton_Data_From_CheckedChanged);
+            // 
+            // radioButton_Data_Past_28
+            // 
+            this.radioButton_Data_Past_28.AutoSize = true;
+            this.radioButton_Data_Past_28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radioButton_Data_Past_28.ForeColor = System.Drawing.Color.Blue;
+            this.radioButton_Data_Past_28.Location = new System.Drawing.Point(354, 79);
+            this.radioButton_Data_Past_28.Name = "radioButton_Data_Past_28";
+            this.radioButton_Data_Past_28.Size = new System.Drawing.Size(113, 20);
+            this.radioButton_Data_Past_28.TabIndex = 254;
+            this.radioButton_Data_Past_28.Text = "Past 28 Days";
+            this.radioButton_Data_Past_28.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Data_Past_14
+            // 
+            this.radioButton_Data_Past_14.AutoSize = true;
+            this.radioButton_Data_Past_14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radioButton_Data_Past_14.ForeColor = System.Drawing.Color.Blue;
+            this.radioButton_Data_Past_14.Location = new System.Drawing.Point(211, 79);
+            this.radioButton_Data_Past_14.Name = "radioButton_Data_Past_14";
+            this.radioButton_Data_Past_14.Size = new System.Drawing.Size(113, 20);
+            this.radioButton_Data_Past_14.TabIndex = 253;
+            this.radioButton_Data_Past_14.Text = "Past 14 Days";
+            this.radioButton_Data_Past_14.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Data_Past_7
+            // 
+            this.radioButton_Data_Past_7.AutoSize = true;
+            this.radioButton_Data_Past_7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radioButton_Data_Past_7.ForeColor = System.Drawing.Color.Blue;
+            this.radioButton_Data_Past_7.Location = new System.Drawing.Point(79, 79);
+            this.radioButton_Data_Past_7.Name = "radioButton_Data_Past_7";
+            this.radioButton_Data_Past_7.Size = new System.Drawing.Size(105, 20);
+            this.radioButton_Data_Past_7.TabIndex = 252;
+            this.radioButton_Data_Past_7.Text = "Past 7 Days";
+            this.radioButton_Data_Past_7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Data_All
+            // 
+            this.radioButton_Data_All.AutoSize = true;
+            this.radioButton_Data_All.Checked = true;
+            this.radioButton_Data_All.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            this.radioButton_Data_All.ForeColor = System.Drawing.Color.Blue;
+            this.radioButton_Data_All.Location = new System.Drawing.Point(17, 79);
+            this.radioButton_Data_All.Name = "radioButton_Data_All";
+            this.radioButton_Data_All.Size = new System.Drawing.Size(43, 20);
+            this.radioButton_Data_All.TabIndex = 251;
+            this.radioButton_Data_All.TabStop = true;
+            this.radioButton_Data_All.Text = "All";
+            this.radioButton_Data_All.UseVisualStyleBackColor = true;
+            // 
             // Form_LocateCaseNo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -300,6 +400,14 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(200)))), ((int)(((byte)(221)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.dateTimePicker_To);
+            this.Controls.Add(this.dateTimePicker_From);
+            this.Controls.Add(this.label_Data_To);
+            this.Controls.Add(this.radioButton_Data_From);
+            this.Controls.Add(this.radioButton_Data_Past_28);
+            this.Controls.Add(this.radioButton_Data_Past_14);
+            this.Controls.Add(this.radioButton_Data_Past_7);
+            this.Controls.Add(this.radioButton_Data_All);
             this.Controls.Add(this.BindingNavigate);
             this.Controls.Add(this.label_F1);
             this.Controls.Add(this.button_F7_Columas);
@@ -350,5 +458,13 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_To;
+        private System.Windows.Forms.DateTimePicker dateTimePicker_From;
+        private System.Windows.Forms.Label label_Data_To;
+        private System.Windows.Forms.RadioButton radioButton_Data_From;
+        private System.Windows.Forms.RadioButton radioButton_Data_Past_28;
+        private System.Windows.Forms.RadioButton radioButton_Data_Past_14;
+        private System.Windows.Forms.RadioButton radioButton_Data_Past_7;
+        private System.Windows.Forms.RadioButton radioButton_Data_All;
     }
 }

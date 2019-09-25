@@ -53,7 +53,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_EBV_Records_Click(object sender, EventArgs e)
         {
-            Form_LocateCaseNo open = new Form_LocateCaseNo();
+            Form_EBVRecordSearch open = new Form_EBVRecordSearch();
             open.Show();
         }
 

@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace St.Teresa_LIS_2019
 {
-    public partial class Form_LocateCaseNo : Form
+    public partial class Form_EBVRecordSearch : Form
     {
         private DataTable dt;
         private DataSet ebv_specimenDataSet = new DataSet();
@@ -20,6 +20,9 @@ namespace St.Teresa_LIS_2019
 
         private string whereStr = "";
         private string whereVal = "";
+        private int dateMode = 1;
+        private string dateFrom = "";
+        private string dateTo = "";
 
         int pageSize = 30;     //每页显示行数
         int nMax = 0;         //总记录数
@@ -27,7 +30,7 @@ namespace St.Teresa_LIS_2019
         int pageCurrent = 0;   //当前页号
         int nCurrent = 0;      //当前记录行
 
-        public Form_LocateCaseNo()
+        public Form_EBVRecordSearch()
         {
             InitializeComponent();
             label_Search_Type.Text = labelSearching;
@@ -75,11 +78,17 @@ namespace St.Teresa_LIS_2019
             checkCmd.Parameters.Add(new SqlParameter("@pageNum", SqlDbType.Int));
             checkCmd.Parameters.Add(new SqlParameter("@whereStr", SqlDbType.NVarChar));
             checkCmd.Parameters.Add(new SqlParameter("@whereVal", SqlDbType.NVarChar));
+            checkCmd.Parameters.Add(new SqlParameter("@dateMode", SqlDbType.Int));
+            checkCmd.Parameters.Add(new SqlParameter("@dateFrom", SqlDbType.NVarChar));
+            checkCmd.Parameters.Add(new SqlParameter("@dateTo", SqlDbType.NVarChar));
 
             checkCmd.Parameters["@pageCount"].Value = pageSize;
             checkCmd.Parameters["@pageNum"].Value = currentPageNum;
             checkCmd.Parameters["@whereStr"].Value = whereStr;
             checkCmd.Parameters["@whereVal"].Value = whereVal;
+            checkCmd.Parameters["@dateMode"].Value = dateMode;
+            checkCmd.Parameters["@dateFrom"].Value = dateFrom;
+            checkCmd.Parameters["@dateTo"].Value = dateTo;
 
             checkCmd.Parameters.Add("@RETURN_VALUE", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             checkCmd.CommandTimeout = 600;
@@ -152,6 +161,47 @@ namespace St.Teresa_LIS_2019
 
         }
 
+        private void searchRecord()
+        {
+            whereStr = contentSearching;
+            whereVal = textBox_Search_Type.Text.Trim();
+
+            if (radioButton_Data_All.Checked)
+            {
+                dateMode = 1;
+            }
+            else
+            {
+                if (radioButton_Data_Past_7.Checked)
+                {
+                    dateMode = 2;
+                }
+                else
+                {
+                    if (radioButton_Data_Past_14.Checked)
+                    {
+                        dateMode = 3;
+                    }
+                    else
+                    {
+                        if (radioButton_Data_Past_28.Checked)
+                        {
+                            dateMode = 4;
+                        }
+                        else
+                        {
+                            dateMode = 5;
+                        }
+                    }
+                }
+            }
+
+            dateFrom = dateTimePicker_From.Value.ToString("yyyy-MM-dd");
+            dateTo = dateTimePicker_To.Value.ToString("yyyy-MM-dd");
+
+            loadDataGridViewDate();
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.F1)
@@ -192,13 +242,10 @@ namespace St.Teresa_LIS_2019
 
             }
 
-            if (keyData == Keys.Enter && textBox_Search_Type.Focused)
+            if (keyData == Keys.Enter && (textBox_Search_Type.Focused || radioButton_Data_All.Focused || radioButton_Data_Past_7.Focused || radioButton_Data_Past_14.Focused || radioButton_Data_Past_28.Focused || radioButton_Data_From.Focused || dateTimePicker_From.Focused || dateTimePicker_To.Focused))
             {
-                whereStr = contentSearching;
-                whereVal = textBox_Search_Type.Text.Trim();
-                loadDataGridViewDate();
+                searchRecord();
 
-                dataGridView1.DataSource = dt;
                 return true;
             }
 
@@ -345,6 +392,32 @@ namespace St.Teresa_LIS_2019
                 {
                     loadDataGridViewDate(pageCurrent);
                     //nCurrent = pageSize * (pageCurrent - 1);
+                }
+            }
+        }
+
+        private void radioButton_Data_From_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton_Data_From.Checked)
+            {
+                dateTimePicker_From.Enabled = true;
+                dateTimePicker_To.Enabled = true;
+            }
+            else
+            {
+                dateTimePicker_From.Enabled = false;
+                dateTimePicker_To.Enabled = false;
+            }
+        }
+
+        private void textBox_Search_Type_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox_Search_Type.Text.Trim().IndexOf("/") != -1)
+            {
+                string subTextStr = textBox_Search_Type.Text.Trim().Substring(textBox_Search_Type.Text.Trim().IndexOf("/"));
+                if (subTextStr.Length >= 4)
+                {
+                    searchRecord();
                 }
             }
         }
