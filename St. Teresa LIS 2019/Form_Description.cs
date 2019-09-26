@@ -762,6 +762,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Next_Click(object sender, EventArgs e)
         {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
             if (textBox_ID.Text.Trim() != "")
             {
                 string countSql = string.Format(" [bxcy_diag] WHERE id > {0} and case_no = '{1}'", textBox_ID.Text, caseNo);
@@ -775,6 +780,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Back_Click(object sender, EventArgs e)
         {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
             if (textBox_ID.Text.Trim() != "")
             {
                 string countSql = string.Format(" [bxcy_diag] WHERE id < {0} and case_no = '{1}'", textBox_ID.Text, caseNo);

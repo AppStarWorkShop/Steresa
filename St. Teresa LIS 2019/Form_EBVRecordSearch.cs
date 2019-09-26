@@ -59,7 +59,7 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[9].Value.ToString();
+                string id = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
                 Form_EBVFile open = new Form_EBVFile(id);
                 open.Show();
             }
@@ -105,6 +105,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns.Add("Patient");
             dt.Columns.Add(" ");
             dt.Columns.Add("Age");
+            dt.Columns.Add("Seq");
             dt.Columns.Add("Sex");
             dt.Columns.Add("HKID No.");
             dt.Columns.Add("Client");
@@ -113,7 +114,7 @@ namespace St.Teresa_LIS_2019
 
             foreach (DataRow mDr in dtDb.Rows)
             {
-                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["id"] });
+                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_AGE"], mDr["PAT_SEQ"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["id"] });
             }
 
             dataGridView1.DataSource = dt;
@@ -122,7 +123,7 @@ namespace St.Teresa_LIS_2019
 
         private void dataGridViewFormat()
         {
-            DataGridViewColumn column0 = dataGridView1.Columns[0];
+            /*DataGridViewColumn column0 = dataGridView1.Columns[0];
             column0.Width = 90;
             DataGridViewColumn column1 = dataGridView1.Columns[1];
             column1.Width = 120;
@@ -147,10 +148,10 @@ namespace St.Teresa_LIS_2019
             column7.ReadOnly = true;
             DataGridViewColumn column8 = dataGridView1.Columns[8];
             column8.Width = 120;
-            column8.ReadOnly = true;
-            DataGridViewColumn column9 = dataGridView1.Columns[9];
-            column9.Width = 1;
-            column9.ReadOnly = true;
+            column8.ReadOnly = true;*/
+            DataGridViewColumn column10 = dataGridView1.Columns[10];
+            column10.Width = 1;
+            column10.ReadOnly = true;
             this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 11, FontStyle.Bold);
@@ -323,7 +324,7 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[9].Value.ToString();
+                string id = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
                 Form_EBVFile open = new Form_EBVFile(id);
                 open.Show();
                 open.processEdit();

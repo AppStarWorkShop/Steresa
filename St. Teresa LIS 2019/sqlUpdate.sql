@@ -298,8 +298,8 @@ CREATE PROCEDURE getBXCYSpecimentByPage
 	@whereVal nvarchar(100) = '',
 	@snopCode nvarchar(100) ='',
 	@dateMode int = 1,
-	@dateFrom nvarchar(10),
-	@dateTo nvarchar(10)
+	@dateFrom nvarchar(10)='',
+	@dateTo nvarchar(10)=''
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -311,7 +311,32 @@ BEGIN
 	DECLARE @sqlQueryCount NVARCHAR(max)=''
 	DECLARE @dateQuery NVARCHAR(max)=''
 
-	IF @dateMode < 1 OR @dateMode > 5
+	IF @pageCount IS NULL
+	BEGIN
+		SET @pageCount = 30
+	END
+
+	IF @pageNum IS NULL OR @pageNum < 1
+	BEGIN
+		SET @pageNum = 1
+	END
+
+	IF @whereStr IS NULL
+	BEGIN
+		SET @whereStr=''
+	END
+
+	IF @whereVal IS NULL
+	BEGIN
+		SET @whereVal=''
+	END
+
+	IF @snopCode IS NULL
+	BEGIN
+		SET @snopCode=''
+	END
+
+	IF @dateMode IS NULL OR @dateMode < 1 OR @dateMode > 5
 	BEGIN
 		SET @dateMode = 1
 	END
@@ -346,57 +371,58 @@ BEGIN
 		END
 	END
 
-
-	IF @pageNum < 1
+	IF @dateFrom IS NULL
 	BEGIN
-		SET @pageNum = 1
+		SET @dateFrom=''
 	END
 
-	IF @whereStr <> ''
+	IF @dateTo IS NULL
+	BEGIN
+		SET @dateTo=''
+	END	
+
+	IF @whereStr <> '' AND @whereVal <> ''
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id FROM BXCY_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq FROM BXCY_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%'' AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'') ORDER BY id
+			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery +' ORDER BY id
 		  ) A
 		)
-		AND ' + @whereStr + ' LIKE ''' + @whereVal + '%'' AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery +
-		' ORDER BY id'
-		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + 'AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery
-
-		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo
-
-		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@snopCode,@dateFrom,@dateTo
+		AND ' + @whereStr + ' LIKE ''' + @whereVal + '%'''+ @dateQuery+ 'ORDER BY id'
+		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery
 	END
 	ELSE
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id FROM BXCY_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq FROM BXCY_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'') ORDER BY id
+			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery + ' ORDER BY id
 		  ) A
 		)
 		AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery +
 		' ORDER BY id'
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery
-
-		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo
-
-		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@snopCode,@dateFrom,@dateTo
 	END
+
+	PRINT @sqlQuery
+	PRINT @sqlQueryCount
+	EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo
+	EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@snopCode,@dateFrom,@dateTo
 
 	--SET @recordCount = @pageSum
 	RETURN @pageSum
 END
 GO
+
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[getEBVSpecimentByPage]') AND type in (N'P', N'PC'))
 DROP PROCEDURE [dbo].[getEBVSpecimentByPage]
@@ -409,8 +435,8 @@ CREATE PROCEDURE getEBVSpecimentByPage
 	@whereStr nvarchar(100) = '',
 	@whereVal nvarchar(100) = '',
 	@dateMode int = 1,
-	@dateFrom nvarchar(10),
-	@dateTo nvarchar(10)
+	@dateFrom nvarchar(10)='',
+	@dateTo nvarchar(10)=''
 AS
 BEGIN
 	-- SET NOCOUNT ON added to prevent extra result sets from
@@ -421,6 +447,26 @@ BEGIN
 	DECLARE @sqlQuery NVARCHAR(max)=''
 	DECLARE @sqlQueryCount NVARCHAR(max)=''
 	DECLARE @dateQuery NVARCHAR(max)=''
+
+	IF @pageCount IS NULL
+	BEGIN
+		SET @pageCount = 30
+	END
+
+	IF @pageNum IS NULL OR @pageNum < 1
+	BEGIN
+		SET @pageNum = 1
+	END
+
+	IF @whereStr IS NULL
+	BEGIN
+		SET @whereStr=''
+	END
+
+	IF @whereVal IS NULL
+	BEGIN
+		SET @whereVal=''
+	END
 
 	IF @dateMode < 1 OR @dateMode > 5
 	BEGIN
@@ -457,35 +503,36 @@ BEGIN
 		END
 	END
 
-	IF @pageNum < 1
+	IF @dateFrom IS NULL
 	BEGIN
-		SET @pageNum = 1
+		SET @dateFrom=''
 	END
 
-	IF @whereStr <> ''
+	IF @dateTo IS NULL
+	BEGIN
+		SET @dateTo=''
+	END	
+
+	IF @whereStr <> '' AND @whereVal <> ''
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM EBV_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id,pat_seq FROM EBV_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
 		 FROM 
 		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%'' ORDER BY id
+		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery + ' ORDER BY id
 		  ) A
 		)
 		AND ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery +
 		' ORDER BY id'
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery
-
-		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@dateFrom,@dateTo
-
-		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@dateFrom,@dateTo
 	END
 	ELSE
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM EBV_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id,pat_seq FROM EBV_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
@@ -497,11 +544,13 @@ BEGIN
 		' + @dateQuery +
 		' ORDER BY id'
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE id=id ' + @dateQuery
-
-		EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@dateFrom,@dateTo
-
-		EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@dateFrom,@dateTo
 	END
+
+	--PRINT @sqlQuery
+	--PRINT @sqlQueryCount
+
+	EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@dateFrom,@dateTo
+	EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@dateFrom,@dateTo
 
 	--SET @recordCount = @pageSum
 	RETURN @pageSum
@@ -636,3 +685,19 @@ BEGIN
 ALTER TABLE operation ADD [id] [int] IDENTITY(1,1) NOT NULL;
 ALTER TABLE operation ADD CONSTRAINT [PK_operation] primary key (ID);
 END
+
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[SurgicalProcedure]') AND type in (N'U'))
+CREATE TABLE [dbo].SurgicalProcedure(
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[SurgicalProcedureVal] [nvarchar](255) NULL,
+	[Description] [nvarchar](3000) NULL,
+	[UPDATE_BY] [nvarchar](255) NULL,
+	[UPDATE_AT] [datetime] NULL,
+	[UPDATE_CTR] [nvarchar](255) NULL,
+ CONSTRAINT [PK_SurgicalProcedure] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

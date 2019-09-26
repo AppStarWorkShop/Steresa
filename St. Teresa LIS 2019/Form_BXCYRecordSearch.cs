@@ -98,6 +98,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns.Add("Patient");
             //dt.Columns.Add(" ");
             dt.Columns.Add("Age");
+            dt.Columns.Add("Seq");
             dt.Columns.Add("Sex");
             dt.Columns.Add("HKID No.");
             dt.Columns.Add("Client");
@@ -114,7 +115,7 @@ namespace St.Teresa_LIS_2019
             foreach (DataRow mDr in dtDb.Rows)
             {
                 //dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"].ToString()+"/"+ mDr["sign_dr2"].ToString(), mDr["er"], mDr["em"], mDr["id"] });
-                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"] });
+                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEQ"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"] });
             }
 
             dataGridView1.DataSource = dt;
@@ -154,10 +155,10 @@ namespace St.Teresa_LIS_2019
             column13.Width = 130;
             DataGridViewColumn column14 = dataGridView1.Columns[14];
             column14.Width = 60;*/
-            DataGridViewColumn column15 = dataGridView1.Columns[15];
-            column15.Width = 1;
-            /*DataGridViewColumn column16 = dataGridView1.Columns[16];
-            column16.Width = 60;*/
+            /*DataGridViewColumn column15 = dataGridView1.Columns[15];
+            column15.Width = 1;*/
+            DataGridViewColumn column16 = dataGridView1.Columns[16];
+            column16.Width = 1;
             /*DataGridViewColumn column17 = dataGridView1.Columns[17];
             column17.Width = 130;
             DataGridViewColumn column18 = dataGridView1.Columns[18];
@@ -460,10 +461,40 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
-                Form_BXCYFile open = new Form_BXCYFile(id);
-                open.Show();
-                open.processEdit();
+                string id = dataGridView1.SelectedRows[0].Cells[16].Value.ToString();
+                string case_no = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+
+                if (case_no == null || case_no.Trim() == "" || case_no.Trim().Length == 0)
+                {
+                    Form_BXCYFile open = new Form_BXCYFile(id);
+                    open.Show();
+                    open.processEdit();
+                    return;
+                }
+
+                case_no = case_no.Trim();
+
+                if (case_no.Substring(case_no.Length - 1, 1).ToLower() == "g")
+                {
+                    Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(id);
+                    open.Show();
+                    open.processEdit();
+                }
+                else
+                {
+                    if (case_no.Substring(0, 1).ToLower() == "d")
+                    {
+                        Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(id);
+                        open.Show();
+                        open.processEdit();
+                    }
+                    else
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile(id);
+                        open.Show();
+                        open.processEdit();
+                    }
+                }
             }
         }
         
@@ -492,17 +523,26 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
+                string id = dataGridView1.SelectedRows[0].Cells[16].Value.ToString();
                 string case_no = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
 
-                if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(case_no.Length - 1, 1).ToLower() == "g")
+                if(case_no == null || case_no.Trim() == "" || case_no.Trim().Length == 0)
+                {
+                    Form_BXCYFile open = new Form_BXCYFile(id);
+                    open.Show();
+                    return;
+                }
+
+                case_no = case_no.Trim();
+
+                if (case_no.Substring(case_no.Length - 1, 1).ToLower() == "g")
                 {
                     Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(id);
                     open.Show();
                 }
                 else
                 {
-                    if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(0, 1).ToLower() == "d")
+                    if (case_no.Substring(0, 1).ToLower() == "d")
                     {
                         Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(id);
                         open.Show();

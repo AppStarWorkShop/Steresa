@@ -857,6 +857,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Next_Click(object sender, EventArgs e)
         {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
             //currencyManager.Position++;
             string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
@@ -868,6 +873,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Back_Click(object sender, EventArgs e)
         {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
             //currencyManager.Position--;
             string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)

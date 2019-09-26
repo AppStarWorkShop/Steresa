@@ -68,6 +68,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Next_Click(object sender, EventArgs e)
         {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
             //currencyManager.Position++;
             string countSql = string.Format(" [MACROSCOPIC_Report] WHERE id > {0}", textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
@@ -85,6 +90,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Back_Click(object sender, EventArgs e)
         {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
             //currencyManager.Position--;
             string countSql = string.Format(" [MACROSCOPIC_Report] WHERE id < {0}", textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
