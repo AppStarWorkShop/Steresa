@@ -701,3 +701,19 @@ CREATE TABLE [dbo].SurgicalProcedure(
 ) ON [PRIMARY]
 
 GO
+
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[NatureOfSpecimen]') AND type in (N'U'))
+CREATE TABLE [dbo].NatureOfSpecimen(
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[SurgicalProcedureVal] [nvarchar](255) NULL,
+	[Description] [nvarchar](3000) NULL,
+	[UPDATE_BY] [nvarchar](255) NULL,
+	[UPDATE_AT] [datetime] NULL,
+	[UPDATE_CTR] [nvarchar](255) NULL,
+ CONSTRAINT [PK_NatureOfSpecimen] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO

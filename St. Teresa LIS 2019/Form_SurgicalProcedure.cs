@@ -40,7 +40,16 @@ namespace St.Teresa_LIS_2019
         private void button_Add_Edit_Click(object sender, EventArgs e)
         {
             Form_SurgicalProcedureReportMaintenance open = new Form_SurgicalProcedureReportMaintenance();
+            open.OnRecordUpdateDone += onRecordUpdateDone;
             open.Show();
+        }
+
+        private void onRecordUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadAndBindingDBData();
+            }
         }
 
         private void comboBox_Surgical_Procedure_SelectionChangeCommitted(object sender, EventArgs e)
