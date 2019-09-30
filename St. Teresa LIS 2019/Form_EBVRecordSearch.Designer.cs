@@ -38,7 +38,6 @@
             this.button_F6_View_Record = new System.Windows.Forms.Button();
             this.button_F4_Daily_Report = new System.Windows.Forms.Button();
             this.button_Exit = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox_Search_Type = new System.Windows.Forms.TextBox();
             this.label_Search_Type = new System.Windows.Forms.Label();
             this.BindingNavigate = new System.Windows.Forms.BindingNavigator(this.components);
@@ -61,9 +60,10 @@
             this.radioButton_Data_Past_14 = new System.Windows.Forms.RadioButton();
             this.radioButton_Data_Past_7 = new System.Windows.Forms.RadioButton();
             this.radioButton_Data_All = new System.Windows.Forms.RadioButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.BindingNavigate)).BeginInit();
             this.BindingNavigate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label_F1
@@ -160,20 +160,6 @@
             this.button_Exit.Text = "Exit";
             this.button_Exit.UseVisualStyleBackColor = true;
             this.button_Exit.Click += new System.EventHandler(this.button_Exit_Click);
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 106);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(984, 572);
-            this.dataGridView1.TabIndex = 79;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // textBox_Search_Type
             // 
@@ -393,13 +379,28 @@
             this.radioButton_Data_All.Text = "All";
             this.radioButton_Data_All.UseVisualStyleBackColor = true;
             // 
-            // Form_LocateCaseNo
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 107);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1008, 539);
+            this.dataGridView1.TabIndex = 259;
+            this.dataGridView1.VirtualMode = true;
+            // 
+            // Form_EBVRecordSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(200)))), ((int)(((byte)(221)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dateTimePicker_To);
             this.Controls.Add(this.dateTimePicker_From);
             this.Controls.Add(this.label_Data_To);
@@ -417,17 +418,16 @@
             this.Controls.Add(this.button_F6_View_Record);
             this.Controls.Add(this.button_F4_Daily_Report);
             this.Controls.Add(this.button_Exit);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox_Search_Type);
             this.Controls.Add(this.label_Search_Type);
-            this.Name = "Form_LocateCaseNo";
+            this.Name = "Form_EBVRecordSearch";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Locate Case No";
             this.Load += new System.EventHandler(this.Form_LocateCaseNo_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BindingNavigate)).EndInit();
             this.BindingNavigate.ResumeLayout(false);
             this.BindingNavigate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,7 +443,6 @@
         private System.Windows.Forms.Button button_F6_View_Record;
         private System.Windows.Forms.Button button_F4_Daily_Report;
         private System.Windows.Forms.Button button_Exit;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox textBox_Search_Type;
         private System.Windows.Forms.Label label_Search_Type;
         private System.Windows.Forms.BindingNavigator BindingNavigate;
@@ -466,5 +465,6 @@
         private System.Windows.Forms.RadioButton radioButton_Data_Past_14;
         private System.Windows.Forms.RadioButton radioButton_Data_Past_7;
         private System.Windows.Forms.RadioButton radioButton_Data_All;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

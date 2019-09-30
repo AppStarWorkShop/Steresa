@@ -104,8 +104,8 @@ namespace St.Teresa_LIS_2019
             dt.Columns.Add("Report Date");
             dt.Columns.Add("Patient");
             dt.Columns.Add(" ");
-            dt.Columns.Add("Age");
             dt.Columns.Add("Seq");
+            dt.Columns.Add("Age");
             dt.Columns.Add("Sex");
             dt.Columns.Add("HKID No.");
             dt.Columns.Add("Client");
@@ -114,7 +114,7 @@ namespace St.Teresa_LIS_2019
 
             foreach (DataRow mDr in dtDb.Rows)
             {
-                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_AGE"], mDr["PAT_SEQ"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["id"] });
+                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["id"] });
             }
 
             dataGridView1.DataSource = dt;
@@ -148,7 +148,10 @@ namespace St.Teresa_LIS_2019
             column7.ReadOnly = true;
             DataGridViewColumn column8 = dataGridView1.Columns[8];
             column8.Width = 120;
-            column8.ReadOnly = true;*/
+            column8.ReadOnly = true;
+            DataGridViewColumn column9 = dataGridView1.Columns[9];
+            column9.Width = 100;
+            column9.ReadOnly = true;*/
             DataGridViewColumn column10 = dataGridView1.Columns[10];
             column10.Width = 1;
             column10.ReadOnly = true;

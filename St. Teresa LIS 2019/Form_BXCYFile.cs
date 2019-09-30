@@ -492,11 +492,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Cytology_Click(object sender, EventArgs e)
         {
-            button_F10m();
-        }
-        private void button_F10m()
-        {
-            Form_CytologyFindings open = new Form_CytologyFindings();
+            Form_CytologyFindings open = new Form_CytologyFindings(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim());
             open.Show();
         }
 

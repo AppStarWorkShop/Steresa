@@ -176,7 +176,7 @@ namespace St.Teresa_LIS_2019
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 idStr = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
-                clientStr = dataGridView1.Rows[0].Cells[0].Value.ToString();
+                clientStr = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             }
 
             if (idStr == "")
