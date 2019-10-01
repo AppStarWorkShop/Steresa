@@ -65,7 +65,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_T.DataBindings.Clear();
             comboBox_Snop_M.DataBindings.Clear();
 
-            string cy_resultSql = "SELECT code,diag_desc1 FROM [cy_result] ORDER BY code";
+            string cy_resultSql = "SELECT id,diag_desc1 FROM [cy_result] ORDER BY code";
             DataSet cy_resultDataSet = new DataSet();
             SqlDataAdapter cy_resultDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(cy_resultSql, cy_resultDataSet, "cy_result");
 
@@ -162,7 +162,44 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_cy_result_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            //comboBox_cy_result.SelectedValue
+            DataSet cyResultDataSet = new DataSet();
+
+            string sql = string.Format("SELECT * FROM [cy_result] WHERE id ={0}", comboBox_cy_result.SelectedValue);
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, cyResultDataSet, "cy_result");
+
+            if(cyResultDataSet.Tables["cy_result"].Rows.Count > 0)
+            {
+                DataRow mDr = cyResultDataSet.Tables["cy_result"].Rows[0];
+
+                try
+                {
+                    comboBox_Operation.SelectedValue = mDr["OPERATION"] == null ? "" : mDr["OPERATION"].ToString();
+                }
+                catch(Exception ex)
+                {
+
+                }
+
+                textBox_Diagnosis.Text = mDr["DIAGNOSIS"] == null ? "" : mDr["DIAGNOSIS"].ToString();
+
+                try
+                {
+                    comboBox_Description.SelectedValue = mDr["DIAG_DESC1"] == null ? "" : mDr["DIAG_DESC1"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                try
+                {
+                    comboBox_Snop_M.SelectedValue = mDr["SNOP_M"] == null ? "" : mDr["SNOP_M"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
+            }
         }
     }
 }
