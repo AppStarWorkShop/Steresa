@@ -30,6 +30,8 @@ namespace St.Teresa_LIS_2019
         int pageCurrent = 0;   //当前页号
         int nCurrent = 0;      //当前记录行
 
+        private int columnType = 1;
+
         public Form_EBVRecordSearch()
         {
             InitializeComponent();
@@ -67,6 +69,9 @@ namespace St.Teresa_LIS_2019
 
         private void loadDataGridViewDate(int currentPageNum = 1)
         {
+            dataGridView1.DataSource = null;
+            dataGridView1.Refresh();
+
             /*string sql = "SELECT CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_ID,id FROM ebv_specimen ORDER BY ID";
             DBConn.fetchDataIntoDataSetSelectOnly(sql, ebv_specimenDataSet, "ebv_specimen");*/
 
@@ -100,24 +105,53 @@ namespace St.Teresa_LIS_2019
             pageCount = (int)checkCmd.Parameters["@RETURN_VALUE"].Value;
 
             DataTable dt = new DataTable();
-            dt.Columns.Add("Case No.");
-            dt.Columns.Add("Report Date");
-            dt.Columns.Add("Patient");
-            dt.Columns.Add(" ");
-            dt.Columns.Add("Seq");
-            dt.Columns.Add("Age");
-            dt.Columns.Add("Sex");
-            dt.Columns.Add("HKID No.");
-            dt.Columns.Add("Client");
-            dt.Columns.Add("Doctor In Charge");
-            dt.Columns.Add("Id");
-
-            foreach (DataRow mDr in dtDb.Rows)
+            if (columnType == 1)
             {
-                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["id"] });
+                dt.Columns.Add("Case No.");
+                dt.Columns.Add("Report Date");
+                dt.Columns.Add("Patient");
+                dt.Columns.Add(" ");
+                dt.Columns.Add("Seq");
+                dt.Columns.Add("Age");
+                dt.Columns.Add("Sex");
+                dt.Columns.Add("HKID No.");
+                dt.Columns.Add("Client");
+                dt.Columns.Add("Doctor In Charge");
+                dt.Columns.Add("Result");
+                dt.Columns.Add("Diagnosis");
+                dt.Columns.Add("Date Received");
+                dt.Columns.Add("Id");
+
+                foreach (DataRow mDr in dtDb.Rows)
+                {
+                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["result"], mDr["diagnosis"], mDr["date"],mDr["id"] });
+                }
+            }
+            else
+            {
+                dt.Columns.Add("Case No.");
+                dt.Columns.Add("Report Date");
+                dt.Columns.Add("Patient");
+                dt.Columns.Add(" ");
+                dt.Columns.Add("Seq");
+                dt.Columns.Add("Age");
+                dt.Columns.Add("Sex");
+                dt.Columns.Add("Date Received");
+                dt.Columns.Add("Result");
+                dt.Columns.Add("Diagnosis");
+                dt.Columns.Add("Client");
+                dt.Columns.Add("Doctor In Charge");
+                dt.Columns.Add("HKID No.");
+                dt.Columns.Add("Id");
+
+                foreach (DataRow mDr in dtDb.Rows)
+                {
+                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["date"] ,mDr["result"], mDr["diagnosis"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["PAT_HKID"], mDr["id"] });
+                }
             }
 
             dataGridView1.DataSource = dt;
+            dataGridView1.Refresh();
             LoadData();
         }
 
@@ -152,9 +186,9 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column9 = dataGridView1.Columns[9];
             column9.Width = 100;
             column9.ReadOnly = true;*/
-            DataGridViewColumn column10 = dataGridView1.Columns[10];
-            column10.Width = 1;
-            column10.ReadOnly = true;
+            DataGridViewColumn column13 = dataGridView1.Columns[13];
+            column13.Width = 1;
+            column13.ReadOnly = true;
             this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 11, FontStyle.Bold);
@@ -349,7 +383,16 @@ namespace St.Teresa_LIS_2019
 
         private void button_F7_Columas_Click(object sender, EventArgs e)
         {
+            if(columnType == 1)
+            {
+                columnType = 2;
+            }
+            else
+            {
+                columnType = 1;
+            }
 
+            loadDataGridViewDate(pageCurrent);
         }
 
         private void LoadData()
