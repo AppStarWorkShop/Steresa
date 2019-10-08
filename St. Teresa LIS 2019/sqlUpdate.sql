@@ -723,3 +723,9 @@ BEGIN
 ALTER TABLE cy_result ADD [id] [int] IDENTITY(1,1) NOT NULL;
 ALTER TABLE cy_result ADD CONSTRAINT [PK_cy_result] primary key (ID);
 END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='sign_doctor')
+BEGIN
+ALTER TABLE sign_doctor ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE sign_doctor ADD CONSTRAINT [PK_sign_doctor] primary key (ID);
+END

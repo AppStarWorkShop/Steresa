@@ -970,6 +970,8 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
+            currentEditRow["CLIENT"] = "ST. Teresa's Hospital";
+            currentEditRow["Institute"] = "ST. Teresa's Hospital";
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
         }

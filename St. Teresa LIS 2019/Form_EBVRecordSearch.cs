@@ -61,7 +61,7 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
+                string id = dataGridView1.SelectedRows[0].Cells[13].Value.ToString();
                 Form_EBVFile open = new Form_EBVFile(id);
                 open.Show();
             }
@@ -361,7 +361,7 @@ namespace St.Teresa_LIS_2019
         {
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                string id = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
+                string id = dataGridView1.SelectedRows[0].Cells[13].Value.ToString();
                 Form_EBVFile open = new Form_EBVFile(id);
                 open.Show();
                 open.processEdit();

@@ -152,7 +152,7 @@ namespace St.Teresa_LIS_2019
                     DBConn.fetchDataIntoDataSetSelectOnly(sql, clientDataSet, "client");
 
                     DataTable dt = new DataTable();
-                    dt.Columns.Add("Select", typeof(bool));
+                    //dt.Columns.Add("Select", typeof(bool));
                     dt.Columns.Add("Client's Name");
                     dt.Columns.Add("Chinese Name");
                     dt.Columns.Add("Address");
@@ -163,7 +163,7 @@ namespace St.Teresa_LIS_2019
 
                     foreach (DataRow mDr in clientDataSet.Tables["client"].Rows)
                     {
-                        dt.Rows.Add(new object[] { "false", mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
+                        dt.Rows.Add(new object[] { mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
                     }
 
                     dataGridView1.DataSource = dt;
