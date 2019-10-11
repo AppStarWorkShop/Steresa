@@ -131,7 +131,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
-                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserName;
+                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
                     currentEditRow["MICROSCOPIC"] = comboBox_MICROSCOPIC.Text;
                     textBox_ID.BindingContext[dt].Position++;
@@ -157,7 +157,7 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = MICROSCOPIC_ReportDataSet.Tables["MICROSCOPIC_Report"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        drow["UPDATE_BY"] = CurrentUser.currentUserName;
+                        drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         drow["MICROSCOPIC"] = comboBox_MICROSCOPIC.Text;
                         textBox_ID.BindingContext[dt].Position++;

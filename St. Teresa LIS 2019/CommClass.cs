@@ -208,8 +208,9 @@ namespace St.Teresa_LIS_2019
     public static class CurrentUser
     {
         public static int currentUserLevel;
-        public static int currentUserId;
+        public static int currentId;
         public static string picturePath;
+        public static string currentUserId;
         public static string currentUserName;
     }
 }

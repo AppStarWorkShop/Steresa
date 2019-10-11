@@ -23,7 +23,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            string updateSql = string.Format("UPDATE [USER] SET [PIC_PATH] = '{0}' WHERE id = {1}", textBox_Picture_Path.Text, CurrentUser.currentUserId.ToString());
+            string updateSql = string.Format("UPDATE [USER] SET [PIC_PATH] = '{0}' WHERE id = {1}", textBox_Picture_Path.Text, CurrentUser.currentId.ToString());
             if (DBConn.executeUpdate(updateSql))
             {
                 CurrentUser.picturePath = textBox_Picture_Path.Text;

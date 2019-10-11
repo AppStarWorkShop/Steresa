@@ -45,7 +45,7 @@
             this.textBox_Password.BackColor = System.Drawing.Color.White;
             this.textBox_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Password.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Password.Location = new System.Drawing.Point(101, 70);
+            this.textBox_Password.Location = new System.Drawing.Point(101, 65);
             this.textBox_Password.Name = "textBox_Password";
             this.textBox_Password.Size = new System.Drawing.Size(145, 24);
             this.textBox_Password.TabIndex = 69;
@@ -56,7 +56,7 @@
             this.label_Password.BackColor = System.Drawing.Color.Transparent;
             this.label_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Password.ForeColor = System.Drawing.Color.Black;
-            this.label_Password.Location = new System.Drawing.Point(12, 73);
+            this.label_Password.Location = new System.Drawing.Point(12, 67);
             this.label_Password.Name = "label_Password";
             this.label_Password.Size = new System.Drawing.Size(83, 18);
             this.label_Password.TabIndex = 70;
@@ -68,7 +68,7 @@
             this.label_Log_in_Digital_Signature.BackColor = System.Drawing.Color.Transparent;
             this.label_Log_in_Digital_Signature.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Log_in_Digital_Signature.ForeColor = System.Drawing.Color.Blue;
-            this.label_Log_in_Digital_Signature.Location = new System.Drawing.Point(69, 22);
+            this.label_Log_in_Digital_Signature.Location = new System.Drawing.Point(69, 20);
             this.label_Log_in_Digital_Signature.Name = "label_Log_in_Digital_Signature";
             this.label_Log_in_Digital_Signature.Size = new System.Drawing.Size(227, 24);
             this.label_Log_in_Digital_Signature.TabIndex = 71;
@@ -80,9 +80,9 @@
             this.button_Login.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.button_Login.Image = ((System.Drawing.Image)(resources.GetObject("button_Login.Image")));
             this.button_Login.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Login.Location = new System.Drawing.Point(264, 82);
+            this.button_Login.Location = new System.Drawing.Point(264, 76);
             this.button_Login.Name = "button_Login";
-            this.button_Login.Size = new System.Drawing.Size(84, 44);
+            this.button_Login.Size = new System.Drawing.Size(84, 41);
             this.button_Login.TabIndex = 240;
             this.button_Login.Text = "Login";
             this.button_Login.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -92,8 +92,9 @@
             // radioButton_Self_Cases
             // 
             this.radioButton_Self_Cases.AutoSize = true;
+            this.radioButton_Self_Cases.Checked = true;
             this.radioButton_Self_Cases.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
-            this.radioButton_Self_Cases.Location = new System.Drawing.Point(45, 100);
+            this.radioButton_Self_Cases.Location = new System.Drawing.Point(45, 92);
             this.radioButton_Self_Cases.Name = "radioButton_Self_Cases";
             this.radioButton_Self_Cases.Size = new System.Drawing.Size(105, 22);
             this.radioButton_Self_Cases.TabIndex = 241;
@@ -105,13 +106,13 @@
             // 
             this.radioButton_Cases_of_other_doctors.AutoSize = true;
             this.radioButton_Cases_of_other_doctors.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold);
-            this.radioButton_Cases_of_other_doctors.Location = new System.Drawing.Point(45, 128);
+            this.radioButton_Cases_of_other_doctors.Location = new System.Drawing.Point(45, 118);
             this.radioButton_Cases_of_other_doctors.Name = "radioButton_Cases_of_other_doctors";
             this.radioButton_Cases_of_other_doctors.Size = new System.Drawing.Size(201, 22);
             this.radioButton_Cases_of_other_doctors.TabIndex = 242;
-            this.radioButton_Cases_of_other_doctors.TabStop = true;
             this.radioButton_Cases_of_other_doctors.Text = "Cases of other doctors";
             this.radioButton_Cases_of_other_doctors.UseVisualStyleBackColor = true;
+            this.radioButton_Cases_of_other_doctors.CheckedChanged += new System.EventHandler(this.radioButton_Cases_of_other_doctors_CheckedChanged);
             // 
             // panel1
             // 
@@ -122,30 +123,32 @@
             this.panel1.Controls.Add(this.radioButton_Self_Cases);
             this.panel1.Controls.Add(this.label_Log_in_Digital_Signature);
             this.panel1.Controls.Add(this.label_Password);
-            this.panel1.Location = new System.Drawing.Point(12, 12);
+            this.panel1.Location = new System.Drawing.Point(12, 11);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(358, 209);
+            this.panel1.Size = new System.Drawing.Size(358, 193);
             this.panel1.TabIndex = 243;
             // 
             // comboBox_Dr
             // 
+            this.comboBox_Dr.DisplayMember = "DOCTOR";
             this.comboBox_Dr.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Dr.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Dr.FormattingEnabled = true;
             this.comboBox_Dr.Items.AddRange(new object[] {
             "Please select a doctor"});
-            this.comboBox_Dr.Location = new System.Drawing.Point(62, 156);
+            this.comboBox_Dr.Location = new System.Drawing.Point(62, 144);
             this.comboBox_Dr.Name = "comboBox_Dr";
             this.comboBox_Dr.Size = new System.Drawing.Size(274, 26);
             this.comboBox_Dr.TabIndex = 244;
             this.comboBox_Dr.Text = "Please select a doctor";
+            this.comboBox_Dr.ValueMember = "DOCTOR";
             // 
             // Form_LoginDigitalSignature
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(141)))), ((int)(((byte)(209)))));
-            this.ClientSize = new System.Drawing.Size(385, 238);
+            this.ClientSize = new System.Drawing.Size(385, 220);
             this.ControlBox = false;
             this.Controls.Add(this.button_Login);
             this.Controls.Add(this.panel1);

@@ -116,7 +116,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
-                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserName;
+                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
                     textBox_ID.BindingContext[userDt].Position++;
 
@@ -139,7 +139,7 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = userDataSet.Tables["user"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        drow["UPDATE_BY"] = CurrentUser.currentUserName;
+                        drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         textBox_ID.BindingContext[userDt].Position++;
 
@@ -158,7 +158,7 @@ namespace St.Teresa_LIS_2019
                         DataRow drowSystem = systemDataSet.Tables["system_setting"].Rows.Find(textBox_SYSTEM_ID.Text);
                         if (drowSystem != null)
                         {
-                            drowSystem["UPDATE_BY"] = CurrentUser.currentUserName;
+                            drowSystem["UPDATE_BY"] = CurrentUser.currentUserId;
                             drowSystem["UPDATE_AT"] = DateTime.Now.ToString("");
                             textBox_SYSTEM_ID.BindingContext[systemDt].Position++;
 
@@ -398,7 +398,7 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentUserId);
+                userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentId);
             }
 
             userDataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
@@ -555,7 +555,7 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentUserId);
+                userSql = string.Format("SELECT * FROM [USER] WHERE ID ={0}", CurrentUser.currentId);
             }
 
             userDataAdapter = DBConn.fetchDataIntoDataSet(userSql, userDataSet, "user");
