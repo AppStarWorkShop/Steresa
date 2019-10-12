@@ -102,6 +102,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_SYSTEM_ID = new System.Windows.Forms.TextBox();
+            this.textBox_STH_CY = new System.Windows.Forms.TextBox();
+            this.textBox_STH_CYG = new System.Windows.Forms.TextBox();
+            this.textBox_STH_EBV = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_User_Level)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -997,10 +1000,34 @@
             this.textBox_SYSTEM_ID.Enabled = false;
             this.textBox_SYSTEM_ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_SYSTEM_ID.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_SYSTEM_ID.Location = new System.Drawing.Point(692, 62);
+            this.textBox_SYSTEM_ID.Location = new System.Drawing.Point(650, 63);
             this.textBox_SYSTEM_ID.Name = "textBox_SYSTEM_ID";
             this.textBox_SYSTEM_ID.Size = new System.Drawing.Size(14, 23);
             this.textBox_SYSTEM_ID.TabIndex = 200;
+            // 
+            // textBox_STH_CY
+            // 
+            this.textBox_STH_CY.Enabled = false;
+            this.textBox_STH_CY.Location = new System.Drawing.Point(458, 6);
+            this.textBox_STH_CY.Name = "textBox_STH_CY";
+            this.textBox_STH_CY.Size = new System.Drawing.Size(66, 21);
+            this.textBox_STH_CY.TabIndex = 201;
+            // 
+            // textBox_STH_CYG
+            // 
+            this.textBox_STH_CYG.Enabled = false;
+            this.textBox_STH_CYG.Location = new System.Drawing.Point(530, 6);
+            this.textBox_STH_CYG.Name = "textBox_STH_CYG";
+            this.textBox_STH_CYG.Size = new System.Drawing.Size(66, 21);
+            this.textBox_STH_CYG.TabIndex = 202;
+            // 
+            // textBox_STH_EBV
+            // 
+            this.textBox_STH_EBV.Enabled = false;
+            this.textBox_STH_EBV.Location = new System.Drawing.Point(602, 6);
+            this.textBox_STH_EBV.Name = "textBox_STH_EBV";
+            this.textBox_STH_EBV.Size = new System.Drawing.Size(66, 21);
+            this.textBox_STH_EBV.TabIndex = 203;
             // 
             // Form_UserFileSetup
             // 
@@ -1009,6 +1036,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(228)))), ((int)(((byte)(183)))));
             this.ClientSize = new System.Drawing.Size(676, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_STH_EBV);
+            this.Controls.Add(this.textBox_STH_CYG);
+            this.Controls.Add(this.textBox_STH_CY);
             this.Controls.Add(this.textBox_SYSTEM_ID);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.pictureBox1);
@@ -1144,5 +1174,8 @@
         private System.Windows.Forms.Button button_STH_DIA_Amount_Auto_Fill_Setting;
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.TextBox textBox_SYSTEM_ID;
+        private System.Windows.Forms.TextBox textBox_STH_CY;
+        private System.Windows.Forms.TextBox textBox_STH_CYG;
+        private System.Windows.Forms.TextBox textBox_STH_EBV;
     }
 }

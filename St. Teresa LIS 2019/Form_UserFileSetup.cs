@@ -20,10 +20,12 @@ namespace St.Teresa_LIS_2019
         private DataTable userDt;
         private int currentStatus;
         private DataRow currentEditRow;
+        private DataRow currentSystemEditRow;
 
         public CurrencyManager currencyManager;
         private int currentPosition;
         private UserStr copyUser;
+        private SystemSettingStr copySystemSetting;
 
         public class User
         {
@@ -35,6 +37,7 @@ namespace St.Teresa_LIS_2019
             public Double? level{ get; set; }
             public string password2 { get; set; }
             public string picPath { get; set; }
+            public int id { get; set; }
         }
 
         public class UserStr
@@ -47,6 +50,49 @@ namespace St.Teresa_LIS_2019
             public string level{ get; set; }
             public string password2 { get; set; }
             public string picPath { get; set; }
+            public int id { get; set; }
+        }
+
+        public class SystemSetting
+        {
+            public string picture_path { get; set; }
+            public int invoice_year { get; set; }
+            public int next_inv { get; set; }
+            public int next_receipt { get; set; }
+            public Boolean? activate_user_level_control { get; set; }
+            public Boolean? auto_print_barcode { get; set; }
+            public Boolean? auto_generate_PDF { get; set; }
+            public Double? PRICE_BX { get; set; }
+            public Double? PRICE_BB { get; set; }
+            public Double? PRICE_CY { get; set; }
+            public Double? PRICE_CC { get; set; }
+            public Double? PRICE_CYG { get; set; }
+            public Double? PRICE_EBV { get; set; }
+            public int id { get; set; }
+            public Double? STH_CY { get; set; }
+            public Double? STH_CYG { get; set; }
+            public Double? STH_EBV { get; set; }
+        }
+
+        public class SystemSettingStr
+        {
+            public string picture_path { get; set; }
+            public string invoice_year { get; set; }
+            public string next_inv { get; set; }
+            public string next_receipt { get; set; }
+            public bool activate_user_level_control { get; set; }
+            public bool auto_print_barcode { get; set; }
+            public bool auto_generate_PDF { get; set; }
+            public string PRICE_BX { get; set; }
+            public string PRICE_BB { get; set; }
+            public string PRICE_CY { get; set; }
+            public string PRICE_CC { get; set; }
+            public string PRICE_CYG { get; set; }
+            public string PRICE_EBV { get; set; }
+            public int id { get; set; }
+            public string STH_CY { get; set; }
+            public string STH_CYG { get; set; }
+            public string STH_EBV { get; set; }
         }
 
         public Form_UserFileSetup()
@@ -95,8 +141,27 @@ namespace St.Teresa_LIS_2019
 
         private void button_STH_DIA_Amount_Auto_Fill_Setting_Click(object sender, EventArgs e)
         {
-            Form_STHDiagnosticAmount open = new Form_STHDiagnosticAmount();
+            Form_STHDiagnosticAmount open = new Form_STHDiagnosticAmount(textBox_STH_CY.Text.Trim(), textBox_STH_CYG.Text.Trim(), textBox_STH_EBV.Text.Trim());
+            open.OnSTHChanged += OnSTHChanged;
             open.Show();
+        }
+
+        private void OnSTHChanged(string STH_CY, string STH_CYG, string STH_EBV)
+        {
+            if (STH_CY != null)
+            {
+                textBox_STH_CY.Text = STH_CY;
+            }
+
+            if (STH_CYG != null)
+            {
+                textBox_STH_CYG.Text = STH_CYG;
+            }
+
+            if (STH_EBV != null)
+            {
+                textBox_STH_EBV.Text = STH_EBV;
+            }
         }
 
         private void textBox_BX_TextChanged(object sender, EventArgs e)
@@ -155,21 +220,15 @@ namespace St.Teresa_LIS_2019
 
                     if (CurrentUser.currentUserLevel == 9)
                     {
-                        DataRow drowSystem = systemDataSet.Tables["system_setting"].Rows.Find(textBox_SYSTEM_ID.Text);
-                        if (drowSystem != null)
+                        textBox_SYSTEM_ID.BindingContext[systemDt].Position++;
+                        if (DBConn.updateObject(systemDataAdapter, systemDataSet, "system_setting"))
                         {
-                            drowSystem["UPDATE_BY"] = CurrentUser.currentUserId;
-                            drowSystem["UPDATE_AT"] = DateTime.Now.ToString("");
-                            textBox_SYSTEM_ID.BindingContext[systemDt].Position++;
-
-                            if (DBConn.updateObject(systemDataAdapter, systemDataSet, "system_setting"))
-                            {
-                                MessageBox.Show("System setting updated");
-                            }
-                            else
-                            {
-                                MessageBox.Show("System setting updated fail, please contact Admin");
-                            }
+                            reloadDBData(currencyManager.Count - 1);
+                            MessageBox.Show("System setting updated");
+                        }
+                        else
+                        {
+                            MessageBox.Show("System setting updated fail, please contact Admin");
                         }
                     }
 
@@ -218,7 +277,8 @@ namespace St.Teresa_LIS_2019
                     button_Undo.Enabled = false;
                     button_Exit.Enabled = true;
                 }
-                
+
+                button_STH_DIA_Amount_Auto_Fill_Setting.Enabled = false;
                 textBox_Picture_Path_2.Enabled = false;
                 textBox_Invoice_Year.Enabled = false;
                 textBox_Next_Inv.Enabled = false;
@@ -261,6 +321,7 @@ namespace St.Teresa_LIS_2019
                         button_Delete.Enabled = false;
                         button_Undo.Enabled = true;
                         button_Exit.Enabled = false;
+                        button_STH_DIA_Amount_Auto_Fill_Setting.Enabled = true;
                     }
                     else
                     {
@@ -274,6 +335,7 @@ namespace St.Teresa_LIS_2019
                         button_Delete.Enabled = false;
                         button_Undo.Enabled = true;
                         button_Exit.Enabled = true;
+                        button_STH_DIA_Amount_Auto_Fill_Setting.Enabled = false;
                     }
 
                     textBox_Picture_Path_2.Enabled = false;
@@ -342,6 +404,8 @@ namespace St.Teresa_LIS_2019
                             numericUpDown_User_Level.Enabled = true;
                             checkBox_Pri_Screener.Enabled = true;
                             textBox_Picture_Path.Enabled = true;
+
+                            button_STH_DIA_Amount_Auto_Fill_Setting.Enabled = true;
                         }
                         else
                         {
@@ -379,6 +443,8 @@ namespace St.Teresa_LIS_2019
                             numericUpDown_User_Level.Enabled = false;
                             checkBox_Pri_Screener.Enabled = false;
                             textBox_Picture_Path.Enabled = false;
+
+                            button_STH_DIA_Amount_Auto_Fill_Setting.Enabled = false;
                         }
                         edit_modle();
                     }
@@ -460,8 +526,11 @@ namespace St.Teresa_LIS_2019
             textBox_Invoice_Year.DataBindings.Add("Text", systemDt, "invoice_year", false);
             textBox_Next_Inv.DataBindings.Add("Text", systemDt, "next_inv", false);
             textBox_Next_Receipt.DataBindings.Add("Text", systemDt, "next_receipt", false);
+
+            Boolean defaultVal = false;
             checkBox_Activate_User_Level_Control.DataBindings.Add("Checked", systemDt, "activate_user_level_control", false);
-            checkBox_Auto_Print_Barcode_For_STH_Cases.DataBindings.Add("Checked", systemDt, "auto_print_barcode", false);
+            //checkBox_Activate_User_Level_Control.DataBindings.Add("Checked", systemDt, "activate_user_level_control",
+            checkBox_Auto_Print_Barcode_For_STH_Cases.DataBindings.Add("Checked", systemDt, "auto_print_barcode", true, DataSourceUpdateMode.OnPropertyChanged, defaultVal);
             checkBox_Auto_Generate_PDF_When_Print_Report.DataBindings.Add("Checked", systemDt, "auto_generate_PDF", false);
             textBox_BX.DataBindings.Add("Text", systemDt, "PRICE_BX", false);
             textBox_BB.DataBindings.Add("Text", systemDt, "PRICE_BB", false);
@@ -470,6 +539,9 @@ namespace St.Teresa_LIS_2019
             textBox_CYG.DataBindings.Add("Text", systemDt, "PRICE_CYG", false);
             textBox_EBV.DataBindings.Add("Text", systemDt, "PRICE_EBV", false);
 
+            textBox_STH_CY.DataBindings.Add("Text", systemDt, "STH_CY", false);
+            textBox_STH_CYG.DataBindings.Add("Text", systemDt, "STH_CYG", false);
+            textBox_STH_EBV.DataBindings.Add("Text", systemDt, "STH_EBV", false);
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -501,6 +573,34 @@ namespace St.Teresa_LIS_2019
             currentEditRow["LEVEL"] = 1;
             userDataSet.Tables["user"].Rows.Add(currentEditRow);
 
+            copySystemSetting = new SystemSettingStr();
+            copySystemSetting.picture_path = textBox_Picture_Path_2.Text.Trim();
+            copySystemSetting.invoice_year = textBox_Invoice_Year.Text.Trim();
+            copySystemSetting.next_inv = textBox_Next_Inv.Text.Trim();
+            copySystemSetting.next_receipt = textBox_Next_Receipt.Text.Trim();
+            copySystemSetting.activate_user_level_control = checkBox_Activate_User_Level_Control.Checked;
+            copySystemSetting.auto_print_barcode = checkBox_Auto_Print_Barcode_For_STH_Cases.Checked;
+            copySystemSetting.auto_generate_PDF = checkBox_Auto_Generate_PDF_When_Print_Report.Checked;
+            copySystemSetting.PRICE_BX = textBox_BX.Text.Trim();
+            copySystemSetting.PRICE_BB = textBox_BB.Text.Trim();
+            copySystemSetting.PRICE_CY = textBox_CY.Text.Trim();
+            copySystemSetting.PRICE_CC = textBox_CC.Text.Trim();
+            copySystemSetting.PRICE_CYG = textBox_CYG.Text.Trim();
+            copySystemSetting.PRICE_EBV = textBox_EBV.Text.Trim();
+            copySystemSetting.STH_CY = textBox_STH_CY.Text.Trim();
+            copySystemSetting.STH_CYG = textBox_STH_CYG.Text.Trim();
+            copySystemSetting.STH_EBV = textBox_STH_EBV.Text.Trim();
+
+            if (textBox_SYSTEM_ID.Text.Trim() == "")
+            {
+                currentSystemEditRow = systemDataSet.Tables["system_setting"].NewRow();
+                currentSystemEditRow["id"] = -1;
+                currentSystemEditRow["activate_user_level_control"] = false;
+                currentSystemEditRow["auto_print_barcode"] = false;
+                currentSystemEditRow["auto_generate_PDF"] = false;
+                systemDataSet.Tables["system_setting"].Rows.Add(currentSystemEditRow);
+            }
+
             currencyManager.Position = currencyManager.Count - 1;
         }
 
@@ -517,6 +617,34 @@ namespace St.Teresa_LIS_2019
             copyUser.level = numericUpDown_User_Level.Text;
             copyUser.password2 = textBox_2nd_Level_Password.Text;
             copyUser.picPath = textBox_Picture_Path.Text;
+
+            copySystemSetting = new SystemSettingStr();
+            copySystemSetting.picture_path = textBox_Picture_Path_2.Text.Trim();
+            copySystemSetting.invoice_year = textBox_Invoice_Year.Text.Trim();
+            copySystemSetting.next_inv = textBox_Next_Inv.Text.Trim();
+            copySystemSetting.next_receipt = textBox_Next_Receipt.Text.Trim();
+            copySystemSetting.activate_user_level_control = checkBox_Activate_User_Level_Control.Checked;
+            copySystemSetting.auto_print_barcode = checkBox_Auto_Print_Barcode_For_STH_Cases.Checked;
+            copySystemSetting.auto_generate_PDF = checkBox_Auto_Generate_PDF_When_Print_Report.Checked;
+            copySystemSetting.PRICE_BX = textBox_BX.Text.Trim();
+            copySystemSetting.PRICE_BB = textBox_BB.Text.Trim();
+            copySystemSetting.PRICE_CY = textBox_CY.Text.Trim();
+            copySystemSetting.PRICE_CC = textBox_CC.Text.Trim();
+            copySystemSetting.PRICE_CYG = textBox_CYG.Text.Trim();
+            copySystemSetting.PRICE_EBV = textBox_EBV.Text.Trim();
+            copySystemSetting.STH_CY = textBox_STH_CY.Text.Trim();
+            copySystemSetting.STH_CYG = textBox_STH_CYG.Text.Trim();
+            copySystemSetting.STH_EBV = textBox_STH_EBV.Text.Trim();
+
+            if (textBox_SYSTEM_ID.Text.Trim() == "")
+            {
+                currentSystemEditRow = systemDataSet.Tables["system_setting"].NewRow();
+                currentSystemEditRow["id"] = -1;
+                currentSystemEditRow["activate_user_level_control"] = false;
+                currentSystemEditRow["auto_print_barcode"] = false;
+                currentSystemEditRow["auto_generate_PDF"] = false;
+                systemDataSet.Tables["system_setting"].Rows.Add(currentSystemEditRow);
+            }
 
             setButtonStatus(PageStatus.STATUS_EDIT);
         }
@@ -585,6 +713,55 @@ namespace St.Teresa_LIS_2019
             textBox_Picture_Path.DataBindings.Add("Text", userDt, "PIC_PATH", false);
 
             currencyManager = (CurrencyManager)this.BindingContext[userDt];
+
+            string sql = "SELECT TOP 1 * FROM [system_setting]";
+            systemDataAdapter = DBConn.fetchDataIntoDataSet(sql, systemDataSet, "system_setting");
+
+            textBox_SYSTEM_ID.DataBindings.Clear();
+            textBox_Picture_Path_2.DataBindings.Clear();
+            textBox_Invoice_Year.DataBindings.Clear();
+            textBox_Next_Inv.DataBindings.Clear();
+            textBox_Next_Receipt.DataBindings.Clear();
+            checkBox_Activate_User_Level_Control.DataBindings.Clear();
+            checkBox_Auto_Print_Barcode_For_STH_Cases.DataBindings.Clear();
+            checkBox_Auto_Generate_PDF_When_Print_Report.DataBindings.Clear();
+            textBox_BX.DataBindings.Clear();
+            textBox_BB.DataBindings.Clear();
+            textBox_CY.DataBindings.Clear();
+            textBox_CC.DataBindings.Clear();
+            textBox_CYG.DataBindings.Clear();
+            textBox_EBV.DataBindings.Clear();
+
+            textBox_STH_CY.DataBindings.Clear();
+            textBox_STH_CYG.DataBindings.Clear();
+            textBox_STH_EBV.DataBindings.Clear();
+
+            systemDt = systemDataSet.Tables["system_setting"];
+            systemDt.PrimaryKey = new DataColumn[] { systemDt.Columns["id"] };
+            systemDt.Columns["id"].AutoIncrement = true;
+            systemDt.Columns["id"].AutoIncrementStep = 1;
+
+            textBox_SYSTEM_ID.DataBindings.Add("Text", systemDt, "id", false);
+            textBox_Picture_Path_2.DataBindings.Add("Text", systemDt, "picture_path", false);
+            textBox_Invoice_Year.DataBindings.Add("Text", systemDt, "invoice_year", false);
+            textBox_Next_Inv.DataBindings.Add("Text", systemDt, "next_inv", false);
+            textBox_Next_Receipt.DataBindings.Add("Text", systemDt, "next_receipt", false);
+
+            Boolean defaultVal = false;
+            checkBox_Activate_User_Level_Control.DataBindings.Add("Checked", systemDt, "activate_user_level_control", false);
+            //checkBox_Activate_User_Level_Control.DataBindings.Add("Checked", systemDt, "activate_user_level_control",
+            checkBox_Auto_Print_Barcode_For_STH_Cases.DataBindings.Add("Checked", systemDt, "auto_print_barcode", true, DataSourceUpdateMode.OnPropertyChanged, defaultVal);
+            checkBox_Auto_Generate_PDF_When_Print_Report.DataBindings.Add("Checked", systemDt, "auto_generate_PDF", false);
+            textBox_BX.DataBindings.Add("Text", systemDt, "PRICE_BX", false);
+            textBox_BB.DataBindings.Add("Text", systemDt, "PRICE_BB", false);
+            textBox_CY.DataBindings.Add("Text", systemDt, "PRICE_CY", false);
+            textBox_CC.DataBindings.Add("Text", systemDt, "PRICE_CC", false);
+            textBox_CYG.DataBindings.Add("Text", systemDt, "PRICE_CYG", false);
+            textBox_EBV.DataBindings.Add("Text", systemDt, "PRICE_EBV", false);
+
+            textBox_STH_CY.DataBindings.Add("Text", systemDt, "STH_CY", false);
+            textBox_STH_CYG.DataBindings.Add("Text", systemDt, "STH_CYG", false);
+            textBox_STH_EBV.DataBindings.Add("Text", systemDt, "STH_EBV", false);
         }
 
         private void button_Undo_Click(object sender, EventArgs e)
@@ -611,6 +788,26 @@ namespace St.Teresa_LIS_2019
                         numericUpDown_User_Level.Text = copyUser.level;
                         textBox_2nd_Level_Password.Text = copyUser.password2;
                         textBox_Picture_Path.Text = copyUser.picPath;
+                    }
+
+                    if(copySystemSetting != null)
+                    {
+                        textBox_Picture_Path_2.Text = copySystemSetting.picture_path.Trim();
+                        textBox_Invoice_Year.Text = copySystemSetting.invoice_year.Trim();
+                        textBox_Next_Inv.Text = copySystemSetting.next_inv.Trim();
+                        textBox_Next_Receipt.Text = copySystemSetting.next_receipt.Trim();
+                        checkBox_Activate_User_Level_Control.Checked = copySystemSetting.activate_user_level_control;
+                        checkBox_Auto_Print_Barcode_For_STH_Cases.Checked = copySystemSetting.auto_print_barcode;
+                        checkBox_Auto_Generate_PDF_When_Print_Report.Checked = copySystemSetting.auto_generate_PDF;
+                        textBox_BX.Text = copySystemSetting.PRICE_BX.Trim();
+                        textBox_BB.Text = copySystemSetting.PRICE_BB.Trim();
+                        textBox_CY.Text = copySystemSetting.PRICE_CY.Trim();
+                        textBox_CC.Text = copySystemSetting.PRICE_CC.Trim();
+                        textBox_CYG.Text = copySystemSetting.PRICE_CYG.Trim();
+                        textBox_EBV.Text = copySystemSetting.PRICE_EBV.Trim();
+                        textBox_STH_CY.Text = copySystemSetting.STH_CY.Trim();
+                        textBox_STH_CYG.Text = copySystemSetting.STH_CYG.Trim();
+                        textBox_STH_EBV.Text = copySystemSetting.STH_EBV.Trim();
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);

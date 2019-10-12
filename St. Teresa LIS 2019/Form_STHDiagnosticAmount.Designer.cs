@@ -50,9 +50,9 @@
             this.button_Cancel.ForeColor = System.Drawing.Color.Red;
             this.button_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("button_Cancel.Image")));
             this.button_Cancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Cancel.Location = new System.Drawing.Point(152, 227);
+            this.button_Cancel.Location = new System.Drawing.Point(152, 210);
             this.button_Cancel.Name = "button_Cancel";
-            this.button_Cancel.Size = new System.Drawing.Size(84, 44);
+            this.button_Cancel.Size = new System.Drawing.Size(84, 41);
             this.button_Cancel.TabIndex = 244;
             this.button_Cancel.Text = "Cancel";
             this.button_Cancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -65,13 +65,14 @@
             this.button_Confirm.ForeColor = System.Drawing.Color.Blue;
             this.button_Confirm.Image = ((System.Drawing.Image)(resources.GetObject("button_Confirm.Image")));
             this.button_Confirm.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Confirm.Location = new System.Drawing.Point(40, 227);
+            this.button_Confirm.Location = new System.Drawing.Point(40, 210);
             this.button_Confirm.Name = "button_Confirm";
-            this.button_Confirm.Size = new System.Drawing.Size(84, 44);
+            this.button_Confirm.Size = new System.Drawing.Size(84, 41);
             this.button_Confirm.TabIndex = 243;
             this.button_Confirm.Text = "Confirm";
             this.button_Confirm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Confirm.UseVisualStyleBackColor = true;
+            this.button_Confirm.Click += new System.EventHandler(this.button_Confirm_Click);
             // 
             // label_ST_TERESAS_HOSPITAL
             // 
@@ -79,7 +80,7 @@
             this.label_ST_TERESAS_HOSPITAL.BackColor = System.Drawing.Color.Transparent;
             this.label_ST_TERESAS_HOSPITAL.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_ST_TERESAS_HOSPITAL.ForeColor = System.Drawing.Color.Blue;
-            this.label_ST_TERESAS_HOSPITAL.Location = new System.Drawing.Point(16, 9);
+            this.label_ST_TERESAS_HOSPITAL.Location = new System.Drawing.Point(16, 8);
             this.label_ST_TERESAS_HOSPITAL.Name = "label_ST_TERESAS_HOSPITAL";
             this.label_ST_TERESAS_HOSPITAL.Size = new System.Drawing.Size(254, 24);
             this.label_ST_TERESAS_HOSPITAL.TabIndex = 242;
@@ -94,16 +95,16 @@
             this.panel1.Controls.Add(this.label_CYG);
             this.panel1.Controls.Add(this.textBox_CY);
             this.panel1.Controls.Add(this.label_CY);
-            this.panel1.Location = new System.Drawing.Point(38, 118);
+            this.panel1.Location = new System.Drawing.Point(38, 109);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(203, 98);
+            this.panel1.Size = new System.Drawing.Size(203, 90);
             this.panel1.TabIndex = 241;
             // 
             // textBox_EBV
             // 
             this.textBox_EBV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_EBV.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_EBV.Location = new System.Drawing.Point(77, 60);
+            this.textBox_EBV.Location = new System.Drawing.Point(77, 55);
             this.textBox_EBV.Name = "textBox_EBV";
             this.textBox_EBV.Size = new System.Drawing.Size(88, 24);
             this.textBox_EBV.TabIndex = 58;
@@ -114,7 +115,7 @@
             this.label_EBV.BackColor = System.Drawing.Color.Transparent;
             this.label_EBV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_EBV.ForeColor = System.Drawing.Color.Black;
-            this.label_EBV.Location = new System.Drawing.Point(14, 63);
+            this.label_EBV.Location = new System.Drawing.Point(14, 58);
             this.label_EBV.Name = "label_EBV";
             this.label_EBV.Size = new System.Drawing.Size(54, 18);
             this.label_EBV.TabIndex = 59;
@@ -124,7 +125,7 @@
             // 
             this.textBox_CYG.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_CYG.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_CYG.Location = new System.Drawing.Point(77, 36);
+            this.textBox_CYG.Location = new System.Drawing.Point(77, 33);
             this.textBox_CYG.Name = "textBox_CYG";
             this.textBox_CYG.Size = new System.Drawing.Size(88, 24);
             this.textBox_CYG.TabIndex = 56;
@@ -135,7 +136,7 @@
             this.label_CYG.BackColor = System.Drawing.Color.Transparent;
             this.label_CYG.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_CYG.ForeColor = System.Drawing.Color.Black;
-            this.label_CYG.Location = new System.Drawing.Point(14, 39);
+            this.label_CYG.Location = new System.Drawing.Point(14, 36);
             this.label_CYG.Name = "label_CYG";
             this.label_CYG.Size = new System.Drawing.Size(57, 18);
             this.label_CYG.TabIndex = 57;
@@ -145,7 +146,7 @@
             // 
             this.textBox_CY.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_CY.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_CY.Location = new System.Drawing.Point(77, 12);
+            this.textBox_CY.Location = new System.Drawing.Point(77, 11);
             this.textBox_CY.Name = "textBox_CY";
             this.textBox_CY.Size = new System.Drawing.Size(88, 24);
             this.textBox_CY.TabIndex = 54;
@@ -156,7 +157,7 @@
             this.label_CY.BackColor = System.Drawing.Color.Transparent;
             this.label_CY.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_CY.ForeColor = System.Drawing.Color.Black;
-            this.label_CY.Location = new System.Drawing.Point(14, 15);
+            this.label_CY.Location = new System.Drawing.Point(14, 14);
             this.label_CY.Name = "label_CY";
             this.label_CY.Size = new System.Drawing.Size(44, 18);
             this.label_CY.TabIndex = 55;
@@ -168,7 +169,7 @@
             this.label_diagnostic.BackColor = System.Drawing.Color.Transparent;
             this.label_diagnostic.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_diagnostic.ForeColor = System.Drawing.Color.Blue;
-            this.label_diagnostic.Location = new System.Drawing.Point(85, 39);
+            this.label_diagnostic.Location = new System.Drawing.Point(85, 36);
             this.label_diagnostic.Name = "label_diagnostic";
             this.label_diagnostic.Size = new System.Drawing.Size(105, 24);
             this.label_diagnostic.TabIndex = 245;
@@ -180,7 +181,7 @@
             this.label_Amount_auto_fill_in_setting.BackColor = System.Drawing.Color.Transparent;
             this.label_Amount_auto_fill_in_setting.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Amount_auto_fill_in_setting.ForeColor = System.Drawing.Color.Blue;
-            this.label_Amount_auto_fill_in_setting.Location = new System.Drawing.Point(16, 73);
+            this.label_Amount_auto_fill_in_setting.Location = new System.Drawing.Point(16, 67);
             this.label_Amount_auto_fill_in_setting.Name = "label_Amount_auto_fill_in_setting";
             this.label_Amount_auto_fill_in_setting.Size = new System.Drawing.Size(244, 24);
             this.label_Amount_auto_fill_in_setting.TabIndex = 246;
@@ -188,10 +189,10 @@
             // 
             // Form_STHDiagnosticAmount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(282, 341);
+            this.ClientSize = new System.Drawing.Size(282, 315);
             this.ControlBox = false;
             this.Controls.Add(this.label_Amount_auto_fill_in_setting);
             this.Controls.Add(this.label_diagnostic);

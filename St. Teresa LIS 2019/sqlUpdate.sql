@@ -729,3 +729,18 @@ BEGIN
 ALTER TABLE sign_doctor ADD [id] [int] IDENTITY(1,1) NOT NULL;
 ALTER TABLE sign_doctor ADD CONSTRAINT [PK_sign_doctor] primary key (ID);
 END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'STH_CY' AND LTRIM(b.name)='SYSTEM_SETTING')
+BEGIN
+ALTER TABLE system_setting ADD [STH_CY] [float] NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'STH_CYG' AND LTRIM(b.name)='SYSTEM_SETTING')
+BEGIN
+ALTER TABLE system_setting ADD [STH_CYG] [float] NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'STH_EBV' AND LTRIM(b.name)='SYSTEM_SETTING')
+BEGIN
+ALTER TABLE system_setting ADD [STH_EBV] [float] NULL;
+END
