@@ -346,6 +346,32 @@ namespace St.Teresa_LIS_2019
                 return true;
             }
 
+            if (keyData == Keys.F && textBox_Search_Type.Focused && textBox_Search_Type.Text.Trim() == "")
+            {
+                textBox_Search_Type.Text = string.Format("HN{0}", DateTime.Now.ToString("yyyy"));
+                textBox_Search_Type.Focus();
+                textBox_Search_Type.Select(textBox_Search_Type.TextLength, 0);
+                textBox_Search_Type.ScrollToCaret();
+                return true;
+            }
+
+            if (keyData == Keys.A && textBox_Search_Type.Focused && textBox_Search_Type.Text.Trim() == "")
+            {
+                textBox_Search_Type.Text = string.Format("DC{0}", DateTime.Now.ToString("yyyy"));
+                textBox_Search_Type.Focus();
+                textBox_Search_Type.Select(textBox_Search_Type.TextLength, 0);
+                textBox_Search_Type.ScrollToCaret();
+                return true;
+            }
+
+            if (keyData == Keys.B && textBox_Search_Type.Focused && textBox_Search_Type.Text.Trim() == "")
+            {
+                textBox_Search_Type.Text = string.Format("OP{0}", DateTime.Now.ToString("yyyy"));
+                textBox_Search_Type.Focus();
+                textBox_Search_Type.Select(textBox_Search_Type.TextLength, 0);
+                textBox_Search_Type.ScrollToCaret();
+                return true;
+            }
             return base.ProcessCmdKey(ref msg, keyData);
             
         }

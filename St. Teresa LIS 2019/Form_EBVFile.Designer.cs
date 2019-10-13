@@ -606,6 +606,7 @@
             this.button_Label.Text = "Label";
             this.button_Label.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Label.UseVisualStyleBackColor = true;
+            this.button_Label.Click += new System.EventHandler(this.button_Label_Click);
             // 
             // button_Exit
             // 
