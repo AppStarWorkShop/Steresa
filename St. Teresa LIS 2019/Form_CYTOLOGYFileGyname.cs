@@ -409,10 +409,74 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_EDIT);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button_Advance_Click(object sender, EventArgs e)
         {
             Form_Authorization open = new Form_Authorization();
+            open.OnAuthorizationPass += OnAuthorizeDone;
             open.Show();
+        }
+
+        private void OnAuthorizeDone(bool authorizationResult)
+        {
+            if (authorizationResult)
+            {
+                copybxcy_specimen = new Bxcy_specimenStr();
+                copybxcy_specimen.case_no = textBox_Case_No.Text;
+                copybxcy_specimen.date = textBox_Date.Text;
+                copybxcy_specimen.ethnic = comboBox_Ethnic.Text;
+                copybxcy_specimen.cyto_Type = comboBox_cytoType.Text;
+                copybxcy_specimen.patient = textBox_Patient.Text;
+                copybxcy_specimen.pat_seq = textBox_PatSeq.Text;
+                copybxcy_specimen.cname = textBox_Chinese_Name.Text;
+                copybxcy_specimen.pat_hkid = textBox_HKID.Text;
+                copybxcy_specimen.pat_birth = textBox_DOB.Text;
+                //copybxcy_specimen.class1 = comboBox_Class.Text;
+                copybxcy_specimen.pat_age = textBox_Age.Text;
+                copybxcy_specimen.pat_sex = textBox_Sex.Text;
+                copybxcy_specimen.bed_room = textBox_Room.Text;
+                copybxcy_specimen.bed_no = textBox_Bed.Text;
+                copybxcy_specimen.clinical_History = textBox_Patient_s_Clinical_History.Text;
+
+                //copybxcy_specimen.surgical = textBox_Surgical.Text;
+                copybxcy_specimen.nature = textBox_Nature.Text;
+
+                copybxcy_specimen.client = textBox_Client.Text;
+                copybxcy_specimen.institute = textBox_Institute.Text;
+                copybxcy_specimen.lab_ref = textBox_Ref_No.Text;
+                //copybxcy_specimen.doctor_o = textBox_Dr_I_C_Free_Text.Text;
+
+                copybxcy_specimen.doctor_ic = textBox_Doctor_I_C.Text;
+                copybxcy_specimen.doctor_id = textBox_Doctor_I_C_ID_1.Text;
+
+                copybxcy_specimen.doctor_id2 = textBox_Doctor_I_C_2.Text;
+                /*copybxcy_specimen.doctor_id2 = textBox_Doctor_I_C_ID_2.Text;
+
+                copybxcy_specimen.doctor_id3 = textBox_Doctor_I_C_3.Text;
+                copybxcy_specimen.doctor_id3 = textBox_Doctor_I_C_ID_3.Text;*/
+
+                copybxcy_specimen.inv_no = textBox_Involce_No.Text;
+                //copybxcy_specimen.receipt = textBox_Receipt.Text;
+                copybxcy_specimen.inv_date = textBox_Invoice_Date.Text;
+                copybxcy_specimen.inv_amt = textBox_Amount_HK.Text;
+
+                copybxcy_specimen.pay_date = textBox_Paid_Date.Text;
+
+                copybxcy_specimen.rpt_date = textBox_Rpt_Date.Text;
+                copybxcy_specimen.snopcode_t = comboBox_Snop_T1.Text;
+                copybxcy_specimen.snopcode_t2 = comboBox_Snop_T2.Text;
+                copybxcy_specimen.snopcode_t3 = comboBox_Snop_T3.Text;
+                copybxcy_specimen.sign_dr = comboBox_Sign_By_Dr_1.Text;
+                copybxcy_specimen.snopcode_m = comboBox_Snop_M1.Text;
+                copybxcy_specimen.snopcode_m2 = comboBox_Snop_M2.Text;
+                copybxcy_specimen.snopcode_m3 = comboBox_Snop_M3.Text;
+                copybxcy_specimen.sign_dr2 = comboBox_Sign_By_Dr_2.Text;
+                //copybxcy_specimen.histo = comboBox_HistoType.Text;
+
+                copybxcy_specimen.remark = textBox_Remarks.Text;
+                copybxcy_specimen.initial = textBox_Cytology.Text;
+
+                setButtonStatus(PageStatus.STATUS_ADVANCE_EDIT);
+            }
         }
 
         private void button_Delete_Click(object sender, EventArgs e)
@@ -453,7 +517,7 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (currentStatus == PageStatus.STATUS_EDIT)
+                if (currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT)
                 {
                     if (copybxcy_specimen != null)
                     {
@@ -853,6 +917,7 @@ namespace St.Teresa_LIS_2019
                 button_Shif_3.Enabled = false;
                 button3.Enabled = false;
                 button_F9_3.Enabled = false;*/
+                button_Advance.Enabled = true;
 
                 disedit_modle();
             }
@@ -936,6 +1001,7 @@ namespace St.Teresa_LIS_2019
                     button_Shif_3.Enabled = true;
                     button3.Enabled = true;
                     button_F9_3.Enabled = true;*/
+                    button_Advance.Enabled = false;
 
                     edit_modle();
                 }
@@ -954,10 +1020,10 @@ namespace St.Teresa_LIS_2019
                         button_Undo.Enabled = true;
                         button_Exit.Enabled = false;
 
-                        button_F1.Enabled = true;
-                        button_F7.Enabled = true;
-                        button_F8.Enabled = true;
-                        button_F9.Enabled = true;
+                        button_F1.Enabled = false;
+                        button_F7.Enabled = false;
+                        button_F8.Enabled = false;
+                        button_F9.Enabled = false;
                         //button_F3_Surgical.Enabled = true;
                         button_F4_Nature.Enabled = true;
 
@@ -1019,8 +1085,95 @@ namespace St.Teresa_LIS_2019
                         button_Shif_3.Enabled = true;
                         button3.Enabled = true;
                         button_F9_3.Enabled = true;*/
+                        button_Advance.Enabled = false;
 
                         edit_modle();
+                    }
+                    else
+                    {
+                        if (status == PageStatus.STATUS_ADVANCE_EDIT)
+                        {
+                            button_Top.Enabled = false;
+                            button_Back.Enabled = false;
+                            button_Next.Enabled = false;
+                            button_End.Enabled = false;
+                            button_Save.Enabled = true;
+                            button_New.Enabled = false;
+                            button_Edit.Enabled = false;
+                            button_Delete.Enabled = false;
+                            button_Undo.Enabled = true;
+                            button_Exit.Enabled = false;
+
+                            button_F1.Enabled = true;
+                            button_F7.Enabled = true;
+                            button_F8.Enabled = true;
+                            button_F9.Enabled = true;
+                            //button_F3_Surgical.Enabled = true;
+                            button_F4_Nature.Enabled = true;
+
+                            textBox_Case_No.Enabled = true;
+                            textBox_Date.Enabled = true;
+                            comboBox_Ethnic.Enabled = true;
+                            comboBox_cytoType.Enabled = true;
+                            textBox_Patient.Enabled = true;
+                            textBox_PatSeq.Enabled = true;
+                            textBox_Chinese_Name.Enabled = true;
+                            textBox_HKID.Enabled = true;
+                            textBox_DOB.Enabled = true;
+                            //comboBox_Class.Enabled = true;
+                            textBox_Age.Enabled = true;
+                            textBox_Sex.Enabled = true;
+                            textBox_Room.Enabled = true;
+                            textBox_Bed.Enabled = true;
+                            textBox_Patient_s_Clinical_History.Enabled = true;
+
+                            textBox_Client.Enabled = true;
+                            textBox_Institute.Enabled = true;
+                            textBox_Ref_No.Enabled = true;
+                            //textBox_Dr_I_C_Free_Text.Enabled = true;
+                            textBox_Doctor_I_C.Enabled = true;
+                            textBox_Doctor_I_C_ID_1.Enabled = true;
+                            textBox_Doctor_I_C_2.Enabled = true;
+                            /*textBox_Doctor_I_C_ID_2.Enabled = true;
+                            textBox_Doctor_I_C_3.Enabled = true;
+                            textBox_Doctor_I_C_ID_3.Enabled = true;*/
+
+                            textBox_Involce_No.Enabled = true;
+                            //textBox_Receipt.Enabled = true;
+                            textBox_Invoice_Date.Enabled = true;
+                            textBox_Amount_HK.Enabled = true;
+                            textBox_Paid_Up.Enabled = true;
+                            textBox_Paid_Date.Enabled = true;
+
+                            textBox_Rpt_Date.Enabled = true;
+                            comboBox_Snop_T1.Enabled = true;
+                            comboBox_Snop_T2.Enabled = true;
+                            comboBox_Snop_T3.Enabled = true;
+                            comboBox_Sign_By_Dr_1.Enabled = true;
+                            comboBox_Snop_M1.Enabled = true;
+                            comboBox_Snop_M2.Enabled = true;
+                            comboBox_Snop_M3.Enabled = true;
+                            comboBox_Sign_By_Dr_2.Enabled = true;
+                            comboBox_Sign_By_Dr_3.Enabled = true;
+                            //comboBox_HistoType.Enabled = true;
+
+                            textBox_Remarks.Enabled = true;
+                            textBox_Cytology.Enabled = true;
+
+                            label_New_Record.Text = "<Edit Record>";
+                            label_New_Record.Visible = true;
+
+                            /*button_Shif.Enabled = true;
+                            button_F9_2.Enabled = true;
+                            button_Shif_2.Enabled = true;
+                            button_Shif_3.Enabled = true;
+                            button3.Enabled = true;
+                            button_F9_3.Enabled = true;*/
+                            //button_ad
+                            button_Advance.Enabled = false;
+
+                            edit_modle();
+                        }
                     }
                 }
             }
@@ -1242,5 +1395,7 @@ namespace St.Teresa_LIS_2019
             Form_DoctorsSignatureMaintenance open = new Form_DoctorsSignatureMaintenance();
             open.Show();
         }
+
+        
     }
 }

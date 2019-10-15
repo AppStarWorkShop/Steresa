@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_CYTOLOGYFileGyname));
             this.comboBox_cytoType = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_Advance = new System.Windows.Forms.Button();
             this.comboBox_Snop_M2 = new System.Windows.Forms.ComboBox();
             this.label_Snop_M2 = new System.Windows.Forms.Label();
             this.comboBox_Snop_M3 = new System.Windows.Forms.ComboBox();
@@ -179,20 +179,20 @@
             this.comboBox_cytoType.TabIndex = 284;
             this.comboBox_cytoType.ValueMember = "cytoType";
             // 
-            // button1
+            // button_Advance
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button1.Location = new System.Drawing.Point(688, 624);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 40);
-            this.button1.TabIndex = 283;
-            this.button1.Text = "Advance";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_Advance.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.button_Advance.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button_Advance.Image = ((System.Drawing.Image)(resources.GetObject("button_Advance.Image")));
+            this.button_Advance.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button_Advance.Location = new System.Drawing.Point(688, 624);
+            this.button_Advance.Name = "button_Advance";
+            this.button_Advance.Size = new System.Drawing.Size(68, 40);
+            this.button_Advance.TabIndex = 283;
+            this.button_Advance.Text = "Advance";
+            this.button_Advance.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.button_Advance.UseVisualStyleBackColor = true;
+            this.button_Advance.Click += new System.EventHandler(this.button_Advance_Click);
             // 
             // comboBox_Snop_M2
             // 
@@ -1717,7 +1717,7 @@
             this.Controls.Add(this.button_F5_CY_Diagnosis);
             this.Controls.Add(this.button_F6_Gynaecologl_Histoy);
             this.Controls.Add(this.comboBox_cytoType);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_Advance);
             this.Controls.Add(this.comboBox_Snop_M2);
             this.Controls.Add(this.label_Snop_M2);
             this.Controls.Add(this.comboBox_Snop_M3);
@@ -1812,7 +1812,7 @@
 
         #endregion
         private System.Windows.Forms.ComboBox comboBox_cytoType;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_Advance;
         private System.Windows.Forms.ComboBox comboBox_Snop_M2;
         private System.Windows.Forms.Label label_Snop_M2;
         private System.Windows.Forms.ComboBox comboBox_Snop_M3;

@@ -472,7 +472,12 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_Doctor_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [sign_doctor] WHERE DOCTOR = '{0}' ORDER BY ID", comboBox_Doctor.SelectedValue.ToString());
+            resetPageVal(comboBox_Doctor.SelectedValue.ToString().Trim());
+        }
+
+        private void resetPageVal(string doctorStr)
+        {
+            string sql = string.Format("SELECT TOP 1 * FROM [sign_doctor] WHERE DOCTOR = '{0}' ORDER BY ID", doctorStr);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, sign_doctorDataSet, "sign_doctor");
             textBox_ID.DataBindings.Clear();
             textBox_Doctor_No.DataBindings.Clear();
@@ -486,6 +491,22 @@ namespace St.Teresa_LIS_2019
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Doctor_No.DataBindings.Add("Text", dt, "DOC_NO", false);
             textBox_Sign_Img.DataBindings.Add("Text", dt, "SIGN_IMG", false);
+        }
+
+        private void button_Detail_2_Click(object sender, EventArgs e)
+        {
+            Form_SelectSignDoctor open = new Form_SelectSignDoctor();
+            open.OnSignDoctorSelectedSingle += OnDoctorSelected;
+            open.Show();
+        }
+
+        private void OnDoctorSelected(string nameStr)
+        {
+            if (nameStr != null)
+            {
+                comboBox_Doctor.SelectedValue = nameStr.Trim();
+                resetPageVal(nameStr.Trim());
+            }
         }
     }
 }

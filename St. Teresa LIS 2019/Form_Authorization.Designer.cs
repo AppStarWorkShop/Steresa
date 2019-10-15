@@ -40,22 +40,21 @@
             // 
             this.textBox_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Password.ForeColor = System.Drawing.Color.Red;
-            this.textBox_Password.Location = new System.Drawing.Point(224, 96);
+            this.textBox_Password.Location = new System.Drawing.Point(224, 89);
             this.textBox_Password.Name = "textBox_Password";
             this.textBox_Password.PasswordChar = '*';
             this.textBox_Password.Size = new System.Drawing.Size(186, 27);
             this.textBox_Password.TabIndex = 17;
-            this.textBox_Password.Text = "sys";
             // 
             // textBox_UserID
             // 
+            this.textBox_UserID.Enabled = false;
             this.textBox_UserID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_UserID.ForeColor = System.Drawing.Color.Red;
-            this.textBox_UserID.Location = new System.Drawing.Point(224, 53);
+            this.textBox_UserID.Location = new System.Drawing.Point(224, 49);
             this.textBox_UserID.Name = "textBox_UserID";
             this.textBox_UserID.Size = new System.Drawing.Size(186, 27);
             this.textBox_UserID.TabIndex = 16;
-            this.textBox_UserID.Text = "SYS";
             // 
             // label_Password
             // 
@@ -63,7 +62,7 @@
             this.label_Password.BackColor = System.Drawing.Color.Transparent;
             this.label_Password.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Password.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label_Password.Location = new System.Drawing.Point(117, 96);
+            this.label_Password.Location = new System.Drawing.Point(117, 89);
             this.label_Password.Name = "label_Password";
             this.label_Password.Size = new System.Drawing.Size(109, 22);
             this.label_Password.TabIndex = 15;
@@ -76,7 +75,7 @@
             this.label_UserID.BackColor = System.Drawing.Color.Transparent;
             this.label_UserID.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_UserID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(81)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label_UserID.Location = new System.Drawing.Point(117, 55);
+            this.label_UserID.Location = new System.Drawing.Point(117, 51);
             this.label_UserID.Name = "label_UserID";
             this.label_UserID.Size = new System.Drawing.Size(101, 22);
             this.label_UserID.TabIndex = 14;
@@ -86,18 +85,18 @@
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(189)))), ((int)(((byte)(203)))), ((int)(((byte)(236)))));
-            this.pictureBox2.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox2.Location = new System.Drawing.Point(12, 11);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(505, 163);
+            this.pictureBox2.Size = new System.Drawing.Size(505, 150);
             this.pictureBox2.TabIndex = 18;
             this.pictureBox2.TabStop = false;
             // 
             // Form_Authorization
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(206)))), ((int)(((byte)(206)))));
-            this.ClientSize = new System.Drawing.Size(532, 191);
+            this.ClientSize = new System.Drawing.Size(532, 176);
             this.Controls.Add(this.textBox_Password);
             this.Controls.Add(this.textBox_UserID);
             this.Controls.Add(this.label_Password);

@@ -121,6 +121,7 @@ namespace St.Teresa_LIS_2019
         public const int STATUS_VIEW = 1;
         public const int STATUS_NEW = 2;
         public const int STATUS_EDIT = 3;
+        public const int STATUS_ADVANCE_EDIT = 4;
     }
 
     public static class CommonFunction

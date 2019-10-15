@@ -41,6 +41,8 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -141,7 +143,7 @@
             this.Controls.Add(this.button_F8_Confirm_Exit);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form_PrevoiusCasesCondition";
-            this.Text = "Prevoius Cases Condition";
+            this.Text = "EBV Prevoius Cases Condition";
             this.Load += new System.EventHandler(this.Form_PrevoiusCasesCondition_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

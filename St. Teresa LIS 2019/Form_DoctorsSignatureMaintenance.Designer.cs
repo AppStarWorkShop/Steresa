@@ -105,6 +105,7 @@
             this.button_Detail_2.TabIndex = 202;
             this.button_Detail_2.Text = "Select";
             this.button_Detail_2.UseVisualStyleBackColor = true;
+            this.button_Detail_2.Click += new System.EventHandler(this.button_Detail_2_Click);
             // 
             // textBox_Doctor_No
             // 

@@ -830,12 +830,14 @@ namespace St.Teresa_LIS_2019
 
         private void button_F2_Previous_Click(object sender, EventArgs e)
         {
-
+            Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition(textBox_HKID.Text.Trim());
+            open.Show();
         }
 
         private void button_Sign_By_Dr_1_Click(object sender, EventArgs e)
         {
-
+            Form_DoctorsSignatureMaintenance open = new Form_DoctorsSignatureMaintenance();
+            open.Show();
         }
 
         private void button_F7_Click(object sender, EventArgs e)
