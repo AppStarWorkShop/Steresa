@@ -744,3 +744,9 @@ IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND L
 BEGIN
 ALTER TABLE system_setting ADD [STH_EBV] [float] NULL;
 END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='frozen_section')
+BEGIN
+ALTER TABLE frozen_section ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE frozen_section ADD CONSTRAINT [PK_frozen_section] primary key (ID);
+END
