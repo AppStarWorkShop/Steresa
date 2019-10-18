@@ -179,6 +179,10 @@
             this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_Surgical = new System.Windows.Forms.TextBox();
             this.textBox_Nature = new System.Windows.Forms.TextBox();
+            this.textBox_ER = new System.Windows.Forms.TextBox();
+            this.textBox_EM = new System.Windows.Forms.TextBox();
+            this.textBox_SISH = new System.Windows.Forms.TextBox();
+            this.textBox_FZDetail = new System.Windows.Forms.TextBox();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet1)).BeginInit();
@@ -1963,7 +1967,7 @@
             // 
             this.button_F11_Add_test.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F11_Add_test.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_F11_Add_test.Location = new System.Drawing.Point(772, 451);
+            this.button_F11_Add_test.Location = new System.Drawing.Point(778, 458);
             this.button_F11_Add_test.Name = "button_F11_Add_test";
             this.button_F11_Add_test.Size = new System.Drawing.Size(102, 25);
             this.button_F11_Add_test.TabIndex = 238;
@@ -2035,6 +2039,34 @@
             this.textBox_Nature.Size = new System.Drawing.Size(1, 21);
             this.textBox_Nature.TabIndex = 244;
             // 
+            // textBox_ER
+            // 
+            this.textBox_ER.Location = new System.Drawing.Point(835, 461);
+            this.textBox_ER.Name = "textBox_ER";
+            this.textBox_ER.Size = new System.Drawing.Size(10, 21);
+            this.textBox_ER.TabIndex = 245;
+            // 
+            // textBox_EM
+            // 
+            this.textBox_EM.Location = new System.Drawing.Point(826, 461);
+            this.textBox_EM.Name = "textBox_EM";
+            this.textBox_EM.Size = new System.Drawing.Size(10, 21);
+            this.textBox_EM.TabIndex = 246;
+            // 
+            // textBox_SISH
+            // 
+            this.textBox_SISH.Location = new System.Drawing.Point(843, 461);
+            this.textBox_SISH.Name = "textBox_SISH";
+            this.textBox_SISH.Size = new System.Drawing.Size(10, 21);
+            this.textBox_SISH.TabIndex = 247;
+            // 
+            // textBox_FZDetail
+            // 
+            this.textBox_FZDetail.Location = new System.Drawing.Point(969, 454);
+            this.textBox_FZDetail.Name = "textBox_FZDetail";
+            this.textBox_FZDetail.Size = new System.Drawing.Size(10, 21);
+            this.textBox_FZDetail.TabIndex = 248;
+            // 
             // Form_BXCYFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2042,12 +2074,17 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(170)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.button_F_S_Detail);
+            this.Controls.Add(this.textBox_FZDetail);
+            this.Controls.Add(this.button_F11_Add_test);
+            this.Controls.Add(this.textBox_SISH);
+            this.Controls.Add(this.textBox_EM);
+            this.Controls.Add(this.textBox_ER);
             this.Controls.Add(this.textBox_Nature);
             this.Controls.Add(this.textBox_Surgical);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Clinical_History);
             this.Controls.Add(this.checkBox_F_S);
-            this.Controls.Add(this.button_F11_Add_test);
             this.Controls.Add(this.textBox_Remarks);
             this.Controls.Add(this.textBox_Patient_s_Clinical_History);
             this.Controls.Add(this.comboBox_Class);
@@ -2071,7 +2108,6 @@
             this.Controls.Add(this.label_Snop_T2);
             this.Controls.Add(this.comboBox_Snop_T3);
             this.Controls.Add(this.label_Snop_T3);
-            this.Controls.Add(this.button_F_S_Detail);
             this.Controls.Add(this.checkBox_Supp);
             this.Controls.Add(this.comboBox_Snop_M1);
             this.Controls.Add(this.comboBox_Snop_T1);
@@ -2311,5 +2347,9 @@
         private System.Windows.Forms.TextBox textBox_Surgical;
         private System.Windows.Forms.TextBox textBox_Nature;
         private System.Windows.Forms.TextBox textBox_Issued_At;
+        private System.Windows.Forms.TextBox textBox_ER;
+        private System.Windows.Forms.TextBox textBox_EM;
+        private System.Windows.Forms.TextBox textBox_SISH;
+        private System.Windows.Forms.TextBox textBox_FZDetail;
     }
 }

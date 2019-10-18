@@ -45,11 +45,10 @@
             // 
             this.textBox_ER.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_ER.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_ER.Location = new System.Drawing.Point(100, 48);
+            this.textBox_ER.Location = new System.Drawing.Point(100, 44);
             this.textBox_ER.Name = "textBox_ER";
             this.textBox_ER.Size = new System.Drawing.Size(77, 24);
             this.textBox_ER.TabIndex = 238;
-            this.textBox_ER.Text = "N";
             // 
             // button_Cancel
             // 
@@ -57,9 +56,9 @@
             this.button_Cancel.ForeColor = System.Drawing.Color.Red;
             this.button_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("button_Cancel.Image")));
             this.button_Cancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Cancel.Location = new System.Drawing.Point(124, 303);
+            this.button_Cancel.Location = new System.Drawing.Point(124, 280);
             this.button_Cancel.Name = "button_Cancel";
-            this.button_Cancel.Size = new System.Drawing.Size(84, 44);
+            this.button_Cancel.Size = new System.Drawing.Size(84, 41);
             this.button_Cancel.TabIndex = 237;
             this.button_Cancel.Text = "Cancel";
             this.button_Cancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -72,13 +71,14 @@
             this.button_Confirm.ForeColor = System.Drawing.Color.Blue;
             this.button_Confirm.Image = ((System.Drawing.Image)(resources.GetObject("button_Confirm.Image")));
             this.button_Confirm.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Confirm.Location = new System.Drawing.Point(12, 303);
+            this.button_Confirm.Location = new System.Drawing.Point(12, 280);
             this.button_Confirm.Name = "button_Confirm";
-            this.button_Confirm.Size = new System.Drawing.Size(84, 44);
+            this.button_Confirm.Size = new System.Drawing.Size(84, 41);
             this.button_Confirm.TabIndex = 236;
             this.button_Confirm.Text = "Confirm";
             this.button_Confirm.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Confirm.UseVisualStyleBackColor = true;
+            this.button_Confirm.Click += new System.EventHandler(this.button_Confirm_Click);
             // 
             // label_ER
             // 
@@ -86,7 +86,7 @@
             this.label_ER.BackColor = System.Drawing.Color.Transparent;
             this.label_ER.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_ER.ForeColor = System.Drawing.Color.Black;
-            this.label_ER.Location = new System.Drawing.Point(32, 48);
+            this.label_ER.Location = new System.Drawing.Point(32, 44);
             this.label_ER.Name = "label_ER";
             this.label_ER.Size = new System.Drawing.Size(44, 20);
             this.label_ER.TabIndex = 235;
@@ -98,7 +98,7 @@
             this.label_F11_Additional.BackColor = System.Drawing.Color.Transparent;
             this.label_F11_Additional.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_F11_Additional.ForeColor = System.Drawing.Color.Blue;
-            this.label_F11_Additional.Location = new System.Drawing.Point(12, 8);
+            this.label_F11_Additional.Location = new System.Drawing.Point(12, 7);
             this.label_F11_Additional.Name = "label_F11_Additional";
             this.label_F11_Additional.Size = new System.Drawing.Size(200, 24);
             this.label_F11_Additional.TabIndex = 234;
@@ -110,7 +110,7 @@
             this.label_Line_2.BackColor = System.Drawing.Color.Transparent;
             this.label_Line_2.Font = new System.Drawing.Font("Palace Script MT", 30F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Line_2.ForeColor = System.Drawing.Color.Gray;
-            this.label_Line_2.Location = new System.Drawing.Point(-243, 250);
+            this.label_Line_2.Location = new System.Drawing.Point(-243, 231);
             this.label_Line_2.Name = "label_Line_2";
             this.label_Line_2.Size = new System.Drawing.Size(817, 40);
             this.label_Line_2.TabIndex = 239;
@@ -120,11 +120,10 @@
             // 
             this.textBox_SISH.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_SISH.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_SISH.Location = new System.Drawing.Point(100, 108);
+            this.textBox_SISH.Location = new System.Drawing.Point(100, 100);
             this.textBox_SISH.Name = "textBox_SISH";
             this.textBox_SISH.Size = new System.Drawing.Size(77, 24);
             this.textBox_SISH.TabIndex = 241;
-            this.textBox_SISH.Text = "N";
             // 
             // label_SISH
             // 
@@ -132,7 +131,7 @@
             this.label_SISH.BackColor = System.Drawing.Color.Transparent;
             this.label_SISH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_SISH.ForeColor = System.Drawing.Color.Black;
-            this.label_SISH.Location = new System.Drawing.Point(32, 108);
+            this.label_SISH.Location = new System.Drawing.Point(32, 100);
             this.label_SISH.Name = "label_SISH";
             this.label_SISH.Size = new System.Drawing.Size(62, 20);
             this.label_SISH.TabIndex = 240;
@@ -142,11 +141,10 @@
             // 
             this.textBox_EM.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_EM.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_EM.Location = new System.Drawing.Point(100, 78);
+            this.textBox_EM.Location = new System.Drawing.Point(100, 72);
             this.textBox_EM.Name = "textBox_EM";
             this.textBox_EM.Size = new System.Drawing.Size(77, 24);
             this.textBox_EM.TabIndex = 243;
-            this.textBox_EM.Text = "N";
             // 
             // label_EM
             // 
@@ -154,7 +152,7 @@
             this.label_EM.BackColor = System.Drawing.Color.Transparent;
             this.label_EM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_EM.ForeColor = System.Drawing.Color.Black;
-            this.label_EM.Location = new System.Drawing.Point(32, 78);
+            this.label_EM.Location = new System.Drawing.Point(32, 72);
             this.label_EM.Name = "label_EM";
             this.label_EM.Size = new System.Drawing.Size(45, 20);
             this.label_EM.TabIndex = 242;
@@ -162,10 +160,10 @@
             // 
             // Form_AdditionalTests
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(220, 359);
+            this.ClientSize = new System.Drawing.Size(220, 331);
             this.ControlBox = false;
             this.Controls.Add(this.textBox_EM);
             this.Controls.Add(this.label_EM);

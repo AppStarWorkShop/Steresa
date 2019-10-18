@@ -266,7 +266,13 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
             textBox_Issued_At.DataBindings.Clear();
-            //textBox_Rpt_Date.DataBindings.Clear();
+
+            textBox_ER.DataBindings.Clear();
+            textBox_EM.DataBindings.Clear();
+            textBox_SISH.DataBindings.Clear();
+
+            checkBox_F_S.DataBindings.Clear();
+            textBox_FZDetail.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -425,6 +431,14 @@ namespace St.Teresa_LIS_2019
             textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
 
+            //ClassBinding objER = new ClassBinding();
+            textBox_ER.DataBindings.Add(new Binding("Text", dt, "er"));
+            textBox_EM.DataBindings.Add("Text", dt, "em", false);
+            textBox_SISH.DataBindings.Add("Text", dt, "sish", false);
+
+            checkBox_F_S.DataBindings.Add("Checked", dt, "fz_section", false);
+            textBox_FZDetail.DataBindings.Add("Text", dt, "fz_detail", false);
+
             /*currencyManager = (CurrencyManager)this.BindingContext[dt];
             if (position != -1)
             {
@@ -498,8 +512,20 @@ namespace St.Teresa_LIS_2019
 
         private void button_F_S_Detail_Click(object sender, EventArgs e)
         {
-            Form_FrozenSectionDianosis open = new Form_FrozenSectionDianosis();
+            Form_FrozenSectionDianosis open = new Form_FrozenSectionDianosis(textBox_FZDetail.Text.Trim());
+            open.OnValueUpdated += onFZDetailValueChange;
             open.Show();
+        }
+
+        private void onFZDetailValueChange(string val)
+        {
+            if(val != null)
+            {
+                textBox_FZDetail.Text = val;
+                textBox_FZDetail.Focus();
+                textBox_FZDetail.Select(textBox_FZDetail.TextLength, 0);
+                textBox_FZDetail.ScrollToCaret();
+            }
         }
 
         private void button_F1_Click(object sender, EventArgs e)
@@ -564,6 +590,10 @@ namespace St.Teresa_LIS_2019
             if (str != null)
             {
                 textBox_Surgical.Text = str;
+
+                textBox_Surgical.Focus();
+                textBox_Surgical.Select(textBox_Surgical.TextLength, 0);
+                textBox_Surgical.ScrollToCaret();
             }
         }
         /*
@@ -585,6 +615,9 @@ namespace St.Teresa_LIS_2019
             if (str != null)
             {
                 textBox_Nature.Text = str;
+                textBox_Nature.Focus();
+                textBox_Nature.Select(textBox_Nature.TextLength, 0);
+                textBox_Nature.ScrollToCaret();
             }
         }
         /*private void button_F4m()
@@ -680,8 +713,36 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F11m()
         {
-            Form_AdditionalTests open = new Form_AdditionalTests();
+            Form_AdditionalTests open = new Form_AdditionalTests(textBox_ER.Text.Trim(), textBox_EM.Text.Trim(), textBox_SISH.Text.Trim());
+            open.OnValueUpdated += onAdditionalTestValueUpdated;
             open.Show();
+        }
+
+        private void onAdditionalTestValueUpdated(string er, string em, string sish)
+        {
+            if(er != null)
+            {
+                textBox_ER.Text = er;
+                textBox_ER.Focus();
+                textBox_ER.Select(textBox_ER.TextLength, 0);
+                textBox_ER.ScrollToCaret();
+            }
+
+            if (em != null)
+            {
+                textBox_EM.Text = em;
+                textBox_EM.Focus();
+                textBox_EM.Select(textBox_EM.TextLength, 0);
+                textBox_EM.ScrollToCaret();
+            }
+
+            if (sish != null)
+            {
+                textBox_SISH.Text = sish;
+                textBox_SISH.Focus();
+                textBox_SISH.Select(textBox_SISH.TextLength, 0);
+                textBox_SISH.ScrollToCaret();
+            }
         }
 
         private void button_CY_Report_Detail_Click(object sender, EventArgs e)
@@ -906,6 +967,11 @@ namespace St.Teresa_LIS_2019
                     currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
                     currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+
+                    /*currentEditRow["er"] = textBox_ER.Text.Trim();
+                    currentEditRow["em"] = textBox_EM.Text.Trim();
+                    currentEditRow["sish"] = textBox_SISH.Text.Trim();*/
+                    
                     textBox_ID.BindingContext[dt].Position++;
 
                     if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
@@ -934,6 +1000,10 @@ namespace St.Teresa_LIS_2019
                         //drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
+
+                        /*drow["er"] = textBox_ER.Text.Trim();
+                        drow["em"] = textBox_EM.Text.Trim();
+                        drow["sish"] = textBox_SISH.Text.Trim();*/
                         textBox_ID.BindingContext[dt].Position++;
 
                         if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))

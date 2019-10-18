@@ -452,6 +452,12 @@
     <Compile Include="Form_SelectClientInstitute.Designer.cs">
       <DependentUpon>Form_SelectClientInstitute.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_SelectFrozenSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_SelectFrozenSection.Designer.cs">
+      <DependentUpon>Form_SelectFrozenSection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_SelectSignDoctor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -734,6 +740,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_SelectClientInstitute.resx">
       <DependentUpon>Form_SelectClientInstitute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_SelectFrozenSection.resx">
+      <DependentUpon>Form_SelectFrozenSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_SelectSignDoctor.resx">
       <DependentUpon>Form_SelectSignDoctor.cs</DependentUpon>

@@ -750,3 +750,12 @@ BEGIN
 ALTER TABLE frozen_section ADD [id] [int] IDENTITY(1,1) NOT NULL;
 ALTER TABLE frozen_section ADD CONSTRAINT [PK_frozen_section] primary key (ID);
 END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'sish' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD sish nvarchar(1) NULL;
+END
+
+UPDATE BXCY_SPECIMEN SET fz_section='1' where fz_section='Y'
+UPDATE BXCY_SPECIMEN SET fz_section='0' where fz_section<>'1'
+ALTER table BXCY_SPECIMEN alter column fz_section bit
