@@ -1240,7 +1240,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Clinical_History_Click(object sender, EventArgs e)
         {
-            Form_ClinicalHistoryEditLog open = new Form_ClinicalHistoryEditLog();
+            Form_ClinicalHistoryEditLog open = new Form_ClinicalHistoryEditLog(textBox_Case_No.Text.Trim());
             open.Show();
         }
 
@@ -1256,6 +1256,10 @@ namespace St.Teresa_LIS_2019
             if (str != null)
             {
                 textBox_Surgical.Text = str;
+
+                textBox_Surgical.Focus();
+                textBox_Surgical.Select(textBox_Surgical.TextLength, 0);
+                textBox_Surgical.ScrollToCaret();
             }
         }
 
@@ -1271,6 +1275,10 @@ namespace St.Teresa_LIS_2019
             if (str != null)
             {
                 textBox_Nature.Text = str;
+
+                textBox_Nature.Focus();
+                textBox_Nature.Select(textBox_Nature.TextLength, 0);
+                textBox_Nature.ScrollToCaret();
             }
         }
 
@@ -1336,6 +1344,15 @@ namespace St.Teresa_LIS_2019
         private void button_Printed_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
+        {
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd");
+
+            textBox_Rpt_Date.Focus();
+            textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
+            textBox_Rpt_Date.ScrollToCaret();
         }
     }
 }

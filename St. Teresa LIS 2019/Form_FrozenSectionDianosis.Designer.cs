@@ -57,6 +57,7 @@
             this.button_Copy_To_New.Text = "Select";
             this.button_Copy_To_New.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Copy_To_New.UseVisualStyleBackColor = true;
+            this.button_Copy_To_New.Click += new System.EventHandler(this.button_Copy_To_New_Click);
             // 
             // comboBox_FZ_Detail
             // 

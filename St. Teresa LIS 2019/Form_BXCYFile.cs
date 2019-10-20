@@ -385,7 +385,7 @@ namespace St.Teresa_LIS_2019
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
             textBox_Room.DataBindings.Add("Text", dt, "BED_ROOM", false);
             textBox_Bed.DataBindings.Add("Text", dt, "BED_NO", false);
-            textBox_Patient_s_Clinical_History.DataBindings.Add("Text", dt, "Clinical_History", false);
+            textBox_Patient_s_Clinical_History.DataBindings.Add("Text", dt, "Pat_hist", false);
 
             textBox_Surgical.DataBindings.Add("Text", dt, "surgical", false, DataSourceUpdateMode.OnPropertyChanged, "");
             textBox_Nature.DataBindings.Add("Text", dt, "nature", false, DataSourceUpdateMode.OnPropertyChanged, "");
@@ -902,7 +902,7 @@ namespace St.Teresa_LIS_2019
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form_ClinicalHistoryEditLog open = new Form_ClinicalHistoryEditLog();
+            Form_ClinicalHistoryEditLog open = new Form_ClinicalHistoryEditLog(textBox_Case_No.Text.Trim());
             open.Show();
         }
 
@@ -1801,7 +1801,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
+            textBox_Rpt_Date.Focus();
+            textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
+            textBox_Rpt_Date.ScrollToCaret();
         }
 
         private void button_Printed_Click(object sender, EventArgs e)

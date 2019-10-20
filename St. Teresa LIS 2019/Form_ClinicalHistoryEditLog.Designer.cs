@@ -36,13 +36,15 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(-1, -2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(522, 316);
+            this.dataGridView1.Size = new System.Drawing.Size(522, 292);
             this.dataGridView1.TabIndex = 1;
             // 
             // button_F8_Confirm_Exit
@@ -51,9 +53,9 @@
             this.button_F8_Confirm_Exit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_F8_Confirm_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_F8_Confirm_Exit.Image")));
             this.button_F8_Confirm_Exit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_F8_Confirm_Exit.Location = new System.Drawing.Point(187, 327);
+            this.button_F8_Confirm_Exit.Location = new System.Drawing.Point(187, 302);
             this.button_F8_Confirm_Exit.Name = "button_F8_Confirm_Exit";
-            this.button_F8_Confirm_Exit.Size = new System.Drawing.Size(126, 42);
+            this.button_F8_Confirm_Exit.Size = new System.Drawing.Size(126, 39);
             this.button_F8_Confirm_Exit.TabIndex = 165;
             this.button_F8_Confirm_Exit.Text = "F8: Confirm Exit";
             this.button_F8_Confirm_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -62,10 +64,10 @@
             // 
             // Form_ClinicalHistoryEditLog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(221)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(518, 381);
+            this.ClientSize = new System.Drawing.Size(518, 352);
             this.ControlBox = false;
             this.Controls.Add(this.button_F8_Confirm_Exit);
             this.Controls.Add(this.dataGridView1);

@@ -759,3 +759,90 @@ END
 UPDATE BXCY_SPECIMEN SET fz_section='1' where fz_section='Y'
 UPDATE BXCY_SPECIMEN SET fz_section='0' where fz_section<>'1'
 ALTER table BXCY_SPECIMEN alter column fz_section bit
+UPDATE BXCY_SPECIMEN SET fz_section=0 where fz_section IS NULL
+ALTER table BXCY_SPECIMEN alter column Pat_hist nvarchar(max)
+
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Clinical_History_Edit_Log]') AND type in (N'U'))
+CREATE TABLE [dbo].Clinical_History_Edit_Log(
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[case_no] [nvarchar](15) NULL,
+	[Update_Content] [nvarchar](max) NULL,
+	[UPDATE_BY] [nvarchar](255) NULL,
+	[UPDATE_AT] [datetime] NULL,
+	[UPDATE_TIME] [datetime] NULL,
+ CONSTRAINT [PK_Clinical_History_Edit_Log] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+
+
+DROP TRIGGER [dbo].[BXCY_SPECIMEN_INSERTORUPDATE]
+GO
+
+CREATE TRIGGER [dbo].[BXCY_SPECIMEN_INSERTORUPDATE]
+   ON  [dbo].[BXCY_SPECIMEN] 
+   AFTER INSERT,UPDATE
+AS 
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for trigger here
+	DECLARE @case_no nvarchar(15)
+	DECLARE @maxId int
+
+
+	DECLARE @Pat_hist nvarchar(max)
+	DECLARE @Last_Pat_hist nvarchar(max)
+
+	SELECT @case_no = case_no, @Pat_hist = Pat_hist FROM INSERTED
+	SET @Last_Pat_hist = ''
+	SELECT TOP 1 @Last_Pat_hist = update_content FROM Clinical_History_Edit_Log WHERE case_no = @case_no ORDER BY ID DESC
+
+	IF @Last_Pat_hist = ''
+	BEGIN
+		INSERT INTO Clinical_History_Edit_Log(case_no, update_content, update_by, update_at)
+			SELECT case_no, Pat_hist, update_by, update_at FROM INSERTED
+	END
+	ELSE
+	BEGIN
+		IF @Last_Pat_hist <> @Pat_hist
+		BEGIN
+			INSERT INTO Clinical_History_Edit_Log(case_no, update_content, update_by, update_at)
+				SELECT case_no, Pat_hist, update_by, update_at FROM INSERTED
+		END
+	END
+
+END
+GO
+
+
+
+DROP TRIGGER [dbo].[BXCY_SPECIMEN_DELETE]
+GO
+
+CREATE TRIGGER [dbo].[BXCY_SPECIMEN_DELETE]
+   ON  [dbo].[BXCY_SPECIMEN] 
+   AFTER DELETE
+AS 
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for trigger here
+	DECLARE @case_no nvarchar(15)
+
+	SELECT @case_no = case_no FROM DELETED
+
+	IF EXISTS(SELECT * FROM Clinical_History_Edit_Log WHERE case_no = @case_no)
+	BEGIN
+		DELETE FROM Clinical_History_Edit_Log WHERE case_no = @case_no
+	END
+END
+GO

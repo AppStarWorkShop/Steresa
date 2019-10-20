@@ -1202,6 +1202,7 @@
             this.button_Rpt_Date_Tick.Size = new System.Drawing.Size(29, 25);
             this.button_Rpt_Date_Tick.TabIndex = 308;
             this.button_Rpt_Date_Tick.UseVisualStyleBackColor = true;
+            this.button_Rpt_Date_Tick.Click += new System.EventHandler(this.button_Rpt_Date_Tick_Click);
             // 
             // label_Sign_By_Dr_2
             // 

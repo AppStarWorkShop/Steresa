@@ -1278,6 +1278,10 @@ namespace St.Teresa_LIS_2019
             if (str != null)
             {
                 textBox_Nature.Text = str;
+
+                textBox_Nature.Focus();
+                textBox_Nature.Select(textBox_Nature.TextLength, 0);
+                textBox_Nature.ScrollToCaret();
             }
         }
 
@@ -1375,7 +1379,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd");
 
+            textBox_Rpt_Date.Focus();
+            textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
+            textBox_Rpt_Date.ScrollToCaret();
         }
 
         private void button_Sign_By_Dr_1_Click(object sender, EventArgs e)

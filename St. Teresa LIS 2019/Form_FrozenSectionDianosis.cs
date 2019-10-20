@@ -24,6 +24,9 @@ namespace St.Teresa_LIS_2019
         private DataSet frozen_sectionDataSetFull = new DataSet();
         private SqlDataAdapter dataAdapterFull;
 
+        public delegate void valueUpdated(string val);
+        public valueUpdated OnValueUpdated;
+
         public class frozen_section
         {
             public int id { get; set; }
@@ -50,8 +53,18 @@ namespace St.Teresa_LIS_2019
             reloadAndBindingDBData();
         }
 
+        public Form_FrozenSectionDianosis(string searchStr)
+        {
+            InitializeComponent();
+            reloadAndBindingDBData(searchStr);
+        }
+
         private void button_Exit_Click(object sender, EventArgs e)
         {
+            if(OnValueUpdated != null)
+            {
+                OnValueUpdated(comboBox_FZ_Detail.SelectedValue.ToString());
+            }
             this.Close();
         }
 
@@ -401,9 +414,9 @@ namespace St.Teresa_LIS_2019
             if (searchFZ_DETAIL != null && comboBox_FZ_Detail.Items.Count > 0)
             {
                 int currentPosition = 0;
-                foreach (DataRow mDr in dt.Rows)
+                foreach (DataRow mDr in newDt.Rows)
                 {
-                    if (mDr["DOCTOR"].ToString().Trim() == searchFZ_DETAIL.Trim())
+                    if (mDr["FZ_DETAIL"].ToString().Trim() == searchFZ_DETAIL.Trim())
                     {
                         break;
                     }
@@ -460,19 +473,19 @@ namespace St.Teresa_LIS_2019
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
         }*/
 
-        private void button_Detail_2_Click(object sender, EventArgs e)
+        private void button_Copy_To_New_Click(object sender, EventArgs e)
         {
-            Form_SelectSignDoctor open = new Form_SelectSignDoctor();
-            open.OnSignDoctorSelectedSingle += OnDoctorSelected;
+            Form_SelectFrozenSection open = new Form_SelectFrozenSection();
+            open.Onfrozen_sectionSelectedSingle += OnFrozenSectionSelected;
             open.Show();
+
         }
 
-        private void OnDoctorSelected(string nameStr)
+        private void OnFrozenSectionSelected(string nameStr)
         {
             if (nameStr != null)
             {
                 comboBox_FZ_Detail.SelectedValue = nameStr.Trim();
-                //resetPageVal(nameStr.Trim());
             }
         }
     }
