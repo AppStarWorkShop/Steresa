@@ -183,6 +183,13 @@
             this.textBox_EM = new System.Windows.Forms.TextBox();
             this.textBox_SISH = new System.Windows.Forms.TextBox();
             this.textBox_FZDetail = new System.Windows.Forms.TextBox();
+            this.label_Printed = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label_Uploaded_At = new System.Windows.Forms.Label();
+            this.label_Version = new System.Windows.Forms.Label();
+            this.label_Uploaded_By = new System.Windows.Forms.Label();
+            this.label_Print_By = new System.Windows.Forms.Label();
+            this.label_Print_At = new System.Windows.Forms.Label();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet1)).BeginInit();
@@ -1368,11 +1375,10 @@
             this.checkBox_Uploaded.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(209)))), ((int)(((byte)(57)))));
             this.checkBox_Uploaded.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox_Uploaded.ForeColor = System.Drawing.Color.Blue;
-            this.checkBox_Uploaded.Location = new System.Drawing.Point(899, 117);
+            this.checkBox_Uploaded.Location = new System.Drawing.Point(878, 119);
             this.checkBox_Uploaded.Name = "checkBox_Uploaded";
-            this.checkBox_Uploaded.Size = new System.Drawing.Size(80, 19);
+            this.checkBox_Uploaded.Size = new System.Drawing.Size(15, 14);
             this.checkBox_Uploaded.TabIndex = 144;
-            this.checkBox_Uploaded.Text = "Uploaded";
             this.checkBox_Uploaded.UseVisualStyleBackColor = false;
             // 
             // button_Rpt_Date_Tick
@@ -1620,7 +1626,7 @@
             // 
             this.button_F5_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F5_Description.ForeColor = System.Drawing.Color.Green;
-            this.button_F5_Description.Location = new System.Drawing.Point(836, 513);
+            this.button_F5_Description.Location = new System.Drawing.Point(836, 512);
             this.button_F5_Description.Name = "button_F5_Description";
             this.button_F5_Description.Size = new System.Drawing.Size(160, 96);
             this.button_F5_Description.TabIndex = 179;
@@ -1655,6 +1661,7 @@
             // 
             this.panel_Update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(243)))), ((int)(((byte)(243)))), ((int)(((byte)(244)))));
             this.panel_Update.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel_Update.Controls.Add(this.label_Updated_By);
             this.panel_Update.Controls.Add(this.textBox_Issued_At);
             this.panel_Update.Controls.Add(this.textBox_Issued_By);
             this.panel_Update.Controls.Add(this.label_Issued_By);
@@ -1662,7 +1669,6 @@
             this.panel_Update.Controls.Add(this.label_Updated_At);
             this.panel_Update.Controls.Add(this.textBox_Updated_By_2);
             this.panel_Update.Controls.Add(this.textBox_Updated_By_1);
-            this.panel_Update.Controls.Add(this.label_Updated_By);
             this.panel_Update.Location = new System.Drawing.Point(780, 0);
             this.panel_Update.Name = "panel_Update";
             this.panel_Update.Size = new System.Drawing.Size(229, 57);
@@ -2067,6 +2073,66 @@
             this.textBox_FZDetail.Size = new System.Drawing.Size(10, 21);
             this.textBox_FZDetail.TabIndex = 248;
             // 
+            // label_Printed
+            // 
+            this.label_Printed.AutoSize = true;
+            this.label_Printed.Location = new System.Drawing.Point(68, 541);
+            this.label_Printed.Name = "label_Printed";
+            this.label_Printed.Size = new System.Drawing.Size(11, 12);
+            this.label_Printed.TabIndex = 249;
+            this.label_Printed.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(209)))), ((int)(((byte)(57)))));
+            this.label3.Location = new System.Drawing.Point(899, 120);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 250;
+            this.label3.Text = "Uploaded";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label_Uploaded_At
+            // 
+            this.label_Uploaded_At.AutoSize = true;
+            this.label_Uploaded_At.Location = new System.Drawing.Point(843, 519);
+            this.label_Uploaded_At.Name = "label_Uploaded_At";
+            this.label_Uploaded_At.Size = new System.Drawing.Size(0, 12);
+            this.label_Uploaded_At.TabIndex = 251;
+            // 
+            // label_Version
+            // 
+            this.label_Version.AutoSize = true;
+            this.label_Version.Location = new System.Drawing.Point(847, 552);
+            this.label_Version.Name = "label_Version";
+            this.label_Version.Size = new System.Drawing.Size(0, 12);
+            this.label_Version.TabIndex = 252;
+            // 
+            // label_Uploaded_By
+            // 
+            this.label_Uploaded_By.AutoSize = true;
+            this.label_Uploaded_By.Location = new System.Drawing.Point(843, 535);
+            this.label_Uploaded_By.Name = "label_Uploaded_By";
+            this.label_Uploaded_By.Size = new System.Drawing.Size(0, 12);
+            this.label_Uploaded_By.TabIndex = 253;
+            // 
+            // label_Print_By
+            // 
+            this.label_Print_By.AutoSize = true;
+            this.label_Print_By.Location = new System.Drawing.Point(943, 519);
+            this.label_Print_By.Name = "label_Print_By";
+            this.label_Print_By.Size = new System.Drawing.Size(0, 12);
+            this.label_Print_By.TabIndex = 254;
+            // 
+            // label_Print_At
+            // 
+            this.label_Print_At.AutoSize = true;
+            this.label_Print_At.Location = new System.Drawing.Point(943, 536);
+            this.label_Print_At.Name = "label_Print_At";
+            this.label_Print_At.Size = new System.Drawing.Size(0, 12);
+            this.label_Print_At.TabIndex = 255;
+            // 
             // Form_BXCYFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2074,6 +2140,16 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(234)))), ((int)(((byte)(170)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.button_F5_Description);
+            this.Controls.Add(this.label_Print_At);
+            this.Controls.Add(this.label_Print_By);
+            this.Controls.Add(this.panel_Update);
+            this.Controls.Add(this.label_Uploaded_By);
+            this.Controls.Add(this.label_Version);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label_Uploaded_At);
+            this.Controls.Add(this.button_Printed);
+            this.Controls.Add(this.label_Printed);
             this.Controls.Add(this.button_F_S_Detail);
             this.Controls.Add(this.textBox_FZDetail);
             this.Controls.Add(this.button_F11_Add_test);
@@ -2100,10 +2176,8 @@
             this.Controls.Add(this.label_Snop_M2);
             this.Controls.Add(this.comboBox_Snop_M3);
             this.Controls.Add(this.label_Snop_M3);
-            this.Controls.Add(this.panel_Update);
             this.Controls.Add(this.textBox_Cytology);
             this.Controls.Add(this.button_Cytology);
-            this.Controls.Add(this.button_F5_Description);
             this.Controls.Add(this.comboBox_Snop_T2);
             this.Controls.Add(this.label_Snop_T2);
             this.Controls.Add(this.comboBox_Snop_T3);
@@ -2137,7 +2211,6 @@
             this.Controls.Add(this.textBox_Date);
             this.Controls.Add(this.label_Date);
             this.Controls.Add(this.label_New_Record);
-            this.Controls.Add(this.button_Printed);
             this.Controls.Add(this.label_Remarks);
             this.Controls.Add(this.label_Sign_By_Dr_2);
             this.Controls.Add(this.label_Sign_By_Dr_1);
@@ -2351,5 +2424,12 @@
         private System.Windows.Forms.TextBox textBox_EM;
         private System.Windows.Forms.TextBox textBox_SISH;
         private System.Windows.Forms.TextBox textBox_FZDetail;
+        private System.Windows.Forms.Label label_Printed;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_Uploaded_At;
+        private System.Windows.Forms.Label label_Version;
+        private System.Windows.Forms.Label label_Uploaded_By;
+        private System.Windows.Forms.Label label_Print_By;
+        private System.Windows.Forms.Label label_Print_At;
     }
 }

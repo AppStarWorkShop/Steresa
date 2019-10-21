@@ -659,6 +659,8 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
             textBox_Issued_At.DataBindings.Clear();
+
+            label_Printed.DataBindings.Clear();
             //textBox_Rpt_Date.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
@@ -820,6 +822,10 @@ namespace St.Teresa_LIS_2019
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
             textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
+
+            label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
         }
 
         private void reloadDBData(int position = 0)

@@ -154,6 +154,7 @@
             this.textBox_Patient_s_Clinical_History = new System.Windows.Forms.TextBox();
             this.textBox_Remarks = new System.Windows.Forms.TextBox();
             this.textBox_Nature = new System.Windows.Forms.TextBox();
+            this.label_Printed = new System.Windows.Forms.Label();
             this.panel_Update.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -1700,12 +1701,23 @@
             this.textBox_Nature.Size = new System.Drawing.Size(17, 21);
             this.textBox_Nature.TabIndex = 297;
             // 
+            // label_Printed
+            // 
+            this.label_Printed.AutoSize = true;
+            this.label_Printed.Location = new System.Drawing.Point(61, 541);
+            this.label_Printed.Name = "label_Printed";
+            this.label_Printed.Size = new System.Drawing.Size(11, 12);
+            this.label_Printed.TabIndex = 298;
+            this.label_Printed.Text = "0";
+            // 
             // Form_CYTOLOGYFileGyname
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(204)))), ((int)(((byte)(171)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
+            this.Controls.Add(this.button_Printed);
+            this.Controls.Add(this.label_Printed);
             this.Controls.Add(this.textBox_Nature);
             this.Controls.Add(this.textBox_Remarks);
             this.Controls.Add(this.textBox_Patient_s_Clinical_History);
@@ -1756,7 +1768,6 @@
             this.Controls.Add(this.textBox_Date);
             this.Controls.Add(this.label_Date);
             this.Controls.Add(this.label_New_Record);
-            this.Controls.Add(this.button_Printed);
             this.Controls.Add(this.label_Remarks);
             this.Controls.Add(this.label_Sign_By_Dr_2);
             this.Controls.Add(this.label_Sign_By_Dr_1);
@@ -1936,5 +1947,6 @@
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.TextBox textBox_Issued_At;
         private System.Windows.Forms.TextBox textBox_Nature;
+        private System.Windows.Forms.Label label_Printed;
     }
 }

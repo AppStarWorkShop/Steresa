@@ -273,6 +273,16 @@ namespace St.Teresa_LIS_2019
 
             checkBox_F_S.DataBindings.Clear();
             textBox_FZDetail.DataBindings.Clear();
+            label_Printed.DataBindings.Clear();
+
+            checkBox_Uploaded.DataBindings.Clear();
+
+            label_Uploaded_At.DataBindings.Clear();
+            label_Uploaded_By.DataBindings.Clear();
+            label_Version.DataBindings.Clear();
+
+            label_Print_At.DataBindings.Clear();
+            label_Print_By.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -438,6 +448,16 @@ namespace St.Teresa_LIS_2019
 
             checkBox_F_S.DataBindings.Add("Checked", dt, "fz_section", false);
             textBox_FZDetail.DataBindings.Add("Text", dt, "fz_detail", false);
+            label_Printed.DataBindings.Add("Text",dt, "print_ctr",false);
+
+            checkBox_Uploaded.DataBindings.Add("Checked", dt, "uploaded", false);
+
+            label_Uploaded_At.DataBindings.Add("Text", dt, "print_ctr", false);
+            label_Uploaded_By.DataBindings.Add("Text", dt, "print_ctr", false);
+            label_Version.DataBindings.Add("Text", dt, "ver", false);
+
+            label_Print_At.DataBindings.Add("Text", dt, "print_at", false);
+            label_Print_By.DataBindings.Add("Text", dt, "print_by", false);
 
             /*currencyManager = (CurrencyManager)this.BindingContext[dt];
             if (position != -1)
@@ -461,6 +481,8 @@ namespace St.Teresa_LIS_2019
 
                 id = null;
             }*/
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0":label_Printed.Text.Trim());
         }
 
         private void reloadDBData(int position = 0)
@@ -926,6 +948,8 @@ namespace St.Teresa_LIS_2019
                 string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id > {1}) or case_no > '{0}') AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY  case_no,id", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
             }
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
         }
 
         private void button_Back_Click(object sender, EventArgs e)
@@ -942,6 +966,8 @@ namespace St.Teresa_LIS_2019
                 string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id < {1}) or case_no < '{0}') AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no DESC,id DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
             }
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -949,6 +975,8 @@ namespace St.Teresa_LIS_2019
             //currencyManager.Position = 0;
             string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no,id");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
         }
 
         private void button_End_Click(object sender, EventArgs e)
@@ -956,6 +984,8 @@ namespace St.Teresa_LIS_2019
             //currencyManager.Position = currencyManager.Count - 1;
             string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no DESC,id DESC");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -1810,7 +1840,19 @@ namespace St.Teresa_LIS_2019
 
         private void button_Printed_Click(object sender, EventArgs e)
         {
+            string message = string.Format("Last Printed By: {0}" +
+                "\nLast Printed At: {1}" +
+                "\nTotal Printed Counter: {2}", label_Print_By.Text.Trim(), label_Print_At.Text.Trim(), label_Printed.Text.Trim());
+            MessageBox.Show(message, "Report Printing Staticstic");
+        }
 
+        private void label3_Click(object sender, EventArgs e)
+        {
+            string message = string.Format("Uploaded Record(s) With PDF File To STH's Database Server:\n" +
+                "Uploaded At       Uploaded By       Version\n" +
+                "===========================================\n" +
+                "{0}      {1}      {2}", label_Uploaded_At.Text.Trim(), label_Uploaded_By.Text.Trim(), label_Version.Text.Trim());
+            MessageBox.Show(message, "Uploaded Record(s)");
         }
     }
 }

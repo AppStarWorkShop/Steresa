@@ -152,6 +152,7 @@
             this.textBox_Uploaded_Date_Time = new System.Windows.Forms.TextBox();
             this.label_Uploaded_Date_Time = new System.Windows.Forms.Label();
             this.textBox_ID = new System.Windows.Forms.TextBox();
+            this.label_Printed = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Has_Previous)).BeginInit();
             this.panel_Update.SuspendLayout();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
@@ -1673,12 +1674,23 @@
             this.textBox_ID.Size = new System.Drawing.Size(19, 21);
             this.textBox_ID.TabIndex = 337;
             // 
+            // label_Printed
+            // 
+            this.label_Printed.AutoSize = true;
+            this.label_Printed.Location = new System.Drawing.Point(67, 542);
+            this.label_Printed.Name = "label_Printed";
+            this.label_Printed.Size = new System.Drawing.Size(11, 12);
+            this.label_Printed.TabIndex = 338;
+            this.label_Printed.Text = "0";
+            // 
             // Form_BXeHRCCSPFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(210)))), ((int)(((byte)(232)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
+            this.Controls.Add(this.button_Printed);
+            this.Controls.Add(this.label_Printed);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.textBox_Uploaded_Date_Time);
             this.Controls.Add(this.label_Uploaded_Date_Time);
@@ -1721,7 +1733,6 @@
             this.Controls.Add(this.textBox_Cytology);
             this.Controls.Add(this.button_Cytology);
             this.Controls.Add(this.button_F5_Description);
-            this.Controls.Add(this.button_Printed);
             this.Controls.Add(this.label_Remarks);
             this.Controls.Add(this.button_Delete);
             this.Controls.Add(this.button_End);
@@ -1910,5 +1921,6 @@
         private System.Windows.Forms.TextBox textBox_Uploaded_Date_Time;
         private System.Windows.Forms.Label label_Uploaded_Date_Time;
         private System.Windows.Forms.TextBox textBox_ID;
+        private System.Windows.Forms.Label label_Printed;
     }
 }

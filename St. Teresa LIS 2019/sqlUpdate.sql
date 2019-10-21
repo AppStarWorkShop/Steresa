@@ -846,3 +846,8 @@ BEGIN
 	END
 END
 GO
+
+UPDATE BXCY_SPECIMEN SET uploaded='1' where uploaded='Y'
+UPDATE BXCY_SPECIMEN SET uploaded='0' where uploaded<>'1'
+ALTER table BXCY_SPECIMEN alter column uploaded bit
+UPDATE BXCY_SPECIMEN SET uploaded=0 where uploaded IS NULL
