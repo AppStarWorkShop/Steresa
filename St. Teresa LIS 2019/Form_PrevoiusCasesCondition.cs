@@ -15,6 +15,7 @@ namespace St.Teresa_LIS_2019
         private DataTable dt;
         private DataSet bxcy_specimenDataSet = new DataSet();
         private string hkid;
+        private string currentId;
 
         public delegate void BxcySpecimentSelectedSingle(string str);
         public BxcySpecimentSelectedSingle OnBxcySpecimentSelectedSingle;
@@ -24,9 +25,17 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
+        public Form_PrevoiusCasesCondition(string hkid, string currentId)
+        {
+            this.hkid = hkid;
+            this.currentId = currentId;
+            InitializeComponent();
+        }
+
         public Form_PrevoiusCasesCondition(string hkid)
         {
             this.hkid = hkid;
+            this.currentId = null;
             InitializeComponent();
         }
 
@@ -39,6 +48,11 @@ namespace St.Teresa_LIS_2019
         private void loadDataGridViewDate(int currentPageNum = 1)
         {
             string sql = string.Format("select bs.[case_no], [date], ISNULL(bs.[snopcode_t],'') as Tcode1, ISNULL(bs.[snopcode_t2],'') as Tcode2, ISNULL(bs.[snopcode_t3],'') as Tcode3, ISNULL(bs.[snopcode_m],'') as Mcode1, ISNULL(bs.[snopcode_m2],'') as Mcode2, ISNULL(bs.[snopcode_m3],'') as Mcode3,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' Order by bs.[case_no] desc", hkid);
+            if (currentId != null)
+            {
+                sql = string.Format("select bs.[case_no], [date], ISNULL(bs.[snopcode_t],'') as Tcode1, ISNULL(bs.[snopcode_t2],'') as Tcode2, ISNULL(bs.[snopcode_t3],'') as Tcode3, ISNULL(bs.[snopcode_m],'') as Mcode1, ISNULL(bs.[snopcode_m2],'') as Mcode2, ISNULL(bs.[snopcode_m3],'') as Mcode3,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and bs.id <> {1} Order by bs.[case_no] desc", hkid, currentId);
+            }
+
             SqlCommand checkCmd = new SqlCommand(sql, DBConn.getConnection());
             checkCmd.CommandType = CommandType.Text;
 

@@ -273,16 +273,19 @@ namespace St.Teresa_LIS_2019
 
             checkBox_F_S.DataBindings.Clear();
             textBox_FZDetail.DataBindings.Clear();
+
             label_Printed.DataBindings.Clear();
 
             checkBox_Uploaded.DataBindings.Clear();
 
-            label_Uploaded_At.DataBindings.Clear();
-            label_Uploaded_By.DataBindings.Clear();
+            /*label_Uploaded_At.DataBindings.Clear();
+            label_Uploaded_By.DataBindings.Clear();*/
             label_Version.DataBindings.Clear();
 
             label_Print_At.DataBindings.Clear();
             label_Print_By.DataBindings.Clear();
+
+            checkBox_Supp.DataBindings.Clear();
 
             dt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -449,15 +452,16 @@ namespace St.Teresa_LIS_2019
             checkBox_F_S.DataBindings.Add("Checked", dt, "fz_section", false);
             textBox_FZDetail.DataBindings.Add("Text", dt, "fz_detail", false);
             label_Printed.DataBindings.Add("Text",dt, "print_ctr",false);
-
             checkBox_Uploaded.DataBindings.Add("Checked", dt, "uploaded", false);
 
-            label_Uploaded_At.DataBindings.Add("Text", dt, "print_ctr", false);
-            label_Uploaded_By.DataBindings.Add("Text", dt, "print_ctr", false);
-            label_Version.DataBindings.Add("Text", dt, "ver", false);
+            /*label_Uploaded_At.DataBindings.Add("Text", dt, "update_at", false);
+            label_Uploaded_By.DataBindings.Add("Text", dt, "update_by", false);*/
+            label_Version.DataBindings.Add("Text", dt, "update_ctr", false);
 
             label_Print_At.DataBindings.Add("Text", dt, "print_at", false);
             label_Print_By.DataBindings.Add("Text", dt, "print_by", false);
+
+            checkBox_Supp.DataBindings.Add("Checked", dt, "supp", false);
 
             /*currencyManager = (CurrencyManager)this.BindingContext[dt];
             if (position != -1)
@@ -483,6 +487,8 @@ namespace St.Teresa_LIS_2019
             }*/
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0":label_Printed.Text.Trim());
+
+            setPreviousRecordMark();
         }
 
         private void reloadDBData(int position = 0)
@@ -585,7 +591,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_F2_Previous_Click(object sender, EventArgs e)
         {
-            Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition(textBox_HKID.Text.Trim());
+            Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition(textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
             //open.OnBxcySpecimentSelectedSingle += OnBxcySpecimentSelected;
             open.Show();
         }
@@ -950,6 +956,8 @@ namespace St.Teresa_LIS_2019
             }
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+
+            setPreviousRecordMark();
         }
 
         private void button_Back_Click(object sender, EventArgs e)
@@ -968,6 +976,8 @@ namespace St.Teresa_LIS_2019
             }
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+
+            setPreviousRecordMark();
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -977,6 +987,8 @@ namespace St.Teresa_LIS_2019
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+
+            setPreviousRecordMark();
         }
 
         private void button_End_Click(object sender, EventArgs e)
@@ -986,6 +998,8 @@ namespace St.Teresa_LIS_2019
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+
+            setPreviousRecordMark();
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -1398,6 +1412,11 @@ namespace St.Teresa_LIS_2019
                 button_F9_3.Enabled = false;
                 button_Advance.Enabled = true;
 
+                button_Rpt_Date_Tick.Enabled = false;
+                checkBox_Supp.Enabled = false;
+                checkBox_F_S.Enabled = false;
+                checkBox_Uploaded.Enabled = false;
+
                 disedit_modle();
             }
             else
@@ -1480,6 +1499,11 @@ namespace St.Teresa_LIS_2019
                     button3.Enabled = true;
                     button_F9_3.Enabled = true;
                     button_Advance.Enabled = false;
+
+                    button_Rpt_Date_Tick.Enabled = true;
+                    checkBox_Supp.Enabled = true;
+                    checkBox_F_S.Enabled = true;
+                    checkBox_Uploaded.Enabled = true;
 
                     edit_modle();
                 }
@@ -1564,6 +1588,11 @@ namespace St.Teresa_LIS_2019
                         button_F9_3.Enabled = true;
                         button_Advance.Enabled = false;
 
+                        button_Rpt_Date_Tick.Enabled = true;
+                        checkBox_Supp.Enabled = true;
+                        checkBox_F_S.Enabled = true;
+                        checkBox_Uploaded.Enabled = true;
+
                         edit_modle();
                     }
                     else
@@ -1646,6 +1675,11 @@ namespace St.Teresa_LIS_2019
                             button3.Enabled = true;
                             button_F9_3.Enabled = true;
                             button_Advance.Enabled = false;
+
+                            button_Rpt_Date_Tick.Enabled = true;
+                            checkBox_Supp.Enabled = true;
+                            checkBox_F_S.Enabled = true;
+                            checkBox_Uploaded.Enabled = true;
 
                             edit_modle();
                         }
@@ -1851,8 +1885,25 @@ namespace St.Teresa_LIS_2019
             string message = string.Format("Uploaded Record(s) With PDF File To STH's Database Server:\n" +
                 "Uploaded At       Uploaded By       Version\n" +
                 "===========================================\n" +
-                "{0}      {1}      {2}", label_Uploaded_At.Text.Trim(), label_Uploaded_By.Text.Trim(), label_Version.Text.Trim());
+                "{0}{1}{2}", textBox_Updated_At.Text.Trim().PadRight(20,' '), textBox_Updated_By_1.Text.Trim().PadRight(24, ' '), label_Version.Text.Trim());
             MessageBox.Show(message, "Uploaded Record(s)");
         }
+
+        private void setPreviousRecordMark()
+        {
+            DataSet bxcyDataSet = new DataSet();
+            string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and id <> {1}", textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcyDataSet, "BXCY_SPECIMEN");
+
+            if (bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
+            {
+                pictureBox_Has_Previous.Visible = true;
+            }
+            else
+            {
+                pictureBox_Has_Previous.Visible = false;
+            }
+        }
+            
     }
 }

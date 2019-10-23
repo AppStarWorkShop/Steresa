@@ -851,3 +851,17 @@ UPDATE BXCY_SPECIMEN SET uploaded='1' where uploaded='Y'
 UPDATE BXCY_SPECIMEN SET uploaded='0' where uploaded<>'1'
 ALTER table BXCY_SPECIMEN alter column uploaded bit
 UPDATE BXCY_SPECIMEN SET uploaded=0 where uploaded IS NULL
+
+ALTER table BXCY_SPECIMEN alter column supp bit
+UPDATE BXCY_SPECIMEN SET supp=0 where supp IS NULL
+
+
+UPDATE ebv_specimen SET uploaded='1' where uploaded='Y'
+UPDATE ebv_specimen SET uploaded='0' where uploaded<>'1'
+ALTER table ebv_specimen alter column uploaded bit
+UPDATE ebv_specimen SET uploaded=0 where uploaded IS NULL
+
+UPDATE ebv_specimen SET TUMOUR='1' where TUMOUR='Y'
+UPDATE ebv_specimen SET TUMOUR='0' where TUMOUR<>'1'
+ALTER table ebv_specimen alter column TUMOUR bit
+UPDATE ebv_specimen SET TUMOUR=0 where TUMOUR IS NULL

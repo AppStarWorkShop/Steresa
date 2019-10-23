@@ -203,6 +203,16 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Clear();
             textBox_Issued_By.DataBindings.Clear();
 
+            checkBox_Tumour.DataBindings.Clear();
+            checkBox_Uploaded.DataBindings.Clear();
+
+            label_Printed.DataBindings.Clear();
+
+            label_Print_At.DataBindings.Clear();
+            label_Print_By.DataBindings.Clear();
+
+            label_Version.DataBindings.Clear();
+
             dt = ebv_specimenDataSet.Tables["ebv_specimen"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
@@ -309,6 +319,19 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
 
+            checkBox_Tumour.DataBindings.Add("Checked", dt, "TUMOUR", false);
+            checkBox_Uploaded.DataBindings.Add("Checked", dt, "UPLOADED", false);
+
+            label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
+
+            label_Print_At.DataBindings.Add("Text", dt, "print_at", false);
+            label_Print_By.DataBindings.Add("Text", dt, "print_by", false);
+
+            label_Version.DataBindings.Add("Text", dt, "update_ctr", false);
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+
+            setPreviousRecordMark();
             //currencyManager = (CurrencyManager)this.BindingContext[dt];
 
             //currencyManager.List.
@@ -357,6 +380,9 @@ namespace St.Teresa_LIS_2019
                 string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}' ORDER BY CASE_NO,ID", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
             }
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+            setPreviousRecordMark();
         }
 
         private void button_Back_Click(object sender, EventArgs e)
@@ -368,6 +394,9 @@ namespace St.Teresa_LIS_2019
                 string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}' ORDER BY CASE_NO DESC,ID DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
             }
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+            setPreviousRecordMark();
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -375,6 +404,9 @@ namespace St.Teresa_LIS_2019
             //currencyManager.Position = 0;
             string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY CASE_NO,ID");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+            setPreviousRecordMark();
         }
 
         private void button_End_Click(object sender, EventArgs e)
@@ -382,6 +414,9 @@ namespace St.Teresa_LIS_2019
             //currencyManager.Position = currencyManager.Count - 1;
             string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [ebv_specimen] ORDER BY CASE_NO DESC,ID DESC");
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, ebv_specimenDataSet, "ebv_specimen");
+
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+            setPreviousRecordMark();
         }
 
         private void button_New_Click(object sender, EventArgs e)
@@ -515,6 +550,10 @@ namespace St.Teresa_LIS_2019
                 comboBox_Diagnosis.Enabled = false;
                 textBox_Remind.Enabled = false;
 
+                button_Rpt_Date_Tick.Enabled = false;
+                checkBox_Tumour.Enabled = false;
+                checkBox_Uploaded.Enabled = false;
+
                 disedit_modle();
             }
             else
@@ -573,6 +612,10 @@ namespace St.Teresa_LIS_2019
                     comboBox_Diagnosis.Enabled = true;
                     textBox_Remind.Enabled = true;
 
+                    button_Rpt_Date_Tick.Enabled = true;
+                    checkBox_Tumour.Enabled = true;
+                    checkBox_Uploaded.Enabled = true;
+
                     edit_modle();
                 }
                 else
@@ -630,6 +673,10 @@ namespace St.Teresa_LIS_2019
                         comboBox_SignDr.Enabled = true;
                         comboBox_Diagnosis.Enabled = true;
                         textBox_Remind.Enabled = true;
+
+                        button_Rpt_Date_Tick.Enabled = true;
+                        checkBox_Tumour.Enabled = true;
+                        checkBox_Uploaded.Enabled = true;
 
                         edit_modle();
                     }
@@ -909,13 +956,50 @@ namespace St.Teresa_LIS_2019
 
         private void button_Printed_Click(object sender, EventArgs e)
         {
-
+            string message = string.Format("Last Printed By: {0}" +
+                "\nLast Printed At: {1}" +
+                "\nTotal Printed Counter: {2}", label_Print_By.Text.Trim(), label_Print_At.Text.Trim(), label_Printed.Text.Trim());
+            MessageBox.Show(message, "Report Printing Staticstic");
         }
 
         private void button_Label_Click(object sender, EventArgs e)
         {
             Form_PathologyReportEBV open = new Form_PathologyReportEBV();
             open.Show();
+        }
+
+        private void setPreviousRecordMark()
+        {
+            DataSet bxcyDataSet = new DataSet();
+            string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}'", textBox_HKID.Text.Trim());
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcyDataSet, "BXCY_SPECIMEN");
+
+            if (bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
+            {
+                pictureBox_Has_Previous.Visible = true;
+            }
+            else
+            {
+                pictureBox_Has_Previous.Visible = false;
+            }
+        }
+
+        private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
+        {
+            textBox_ReportDate.Text = DateTime.Now.ToString("yyyy/MM/dd");
+
+            textBox_ReportDate.Focus();
+            textBox_ReportDate.Select(textBox_ReportDate.TextLength, 0);
+            textBox_ReportDate.ScrollToCaret();
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+            string message = string.Format("Uploaded Record(s) With PDF File To STH's Database Server:\n" +
+                "Uploaded At       Uploaded By       Version\n" +
+                "===========================================\n" +
+                "{0}{1}{2}", textBox_Updated_At.Text.Trim().PadRight(20, ' '), textBox_Updated_By_1.Text.Trim().PadRight(24, ' '), label_Version.Text.Trim());
+            MessageBox.Show(message, "Uploaded Record(s)");
         }
     }
 }

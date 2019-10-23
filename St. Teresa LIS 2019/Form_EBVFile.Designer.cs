@@ -114,7 +114,7 @@
             this.textBox_Result4 = new System.Windows.Forms.TextBox();
             this.textBox_Result5 = new System.Windows.Forms.TextBox();
             this.textBox_Result6 = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_Tumour = new System.Windows.Forms.CheckBox();
             this.button_Rpt_Date_Tick = new System.Windows.Forms.Button();
             this.comboBox_Diagnosis = new System.Windows.Forms.ComboBox();
             this.button_F_S_Detail = new System.Windows.Forms.Button();
@@ -139,6 +139,11 @@
             this.textBox_Patient_s_Clinical_History = new System.Windows.Forms.TextBox();
             this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_DOB = new System.Windows.Forms.TextBox();
+            this.label_Printed = new System.Windows.Forms.Label();
+            this.label_Print_By = new System.Windows.Forms.Label();
+            this.label_Print_At = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label_Version = new System.Windows.Forms.Label();
             this.panel_Update.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel_BX_CY_SPECIMEN.SuspendLayout();
@@ -244,11 +249,10 @@
             this.checkBox_Uploaded.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(209)))), ((int)(((byte)(57)))));
             this.checkBox_Uploaded.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Uploaded.ForeColor = System.Drawing.Color.Blue;
-            this.checkBox_Uploaded.Location = new System.Drawing.Point(697, 138);
+            this.checkBox_Uploaded.Location = new System.Drawing.Point(702, 140);
             this.checkBox_Uploaded.Name = "checkBox_Uploaded";
-            this.checkBox_Uploaded.Size = new System.Drawing.Size(80, 19);
+            this.checkBox_Uploaded.Size = new System.Drawing.Size(15, 14);
             this.checkBox_Uploaded.TabIndex = 236;
-            this.checkBox_Uploaded.Text = "Uploaded";
             this.checkBox_Uploaded.UseVisualStyleBackColor = false;
             // 
             // checkBox_P_C
@@ -428,7 +432,7 @@
             this.button_Printed.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Printed.ForeColor = System.Drawing.Color.Purple;
             this.button_Printed.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Printed.Location = new System.Drawing.Point(285, 493);
+            this.button_Printed.Location = new System.Drawing.Point(287, 492);
             this.button_Printed.Name = "button_Printed";
             this.button_Printed.Size = new System.Drawing.Size(98, 25);
             this.button_Printed.TabIndex = 217;
@@ -1151,18 +1155,18 @@
             this.textBox_Result6.TabIndex = 256;
             this.textBox_Result6.Text = "N";
             // 
-            // checkBox1
+            // checkBox_Tumour
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(233)))), ((int)(((byte)(198)))));
-            this.checkBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.ForeColor = System.Drawing.Color.DarkRed;
-            this.checkBox1.Location = new System.Drawing.Point(530, 138);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(109, 19);
-            this.checkBox1.TabIndex = 258;
-            this.checkBox1.Text = "Tumour Marker";
-            this.checkBox1.UseVisualStyleBackColor = false;
+            this.checkBox_Tumour.AutoSize = true;
+            this.checkBox_Tumour.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(233)))), ((int)(((byte)(198)))));
+            this.checkBox_Tumour.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox_Tumour.ForeColor = System.Drawing.Color.DarkRed;
+            this.checkBox_Tumour.Location = new System.Drawing.Point(530, 138);
+            this.checkBox_Tumour.Name = "checkBox_Tumour";
+            this.checkBox_Tumour.Size = new System.Drawing.Size(109, 19);
+            this.checkBox_Tumour.TabIndex = 258;
+            this.checkBox_Tumour.Text = "Tumour Marker";
+            this.checkBox_Tumour.UseVisualStyleBackColor = false;
             // 
             // button_Rpt_Date_Tick
             // 
@@ -1174,6 +1178,7 @@
             this.button_Rpt_Date_Tick.Size = new System.Drawing.Size(43, 25);
             this.button_Rpt_Date_Tick.TabIndex = 259;
             this.button_Rpt_Date_Tick.UseVisualStyleBackColor = true;
+            this.button_Rpt_Date_Tick.Click += new System.EventHandler(this.button_Rpt_Date_Tick_Click);
             // 
             // comboBox_Diagnosis
             // 
@@ -1434,6 +1439,46 @@
             this.textBox_DOB.Size = new System.Drawing.Size(180, 26);
             this.textBox_DOB.TabIndex = 298;
             // 
+            // label_Printed
+            // 
+            this.label_Printed.Location = new System.Drawing.Point(313, 497);
+            this.label_Printed.Name = "label_Printed";
+            this.label_Printed.Size = new System.Drawing.Size(11, 12);
+            this.label_Printed.TabIndex = 299;
+            this.label_Printed.Text = "0";
+            // 
+            // label_Print_By
+            // 
+            this.label_Print_By.Location = new System.Drawing.Point(330, 497);
+            this.label_Print_By.Name = "label_Print_By";
+            this.label_Print_By.Size = new System.Drawing.Size(11, 12);
+            this.label_Print_By.TabIndex = 300;
+            // 
+            // label_Print_At
+            // 
+            this.label_Print_At.Location = new System.Drawing.Point(347, 497);
+            this.label_Print_At.Name = "label_Print_At";
+            this.label_Print_At.Size = new System.Drawing.Size(11, 12);
+            this.label_Print_At.TabIndex = 301;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(209)))), ((int)(((byte)(57)))));
+            this.label11.Location = new System.Drawing.Point(718, 141);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(53, 12);
+            this.label11.TabIndex = 302;
+            this.label11.Text = "Uploaded";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
+            // label_Version
+            // 
+            this.label_Version.Location = new System.Drawing.Point(330, 498);
+            this.label_Version.Name = "label_Version";
+            this.label_Version.Size = new System.Drawing.Size(11, 12);
+            this.label_Version.TabIndex = 303;
+            // 
             // Form_EBVFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -1441,6 +1486,12 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(187)))), ((int)(((byte)(200)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(1009, 675);
             this.ControlBox = false;
+            this.Controls.Add(this.button_Printed);
+            this.Controls.Add(this.label_Version);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label_Print_At);
+            this.Controls.Add(this.label_Print_By);
+            this.Controls.Add(this.label_Printed);
             this.Controls.Add(this.textBox_DOB);
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.textBox_Patient_s_Clinical_History);
@@ -1454,7 +1505,7 @@
             this.Controls.Add(this.button_F_S_Detail);
             this.Controls.Add(this.comboBox_Diagnosis);
             this.Controls.Add(this.button_Rpt_Date_Tick);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.checkBox_Tumour);
             this.Controls.Add(this.textBox_Result6);
             this.Controls.Add(this.textBox_Result5);
             this.Controls.Add(this.label7);
@@ -1490,7 +1541,6 @@
             this.Controls.Add(this.label_Ethnic);
             this.Controls.Add(this.textBox_Date);
             this.Controls.Add(this.label_Date);
-            this.Controls.Add(this.button_Printed);
             this.Controls.Add(this.label_Remarks);
             this.Controls.Add(this.label_Bed);
             this.Controls.Add(this.label_Room);
@@ -1625,7 +1675,7 @@
         private System.Windows.Forms.TextBox textBox_Result4;
         private System.Windows.Forms.TextBox textBox_Result5;
         private System.Windows.Forms.TextBox textBox_Result6;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox_Tumour;
         private System.Windows.Forms.Button button_Rpt_Date_Tick;
         private System.Windows.Forms.ComboBox comboBox_Diagnosis;
         private System.Windows.Forms.Button button_F_S_Detail;
@@ -1650,5 +1700,10 @@
         private System.Windows.Forms.TextBox textBox_Patient_s_Clinical_History;
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.TextBox textBox_DOB;
+        private System.Windows.Forms.Label label_Printed;
+        private System.Windows.Forms.Label label_Print_By;
+        private System.Windows.Forms.Label label_Print_At;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label_Version;
     }
 }
