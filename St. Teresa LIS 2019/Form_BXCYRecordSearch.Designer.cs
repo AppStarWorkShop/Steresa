@@ -101,6 +101,7 @@
             this.textBox_Search_Type.Size = new System.Drawing.Size(254, 27);
             this.textBox_Search_Type.TabIndex = 50;
             this.textBox_Search_Type.TextChanged += new System.EventHandler(this.textBox_Search_Type_TextChanged);
+            this.textBox_Search_Type.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Search_Type_KeyUp);
             // 
             // label_Search_Type
             // 
@@ -398,6 +399,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(1008, 539);
             this.dataGridView1.TabIndex = 244;
             this.dataGridView1.VirtualMode = true;
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // BindingNavigate
             // 

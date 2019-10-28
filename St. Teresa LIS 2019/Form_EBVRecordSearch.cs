@@ -121,10 +121,12 @@ namespace St.Teresa_LIS_2019
                 dt.Columns.Add("Diagnosis");
                 dt.Columns.Add("Date Received");
                 dt.Columns.Add("Id");
+                dt.Columns.Add("Lab Ref");
+                dt.Columns.Add("Doctor ID");
 
                 foreach (DataRow mDr in dtDb.Rows)
                 {
-                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["result"], mDr["diagnosis"], mDr["date"],mDr["id"] });
+                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["result"], mDr["diagnosis"], mDr["date"],mDr["id"], mDr["LAB_REF"], mDr["DOCTOR_ID"] });
                 }
             }
             else
@@ -143,10 +145,12 @@ namespace St.Teresa_LIS_2019
                 dt.Columns.Add("Doctor In Charge");
                 dt.Columns.Add("HKID No.");
                 dt.Columns.Add("Id");
+                dt.Columns.Add("Lab Ref");
+                dt.Columns.Add("Doctor ID");
 
                 foreach (DataRow mDr in dtDb.Rows)
                 {
-                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["date"] ,mDr["result"], mDr["diagnosis"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["PAT_HKID"], mDr["id"] });
+                    dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["VER"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["date"] ,mDr["result"], mDr["diagnosis"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["PAT_HKID"], mDr["id"], mDr["LAB_REF"], mDr["DOCTOR_ID"] });
                 }
             }
 
@@ -189,6 +193,15 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column13 = dataGridView1.Columns[13];
             column13.Width = 1;
             column13.ReadOnly = true;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[14];
+            column14.Width = 1;
+            column14.ReadOnly = true;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[15];
+            column15.Width = 1;
+            column15.ReadOnly = true;
+
             this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
 
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 11, FontStyle.Bold);
@@ -238,6 +251,8 @@ namespace St.Teresa_LIS_2019
             dateTo = dateTimePicker_To.Value.ToString("yyyy-MM-dd");
 
             loadDataGridViewDate();
+
+            setButtonStatus();
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -277,7 +292,7 @@ namespace St.Teresa_LIS_2019
                 }
 
                 label_Search_Type.Text = labelSearching;
-
+                setButtonStatus();
             }
 
             if (keyData == Keys.Enter && (textBox_Search_Type.Focused || radioButton_Data_All.Focused || radioButton_Data_Past_7.Focused || radioButton_Data_Past_14.Focused || radioButton_Data_Past_28.Focused || radioButton_Data_From.Focused || dateTimePicker_From.Focused || dateTimePicker_To.Focused))
@@ -380,7 +395,7 @@ namespace St.Teresa_LIS_2019
         {
             Form_EBVFile open = new Form_EBVFile();
             open.Show();
-            open.processNew();
+            open.patientCopy(textBox_Search_Type.Text.Trim());
         }
 
         private void buttonF3_Edit_Record_Click(object sender, EventArgs e)
@@ -492,6 +507,106 @@ namespace St.Teresa_LIS_2019
                 {
                     searchRecord();
                 }
+            }
+        }
+
+        private void setButtonStatus()
+        {
+            button_F2_New_Record.Enabled = true;
+            buttonF3_Edit_Record.Enabled = true;
+            button_F5_New_Patient.Enabled = true;
+            button_F6_View_Record.Enabled = true;
+
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                buttonF3_Edit_Record.Enabled = true;
+                button_F6_View_Record.Enabled = true;
+            }
+            else
+            {
+                buttonF3_Edit_Record.Enabled = false;
+                button_F6_View_Record.Enabled = false;
+            }
+
+            if(contentSearching == "CASE_NO" && textBox_Search_Type.Text.Trim() != "")
+            {
+                button_F2_New_Record.Enabled = true;
+            }
+            else
+            {
+                button_F2_New_Record.Enabled = false;
+            }
+
+            if (contentSearching == "PATIENT" && textBox_Search_Type.Text.Trim() != "")
+            {
+                DataSet copyEbvDataSet = new DataSet();
+
+                string sql = string.Format("SELECT TOP 1 * FROM [EBV_SPECIMEN] WHERE PATIENT = '{0}'", textBox_Search_Type.Text.Trim());
+                DBConn.fetchDataIntoDataSetSelectOnly(sql, copyEbvDataSet, "EBV_SPECIMEN");
+
+                if (copyEbvDataSet.Tables["EBV_SPECIMEN"].Rows.Count > 0)
+                {
+                    button_F5_New_Patient.Enabled = false;
+                }
+                else
+                {
+                    button_F5_New_Patient.Enabled = true;
+                }
+            }
+            else
+            {
+                button_F5_New_Patient.Enabled = true;
+            }
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void dataGridView1_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine("Row Click!!!!!!" );
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                switch (contentSearching)
+                {
+                    case "CASE_NO":
+                        textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                        break;
+                    case "PATIENT":
+                        textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+                        break;
+                    case "PAT_HKID":
+                        if (columnType == 1)
+                        {
+                            textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[7].Value.ToString();
+                        }
+                        else
+                        {
+                            textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[12].Value.ToString();
+                        }
+                            
+                        break;
+                    case "hospitalNo":
+                        textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
+                        break;
+                    case "client":
+                        if (columnType == 1)
+                        {
+                            textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[8].Value.ToString();
+                        }
+                        else
+                        {
+                            textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[10].Value.ToString();
+                        }
+
+                        break;
+                    case "DOCTOR_ID":
+                        textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[16].Value.ToString();
+                        break;
+                }
+
+                setButtonStatus();
             }
         }
     }

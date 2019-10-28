@@ -349,6 +349,40 @@ namespace St.Teresa_LIS_2019
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
         }
 
+        public void patientCopy(string caseNo)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["Pat_age"] = 0;
+            currentEditRow["Pat_sex"] = "M";
+            currentEditRow["CLIENT"] = "ST. Teresa's Hospital";
+            currentEditRow["Institute"] = "ST. Teresa's Hospital";
+
+            DataSet copyBxcyDataSet = new DataSet();
+
+            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_specimen] WHERE case_no = '{0}'", caseNo);
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, copyBxcyDataSet, "bxcy_specimen");
+
+            if (copyBxcyDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+            {
+                DataRow mDr = copyBxcyDataSet.Tables["bxcy_specimen"].Rows[0];
+
+                currentEditRow["ETHNIC"] = mDr["ETHNIC"];
+                currentEditRow["PATIENT"] = mDr["PATIENT"];
+                currentEditRow["PAT_SEQ"] = mDr["PAT_SEQ"];
+                currentEditRow["CNAME"] = mDr["CNAME"];
+                currentEditRow["PAT_BIRTH"] = mDr["PAT_BIRTH"];
+                currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
+                currentEditRow["PAT_SEX"] = mDr["PAT_SEX"];
+                currentEditRow["PAT_HKID"] = mDr["PAT_HKID"];
+            }
+
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+        }
+
         private void button_New_Click(object sender, EventArgs e)
         {
             setButtonStatus(PageStatus.STATUS_NEW);

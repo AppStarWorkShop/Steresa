@@ -392,6 +392,8 @@
             this.dataGridView1.Size = new System.Drawing.Size(1008, 539);
             this.dataGridView1.TabIndex = 259;
             this.dataGridView1.VirtualMode = true;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // Form_EBVRecordSearch
             // 

@@ -384,7 +384,7 @@ BEGIN
 	IF @whereStr <> '' AND @whereVal <> ''
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq FROM BXCY_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID FROM BXCY_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
@@ -399,7 +399,7 @@ BEGIN
 	ELSE
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq FROM BXCY_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID FROM BXCY_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
@@ -516,7 +516,7 @@ BEGIN
 	IF @whereStr <> '' AND @whereVal <> ''
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date FROM EBV_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date,LAB_REF,DOCTOR_ID FROM EBV_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)
@@ -532,7 +532,7 @@ BEGIN
 	ELSE
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date FROM EBV_SPECIMEN
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date,LAB_REF,DOCTOR_ID FROM EBV_SPECIMEN
 		WHERE id >
 		(
 		 SELECT ISNULL(MAX(id),0)

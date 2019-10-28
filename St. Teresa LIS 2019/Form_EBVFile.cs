@@ -439,6 +439,38 @@ namespace St.Teresa_LIS_2019
             button_New.PerformClick();
         }
 
+        public void patientCopy(string caseNo)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = ebv_specimenDataSet.Tables["ebv_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["Pat_age"] = 0;
+            currentEditRow["Pat_sex"] = "M";
+
+            DataSet copyEbvDataSet = new DataSet();
+
+            string sql = string.Format("SELECT TOP 1 * FROM [EBV_SPECIMEN] WHERE case_no = '{0}'", caseNo);
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, copyEbvDataSet, "EBV_SPECIMEN");
+            
+            if(copyEbvDataSet.Tables["EBV_SPECIMEN"].Rows.Count > 0)
+            {
+                DataRow mDr = copyEbvDataSet.Tables["EBV_SPECIMEN"].Rows[0];
+
+                currentEditRow["ETHNIC"] = mDr["ETHNIC"];
+                currentEditRow["PATIENT"] = mDr["PATIENT"];
+                currentEditRow["PAT_SEQ"] = mDr["PAT_SEQ"];
+                currentEditRow["CNAME"] = mDr["CNAME"];
+                currentEditRow["PAT_BIRTH"] = mDr["PAT_BIRTH"];
+                currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
+                currentEditRow["PAT_SEX"] = mDr["PAT_SEX"];
+                currentEditRow["PAT_HKID"] = mDr["PAT_HKID"];
+            }
+
+            ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Clear();
+            ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Add(currentEditRow);
+        }
+
         private void button_Save_Click(object sender, EventArgs e)
         {
             if (currentStatus == PageStatus.STATUS_NEW)
