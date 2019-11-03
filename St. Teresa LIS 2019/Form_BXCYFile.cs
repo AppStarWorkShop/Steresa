@@ -59,7 +59,7 @@ namespace St.Teresa_LIS_2019
             public Double? inv_amt { get; set; }
             public DateTime? inv_date { get; set; }
             public DateTime? pay_date { get; set; }
-            public string fz_section { get; set; }
+            public bool? fz_section { get; set; }
             public string fz_detail { get; set; }
             public string cy_type { get; set; }
             public string cy_report { get; set; }
@@ -73,7 +73,7 @@ namespace St.Teresa_LIS_2019
             public string remark { get; set; }
             public string initial { get; set; }
             public Double? priv_case { get; set; }
-            public Double? supp { get; set; }
+            public bool? supp { get; set; }
             public string mt { get; set; }
             public string print_by { get; set; }
             public DateTime? print_at { get; set; }
@@ -84,7 +84,7 @@ namespace St.Teresa_LIS_2019
             public DateTime? update_at { get; set; }
             public Double? update_ctr { get; set; }
             public string updated { get; set; }
-            public string uploaded { get; set; }
+            public bool? uploaded { get; set; }
             public string snopcode_t2 { get; set; }
             public string desc_t2 { get; set; }
             public string snopcode_t3 { get; set; }
@@ -101,7 +101,8 @@ namespace St.Teresa_LIS_2019
             public string doctor_id3 { get; set; }
             public string histo { get; set; }
             public string cyto_Type { get; set; }
-    }
+            public string sish { get; set; }
+        }
 
         public class Bxcy_specimenStr{
             public int id { get; set; }
@@ -137,7 +138,7 @@ namespace St.Teresa_LIS_2019
             public string inv_amt { get; set; }
             public string inv_date { get; set; }
             public string pay_date { get; set; }
-            public string fz_section { get; set; }
+            public bool? fz_section { get; set; }
             public string fz_detail { get; set; }
             public string cy_type { get; set; }
             public string cy_report { get; set; }
@@ -151,7 +152,7 @@ namespace St.Teresa_LIS_2019
             public string remark { get; set; }
             public string initial { get; set; }
             public string priv_case { get; set; }
-            public string supp { get; set; }
+            public bool? supp { get; set; }
             public string mt { get; set; }
             public string print_by { get; set; }
             public string print_at { get; set; }
@@ -162,7 +163,7 @@ namespace St.Teresa_LIS_2019
             public string update_at { get; set; }
             public string update_ctr { get; set; }
             public string updated { get; set; }
-            public string uploaded { get; set; }
+            public bool? uploaded { get; set; }
             public string snopcode_t2 { get; set; }
             public string desc_t2 { get; set; }
             public string snopcode_t3 { get; set; }
@@ -179,6 +180,7 @@ namespace St.Teresa_LIS_2019
             public string doctor_id3 { get; set; }
             public string histo { get; set; }
             public string cyto_Type { get; set; }
+            public string sish { get; set; }
         }
 
         public string selected { get; private set; }
@@ -442,9 +444,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
             textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
-            //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
 
-            //ClassBinding objER = new ClassBinding();
             textBox_ER.DataBindings.Add(new Binding("Text", dt, "er"));
             textBox_EM.DataBindings.Add("Text", dt, "em", false);
             textBox_SISH.DataBindings.Add("Text", dt, "sish", false);
@@ -454,8 +454,6 @@ namespace St.Teresa_LIS_2019
             label_Printed.DataBindings.Add("Text",dt, "print_ctr",false);
             checkBox_Uploaded.DataBindings.Add("Checked", dt, "uploaded", false);
 
-            /*label_Uploaded_At.DataBindings.Add("Text", dt, "update_at", false);
-            label_Uploaded_By.DataBindings.Add("Text", dt, "update_by", false);*/
             label_Version.DataBindings.Add("Text", dt, "update_ctr", false);
 
             label_Print_At.DataBindings.Add("Text", dt, "print_at", false);
@@ -1087,6 +1085,11 @@ namespace St.Teresa_LIS_2019
             currentEditRow["Pat_sex"] = "M";
             currentEditRow["CLIENT"] = "ST. Teresa's Hospital";
             currentEditRow["Institute"] = "ST. Teresa's Hospital";
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
+
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
         }
@@ -1101,6 +1104,10 @@ namespace St.Teresa_LIS_2019
             currentEditRow["Pat_sex"] = "M";
             currentEditRow["CLIENT"] = "ST. Teresa's Hospital";
             currentEditRow["Institute"] = "ST. Teresa's Hospital";
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
 
             DataSet copyBxcyDataSet = new DataSet();
 
@@ -1166,10 +1173,15 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["inv_no"] = textBox_Involce_No.Text;
             currentEditRow["receipt"] = textBox_Receipt.Text;
-            currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
+            if (textBox_Invoice_Date.Text.Trim() != "") { 
+                currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
+            }
             currentEditRow["inv_amt"] = textBox_Amount_HK.Text;
 
-            currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null); 
+            if (textBox_Paid_Date.Text.Trim() != "")
+            {
+                currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null);
+            }
 
             //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text; 
             currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
@@ -1184,6 +1196,15 @@ namespace St.Teresa_LIS_2019
 
             //currentEditRow["remark"] = textBox_Remarks.Text;
             currentEditRow["initial"] = textBox_Cytology.Text;
+
+            currentEditRow["er"] = textBox_ER.Text;
+            currentEditRow["em"] = textBox_EM.Text;
+            currentEditRow["sish"] = textBox_SISH.Text;
+            currentEditRow["fz_section"] = checkBox_F_S.Checked;
+            currentEditRow["fz_detail"] = textBox_FZDetail.Text;
+            currentEditRow["uploaded"] = checkBox_Uploaded.Checked;
+            currentEditRow["supp"] = checkBox_Supp.Checked;
+
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
 
@@ -1245,6 +1266,14 @@ namespace St.Teresa_LIS_2019
             copybxcy_specimen.snopcode_m3 = comboBox_Snop_M3.Text;
             copybxcy_specimen.sign_dr2 = comboBox_Sign_By_Dr_2.Text;
             copybxcy_specimen.histo = comboBox_HistoType.Text;
+
+            copybxcy_specimen.er = textBox_ER.Text;
+            copybxcy_specimen.em = textBox_EM.Text;
+            copybxcy_specimen.sish = textBox_SISH.Text;
+            copybxcy_specimen.fz_section = checkBox_F_S.Checked;
+            copybxcy_specimen.fz_detail = textBox_FZDetail.Text;
+            copybxcy_specimen.uploaded = checkBox_Uploaded.Checked;
+            copybxcy_specimen.supp = checkBox_Supp.Checked;
 
             copybxcy_specimen.remark = textBox_Remarks.Text;
             copybxcy_specimen.initial = textBox_Cytology.Text;
@@ -1350,6 +1379,14 @@ namespace St.Teresa_LIS_2019
                         comboBox_Snop_M3.Text = copybxcy_specimen.snopcode_m3;
                         comboBox_Sign_By_Dr_2.Text = copybxcy_specimen.sign_dr2;
                         comboBox_HistoType.Text = copybxcy_specimen.histo;
+
+                        textBox_ER.Text = copybxcy_specimen.er;
+                        textBox_EM.Text = copybxcy_specimen.em;
+                        textBox_SISH.Text = copybxcy_specimen.sish;
+                        checkBox_F_S.Checked = copybxcy_specimen.fz_section.HasValue?copybxcy_specimen.fz_section.Value:false;
+                        textBox_FZDetail.Text = copybxcy_specimen.fz_detail;
+                        checkBox_Uploaded.Checked = copybxcy_specimen.uploaded.HasValue?copybxcy_specimen.uploaded.HasValue:false;
+                        checkBox_Supp.Checked = copybxcy_specimen.supp.HasValue? copybxcy_specimen.supp.Value:false;
 
                         textBox_Remarks.Text = copybxcy_specimen.remark;
                         textBox_Cytology.Text = copybxcy_specimen.initial;
@@ -1891,6 +1928,14 @@ namespace St.Teresa_LIS_2019
                 copybxcy_specimen.sign_dr2 = comboBox_Sign_By_Dr_2.Text;
                 copybxcy_specimen.histo = comboBox_HistoType.Text;
 
+                copybxcy_specimen.er = textBox_ER.Text;
+                copybxcy_specimen.em = textBox_EM.Text;
+                copybxcy_specimen.sish = textBox_SISH.Text;
+                copybxcy_specimen.fz_section = checkBox_F_S.Checked;
+                copybxcy_specimen.fz_detail = textBox_FZDetail.Text;
+                copybxcy_specimen.uploaded = checkBox_Uploaded.Checked;
+                copybxcy_specimen.supp = checkBox_Supp.Checked;
+
                 copybxcy_specimen.remark = textBox_Remarks.Text;
                 copybxcy_specimen.initial = textBox_Cytology.Text;
 
@@ -1927,10 +1972,10 @@ namespace St.Teresa_LIS_2019
         private void setPreviousRecordMark()
         {
             DataSet bxcyDataSet = new DataSet();
-            string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and id <> {1}", textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
+            string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where pat_hkid = '{0}' and id <> {1}", textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
             DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcyDataSet, "BXCY_SPECIMEN");
 
-            if (bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
+            if (bxcyDataSet.Tables["BXCY_SPECIMEN"] != null && bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
             {
                 pictureBox_Has_Previous.Visible = true;
             }

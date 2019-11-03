@@ -65,7 +65,7 @@ namespace St.Teresa_LIS_2019
             public string REMIND { get; set; }
             public string INITIAL { get; set; }
             public Double? PRIV_CASE { get; set; }
-            public string TUMOUR { get; set; }
+            public bool? TUMOUR { get; set; }
             public string PRINT_BY { get; set; }
             public DateTime? PRINT_AT { get; set; }
             public Double? PRINT_CTR { get; set; }
@@ -75,7 +75,7 @@ namespace St.Teresa_LIS_2019
             public DateTime? UPDATE_AT { get; set; }
             public string UPDATE_CTR { get; set; }
             public string UPDATED { get; set; }
-            public string UPLOADED { get; set; }
+            public bool? UPLOADED { get; set; }
         }
 
         public class Ebv_specimenStr
@@ -120,7 +120,7 @@ namespace St.Teresa_LIS_2019
             public string REMIND { get; set; }
             public string INITIAL { get; set; }
             public string PRIV_CASE { get; set; }
-            public string TUMOUR { get; set; }
+            public bool? TUMOUR { get; set; }
             public string PRINT_BY { get; set; }
             public string PRINT_AT { get; set; }
             public string PRINT_CTR { get; set; }
@@ -130,7 +130,7 @@ namespace St.Teresa_LIS_2019
             public string UPDATE_AT { get; set; }
             public string UPDATE_CTR { get; set; }
             public string UPDATED { get; set; }
-            public string UPLOADED { get; set; }
+            public bool? UPLOADED { get; set; }
         }
 
         public Form_EBVFile(string id = null)
@@ -323,10 +323,8 @@ namespace St.Teresa_LIS_2019
             checkBox_Uploaded.DataBindings.Add("Checked", dt, "UPLOADED", false);
 
             label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
-
             label_Print_At.DataBindings.Add("Text", dt, "print_at", false);
             label_Print_By.DataBindings.Add("Text", dt, "print_by", false);
-
             label_Version.DataBindings.Add("Text", dt, "update_ctr", false);
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
@@ -427,6 +425,8 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
+            currentEditRow["TUMOUR"] = 0;
+            currentEditRow["UPLOADED"] = 0;
 
             ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Clear();
             ebv_specimenDataSet.Tables["ebv_specimen"].Rows.Add(currentEditRow);
@@ -447,6 +447,8 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
+            currentEditRow["TUMOUR"] = 0;
+            currentEditRow["UPLOADED"] = 0;
 
             DataSet copyEbvDataSet = new DataSet();
 
@@ -757,6 +759,9 @@ namespace St.Teresa_LIS_2019
             copyEbv_specimen.REMIND = textBox_Remind.Text;
             copyEbv_specimen.INITIAL = textBox_Initial.Text;
 
+            copyEbv_specimen.TUMOUR = checkBox_Tumour.Checked;
+            copyEbv_specimen.UPLOADED = checkBox_Uploaded.Checked;
+
             setButtonStatus(PageStatus.STATUS_EDIT);
         }
 
@@ -817,6 +822,9 @@ namespace St.Teresa_LIS_2019
                         textBox_Result6.Text = copyEbv_specimen.RESULT6;
                         textBox_Remind.Text = copyEbv_specimen.REMIND;
                         textBox_Initial.Text = copyEbv_specimen.INITIAL;
+
+                        checkBox_Tumour.Checked = copyEbv_specimen.TUMOUR.HasValue? copyEbv_specimen.TUMOUR.Value:false;
+                        checkBox_Uploaded.Checked = copyEbv_specimen.UPLOADED.HasValue? copyEbv_specimen.UPLOADED.Value:false;
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);

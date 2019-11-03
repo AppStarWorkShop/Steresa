@@ -57,6 +57,7 @@ namespace St.Teresa_LIS_2019
             pageCurrent = 1;
             loadDataGridViewDate();
             dataGridViewFormat();
+            setButtonStatus();
         }
 
         private void loadDataGridViewDate(int currentPageNum = 1)
@@ -512,9 +513,27 @@ namespace St.Teresa_LIS_2019
 
         private void button_F5_New_Patient_Click(object sender, EventArgs e)
         {
-            Form_PatientFileMaintenancecs open = new Form_PatientFileMaintenancecs();
-            open.Show();
-            open.processNew();
+            if (label2.Text == "BX/CY")
+            {
+                Form_BXCYFile open = new Form_BXCYFile();
+                open.Show();
+                open.newRecord();
+            }
+            else
+            {
+                if (label2.Text == "D")
+                {
+                    Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile();
+                    open.Show();
+                    open.newRecord();
+                }
+                else
+                {
+                    Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname();
+                    open.Show();
+                    open.newRecord();
+                }
+            }
         }
         private void button_F5m()
         {

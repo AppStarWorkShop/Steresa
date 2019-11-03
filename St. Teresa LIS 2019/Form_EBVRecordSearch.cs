@@ -50,6 +50,7 @@ namespace St.Teresa_LIS_2019
             pageCurrent = 1;
             loadDataGridViewDate();
             dataGridViewFormat();
+            setButtonStatus();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -411,7 +412,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_F5_New_Patient_Click(object sender, EventArgs e)
         {
-            Form_PatientFileMaintenancecs open = new Form_PatientFileMaintenancecs();
+            /*Form_PatientFileMaintenancecs open = new Form_PatientFileMaintenancecs();
+            open.Show();
+            open.processNew();*/
+
+            Form_EBVFile open = new Form_EBVFile();
             open.Show();
             open.processNew();
         }

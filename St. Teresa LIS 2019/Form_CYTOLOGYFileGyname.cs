@@ -58,7 +58,7 @@ namespace St.Teresa_LIS_2019
             public Double? inv_amt { get; set; }
             public DateTime? inv_date { get; set; }
             public DateTime? pay_date { get; set; }
-            public string fz_section { get; set; }
+            public bool? fz_section { get; set; }
             public string fz_detail { get; set; }
             public string cy_type { get; set; }
             public string cy_report { get; set; }
@@ -72,7 +72,7 @@ namespace St.Teresa_LIS_2019
             public string remark { get; set; }
             public string initial { get; set; }
             public Double? priv_case { get; set; }
-            public Double? supp { get; set; }
+            public bool? supp { get; set; }
             public string mt { get; set; }
             public string print_by { get; set; }
             public DateTime? print_at { get; set; }
@@ -83,7 +83,7 @@ namespace St.Teresa_LIS_2019
             public DateTime? update_at { get; set; }
             public Double? update_ctr { get; set; }
             public string updated { get; set; }
-            public string uploaded { get; set; }
+            public bool? uploaded { get; set; }
             public string snopcode_t2 { get; set; }
             public string desc_t2 { get; set; }
             public string snopcode_t3 { get; set; }
@@ -137,7 +137,7 @@ namespace St.Teresa_LIS_2019
             public string inv_amt { get; set; }
             public string inv_date { get; set; }
             public string pay_date { get; set; }
-            public string fz_section { get; set; }
+            public bool? fz_section { get; set; }
             public string fz_detail { get; set; }
             public string cy_type { get; set; }
             public string cy_report { get; set; }
@@ -151,7 +151,7 @@ namespace St.Teresa_LIS_2019
             public string remark { get; set; }
             public string initial { get; set; }
             public string priv_case { get; set; }
-            public string supp { get; set; }
+            public bool? supp { get; set; }
             public string mt { get; set; }
             public string print_by { get; set; }
             public string print_at { get; set; }
@@ -162,7 +162,7 @@ namespace St.Teresa_LIS_2019
             public string update_at { get; set; }
             public string update_ctr { get; set; }
             public string updated { get; set; }
-            public string uploaded { get; set; }
+            public bool? uploaded { get; set; }
             public string snopcode_t2 { get; set; }
             public string desc_t2 { get; set; }
             public string snopcode_t3 { get; set; }
@@ -205,7 +205,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_F6_Gynaecologl_Histoy_Click(object sender, EventArgs e)
         {
-            Form_GynecologicalHistory open = new Form_GynecologicalHistory();
+            Form_GynecologicalHistory open = new Form_GynecologicalHistory(textBox_ID.Text.Trim());
             open.Show();
         }
 
@@ -345,6 +345,11 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
+
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
         }
@@ -359,6 +364,10 @@ namespace St.Teresa_LIS_2019
             currentEditRow["Pat_sex"] = "M";
             currentEditRow["CLIENT"] = "ST. Teresa's Hospital";
             currentEditRow["Institute"] = "ST. Teresa's Hospital";
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
 
             DataSet copyBxcyDataSet = new DataSet();
 
@@ -391,6 +400,11 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
+
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
         }
@@ -448,6 +462,8 @@ namespace St.Teresa_LIS_2019
             copybxcy_specimen.snopcode_m3 = comboBox_Snop_M3.Text;
             copybxcy_specimen.sign_dr2 = comboBox_Sign_By_Dr_2.Text;
             //copybxcy_specimen.histo = comboBox_HistoType.Text;
+
+            copybxcy_specimen.uploaded = checkBox_Uploaded.Checked;
 
             copybxcy_specimen.remark = textBox_Remarks.Text;
             copybxcy_specimen.initial = textBox_Cytology.Text;
@@ -517,6 +533,8 @@ namespace St.Teresa_LIS_2019
                 copybxcy_specimen.snopcode_m3 = comboBox_Snop_M3.Text;
                 copybxcy_specimen.sign_dr2 = comboBox_Sign_By_Dr_2.Text;
                 //copybxcy_specimen.histo = comboBox_HistoType.Text;
+
+                copybxcy_specimen.uploaded = checkBox_Uploaded.Checked;
 
                 copybxcy_specimen.remark = textBox_Remarks.Text;
                 copybxcy_specimen.initial = textBox_Cytology.Text;
@@ -621,6 +639,8 @@ namespace St.Teresa_LIS_2019
 
                         textBox_Remarks.Text = copybxcy_specimen.remark;
                         textBox_Cytology.Text = copybxcy_specimen.initial;
+
+                        checkBox_Uploaded.Checked = copybxcy_specimen.uploaded.HasValue ? copybxcy_specimen.uploaded.HasValue : false;
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);

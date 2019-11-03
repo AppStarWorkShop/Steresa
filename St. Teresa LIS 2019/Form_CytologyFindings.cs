@@ -43,7 +43,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Cobas_4800_System_Click(object sender, EventArgs e)
         {
-            Form_Cobas4800System open = new Form_Cobas4800System();
+            Form_Cobas4800System open = new Form_Cobas4800System(textBox_ID.Text);
             open.Show();
         }
 

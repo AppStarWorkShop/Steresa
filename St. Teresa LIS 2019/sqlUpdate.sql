@@ -865,3 +865,19 @@ UPDATE ebv_specimen SET TUMOUR='1' where TUMOUR='Y'
 UPDATE ebv_specimen SET TUMOUR='0' where TUMOUR<>'1'
 ALTER table ebv_specimen alter column TUMOUR bit
 UPDATE ebv_specimen SET TUMOUR=0 where TUMOUR IS NULL
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='cy_diag_hdr')
+BEGIN
+ALTER TABLE cy_diag_hdr ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE cy_diag_hdr ADD CONSTRAINT [PK_cy_diag_hdr] primary key (ID);
+END
+
+UPDATE cy_diag_hdr SET IUCD='1' where IUCD='Y'
+UPDATE cy_diag_hdr SET IUCD='0' where IUCD<>'1'
+alter table cy_diag_hdr alter column IUCD bit null
+UPDATE cy_diag_hdr SET IUCD=0 where IUCD IS NULL
+
+UPDATE cy_diag_hdr SET HORMONAL='1' where HORMONAL='Y'
+UPDATE cy_diag_hdr SET HORMONAL='0' where HORMONAL<>'1'
+alter table cy_diag_hdr alter column HORMONAL bit null
+UPDATE cy_diag_hdr SET HORMONAL=0 where HORMONAL IS NULL
