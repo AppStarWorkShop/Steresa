@@ -65,17 +65,17 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_T.DataBindings.Clear();
             comboBox_Snop_M.DataBindings.Clear();
 
-            string cy_resultSql = "SELECT id,diag_desc1 FROM [cy_result] ORDER BY code";
+            string cy_resultSql = "SELECT * FROM [cy_result] ORDER BY code";
             DataSet cy_resultDataSet = new DataSet();
             SqlDataAdapter cy_resultDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(cy_resultSql, cy_resultDataSet, "cy_result");
 
             DataTable cy_resultDt = new DataTable();
             cy_resultDt.Columns.Add("id");
-            cy_resultDt.Columns.Add("diag_desc1");
+            cy_resultDt.Columns.Add("mix_desc");
 
             foreach (DataRow mDr in cy_resultDataSet.Tables["cy_result"].Rows)
             {
-                cy_resultDt.Rows.Add(new object[] { mDr["id"].ToString().Trim(), mDr["diag_desc1"].ToString().Trim() });
+                cy_resultDt.Rows.Add(new object[] { mDr["id"].ToString().Trim(), string.Format("{0}-{1}-{2}-{3}", mDr["code"].ToString().Trim(), mDr["operation"].ToString().Trim(), mDr["snop_m"].ToString().Trim(), mDr["diag_desc1"].ToString().Trim()) });
             }
 
             comboBox_cy_result.DataSource = cy_resultDt;
@@ -182,9 +182,20 @@ namespace St.Teresa_LIS_2019
 
                 textBox_Diagnosis.Text = mDr["DIAGNOSIS"] == null ? "" : mDr["DIAGNOSIS"].ToString();
 
-                try
+                /*try
                 {
                     comboBox_Description.SelectedValue = mDr["DIAG_DESC1"] == null ? "" : mDr["DIAG_DESC1"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }*/
+
+                textBox_Microscoplc.Text = mDr["MICRO_DESC"] == null ? "" : mDr["MICRO_DESC"].ToString();
+
+                try
+                {
+                    comboBox_Snop_T.SelectedValue = mDr["DIAG_DESC1"] == null ? "" : mDr["DIAG_DESC1"].ToString();
                 }
                 catch (Exception ex)
                 {
@@ -200,6 +211,16 @@ namespace St.Teresa_LIS_2019
 
                 }
             }
+        }
+
+        private void comboBox_Description_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //textBox_Microscoplc.Text = textBox_Microscoplc.Text + comboBox_Description.SelectedValue.ToString();
+        }
+
+        private void comboBox_Operation_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //textBox_Diagnosis.Text = textBox_Diagnosis.Text + comboBox_Operation.SelectedValue.ToString();
         }
     }
 }

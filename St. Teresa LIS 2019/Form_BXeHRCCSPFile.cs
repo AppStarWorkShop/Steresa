@@ -204,6 +204,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["fz_section"] = 0;
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
+            currentEditRow["DATE"] = DateTime.Now.ToString("dd/MM/yyyy");
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);

@@ -866,5 +866,17 @@ namespace St.Teresa_LIS_2019
                 }
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized) //若最大化
+            {
+                this.WindowState = FormWindowState.Normal; //则正常化
+            }
+            else if (this.WindowState == FormWindowState.Normal) //若正常化
+            {
+                this.WindowState = FormWindowState.Maximized; //则最大化
+            }
+        }
     }
 }

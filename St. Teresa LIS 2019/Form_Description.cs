@@ -470,6 +470,8 @@ namespace St.Teresa_LIS_2019
             siteDt.Columns.Add("site");
             siteDt.Columns.Add("siteAndDesc");
 
+            siteDt.Rows.Add(new object[] { "", "" });
+
             foreach (DataRow mDr in siteDataSet.Tables["site"].Rows)
             {
                 siteDt.Rows.Add(new object[] { mDr["site"], string.Format("{0}--{1}",mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
@@ -486,6 +488,7 @@ namespace St.Teresa_LIS_2019
             operationDt.Columns.Add("operation");
             operationDt.Columns.Add("operationAndDesc");
 
+            operationDt.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in operationDataSet.Tables["operation"].Rows)
             {
                 operationDt.Rows.Add(new object[] { mDr["operation"], string.Format("{0}--{1}", mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
@@ -589,6 +592,8 @@ namespace St.Teresa_LIS_2019
             diag_descDt1.Columns.Add("C_DESCAndE_DESC");
             DataTable diag_descDt2 = diag_descDt1.Clone();
 
+            diag_descDt1.Rows.Add(new object[] { "", "" });
+            diag_descDt2.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
             {
                 diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
@@ -611,6 +616,15 @@ namespace St.Teresa_LIS_2019
             DataTable picture_capDt6 = picture_capDt1.Clone();
             DataTable picture_capDt7 = picture_capDt1.Clone();
             DataTable picture_capDt8 = picture_capDt1.Clone();
+
+            picture_capDt1.Rows.Add(new object[] { "" });
+            picture_capDt2.Rows.Add(new object[] { "" });
+            picture_capDt3.Rows.Add(new object[] { "" });
+            picture_capDt4.Rows.Add(new object[] { "" });
+            picture_capDt5.Rows.Add(new object[] { "" });
+            picture_capDt6.Rows.Add(new object[] { "" });
+            picture_capDt7.Rows.Add(new object[] { "" });
+            picture_capDt8.Rows.Add(new object[] { "" });
 
             foreach (DataRow mDr in picture_capDataSet.Tables["picture_cap"].Rows)
             {
@@ -670,7 +684,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Diagnosis_1.DataBindings.Add("SelectedValue", dt, "Diag_desc1", false);
             comboBox_Diagnosis_2.DataBindings.Add("SelectedValue", dt, "Diag_desc2", false);
 
-            string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ";
+            string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ORDER BY [desc]";
             DataSet snopcodeTDataSet = new DataSet();
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
 
@@ -680,6 +694,9 @@ namespace St.Teresa_LIS_2019
             DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
             DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
 
+            snopcodeTDt1.Rows.Add(new object[] { "", "" });
+            snopcodeTDt2.Rows.Add(new object[] { "", "" });
+            snopcodeTDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
                 snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
@@ -691,7 +708,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_T2.DataSource = snopcodeTDt2;
             comboBox_Snop_T3.DataSource = snopcodeTDt3;
 
-            string snopcodeMSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'M' ";
+            string snopcodeMSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'M' ORDER BY [desc]";
             DataSet snopcodeMDataSet = new DataSet();
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
@@ -701,6 +718,9 @@ namespace St.Teresa_LIS_2019
             DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
             DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
 
+            snopcodeMDt1.Rows.Add(new object[] { "", "" });
+            snopcodeMDt2.Rows.Add(new object[] { "", "" });
+            snopcodeMDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
                 snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
@@ -1564,6 +1584,7 @@ namespace St.Teresa_LIS_2019
             operationDt.Columns.Add("operation");
             operationDt.Columns.Add("operationAndDesc");
 
+            operationDt.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in operationDataSet.Tables["operation"].Rows)
             {
                 operationDt.Rows.Add(new object[] { mDr["operation"], string.Format("{0}--{1}", mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim()) });

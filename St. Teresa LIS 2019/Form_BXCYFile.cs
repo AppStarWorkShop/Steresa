@@ -202,13 +202,20 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData(int position = 0)
+        private void reloadAndBindingDBData(int position = 0, string caseNo = null)
         {
             string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no,id";
             if(this.id != null)
             {
                 sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY  case_no,id", this.id);
                 id = null;
+            }
+            else
+            {
+                if(caseNo != null)
+                {
+                    sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no='{0}' AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY  case_no,id", caseNo);
+                }
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
@@ -723,17 +730,44 @@ namespace St.Teresa_LIS_2019
 
         private void button_F9_2_Click(object sender, EventArgs e)
         {
-            button_F9m();
-        }
-        private void button_F9_3_Click(object sender, EventArgs e)
-        {
-            button_F9m();
-        }
-        private void button_F9m()
-        {
             Form_SelectDoctor open = new Form_SelectDoctor();
+            open.OnDoctorSelectedWithNameAndId += OnDoctorSelected2;
             open.Show();
         }
+
+        private void OnDoctorSelected2(string doctorNameStr, string doctroIdStr)
+        {
+            if (doctorNameStr != null)
+            {
+                textBox_Doctor_I_C_2.Text = doctorNameStr;
+            }
+
+            if (doctroIdStr != null)
+            {
+                textBox_Doctor_I_C_ID_2.Text = doctroIdStr;
+            }
+        }
+
+        private void button_F9_3_Click(object sender, EventArgs e)
+        {
+            Form_SelectDoctor open = new Form_SelectDoctor();
+            open.OnDoctorSelectedWithNameAndId += OnDoctorSelected3;
+            open.Show();
+        }
+
+        private void OnDoctorSelected3(string doctorNameStr, string doctroIdStr)
+        {
+            if (doctorNameStr != null)
+            {
+                textBox_Doctor_I_C_3.Text = doctorNameStr;
+            }
+
+            if (doctroIdStr != null)
+            {
+                textBox_Doctor_I_C_ID_3.Text = doctroIdStr;
+            }
+        }
+
         private void button_F11_Add_test_Click(object sender, EventArgs e)
         {
             button_F11m();
@@ -1007,6 +1041,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
+                    string currentCaseNo = textBox_Case_No.Text.Trim();
                     currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
                     currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
                     currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
@@ -1020,7 +1055,7 @@ namespace St.Teresa_LIS_2019
                     if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                     {
                         //reloadDBData(currencyManager.Count - 1);
-                        reloadAndBindingDBData();
+                        reloadAndBindingDBData(0, currentCaseNo);
                         button_End.PerformClick();
                         //reloadAndBindingDBData(currencyManager.Count - 1);
                         MessageBox.Show("New ebv_specimen saved");
@@ -1037,6 +1072,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentStatus == PageStatus.STATUS_EDIT)
                 {
+                    string currentCaseNo = textBox_Case_No.Text.Trim();
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
@@ -1060,7 +1096,7 @@ namespace St.Teresa_LIS_2019
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
-                    reloadAndBindingDBData();
+                    reloadAndBindingDBData(0, currentCaseNo);
                 }
             }
         }
@@ -1089,6 +1125,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["fz_section"] = 0;
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
+            currentEditRow["DATE"] = DateTime.Now.ToString("dd/MM/yyyy");
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);

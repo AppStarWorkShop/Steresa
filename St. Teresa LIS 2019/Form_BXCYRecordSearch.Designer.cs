@@ -75,6 +75,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimePicker_From = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker_To = new System.Windows.Forms.DateTimePicker();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bXCYSPECIMENBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.medlabDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -559,13 +560,25 @@
             this.dateTimePicker_To.Size = new System.Drawing.Size(97, 21);
             this.dateTimePicker_To.TabIndex = 250;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(915, 81);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 251;
+            this.button2.Text = "Max/Normal";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form_BXCYRecordSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(216)))), ((int)(((byte)(171)))));
             this.ClientSize = new System.Drawing.Size(1008, 674);
             this.ControlBox = false;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.dateTimePicker_To);
             this.Controls.Add(this.dateTimePicker_From);
             this.Controls.Add(this.label2);
@@ -660,5 +673,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimePicker_From;
         private System.Windows.Forms.DateTimePicker dateTimePicker_To;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -390,10 +390,10 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(string searchDescription = null)
         {
-            string sql = "SELECT TOP 1 * FROM [diag_desc] ORDER BY ID";
+            string sql = "SELECT TOP 1 * FROM [diag_desc] ORDER BY e_desc";
             if (searchDescription != null)
             {
-                sql = string.Format("SELECT TOP 1 * FROM [diag_desc] WHERE MACROSCOPIC = '{0}' ORDER BY ID", searchDescription);
+                sql = string.Format("SELECT TOP 1 * FROM [diag_desc] WHERE MACROSCOPIC = '{0}' AND e_desc IS NOT NULL ORDER BY e_desc", searchDescription);
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, diag_descDataSet, "diag_desc");
 
@@ -401,15 +401,16 @@ namespace St.Teresa_LIS_2019
             textBox_ChineseDescription.DataBindings.Clear();
             comboBox_Description.DataBindings.Clear();
 
-            string sqlFull = "SELECT * FROM [diag_desc] ORDER BY ID";
+            string sqlFull = "SELECT * FROM [diag_desc] ORDER BY e_desc";
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, diag_descDataSetFull, "diag_desc");
 
             DataTable newDt = new DataTable();
+            newDt.Columns.Add("E_DESCANDC_DESC");
             newDt.Columns.Add("C_DESC");
 
             foreach (DataRow mDr in diag_descDataSetFull.Tables["diag_desc"].Rows)
             {
-                newDt.Rows.Add(new object[] { mDr["C_DESC"] });
+                newDt.Rows.Add(new object[] { string.Format("{0}-{1}", mDr["E_DESC"].ToString(), mDr["C_DESC"].ToString()),  mDr["C_DESC"] });
             }
 
             comboBox_Description.DataSource = newDt;
@@ -429,7 +430,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrementStep = 1;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
-            comboBox_Description.DataBindings.Add("Text", dt, "C_DESC", false);
+            comboBox_Description.DataBindings.Add("SelectedValue", dt, "C_DESC", false);
             textBox_ChineseDescription.DataBindings.Add("Text", dt, "E_DESC", false);
             /*textBox_Last_Updated_By.DataBindings.Add("Text", dt, "UPDATE_BY", false);
             textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
@@ -452,7 +453,7 @@ namespace St.Teresa_LIS_2019
 
         private void reloadDBData(int position = 0)
         {
-            string sql = "SELECT TOP 1 * FROM [diag_desc] ORDER BY ID";
+            string sql = "SELECT TOP 1 * FROM [diag_desc] ORDER BY e_desc";
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, diag_descDataSet, "diag_desc");
 
             dt = diag_descDataSet.Tables["diag_desc"];
@@ -460,7 +461,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
 
-            string sqlFull = "SELECT * FROM [diag_desc] ORDER BY ID";
+            string sqlFull = "SELECT * FROM [diag_desc] ORDER BY e_desc";
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, diag_descDataSetFull, "diag_desc");
 
             DataTable newDt = new DataTable();

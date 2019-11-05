@@ -232,7 +232,7 @@
             // 
             // comboBox_Description
             // 
-            this.comboBox_Description.DisplayMember = "C_DESC";
+            this.comboBox_Description.DisplayMember = "E_DESCANDC_DESC";
             this.comboBox_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Description.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Description.FormattingEnabled = true;

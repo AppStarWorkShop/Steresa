@@ -63,11 +63,11 @@ namespace St.Teresa_LIS_2019
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, SurgicalProcedureDataSetFull, "SurgicalProcedure");
 
             DataTable newDt = new DataTable();
-            newDt.Columns.Add("SurgicalProcedureVal");
+            newDt.Columns.Add("Description");
 
             foreach (DataRow mDr in SurgicalProcedureDataSetFull.Tables["SurgicalProcedure"].Rows)
             {
-                newDt.Rows.Add(new object[] { mDr["SurgicalProcedureVal"] });
+                newDt.Rows.Add(new object[] { mDr["Description"] });
             }
 
             comboBox_Surgical_Procedure.DataSource = newDt;
