@@ -109,17 +109,17 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Description.DataSource = marco_nameDt;
 
-            string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ";
+            //string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ";
+            string snopcodeTSql = "SELECT [C_DESC] FROM [diag_desc] WHERE [C_DESC] IS NOT NULL ORDER BY [C_DESC]";
             DataSet snopcodeTDataSet = new DataSet();
-            SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
+            SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "diag_desc");
 
             DataTable snopcodeTDt1 = new DataTable();
-            snopcodeTDt1.Columns.Add("SNOPCODE");
-            snopcodeTDt1.Columns.Add("snopcodeAndDesc");
+            snopcodeTDt1.Columns.Add("C_DESC");
 
-            foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
+            foreach (DataRow mDr in snopcodeTDataSet.Tables["diag_desc"].Rows)
             {
-                snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt1.Rows.Add(new object[] { mDr["C_DESC"]});
             }
 
             comboBox_Snop_T.DataSource = snopcodeTDt1;
@@ -129,12 +129,12 @@ namespace St.Teresa_LIS_2019
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
             DataTable snopcodeMDt1 = new DataTable();
-            snopcodeMDt1.Columns.Add("SNOPCODE");
+            snopcodeMDt1.Columns.Add("desc");
             snopcodeMDt1.Columns.Add("snopcodeAndDesc");
 
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Snop_M.DataSource = snopcodeMDt1;
@@ -144,6 +144,7 @@ namespace St.Teresa_LIS_2019
             textBox_Microscoplc.DataBindings.Add("Text", dt, "Micro_desc", false);
             comboBox_Operation.DataBindings.Add("SelectedValue", dt, "Operation", false);
             textBox_Diagnosis.DataBindings.Add("Text", dt, "Diagnosis", false);
+            comboBox_Snop_T.DataBindings.Add("SelectedValue", dt, "diag_desc1", false);
 
             string bxcy_sql = string.Format("SELECT * FROM [bxcy_specimen] WHERE id={0}", bxcy_id);
             bxcy_specimentDataAdapter = DBConn.fetchDataIntoDataSet(bxcy_sql, bxcy_specimenDataSet, "bxcy_specimen");
@@ -151,7 +152,6 @@ namespace St.Teresa_LIS_2019
             bxcy_specimentDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             bxcy_specimentDt.PrimaryKey = new DataColumn[] { bxcy_specimentDt.Columns["id"] };
 
-            comboBox_Snop_T.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
             comboBox_Snop_M.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
         }
 

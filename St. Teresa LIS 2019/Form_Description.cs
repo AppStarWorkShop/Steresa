@@ -1469,7 +1469,7 @@ namespace St.Teresa_LIS_2019
 
             if(macro_templateDataSet.Tables["macro_template"].Rows.Count > 0)
             {
-                textBox_Remarks.Text = macro_templateDataSet.Tables["macro_template"].Rows[0]["MACRO_DESC"].ToString();
+                textBox_Remarks.Text += macro_templateDataSet.Tables["macro_template"].Rows[0]["MACRO_DESC"].ToString();
             }
         }
 
@@ -1509,13 +1509,55 @@ namespace St.Teresa_LIS_2019
 
         private void button_Add_Template2_Click(object sender, EventArgs e)
         {
-            string micro_templateSql = string.Format("SELECT TOP 1 micro_DESC FROM [micro_template] WHERE DOCTOR = '{0}' AND ORGAN = '{1}' AND TEMPLATE = '{2}'", comboBox_Doctor2.SelectedValue.ToString(), comboBox_Organ2.SelectedValue.ToString(), comboBox_Template2.SelectedValue.ToString());
+            string micro_templateSql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE DOCTOR = '{0}' AND ORGAN = '{1}' AND TEMPLATE = '{2}'", comboBox_Doctor2.SelectedValue.ToString(), comboBox_Organ2.SelectedValue.ToString(), comboBox_Template2.SelectedValue.ToString());
             DataSet micro_templateDataSet = new DataSet();
             SqlDataAdapter micro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_templateSql, micro_templateDataSet, "micro_template");
 
             if (micro_templateDataSet.Tables["micro_template"].Rows.Count > 0)
             {
                 textBox_Remarks_CY.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+
+                try
+                {
+                    comboBox_Site.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                textBox_Chinese_Description_1_DIA.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString();
+
+                try
+                {
+                    comboBox_Operation.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                textBox_Chinese_Description_2_DIA.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString();
+
+                textBox_Diagnosis.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString();
+
+                try
+                {
+                    comboBox_Diagnosis_1.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                try
+                {
+                    comboBox_Diagnosis_2.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString();
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
 
