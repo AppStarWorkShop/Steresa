@@ -71,11 +71,15 @@ namespace St.Teresa_LIS_2019
 
             DataTable cy_resultDt = new DataTable();
             cy_resultDt.Columns.Add("id");
-            cy_resultDt.Columns.Add("mix_desc");
+            cy_resultDt.Columns.Add("code");
+            cy_resultDt.Columns.Add("operation");
+            cy_resultDt.Columns.Add("snop_m");
+            cy_resultDt.Columns.Add("diag_desc1");
 
             foreach (DataRow mDr in cy_resultDataSet.Tables["cy_result"].Rows)
             {
-                cy_resultDt.Rows.Add(new object[] { mDr["id"].ToString().Trim(), string.Format("{0}-{1}-{2}-{3}", mDr["code"].ToString().Trim(), mDr["operation"].ToString().Trim(), mDr["snop_m"].ToString().Trim(), mDr["diag_desc1"].ToString().Trim()) });
+                cy_resultDt.Rows.Add(new object[] { mDr["id"].ToString().Trim(), mDr["code"].ToString().Trim(), mDr["operation"].ToString().Trim(), mDr["snop_m"].ToString().Trim(), mDr["diag_desc1"].ToString().Trim() });
+                //cy_resultDt.Rows.Add(new object[] { mDr["id"].ToString().Trim(), mDr["code"].ToString().Trim() });
             }
 
             comboBox_cy_result.DataSource = cy_resultDt;
@@ -221,6 +225,36 @@ namespace St.Teresa_LIS_2019
         private void comboBox_Operation_SelectionChangeCommitted(object sender, EventArgs e)
         {
             //textBox_Diagnosis.Text = textBox_Diagnosis.Text + comboBox_Operation.SelectedValue.ToString();
+        }
+
+        private void comboBox_cy_result_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string code = drv.Row["code"].ToString();
+            string operation = drv.Row["operation"].ToString();
+            string snop_m = drv.Row["snop_m"].ToString();
+            string diag_desc1 = drv.Row["diag_desc1"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 4;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(code, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 4;
+            e.Graphics.DrawString(operation, e.Font, sb, r2);
+
+            Rectangle r3 = e.Bounds;
+            r3.X = r1.Width + r2.Width + 1;
+            r3.Width = r3.Width / 4;
+            e.Graphics.DrawString(snop_m, e.Font, sb, r3);
+
+            Rectangle r4 = e.Bounds;
+            r4.X = r1.Width + r2.Width + r3.Width + 1;
+            r4.Width = e.Bounds.Width / 4;
+            e.Graphics.DrawString(diag_desc1, e.Font, sb, r4);
         }
     }
 }

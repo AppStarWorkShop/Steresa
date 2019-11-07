@@ -301,7 +301,9 @@
             // 
             // comboBox_cy_result
             // 
-            this.comboBox_cy_result.DisplayMember = "mix_desc";
+            this.comboBox_cy_result.DisplayMember = "code";
+            this.comboBox_cy_result.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_cy_result.DropDownWidth = 600;
             this.comboBox_cy_result.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_cy_result.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_cy_result.FormattingEnabled = true;
@@ -310,6 +312,7 @@
             this.comboBox_cy_result.Size = new System.Drawing.Size(320, 24);
             this.comboBox_cy_result.TabIndex = 169;
             this.comboBox_cy_result.ValueMember = "id";
+            this.comboBox_cy_result.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_cy_result_DrawItem);
             this.comboBox_cy_result.SelectionChangeCommitted += new System.EventHandler(this.comboBox_cy_result_SelectionChangeCommitted);
             // 
             // label_Code
