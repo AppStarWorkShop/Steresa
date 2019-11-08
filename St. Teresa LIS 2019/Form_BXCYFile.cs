@@ -420,10 +420,10 @@ namespace St.Teresa_LIS_2019
             textBox_Doctor_I_C.DataBindings.Add("Text", dt, "DOCTOR_IC", false);
             textBox_Doctor_I_C_ID_1.DataBindings.Add("Text", dt, "doctor_id", false);
 
-            textBox_Doctor_I_C_2.DataBindings.Add("Text", dt, "doctor_id2", false);
+            textBox_Doctor_I_C_2.DataBindings.Add("Text", dt, "doctor_ic2", false);
             textBox_Doctor_I_C_ID_2.DataBindings.Add("Text", dt, "doctor_id2", false);
 
-            textBox_Doctor_I_C_3.DataBindings.Add("Text", dt, "doctor_id3", false);
+            textBox_Doctor_I_C_3.DataBindings.Add("Text", dt, "doctor_ic3", false);
             textBox_Doctor_I_C_ID_3.DataBindings.Add("Text", dt, "doctor_id3", false);
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
@@ -684,6 +684,14 @@ namespace St.Teresa_LIS_2019
             {
                 textBox_Client.Text = str;
                 textBox_Institute.Text = str;
+
+                textBox_Client.Focus();
+                textBox_Client.Select(textBox_Client.TextLength, 0);
+                textBox_Client.ScrollToCaret();
+
+                textBox_Institute.Focus();
+                textBox_Institute.Select(textBox_Institute.TextLength, 0);
+                textBox_Institute.ScrollToCaret();
             }
         }
 
@@ -699,6 +707,10 @@ namespace St.Teresa_LIS_2019
             if (str != null)
             {
                 textBox_Institute.Text = str;
+
+                textBox_Institute.Focus();
+                textBox_Institute.Select(textBox_Institute.TextLength, 0);
+                textBox_Institute.ScrollToCaret();
             }
         }
 
@@ -720,11 +732,19 @@ namespace St.Teresa_LIS_2019
             if (doctorNameStr != null)
             {
                 textBox_Doctor_I_C.Text = doctorNameStr;
+
+                textBox_Doctor_I_C.Focus();
+                textBox_Doctor_I_C.Select(textBox_Doctor_I_C.TextLength, 0);
+                textBox_Doctor_I_C.ScrollToCaret();
             }
 
             if (doctroIdStr != null)
             {
                 textBox_Doctor_I_C_ID_1.Text = doctroIdStr;
+
+                textBox_Doctor_I_C_ID_1.Focus();
+                textBox_Doctor_I_C_ID_1.Select(textBox_Doctor_I_C_ID_1.TextLength, 0);
+                textBox_Doctor_I_C_ID_1.ScrollToCaret();
             }
         }
 
@@ -740,11 +760,19 @@ namespace St.Teresa_LIS_2019
             if (doctorNameStr != null)
             {
                 textBox_Doctor_I_C_2.Text = doctorNameStr;
+
+                textBox_Doctor_I_C_2.Focus();
+                textBox_Doctor_I_C_2.Select(textBox_Doctor_I_C_2.TextLength, 0);
+                textBox_Doctor_I_C_2.ScrollToCaret();
             }
 
             if (doctroIdStr != null)
             {
                 textBox_Doctor_I_C_ID_2.Text = doctroIdStr;
+
+                textBox_Doctor_I_C_ID_2.Focus();
+                textBox_Doctor_I_C_ID_2.Select(textBox_Doctor_I_C_ID_2.TextLength, 0);
+                textBox_Doctor_I_C_ID_2.ScrollToCaret();
             }
         }
 
@@ -760,11 +788,19 @@ namespace St.Teresa_LIS_2019
             if (doctorNameStr != null)
             {
                 textBox_Doctor_I_C_3.Text = doctorNameStr;
+
+                textBox_Doctor_I_C_3.Focus();
+                textBox_Doctor_I_C_3.Select(textBox_Doctor_I_C_3.TextLength, 0);
+                textBox_Doctor_I_C_3.ScrollToCaret();
             }
 
             if (doctroIdStr != null)
             {
                 textBox_Doctor_I_C_ID_3.Text = doctroIdStr;
+
+                textBox_Doctor_I_C_ID_3.Focus();
+                textBox_Doctor_I_C_ID_3.Select(textBox_Doctor_I_C_ID_3.TextLength, 0);
+                textBox_Doctor_I_C_ID_3.ScrollToCaret();
             }
         }
 
@@ -1070,7 +1106,7 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (currentStatus == PageStatus.STATUS_EDIT)
+                if (currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT)
                 {
                     string currentCaseNo = textBox_Case_No.Text.Trim();
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
@@ -2021,6 +2057,10 @@ namespace St.Teresa_LIS_2019
                 pictureBox_Has_Previous.Visible = false;
             }
         }
-            
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

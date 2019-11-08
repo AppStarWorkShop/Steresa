@@ -847,24 +847,24 @@ BEGIN
 END
 GO
 
-UPDATE BXCY_SPECIMEN SET uploaded='1' where uploaded='Y'
-UPDATE BXCY_SPECIMEN SET uploaded='0' where uploaded<>'1'
-ALTER table BXCY_SPECIMEN alter column uploaded bit
-UPDATE BXCY_SPECIMEN SET uploaded=0 where uploaded IS NULL
+UPDATE BXCY_SPECIMEN SET uploaded='1' where uploaded='Y';
+UPDATE BXCY_SPECIMEN SET uploaded='0' where uploaded<>'1';
+ALTER table BXCY_SPECIMEN alter column uploaded bit;
+UPDATE BXCY_SPECIMEN SET uploaded=0 where uploaded IS NULL;
 
-ALTER table BXCY_SPECIMEN alter column supp bit
-UPDATE BXCY_SPECIMEN SET supp=0 where supp IS NULL
+ALTER table BXCY_SPECIMEN alter column supp bit;
+UPDATE BXCY_SPECIMEN SET supp=0 where supp IS NULL;
 
 
-UPDATE ebv_specimen SET uploaded='1' where uploaded='Y'
-UPDATE ebv_specimen SET uploaded='0' where uploaded<>'1'
-ALTER table ebv_specimen alter column uploaded bit
-UPDATE ebv_specimen SET uploaded=0 where uploaded IS NULL
+UPDATE ebv_specimen SET uploaded='1' where uploaded='Y';
+UPDATE ebv_specimen SET uploaded='0' where uploaded<>'1';
+ALTER table ebv_specimen alter column uploaded bit;
+UPDATE ebv_specimen SET uploaded=0 where uploaded IS NULL;
 
-UPDATE ebv_specimen SET TUMOUR='1' where TUMOUR='Y'
-UPDATE ebv_specimen SET TUMOUR='0' where TUMOUR<>'1'
-ALTER table ebv_specimen alter column TUMOUR bit
-UPDATE ebv_specimen SET TUMOUR=0 where TUMOUR IS NULL
+UPDATE ebv_specimen SET TUMOUR='1' where TUMOUR='Y';
+UPDATE ebv_specimen SET TUMOUR='0' where TUMOUR<>'1';
+ALTER table ebv_specimen alter column TUMOUR bit;
+UPDATE ebv_specimen SET TUMOUR=0 where TUMOUR IS NULL;
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='cy_diag_hdr')
 BEGIN
@@ -872,12 +872,15 @@ ALTER TABLE cy_diag_hdr ADD [id] [int] IDENTITY(1,1) NOT NULL;
 ALTER TABLE cy_diag_hdr ADD CONSTRAINT [PK_cy_diag_hdr] primary key (ID);
 END
 
-UPDATE cy_diag_hdr SET IUCD='1' where IUCD='Y'
-UPDATE cy_diag_hdr SET IUCD='0' where IUCD<>'1'
-alter table cy_diag_hdr alter column IUCD bit null
-UPDATE cy_diag_hdr SET IUCD=0 where IUCD IS NULL
+UPDATE cy_diag_hdr SET IUCD='1' where IUCD='Y';
+UPDATE cy_diag_hdr SET IUCD='0' where IUCD<>'1';
+alter table cy_diag_hdr alter column IUCD bit null;
+UPDATE cy_diag_hdr SET IUCD=0 where IUCD IS NULL;
 
-UPDATE cy_diag_hdr SET HORMONAL='1' where HORMONAL='Y'
-UPDATE cy_diag_hdr SET HORMONAL='0' where HORMONAL<>'1'
-alter table cy_diag_hdr alter column HORMONAL bit null
-UPDATE cy_diag_hdr SET HORMONAL=0 where HORMONAL IS NULL
+UPDATE cy_diag_hdr SET HORMONAL='1' where HORMONAL='Y';
+UPDATE cy_diag_hdr SET HORMONAL='0' where HORMONAL<>'1';
+alter table cy_diag_hdr alter column HORMONAL bit null;
+UPDATE cy_diag_hdr SET HORMONAL=0 where HORMONAL IS NULL;
+
+alter table BXCY_SPECIMEN alter column Doctor_ic2 nvarchar(40) null;
+alter table BXCY_SPECIMEN alter column Doctor_ic3 nvarchar(40) null;

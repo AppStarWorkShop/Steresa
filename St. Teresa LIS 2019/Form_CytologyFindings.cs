@@ -18,11 +18,12 @@ namespace St.Teresa_LIS_2019
         private DataSet bxcy_diagDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         private DataTable dt;
-        private DataRow currentEditRow;
 
         private DataSet bxcy_specimenDataSet = new DataSet();
         private DataTable bxcy_specimentDt;
         private SqlDataAdapter bxcy_specimentDataAdapter;
+
+        private DataRow currentEditRow;
 
         public Form_CytologyFindings()
         {
@@ -38,6 +39,56 @@ namespace St.Teresa_LIS_2019
 
         private void button_Back_To_Main_Click(object sender, EventArgs e)
         {
+            bool updated = true;
+            if (textBox_ID.Text.Trim() == "-1")
+            {
+                if (currentEditRow != null)
+                {
+                    currentEditRow["case_no"] = this.caseNo;
+
+                    textBox_ID.BindingContext[dt].Position++;
+
+                    if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "BXCY_DIAG"))
+                    {
+                        updated = false;
+                    }
+                }
+            }
+            else
+            {
+                DataRow drow = bxcy_diagDataSet.Tables["BXCY_DIAG"].Rows.Find(textBox_ID.Text);
+                if (drow != null)
+                {
+                    textBox_ID.BindingContext[dt].Position++;
+
+                    if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "BXCY_DIAG"))
+                    {
+                        updated = false;
+                    }
+                }
+            }
+
+            textBox_specimenID.BindingContext[bxcy_specimenDataSet].Position++;
+            if (DBConn.updateObject(bxcy_specimentDataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+            {
+                if (!updated)
+                {
+                    updated = true;
+                }
+            }
+            else
+            {
+                if (updated)
+                {
+                    updated = false;
+                }
+            }
+
+            if (!updated)
+            {
+                MessageBox.Show("Record updated fail or nothing to update");
+            }
+
             this.Close();
         }
 
@@ -133,12 +184,12 @@ namespace St.Teresa_LIS_2019
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
             DataTable snopcodeMDt1 = new DataTable();
-            snopcodeMDt1.Columns.Add("desc");
+            snopcodeMDt1.Columns.Add("snopcode");
             snopcodeMDt1.Columns.Add("snopcodeAndDesc");
 
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt1.Rows.Add(new object[] { mDr["desc"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["snopcode"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
             }
 
             comboBox_Snop_M.DataSource = snopcodeMDt1;
@@ -155,8 +206,20 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimentDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             bxcy_specimentDt.PrimaryKey = new DataColumn[] { bxcy_specimentDt.Columns["id"] };
+            bxcy_specimentDt.Columns["id"].AutoIncrement = true;
+            bxcy_specimentDt.Columns["id"].AutoIncrementStep = 1;
 
+            textBox_specimenID.DataBindings.Add("Text", bxcy_specimentDt, "id", false);
             comboBox_Snop_M.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
+
+            if (dt.Rows.Count == 0)
+            {
+                currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
+                currentEditRow["id"] = -1;
+
+                bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
+                bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+            }
         }
 
         private void Form_CytologyFindings_Load(object sender, EventArgs e)
@@ -186,16 +249,15 @@ namespace St.Teresa_LIS_2019
 
                 textBox_Diagnosis.Text = mDr["DIAGNOSIS"] == null ? "" : mDr["DIAGNOSIS"].ToString();
 
-                /*try
-                {
-                    comboBox_Description.SelectedValue = mDr["DIAG_DESC1"] == null ? "" : mDr["DIAG_DESC1"].ToString();
-                }
-                catch (Exception ex)
-                {
-
-                }*/
-
                 textBox_Microscoplc.Text = mDr["MICRO_DESC"] == null ? "" : mDr["MICRO_DESC"].ToString();
+
+                textBox_Diagnosis.Focus();
+                textBox_Diagnosis.Select(textBox_Diagnosis.TextLength, 0);
+                textBox_Diagnosis.ScrollToCaret();
+
+                textBox_Microscoplc.Focus();
+                textBox_Microscoplc.Select(textBox_Microscoplc.TextLength, 0);
+                textBox_Microscoplc.ScrollToCaret();
 
                 try
                 {

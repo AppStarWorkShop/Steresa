@@ -48,6 +48,7 @@ namespace St.Teresa_LIS_2019
                     else
                     {
                         MessageBox.Show("Record updated fail, please contact Admin");
+                        this.Close();
                     }
                 }
             }
@@ -68,6 +69,7 @@ namespace St.Teresa_LIS_2019
                     else
                     {
                         MessageBox.Show("Record updated fail, please contact Admin");
+                        this.Close();
                     }
                 }
             }

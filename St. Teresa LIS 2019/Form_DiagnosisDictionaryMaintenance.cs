@@ -405,12 +405,11 @@ namespace St.Teresa_LIS_2019
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, diag_descDataSetFull, "diag_desc");
 
             DataTable newDt = new DataTable();
-            newDt.Columns.Add("E_DESCANDC_DESC");
-            newDt.Columns.Add("C_DESC");
+            newDt.Columns.Add("E_DESC");
 
             foreach (DataRow mDr in diag_descDataSetFull.Tables["diag_desc"].Rows)
             {
-                newDt.Rows.Add(new object[] { string.Format("{0}-{1}", mDr["E_DESC"].ToString(), mDr["C_DESC"].ToString()),  mDr["C_DESC"] });
+                newDt.Rows.Add(new object[] { mDr["E_DESC"] });
             }
 
             comboBox_Description.DataSource = newDt;
@@ -430,18 +429,15 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrementStep = 1;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
-            comboBox_Description.DataBindings.Add("SelectedValue", dt, "C_DESC", false);
-            textBox_ChineseDescription.DataBindings.Add("Text", dt, "E_DESC", false);
-            /*textBox_Last_Updated_By.DataBindings.Add("Text", dt, "UPDATE_BY", false);
-            textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
-            textBox_Last_Updated_By_No.DataBindings.Add("Text", dt, "UPDATE_CTR", false);*/
+            comboBox_Description.DataBindings.Add("SelectedValue", dt, "E_DESC", false);
+            textBox_ChineseDescription.DataBindings.Add("Text", dt, "C_DESC", false);
 
             if (searchDescription != null && comboBox_Description.Items.Count > 0)
             {
                 int currentPosition = 0;
                 foreach (DataRow mDr in dt.Rows)
                 {
-                    if (mDr["C_DESC"].ToString().Trim() == searchDescription.Trim())
+                    if (mDr["E_DESC"].ToString().Trim() == searchDescription.Trim())
                     {
                         break;
                     }
@@ -465,11 +461,11 @@ namespace St.Teresa_LIS_2019
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, diag_descDataSetFull, "diag_desc");
 
             DataTable newDt = new DataTable();
-            newDt.Columns.Add("C_DESC");
+            newDt.Columns.Add("E_DESC");
 
             foreach (DataRow mDr in diag_descDataSetFull.Tables["diag_desc"].Rows)
             {
-                newDt.Rows.Add(new object[] { mDr["C_DESC"] });
+                newDt.Rows.Add(new object[] { mDr["E_DESC"] });
             }
 
             comboBox_Description.DataSource = newDt;
@@ -481,7 +477,7 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_Description_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [diag_desc] WHERE C_DESC = '{0}' ORDER BY ID", comboBox_Description.SelectedValue.ToString());
+            string sql = string.Format("SELECT TOP 1 * FROM [diag_desc] WHERE E_DESC = '{0}' ORDER BY ID", comboBox_Description.SelectedValue.ToString());
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, diag_descDataSet, "diag_desc");
 
             textBox_ID.DataBindings.Clear();
@@ -493,7 +489,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrementStep = 1;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
-            textBox_ChineseDescription.DataBindings.Add("Text", dt, "E_DESC", false);
+            textBox_ChineseDescription.DataBindings.Add("Text", dt, "C_DESC", false);
         }
     }
 }
