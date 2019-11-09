@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Description));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_MACROSCOPIC = new System.Windows.Forms.TabPage();
+            this.textBox_specimenID = new System.Windows.Forms.TextBox();
             this.textBox_ID = new System.Windows.Forms.TextBox();
             this.button_MAC_Add_Edit = new System.Windows.Forms.Button();
             this.textBox_Remarks = new System.Windows.Forms.TextBox();
@@ -158,7 +159,6 @@
             this.button_F6_Edit = new System.Windows.Forms.Button();
             this.button_Undo = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
-            this.textBox_specimenID = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage_MACROSCOPIC.SuspendLayout();
             this.tabPage_MICROSCOPIC_CY.SuspendLayout();
@@ -258,6 +258,14 @@
             this.tabPage_MACROSCOPIC.TabIndex = 0;
             this.tabPage_MACROSCOPIC.Text = "F1. MACROSCOPIC";
             this.tabPage_MACROSCOPIC.Click += new System.EventHandler(this.tabPage_MACROSCOPIC_Click);
+            // 
+            // textBox_specimenID
+            // 
+            this.textBox_specimenID.Location = new System.Drawing.Point(1198, 6);
+            this.textBox_specimenID.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_specimenID.Name = "textBox_specimenID";
+            this.textBox_specimenID.Size = new System.Drawing.Size(12, 29);
+            this.textBox_specimenID.TabIndex = 234;
             // 
             // textBox_ID
             // 
@@ -1269,8 +1277,9 @@
             // 
             // comboBox_Snop_M2
             // 
-            this.comboBox_Snop_M2.DisplayMember = "snopcodeAndDesc";
-            this.comboBox_Snop_M2.DropDownWidth = 300;
+            this.comboBox_Snop_M2.DisplayMember = "Desc";
+            this.comboBox_Snop_M2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_Snop_M2.DropDownWidth = 400;
             this.comboBox_Snop_M2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Snop_M2.FormattingEnabled = true;
@@ -1287,9 +1296,10 @@
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M2.Location = new System.Drawing.Point(329, 486);
             this.comboBox_Snop_M2.Name = "comboBox_Snop_M2";
-            this.comboBox_Snop_M2.Size = new System.Drawing.Size(191, 26);
+            this.comboBox_Snop_M2.Size = new System.Drawing.Size(191, 25);
             this.comboBox_Snop_M2.TabIndex = 233;
             this.comboBox_Snop_M2.ValueMember = "SNOPCODE";
+            this.comboBox_Snop_M2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M2_DrawItem);
             // 
             // label_Snop_M2
             // 
@@ -1305,8 +1315,9 @@
             // 
             // comboBox_Snop_M3
             // 
-            this.comboBox_Snop_M3.DisplayMember = "snopcodeAndDesc";
-            this.comboBox_Snop_M3.DropDownWidth = 300;
+            this.comboBox_Snop_M3.DisplayMember = "Desc";
+            this.comboBox_Snop_M3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_Snop_M3.DropDownWidth = 400;
             this.comboBox_Snop_M3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M3.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Snop_M3.FormattingEnabled = true;
@@ -1323,9 +1334,10 @@
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M3.Location = new System.Drawing.Point(583, 486);
             this.comboBox_Snop_M3.Name = "comboBox_Snop_M3";
-            this.comboBox_Snop_M3.Size = new System.Drawing.Size(154, 26);
+            this.comboBox_Snop_M3.Size = new System.Drawing.Size(154, 25);
             this.comboBox_Snop_M3.TabIndex = 231;
             this.comboBox_Snop_M3.ValueMember = "SNOPCODE";
+            this.comboBox_Snop_M3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M3_DrawItem);
             // 
             // label_Snop_M3
             // 
@@ -1341,8 +1353,9 @@
             // 
             // comboBox_Snop_T2
             // 
-            this.comboBox_Snop_T2.DisplayMember = "snopcodeAndDesc";
-            this.comboBox_Snop_T2.DropDownWidth = 300;
+            this.comboBox_Snop_T2.DisplayMember = "DESC";
+            this.comboBox_Snop_T2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_Snop_T2.DropDownWidth = 400;
             this.comboBox_Snop_T2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Snop_T2.FormattingEnabled = true;
@@ -1357,9 +1370,10 @@
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T2.Location = new System.Drawing.Point(329, 462);
             this.comboBox_Snop_T2.Name = "comboBox_Snop_T2";
-            this.comboBox_Snop_T2.Size = new System.Drawing.Size(191, 26);
+            this.comboBox_Snop_T2.Size = new System.Drawing.Size(191, 25);
             this.comboBox_Snop_T2.TabIndex = 229;
             this.comboBox_Snop_T2.ValueMember = "SNOPCODE";
+            this.comboBox_Snop_T2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T2_DrawItem);
             // 
             // label_Snop_T2
             // 
@@ -1375,8 +1389,9 @@
             // 
             // comboBox_Snop_T3
             // 
-            this.comboBox_Snop_T3.DisplayMember = "snopcodeAndDesc";
-            this.comboBox_Snop_T3.DropDownWidth = 300;
+            this.comboBox_Snop_T3.DisplayMember = "DESC";
+            this.comboBox_Snop_T3.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_Snop_T3.DropDownWidth = 400;
             this.comboBox_Snop_T3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T3.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Snop_T3.FormattingEnabled = true;
@@ -1391,9 +1406,10 @@
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T3.Location = new System.Drawing.Point(583, 462);
             this.comboBox_Snop_T3.Name = "comboBox_Snop_T3";
-            this.comboBox_Snop_T3.Size = new System.Drawing.Size(154, 26);
+            this.comboBox_Snop_T3.Size = new System.Drawing.Size(154, 25);
             this.comboBox_Snop_T3.TabIndex = 227;
             this.comboBox_Snop_T3.ValueMember = "SNOPCODE";
+            this.comboBox_Snop_T3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T3_DrawItem);
             // 
             // label_Snop_T3
             // 
@@ -1409,8 +1425,9 @@
             // 
             // comboBox_Snop_M1
             // 
-            this.comboBox_Snop_M1.DisplayMember = "snopcodeAndDesc";
-            this.comboBox_Snop_M1.DropDownWidth = 300;
+            this.comboBox_Snop_M1.DisplayMember = "Desc";
+            this.comboBox_Snop_M1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_Snop_M1.DropDownWidth = 400;
             this.comboBox_Snop_M1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_M1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Snop_M1.FormattingEnabled = true;
@@ -1427,14 +1444,16 @@
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M1.Location = new System.Drawing.Point(90, 485);
             this.comboBox_Snop_M1.Name = "comboBox_Snop_M1";
-            this.comboBox_Snop_M1.Size = new System.Drawing.Size(172, 26);
+            this.comboBox_Snop_M1.Size = new System.Drawing.Size(172, 25);
             this.comboBox_Snop_M1.TabIndex = 225;
             this.comboBox_Snop_M1.ValueMember = "SNOPCODE";
+            this.comboBox_Snop_M1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M1_DrawItem);
             // 
             // comboBox_Snop_T1
             // 
-            this.comboBox_Snop_T1.DisplayMember = "snopcodeAndDesc";
-            this.comboBox_Snop_T1.DropDownWidth = 300;
+            this.comboBox_Snop_T1.DisplayMember = "DESC";
+            this.comboBox_Snop_T1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.comboBox_Snop_T1.DropDownWidth = 400;
             this.comboBox_Snop_T1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Snop_T1.FormattingEnabled = true;
@@ -1449,9 +1468,10 @@
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T1.Location = new System.Drawing.Point(90, 461);
             this.comboBox_Snop_T1.Name = "comboBox_Snop_T1";
-            this.comboBox_Snop_T1.Size = new System.Drawing.Size(172, 26);
+            this.comboBox_Snop_T1.Size = new System.Drawing.Size(172, 25);
             this.comboBox_Snop_T1.TabIndex = 224;
             this.comboBox_Snop_T1.ValueMember = "SNOPCODE";
+            this.comboBox_Snop_T1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T1_DrawItem);
             // 
             // label_Snop_M1
             // 
@@ -1911,14 +1931,6 @@
             this.button_Save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Save.UseVisualStyleBackColor = true;
             this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
-            // 
-            // textBox_specimenID
-            // 
-            this.textBox_specimenID.Location = new System.Drawing.Point(1198, 6);
-            this.textBox_specimenID.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox_specimenID.Name = "textBox_specimenID";
-            this.textBox_specimenID.Size = new System.Drawing.Size(12, 29);
-            this.textBox_specimenID.TabIndex = 234;
             // 
             // Form_Description
             // 

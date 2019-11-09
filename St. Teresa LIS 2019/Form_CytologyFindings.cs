@@ -43,6 +43,7 @@ namespace St.Teresa_LIS_2019
         private void button_Back_To_Main_Click(object sender, EventArgs e)
         {
             bool updated = true;
+            bool refreshMainPage = false;
             if (textBox_ID.Text.Trim() == "-1")
             {
                 if (currentEditRow != null)
@@ -74,6 +75,7 @@ namespace St.Teresa_LIS_2019
             textBox_specimenID.BindingContext[bxcy_specimentDt].Position++;
             if (DBConn.updateObject(bxcy_specimentDataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
             {
+                refreshMainPage = true;
                 if (!updated)
                 {
                     updated = true;
@@ -91,7 +93,8 @@ namespace St.Teresa_LIS_2019
             {
                 MessageBox.Show("Record updated fail or nothing to update");
             }
-            else
+
+            if (refreshMainPage)
             {
                 OnBxcyDiagExit();
             }

@@ -25,8 +25,10 @@ namespace St.Teresa_LIS_2019
         private DataTable bxcy_specimentDt;
         private SqlDataAdapter bxcy_specimentDataAdapter;
 
-        public delegate void BxcyDiagExit(int status);
+        public delegate void BxcyDiagExit(int status, bool refresh);
         public BxcyDiagExit OnBxcyDiagExit;
+
+        public bool isNeedRefreshMainPage = false;
 
         public class Bxcy_diag
         {
@@ -145,7 +147,7 @@ namespace St.Teresa_LIS_2019
         {
             if (OnBxcyDiagExit != null)
             {
-                OnBxcyDiagExit(currentStatus);
+                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage);
             }
             this.Close();
         }
@@ -692,7 +694,7 @@ namespace St.Teresa_LIS_2019
 
             DataTable snopcodeTDt1 = new DataTable();
             snopcodeTDt1.Columns.Add("SNOPCODE");
-            snopcodeTDt1.Columns.Add("snopcodeAndDesc");
+            snopcodeTDt1.Columns.Add("Desc");
             DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
             DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
 
@@ -701,9 +703,9 @@ namespace St.Teresa_LIS_2019
             snopcodeTDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeTDt2.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeTDt3.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
+                snopcodeTDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
+                snopcodeTDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
             }
 
             comboBox_Snop_T1.DataSource = snopcodeTDt1;
@@ -716,7 +718,7 @@ namespace St.Teresa_LIS_2019
 
             DataTable snopcodeMDt1 = new DataTable();
             snopcodeMDt1.Columns.Add("SNOPCODE");
-            snopcodeMDt1.Columns.Add("snopcodeAndDesc");
+            snopcodeMDt1.Columns.Add("Desc");
             DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
             DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
 
@@ -725,9 +727,9 @@ namespace St.Teresa_LIS_2019
             snopcodeMDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeMDt2.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
-                snopcodeMDt3.Rows.Add(new object[] { mDr["SNOPCODE"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
+                snopcodeMDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
+                snopcodeMDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
             }
 
             comboBox_Snop_M1.DataSource = snopcodeMDt1;
@@ -1405,6 +1407,7 @@ namespace St.Teresa_LIS_2019
             textBox_specimenID.BindingContext[bxcy_specimentDt].Position++;
             if (DBConn.updateObject(bxcy_specimentDataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
             {
+                isNeedRefreshMainPage = true;
                 if (!updated)
                 {
                     updated = true;
@@ -1426,8 +1429,6 @@ namespace St.Teresa_LIS_2019
             {
                 MessageBox.Show("Bxcy Diag updated fail, please contact Admin");
             }
-
-            OnBxcyDiagExit(currentStatus);
         }
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
@@ -1790,6 +1791,114 @@ namespace St.Teresa_LIS_2019
                 DataRow mDr = operationResultDataSet.Tables["operation"].Rows[0];
                 textBox_Chinese_Description_2_DIA.Text = mDr["desc"].ToString().Trim();
             }
+        }
+
+        private void comboBox_Snop_T1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string snopcode = drv.Row["snopcode"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(snopcode, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Snop_T2_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string snopcode = drv.Row["snopcode"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(snopcode, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Snop_T3_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string snopcode = drv.Row["snopcode"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(snopcode, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Snop_M1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string snopcode = drv.Row["snopcode"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(snopcode, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Snop_M2_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string snopcode = drv.Row["snopcode"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(snopcode, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Snop_M3_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string snopcode = drv.Row["snopcode"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(snopcode, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(desc, e.Font, sb, r2);
         }
     }
 }

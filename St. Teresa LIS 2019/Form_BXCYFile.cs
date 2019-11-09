@@ -375,15 +375,15 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Ethnic.DataSource = ethnicDt;
 
-            string doctorSql = "SELECT doctor FROM [doctor]";
+            string doctorSql = "SELECT doctor FROM [sign_doctor] order by doctor";
             DataSet doctorDataSet = new DataSet();
-            SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "doctor");
+            SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "sign_doctor");
 
             DataTable doctorDt1 = new DataTable();
             doctorDt1.Columns.Add("doctor");
             DataTable doctorDt2 = doctorDt1.Clone();
 
-            foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
+            foreach (DataRow mDr in doctorDataSet.Tables["sign_doctor"].Rows)
             {
                 doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
                 doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
@@ -671,9 +671,12 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status)
+        private void OnStatusReturn(int status, bool refresh)
         {
-            reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
+            if (refresh)
+            {
+                reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
+            }
             currentStatus = status;
             setButtonStatus(currentStatus);
         }

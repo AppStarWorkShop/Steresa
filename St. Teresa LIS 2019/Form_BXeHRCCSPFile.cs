@@ -260,8 +260,12 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status)
+        private void OnStatusReturn(int status, bool refresh)
         {
+            if (refresh)
+            {
+                reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
+            }
             currentStatus = status;
             setButtonStatus(currentStatus);
         }
@@ -654,13 +658,20 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData(int position = 0)
+        private void reloadAndBindingDBData(int position = 0, string caseNo = null)
         {
             string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no LIKE 'D%' ORDER BY case_no,id";
             if (this.id != null)
             {
                 sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} AND case_no LIKE 'D%' ORDER BY  case_no,id", this.id);
                 id = null;
+            }
+            else
+            {
+                if (caseNo != null)
+                {
+                    sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no='{0}' AND case_no LIKE 'D%' ORDER BY  case_no,id", caseNo);
+                }
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
