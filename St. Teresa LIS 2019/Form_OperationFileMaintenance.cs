@@ -434,7 +434,7 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
 
-            string sqlFull = "SELECT * FROM [operation] ORDER BY ID";
+            string sqlFull = "SELECT * FROM [operation] ORDER BY operation";
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, operationDataSetFull, "operation");
 
             DataTable newDt = new DataTable();

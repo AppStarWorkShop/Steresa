@@ -25,6 +25,9 @@ namespace St.Teresa_LIS_2019
 
         private DataRow currentEditRow;
 
+        public delegate void BxcyDiagExit();
+        public BxcyDiagExit OnBxcyDiagExit;
+
         public Form_CytologyFindings()
         {
             InitializeComponent();
@@ -68,7 +71,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            textBox_specimenID.BindingContext[bxcy_specimenDataSet].Position++;
+            textBox_specimenID.BindingContext[bxcy_specimentDt].Position++;
             if (DBConn.updateObject(bxcy_specimentDataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
             {
                 if (!updated)
@@ -87,6 +90,10 @@ namespace St.Teresa_LIS_2019
             if (!updated)
             {
                 MessageBox.Show("Record updated fail or nothing to update");
+            }
+            else
+            {
+                OnBxcyDiagExit();
             }
 
             this.Close();
@@ -126,6 +133,8 @@ namespace St.Teresa_LIS_2019
             cy_resultDt.Columns.Add("operation");
             cy_resultDt.Columns.Add("snop_m");
             cy_resultDt.Columns.Add("diag_desc1");
+
+            cy_resultDt.Rows.Add(new object[] { "","","","","" });
 
             foreach (DataRow mDr in cy_resultDataSet.Tables["cy_result"].Rows)
             {

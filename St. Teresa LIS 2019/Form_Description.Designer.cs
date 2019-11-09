@@ -158,6 +158,7 @@
             this.button_F6_Edit = new System.Windows.Forms.Button();
             this.button_Undo = new System.Windows.Forms.Button();
             this.button_Save = new System.Windows.Forms.Button();
+            this.textBox_specimenID = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage_MACROSCOPIC.SuspendLayout();
             this.tabPage_MICROSCOPIC_CY.SuspendLayout();
@@ -183,6 +184,7 @@
             // tabPage_MACROSCOPIC
             // 
             this.tabPage_MACROSCOPIC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(219)))), ((int)(((byte)(210)))));
+            this.tabPage_MACROSCOPIC.Controls.Add(this.textBox_specimenID);
             this.tabPage_MACROSCOPIC.Controls.Add(this.textBox_ID);
             this.tabPage_MACROSCOPIC.Controls.Add(this.button_MAC_Add_Edit);
             this.tabPage_MACROSCOPIC.Controls.Add(this.textBox_Remarks);
@@ -1570,7 +1572,7 @@
             // 
             // comboBox_Operation
             // 
-            this.comboBox_Operation.DisplayMember = "operationAndDesc";
+            this.comboBox_Operation.DisplayMember = "operation";
             this.comboBox_Operation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Operation.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Operation.FormattingEnabled = true;
@@ -1579,6 +1581,7 @@
             this.comboBox_Operation.Size = new System.Drawing.Size(798, 26);
             this.comboBox_Operation.TabIndex = 212;
             this.comboBox_Operation.ValueMember = "operation";
+            this.comboBox_Operation.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Operation_SelectionChangeCommitted);
             // 
             // label_Operation
             // 
@@ -1658,7 +1661,7 @@
             // 
             // comboBox_Site
             // 
-            this.comboBox_Site.DisplayMember = "siteAndDesc";
+            this.comboBox_Site.DisplayMember = "site";
             this.comboBox_Site.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Site.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Site.FormattingEnabled = true;
@@ -1667,6 +1670,7 @@
             this.comboBox_Site.Size = new System.Drawing.Size(798, 26);
             this.comboBox_Site.TabIndex = 201;
             this.comboBox_Site.ValueMember = "site";
+            this.comboBox_Site.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Site_SelectionChangeCommitted);
             // 
             // label_Site
             // 
@@ -1908,6 +1912,14 @@
             this.button_Save.UseVisualStyleBackColor = true;
             this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
+            // textBox_specimenID
+            // 
+            this.textBox_specimenID.Location = new System.Drawing.Point(1198, 6);
+            this.textBox_specimenID.Margin = new System.Windows.Forms.Padding(2);
+            this.textBox_specimenID.Name = "textBox_specimenID";
+            this.textBox_specimenID.Size = new System.Drawing.Size(12, 29);
+            this.textBox_specimenID.TabIndex = 234;
+            // 
             // Form_Description
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -2078,5 +2090,6 @@
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.Button button_Undo;
         private System.Windows.Forms.Button button_Save;
+        private System.Windows.Forms.TextBox textBox_specimenID;
     }
 }

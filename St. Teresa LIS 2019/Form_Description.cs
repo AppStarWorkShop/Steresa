@@ -462,6 +462,8 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
+            textBox_specimenID.DataBindings.Clear();
+
             string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
             DataSet siteDataSet = new DataSet();
             SqlDataAdapter siteDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(siteSql, siteDataSet, "site");
@@ -737,8 +739,10 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimentDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
             bxcy_specimentDt.PrimaryKey = new DataColumn[] { bxcy_specimentDt.Columns["id"] };
-            /*bxcy_specimentDt.Columns["id"].AutoIncrement = true;
-            bxcy_specimentDt.Columns["id"].AutoIncrementStep = 1;*/
+            bxcy_specimentDt.Columns["id"].AutoIncrement = true;
+            bxcy_specimentDt.Columns["id"].AutoIncrementStep = 1;
+
+            textBox_specimenID.DataBindings.Add("Text", bxcy_specimentDt, "id", false);
 
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t2", false);
@@ -1351,12 +1355,12 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
+            bool updated = true;
+
             if (currentStatus == PageStatus.STATUS_NEW)
             {
                 if (currentEditRow != null)
                 {
-                    /*currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
-                    currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");*/
                     if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
                     {
                         currentEditRow["group"] = (Convert.ToInt32(label_Total_Parts_No.Text) + 1).ToString();
@@ -1374,11 +1378,7 @@ namespace St.Teresa_LIS_2019
                         //reloadDBData(currencyManager.Count - 1);
                         reloadAndBindingDBData();
                         button_End.PerformClick();
-                        MessageBox.Show("New Bxcy Diag saved");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Bxcy Diag saved fail, please contact Admin");
+                        updated = false;
                     }
                     setButtonStatus(PageStatus.STATUS_VIEW);
                 }
@@ -1390,31 +1390,44 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        /*drow["UPDATE_BY"] = CurrentUser.currentUserId;
-                        drow["UPDATE_AT"] = DateTime.Now.ToString("");*/
-                        /*if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
-                        {
-                            drow["group"] = (Convert.ToInt32(textBox_Parts.Text) + 1).ToString();
-                        }
-                        else
-                        {
-                            drow["group"] = label_Total_Parts_No.Text;
-                        }*/
                         textBox_ID.BindingContext[dt].Position++;
 
                         if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
                         {
-                            MessageBox.Show("Bxcy Diag updated");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Bxcy Diag updated fail, please contact Admin");
+                            updated = false;
                         }
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
                 }
             }
+
+            textBox_specimenID.BindingContext[bxcy_specimentDt].Position++;
+            if (DBConn.updateObject(bxcy_specimentDataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+            {
+                if (!updated)
+                {
+                    updated = true;
+                }
+            }
+            else
+            {
+                if (updated)
+                {
+                    updated = false;
+                }
+            }
+
+            if (updated)
+            {
+                MessageBox.Show("Bxcy Diag updated");
+            }
+            else
+            {
+                MessageBox.Show("Bxcy Diag updated fail, please contact Admin");
+            }
+
+            OnBxcyDiagExit(currentStatus);
         }
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
@@ -1515,7 +1528,7 @@ namespace St.Teresa_LIS_2019
 
             if (micro_templateDataSet.Tables["micro_template"].Rows.Count > 0)
             {
-                textBox_Remarks_CY.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+                textBox_Remarks_CY.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
 
                 try
                 {
@@ -1526,7 +1539,7 @@ namespace St.Teresa_LIS_2019
 
                 }
 
-                textBox_Chinese_Description_1_DIA.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString();
+                textBox_Chinese_Description_1_DIA.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString();
 
                 try
                 {
@@ -1537,9 +1550,9 @@ namespace St.Teresa_LIS_2019
 
                 }
 
-                textBox_Chinese_Description_2_DIA.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString();
+                textBox_Chinese_Description_2_DIA.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString();
 
-                textBox_Diagnosis.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString();
+                textBox_Diagnosis.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString();
 
                 try
                 {
@@ -1749,6 +1762,34 @@ namespace St.Teresa_LIS_2019
         private void comboBox_MIC_Add2_SelectionChangeCommitted(object sender, EventArgs e)
         {
             textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + comboBox_MIC_Add2.SelectedValue.ToString();
+        }
+
+        private void comboBox_Site_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            DataSet siteResultDataSet = new DataSet();
+
+            string sql = string.Format("SELECT * FROM [site] WHERE site ='{0}'", comboBox_Site.SelectedValue);
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, siteResultDataSet, "site");
+
+            if (siteResultDataSet.Tables["site"].Rows.Count > 0)
+            {
+                DataRow mDr = siteResultDataSet.Tables["site"].Rows[0];
+                textBox_Chinese_Description_1_DIA.Text = mDr["desc"].ToString().Trim();
+            }
+        }
+
+        private void comboBox_Operation_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            DataSet operationResultDataSet = new DataSet();
+
+            string sql = string.Format("SELECT * FROM [operation] WHERE operation ='{0}'", comboBox_Operation.SelectedValue);
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, operationResultDataSet, "operation");
+
+            if (operationResultDataSet.Tables["operation"].Rows.Count > 0)
+            {
+                DataRow mDr = operationResultDataSet.Tables["operation"].Rows[0];
+                textBox_Chinese_Description_2_DIA.Text = mDr["desc"].ToString().Trim();
+            }
         }
     }
 }

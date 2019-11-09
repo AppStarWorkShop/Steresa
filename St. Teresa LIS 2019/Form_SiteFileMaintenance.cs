@@ -392,7 +392,7 @@ namespace St.Teresa_LIS_2019
             textBox_ChineseDescription.DataBindings.Add("Text", dt, "DESC", false);
             comboBox_Site.DataBindings.Add("Text", dt, "SITE", false);
 
-            string sqlFull = "SELECT * FROM [site] ORDER BY ID";
+            string sqlFull = "SELECT * FROM [site] ORDER BY site";
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, siteDataSetFull, "site");
 
             DataTable newDt = new DataTable();

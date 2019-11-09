@@ -120,17 +120,16 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="button_Back_To_Main.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABIAAAAQCAYAAAAbBi9cAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA68AAAOvAGVvHJJAAAAGXRFWHRTb2Z0d2FyZQB3d3cu
-        aW5rc2NhcGUub3Jnm+48GgAAAcdJREFUOE9jwAPMgPgfEP/Ag0HyNkCMF4AMOgNhIgEpKS5RV/d8KZ+w
-        vez8wveBIrgN6lHStuFkYLUAMuEGCejrG0rHx/er1NXd01+w5L9GSct/DkFxAgYpaC6YoahzjJ+F5TxU
-        iEGpvOy08dYt/0HYYPHy/xqlrYQN6lXUWrJUxeD/MmW9H5d1LDRBYsq1NWeQDdJEN0iKW+CZIb/IOw9h
-        qXfx4vLvymTU3vUqaP0EGbRHw/T/ZR3rdy/1ndyUa2rOwg1asuK/ZlkbukH8v4EG/Qca9B9o0P8yGdX/
-        QIP+Ixn0/5WB/U6VmppzcIOWAg0qRzNImoc/1IBfNNRDSDo0QUIutFRaJRRo0COQQbshBrX9Dw1lBroI
-        YdCylf81K9qJCCMFrSuLVfS/uPGL3IUKgcIIbpAh2KAO4gLbQ0AsCMiERz+KQctX/desJMKgBgYGJiCF
-        kiCV6mrOww1aATSoqhPDIHYg5sCCQQoQBtXWXkAYtBqrQVeB+AMOvB+IwQDFoJUggzr+swuIgsIQlu+I
-        Ayp1CINUW9teCFnYTQQKg3xDGlCuq7uot2jhN7nMjEWC2tpyUGHSgYir60oBGxsHKBcNMDAAACY2/SgF
-        ImBBAAAAAElFTkSuQmCC
+        iVBORw0KGgoAAAANSUhEUgAAABIAAAAQCAYAAAAbBi9cAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHHSURBVDhPY8AD
+        zID4HxD/wINB8jZAjBeADDoDYSIBKSkuUVf3fCmfsL3s/ML3gSK4DepR0rbhZGC1ADLhBgno6xtKx8f3
+        q9TV3dNfsOS/RknLfw5BcQIGKWgumKGoc4yfheU8VIhBqbzstPHWLf9B2GDx8v8apa2EDepV1FqyVMXg
+        /zJlvR+XdSw0QWLKtTVnkA3SRDdIilvgmSG/yDsPYal38eLy78pk1N71Kmj9BBm0R8P0/2Ud63cv9Z3c
+        lGtqzsINWrLiv2ZZG7pB/L+BBv0HGvQfaND/MhnV/0CD/iMZ9P+Vgf1OlZqac3CDlgINKkczSJqHP9SA
+        XzTUQ0g6NEFCLrRUWiUUaNAjkEG7IQa1/Q8NZQa6CGHQspX/NSvaiQgjBa0ri1X0v7jxi9yFCoHCCG6Q
+        IdigDuIC20NALAjIhEc/ikHLV/3XrCTCoAYGBiYghZIglepqzsMNWgE0qKoTwyB2IObAgkEKEAbV1l5A
+        GLQaq0FXgfgDDrwfiMEAxaCVIIM6/rMLiILCEJbviAMqdQiDVFvbXghZ2E0ECoN8QxpQrqu7qLdo4Te5
+        zIxFgtraclBh0oGIq+tKARsbBygXDTAwAAAmNv0oBSJgQQAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

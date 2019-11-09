@@ -540,7 +540,13 @@ namespace St.Teresa_LIS_2019
         private void button_Cytology_Click(object sender, EventArgs e)
         {
             Form_CytologyFindings open = new Form_CytologyFindings(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim());
+            open.OnBxcyDiagExit += OnRefreshReturn;
             open.Show();
+        }
+
+        private void OnRefreshReturn()
+        {
+            reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
         }
 
         private void button_F_S_Detail_Click(object sender, EventArgs e)
@@ -667,6 +673,7 @@ namespace St.Teresa_LIS_2019
 
         private void OnStatusReturn(int status)
         {
+            reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
             currentStatus = status;
             setButtonStatus(currentStatus);
         }
