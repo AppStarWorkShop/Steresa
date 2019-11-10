@@ -391,7 +391,7 @@ namespace St.Teresa_LIS_2019
             textBox_ChineseDescription.DataBindings.Add("Text", dt, "DESC", false);
             comboBox_Operation.DataBindings.Add("Text", dt, "operation", false);
 
-            string sqlFull = "SELECT * FROM [operation] ORDER BY ID";
+            string sqlFull = "SELECT * FROM [operation] WHERE operation IS NOT NULL ORDER BY operation";
             dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, operationDataSetFull, "operation");
 
             DataTable newDt = new DataTable();

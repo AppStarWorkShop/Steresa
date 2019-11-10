@@ -52,7 +52,7 @@ namespace St.Teresa_LIS_2019
 
                     textBox_ID.BindingContext[dt].Position++;
 
-                    if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "BXCY_DIAG"))
+                    if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "BXCY_DIAG"))
                     {
                         updated = false;
                     }
@@ -65,7 +65,7 @@ namespace St.Teresa_LIS_2019
                 {
                     textBox_ID.BindingContext[dt].Position++;
 
-                    if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "BXCY_DIAG"))
+                    if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "BXCY_DIAG"))
                     {
                         updated = false;
                     }
@@ -79,13 +79,6 @@ namespace St.Teresa_LIS_2019
                 if (!updated)
                 {
                     updated = true;
-                }
-            }
-            else
-            {
-                if (updated)
-                {
-                    updated = false;
                 }
             }
 
@@ -253,6 +246,8 @@ namespace St.Teresa_LIS_2019
                 try
                 {
                     comboBox_Operation.SelectedValue = mDr["OPERATION"] == null ? "" : mDr["OPERATION"].ToString();
+
+                    comboBox_Operation.Focus();
                 }
                 catch(Exception ex)
                 {
@@ -274,6 +269,7 @@ namespace St.Teresa_LIS_2019
                 try
                 {
                     comboBox_Snop_T.SelectedValue = mDr["DIAG_DESC1"] == null ? "" : mDr["DIAG_DESC1"].ToString();
+                    comboBox_Snop_T.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -283,6 +279,7 @@ namespace St.Teresa_LIS_2019
                 try
                 {
                     comboBox_Snop_M.SelectedValue = mDr["SNOP_M"] == null ? "" : mDr["SNOP_M"].ToString();
+                    comboBox_Snop_M.Focus();
                 }
                 catch (Exception ex)
                 {

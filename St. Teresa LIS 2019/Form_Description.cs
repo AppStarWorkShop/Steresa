@@ -1380,6 +1380,9 @@ namespace St.Teresa_LIS_2019
                         //reloadDBData(currencyManager.Count - 1);
                         reloadAndBindingDBData();
                         button_End.PerformClick();
+                    }
+                    else
+                    {
                         updated = false;
                     }
                     setButtonStatus(PageStatus.STATUS_VIEW);
@@ -1394,7 +1397,7 @@ namespace St.Teresa_LIS_2019
                     {
                         textBox_ID.BindingContext[dt].Position++;
 
-                        if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
+                        if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
                         {
                             updated = false;
                         }
@@ -1411,13 +1414,6 @@ namespace St.Teresa_LIS_2019
                 if (!updated)
                 {
                     updated = true;
-                }
-            }
-            else
-            {
-                if (updated)
-                {
-                    updated = false;
                 }
             }
 

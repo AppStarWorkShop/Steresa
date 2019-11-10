@@ -821,7 +821,26 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                button_F5_New_Patient.Enabled = true;
+                if (contentSearching == "PAT_HKID" && textBox_Search_Type.Text.Trim() != "")
+                {
+                    DataSet copyEbvDataSet = new DataSet();
+
+                    string sql = string.Format("SELECT TOP 1 * FROM [BXCY_SPECIMEN] WHERE PAT_HKID = '{0}'", textBox_Search_Type.Text.Trim());
+                    DBConn.fetchDataIntoDataSetSelectOnly(sql, copyEbvDataSet, "BXCY_SPECIMEN");
+
+                    if (copyEbvDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
+                    {
+                        button_F5_New_Patient.Enabled = false;
+                    }
+                    else
+                    {
+                        button_F5_New_Patient.Enabled = true;
+                    }
+                }
+                else
+                {
+                    button_F5_New_Patient.Enabled = true;
+                }
             }
         }
 
