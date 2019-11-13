@@ -184,17 +184,18 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Snop_T.DataSource = snopcodeTDt1;
 
-            string snopcodeMSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'M' ";
+            string snopcodeMSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'M' ";
             DataSet snopcodeMDataSet = new DataSet();
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
             DataTable snopcodeMDt1 = new DataTable();
             snopcodeMDt1.Columns.Add("snopcode");
-            snopcodeMDt1.Columns.Add("snopcodeAndDesc");
+            snopcodeMDt1.Columns.Add("Desc");
+            snopcodeMDt1.Columns.Add("id");
 
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt1.Rows.Add(new object[] { mDr["snopcode"], string.Format("{0}--{1}", mDr["snopcode"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["snopcode"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
             }
 
             comboBox_Snop_M.DataSource = snopcodeMDt1;
@@ -326,6 +327,24 @@ namespace St.Teresa_LIS_2019
             r4.X = r1.Width + r2.Width + r3.Width + 1;
             r4.Width = e.Bounds.Width / 4;
             e.Graphics.DrawString(diag_desc1, e.Font, sb, r4);
+        }
+
+        private void comboBox_Snop_M_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string snopcode = drv.Row["snopcode"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(snopcode, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(desc, e.Font, sb, r2);
         }
     }
 }

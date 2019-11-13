@@ -37,25 +37,7 @@ namespace St.Teresa_LIS_2019
             {
                 if (textBox_Serch_Client.Focused)
                 {
-                    string sql = string.Format("SELECT client,cname,address1,tel,fax,contact,id FROM [CLIENT] WHERE CLIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%'", textBox_Serch_Client.Text.Trim());
-                    DBConn.fetchDataIntoDataSetSelectOnly(sql, clientDataSet, "client");
-
-                    DataTable dt = new DataTable();
-                    //dt.Columns.Add("Select", typeof(bool));
-                    dt.Columns.Add("Client's Name");
-                    dt.Columns.Add("Chinese Name");
-                    dt.Columns.Add("Address");
-                    dt.Columns.Add("Tel");
-                    dt.Columns.Add("Fax");
-                    dt.Columns.Add("Contact");
-                    dt.Columns.Add("Id");
-
-                    foreach (DataRow mDr in clientDataSet.Tables["client"].Rows)
-                    {
-                        dt.Rows.Add(new object[] { mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
-                    }
-
-                    dataGridView1.DataSource = dt;
+                    performSearch();
                 }
                 else
                 {
@@ -68,7 +50,33 @@ namespace St.Teresa_LIS_2019
 
         private void textBox_Serch_Client_TextChanged(object sender, EventArgs e)
         {
-            
+            if(textBox_Serch_Client.Text.Trim().Length >= 3)
+            {
+                performSearch();
+            }
+        }
+
+        private void performSearch()
+        {
+            string sql = string.Format("SELECT client,cname,address1,tel,fax,contact,id FROM [CLIENT] WHERE CLIENT LIKE '%{0}%' OR CNAME LIKE '%{0}%' ORDER BY CLIENT", textBox_Serch_Client.Text.Trim());
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, clientDataSet, "client");
+
+            DataTable dt = new DataTable();
+            //dt.Columns.Add("Select", typeof(bool));
+            dt.Columns.Add("Client's Name");
+            dt.Columns.Add("Chinese Name");
+            dt.Columns.Add("Address");
+            dt.Columns.Add("Tel");
+            dt.Columns.Add("Fax");
+            dt.Columns.Add("Contact");
+            dt.Columns.Add("Id");
+
+            foreach (DataRow mDr in clientDataSet.Tables["client"].Rows)
+            {
+                dt.Rows.Add(new object[] { mDr["client"], mDr["cname"], mDr["address1"], mDr["tel"], mDr["fax"], mDr["contact"], mDr["id"] });
+            }
+
+            dataGridView1.DataSource = dt;
         }
 
         private void Form_SelectClient_Load(object sender, EventArgs e)
@@ -85,7 +93,7 @@ namespace St.Teresa_LIS_2019
 
         private void loadDataGridViewDate()
         {
-            string sql = "SELECT client,cname,address1,tel,fax,contact,id FROM [CLIENT]";
+            string sql = "SELECT client,cname,address1,tel,fax,contact,id FROM [CLIENT] ORDER BY CLIENT";
             DBConn.fetchDataIntoDataSetSelectOnly(sql, clientDataSet, "client");
 
             DataTable dt = new DataTable();

@@ -794,6 +794,8 @@ namespace St.Teresa_LIS_2019
                 button_F6_View_Record.Enabled = false;
             }
 
+            // remark by 
+            /*
             if (contentSearching == "CASE_NO" && textBox_Search_Type.Text.Trim() != "")
             {
                 button_F2_New_Record.Enabled = true;
@@ -802,6 +804,7 @@ namespace St.Teresa_LIS_2019
             {
                 button_F2_New_Record.Enabled = false;
             }
+            */
 
             if (contentSearching == "PATIENT" && textBox_Search_Type.Text.Trim() != "")
             {
@@ -813,11 +816,14 @@ namespace St.Teresa_LIS_2019
                 if (copyEbvDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
                 {
                     button_F5_New_Patient.Enabled = false;
+                    button_F2_New_Record.Enabled = true;
                 }
                 else
                 {
                     button_F5_New_Patient.Enabled = true;
+                    button_F2_New_Record.Enabled = false;
                 }
+
             }
             else
             {
@@ -831,10 +837,12 @@ namespace St.Teresa_LIS_2019
                     if (copyEbvDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
                     {
                         button_F5_New_Patient.Enabled = false;
+                        button_F2_New_Record.Enabled = true;
                     }
                     else
                     {
                         button_F5_New_Patient.Enabled = true;
+                        button_F2_New_Record.Enabled = false;
                     }
                 }
                 else

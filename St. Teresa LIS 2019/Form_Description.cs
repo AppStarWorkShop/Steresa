@@ -28,6 +28,9 @@ namespace St.Teresa_LIS_2019
         public delegate void BxcyDiagExit(int status, bool refresh);
         public BxcyDiagExit OnBxcyDiagExit;
 
+        public delegate bool BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
+        public BxcyDiagSaveBoth OnBxcyDiagSaveBoth;
+
         public bool isNeedRefreshMainPage = false;
 
         public class Bxcy_diag
@@ -347,13 +350,15 @@ namespace St.Teresa_LIS_2019
 
             DataTable diag_descDt1 = new DataTable();
             diag_descDt1.Columns.Add("C_DESC");
-            diag_descDt1.Columns.Add("C_DESCAndE_DESC");
+            diag_descDt1.Columns.Add("E_DESC");
             DataTable diag_descDt2 = diag_descDt1.Clone();
 
+            diag_descDt1.Rows.Add(new object[] { "", "" });
+            diag_descDt2.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
             {
-                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
-                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
+                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
+                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
             }
 
             comboBox_Diagnosis_1.DataSource = diag_descDt1;
@@ -402,7 +407,34 @@ namespace St.Teresa_LIS_2019
         private void button_MIC_Add_Edit_Click(object sender, EventArgs e)
         {
             Form_MICROSCOPICReportMaintenance open = new Form_MICROSCOPICReportMaintenance();
+            open.OnRecordUpdateDone += onMICROSCOPICReportUpdateDone;
             open.Show();
+        }
+
+        private void onMICROSCOPICReportUpdateDone(bool isUpdated)
+        {
+            if (isUpdated)
+            {
+                reloadMICROSCOPIC_Report();
+            }
+        }
+
+        private void reloadMICROSCOPIC_Report()
+        {
+            string MICROSCOPIC_ReportSql = "SELECT [MICROSCOPIC],[Description] FROM [MICROSCOPIC_Report]";
+            DataSet MICROSCOPIC_ReportDataSet = new DataSet();
+            SqlDataAdapter MICROSCOPIC_ReportDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(MICROSCOPIC_ReportSql, MICROSCOPIC_ReportDataSet, "MICROSCOPIC_Report");
+
+            DataTable MICROSCOPIC_ReportDt = new DataTable();
+            MICROSCOPIC_ReportDt.Columns.Add("MICROSCOPIC");
+            MICROSCOPIC_ReportDt.Columns.Add("Description");
+
+            foreach (DataRow mDr in MICROSCOPIC_ReportDataSet.Tables["MICROSCOPIC_Report"].Rows)
+            {
+                MICROSCOPIC_ReportDt.Rows.Add(new object[] { mDr["MICROSCOPIC"], mDr["Description"] });
+            }
+
+            comboBox_MIC_Add2.DataSource = MICROSCOPIC_ReportDt;
         }
 
         private void Form_Description_Load(object sender, EventArgs e)
@@ -593,15 +625,15 @@ namespace St.Teresa_LIS_2019
 
             DataTable diag_descDt1 = new DataTable();
             diag_descDt1.Columns.Add("C_DESC");
-            diag_descDt1.Columns.Add("C_DESCAndE_DESC");
+            diag_descDt1.Columns.Add("E_DESC");
             DataTable diag_descDt2 = diag_descDt1.Clone();
 
             diag_descDt1.Rows.Add(new object[] { "", "" });
             diag_descDt2.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
             {
-                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
-                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"], string.Format("{0}--{1}", mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim()) });
+                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
+                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
             }
 
             comboBox_Diagnosis_1.DataSource = diag_descDt1;
@@ -688,48 +720,44 @@ namespace St.Teresa_LIS_2019
             comboBox_Diagnosis_1.DataBindings.Add("SelectedValue", dt, "Diag_desc1", false);
             comboBox_Diagnosis_2.DataBindings.Add("SelectedValue", dt, "Diag_desc2", false);
 
-            string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ORDER BY [desc]";
+            string snopcodeTSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'T' ORDER BY [desc]";
             DataSet snopcodeTDataSet = new DataSet();
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
 
             DataTable snopcodeTDt1 = new DataTable();
             snopcodeTDt1.Columns.Add("SNOPCODE");
             snopcodeTDt1.Columns.Add("Desc");
+            snopcodeTDt1.Columns.Add("id");
             DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
             DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
 
-            snopcodeTDt1.Rows.Add(new object[] { "", "" });
-            snopcodeTDt2.Rows.Add(new object[] { "", "" });
-            snopcodeTDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
-                snopcodeTDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
-                snopcodeTDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
+                snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeTDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeTDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
             }
 
             comboBox_Snop_T1.DataSource = snopcodeTDt1;
             comboBox_Snop_T2.DataSource = snopcodeTDt2;
             comboBox_Snop_T3.DataSource = snopcodeTDt3;
 
-            string snopcodeMSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'M' ORDER BY [desc]";
+            string snopcodeMSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'M' ORDER BY [desc]";
             DataSet snopcodeMDataSet = new DataSet();
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
             DataTable snopcodeMDt1 = new DataTable();
             snopcodeMDt1.Columns.Add("SNOPCODE");
             snopcodeMDt1.Columns.Add("Desc");
+            snopcodeMDt1.Columns.Add("id");
             DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
             DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
 
-            snopcodeMDt1.Rows.Add(new object[] { "", "" });
-            snopcodeMDt2.Rows.Add(new object[] { "", "" });
-            snopcodeMDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
             {
-                snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
-                snopcodeMDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
-                snopcodeMDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim() });
+                snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeMDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeMDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
             }
 
             comboBox_Snop_M1.DataSource = snopcodeMDt1;
@@ -1407,6 +1435,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
+            /*
             textBox_specimenID.BindingContext[bxcy_specimentDt].Position++;
             if (DBConn.updateObject(bxcy_specimentDataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
             {
@@ -1415,15 +1444,27 @@ namespace St.Teresa_LIS_2019
                 {
                     updated = true;
                 }
+            }*/
+
+            if (OnBxcyDiagSaveBoth != null)
+            {
+                if (OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue))
+                {
+                    //isNeedRefreshMainPage = true;
+                    if (!updated)
+                    {
+                        updated = true;
+                    }
+                }
             }
 
             if (updated)
             {
-                MessageBox.Show("Bxcy Diag updated");
+                MessageBox.Show("Record updated");
             }
             else
             {
-                MessageBox.Show("Bxcy Diag updated fail, please contact Admin");
+                MessageBox.Show("Record updated fail, please contact Admin");
             }
         }
 
@@ -1859,6 +1900,8 @@ namespace St.Teresa_LIS_2019
             r2.X = r1.Width + 1;
             r2.Width = r2.Width / 2;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
+
+            Console.WriteLine("M1 draw");
         }
 
         private void comboBox_Snop_M2_DrawItem(object sender, DrawItemEventArgs e)
@@ -1895,6 +1938,47 @@ namespace St.Teresa_LIS_2019
             r2.X = r1.Width + 1;
             r2.Width = r2.Width / 2;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Diagnosis_1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string c_desc = drv.Row["c_desc"].ToString();
+            string e_desc = drv.Row["e_desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(e_desc, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(c_desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Diagnosis_2_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string c_desc = drv.Row["c_desc"].ToString();
+            string e_desc = drv.Row["e_desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(e_desc, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(c_desc, e.Font, sb, r2);
+        }
+
+        private void textBox_Diagnosis_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

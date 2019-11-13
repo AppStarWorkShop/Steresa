@@ -884,3 +884,5 @@ UPDATE cy_diag_hdr SET HORMONAL=0 where HORMONAL IS NULL;
 
 alter table BXCY_SPECIMEN alter column Doctor_ic2 nvarchar(40) null;
 alter table BXCY_SPECIMEN alter column Doctor_ic3 nvarchar(40) null;
+
+alter table BXCY_SPECIMEN alter column doctor_o nvarchar(500) null;
