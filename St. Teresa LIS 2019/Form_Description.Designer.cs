@@ -174,7 +174,7 @@
             this.tabControl1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.tabControl1.ItemSize = new System.Drawing.Size(5, 25);
             this.tabControl1.Location = new System.Drawing.Point(-1, -1);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.Padding = new System.Drawing.Point(85, 3);
             this.tabControl1.SelectedIndex = 0;
@@ -253,9 +253,9 @@
             this.tabPage_MACROSCOPIC.Cursor = System.Windows.Forms.Cursors.Default;
             this.tabPage_MACROSCOPIC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabPage_MACROSCOPIC.Location = new System.Drawing.Point(4, 29);
-            this.tabPage_MACROSCOPIC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_MACROSCOPIC.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_MACROSCOPIC.Name = "tabPage_MACROSCOPIC";
-            this.tabPage_MACROSCOPIC.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_MACROSCOPIC.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_MACROSCOPIC.Size = new System.Drawing.Size(1345, 653);
             this.tabPage_MACROSCOPIC.TabIndex = 0;
             this.tabPage_MACROSCOPIC.Text = "F1. MACROSCOPIC";
@@ -272,7 +272,7 @@
             // textBox_ID
             // 
             this.textBox_ID.Location = new System.Drawing.Point(1592, 5);
-            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ID.Name = "textBox_ID";
             this.textBox_ID.Size = new System.Drawing.Size(21, 34);
             this.textBox_ID.TabIndex = 251;
@@ -282,7 +282,7 @@
             this.button_MAC_Add_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_MAC_Add_Edit.ForeColor = System.Drawing.Color.Black;
             this.button_MAC_Add_Edit.Location = new System.Drawing.Point(1229, 571);
-            this.button_MAC_Add_Edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_MAC_Add_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.button_MAC_Add_Edit.Name = "button_MAC_Add_Edit";
             this.button_MAC_Add_Edit.Size = new System.Drawing.Size(95, 28);
             this.button_MAC_Add_Edit.TabIndex = 250;
@@ -293,7 +293,7 @@
             // textBox_Remarks
             // 
             this.textBox_Remarks.Location = new System.Drawing.Point(28, 172);
-            this.textBox_Remarks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Remarks.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Remarks.Multiline = true;
             this.textBox_Remarks.Name = "textBox_Remarks";
             this.textBox_Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -306,7 +306,7 @@
             this.button_Picture_File_8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_8.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_8.Image")));
             this.button_Picture_File_8.Location = new System.Drawing.Point(1288, 142);
-            this.button_Picture_File_8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_8.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_8.Name = "button_Picture_File_8";
             this.button_Picture_File_8.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_8.TabIndex = 223;
@@ -333,7 +333,7 @@
             this.comboBox_Caption_8.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_8.FormattingEnabled = true;
             this.comboBox_Caption_8.Location = new System.Drawing.Point(1059, 142);
-            this.comboBox_Caption_8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_8.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_8.Name = "comboBox_Caption_8";
             this.comboBox_Caption_8.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_8.TabIndex = 221;
@@ -345,7 +345,7 @@
             this.button_Picture_File_8_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_8_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_8_Path.Location = new System.Drawing.Point(1288, 119);
-            this.button_Picture_File_8_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_8_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_8_Path.Name = "button_Picture_File_8_Path";
             this.button_Picture_File_8_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_8_Path.TabIndex = 220;
@@ -371,7 +371,7 @@
             this.textBox_Picture_File_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_8.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_8.Location = new System.Drawing.Point(1059, 120);
-            this.textBox_Picture_File_8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_8.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_8.Name = "textBox_Picture_File_8";
             this.textBox_Picture_File_8.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_8.TabIndex = 218;
@@ -382,7 +382,7 @@
             this.button_Picture_File_7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_7.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_7.Image")));
             this.button_Picture_File_7.Location = new System.Drawing.Point(967, 142);
-            this.button_Picture_File_7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_7.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_7.Name = "button_Picture_File_7";
             this.button_Picture_File_7.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_7.TabIndex = 217;
@@ -409,7 +409,7 @@
             this.comboBox_Caption_7.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_7.FormattingEnabled = true;
             this.comboBox_Caption_7.Location = new System.Drawing.Point(737, 142);
-            this.comboBox_Caption_7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_7.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_7.Name = "comboBox_Caption_7";
             this.comboBox_Caption_7.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_7.TabIndex = 215;
@@ -421,7 +421,7 @@
             this.button_Picture_File_7_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_7_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_7_Path.Location = new System.Drawing.Point(967, 119);
-            this.button_Picture_File_7_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_7_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_7_Path.Name = "button_Picture_File_7_Path";
             this.button_Picture_File_7_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_7_Path.TabIndex = 214;
@@ -447,7 +447,7 @@
             this.textBox_Picture_File_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_7.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_7.Location = new System.Drawing.Point(737, 120);
-            this.textBox_Picture_File_7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_7.Name = "textBox_Picture_File_7";
             this.textBox_Picture_File_7.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_7.TabIndex = 212;
@@ -458,7 +458,7 @@
             this.button_Picture_File_6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_6.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_6.Image")));
             this.button_Picture_File_6.Location = new System.Drawing.Point(625, 142);
-            this.button_Picture_File_6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_6.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_6.Name = "button_Picture_File_6";
             this.button_Picture_File_6.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_6.TabIndex = 211;
@@ -485,7 +485,7 @@
             this.comboBox_Caption_6.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_6.FormattingEnabled = true;
             this.comboBox_Caption_6.Location = new System.Drawing.Point(396, 142);
-            this.comboBox_Caption_6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_6.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_6.Name = "comboBox_Caption_6";
             this.comboBox_Caption_6.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_6.TabIndex = 209;
@@ -497,7 +497,7 @@
             this.button_Picture_File_6_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_6_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_6_Path.Location = new System.Drawing.Point(625, 119);
-            this.button_Picture_File_6_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_6_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_6_Path.Name = "button_Picture_File_6_Path";
             this.button_Picture_File_6_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_6_Path.TabIndex = 208;
@@ -523,7 +523,7 @@
             this.textBox_Picture_File_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_6.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_6.Location = new System.Drawing.Point(396, 120);
-            this.textBox_Picture_File_6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_6.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_6.Name = "textBox_Picture_File_6";
             this.textBox_Picture_File_6.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_6.TabIndex = 206;
@@ -534,7 +534,7 @@
             this.button_Picture_File_5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_5.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_5.Image")));
             this.button_Picture_File_5.Location = new System.Drawing.Point(304, 142);
-            this.button_Picture_File_5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_5.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_5.Name = "button_Picture_File_5";
             this.button_Picture_File_5.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_5.TabIndex = 205;
@@ -561,7 +561,7 @@
             this.comboBox_Caption_5.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_5.FormattingEnabled = true;
             this.comboBox_Caption_5.Location = new System.Drawing.Point(75, 142);
-            this.comboBox_Caption_5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_5.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_5.Name = "comboBox_Caption_5";
             this.comboBox_Caption_5.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_5.TabIndex = 203;
@@ -573,7 +573,7 @@
             this.button_Picture_File_5_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_5_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_5_Path.Location = new System.Drawing.Point(304, 119);
-            this.button_Picture_File_5_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_5_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_5_Path.Name = "button_Picture_File_5_Path";
             this.button_Picture_File_5_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_5_Path.TabIndex = 202;
@@ -599,7 +599,7 @@
             this.textBox_Picture_File_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_5.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_5.Location = new System.Drawing.Point(75, 120);
-            this.textBox_Picture_File_5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_5.Name = "textBox_Picture_File_5";
             this.textBox_Picture_File_5.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_5.TabIndex = 200;
@@ -610,7 +610,7 @@
             this.button_Picture_File_4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_4.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_4.Image")));
             this.button_Picture_File_4.Location = new System.Drawing.Point(1288, 78);
-            this.button_Picture_File_4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_4.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_4.Name = "button_Picture_File_4";
             this.button_Picture_File_4.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_4.TabIndex = 199;
@@ -637,7 +637,7 @@
             this.comboBox_Caption_4.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_4.FormattingEnabled = true;
             this.comboBox_Caption_4.Location = new System.Drawing.Point(1059, 79);
-            this.comboBox_Caption_4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_4.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_4.Name = "comboBox_Caption_4";
             this.comboBox_Caption_4.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_4.TabIndex = 197;
@@ -649,7 +649,7 @@
             this.button_Picture_File_4_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_4_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_4_Path.Location = new System.Drawing.Point(1288, 54);
-            this.button_Picture_File_4_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_4_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_4_Path.Name = "button_Picture_File_4_Path";
             this.button_Picture_File_4_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_4_Path.TabIndex = 196;
@@ -675,7 +675,7 @@
             this.textBox_Picture_File_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_4.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_4.Location = new System.Drawing.Point(1059, 55);
-            this.textBox_Picture_File_4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_4.Name = "textBox_Picture_File_4";
             this.textBox_Picture_File_4.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_4.TabIndex = 194;
@@ -686,7 +686,7 @@
             this.button_Picture_File_3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_3.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_3.Image")));
             this.button_Picture_File_3.Location = new System.Drawing.Point(967, 78);
-            this.button_Picture_File_3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_3.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_3.Name = "button_Picture_File_3";
             this.button_Picture_File_3.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_3.TabIndex = 193;
@@ -713,7 +713,7 @@
             this.comboBox_Caption_3.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_3.FormattingEnabled = true;
             this.comboBox_Caption_3.Location = new System.Drawing.Point(737, 79);
-            this.comboBox_Caption_3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_3.Name = "comboBox_Caption_3";
             this.comboBox_Caption_3.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_3.TabIndex = 191;
@@ -725,7 +725,7 @@
             this.button_Picture_File_3_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_3_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_3_Path.Location = new System.Drawing.Point(967, 54);
-            this.button_Picture_File_3_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_3_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_3_Path.Name = "button_Picture_File_3_Path";
             this.button_Picture_File_3_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_3_Path.TabIndex = 190;
@@ -751,7 +751,7 @@
             this.textBox_Picture_File_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_3.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_3.Location = new System.Drawing.Point(737, 55);
-            this.textBox_Picture_File_3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_3.Name = "textBox_Picture_File_3";
             this.textBox_Picture_File_3.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_3.TabIndex = 188;
@@ -762,7 +762,7 @@
             this.button_Picture_File_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_2.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_2.Image")));
             this.button_Picture_File_2.Location = new System.Drawing.Point(625, 78);
-            this.button_Picture_File_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_2.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_2.Name = "button_Picture_File_2";
             this.button_Picture_File_2.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_2.TabIndex = 187;
@@ -789,7 +789,7 @@
             this.comboBox_Caption_2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_2.FormattingEnabled = true;
             this.comboBox_Caption_2.Location = new System.Drawing.Point(396, 79);
-            this.comboBox_Caption_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_2.Name = "comboBox_Caption_2";
             this.comboBox_Caption_2.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_2.TabIndex = 185;
@@ -801,7 +801,7 @@
             this.button_Picture_File_2_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_2_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_2_Path.Location = new System.Drawing.Point(625, 54);
-            this.button_Picture_File_2_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_2_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_2_Path.Name = "button_Picture_File_2_Path";
             this.button_Picture_File_2_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_2_Path.TabIndex = 184;
@@ -827,7 +827,7 @@
             this.textBox_Picture_File_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_2.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_2.Location = new System.Drawing.Point(396, 55);
-            this.textBox_Picture_File_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_2.Name = "textBox_Picture_File_2";
             this.textBox_Picture_File_2.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_2.TabIndex = 182;
@@ -837,7 +837,7 @@
             this.button_Add_Template.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Add_Template.ForeColor = System.Drawing.Color.Blue;
             this.button_Add_Template.Location = new System.Drawing.Point(1000, 606);
-            this.button_Add_Template.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Add_Template.Margin = new System.Windows.Forms.Padding(4);
             this.button_Add_Template.Name = "button_Add_Template";
             this.button_Add_Template.Size = new System.Drawing.Size(189, 28);
             this.button_Add_Template.TabIndex = 181;
@@ -850,7 +850,7 @@
             this.button_Detail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Detail.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Detail.Location = new System.Drawing.Point(1205, 606);
-            this.button_Detail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Detail.Margin = new System.Windows.Forms.Padding(4);
             this.button_Detail.Name = "button_Detail";
             this.button_Detail.Size = new System.Drawing.Size(95, 28);
             this.button_Detail.TabIndex = 180;
@@ -873,7 +873,7 @@
             "PLACENTA",
             "TH"});
             this.comboBox_Template.Location = new System.Drawing.Point(761, 606);
-            this.comboBox_Template.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Template.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Template.Name = "comboBox_Template";
             this.comboBox_Template.Size = new System.Drawing.Size(221, 28);
             this.comboBox_Template.TabIndex = 179;
@@ -888,7 +888,7 @@
             this.comboBox_Organ.Items.AddRange(new object[] {
             "GYN"});
             this.comboBox_Organ.Location = new System.Drawing.Point(548, 606);
-            this.comboBox_Organ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Organ.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Organ.Name = "comboBox_Organ";
             this.comboBox_Organ.Size = new System.Drawing.Size(196, 28);
             this.comboBox_Organ.TabIndex = 178;
@@ -906,7 +906,7 @@
             "Dr. C.S. Ng",
             "Dr. S.H. Fung"});
             this.comboBox_Doctor.Location = new System.Drawing.Point(271, 606);
-            this.comboBox_Doctor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Doctor.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Doctor.Name = "comboBox_Doctor";
             this.comboBox_Doctor.Size = new System.Drawing.Size(260, 28);
             this.comboBox_Doctor.TabIndex = 177;
@@ -929,7 +929,7 @@
             this.textBox_Parts.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Parts.ForeColor = System.Drawing.Color.DarkViolet;
             this.textBox_Parts.Location = new System.Drawing.Point(1283, 10);
-            this.textBox_Parts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Parts.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Parts.Name = "textBox_Parts";
             this.textBox_Parts.ReadOnly = true;
             this.textBox_Parts.Size = new System.Drawing.Size(40, 28);
@@ -953,7 +953,7 @@
             this.button_Caption_Detail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Caption_Detail.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Caption_Detail.Location = new System.Drawing.Point(916, 8);
-            this.button_Caption_Detail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Caption_Detail.Margin = new System.Windows.Forms.Padding(4);
             this.button_Caption_Detail.Name = "button_Caption_Detail";
             this.button_Caption_Detail.Size = new System.Drawing.Size(208, 30);
             this.button_Caption_Detail.TabIndex = 173;
@@ -967,7 +967,7 @@
             this.button_Picture_File_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_1.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_1.Image")));
             this.button_Picture_File_1.Location = new System.Drawing.Point(304, 78);
-            this.button_Picture_File_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_1.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_1.Name = "button_Picture_File_1";
             this.button_Picture_File_1.Size = new System.Drawing.Size(36, 25);
             this.button_Picture_File_1.TabIndex = 168;
@@ -981,7 +981,7 @@
             this.comboBox_MAC_Add.ForeColor = System.Drawing.Color.Black;
             this.comboBox_MAC_Add.FormattingEnabled = true;
             this.comboBox_MAC_Add.Location = new System.Drawing.Point(69, 571);
-            this.comboBox_MAC_Add.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_MAC_Add.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_MAC_Add.Name = "comboBox_MAC_Add";
             this.comboBox_MAC_Add.Size = new System.Drawing.Size(1151, 28);
             this.comboBox_MAC_Add.TabIndex = 148;
@@ -1020,7 +1020,7 @@
             this.comboBox_Caption_1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_1.FormattingEnabled = true;
             this.comboBox_Caption_1.Location = new System.Drawing.Point(75, 79);
-            this.comboBox_Caption_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Caption_1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Caption_1.Name = "comboBox_Caption_1";
             this.comboBox_Caption_1.Size = new System.Drawing.Size(227, 24);
             this.comboBox_Caption_1.TabIndex = 129;
@@ -1032,7 +1032,7 @@
             this.button_Picture_File_1_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_1_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_1_Path.Location = new System.Drawing.Point(304, 54);
-            this.button_Picture_File_1_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Picture_File_1_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Picture_File_1_Path.Name = "button_Picture_File_1_Path";
             this.button_Picture_File_1_Path.Size = new System.Drawing.Size(36, 24);
             this.button_Picture_File_1_Path.TabIndex = 128;
@@ -1060,7 +1060,7 @@
             this.comboBox_Description.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Description.FormattingEnabled = true;
             this.comboBox_Description.Location = new System.Drawing.Point(155, 8);
-            this.comboBox_Description.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Description.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Description.Name = "comboBox_Description";
             this.comboBox_Description.Size = new System.Drawing.Size(736, 30);
             this.comboBox_Description.TabIndex = 126;
@@ -1071,7 +1071,7 @@
             this.textBox_Picture_File_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_1.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Picture_File_1.Location = new System.Drawing.Point(75, 55);
-            this.textBox_Picture_File_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Picture_File_1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Picture_File_1.Name = "textBox_Picture_File_1";
             this.textBox_Picture_File_1.Size = new System.Drawing.Size(227, 23);
             this.textBox_Picture_File_1.TabIndex = 22;
@@ -1107,9 +1107,9 @@
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.comboBox_Description2);
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.label17);
             this.tabPage_MICROSCOPIC_CY.Location = new System.Drawing.Point(4, 29);
-            this.tabPage_MICROSCOPIC_CY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_MICROSCOPIC_CY.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_MICROSCOPIC_CY.Name = "tabPage_MICROSCOPIC_CY";
-            this.tabPage_MICROSCOPIC_CY.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_MICROSCOPIC_CY.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_MICROSCOPIC_CY.Size = new System.Drawing.Size(1345, 653);
             this.tabPage_MICROSCOPIC_CY.TabIndex = 1;
             this.tabPage_MICROSCOPIC_CY.Text = "F2. MICROSCOPIC - CY";
@@ -1119,7 +1119,7 @@
             this.button_MIC_Add_Edit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_MIC_Add_Edit2.ForeColor = System.Drawing.Color.Black;
             this.button_MIC_Add_Edit2.Location = new System.Drawing.Point(1229, 574);
-            this.button_MIC_Add_Edit2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_MIC_Add_Edit2.Margin = new System.Windows.Forms.Padding(4);
             this.button_MIC_Add_Edit2.Name = "button_MIC_Add_Edit2";
             this.button_MIC_Add_Edit2.Size = new System.Drawing.Size(95, 28);
             this.button_MIC_Add_Edit2.TabIndex = 254;
@@ -1134,7 +1134,7 @@
             this.comboBox_MIC_Add2.ForeColor = System.Drawing.Color.Black;
             this.comboBox_MIC_Add2.FormattingEnabled = true;
             this.comboBox_MIC_Add2.Location = new System.Drawing.Point(69, 574);
-            this.comboBox_MIC_Add2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_MIC_Add2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_MIC_Add2.Name = "comboBox_MIC_Add2";
             this.comboBox_MIC_Add2.Size = new System.Drawing.Size(1151, 28);
             this.comboBox_MIC_Add2.TabIndex = 252;
@@ -1156,7 +1156,7 @@
             // textBox_Remarks_CY
             // 
             this.textBox_Remarks_CY.Location = new System.Drawing.Point(32, 45);
-            this.textBox_Remarks_CY.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Remarks_CY.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Remarks_CY.Multiline = true;
             this.textBox_Remarks_CY.Name = "textBox_Remarks_CY";
             this.textBox_Remarks_CY.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1168,7 +1168,7 @@
             this.button_Add_Template2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Add_Template2.ForeColor = System.Drawing.Color.Blue;
             this.button_Add_Template2.Location = new System.Drawing.Point(1004, 608);
-            this.button_Add_Template2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Add_Template2.Margin = new System.Windows.Forms.Padding(4);
             this.button_Add_Template2.Name = "button_Add_Template2";
             this.button_Add_Template2.Size = new System.Drawing.Size(189, 28);
             this.button_Add_Template2.TabIndex = 225;
@@ -1181,7 +1181,7 @@
             this.button_Detail2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Detail2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Detail2.Location = new System.Drawing.Point(1209, 608);
-            this.button_Detail2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Detail2.Margin = new System.Windows.Forms.Padding(4);
             this.button_Detail2.Name = "button_Detail2";
             this.button_Detail2.Size = new System.Drawing.Size(95, 28);
             this.button_Detail2.TabIndex = 224;
@@ -1204,7 +1204,7 @@
             "PLACENTA",
             "TH"});
             this.comboBox_Template2.Location = new System.Drawing.Point(765, 608);
-            this.comboBox_Template2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Template2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Template2.Name = "comboBox_Template2";
             this.comboBox_Template2.Size = new System.Drawing.Size(221, 28);
             this.comboBox_Template2.TabIndex = 223;
@@ -1219,7 +1219,7 @@
             this.comboBox_Organ2.Items.AddRange(new object[] {
             "GYN"});
             this.comboBox_Organ2.Location = new System.Drawing.Point(552, 608);
-            this.comboBox_Organ2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Organ2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Organ2.Name = "comboBox_Organ2";
             this.comboBox_Organ2.Size = new System.Drawing.Size(196, 28);
             this.comboBox_Organ2.TabIndex = 222;
@@ -1237,7 +1237,7 @@
             "Dr. C.S. Ng",
             "Dr. S.H. Fung"});
             this.comboBox_Doctor2.Location = new System.Drawing.Point(275, 608);
-            this.comboBox_Doctor2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Doctor2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Doctor2.Name = "comboBox_Doctor2";
             this.comboBox_Doctor2.Size = new System.Drawing.Size(260, 28);
             this.comboBox_Doctor2.TabIndex = 221;
@@ -1260,7 +1260,7 @@
             this.textBox_Parts2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Parts2.ForeColor = System.Drawing.Color.DarkViolet;
             this.textBox_Parts2.Location = new System.Drawing.Point(1283, 10);
-            this.textBox_Parts2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Parts2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Parts2.Name = "textBox_Parts2";
             this.textBox_Parts2.ReadOnly = true;
             this.textBox_Parts2.Size = new System.Drawing.Size(40, 28);
@@ -1286,7 +1286,7 @@
             this.comboBox_Description2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Description2.FormattingEnabled = true;
             this.comboBox_Description2.Location = new System.Drawing.Point(155, 8);
-            this.comboBox_Description2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Description2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Description2.Name = "comboBox_Description2";
             this.comboBox_Description2.Size = new System.Drawing.Size(736, 30);
             this.comboBox_Description2.TabIndex = 216;
@@ -1341,9 +1341,9 @@
             this.tabPage_DIAGNOSIS.Controls.Add(this.label_Site);
             this.tabPage_DIAGNOSIS.Controls.Add(this.button_Detail_1_DIA);
             this.tabPage_DIAGNOSIS.Location = new System.Drawing.Point(4, 29);
-            this.tabPage_DIAGNOSIS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_DIAGNOSIS.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage_DIAGNOSIS.Name = "tabPage_DIAGNOSIS";
-            this.tabPage_DIAGNOSIS.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage_DIAGNOSIS.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage_DIAGNOSIS.Size = new System.Drawing.Size(1345, 653);
             this.tabPage_DIAGNOSIS.TabIndex = 2;
             this.tabPage_DIAGNOSIS.Text = "F3. DIAGNOSIS";
@@ -1351,7 +1351,7 @@
             // textBox_Diagnosis
             // 
             this.textBox_Diagnosis.Location = new System.Drawing.Point(36, 230);
-            this.textBox_Diagnosis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Diagnosis.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Diagnosis.Multiline = true;
             this.textBox_Diagnosis.Name = "textBox_Diagnosis";
             this.textBox_Diagnosis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1379,7 +1379,7 @@
             "CARCINOMA DUCTAL INFILTRATIVE ",
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M2.Location = new System.Drawing.Point(439, 608);
-            this.comboBox_Snop_M2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_M2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M2.Name = "comboBox_Snop_M2";
             this.comboBox_Snop_M2.Size = new System.Drawing.Size(253, 29);
             this.comboBox_Snop_M2.TabIndex = 233;
@@ -1419,7 +1419,7 @@
             "CARCINOMA DUCTAL INFILTRATIVE ",
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M3.Location = new System.Drawing.Point(777, 608);
-            this.comboBox_Snop_M3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_M3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M3.Name = "comboBox_Snop_M3";
             this.comboBox_Snop_M3.Size = new System.Drawing.Size(204, 29);
             this.comboBox_Snop_M3.TabIndex = 231;
@@ -1457,7 +1457,7 @@
             "BONE                          ",
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T2.Location = new System.Drawing.Point(439, 578);
-            this.comboBox_Snop_T2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_T2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T2.Name = "comboBox_Snop_T2";
             this.comboBox_Snop_T2.Size = new System.Drawing.Size(253, 29);
             this.comboBox_Snop_T2.TabIndex = 229;
@@ -1495,7 +1495,7 @@
             "BONE                          ",
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T3.Location = new System.Drawing.Point(777, 578);
-            this.comboBox_Snop_T3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_T3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T3.Name = "comboBox_Snop_T3";
             this.comboBox_Snop_T3.Size = new System.Drawing.Size(204, 29);
             this.comboBox_Snop_T3.TabIndex = 227;
@@ -1535,7 +1535,7 @@
             "CARCINOMA DUCTAL INFILTRATIVE ",
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M1.Location = new System.Drawing.Point(120, 606);
-            this.comboBox_Snop_M1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_M1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M1.Name = "comboBox_Snop_M1";
             this.comboBox_Snop_M1.Size = new System.Drawing.Size(228, 29);
             this.comboBox_Snop_M1.TabIndex = 225;
@@ -1560,7 +1560,7 @@
             "BONE                          ",
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T1.Location = new System.Drawing.Point(120, 576);
-            this.comboBox_Snop_T1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_T1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T1.Name = "comboBox_Snop_T1";
             this.comboBox_Snop_T1.Size = new System.Drawing.Size(228, 29);
             this.comboBox_Snop_T1.TabIndex = 224;
@@ -1611,7 +1611,7 @@
             this.button_Detail_4_DIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Detail_4_DIA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Detail_4_DIA.Location = new System.Drawing.Point(1253, 539);
-            this.button_Detail_4_DIA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Detail_4_DIA.Margin = new System.Windows.Forms.Padding(4);
             this.button_Detail_4_DIA.Name = "button_Detail_4_DIA";
             this.button_Detail_4_DIA.Size = new System.Drawing.Size(68, 31);
             this.button_Detail_4_DIA.TabIndex = 220;
@@ -1627,7 +1627,7 @@
             this.comboBox_Diagnosis_2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Diagnosis_2.FormattingEnabled = true;
             this.comboBox_Diagnosis_2.Location = new System.Drawing.Point(673, 540);
-            this.comboBox_Diagnosis_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Diagnosis_2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Diagnosis_2.Name = "comboBox_Diagnosis_2";
             this.comboBox_Diagnosis_2.Size = new System.Drawing.Size(571, 29);
             this.comboBox_Diagnosis_2.TabIndex = 219;
@@ -1639,7 +1639,7 @@
             this.button_Detail_3_DIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Detail_3_DIA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Detail_3_DIA.Location = new System.Drawing.Point(597, 539);
-            this.button_Detail_3_DIA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Detail_3_DIA.Margin = new System.Windows.Forms.Padding(4);
             this.button_Detail_3_DIA.Name = "button_Detail_3_DIA";
             this.button_Detail_3_DIA.Size = new System.Drawing.Size(68, 31);
             this.button_Detail_3_DIA.TabIndex = 218;
@@ -1655,7 +1655,7 @@
             this.comboBox_Diagnosis_1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Diagnosis_1.FormattingEnabled = true;
             this.comboBox_Diagnosis_1.Location = new System.Drawing.Point(36, 541);
-            this.comboBox_Diagnosis_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Diagnosis_1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Diagnosis_1.Name = "comboBox_Diagnosis_1";
             this.comboBox_Diagnosis_1.Size = new System.Drawing.Size(552, 29);
             this.comboBox_Diagnosis_1.TabIndex = 217;
@@ -1680,7 +1680,7 @@
             this.textBox_Chinese_Description_2_DIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Chinese_Description_2_DIA.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Chinese_Description_2_DIA.Location = new System.Drawing.Point(335, 169);
-            this.textBox_Chinese_Description_2_DIA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Chinese_Description_2_DIA.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Chinese_Description_2_DIA.Name = "textBox_Chinese_Description_2_DIA";
             this.textBox_Chinese_Description_2_DIA.Size = new System.Drawing.Size(829, 28);
             this.textBox_Chinese_Description_2_DIA.TabIndex = 211;
@@ -1701,15 +1701,17 @@
             // comboBox_Operation
             // 
             this.comboBox_Operation.DisplayMember = "operation";
+            this.comboBox_Operation.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.comboBox_Operation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Operation.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Operation.FormattingEnabled = true;
             this.comboBox_Operation.Location = new System.Drawing.Point(101, 135);
-            this.comboBox_Operation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Operation.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Operation.Name = "comboBox_Operation";
-            this.comboBox_Operation.Size = new System.Drawing.Size(1063, 30);
+            this.comboBox_Operation.Size = new System.Drawing.Size(1063, 29);
             this.comboBox_Operation.TabIndex = 212;
             this.comboBox_Operation.ValueMember = "operation";
+            this.comboBox_Operation.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Operation_DrawItem);
             this.comboBox_Operation.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Operation_SelectionChangeCommitted);
             // 
             // label_Operation
@@ -1730,7 +1732,7 @@
             this.button_Detail_2_DIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Detail_2_DIA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Detail_2_DIA.Location = new System.Drawing.Point(1177, 135);
-            this.button_Detail_2_DIA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Detail_2_DIA.Margin = new System.Windows.Forms.Padding(4);
             this.button_Detail_2_DIA.Name = "button_Detail_2_DIA";
             this.button_Detail_2_DIA.Size = new System.Drawing.Size(147, 30);
             this.button_Detail_2_DIA.TabIndex = 214;
@@ -1743,7 +1745,7 @@
             this.textBox_Parts3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Parts3.ForeColor = System.Drawing.Color.DarkViolet;
             this.textBox_Parts3.Location = new System.Drawing.Point(1283, 9);
-            this.textBox_Parts3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Parts3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Parts3.Name = "textBox_Parts3";
             this.textBox_Parts3.ReadOnly = true;
             this.textBox_Parts3.Size = new System.Drawing.Size(40, 28);
@@ -1767,7 +1769,7 @@
             this.textBox_Chinese_Description_1_DIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Chinese_Description_1_DIA.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Chinese_Description_1_DIA.Location = new System.Drawing.Point(335, 74);
-            this.textBox_Chinese_Description_1_DIA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Chinese_Description_1_DIA.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Chinese_Description_1_DIA.Name = "textBox_Chinese_Description_1_DIA";
             this.textBox_Chinese_Description_1_DIA.Size = new System.Drawing.Size(829, 28);
             this.textBox_Chinese_Description_1_DIA.TabIndex = 189;
@@ -1790,7 +1792,7 @@
             this.textBox_Site_frort.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Site_frort.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Site_frort.Location = new System.Drawing.Point(12, 41);
-            this.textBox_Site_frort.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Site_frort.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Site_frort.Name = "textBox_Site_frort";
             this.textBox_Site_frort.Size = new System.Drawing.Size(80, 28);
             this.textBox_Site_frort.TabIndex = 205;
@@ -1798,15 +1800,17 @@
             // comboBox_Site
             // 
             this.comboBox_Site.DisplayMember = "site";
+            this.comboBox_Site.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.comboBox_Site.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Site.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Site.FormattingEnabled = true;
             this.comboBox_Site.Location = new System.Drawing.Point(101, 40);
-            this.comboBox_Site.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Site.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Site.Name = "comboBox_Site";
-            this.comboBox_Site.Size = new System.Drawing.Size(1063, 30);
+            this.comboBox_Site.Size = new System.Drawing.Size(1063, 29);
             this.comboBox_Site.TabIndex = 201;
             this.comboBox_Site.ValueMember = "site";
+            this.comboBox_Site.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Site_DrawItem);
             this.comboBox_Site.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Site_SelectionChangeCommitted);
             // 
             // label_Site
@@ -1827,7 +1831,7 @@
             this.button_Detail_1_DIA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Detail_1_DIA.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Detail_1_DIA.Location = new System.Drawing.Point(1177, 40);
-            this.button_Detail_1_DIA.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Detail_1_DIA.Margin = new System.Windows.Forms.Padding(4);
             this.button_Detail_1_DIA.Name = "button_Detail_1_DIA";
             this.button_Detail_1_DIA.Size = new System.Drawing.Size(147, 30);
             this.button_Detail_1_DIA.TabIndex = 204;
@@ -1842,7 +1846,7 @@
             this.button_Delete.Image = ((System.Drawing.Image)(resources.GetObject("button_Delete.Image")));
             this.button_Delete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Delete.Location = new System.Drawing.Point(744, 698);
-            this.button_Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Delete.Margin = new System.Windows.Forms.Padding(4);
             this.button_Delete.Name = "button_Delete";
             this.button_Delete.Size = new System.Drawing.Size(85, 54);
             this.button_Delete.TabIndex = 108;
@@ -1858,7 +1862,7 @@
             this.button_End.Image = ((System.Drawing.Image)(resources.GetObject("button_End.Image")));
             this.button_End.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_End.Location = new System.Drawing.Point(261, 704);
-            this.button_End.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_End.Margin = new System.Windows.Forms.Padding(4);
             this.button_End.Name = "button_End";
             this.button_End.Size = new System.Drawing.Size(77, 52);
             this.button_End.TabIndex = 107;
@@ -1874,7 +1878,7 @@
             this.button_Next.Image = ((System.Drawing.Image)(resources.GetObject("button_Next.Image")));
             this.button_Next.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Next.Location = new System.Drawing.Point(176, 704);
-            this.button_Next.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Next.Margin = new System.Windows.Forms.Padding(4);
             this.button_Next.Name = "button_Next";
             this.button_Next.Size = new System.Drawing.Size(77, 52);
             this.button_Next.TabIndex = 106;
@@ -1890,7 +1894,7 @@
             this.button_Back.Image = ((System.Drawing.Image)(resources.GetObject("button_Back.Image")));
             this.button_Back.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Back.Location = new System.Drawing.Point(91, 702);
-            this.button_Back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Back.Margin = new System.Windows.Forms.Padding(4);
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(77, 52);
             this.button_Back.TabIndex = 105;
@@ -1906,7 +1910,7 @@
             this.button_New.Image = ((System.Drawing.Image)(resources.GetObject("button_New.Image")));
             this.button_New.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_New.Location = new System.Drawing.Point(663, 698);
-            this.button_New.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_New.Margin = new System.Windows.Forms.Padding(4);
             this.button_New.Name = "button_New";
             this.button_New.Size = new System.Drawing.Size(73, 54);
             this.button_New.TabIndex = 103;
@@ -1922,7 +1926,7 @@
             this.button_Label.Image = ((System.Drawing.Image)(resources.GetObject("button_Label.Image")));
             this.button_Label.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Label.Location = new System.Drawing.Point(837, 698);
-            this.button_Label.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Label.Margin = new System.Windows.Forms.Padding(4);
             this.button_Label.Name = "button_Label";
             this.button_Label.Size = new System.Drawing.Size(80, 54);
             this.button_Label.TabIndex = 100;
@@ -1938,7 +1942,7 @@
             this.button_F8_Back_To_Main.Image = ((System.Drawing.Image)(resources.GetObject("button_F8_Back_To_Main.Image")));
             this.button_F8_Back_To_Main.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_F8_Back_To_Main.Location = new System.Drawing.Point(1095, 698);
-            this.button_F8_Back_To_Main.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F8_Back_To_Main.Margin = new System.Windows.Forms.Padding(4);
             this.button_F8_Back_To_Main.Name = "button_F8_Back_To_Main";
             this.button_F8_Back_To_Main.Size = new System.Drawing.Size(97, 54);
             this.button_F8_Back_To_Main.TabIndex = 99;
@@ -1954,7 +1958,7 @@
             this.button_Top.Image = ((System.Drawing.Image)(resources.GetObject("button_Top.Image")));
             this.button_Top.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Top.Location = new System.Drawing.Point(5, 702);
-            this.button_Top.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Top.Margin = new System.Windows.Forms.Padding(4);
             this.button_Top.Name = "button_Top";
             this.button_Top.Size = new System.Drawing.Size(77, 52);
             this.button_Top.TabIndex = 98;
@@ -1970,7 +1974,7 @@
             this.button_Path.Image = ((System.Drawing.Image)(resources.GetObject("button_Path.Image")));
             this.button_Path.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Path.Location = new System.Drawing.Point(925, 696);
-            this.button_Path.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Path.Margin = new System.Windows.Forms.Padding(4);
             this.button_Path.Name = "button_Path";
             this.button_Path.Size = new System.Drawing.Size(80, 54);
             this.button_Path.TabIndex = 109;
@@ -2025,7 +2029,7 @@
             this.button_F6_Edit.Image = ((System.Drawing.Image)(resources.GetObject("button_F6_Edit.Image")));
             this.button_F6_Edit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_F6_Edit.Location = new System.Drawing.Point(559, 698);
-            this.button_F6_Edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F6_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.button_F6_Edit.Name = "button_F6_Edit";
             this.button_F6_Edit.Size = new System.Drawing.Size(96, 54);
             this.button_F6_Edit.TabIndex = 150;
@@ -2041,7 +2045,7 @@
             this.button_Undo.Image = ((System.Drawing.Image)(resources.GetObject("button_Undo.Image")));
             this.button_Undo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Undo.Location = new System.Drawing.Point(1012, 696);
-            this.button_Undo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Undo.Margin = new System.Windows.Forms.Padding(4);
             this.button_Undo.Name = "button_Undo";
             this.button_Undo.Size = new System.Drawing.Size(77, 54);
             this.button_Undo.TabIndex = 192;
@@ -2057,7 +2061,7 @@
             this.button_Save.Image = ((System.Drawing.Image)(resources.GetObject("button_Save.Image")));
             this.button_Save.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Save.Location = new System.Drawing.Point(472, 698);
-            this.button_Save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Save.Margin = new System.Windows.Forms.Padding(4);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(79, 54);
             this.button_Save.TabIndex = 195;
@@ -2090,7 +2094,7 @@
             this.Controls.Add(this.button_F8_Back_To_Main);
             this.Controls.Add(this.button_Top);
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_Description";
             this.Text = "Description";
             this.Load += new System.EventHandler(this.Form_Description_Load);

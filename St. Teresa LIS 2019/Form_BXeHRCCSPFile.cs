@@ -23,6 +23,8 @@ namespace St.Teresa_LIS_2019
         private DataRow currentEditRow;
         private string id;
 
+        private bool isNewPatient = false;
+
         public class Bxcy_specimen
         {
             public int id { get; set; }
@@ -186,6 +188,12 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
+        public Form_BXeHRCCSPFile(bool isNewPatient)
+        {
+            this.isNewPatient = isNewPatient;
+            InitializeComponent();
+        }
+
         public Form_BXeHRCCSPFile(string id)
         {
             this.id = id;
@@ -198,6 +206,25 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
             currentEditRow["id"] = -1;
+            currentEditRow["Pat_age"] = 0;
+            currentEditRow["Pat_sex"] = "M";
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
+            currentEditRow["DATE"] = DateTime.Now;
+
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+        }
+
+        public void patientNameCopy(string patientName)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["patient"] = patientName;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
 
@@ -255,7 +282,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus);
+            bool isNewRecord = currentStatus == PageStatus.STATUS_NEW ? true : false;
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord);
             open.OnBxcyDiagExit += OnStatusReturn;
             open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
             open.Show();
@@ -271,7 +299,7 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(currentStatus);
         }
 
-        private bool onBxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3)
+        private int onBxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3)
         {
             return saveDataWithSnopCode(snopT1, snopT2, snopT3, snopM1, snopM2, snopM3);
         }
@@ -340,24 +368,27 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentEditRow != null)
                 {
-                    currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
-                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
-                    currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
-                    textBox_ID.BindingContext[dt].Position++;
+                    if (!checkDuplicateHKID())
+                    {
+                        currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
+                        currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
+                        currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                        textBox_ID.BindingContext[dt].Position++;
 
-                    if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
-                    {
-                        //reloadDBData(currencyManager.Count - 1);
-                        reloadAndBindingDBData();
-                        button_End.PerformClick();
-                        //reloadAndBindingDBData(currencyManager.Count - 1);
-                        MessageBox.Show("New ebv_specimen saved");
+                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                        {
+                            //reloadDBData(currencyManager.Count - 1);
+                            reloadAndBindingDBData();
+                            button_End.PerformClick();
+                            //reloadAndBindingDBData(currencyManager.Count - 1);
+                            MessageBox.Show("New ebv_specimen saved");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
+                        }
+                        setButtonStatus(PageStatus.STATUS_VIEW);
                     }
-                    else
-                    {
-                        MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
-                    }
-                    setButtonStatus(PageStatus.STATUS_VIEW);
                 }
                 //reloadAndBindingDBData(currencyManager.Count - 1);
             }
@@ -389,37 +420,47 @@ namespace St.Teresa_LIS_2019
             }
         }
 
-        private bool saveDataWithSnopCode(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3)
+        private int saveDataWithSnopCode(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3)
         {
-            bool result = false;
+            int result = 0;
             if (currentStatus == PageStatus.STATUS_NEW)
             {
                 if (currentEditRow != null)
                 {
-                    string currentCaseNo = textBox_Case_No.Text.Trim();
-                    currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
-                    currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
-                    currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
-
-                    currentEditRow["snopcode_t"] = snopT1;
-                    currentEditRow["snopcode_t2"] = snopT2;
-                    currentEditRow["snopcode_t3"] = snopT3;
-                    currentEditRow["snopcode_m"] = snopM1;
-                    currentEditRow["snopcode_m2"] = snopM2;
-                    currentEditRow["snopcode_m3"] = snopM3;
-
-                    textBox_ID.BindingContext[dt].Position++;
-
-                    if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                    if (!checkDuplicateHKID())
                     {
-                        //reloadDBData(currencyManager.Count - 1);
-                        reloadAndBindingDBData(0, currentCaseNo);
-                        button_End.PerformClick();
+                        string currentCaseNo = textBox_Case_No.Text.Trim();
+                        currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
+                        currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
+                        currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
 
-                        result = true;
+                        currentEditRow["snopcode_t"] = snopT1;
+                        currentEditRow["snopcode_t2"] = snopT2;
+                        currentEditRow["snopcode_t3"] = snopT3;
+                        currentEditRow["snopcode_m"] = snopM1;
+                        currentEditRow["snopcode_m2"] = snopM2;
+                        currentEditRow["snopcode_m3"] = snopM3;
+
+                        textBox_ID.BindingContext[dt].Position++;
+
+                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                        {
+                            //reloadDBData(currencyManager.Count - 1);
+                            reloadAndBindingDBData(0, currentCaseNo);
+                            button_End.PerformClick();
+                        }
+                        else
+                        {
+                            result = 2;
+                        }
+                        setButtonStatus(PageStatus.STATUS_VIEW);
                     }
-                    setButtonStatus(PageStatus.STATUS_VIEW);
+                    else
+                    {
+                        result = 1;
+                    }
                 }
+                
                 //reloadAndBindingDBData(currencyManager.Count - 1);
             }
             else
@@ -441,14 +482,35 @@ namespace St.Teresa_LIS_2019
 
                     textBox_ID.BindingContext[dt].Position++;
 
-                    if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                    if (!DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                     {
-                        result = true;
+                        result = 3;
                     }
                 }
 
                 setButtonStatus(PageStatus.STATUS_VIEW);
                 reloadAndBindingDBData(0, currentCaseNo);
+            }
+
+            return result;
+        }
+
+        private bool checkDuplicateHKID()
+        {
+            bool result = false;
+
+            if (isNewPatient)
+            {
+                DataSet checkBxcy_specimenDataSet = new DataSet();
+                SqlDataAdapter checkdataAdapter;
+                string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE patient = '{0}' AND pat_hkid = '{1}'", textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim());
+                checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
+
+                if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+                {
+                    MessageBox.Show("Duplicate Patient's name and HKID, unable to save");
+                    result = true;
+                }
             }
 
             return result;
@@ -1077,7 +1139,7 @@ namespace St.Teresa_LIS_2019
                 button_Advance.Enabled = true;
 
                 button_Rpt_Date_Tick.Enabled = false;
-                checkBox_Uploaded.Enabled = false;
+                //checkBox_Uploaded.Enabled = false;
 
                 disedit_modle();
             }
@@ -1163,7 +1225,7 @@ namespace St.Teresa_LIS_2019
                     button_Advance.Enabled = false;
 
                     button_Rpt_Date_Tick.Enabled = true;
-                    checkBox_Uploaded.Enabled = true;
+                    //checkBox_Uploaded.Enabled = true;
 
                     edit_modle();
                 }
@@ -1249,7 +1311,7 @@ namespace St.Teresa_LIS_2019
                         button_Advance.Enabled = false;
 
                         button_Rpt_Date_Tick.Enabled = true;
-                        checkBox_Uploaded.Enabled = true;
+                        //checkBox_Uploaded.Enabled = true;
 
                         edit_modle();
                     }
@@ -1335,7 +1397,7 @@ namespace St.Teresa_LIS_2019
                             button_Advance.Enabled = false;
 
                             button_Rpt_Date_Tick.Enabled = true;
-                            checkBox_Uploaded.Enabled = true;
+                            //checkBox_Uploaded.Enabled = true;
 
                             edit_modle();
                         }
@@ -1677,6 +1739,35 @@ namespace St.Teresa_LIS_2019
             r2.X = r1.Width + 1;
             r2.Width = r2.Width / 2;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void textBox_Case_No_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (textBox_Case_No.Text.Trim().ToLower() == "b")
+            {
+                textBox_Case_No.Text = string.Format("BX{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+            }
+            else
+            {
+                if (textBox_Case_No.Text.Trim().ToLower() == "c")
+                {
+                    textBox_Case_No.Text = string.Format("CY{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+                }
+                else
+                {
+                    if (textBox_Case_No.Text.Trim().ToLower() == "m")
+                    {
+                        textBox_Case_No.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+                    }
+                    else
+                    {
+                        if (textBox_Case_No.Text.Trim().ToLower() == "d")
+                        {
+                            textBox_Case_No.Text = string.Format("D{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+                        }
+                    }
+                }
+            }
         }
     }
 }

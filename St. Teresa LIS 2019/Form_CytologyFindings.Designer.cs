@@ -84,7 +84,7 @@
             this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.panel2);
             this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.label_HPV);
             this.panel_TYPE_OF_PREPARATION_1.Location = new System.Drawing.Point(9, 2);
-            this.panel_TYPE_OF_PREPARATION_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_TYPE_OF_PREPARATION_1.Margin = new System.Windows.Forms.Padding(4);
             this.panel_TYPE_OF_PREPARATION_1.Name = "panel_TYPE_OF_PREPARATION_1";
             this.panel_TYPE_OF_PREPARATION_1.Size = new System.Drawing.Size(476, 119);
             this.panel_TYPE_OF_PREPARATION_1.TabIndex = 5;
@@ -95,7 +95,7 @@
             this.button_Generate_Codes.ForeColor = System.Drawing.Color.Gray;
             this.button_Generate_Codes.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Generate_Codes.Location = new System.Drawing.Point(291, 78);
-            this.button_Generate_Codes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Generate_Codes.Margin = new System.Windows.Forms.Padding(4);
             this.button_Generate_Codes.Name = "button_Generate_Codes";
             this.button_Generate_Codes.Size = new System.Drawing.Size(155, 34);
             this.button_Generate_Codes.TabIndex = 231;
@@ -108,7 +108,7 @@
             this.checkBox_Weak_Control.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Weak_Control.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Weak_Control.Location = new System.Drawing.Point(119, 91);
-            this.checkBox_Weak_Control.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_Weak_Control.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Weak_Control.Name = "checkBox_Weak_Control";
             this.checkBox_Weak_Control.Size = new System.Drawing.Size(134, 22);
             this.checkBox_Weak_Control.TabIndex = 173;
@@ -121,7 +121,7 @@
             this.checkBox_Sequencing.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Sequencing.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Sequencing.Location = new System.Drawing.Point(119, 71);
-            this.checkBox_Sequencing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_Sequencing.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Sequencing.Name = "checkBox_Sequencing";
             this.checkBox_Sequencing.Size = new System.Drawing.Size(117, 22);
             this.checkBox_Sequencing.TabIndex = 172;
@@ -134,7 +134,7 @@
             this.checkBox_Hybridization.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Hybridization.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Hybridization.Location = new System.Drawing.Point(119, 52);
-            this.checkBox_Hybridization.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_Hybridization.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Hybridization.Name = "checkBox_Hybridization";
             this.checkBox_Hybridization.Size = new System.Drawing.Size(128, 22);
             this.checkBox_Hybridization.TabIndex = 4;
@@ -146,7 +146,7 @@
             this.textBox_Type_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Type_3.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_Type_3.Location = new System.Drawing.Point(324, 26);
-            this.textBox_Type_3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Type_3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Type_3.Name = "textBox_Type_3";
             this.textBox_Type_3.Size = new System.Drawing.Size(93, 24);
             this.textBox_Type_3.TabIndex = 171;
@@ -156,7 +156,7 @@
             this.textBox_Type_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Type_2.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_Type_2.Location = new System.Drawing.Point(221, 26);
-            this.textBox_Type_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Type_2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Type_2.Name = "textBox_Type_2";
             this.textBox_Type_2.Size = new System.Drawing.Size(93, 24);
             this.textBox_Type_2.TabIndex = 170;
@@ -166,7 +166,7 @@
             this.textBox_Type_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Type_1.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_Type_1.Location = new System.Drawing.Point(119, 26);
-            this.textBox_Type_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Type_1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Type_1.Name = "textBox_Type_1";
             this.textBox_Type_1.Size = new System.Drawing.Size(93, 24);
             this.textBox_Type_1.TabIndex = 169;
@@ -188,7 +188,7 @@
             this.panel2.Controls.Add(this.radioButton_VE_minus);
             this.panel2.Controls.Add(this.radioButton_VE_plus);
             this.panel2.Location = new System.Drawing.Point(12, 29);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(85, 57);
             this.panel2.TabIndex = 8;
@@ -199,7 +199,7 @@
             this.radioButton_VE_minus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.radioButton_VE_minus.ForeColor = System.Drawing.Color.Blue;
             this.radioButton_VE_minus.Location = new System.Drawing.Point(8, 30);
-            this.radioButton_VE_minus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton_VE_minus.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton_VE_minus.Name = "radioButton_VE_minus";
             this.radioButton_VE_minus.Size = new System.Drawing.Size(65, 21);
             this.radioButton_VE_minus.TabIndex = 10;
@@ -213,7 +213,7 @@
             this.radioButton_VE_plus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.radioButton_VE_plus.ForeColor = System.Drawing.Color.Blue;
             this.radioButton_VE_plus.Location = new System.Drawing.Point(8, 4);
-            this.radioButton_VE_plus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.radioButton_VE_plus.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton_VE_plus.Name = "radioButton_VE_plus";
             this.radioButton_VE_plus.Size = new System.Drawing.Size(63, 21);
             this.radioButton_VE_plus.TabIndex = 9;
@@ -240,7 +240,7 @@
             this.panel5.Controls.Add(this.comboBox_Description);
             this.panel5.Controls.Add(this.label_Description);
             this.panel5.Location = new System.Drawing.Point(9, 122);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Margin = new System.Windows.Forms.Padding(4);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(953, 189);
             this.panel5.TabIndex = 7;
@@ -250,7 +250,7 @@
             this.textBox_Microscoplc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.textBox_Microscoplc.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Microscoplc.Location = new System.Drawing.Point(21, 61);
-            this.textBox_Microscoplc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Microscoplc.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Microscoplc.Multiline = true;
             this.textBox_Microscoplc.Name = "textBox_Microscoplc";
             this.textBox_Microscoplc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -275,7 +275,7 @@
             this.comboBox_Description.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_Description.FormattingEnabled = true;
             this.comboBox_Description.Location = new System.Drawing.Point(155, 8);
-            this.comboBox_Description.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Description.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Description.Name = "comboBox_Description";
             this.comboBox_Description.Size = new System.Drawing.Size(769, 28);
             this.comboBox_Description.TabIndex = 170;
@@ -302,7 +302,7 @@
             this.panel1.Controls.Add(this.label_Code);
             this.panel1.Controls.Add(this.label_Cytology_Result);
             this.panel1.Location = new System.Drawing.Point(487, 2);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(476, 119);
             this.panel1.TabIndex = 6;
@@ -321,7 +321,7 @@
             this.button_Cobas_4800_System.ForeColor = System.Drawing.Color.Black;
             this.button_Cobas_4800_System.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Cobas_4800_System.Location = new System.Drawing.Point(245, 9);
-            this.button_Cobas_4800_System.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Cobas_4800_System.Margin = new System.Windows.Forms.Padding(4);
             this.button_Cobas_4800_System.Name = "button_Cobas_4800_System";
             this.button_Cobas_4800_System.Size = new System.Drawing.Size(203, 41);
             this.button_Cobas_4800_System.TabIndex = 232;
@@ -338,7 +338,7 @@
             this.comboBox_cy_result.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_cy_result.FormattingEnabled = true;
             this.comboBox_cy_result.Location = new System.Drawing.Point(20, 66);
-            this.comboBox_cy_result.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_cy_result.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_cy_result.Name = "comboBox_cy_result";
             this.comboBox_cy_result.Size = new System.Drawing.Size(425, 27);
             this.comboBox_cy_result.TabIndex = 169;
@@ -375,7 +375,7 @@
             this.button_Back_To_Main.Image = ((System.Drawing.Image)(resources.GetObject("button_Back_To_Main.Image")));
             this.button_Back_To_Main.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Back_To_Main.Location = new System.Drawing.Point(401, 539);
-            this.button_Back_To_Main.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Back_To_Main.Margin = new System.Windows.Forms.Padding(4);
             this.button_Back_To_Main.Name = "button_Back_To_Main";
             this.button_Back_To_Main.Size = new System.Drawing.Size(168, 49);
             this.button_Back_To_Main.TabIndex = 164;
@@ -395,7 +395,7 @@
             this.panel3.Controls.Add(this.comboBox_Operation);
             this.panel3.Controls.Add(this.label_Operation);
             this.panel3.Location = new System.Drawing.Point(9, 305);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(953, 226);
             this.panel3.TabIndex = 205;
@@ -405,7 +405,7 @@
             this.textBox_Diagnosis.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.textBox_Diagnosis.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Diagnosis.Location = new System.Drawing.Point(21, 61);
-            this.textBox_Diagnosis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Diagnosis.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Diagnosis.Multiline = true;
             this.textBox_Diagnosis.Name = "textBox_Diagnosis";
             this.textBox_Diagnosis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -431,7 +431,7 @@
             this.comboBox_Snop_M.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_Snop_M.FormattingEnabled = true;
             this.comboBox_Snop_M.Location = new System.Drawing.Point(528, 184);
-            this.comboBox_Snop_M.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_M.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M.Name = "comboBox_Snop_M";
             this.comboBox_Snop_M.Size = new System.Drawing.Size(396, 27);
             this.comboBox_Snop_M.TabIndex = 206;
@@ -441,15 +441,17 @@
             // comboBox_Snop_T
             // 
             this.comboBox_Snop_T.DisplayMember = "C_DESC";
+            this.comboBox_Snop_T.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.comboBox_Snop_T.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Snop_T.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_Snop_T.FormattingEnabled = true;
             this.comboBox_Snop_T.Location = new System.Drawing.Point(21, 184);
-            this.comboBox_Snop_T.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_T.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T.Name = "comboBox_Snop_T";
-            this.comboBox_Snop_T.Size = new System.Drawing.Size(396, 28);
+            this.comboBox_Snop_T.Size = new System.Drawing.Size(396, 27);
             this.comboBox_Snop_T.TabIndex = 205;
             this.comboBox_Snop_T.ValueMember = "C_DESC";
+            this.comboBox_Snop_T.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T_DrawItem);
             // 
             // label_Diagnosis
             // 
@@ -469,7 +471,7 @@
             this.comboBox_Operation.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_Operation.FormattingEnabled = true;
             this.comboBox_Operation.Location = new System.Drawing.Point(155, 8);
-            this.comboBox_Operation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Operation.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Operation.Name = "comboBox_Operation";
             this.comboBox_Operation.Size = new System.Drawing.Size(769, 28);
             this.comboBox_Operation.TabIndex = 170;
@@ -490,7 +492,7 @@
             // textBox_ID
             // 
             this.textBox_ID.Location = new System.Drawing.Point(985, 14);
-            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ID.Name = "textBox_ID";
             this.textBox_ID.Size = new System.Drawing.Size(15, 25);
             this.textBox_ID.TabIndex = 233;
@@ -508,7 +510,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel_TYPE_OF_PREPARATION_1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_CytologyFindings";
             this.Text = "Cytology Findings";
             this.Load += new System.EventHandler(this.Form_CytologyFindings_Load);

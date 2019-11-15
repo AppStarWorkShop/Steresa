@@ -515,23 +515,44 @@ namespace St.Teresa_LIS_2019
         {
             if (label2.Text == "BX/CY")
             {
-                Form_BXCYFile open = new Form_BXCYFile();
+                Form_BXCYFile open = new Form_BXCYFile(true);
                 open.Show();
-                open.newRecord();
+                if (contentSearching == "PATIENT")
+                {
+                    open.patientNameCopy(textBox_Search_Type.Text.Trim());
+                }
+                else
+                {
+                    open.newRecord();
+                }
             }
             else
             {
                 if (label2.Text == "D")
                 {
-                    Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile();
+                    Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(true);
                     open.Show();
-                    open.newRecord();
+                    if (contentSearching == "PATIENT")
+                    {
+                        open.patientNameCopy(textBox_Search_Type.Text.Trim());
+                    }
+                    else
+                    {
+                        open.newRecord();
+                    }
                 }
                 else
                 {
-                    Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname();
+                    Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(true);
                     open.Show();
-                    open.newRecord();
+                    if (contentSearching == "PATIENT")
+                    {
+                        open.patientNameCopy(textBox_Search_Type.Text.Trim());
+                    }
+                    else
+                    {
+                        open.newRecord();
+                    }
                 }
             }
         }
@@ -794,18 +815,6 @@ namespace St.Teresa_LIS_2019
                 button_F6_View_Record.Enabled = false;
             }
 
-            // remark by 
-            /*
-            if (contentSearching == "CASE_NO" && textBox_Search_Type.Text.Trim() != "")
-            {
-                button_F2_New_Record.Enabled = true;
-            }
-            else
-            {
-                button_F2_New_Record.Enabled = false;
-            }
-            */
-
             if (contentSearching == "PATIENT" && textBox_Search_Type.Text.Trim() != "")
             {
                 DataSet copyEbvDataSet = new DataSet();
@@ -815,7 +824,7 @@ namespace St.Teresa_LIS_2019
 
                 if (copyEbvDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
                 {
-                    button_F5_New_Patient.Enabled = false;
+                    button_F5_New_Patient.Enabled = true;
                     button_F2_New_Record.Enabled = true;
                 }
                 else

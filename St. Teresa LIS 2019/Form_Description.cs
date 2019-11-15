@@ -28,10 +28,18 @@ namespace St.Teresa_LIS_2019
         public delegate void BxcyDiagExit(int status, bool refresh);
         public BxcyDiagExit OnBxcyDiagExit;
 
-        public delegate bool BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
+        public delegate int BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
         public BxcyDiagSaveBoth OnBxcyDiagSaveBoth;
 
         public bool isNeedRefreshMainPage = false;
+
+        private Form mainPage;
+
+        private string patientName;
+        private string patientHKID;
+        private bool isNewRecord = false;
+
+        private Object snopT1, snopT2, snopT3, snopM1, snopM2, snopM3;
 
         public class Bxcy_diag
         {
@@ -138,6 +146,23 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
+        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewRecord)
+        {
+            this.caseNo = caseNo;
+            this.bxcy_id = bxcy_id;
+            this.snopT1 = snopT1;
+            this.snopT2 = snopT2;
+            this.snopT3 = snopT3;
+            this.snopM1 = snopM1;
+            this.snopM2 = snopM2;
+            this.snopM3 = snopM3;
+            this.patientName = patientName;
+            this.patientHKID = patientHKID;
+            this.isNewRecord = isNewRecord;
+            currentStatus = status;
+            InitializeComponent();
+        }
+
         public Form_Description(string caseNo, string bxcy_id)
         {
             this.caseNo = caseNo;
@@ -170,6 +195,27 @@ namespace St.Teresa_LIS_2019
             }
         }
 
+        /*public bool checkDuplicateHKID()
+        {
+            bool result = false;
+
+            if (isNewPatient)
+            {
+                DataSet checkBxcy_specimenDataSet = new DataSet();
+                SqlDataAdapter checkdataAdapter;
+                string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE patient = '{0}' AND pat_hkid = '{1}'", patientName, patientHKID);
+                checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
+
+                if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+                {
+                    MessageBox.Show("Duplicate Patient's name and HKID, unable to save");
+                    result = true;
+                }
+            }
+
+            return result;
+        }*/
+
         private void reloadMacroscopicTemplateRecord()
         {
             string macro_templateSql = "SELECT distinct DOCTOR FROM [macro_template]";
@@ -179,6 +225,7 @@ namespace St.Teresa_LIS_2019
             DataTable macro_templateDt = new DataTable();
             macro_templateDt.Columns.Add("DOCTOR");
 
+            macro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
             {
                 macro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
@@ -193,6 +240,7 @@ namespace St.Teresa_LIS_2019
             DataTable micro_templateDt = new DataTable();
             micro_templateDt.Columns.Add("DOCTOR");
 
+            micro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
             {
                 micro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
@@ -504,13 +552,13 @@ namespace St.Teresa_LIS_2019
 
             DataTable siteDt = new DataTable();
             siteDt.Columns.Add("site");
-            siteDt.Columns.Add("siteAndDesc");
+            siteDt.Columns.Add("Desc");
 
             siteDt.Rows.Add(new object[] { "", "" });
 
             foreach (DataRow mDr in siteDataSet.Tables["site"].Rows)
             {
-                siteDt.Rows.Add(new object[] { mDr["site"], string.Format("{0}--{1}",mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                siteDt.Rows.Add(new object[] { mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim() });
             }
 
             comboBox_Site.DataSource = siteDt;
@@ -522,12 +570,12 @@ namespace St.Teresa_LIS_2019
 
             DataTable operationDt = new DataTable();
             operationDt.Columns.Add("operation");
-            operationDt.Columns.Add("operationAndDesc");
+            operationDt.Columns.Add("Desc");
 
             operationDt.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in operationDataSet.Tables["operation"].Rows)
             {
-                operationDt.Rows.Add(new object[] { mDr["operation"], string.Format("{0}--{1}", mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                operationDt.Rows.Add(new object[] { mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim() });
             }
 
             comboBox_Operation.DataSource = operationDt;
@@ -598,6 +646,7 @@ namespace St.Teresa_LIS_2019
             DataTable macro_templateDt = new DataTable();
             macro_templateDt.Columns.Add("DOCTOR");
 
+            macro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
             {
                 macro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
@@ -612,6 +661,7 @@ namespace St.Teresa_LIS_2019
             DataTable micro_templateDt = new DataTable();
             micro_templateDt.Columns.Add("DOCTOR");
 
+            micro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
             {
                 micro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
@@ -764,7 +814,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataSource = snopcodeMDt2;
             comboBox_Snop_M3.DataSource = snopcodeMDt3;
 
-            string bxcy_sql = string.Format("SELECT * FROM [bxcy_specimen] WHERE id={0}", bxcy_id);
+            /*string bxcy_sql = string.Format("SELECT * FROM [bxcy_specimen] WHERE id={0}", bxcy_id);
             bxcy_specimentDataAdapter = DBConn.fetchDataIntoDataSet(bxcy_sql, bxcy_specimenDataSet, "bxcy_specimen");
 
             bxcy_specimentDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
@@ -779,7 +829,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t3", false);
             comboBox_Snop_M1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
             comboBox_Snop_M2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m2", false);
-            comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);
+            comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);*/
 
             label_Total_Parts_No.DataBindings.Clear();
             string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
@@ -788,6 +838,31 @@ namespace St.Teresa_LIS_2019
 
             DataTable groupDt = groupDataSet.Tables["bxcy_diag"];
             label_Total_Parts_No.DataBindings.Add("Text", groupDt, "maxGroup", false);
+
+            if (snopT1 != null)
+            {
+                comboBox_Snop_T1.SelectedValue = snopT1;
+            }
+            if (snopT2 != null)
+            {
+                comboBox_Snop_T2.SelectedValue = snopT2;
+            }
+            if (snopT3 != null)
+            {
+                comboBox_Snop_T3.SelectedValue = snopT3;
+            }
+            if (snopM1 != null)
+            {
+                comboBox_Snop_M1.SelectedValue = snopM1;
+            }
+            if (snopM2 != null)
+            {
+                comboBox_Snop_M2.SelectedValue = snopM2;
+            }
+            if (snopM3 != null)
+            {
+                comboBox_Snop_M3.SelectedValue = snopM3;
+            }
 
             /*if (groupDt != null && groupDt.Rows.Count > 0)
             {
@@ -1154,8 +1229,8 @@ namespace St.Teresa_LIS_2019
                     button_Delete.Enabled = false;
                     button_Label.Enabled = false;
                     button_Path.Enabled = true;
-                    button_F8_Back_To_Main.Enabled = false;
-                    button_Undo.Enabled = true;
+                    button_F8_Back_To_Main.Enabled = true;
+                    button_Undo.Enabled = false;
 
                     comboBox_MIC_Add2.Enabled = true;
                     edit_modle();
@@ -1385,87 +1460,80 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            bool updated = true;
-
-            if (currentStatus == PageStatus.STATUS_NEW)
-            {
-                if (currentEditRow != null)
+            /*if (!checkDuplicateHKID())
+            {*/
+                int mainPageUpdateResult = 0;
+                if (OnBxcyDiagSaveBoth != null)
                 {
-                    if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
-                    {
-                        currentEditRow["group"] = (Convert.ToInt32(label_Total_Parts_No.Text) + 1).ToString();
-                    }
-                    else
-                    {
-                        currentEditRow["group"] = label_Total_Parts_No.Text;
-                    }
-
-                    currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
-                    textBox_ID.BindingContext[dt].Position++;
-
-                    if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
-                    {
-                        //reloadDBData(currencyManager.Count - 1);
-                        reloadAndBindingDBData();
-                        button_End.PerformClick();
-                    }
-                    else
-                    {
-                        updated = false;
-                    }
-                    setButtonStatus(PageStatus.STATUS_VIEW);
+                    mainPageUpdateResult = OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue);
                 }
-            }
-            else
-            {
-                if (currentStatus == PageStatus.STATUS_EDIT)
-                {
-                    DataRow drow = bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Find(textBox_ID.Text);
-                    if (drow != null)
-                    {
-                        textBox_ID.BindingContext[dt].Position++;
 
-                        if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
+                if (mainPageUpdateResult != 1 && mainPageUpdateResult != 2)
+                {
+                    bool updated = true;
+                    if (currentStatus == PageStatus.STATUS_NEW)
+                    {
+                        if (currentEditRow != null)
                         {
-                            updated = false;
+                            if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
+                            {
+                                currentEditRow["group"] = (Convert.ToInt32(label_Total_Parts_No.Text) + 1).ToString();
+                            }
+                            else
+                            {
+                                currentEditRow["group"] = label_Total_Parts_No.Text;
+                            }
+
+                            currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
+                            textBox_ID.BindingContext[dt].Position++;
+
+                            if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
+                            {
+                                //reloadDBData(currencyManager.Count - 1);
+                                reloadAndBindingDBData();
+                                button_End.PerformClick();
+                            }
+                            else
+                            {
+                                updated = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (currentStatus == PageStatus.STATUS_EDIT)
+                        {
+                            DataRow drow = bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Find(textBox_ID.Text);
+                            if (drow != null)
+                            {
+                                textBox_ID.BindingContext[dt].Position++;
+
+                                if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
+                                {
+                                    updated = false;
+                                }
+                            }
                         }
                     }
 
-                    setButtonStatus(PageStatus.STATUS_VIEW);
-                }
-            }
-
-            /*
-            textBox_specimenID.BindingContext[bxcy_specimentDt].Position++;
-            if (DBConn.updateObject(bxcy_specimentDataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
-            {
-                isNeedRefreshMainPage = true;
-                if (!updated)
-                {
-                    updated = true;
-                }
-            }*/
-
-            if (OnBxcyDiagSaveBoth != null)
-            {
-                if (OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue))
-                {
-                    //isNeedRefreshMainPage = true;
-                    if (!updated)
+                    if (updated || mainPageUpdateResult == 0)
                     {
-                        updated = true;
+                        MessageBox.Show("Record updated");
+                        setButtonStatus(PageStatus.STATUS_VIEW);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Record updated fail, please contact Admin");
                     }
                 }
-            }
-
-            if (updated)
-            {
-                MessageBox.Show("Record updated");
-            }
-            else
-            {
-                MessageBox.Show("Record updated fail, please contact Admin");
-            }
+                else
+                {
+                    if (mainPageUpdateResult != 1)
+                    {
+                        MessageBox.Show("Record updated fail, please contact Admin");
+                    }
+                }
+            //}
         }
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
@@ -1487,6 +1555,7 @@ namespace St.Teresa_LIS_2019
             DataTable macro_templateDt = new DataTable();
             macro_templateDt.Columns.Add("ORGAN");
 
+            macro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
             {
                 macro_templateDt.Rows.Add(new object[] { mDr["ORGAN"] });
@@ -1504,6 +1573,7 @@ namespace St.Teresa_LIS_2019
             DataTable macro_templateDt = new DataTable();
             macro_templateDt.Columns.Add("TEMPLATE");
 
+            macro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
             {
                 macro_templateDt.Rows.Add(new object[] { mDr["TEMPLATE"] });
@@ -1533,6 +1603,7 @@ namespace St.Teresa_LIS_2019
             DataTable micro_templateDt = new DataTable();
             micro_templateDt.Columns.Add("ORGAN");
 
+            micro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
             {
                 micro_templateDt.Rows.Add(new object[] { mDr["ORGAN"] });
@@ -1550,6 +1621,7 @@ namespace St.Teresa_LIS_2019
             DataTable micro_templateDt = new DataTable();
             micro_templateDt.Columns.Add("TEMPLATE");
 
+            micro_templateDt.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
             {
                 micro_templateDt.Rows.Add(new object[] { mDr["TEMPLATE"] });
@@ -1642,11 +1714,11 @@ namespace St.Teresa_LIS_2019
 
             DataTable siteDt = new DataTable();
             siteDt.Columns.Add("site");
-            siteDt.Columns.Add("siteAndDesc");
+            siteDt.Columns.Add("Desc");
 
             foreach (DataRow mDr in siteDataSet.Tables["site"].Rows)
             {
-                siteDt.Rows.Add(new object[] { mDr["site"], string.Format("{0}--{1}", mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                siteDt.Rows.Add(new object[] { mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim() });
             }
 
             comboBox_Site.DataSource = siteDt;
@@ -1675,12 +1747,12 @@ namespace St.Teresa_LIS_2019
 
             DataTable operationDt = new DataTable();
             operationDt.Columns.Add("operation");
-            operationDt.Columns.Add("operationAndDesc");
+            operationDt.Columns.Add("Desc");
 
             operationDt.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in operationDataSet.Tables["operation"].Rows)
             {
-                operationDt.Rows.Add(new object[] { mDr["operation"], string.Format("{0}--{1}", mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim()) });
+                operationDt.Rows.Add(new object[] { mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim()});
             }
 
             comboBox_Operation.DataSource = operationDt;
@@ -1902,6 +1974,42 @@ namespace St.Teresa_LIS_2019
             e.Graphics.DrawString(desc, e.Font, sb, r2);
 
             Console.WriteLine("M1 draw");
+        }
+
+        private void comboBox_Site_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string site = drv.Row["site"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(desc, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(site, e.Font, sb, r2);
+        }
+
+        private void comboBox_Operation_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string operation = drv.Row["operation"].ToString();
+            string desc = drv.Row["desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(desc, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(operation, e.Font, sb, r2);
         }
 
         private void comboBox_Snop_M2_DrawItem(object sender, DrawItemEventArgs e)

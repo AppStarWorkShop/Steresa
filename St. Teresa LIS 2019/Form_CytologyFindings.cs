@@ -170,16 +170,17 @@ namespace St.Teresa_LIS_2019
             comboBox_Description.DataSource = marco_nameDt;
 
             //string snopcodeTSql = "SELECT [desc],snopcode FROM [snopcode] WHERE SNOPTYPE = 'T' ";
-            string snopcodeTSql = "SELECT [C_DESC] FROM [diag_desc] WHERE [C_DESC] IS NOT NULL ORDER BY [C_DESC]";
+            string snopcodeTSql = "SELECT [C_DESC],[E_DESC] FROM [diag_desc] WHERE [C_DESC] IS NOT NULL ORDER BY [E_DESC]";
             DataSet snopcodeTDataSet = new DataSet();
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "diag_desc");
 
             DataTable snopcodeTDt1 = new DataTable();
             snopcodeTDt1.Columns.Add("C_DESC");
+            snopcodeTDt1.Columns.Add("E_DESC");
 
             foreach (DataRow mDr in snopcodeTDataSet.Tables["diag_desc"].Rows)
             {
-                snopcodeTDt1.Rows.Add(new object[] { mDr["C_DESC"]});
+                snopcodeTDt1.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
             }
 
             comboBox_Snop_T.DataSource = snopcodeTDt1;
@@ -345,6 +346,24 @@ namespace St.Teresa_LIS_2019
             r2.X = r1.Width + 1;
             r2.Width = r2.Width / 2;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_Snop_T_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            DataRowView drv = (DataRowView)((ComboBox)sender).Items[e.Index];
+            string e_desc = drv.Row["e_desc"].ToString();
+            string c_desc = drv.Row["c_desc"].ToString();
+
+            Rectangle r1 = e.Bounds;
+            r1.Width = r1.Width / 2;
+            SolidBrush sb = new SolidBrush(Color.Black);
+            e.Graphics.DrawString(c_desc, e.Font, sb, r1);
+
+            Rectangle r2 = e.Bounds;
+            r2.X = r1.Width + 1;
+            r2.Width = r2.Width / 2;
+            e.Graphics.DrawString(e_desc, e.Font, sb, r2);
         }
     }
 }
