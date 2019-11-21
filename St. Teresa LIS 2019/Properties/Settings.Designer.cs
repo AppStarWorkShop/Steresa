@@ -42,5 +42,59 @@ namespace St.Teresa_LIS_2019.Properties {
                 return ((string)(this["medlabConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("HISTOUSER")]
+        public string HisLoginName {
+            get {
+                return ((string)(this["HisLoginName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("TEST")]
+        public string HisPassword {
+            get {
+                return ((string)(this["HisPassword"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sthwebdev/Histology/ws/HistologyWebservice.asmx")]
+        public string HisEndPoint {
+            get {
+                return ((string)(this["HisEndPoint"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HisReadFromFile {
+            get {
+                return ((bool)(this["HisReadFromFile"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool HisEnableDebug {
+            get {
+                return ((bool)(this["HisEnableDebug"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool HisTestMode {
+            get {
+                return ((bool)(this["HisTestMode"]));
+            }
+        }
     }
 }

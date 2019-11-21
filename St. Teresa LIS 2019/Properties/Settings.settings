@@ -18,5 +18,23 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=localhost;Initial Catalog=medlab;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="HisLoginName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">HISTOUSER</Value>
+    </Setting>
+    <Setting Name="HisPassword" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">TEST</Value>
+    </Setting>
+    <Setting Name="HisEndPoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://sthwebdev/Histology/ws/HistologyWebservice.asmx</Value>
+    </Setting>
+    <Setting Name="HisReadFromFile" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HisEnableDebug" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="HisTestMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

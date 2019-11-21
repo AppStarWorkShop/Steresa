@@ -61,6 +61,8 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -74,6 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommClass.cs" />
+    <Compile Include="Connected Services\HistologyWebserviceDev\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Form_AdditionalTests.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -831,6 +838,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WebServiceFeeback\DC2017002348G.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebServiceFeeback\HN2017052486V.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WebServiceFeeback\HN2017052592P.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Connected Services\HistologyWebserviceDev\configuration91.svcinfo" />
+    <None Include="Connected Services\HistologyWebserviceDev\configuration.svcinfo" />
+    <None Include="Connected Services\HistologyWebserviceDev\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="lib\BarcodeLib .dll" />
     <Content Include="lib\ICSharpCode.SharpZipLib.dll" />
     <Content Include="lib\itextsharp.dll" />
@@ -839,6 +861,12 @@
     <Content Include="lib\NPOI.OpenXml4Net.dll" />
     <Content Include="lib\NPOI.OpenXmlFormats.dll" />
     <Content Include="sqlUpdate.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\HistologyWebserviceDev\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

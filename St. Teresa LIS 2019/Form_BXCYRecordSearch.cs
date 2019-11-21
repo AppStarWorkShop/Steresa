@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Xml;
 
 namespace St.Teresa_LIS_2019
 {
@@ -26,6 +27,10 @@ namespace St.Teresa_LIS_2019
         private int dateMode = 1;
         private string dateFrom = "";
         private string dateTo = "";
+
+        private string patientNum = "";
+        private string patientHKID = "";
+        private string patientName = "";
 
         int pageSize = 30;     //每页显示行数
         int nMax = 0;         //总记录数
@@ -280,6 +285,125 @@ namespace St.Teresa_LIS_2019
             setButtonStatus();
         }
 
+        private void searchHospitalRecord()
+        {
+            string surName = "";
+            string givenName = "";
+
+            patientNum = "";
+            patientHKID = "";
+            patientName = "";
+
+            if (Properties.Settings.Default.HisTestMode)
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                string demoFilePath = System.IO.Directory.GetCurrentDirectory() + "\\WebServiceFeeback\\HN2017052592P.xml";
+                xmlDoc.Load(demoFilePath);
+                String xPath = "Wraper/NewDataSet/Histo_Patient";
+                var nodes = xmlDoc.SelectNodes(xPath);
+                if (nodes == null)
+                {
+                    MessageBox.Show("Cannot parse the feedback");
+                }
+                else
+                {
+                    foreach (XmlNode childrenNode in nodes)
+                    {
+                        foreach (XmlNode grandChild in childrenNode)
+                        {
+                            //textBoxParsed.Text += Environment.NewLine + grandChild.Name + " - " + grandChild.InnerText;
+                            if (grandChild.Name.Trim().ToLower() == "patient_no")
+                            {
+                                patientNum = grandChild.InnerText.Trim();
+                            }
+
+                            if (grandChild.Name.Trim().ToLower() == "pv_surname")
+                            {
+                                surName = grandChild.InnerText.Trim();
+                            }
+
+                            if (grandChild.Name.Trim().ToLower() == "pv_givenname")
+                            {
+                                givenName = grandChild.InnerText.Trim();
+                            }
+
+                            if (grandChild.Name.Trim().ToLower() == "pv_idno")
+                            {
+                                patientHKID = grandChild.InnerText.Trim();
+                            }
+                        }
+
+                    }
+
+                    patientName = string.Format("{0} {1}", surName, givenName);
+                    //Console.WriteLine(patientName);
+                }
+            }
+            else
+            {
+                string HisEndPoint = Properties.Settings.Default.HisEndPoint;
+                string HisLoginName = Properties.Settings.Default.HisLoginName;
+                string HisPassword = Properties.Settings.Default.HisPassword;
+
+                try
+                {
+                    HistologyWebserviceDev.HistologyWebserviceSoapClient client = new HistologyWebserviceDev.HistologyWebserviceSoapClient();
+                    string responseText = client.getPatient(HisLoginName, HisPassword, textBox_Search_Type.Text.ToUpper().Trim());
+
+                    if (responseText == null || responseText == "")
+                    {
+                        MessageBox.Show("Cannot parse the feedback");
+                    }
+                    else
+                    {
+                        XmlDocument xmlDoc = new XmlDocument();
+                        xmlDoc.LoadXml("<Wraper>" + responseText + " </Wraper>");
+                        String xPath = "Wraper/NewDataSet/Histo_Patient";
+                        var nodes = xmlDoc.SelectNodes(xPath);
+                        if (nodes == null)
+                        {
+                            MessageBox.Show("Cannot parse the feedback");
+                        }
+                        else
+                        {
+                            foreach (XmlNode childrenNode in nodes)
+                            {
+                                foreach (XmlNode grandChild in childrenNode)
+                                {
+                                    if (grandChild.Name.Trim().ToLower() == "patient_no")
+                                    {
+                                        patientNum = grandChild.InnerText.Trim();
+                                    }
+
+                                    if (grandChild.Name.Trim().ToLower() == "pv_surname")
+                                    {
+                                        surName = grandChild.InnerText.Trim();
+                                    }
+
+                                    if (grandChild.Name.Trim().ToLower() == "pv_givenname")
+                                    {
+                                        givenName = grandChild.InnerText.Trim();
+                                    }
+
+                                    if (grandChild.Name.Trim().ToLower() == "pv_idno")
+                                    {
+                                        patientHKID = grandChild.InnerText.Trim();
+                                    }
+                                }
+
+                            }
+
+                            patientName = string.Format("{0} {1}", surName, givenName);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Exception found !" + Environment.NewLine + Environment.NewLine + ex.Message);
+                }
+            }
+        }
+
         private void searchRecord()
         {
             if (labelSearching == "SNOP-T Name:")
@@ -296,7 +420,7 @@ namespace St.Teresa_LIS_2019
 
                 snopCodeWhereStr = "";
             }
-            
+
             if (radioButton_Data_All.Checked)
             {
                 dateMode = 1;
@@ -433,7 +557,15 @@ namespace St.Teresa_LIS_2019
             {
                 Form_BXCYFile open = new Form_BXCYFile();
                 open.Show();
-                open.patientCopy(textBox_Search_Type.Text.Trim());
+                if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
+                {
+                    searchHospitalRecord();
+                    open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
+                }
+                else
+                {
+                    open.patientCopyWithCaseNo(textBox_Search_Type.Text.Trim());
+                }
             }
             else
             {
@@ -441,13 +573,29 @@ namespace St.Teresa_LIS_2019
                 {
                     Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile();
                     open.Show();
-                    open.patientCopy(textBox_Search_Type.Text.Trim());
+                    if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
+                    {
+                        searchHospitalRecord();
+                        open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
+                    }
+                    else
+                    {
+                        open.patientCopyWithCaseNo(textBox_Search_Type.Text.Trim());
+                    }
                 }
                 else
                 {
                     Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname();
                     open.Show();
-                    open.patientCopy(textBox_Search_Type.Text.Trim());
+                    if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
+                    {
+                        searchHospitalRecord();
+                        open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
+                    }
+                    else
+                    {
+                        open.patientCopyWithCaseNo(textBox_Search_Type.Text.Trim());
+                    }
                 }
             }
         }
@@ -523,7 +671,15 @@ namespace St.Teresa_LIS_2019
                 }
                 else
                 {
-                    open.newRecord();
+                    if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
+                    {
+                        searchHospitalRecord();
+                        open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
+                    }
+                    else
+                    {
+                        open.newRecord();
+                    }
                 }
             }
             else
@@ -538,7 +694,15 @@ namespace St.Teresa_LIS_2019
                     }
                     else
                     {
-                        open.newRecord();
+                        if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
+                        {
+                            searchHospitalRecord();
+                            open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
+                        }
+                        else
+                        {
+                            open.newRecord();
+                        }
                     }
                 }
                 else
@@ -551,7 +715,15 @@ namespace St.Teresa_LIS_2019
                     }
                     else
                     {
-                        open.newRecord();
+                        if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
+                        {
+                            searchHospitalRecord();
+                            open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
+                        }
+                        else
+                        {
+                            open.newRecord();
+                        }
                     }
                 }
             }
@@ -856,7 +1028,17 @@ namespace St.Teresa_LIS_2019
                 }
                 else
                 {
-                    button_F5_New_Patient.Enabled = true;
+                    if (contentSearching == "LAB_REF")
+                    {
+                        button_F6_View_Record.Enabled = false;
+                        buttonF3_Edit_Record.Enabled = false;
+                    }
+                    else
+                    {
+                        button_F6_View_Record.Enabled = true;
+                        buttonF3_Edit_Record.Enabled = true;
+                        button_F5_New_Patient.Enabled = true;
+                    }
                 }
             }
         }
