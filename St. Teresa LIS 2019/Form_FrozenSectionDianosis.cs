@@ -91,7 +91,7 @@ namespace St.Teresa_LIS_2019
             string countSql = string.Format(" [frozen_section] WHERE id < {0}", textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 * FROM [frozen_section] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 * FROM [frozen_section] WHERE id < {0} ORDER BY FZ_DETAIL DESC", textBox_ID.Text);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, frozen_sectionDataSet, "frozen_section");
             }
 
@@ -105,7 +105,7 @@ namespace St.Teresa_LIS_2019
         private void button_Top_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = 0;
-            string sql = string.Format("SELECT TOP 1 * FROM [frozen_section] ORDER BY ID", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 * FROM [frozen_section] ORDER BY id ", textBox_ID.Text);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, frozen_sectionDataSet, "frozen_section");
 
             if (frozen_sectionDataSet != null && frozen_sectionDataSet != null && frozen_sectionDataSet.Tables["frozen_section"].Rows.Count > 0)
@@ -118,7 +118,7 @@ namespace St.Teresa_LIS_2019
         private void button_End_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = currencyManager.Count - 1;
-            string sql = string.Format("SELECT TOP 1 * FROM [frozen_section] ORDER BY ID DESC", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 * FROM [frozen_section] ORDER BY id DESC", textBox_ID.Text);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, frozen_sectionDataSet, "frozen_section");
 
             if (frozen_sectionDataSet != null && frozen_sectionDataSet != null && frozen_sectionDataSet.Tables["frozen_section"].Rows.Count > 0)
@@ -380,7 +380,7 @@ namespace St.Teresa_LIS_2019
             string sql = "SELECT TOP 1 * FROM [frozen_section] ORDER BY ID";
             if (searchFZ_DETAIL != null)
             {
-                sql = string.Format("SELECT TOP 1 * FROM [frozen_section] WHERE FZ_DETAIL = '{0}' ORDER BY ID", searchFZ_DETAIL);
+                sql = string.Format("SELECT TOP 1 * FROM [frozen_section] WHERE FZ_DETAIL = '{0}' ORDER BY FZ_DETAIL ", searchFZ_DETAIL);
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, frozen_sectionDataSet, "frozen_section");
 

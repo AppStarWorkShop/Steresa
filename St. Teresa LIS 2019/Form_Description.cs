@@ -15,6 +15,7 @@ namespace St.Teresa_LIS_2019
         private int currentStatus;
         private string caseNo;
         private string bxcy_id;
+        private string currentReportNo;
         private DataSet bxcy_diagDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         private DataTable dt;
@@ -37,7 +38,7 @@ namespace St.Teresa_LIS_2019
 
         private string patientName;
         private string patientHKID;
-        private bool isNewRecord = false;
+        private bool isNewPatient = false;
 
         private Object snopT1, snopT2, snopT3, snopM1, snopM2, snopM3;
 
@@ -146,7 +147,7 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
-        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewRecord)
+        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewPatient)
         {
             this.caseNo = caseNo;
             this.bxcy_id = bxcy_id;
@@ -158,7 +159,7 @@ namespace St.Teresa_LIS_2019
             this.snopM3 = snopM3;
             this.patientName = patientName;
             this.patientHKID = patientHKID;
-            this.isNewRecord = isNewRecord;
+            this.isNewPatient = isNewPatient;
             currentStatus = status;
             InitializeComponent();
         }
@@ -195,7 +196,7 @@ namespace St.Teresa_LIS_2019
             }
         }
 
-        /*public bool checkDuplicateHKID()
+        public bool checkDuplicateHKID()
         {
             bool result = false;
 
@@ -214,7 +215,7 @@ namespace St.Teresa_LIS_2019
             }
 
             return result;
-        }*/
+        }
 
         private void reloadMacroscopicTemplateRecord()
         {
@@ -371,6 +372,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
+            String reportNo = currentReportNo;
             Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
             open.Show();
         }
@@ -1126,6 +1128,7 @@ namespace St.Teresa_LIS_2019
                 button_Undo.Enabled = false;
 
                 comboBox_MIC_Add2.Enabled = false;
+                buttonremoveCinese.Enabled = false;
 
                 disedit_modle();
             }
@@ -1229,10 +1232,11 @@ namespace St.Teresa_LIS_2019
                     button_Delete.Enabled = false;
                     button_Label.Enabled = false;
                     button_Path.Enabled = true;
-                    button_F8_Back_To_Main.Enabled = true;
-                    button_Undo.Enabled = false;
+                    button_F8_Back_To_Main.Enabled = false;
+                    button_Undo.Enabled = true;
 
                     comboBox_MIC_Add2.Enabled = true;
+                    buttonremoveCinese.Enabled = true;
                     edit_modle();
                 }
                 else
@@ -1339,6 +1343,7 @@ namespace St.Teresa_LIS_2019
                         button_Undo.Enabled = true;
 
                         comboBox_MIC_Add2.Enabled = true;
+                        buttonremoveCinese.Enabled = true;
                         edit_modle();
                     }
                 }
@@ -1460,15 +1465,15 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            /*if (!checkDuplicateHKID())
-            {*/
+            if (!checkDuplicateHKID())
+            {
                 int mainPageUpdateResult = 0;
                 if (OnBxcyDiagSaveBoth != null)
                 {
                     mainPageUpdateResult = OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue);
                 }
 
-                if (mainPageUpdateResult != 1 && mainPageUpdateResult != 2)
+                if (mainPageUpdateResult != 1)
                 {
                     bool updated = true;
                     if (currentStatus == PageStatus.STATUS_NEW)
@@ -1497,6 +1502,7 @@ namespace St.Teresa_LIS_2019
                             {
                                 updated = false;
                             }
+                            setButtonStatus(PageStatus.STATUS_VIEW);
                         }
                     }
                     else
@@ -1513,13 +1519,14 @@ namespace St.Teresa_LIS_2019
                                     updated = false;
                                 }
                             }
+
+                            setButtonStatus(PageStatus.STATUS_VIEW);
                         }
                     }
 
                     if (updated || mainPageUpdateResult == 0)
                     {
                         MessageBox.Show("Record updated");
-                        setButtonStatus(PageStatus.STATUS_VIEW);
                     }
                     else
                     {
@@ -1528,12 +1535,9 @@ namespace St.Teresa_LIS_2019
                 }
                 else
                 {
-                    if (mainPageUpdateResult != 1)
-                    {
-                        MessageBox.Show("Record updated fail, please contact Admin");
-                    }
+                    MessageBox.Show("Record updated fail, please contact Admin");
                 }
-            //}
+            }
         }
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
@@ -1638,7 +1642,15 @@ namespace St.Teresa_LIS_2019
 
             if (micro_templateDataSet.Tables["micro_template"].Rows.Count > 0)
             {
-                textBox_Remarks_CY.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+                if (textBox_Remarks_CY.Text == "")
+                {
+                    textBox_Remarks_CY.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+                }
+                else
+                {
+                    textBox_Remarks_CY.Text += Environment.NewLine + Environment.NewLine + micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+                }
+                
 
                 try
                 {
@@ -1866,12 +1878,28 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_MAC_Add_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            textBox_Remarks.Text = textBox_Remarks.Text + comboBox_MAC_Add.SelectedValue.ToString();
+            if (textBox_Remarks.Text == "")
+            {
+                textBox_Remarks.Text = comboBox_MAC_Add.SelectedValue.ToString();
+            }
+            else
+            {
+                textBox_Remarks.Text = textBox_Remarks.Text + Environment.NewLine + comboBox_MAC_Add.SelectedValue.ToString();
+            }
+            
         }
 
         private void comboBox_MIC_Add2_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + comboBox_MIC_Add2.SelectedValue.ToString();
+            if (textBox_Remarks_CY.Text == "")
+            {
+                textBox_Remarks_CY.Text = comboBox_MIC_Add2.SelectedValue.ToString();
+            }
+            else
+            {
+                textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + Environment.NewLine + comboBox_MIC_Add2.SelectedValue.ToString();
+            }
+            
         }
 
         private void comboBox_Site_SelectionChangeCommitted(object sender, EventArgs e)
@@ -2012,6 +2040,19 @@ namespace St.Teresa_LIS_2019
             e.Graphics.DrawString(operation, e.Font, sb, r2);
         }
 
+        private void buttonremoveCinese_Click(object sender, EventArgs e)
+        {
+            textBox_Chinese_Description_1_DIA.Text = "";
+            textBox_Chinese_Description_2_DIA.Text = "";
+            comboBox_Diagnosis_1.Text = "";
+            comboBox_Diagnosis_2.Text = "";
+        }
+
+        private void comboBox_Diagnosis_2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void comboBox_Snop_M2_DrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();
@@ -2087,6 +2128,13 @@ namespace St.Teresa_LIS_2019
         private void textBox_Diagnosis_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public void disableEdit()
+        {
+            button_F6_Edit.Enabled = false;
+            button_New.Enabled = false;
+            button_Delete.Enabled = false;
         }
     }
 }

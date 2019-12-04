@@ -42,6 +42,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\itextsharp.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="NPOI, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NPOI.dll</HintPath>
@@ -441,6 +449,12 @@
     <Compile Include="Form_PrevoiusCasesCondition.Designer.cs">
       <DependentUpon>Form_PrevoiusCasesCondition.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_ReportPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_ReportPreview.Designer.cs">
+      <DependentUpon>Form_ReportPreview.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_ResultFileMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -513,6 +527,12 @@
     <Compile Include="Form_SurgicalProcedureReportMaintenance.Designer.cs">
       <DependentUpon>Form_SurgicalProcedureReportMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_TestHis.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_TestHis.Designer.cs">
+      <DependentUpon>Form_TestHis.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_UploadDateMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -537,6 +557,8 @@
     <Compile Include="Form_UserFileSetup.Designer.cs">
       <DependentUpon>Form_UserFileSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="HisHistoReport.cs" />
+    <Compile Include="HisPatient.cs" />
     <Compile Include="medlabDataSet.cs">
       <DependentUpon>medlabDataSet.xsd</DependentUpon>
     </Compile>
@@ -739,6 +761,9 @@
     <EmbeddedResource Include="Form_PrevoiusCasesCondition.resx">
       <DependentUpon>Form_PrevoiusCasesCondition.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_ReportPreview.resx">
+      <DependentUpon>Form_ReportPreview.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_ResultFileMaintenance.resx">
       <DependentUpon>Form_ResultFileMaintenance.cs</DependentUpon>
     </EmbeddedResource>
@@ -775,6 +800,9 @@
     <EmbeddedResource Include="Form_SurgicalProcedureReportMaintenance.resx">
       <DependentUpon>Form_SurgicalProcedureReportMaintenance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form_TestHis.resx">
+      <DependentUpon>Form_TestHis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_UploadDateMenu.resx">
       <DependentUpon>Form_UploadDateMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -796,12 +824,20 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Report\BodyPrivateEN.rdlc" />
+    <None Include="Report\08 STH CY.rdlc" />
+    <None Include="Report\BodyCyEN.rdlc" />
+    <None Include="Report\BodyCyPrivateEN.rdlc" />
+    <None Include="Report\19 PRIVATE CY.rdlc" />
+    <None Include="Report\BodyEN.rdlc" />
+    <None Include="Report\BodyENImage.rdlc" />
     <EmbeddedResource Include="ShowPicture.resx">
       <DependentUpon>ShowPicture.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\HistologyWebserviceDev\HistologyWebserviceDev.wsdl" />
     <None Include="fonts\STSONG.TTF">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -836,23 +872,72 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Report\01 STH BX noHKAS.rdlc" />
+    <None Include="Report\01 STH BX.rdlc" />
+    <None Include="Report\03 PBH BX.rdlc" />
+    <None Include="Report\04 HKAH BX.rdlc" />
+    <None Include="Report\05 TWAH BX.rdlc" />
+    <None Include="Report\06 PATHLAB BX.rdlc" />
+    <None Include="Report\07 EVANGEL BX.rdlc" />
+    <None Include="Report\10 PBH CY.rdlc" />
+    <None Include="Report\11 HKAH CY.rdlc" />
+    <None Include="Report\12 TWAH CY.rdlc" />
+    <None Include="Report\13 PATHLAB CY.rdlc" />
+    <None Include="Report\14 EVANGEL CY.rdlc" />
+    <None Include="Report\15 ONCO CY.rdlc" />
+    <None Include="Report\16 BIO-TECH CY.rdlc" />
+    <None Include="Report\17 CY Screening.rdlc" />
+    <None Include="Report\18 PRIVATE BX.rdlc" />
+    <None Include="Report\58 STH EBV.rdlc" />
+    <None Include="Report\59 PBH EBV.rdlc" />
+    <None Include="Report\60 Private EBV.rdlc" />
+    <None Include="Report\61 Private EBV 6 Doctor.rdlc" />
+    <None Include="Report\63 STH CY Diagnosis.rdlc" />
+    <None Include="Report\64 STH CY Diagnosis without Primary Screener.rdlc" />
+    <None Include="Report\65 STH CY Diagnosis noHKAS.rdlc" />
+    <None Include="Report\66 PBH CY Diagnosis.rdlc" />
+    <None Include="Report\67 Private CY Diagnosis.rdlc" />
+    <None Include="Report\68 HKAH CY Diagnosis.rdlc" />
+    <None Include="Report\69 TWAH CY Diagnosis.rdlc" />
+    <None Include="Report\70 Private CY 6 Doctors.rdlc" />
+    <None Include="Report\71 ONCO CY Diagnosis.rdlc" />
+    <None Include="Report\72 Bio-Tech CY Diagnosis.rdlc" />
+    <None Include="Report\73 Evangel CY Diagnosis.rdlc" />
+    <None Include="Report\75 Invoice Report Detail.rdlc" />
+    <None Include="Report\79 Invoice Report Summary.rdlc" />
+    <None Include="Report\82 Daily Log Report For Gynaecological Cases - Copy.rdlc" />
+    <None Include="Report\84 Daily Log Report By Cut Off Date Time.rdlc" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WebServiceFeeback\DC2017002348G.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="WebServiceFeeback\HN2017052486V.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="WebServiceFeeback\HN2017052592P.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Report\clientLogo\Adventist-HK.jpg" />
+    <Content Include="Report\clientLogo\Adventist-TW.jpg" />
+    <Content Include="Report\clientLogo\BioTech.jpg" />
+    <Content Include="Report\clientLogo\BioTech_Innovative.jpg" />
+    <Content Include="Report\clientLogo\BioTech_NeoLab.jpg" />
+    <Content Include="Report\clientLogo\BioTech_Pangenia_no_print.jpg" />
+    <Content Include="Report\clientLogo\Evangel.jpg" />
+    <Content Include="Report\clientLogo\HOKLAS.jpg" />
+    <Content Include="Report\clientLogo\Medlab-watermark.jpg" />
+    <Content Include="Report\clientLogo\Medlab.jpg" />
+    <Content Include="Report\clientLogo\Onco.jpg" />
+    <Content Include="Report\clientLogo\PathLab.jpg" />
+    <Content Include="Report\clientLogo\STH.jpg" />
+    <Content Include="WebServiceFeedback\DC2017002348G.xml" />
+    <Content Include="WebServiceFeedback\HN2017052486V.xml" />
+    <Content Include="WebServiceFeedback\HN2017052592P.xml" />
     <None Include="Connected Services\HistologyWebserviceDev\configuration91.svcinfo" />
     <None Include="Connected Services\HistologyWebserviceDev\configuration.svcinfo" />
     <None Include="Connected Services\HistologyWebserviceDev\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Image\logo1.jpg" />
+    <Content Include="Image\logo2.jpg" />
+    <Content Include="Image\logo3.jpg" />
+    <Content Include="Image\logo4.jpg" />
+    <Content Include="Image\logo5.jpg" />
+    <Content Include="Image\logo6.jpg" />
+    <Content Include="Image\logo7.jpg" />
     <Content Include="lib\BarcodeLib .dll" />
     <Content Include="lib\ICSharpCode.SharpZipLib.dll" />
     <Content Include="lib\itextsharp.dll" />
@@ -860,6 +945,7 @@
     <Content Include="lib\NPOI.OOXML.dll" />
     <Content Include="lib\NPOI.OpenXml4Net.dll" />
     <Content Include="lib\NPOI.OpenXmlFormats.dll" />
+    <Content Include="Report\logo1.jpg" />
     <Content Include="sqlUpdate.sql" />
   </ItemGroup>
   <ItemGroup>
@@ -868,5 +954,6 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\HistologyWebserviceDev\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

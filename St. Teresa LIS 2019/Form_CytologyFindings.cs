@@ -185,7 +185,7 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Snop_T.DataSource = snopcodeTDt1;
 
-            string snopcodeMSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'M' ";
+            string snopcodeMSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'M' order by [desc] ";
             DataSet snopcodeMDataSet = new DataSet();
             SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
 
@@ -198,6 +198,7 @@ namespace St.Teresa_LIS_2019
             {
                 snopcodeMDt1.Rows.Add(new object[] { mDr["snopcode"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
             }
+            
 
             comboBox_Snop_M.DataSource = snopcodeMDt1;
 
@@ -271,7 +272,13 @@ namespace St.Teresa_LIS_2019
                 try
                 {
                     comboBox_Snop_T.SelectedValue = mDr["DIAG_DESC1"] == null ? "" : mDr["DIAG_DESC1"].ToString();
+                    if (comboBox_Snop_T.SelectedValue == null)
+                    {
+                        comboBox_Snop_T.SelectedText = mDr["DIAG_DESC1"].ToString();
+                    }
                     comboBox_Snop_T.Focus();
+                    comboBox_Snop_T.SelectionStart = 1;
+                    comboBox_Snop_T.SelectionLength = 0;
                 }
                 catch (Exception ex)
                 {
@@ -280,8 +287,35 @@ namespace St.Teresa_LIS_2019
 
                 try
                 {
-                    comboBox_Snop_M.SelectedValue = mDr["SNOP_M"] == null ? "" : mDr["SNOP_M"].ToString();
+                    String snopM = mDr["SNOP_M"].ToString();
+                    if (snopM == null)
+                    {
+                        comboBox_Snop_M.SelectedValue = null;
+                    }
+                    else
+                    {
+                        // search the snop_m id from db
+                        sql = string.Format("SELECT id from snopcode where [desc] = '{0}'", snopM.ToUpper().Trim());
+                        DataSet snopcodeIDDataSet = new DataSet();
+
+                        SqlDataAdapter snopcodeDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(sql, snopcodeIDDataSet, "snopCodeId");
+
+                        String snopId = null;
+                        foreach (DataRow snopDr in snopcodeIDDataSet.Tables["snopCodeId"].Rows)
+                        {
+                            snopId = snopDr["id"].ToString();
+                        }
+
+                        if (snopId != null)
+                        {
+                            comboBox_Snop_M.SelectedValue = snopId;
+                        }
+                            
+                    }
                     comboBox_Snop_M.Focus();
+                    comboBox_Snop_M.SelectionStart = 1;
+                    comboBox_Snop_M.SelectionLength = 0;
+
                 }
                 catch (Exception ex)
                 {
@@ -364,6 +398,16 @@ namespace St.Teresa_LIS_2019
             r2.X = r1.Width + 1;
             r2.Width = r2.Width / 2;
             e.Graphics.DrawString(e_desc, e.Font, sb, r2);
+        }
+
+        private void comboBox_cy_result_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox_Snop_M_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

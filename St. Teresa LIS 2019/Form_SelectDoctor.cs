@@ -33,40 +33,52 @@ namespace St.Teresa_LIS_2019
             this.Close();
         }
 
+        private void search(String doctorName)
+        {
+            string sql = string.Format("SELECT doctor,cname,initial,address1,tel1,fax,opd,contact,id,doctor_id FROM [DOCTOR] WHERE DOCTOR LIKE '{0}%' OR CNAME LIKE '{0}%' order by doctor ", doctorName.ToUpper().Trim());
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, doctorDataSet, "doctor");
+
+            DataTable dt = new DataTable();
+            //dt.Columns.Add("Select", typeof(bool));
+            dt.Columns.Add("Doctor's Name");
+            dt.Columns.Add("Chinese Name");
+            dt.Columns.Add("Initial");
+            dt.Columns.Add("Address1");
+            dt.Columns.Add("Tel1");
+            dt.Columns.Add("Fax");
+            dt.Columns.Add("Opd");
+            dt.Columns.Add("Contact");
+            dt.Columns.Add("Id");
+            dt.Columns.Add("doctor_id");
+
+            foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
+            {
+                dt.Rows.Add(new object[] { mDr["doctor"], mDr["cname"], mDr["initial"], mDr["address1"], mDr["tel1"], mDr["fax"], mDr["opd"], mDr["contact"], mDr["id"], mDr["doctor_id"] });
+            }
+
+            dataGridView1.DataSource = dt;
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Enter)
             {
                 if (textBox_Serch_Doctor.Focused)
                 {
-                    string sql = string.Format("SELECT doctor,cname,initial,address1,tel1,fax,opd,contact,id,doctor_id FROM [DOCTOR] WHERE DOCTOR LIKE '%{0}%' OR CNAME LIKE '%{0}%'", textBox_Serch_Doctor.Text.Trim());
-                    DBConn.fetchDataIntoDataSetSelectOnly(sql, doctorDataSet, "doctor");
-
-                    DataTable dt = new DataTable();
-                    //dt.Columns.Add("Select", typeof(bool));
-                    dt.Columns.Add("Doctor's Name");
-                    dt.Columns.Add("Chinese Name");
-                    dt.Columns.Add("Initial");
-                    dt.Columns.Add("Address1");
-                    dt.Columns.Add("Tel1");
-                    dt.Columns.Add("Fax");
-                    dt.Columns.Add("Opd");
-                    dt.Columns.Add("Contact");
-                    dt.Columns.Add("Id");
-                    dt.Columns.Add("doctor_id");
-
-                    foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
-                    {
-                        dt.Rows.Add(new object[] { mDr["doctor"], mDr["cname"], mDr["initial"], mDr["address1"], mDr["tel1"], mDr["fax"], mDr["opd"], mDr["contact"], mDr["id"], mDr["doctor_id"] });
-                    }
-
-                    dataGridView1.DataSource = dt;
+                    this.search(textBox_Serch_Doctor.Text);
                 }
                 else
                 {
                     button_OK.PerformClick();
                 }
                 return true;
+            }
+            else
+            {
+                if (textBox_Serch_Doctor.Text != "" && textBox_Serch_Doctor.Text.Length >= 2)
+                {
+                    this.search(textBox_Serch_Doctor.Text + keyData.ToString());
+                }
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -136,7 +148,7 @@ namespace St.Teresa_LIS_2019
 
         private void loadDataGridViewDate()
         {
-            string sql = "SELECT doctor,cname,initial,address1,tel1,fax,opd,contact,id,doctor_id FROM [DOCTOR]";
+            string sql = "SELECT doctor,cname,initial,address1,tel1,fax,opd,contact,id,doctor_id FROM [DOCTOR] order by doctor ";
             DBConn.fetchDataIntoDataSetSelectOnly(sql, doctorDataSet, "doctor");
 
             DataTable dt = new DataTable();

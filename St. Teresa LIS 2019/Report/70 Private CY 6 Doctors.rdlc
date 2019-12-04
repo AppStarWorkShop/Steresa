@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Subreport Name="Subreport1">
+        <ReportName>BodyEN</ReportName>
+        <Top>0in</Top>
+        <Height>1.03in</Height>
+        <Width>8.23958in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Subreport>
+    </ReportItems>
+    <Height>3.06599cm</Height>
+    <Style />
+  </Body>
+  <Width>20.92854cm</Width>
+  <Page>
+    <PageHeader>
+      <Height>5.43548cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox1">
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>ST. TERESA'S HOSPITAL　聖德肋撒醫院</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>HISTOPATHOLOGY LABORATORY</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>組 織 病 理 化 驗 室</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>HISTOPATHOLOGY REPORT</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.2175in</Top>
+          <Left>1.2525in</Left>
+          <Height>0.73958in</Height>
+          <Width>5.86758in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="Image1">
+          <Source>Embedded</Source>
+          <Value>logo1</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.55245cm</Top>
+          <Left>0.60537cm</Left>
+          <Height>1.98436cm</Height>
+          <Width>2.39958cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Image Name="Image2">
+          <Source>Embedded</Source>
+          <Value>logo2</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.55245cm</Top>
+          <Left>18.22611cm</Left>
+          <Height>2.46129cm</Height>
+          <Width>2.29375cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox3">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>ST. TERESA'S HOSPITAL</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>327 Prince Edward R.d., Kowloon.</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>九龍太子道327號聖德肋撒醫院化驗室</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Tel: 2711 2120 / 2200 3111</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Fax: 2761 1798</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Left</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.99874in</Top>
+          <Left>0.23833in</Left>
+          <Height>0.94791in</Height>
+          <Width>2.8125in</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Consultants</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox3</rd:DefaultName>
+          <Top>2.46624cm</Top>
+          <Left>7.92551cm</Left>
+          <Height>0.5475cm</Height>
+          <Width>5.79755cm</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox5">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Dr. Loke Shee Loong 
+Dr. Kan Chi Hang
+Dr. Ng Chi Sing</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Dr. Ng Ping Wing
+Dr. Fung Shing Hoi
+Dr. Pang Chun Yin</Value>
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>3.01374cm</Top>
+          <Left>7.92551cm</Left>
+          <Height>2.42174cm</Height>
+          <Width>3.00271cm</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox6">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>陸士龍醫生</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>簡志恒醫生</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>伍志誠醫生　</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>吳炳榮醫生
+馮成海醫生
+彭俊賢醫生
+
+</Value>
+                  <Style>
+                    <FontSize>9pt</FontSize>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>3.04902cm</Top>
+          <Left>11.61993cm</Left>
+          <Height>2.38646cm</Height>
+          <Width>2.10313cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Footer1</Value>
+                  <Style>
+                    <FontSize>20pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.25521in</Top>
+          <Height>0.48958in</Height>
+          <Width>8.23958in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>0cm</LeftMargin>
+    <RightMargin>0cm</RightMargin>
+    <TopMargin>0cm</TopMargin>
+    <BottomMargin>0cm</BottomMargin>
+    <ColumnSpacing>1.27cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logo1">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="logo2">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>21791b70-6dfb-403a-a88f-1f53340c9fc9</rd:ReportID>
+</Report>

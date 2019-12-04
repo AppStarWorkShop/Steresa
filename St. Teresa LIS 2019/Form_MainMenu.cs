@@ -26,6 +26,13 @@ namespace St.Teresa_LIS_2019
         private void Form_MainMenu_Load(object sender, EventArgs e)
         {
             label_Date.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            if (Properties.Settings.Default.HisEnableDebug)
+            {
+                buttonPrintReport.Visible = true;
+                buttonPrintReport.Enabled = true;
+                button1.Visible = true;
+                button1.Enabled = true;
+            }
         }
 
         private void button_Doctor_File_Click(object sender, EventArgs e)
@@ -120,6 +127,20 @@ namespace St.Teresa_LIS_2019
         {
             Form_UploadDateMenu open = new Form_UploadDateMenu();
             open.Show();
+        }
+
+        private void buttonPrintReport_Click(object sender, EventArgs e)
+        {
+            Form_ReportPreview open = new Form_ReportPreview();
+            open.Show();
+            open.showReport();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form_TestHis open = new Form_TestHis();
+            open.Show();
+            
         }
     }
 }

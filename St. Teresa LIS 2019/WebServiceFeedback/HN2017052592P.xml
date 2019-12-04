@@ -1,0 +1,77 @@
+<Wraper>
+  <NewDataSet>
+    <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+      <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+        <xs:complexType>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element name="Histo_Patient">
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="Patient_No" type="xs:string" minOccurs="0" />
+                  <xs:element name="Visit_No" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_Surname" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_Givenname" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_ChiName" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_ID_Type" type="xs:string" minOccurs="0" />
+                  <xs:element name="ID_Type_Code" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_IDNo" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_IDNo_CD" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_Sex" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_DOB" type="xs:string" minOccurs="0" />
+                  <xs:element name="Exact_Date_Indicator_Code" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_PhoneNo" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_Discharge_DT" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_Type" type="xs:string" minOccurs="0" />
+                  <xs:element name="Bed_No" type="xs:string" minOccurs="0" />
+                  <xs:element name="Dept_Code" type="xs:string" minOccurs="0" />
+                  <xs:element name="Hosp_Class_Code" type="xs:string" minOccurs="0" />
+                  <xs:element name="Doctor_Code" type="xs:string" minOccurs="0" />
+                  <xs:element name="PV_Visit_DT" type="xs:string" minOccurs="0" />
+                  <xs:element name="Doctor_Surname" type="xs:string" minOccurs="0" />
+                  <xs:element name="Doctor_Givenname" type="xs:string" minOccurs="0" />
+                  <xs:element name="Doctor_Engname" type="xs:string" minOccurs="0" />
+                  <xs:element name="Doctor_Chiname" type="xs:string" minOccurs="0" />
+                  <xs:element name="Request_No" type="xs:string" minOccurs="0" />
+                  <xs:element name="Clinical_Notes" type="xs:string" minOccurs="0" />
+                  <xs:element name="Surgical_Procedure" type="xs:string" minOccurs="0" />
+                  <xs:element name="Nature_Of_Specimen" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <Histo_Patient>
+      <Patient_No>PN20141201474</Patient_No>
+      <Visit_No>HN2017052592P</Visit_No>
+      <PV_Surname>LEUNG                                   </PV_Surname>
+      <PV_Givenname>MUI KWAN                                 </PV_Givenname>
+      <PV_ChiName>洪玉眉</PV_ChiName>
+      <PV_ID_Type>1</PV_ID_Type>
+      <ID_Type_Code>ID    </ID_Type_Code>
+      <PV_IDNo>B329774(3)                       </PV_IDNo>
+      <PV_IDNo_CD>9 </PV_IDNo_CD>
+      <PV_Sex>F</PV_Sex>
+      <PV_DOB>19810717  </PV_DOB>
+      <Exact_Date_Indicator_Code>EDMY</Exact_Date_Indicator_Code>
+      <PV_PhoneNo>90301280            </PV_PhoneNo>
+      <PV_Discharge_DT>20170714134412     </PV_Discharge_DT>
+      <PV_Type>1</PV_Type>
+      <Bed_No>719     </Bed_No>
+      <Dept_Code>M7W  </Dept_Code>
+      <Hosp_Class_Code>A </Hosp_Class_Code>
+      <Doctor_Code>4481 </Doctor_Code>
+      <PV_Visit_DT>20170713140115     </PV_Visit_DT>
+      <Doctor_Surname>KWAN                          </Doctor_Surname>
+      <Doctor_Givenname>WING YAN (d)                  </Doctor_Givenname>
+      <Doctor_Engname xml:space="preserve">                    </Doctor_Engname>
+      <Doctor_Chiname>關詠恩</Doctor_Chiname>
+      <Request_No xml:space="preserve">             </Request_No>
+      <Clinical_Notes />
+      <Surgical_Procedure xml:space="preserve">                                                            </Surgical_Procedure>
+      <Nature_Of_Specimen xml:space="preserve">                                                            </Nature_Of_Specimen>
+    </Histo_Patient>
+  </NewDataSet>
+  <Status>1</Status><Status_Desc>The patient visit detail is successfully retrieved.</Status_Desc>
+</Wraper>

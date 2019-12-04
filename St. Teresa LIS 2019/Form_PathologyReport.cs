@@ -20,6 +20,7 @@ namespace St.Teresa_LIS_2019
     {
         private string id;
         private string case_no;
+        private string report_no = "1";
 
         private DataSet bxcy_specimenDataSet = new DataSet();
         private DataTable bxcy_specimenDt;
@@ -55,29 +56,79 @@ namespace St.Teresa_LIS_2019
         {
             comboBox_Report_Heading.Items.Clear();
 
-            comboBox_Report_Heading.Items.Add("1 - S.T.H. - BX");
-            comboBox_Report_Heading.Items.Add("2 - PRIVATE - BX (OLD - 2 Doctors)");
-            comboBox_Report_Heading.Items.Add("3 - P.B.H. - BX");
-            comboBox_Report_Heading.Items.Add("4 - H.K.A.H. - BX");
-            comboBox_Report_Heading.Items.Add("5 - T.W.A.H. - BX");
-            comboBox_Report_Heading.Items.Add("6 - PATHLAB - BX");
-            comboBox_Report_Heading.Items.Add("7 - EVANGEL - BX");
-            comboBox_Report_Heading.Items.Add("8 - S.T.H. - BX");
-            comboBox_Report_Heading.Items.Add("9 - PRIVATE - CY(OLD - 2 Doctors");
-            comboBox_Report_Heading.Items.Add("10 - P.B.H. - CY");
-            comboBox_Report_Heading.Items.Add("11 - H.K.A.H. - CY");
-            comboBox_Report_Heading.Items.Add("12 - T.W.A.H. - CY");
-            comboBox_Report_Heading.Items.Add("13 - PATHLAB - CY");
-            comboBox_Report_Heading.Items.Add("14 - P.B.H. - CY");
-            comboBox_Report_Heading.Items.Add("15 - ONCO - CY");
-            comboBox_Report_Heading.Items.Add("16 - P.B.H. - CY");
-            comboBox_Report_Heading.Items.Add("17 - CY Screening");
-            comboBox_Report_Heading.Items.Add("18 - PRIVATE - BX(NEW - 6 Doctors)");
-            comboBox_Report_Heading.Items.Add("19 - PRIVATE - CY(NEW - 6 Doctors)");
+            comboBox_Report_Heading.Items.Add("01 STH BX");
+            //comboBox_Report_Heading.Items.Add("2 - PRIVATE - BX (OLD - 2 Doctors)");
+            //comboBox_Report_Heading.Items.Add("3 - P.B.H. - BX");
+            //comboBox_Report_Heading.Items.Add("4 - H.K.A.H. - BX");
+            //comboBox_Report_Heading.Items.Add("5 - T.W.A.H. - BX");
+            comboBox_Report_Heading.Items.Add("06 PATHLAB BX");
+            //comboBox_Report_Heading.Items.Add("7 - EVANGEL - BX");
+            comboBox_Report_Heading.Items.Add("08 STH CY");
+            //comboBox_Report_Heading.Items.Add("9 - PRIVATE - CY(OLD - 2 Doctors");
+            //comboBox_Report_Heading.Items.Add("10 - P.B.H. - CY");
+            //comboBox_Report_Heading.Items.Add("11 - H.K.A.H. - CY");
+            //comboBox_Report_Heading.Items.Add("12 - T.W.A.H. - CY");
+            comboBox_Report_Heading.Items.Add("13 PATHLAB CY");
+            //comboBox_Report_Heading.Items.Add("14 - P.B.H. - CY");
+            //comboBox_Report_Heading.Items.Add("15 - ONCO - CY");
+            comboBox_Report_Heading.Items.Add("16 BIO-TECH CY");
+            //comboBox_Report_Heading.Items.Add("17 - CY Screening");
+            comboBox_Report_Heading.Items.Add("18 PRIVATE BX");
+            comboBox_Report_Heading.Items.Add("19 PRIVATE CY");
 
             string sqlExt = string.Format("SELECT * FROM [bxcy_specimen] WHERE id = {0}", id);
             bxcy_specimenDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(sqlExt, bxcy_specimenDataSet, "bxcy_specimen");
             bxcy_specimenDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
+
+            if (bxcy_specimenDt != null && bxcy_specimenDt.Rows.Count > 0)
+            {
+                DataRow mDr = bxcy_specimenDt.Rows[0];
+                if (mDr["client"] != null)
+                {
+                    String client = mDr["client"].ToString().Trim().ToUpper();
+                    if ("ST. TERESA'S HOSPITAL" == client)
+                    {
+                        if (case_no.ToUpper().StartsWith("BX"))
+                        {
+                            comboBox_Report_Heading.SelectedIndex = 0;
+                        }
+                        else if (case_no.ToUpper().StartsWith("CY"))
+                        {
+                            comboBox_Report_Heading.SelectedIndex = 2;
+                        }
+                    }
+                    else if ("PATHLAB MED LAB" == client)
+                    {
+                        if (case_no.ToUpper().StartsWith("BX"))
+                        {
+                            comboBox_Report_Heading.SelectedIndex = 1;
+                        }
+                        else if (case_no.ToUpper().StartsWith("CY"))
+                        {
+                            comboBox_Report_Heading.SelectedIndex = 3;
+                        }
+                    }
+                    else if ("BIO-TECHNOLOGY LTD" == client)
+                    {
+                        if (case_no.ToUpper().StartsWith("CY"))
+                        {
+                            comboBox_Report_Heading.SelectedIndex = 4;
+                        }
+                    }
+                    else
+                    {
+                        if (case_no.ToUpper().StartsWith("BX"))
+                        {
+                            comboBox_Report_Heading.SelectedIndex = 5;
+                        }
+                        else if (case_no.ToUpper().StartsWith("CY"))
+                        {
+                            comboBox_Report_Heading.SelectedIndex = 6;
+                        }
+                    }
+
+                }
+            }
 
             string sql = string.Format("SELECT * FROM [BXCY_DIAG] WHERE case_no = '{0}' ORDER BY ID", case_no);
             bxcy_diagDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_diagDataSet, "bxcy_diag");
@@ -86,12 +137,34 @@ namespace St.Teresa_LIS_2019
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            Form_ReportPreview newForm = new Form_ReportPreview();
+            newForm.Show();
+            if (checkBox_Print_HOKLAS_ISO_Format.Checked)
+            {
+                newForm.setReportParameter(comboBox_Report_Heading.Text, case_no, report_no, "1");
+            }
+            else
+            {
+                newForm.setReportParameter(comboBox_Report_Heading.Text, case_no, report_no, "0");
+            }
+            
+            newForm.showReport();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            CreateNewPdfPage();
+            //CreateNewPdfPage();
+            Form_ReportPreview newForm = new Form_ReportPreview();
+            newForm.Show();
+            if (checkBox_Print_HOKLAS_ISO_Format.Checked)
+            {
+                newForm.setReportParameter(comboBox_Report_Heading.Text, case_no, report_no, "1");
+            }
+            else
+            {
+                newForm.setReportParameter(comboBox_Report_Heading.Text, case_no, report_no, "0");
+            }
+            newForm.showReport();
         }
 
 

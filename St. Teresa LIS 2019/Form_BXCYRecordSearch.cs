@@ -13,11 +13,24 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_BXCYRecordSearch : Form
     {
+        public const String SEARCH_TYPE_PATIENT = "PATIENT";
+        public const String SEARCH_TYPE_PAT_HKID = "PAT_HKID";
+        public const String SEARCH_TYPE_LAB_REF = "LAB_REF";
+        public const String SEARCH_TYPE_CLIENT = "CLIENT";
+        public const String SEARCH_TYPE_DOCTOR_ID = "DOCTOR_ID";
+        public const String SEARCH_TYPE_CASE_NO = "CASE_NO";
+
+        public const int DATE_MODE_ALL = 1;
+        public const int DATE_MODE_7_DAYS = 2;
+        public const int DATE_MODE_14_DAYS = 3;
+        public const int DATE_MODE_28_DAYS = 4;
+        public const int DATE_MODE_CUSTOM = 5;
+
         private DataTable dt;
         private DataSet bxcy_specimenDataSet = new DataSet();
 
         private string labelSearching = "Locate Case No:";
-        private string contentSearching = "CASE_NO";
+        private string contentSearching = SEARCH_TYPE_CASE_NO;
 
         public Boolean edit;
 
@@ -28,11 +41,10 @@ namespace St.Teresa_LIS_2019
         private string dateFrom = "";
         private string dateTo = "";
 
-        private string patientNum = "";
-        private string patientHKID = "";
-        private string patientName = "";
+        private HisPatient currentHisPatient = null;
 
-        int pageSize = 30;     //每页显示行数
+        //int pageSize = 30;     //每页显示行数
+        int pageSize = 100;     //每页显示行数
         int nMax = 0;         //总记录数
         int pageCount = 0;    //页数＝总记录数/每页显示行数
         int pageCurrent = 0;   //当前页号
@@ -85,9 +97,19 @@ namespace St.Teresa_LIS_2019
             checkCmd.Parameters["@whereStr"].Value = whereStr;
             checkCmd.Parameters["@whereVal"].Value = whereVal;
             checkCmd.Parameters["@snopCode"].Value = snopCodeWhereStr;
-            checkCmd.Parameters["@dateMode"].Value = dateMode;
-            checkCmd.Parameters["@dateFrom"].Value = dateFrom;
-            checkCmd.Parameters["@dateTo"].Value = dateTo;
+
+            if (whereVal == "" && snopCodeWhereStr == "")
+            {
+                checkCmd.Parameters["@dateMode"].Value = DATE_MODE_CUSTOM;
+                checkCmd.Parameters["@dateFrom"].Value = DateTime.Now.AddDays(-2).ToString("yyyy-MM-dd");
+                checkCmd.Parameters["@dateTo"].Value = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
+            } 
+            else
+            {
+                checkCmd.Parameters["@dateMode"].Value = dateMode;
+                checkCmd.Parameters["@dateFrom"].Value = dateFrom;
+                checkCmd.Parameters["@dateTo"].Value = dateTo;
+            }
 
             checkCmd.Parameters.Add("@RETURN_VALUE",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             checkCmd.CommandTimeout = 600;
@@ -101,13 +123,13 @@ namespace St.Teresa_LIS_2019
             dt = new DataTable();
             dt.Columns.Add("Case No.");
             dt.Columns.Add("Report Date");
-            dt.Columns.Add("Patient");
+            dt.Columns.Add(SEARCH_TYPE_PATIENT);
             //dt.Columns.Add(" ");
             dt.Columns.Add("Seq");
             dt.Columns.Add("Age");
             dt.Columns.Add("Sex");
             dt.Columns.Add("HKID No.");
-            dt.Columns.Add("Client");
+            dt.Columns.Add(SEARCH_TYPE_CLIENT);
             dt.Columns.Add("Doctor In Charge");
             dt.Columns.Add("Fz Section");
             dt.Columns.Add("Snopcode M");
@@ -122,12 +144,25 @@ namespace St.Teresa_LIS_2019
 
             foreach (DataRow mDr in dtDb.Rows)
             {
-                //dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_ID"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"].ToString()+"/"+ mDr["sign_dr2"].ToString(), mDr["er"], mDr["em"], mDr["id"] });
-                dt.Rows.Add(new object[] { mDr["CASE_NO"], mDr["RPT_DATE"], mDr["PATIENT"], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr["PAT_HKID"], mDr["CLIENT"], mDr["DOCTOR_IC"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"], mDr["LAB_REF"], mDr["DOCTOR_ID"] });
+                //dt.Rows.Add(new object[] { mDr[SEARCH_TYPE_CASE_NO], mDr["RPT_DATE"], mDr[SEARCH_TYPE_PATIENT], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr[SEARCH_TYPE_PAT_HKID], mDr[SEARCH_TYPE_CLIENT], mDr[SEARCH_TYPE_DOCTOR_ID], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"].ToString()+"/"+ mDr["sign_dr2"].ToString(), mDr["er"], mDr["em"], mDr["id"] });
+                dt.Rows.Add(new object[] { mDr[SEARCH_TYPE_CASE_NO], mDr["RPT_DATE"], mDr[SEARCH_TYPE_PATIENT], mDr["PAT_SEQ"], mDr["PAT_AGE"], mDr["PAT_SEX"], mDr[SEARCH_TYPE_PAT_HKID], mDr[SEARCH_TYPE_CLIENT], mDr["DOCTOR_IC"], mDr["fz_section"], mDr["snopcode_m"], mDr["snopcode_t"], mDr["cy_report"], mDr["sign_dr"], mDr["er"], mDr["em"], mDr["id"], mDr[SEARCH_TYPE_LAB_REF], mDr[SEARCH_TYPE_DOCTOR_ID] });
             }
 
             dataGridView1.DataSource = dt;
             LoadData();
+            //dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            dataGridView1.Columns[0].Width = 130;
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].Width = 150;
+            dataGridView1.Columns[3].Width = 40;
+            dataGridView1.Columns[4].Width = 50;
+            dataGridView1.Columns[5].Width = 20;
+            dataGridView1.Columns[6].Width = 150;
+            dataGridView1.Columns[7].Width = 150;
+            dataGridView1.Columns[8].Width = 150;
+            dataGridView1.Columns[9].Width = 50;
+            dataGridView1.Columns[10].Width = 50;
+            dataGridView1.Columns[11].Width = 50;
         }
 
         private void dataGridViewFormat()
@@ -247,97 +282,71 @@ namespace St.Teresa_LIS_2019
         {
             switch (contentSearching)
             {
-                case "CASE_NO":
-                    contentSearching = "PATIENT";
+                case SEARCH_TYPE_CASE_NO:
+                    contentSearching = SEARCH_TYPE_PATIENT;
                     labelSearching = "Patient:";
                     break;
-                case "PATIENT":
-                    contentSearching = "PAT_HKID";
+                case SEARCH_TYPE_PATIENT:
+                    contentSearching = SEARCH_TYPE_PAT_HKID;
                     labelSearching = "Patient HKID:";
                     break;
-                case "PAT_HKID":
-                    contentSearching = "LAB_REF";
-                    labelSearching = "Hospital NO.:";
+                case SEARCH_TYPE_PAT_HKID:
+                    contentSearching = SEARCH_TYPE_LAB_REF;
+                    labelSearching = "Hospital No.:";
+                    currentHisPatient = null;
                     break;
-                case "LAB_REF":
-                    contentSearching = "client";
+                case SEARCH_TYPE_LAB_REF:
+                    contentSearching = SEARCH_TYPE_CLIENT;
                     labelSearching = "Client:";
+                    buttonF3_Edit_Record.Enabled = true;
+                    button_F5_New_Patient.Enabled = true;
+                    button_F2_New_Record.Enabled = true;
+                    button_F6_View_Record.Enabled = true;
+                    currentHisPatient = null;
                     break;
-                case "client":
-                    contentSearching = "DOCTOR_ID";
+                case SEARCH_TYPE_CLIENT:
+                    contentSearching = SEARCH_TYPE_DOCTOR_ID;
                     labelSearching = "Doctor:";
                     break;
-                case "DOCTOR_ID":
+                case SEARCH_TYPE_DOCTOR_ID:
                     contentSearching = "";
                     labelSearching = "SNOP-T Name:";
                     break;
                 case "":
-                    contentSearching = "CASE_NO";
+                    contentSearching = SEARCH_TYPE_CASE_NO;
                     labelSearching = "Case No:";
                     break;
                 default:
-                    contentSearching = "CASE_NO";
+                    contentSearching = SEARCH_TYPE_CASE_NO;
                     labelSearching = "Case No:";
                     break;
             }
 
             label_Search_Type.Text = labelSearching;
             setButtonStatus();
+            if (contentSearching == SEARCH_TYPE_LAB_REF)
+            {
+                buttonF3_Edit_Record.Enabled = false;
+                button_F6_View_Record.Enabled = false;
+            }
         }
 
-        private void searchHospitalRecord()
+        private HisPatient searchHospitalRecord()
         {
-            string surName = "";
-            string givenName = "";
-
-            patientNum = "";
-            patientHKID = "";
-            patientName = "";
-
+            //MessageBox.Show("Searching Hospital record - " + Properties.Settings.Default.HisTestMode);
+            HisPatient p = null;
             if (Properties.Settings.Default.HisTestMode)
             {
                 XmlDocument xmlDoc = new XmlDocument();
                 string demoFilePath = System.IO.Directory.GetCurrentDirectory() + "\\WebServiceFeeback\\HN2017052592P.xml";
-                xmlDoc.Load(demoFilePath);
-                String xPath = "Wraper/NewDataSet/Histo_Patient";
-                var nodes = xmlDoc.SelectNodes(xPath);
-                if (nodes == null)
+
+                p = new HisPatient(xmlDoc);
+
+                if (p.visitNo == null)
                 {
-                    MessageBox.Show("Cannot parse the feedback");
+                    p = null;
                 }
-                else
-                {
-                    foreach (XmlNode childrenNode in nodes)
-                    {
-                        foreach (XmlNode grandChild in childrenNode)
-                        {
-                            //textBoxParsed.Text += Environment.NewLine + grandChild.Name + " - " + grandChild.InnerText;
-                            if (grandChild.Name.Trim().ToLower() == "patient_no")
-                            {
-                                patientNum = grandChild.InnerText.Trim();
-                            }
-
-                            if (grandChild.Name.Trim().ToLower() == "pv_surname")
-                            {
-                                surName = grandChild.InnerText.Trim();
-                            }
-
-                            if (grandChild.Name.Trim().ToLower() == "pv_givenname")
-                            {
-                                givenName = grandChild.InnerText.Trim();
-                            }
-
-                            if (grandChild.Name.Trim().ToLower() == "pv_idno")
-                            {
-                                patientHKID = grandChild.InnerText.Trim();
-                            }
-                        }
-
-                    }
-
-                    patientName = string.Format("{0} {1}", surName, givenName);
-                    //Console.WriteLine(patientName);
-                }
+                
             }
             else
             {
@@ -352,49 +361,28 @@ namespace St.Teresa_LIS_2019
 
                     if (responseText == null || responseText == "")
                     {
-                        MessageBox.Show("Cannot parse the feedback");
+                        MessageBox.Show("No response from HIS - Please contact the administrator");
                     }
                     else
                     {
+                        if (Properties.Settings.Default.HisEnableDebug)
+                        {
+                            MessageBox.Show("The response is : " + Environment.NewLine + responseText);
+                        }
+
                         XmlDocument xmlDoc = new XmlDocument();
                         xmlDoc.LoadXml("<Wraper>" + responseText + " </Wraper>");
-                        String xPath = "Wraper/NewDataSet/Histo_Patient";
-                        var nodes = xmlDoc.SelectNodes(xPath);
-                        if (nodes == null)
+                        p = new HisPatient(xmlDoc);
+
+                        if (p.visitNo == null)
                         {
-                            MessageBox.Show("Cannot parse the feedback");
-                        }
-                        else
-                        {
-                            foreach (XmlNode childrenNode in nodes)
+                            if (Properties.Settings.Default.HisEnableDebug)
                             {
-                                foreach (XmlNode grandChild in childrenNode)
-                                {
-                                    if (grandChild.Name.Trim().ToLower() == "patient_no")
-                                    {
-                                        patientNum = grandChild.InnerText.Trim();
-                                    }
-
-                                    if (grandChild.Name.Trim().ToLower() == "pv_surname")
-                                    {
-                                        surName = grandChild.InnerText.Trim();
-                                    }
-
-                                    if (grandChild.Name.Trim().ToLower() == "pv_givenname")
-                                    {
-                                        givenName = grandChild.InnerText.Trim();
-                                    }
-
-                                    if (grandChild.Name.Trim().ToLower() == "pv_idno")
-                                    {
-                                        patientHKID = grandChild.InnerText.Trim();
-                                    }
-                                }
-
+                                MessageBox.Show("Cannot found the patient");
                             }
-
-                            patientName = string.Format("{0} {1}", surName, givenName);
+                            p = null;
                         }
+                        
                     }
                 }
                 catch (Exception ex)
@@ -402,6 +390,8 @@ namespace St.Teresa_LIS_2019
                     MessageBox.Show("Exception found !" + Environment.NewLine + Environment.NewLine + ex.Message);
                 }
             }
+
+            return p;
         }
 
         private void searchRecord()
@@ -413,45 +403,48 @@ namespace St.Teresa_LIS_2019
 
                 snopCodeWhereStr = textBox_Search_Type.Text.Trim();
             }
-            else
+            else if (labelSearching == SEARCH_TYPE_LAB_REF)
+            {
+                // search by hospital number
+            }
+            else 
             {
                 whereStr = contentSearching;
                 whereVal = textBox_Search_Type.Text.Trim();
 
                 snopCodeWhereStr = "";
             }
-
+            
             if (radioButton_Data_All.Checked)
             {
-                dateMode = 1;
+                dateMode = DATE_MODE_ALL;
             }
             else
             {
                 if (radioButton_Data_Past_7.Checked)
                 {
-                    dateMode = 2;
+                    dateMode = DATE_MODE_7_DAYS;
                 }
                 else
                 {
                     if (radioButton_Data_Past_14.Checked)
                     {
-                        dateMode = 3;
+                        dateMode = DATE_MODE_14_DAYS;
                     }
                     else
                     {
                         if (radioButton_Data_Past_28.Checked)
                         {
-                            dateMode = 4;
+                            dateMode = DATE_MODE_28_DAYS;
                         }
                         else
                         {
-                            dateMode = 5;
+                            dateMode = DATE_MODE_CUSTOM;
                         }
                     }
                 }
             }
 
-            dateFrom = dateTimePicker_From.Value.ToString("yyyy-MM-dd");
             dateTo = dateTimePicker_To.Value.ToString("yyyy-MM-dd");
 
             loadDataGridViewDate();
@@ -468,7 +461,62 @@ namespace St.Teresa_LIS_2019
 
             if (keyData == Keys.Enter && (textBox_Search_Type.Focused || radioButton_Data_All.Focused || radioButton_Data_Past_7.Focused || radioButton_Data_Past_14.Focused || radioButton_Data_Past_28.Focused || radioButton_Data_From.Focused || dateTimePicker_From.Focused || dateTimePicker_To.Focused))
             {
-                searchRecord();
+                if (contentSearching == SEARCH_TYPE_LAB_REF)
+                {
+                    button_F5_New_Patient.Enabled = true;
+                    button_F2_New_Record.Enabled = true;
+                    radioButton_Data_All.Checked = true;
+
+                    HisPatient p = searchHospitalRecord();
+                    if (p == null)
+                    {
+                        MessageBox.Show("Patient is NOT FOUND from Web Service Gateway!" + Environment.NewLine + "Hospital No.: " + textBox_Search_Type.Text );
+                        currentHisPatient = null;
+                        
+                    }
+                    else
+                    {
+                        // search the date based on the return result
+                        currentHisPatient = p;
+                        String hkid = p.getFullHKID();
+                        Boolean recordNotFound = true;
+                        if (hkid != null)
+                        {
+                            // search by HKID
+                            whereStr = SEARCH_TYPE_PAT_HKID;
+                            whereVal = hkid;
+                            loadDataGridViewDate();
+
+                            if (dataGridView1 != null && dataGridView1.RowCount > 0)
+                            {
+                                recordNotFound = false;
+                                button_F5_New_Patient.Enabled = false;
+                                //MessageBox.Show("found matched cases based on HKID");
+                            }
+                        }
+
+                        if (recordNotFound)
+                        {
+                            // search by name
+                            String fullName = p.getFullName();
+
+                            if (fullName != null)
+                            {
+                                whereStr = SEARCH_TYPE_PATIENT;
+                                whereVal = fullName;
+                                loadDataGridViewDate();
+                            }
+                            
+                        }
+
+                    }
+                }
+                else
+                {
+                    searchRecord();
+                    currentHisPatient = null;
+                }
+                
                 return true;
             }
 
@@ -555,17 +603,52 @@ namespace St.Teresa_LIS_2019
         {
             if (label2.Text == "BX/CY")
             {
-                Form_BXCYFile open = new Form_BXCYFile();
-                open.Show();
-                if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
+                
+                if (contentSearching == SEARCH_TYPE_LAB_REF)
                 {
-                    searchHospitalRecord();
-                    open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
+                    if (currentHisPatient == null)
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile();
+                        open.Show();
+                        open.patientCopy(textBox_Search_Type.Text.Trim());
+                    }
+                    else
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile();
+                        open.Show();
+                        open.hisPatientCopy(currentHisPatient);
+                    }
+                }
+                else if (contentSearching == SEARCH_TYPE_PATIENT || contentSearching == SEARCH_TYPE_PAT_HKID)
+                {
+                    if (dataGridView1.SelectedRows.Count > 0)
+                    {
+                        String case_no = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                        if (case_no == "")
+                        {
+                            MessageBox.Show("The case no of selected row is empty");
+                        } 
+                        else
+                        {
+                            Form_BXCYFile open = new Form_BXCYFile();
+                            open.Show();
+                            open.patientCopy(case_no);
+                        }
+                        
+                    } 
+                    else
+                    {
+                        MessageBox.Show("Please select one record first!");
+                        
+                    }
                 }
                 else
                 {
-                    open.patientCopyWithCaseNo(textBox_Search_Type.Text.Trim());
+                    Form_BXCYFile open = new Form_BXCYFile();
+                    open.Show();
+                    open.patientCopy(textBox_Search_Type.Text.Trim());
                 }
+                
             }
             else
             {
@@ -573,31 +656,16 @@ namespace St.Teresa_LIS_2019
                 {
                     Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile();
                     open.Show();
-                    if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
-                    {
-                        searchHospitalRecord();
-                        open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
-                    }
-                    else
-                    {
-                        open.patientCopyWithCaseNo(textBox_Search_Type.Text.Trim());
-                    }
+                    open.patientCopy(textBox_Search_Type.Text.Trim());
                 }
                 else
                 {
                     Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname();
                     open.Show();
-                    if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
-                    {
-                        searchHospitalRecord();
-                        open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
-                    }
-                    else
-                    {
-                        open.patientCopyWithCaseNo(textBox_Search_Type.Text.Trim());
-                    }
+                    open.patientCopy(textBox_Search_Type.Text.Trim());
                 }
             }
+            
         }
 
         private void button_F2m()
@@ -665,21 +733,13 @@ namespace St.Teresa_LIS_2019
             {
                 Form_BXCYFile open = new Form_BXCYFile(true);
                 open.Show();
-                if (contentSearching == "PATIENT")
+                if (contentSearching == SEARCH_TYPE_PATIENT)
                 {
                     open.patientNameCopy(textBox_Search_Type.Text.Trim());
                 }
                 else
                 {
-                    if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
-                    {
-                        searchHospitalRecord();
-                        open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
-                    }
-                    else
-                    {
-                        open.newRecord();
-                    }
+                    open.newRecord();
                 }
             }
             else
@@ -688,42 +748,26 @@ namespace St.Teresa_LIS_2019
                 {
                     Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(true);
                     open.Show();
-                    if (contentSearching == "PATIENT")
+                    if (contentSearching == SEARCH_TYPE_PATIENT)
                     {
                         open.patientNameCopy(textBox_Search_Type.Text.Trim());
                     }
                     else
                     {
-                        if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
-                        {
-                            searchHospitalRecord();
-                            open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
-                        }
-                        else
-                        {
-                            open.newRecord();
-                        }
+                        open.newRecord();
                     }
                 }
                 else
                 {
                     Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(true);
                     open.Show();
-                    if (contentSearching == "PATIENT")
+                    if (contentSearching == SEARCH_TYPE_PATIENT)
                     {
                         open.patientNameCopy(textBox_Search_Type.Text.Trim());
                     }
                     else
                     {
-                        if (contentSearching == "LAB_REF" && textBox_Search_Type.Text.Trim() != "")
-                        {
-                            searchHospitalRecord();
-                            open.patientCopyWithPatientInfo(patientNum, patientHKID, patientName);
-                        }
-                        else
-                        {
-                            open.newRecord();
-                        }
+                        open.newRecord();
                     }
                 }
             }
@@ -879,27 +923,58 @@ namespace St.Teresa_LIS_2019
 
         private void button_BX_Click(object sender, EventArgs e)
         {
+            contentSearching = SEARCH_TYPE_CASE_NO;
+            labelSearching = "Case No:";
+            label_Search_Type.Text = labelSearching;
             textBox_Search_Type.Text = string.Format("BX{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Focus();
+            textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
+            textBox_Search_Type.SelectionLength = 0;
+            
         }
 
         private void button_BB_Click(object sender, EventArgs e)
         {
+            contentSearching = SEARCH_TYPE_CASE_NO;
+            labelSearching = "Case No:";
+            label_Search_Type.Text = labelSearching;
             textBox_Search_Type.Text = string.Format("BB{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Focus();
+            textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
+            textBox_Search_Type.SelectionLength = 0;
         }
 
         private void button_CY_Click(object sender, EventArgs e)
         {
+            contentSearching = SEARCH_TYPE_CASE_NO;
+            labelSearching = "Case No:";
+            label_Search_Type.Text = labelSearching;
             textBox_Search_Type.Text = string.Format("CY{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Focus();
+            textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
+            textBox_Search_Type.SelectionLength = 0;
         }
 
         private void button_CC_Click(object sender, EventArgs e)
         {
+            contentSearching = SEARCH_TYPE_CASE_NO;
+            labelSearching = "Case No:";
+            label_Search_Type.Text = labelSearching;
             textBox_Search_Type.Text = string.Format("CC{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Focus();
+            textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
+            textBox_Search_Type.SelectionLength = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            contentSearching = SEARCH_TYPE_CASE_NO;
+            labelSearching = "Case No:";
+            label_Search_Type.Text = labelSearching;
             textBox_Search_Type.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Focus();
+            textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
+            textBox_Search_Type.SelectionLength = 0;
         }
 
         private void LoadData()
@@ -952,7 +1027,13 @@ namespace St.Teresa_LIS_2019
 
         private void button_D_Click(object sender, EventArgs e)
         {
+            contentSearching = SEARCH_TYPE_CASE_NO;
+            labelSearching = "Case No:";
+            label_Search_Type.Text = labelSearching;
             textBox_Search_Type.Text = string.Format("D{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Focus();
+            textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
+            textBox_Search_Type.SelectionLength = 0;
         }
 
         private void radioButton_Data_From_CheckedChanged(object sender, EventArgs e)
@@ -967,6 +1048,7 @@ namespace St.Teresa_LIS_2019
                 dateTimePicker_From.Enabled = false;
                 dateTimePicker_To.Enabled = false;
             }
+            searchByPeriod();
         }
 
         private void setButtonStatus()
@@ -987,7 +1069,7 @@ namespace St.Teresa_LIS_2019
                 button_F6_View_Record.Enabled = false;
             }
 
-            if (contentSearching == "PATIENT" && textBox_Search_Type.Text.Trim() != "")
+            if (contentSearching == SEARCH_TYPE_PATIENT && textBox_Search_Type.Text.Trim() != "")
             {
                 DataSet copyEbvDataSet = new DataSet();
 
@@ -1008,7 +1090,7 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (contentSearching == "PAT_HKID" && textBox_Search_Type.Text.Trim() != "")
+                if (contentSearching == SEARCH_TYPE_PAT_HKID && textBox_Search_Type.Text.Trim() != "")
                 {
                     DataSet copyEbvDataSet = new DataSet();
 
@@ -1028,17 +1110,7 @@ namespace St.Teresa_LIS_2019
                 }
                 else
                 {
-                    if (contentSearching == "LAB_REF")
-                    {
-                        button_F6_View_Record.Enabled = false;
-                        buttonF3_Edit_Record.Enabled = false;
-                    }
-                    else
-                    {
-                        button_F6_View_Record.Enabled = true;
-                        buttonF3_Edit_Record.Enabled = true;
-                        button_F5_New_Patient.Enabled = true;
-                    }
+                    button_F5_New_Patient.Enabled = true;
                 }
             }
         }
@@ -1049,22 +1121,22 @@ namespace St.Teresa_LIS_2019
             {
                 switch (contentSearching)
                 {
-                    case "CASE_NO":
+                    case SEARCH_TYPE_CASE_NO:
                         textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                         break;
-                    case "PATIENT":
+                    case SEARCH_TYPE_PATIENT:
                         textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
                         break;
-                    case "PAT_HKID":
+                    case SEARCH_TYPE_PAT_HKID:
                         textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
                         break;
-                    case "LAB_REF":
+                    case SEARCH_TYPE_LAB_REF:
                         textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[15].Value.ToString();
                         break;
-                    case "client":
+                    case SEARCH_TYPE_CLIENT:
                         textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[8].Value.ToString();
                         break;
-                    case "DOCTOR_ID":
+                    case SEARCH_TYPE_DOCTOR_ID:
                         textBox_Search_Type.Text = dataGridView1.SelectedRows[0].Cells[16].Value.ToString();
                         break;
                 }
@@ -1083,6 +1155,14 @@ namespace St.Teresa_LIS_2019
                     searchRecord();
                 }
             }
+            else if (textBox_Search_Type.Text.Trim().IndexOf("-") != -1)
+            {
+                string subTextStr = textBox_Search_Type.Text.Trim().Substring(textBox_Search_Type.Text.Trim().IndexOf("-"));
+                if (subTextStr.Length > 3)
+                {
+                    searchRecord();
+                }
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1095,6 +1175,34 @@ namespace St.Teresa_LIS_2019
             {
                 this.WindowState = FormWindowState.Maximized; //则最大化
             }
+        }
+
+        private void searchByPeriod()
+        {
+            if (textBox_Search_Type.Text.Trim().Length > 7)
+            {
+                this.searchRecord();
+            }
+        }
+
+        private void radioButton_Data_All_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByPeriod();
+        }
+
+        private void radioButton_Data_Past_7_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByPeriod();
+        }
+
+        private void radioButton_Data_Past_14_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByPeriod();
+        }
+
+        private void radioButton_Data_Past_28_CheckedChanged(object sender, EventArgs e)
+        {
+            searchByPeriod();
         }
     }
 }

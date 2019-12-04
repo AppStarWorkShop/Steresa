@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Body>
+    <ReportItems>
+      <Subreport Name="Subreport1">
+        <ReportName>BodyEN</ReportName>
+        <Height>1.03in</Height>
+        <Width>8.23958in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Subreport>
+    </ReportItems>
+    <Height>3.06599cm</Height>
+    <Style />
+  </Body>
+  <Width>20.92854cm</Width>
+  <Page>
+    <PageHeader>
+      <Height>5.92667cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>CYTOLOGY REPORT</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>細 胞 學 報 告</Value>
+                  <Style>
+                    <FontSize>12pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.2175in</Top>
+          <Left>1.99208in</Left>
+          <Height>0.94791in</Height>
+          <Width>4.15625in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Image Name="Image1">
+          <Source>Embedded</Source>
+          <Value>logo4</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>0.55245cm</Top>
+          <Left>0.254cm</Left>
+          <Height>2.40769cm</Height>
+          <Width>4.6295cm</Width>
+          <ZIndex>1</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Image Name="Image2">
+          <Source>Embedded</Source>
+          <Value>logo2</Value>
+          <Sizing>FitProportional</Sizing>
+          <Top>3.16258cm</Top>
+          <Left>18.80129cm</Left>
+          <Height>1.5cm</Height>
+          <Width>1.5cm</Width>
+          <ZIndex>2</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </Image>
+        <Textbox Name="Textbox4">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Dr. Loke Shee Loong 
+Dr. Kan Chi Hang
+Dr. Ng Chi Sing</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>4.08904cm</Top>
+          <Left>0.254cm</Left>
+          <Height>1.52604cm</Height>
+          <Width>3.63771cm</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox5">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>陸士龍醫生
+簡志恒醫生
+伍志誠醫生
+</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>4.08904cm</Top>
+          <Left>4.17396cm</Left>
+          <Height>1.52604cm</Height>
+          <Width>3.63771cm</Width>
+          <ZIndex>4</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox6">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Dr. Ng Ping Wing
+Dr. Fung Shing Hoi
+Dr. Pang Chun Yin</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>4.08904cm</Top>
+          <Left>7.98806cm</Left>
+          <Height>1.52604cm</Height>
+          <Width>3.63771cm</Width>
+          <ZIndex>5</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox7">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>吳炳榮醫生
+馮成海醫生
+彭俊賢醫生
+</Value>
+                  <Style />
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox4</rd:DefaultName>
+          <Top>4.08904cm</Top>
+          <Left>11.80215cm</Left>
+          <Height>1.52604cm</Height>
+          <Width>3.63771cm</Width>
+          <ZIndex>6</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+        <Textbox Name="Textbox10">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>ST. TERESA’S HOSPITAL - Histopathology Laboratory</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                    <TextDecoration>Underline</TextDecoration>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox10</rd:DefaultName>
+          <Top>3.16258cm</Top>
+          <Left>0.254cm</Left>
+          <Height>0.6cm</Height>
+          <Width>15.18587cm</Width>
+          <ZIndex>7</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <PageFooter>
+      <Height>2.54cm</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <ReportItems>
+        <Textbox Name="Textbox2">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>Footer1</Value>
+                  <Style>
+                    <FontSize>20pt</FontSize>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.25521in</Top>
+          <Height>0.48958in</Height>
+          <Width>8.23958in</Width>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
+      </ReportItems>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageFooter>
+    <PageHeight>29.7cm</PageHeight>
+    <PageWidth>21cm</PageWidth>
+    <LeftMargin>0cm</LeftMargin>
+    <RightMargin>0cm</RightMargin>
+    <TopMargin>0cm</TopMargin>
+    <BottomMargin>0cm</BottomMargin>
+    <ColumnSpacing>1.27cm</ColumnSpacing>
+    <Style />
+  </Page>
+  <AutoRefresh>0</AutoRefresh>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logo1">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="logo2">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="logo4">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>21791b70-6dfb-403a-a88f-1f53340c9fc9</rd:ReportID>
+</Report>

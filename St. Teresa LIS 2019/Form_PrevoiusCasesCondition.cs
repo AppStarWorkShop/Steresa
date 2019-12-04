@@ -43,14 +43,15 @@ namespace St.Teresa_LIS_2019
         {
             loadDataGridViewDate();
             dataGridViewFormat();
+            dataGridView1.Refresh();
         }
 
         private void loadDataGridViewDate(int currentPageNum = 1)
         {
-            string sql = string.Format("select bs.[case_no], [date], ISNULL(bs.[snopcode_t],'') as Tcode1, ISNULL(bs.[snopcode_t2],'') as Tcode2, ISNULL(bs.[snopcode_t3],'') as Tcode3, ISNULL(bs.[snopcode_m],'') as Mcode1, ISNULL(bs.[snopcode_m2],'') as Mcode2, ISNULL(bs.[snopcode_m3],'') as Mcode3,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' Order by bs.[case_no] desc", hkid);
+            string sql = string.Format("select bs.[case_no], format([date], 'dd/MM/yyyy') as [date], ISNULL(bs.[snopcode_t],'') as Tcode1, ISNULL(bs.[snopcode_t2],'') as Tcode2, ISNULL(bs.[snopcode_t3],'') as Tcode3, ISNULL(bs.[snopcode_m],'') as Mcode1, ISNULL(bs.[snopcode_m2],'') as Mcode2, ISNULL(bs.[snopcode_m3],'') as Mcode3,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' Order by bs.[case_no] desc", hkid);
             if (currentId != null)
             {
-                sql = string.Format("select bs.[case_no], [date], ISNULL(bs.[snopcode_t],'') as Tcode1, ISNULL(bs.[snopcode_t2],'') as Tcode2, ISNULL(bs.[snopcode_t3],'') as Tcode3, ISNULL(bs.[snopcode_m],'') as Mcode1, ISNULL(bs.[snopcode_m2],'') as Mcode2, ISNULL(bs.[snopcode_m3],'') as Mcode3,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and bs.id <> {1} Order by bs.[case_no] desc", hkid, currentId);
+                sql = string.Format("select bs.[case_no], format([date], 'dd/MM/yyyy') as [date], ISNULL(bs.[snopcode_t],'') as Tcode1, ISNULL(bs.[snopcode_t2],'') as Tcode2, ISNULL(bs.[snopcode_t3],'') as Tcode3, ISNULL(bs.[snopcode_m],'') as Mcode1, ISNULL(bs.[snopcode_m2],'') as Mcode2, ISNULL(bs.[snopcode_m3],'') as Mcode3,bs.pat_hkid,bs.id From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and bs.id <> {1} Order by bs.[case_no] desc", hkid, currentId);
             }
 
             SqlCommand checkCmd = new SqlCommand(sql, DBConn.getConnection());
@@ -154,7 +155,7 @@ namespace St.Teresa_LIS_2019
             dataGridView1.DataSource = dt;
             dataGridViewFormat();
 
-            label_Total_No.Text = dtDb.Rows.Count.ToString();
+            label_Total_No.Text = "Total : " + dtDb.Rows.Count.ToString();
         }
 
         private void button_F8_Confirm_Exit_Click(object sender, EventArgs e)
@@ -195,6 +196,7 @@ namespace St.Teresa_LIS_2019
                 {
                     Form_BXCYFile open = new Form_BXCYFile(idStr);
                     open.Show();
+                    open.disableEdit();
                 }
             }
         }
@@ -203,8 +205,9 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column0 = dataGridView1.Columns[0];
             //column0.Width = 130;
             dataGridView1.Columns[0].DefaultCellStyle.ForeColor = Color.Blue;
-            /*DataGridViewColumn column1 = dataGridView1.Columns[1];
-            column1.Width = 150;
+            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            column1.Width = 160;
+            /*
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             column2.Width = 240;
             DataGridViewColumn column3 = dataGridView1.Columns[3];
@@ -212,15 +215,24 @@ namespace St.Teresa_LIS_2019
             DataGridViewColumn column4 = dataGridView1.Columns[4];
             column4.Width = 90;
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            column5.Width = 120;*/
+            column5.Width = 300;
+            
             DataGridViewColumn column6 = dataGridView1.Columns[6];
             column6.Width = 1;
+            */
+            DataGridViewColumn column6 = dataGridView1.Columns[6];
+            column6.Visible = false;
 
             this.dataGridView1.DefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Microsoft Sans Serif", 8, FontStyle.Bold);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.Blue;
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.TopLeft;
             dataGridView1.EnableHeadersVisualStyles = false;
+
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                dataGridView1.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            }
         }
 
         private void button_F6_View_Diagnosis_Click(object sender, EventArgs e)
@@ -242,6 +254,7 @@ namespace St.Teresa_LIS_2019
 
             Form_Description open = new Form_Description(caseNoStr, idStr);
             open.Show();
+            open.disableEdit();
         }
     }
 }

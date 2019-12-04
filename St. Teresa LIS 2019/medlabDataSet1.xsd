@@ -170,7 +170,7 @@
   <xs:element name="medlabDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="medlabDataSet1" msprop:Generator_UserDSName="medlabDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="BXCY_SPECIMEN" msprop:Generator_TableClassName="BXCY_SPECIMENDataTable" msprop:Generator_TableVarName="tableBXCY_SPECIMEN" msprop:Generator_RowChangedName="BXCY_SPECIMENRowChanged" msprop:Generator_TablePropName="BXCY_SPECIMEN" msprop:Generator_RowDeletingName="BXCY_SPECIMENRowDeleting" msprop:Generator_RowChangingName="BXCY_SPECIMENRowChanging" msprop:Generator_RowEvHandlerName="BXCY_SPECIMENRowChangeEventHandler" msprop:Generator_RowDeletedName="BXCY_SPECIMENRowDeleted" msprop:Generator_RowClassName="BXCY_SPECIMENRow" msprop:Generator_UserTableName="BXCY_SPECIMEN" msprop:Generator_RowEvArgName="BXCY_SPECIMENRowChangeEvent">
+        <xs:element name="BXCY_SPECIMEN" msprop:Generator_TableClassName="BXCY_SPECIMENDataTable" msprop:Generator_TableVarName="tableBXCY_SPECIMEN" msprop:Generator_TablePropName="BXCY_SPECIMEN" msprop:Generator_RowDeletingName="BXCY_SPECIMENRowDeleting" msprop:Generator_RowChangingName="BXCY_SPECIMENRowChanging" msprop:Generator_RowEvHandlerName="BXCY_SPECIMENRowChangeEventHandler" msprop:Generator_RowDeletedName="BXCY_SPECIMENRowDeleted" msprop:Generator_UserTableName="BXCY_SPECIMEN" msprop:Generator_RowChangedName="BXCY_SPECIMENRowChanged" msprop:Generator_RowEvArgName="BXCY_SPECIMENRowChangeEvent" msprop:Generator_RowClassName="BXCY_SPECIMENRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="case_no" msprop:Generator_ColumnVarNameInTable="columncase_no" msprop:Generator_ColumnPropNameInRow="case_no" msprop:Generator_ColumnPropNameInTable="case_noColumn" msprop:Generator_UserColumnName="case_no" minOccurs="0">
@@ -533,6 +533,16 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Header" msprop:Generator_TableClassName="HeaderDataTable" msprop:Generator_TableVarName="tableHeader" msprop:Generator_TablePropName="Header" msprop:Generator_RowDeletingName="HeaderRowDeleting" msprop:Generator_RowChangingName="HeaderRowChanging" msprop:Generator_RowEvHandlerName="HeaderRowChangeEventHandler" msprop:Generator_RowDeletedName="HeaderRowDeleted" msprop:Generator_UserTableName="Header" msprop:Generator_RowChangedName="HeaderRowChanged" msprop:Generator_RowEvArgName="HeaderRowChangeEvent" msprop:Generator_RowClassName="HeaderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="case_no" msprop:Generator_ColumnVarNameInTable="columncase_no" msprop:Generator_ColumnPropNameInRow="case_no" msprop:Generator_ColumnPropNameInTable="case_noColumn" msprop:Generator_UserColumnName="case_no" type="xs:string" minOccurs="0" />
+              <xs:element name="pat_name" msprop:Generator_ColumnVarNameInTable="columnpat_name" msprop:Generator_ColumnPropNameInRow="pat_name" msprop:Generator_ColumnPropNameInTable="pat_nameColumn" msprop:Generator_UserColumnName="pat_name" type="xs:string" minOccurs="0" />
+              <xs:element name="pat_cname" msprop:Generator_ColumnVarNameInTable="columnpat_cname" msprop:Generator_ColumnPropNameInRow="pat_cname" msprop:Generator_ColumnPropNameInTable="pat_cnameColumn" msprop:Generator_UserColumnName="pat_cname" type="xs:string" minOccurs="0" />
+              <xs:element name="pat_hkid" msprop:Generator_ColumnVarNameInTable="columnpat_hkid" msprop:Generator_ColumnPropNameInRow="pat_hkid" msprop:Generator_ColumnPropNameInTable="pat_hkidColumn" msprop:Generator_UserColumnName="pat_hkid" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

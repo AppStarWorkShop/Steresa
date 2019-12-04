@@ -96,7 +96,7 @@
             // 
             this.textBox_Search_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Search_Type.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Search_Type.Location = new System.Drawing.Point(14, 26);
+            this.textBox_Search_Type.Location = new System.Drawing.Point(14, 28);
             this.textBox_Search_Type.Name = "textBox_Search_Type";
             this.textBox_Search_Type.Size = new System.Drawing.Size(254, 27);
             this.textBox_Search_Type.TabIndex = 50;
@@ -120,9 +120,9 @@
             // 
             this.button_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Exit.ForeColor = System.Drawing.Color.Purple;
-            this.button_Exit.Location = new System.Drawing.Point(885, 44);
+            this.button_Exit.Location = new System.Drawing.Point(885, 48);
             this.button_Exit.Name = "button_Exit";
-            this.button_Exit.Size = new System.Drawing.Size(109, 30);
+            this.button_Exit.Size = new System.Drawing.Size(109, 33);
             this.button_Exit.TabIndex = 52;
             this.button_Exit.Text = "Exit";
             this.button_Exit.UseVisualStyleBackColor = true;
@@ -132,9 +132,9 @@
             // 
             this.button_BX.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_BX.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_BX.Location = new System.Drawing.Point(14, 56);
+            this.button_BX.Location = new System.Drawing.Point(14, 61);
             this.button_BX.Name = "button_BX";
-            this.button_BX.Size = new System.Drawing.Size(48, 19);
+            this.button_BX.Size = new System.Drawing.Size(48, 21);
             this.button_BX.TabIndex = 66;
             this.button_BX.Text = "BX";
             this.button_BX.UseVisualStyleBackColor = true;
@@ -144,9 +144,9 @@
             // 
             this.button_F4_Daily_Report.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F4_Daily_Report.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_F4_Daily_Report.Location = new System.Drawing.Point(885, 7);
+            this.button_F4_Daily_Report.Location = new System.Drawing.Point(885, 8);
             this.button_F4_Daily_Report.Name = "button_F4_Daily_Report";
-            this.button_F4_Daily_Report.Size = new System.Drawing.Size(109, 30);
+            this.button_F4_Daily_Report.Size = new System.Drawing.Size(109, 33);
             this.button_F4_Daily_Report.TabIndex = 67;
             this.button_F4_Daily_Report.Text = "F4. Daily Report";
             this.button_F4_Daily_Report.UseVisualStyleBackColor = true;
@@ -156,9 +156,9 @@
             // 
             this.buttonF3_Edit_Record.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.buttonF3_Edit_Record.ForeColor = System.Drawing.Color.Black;
-            this.buttonF3_Edit_Record.Location = new System.Drawing.Point(736, 7);
+            this.buttonF3_Edit_Record.Location = new System.Drawing.Point(736, 8);
             this.buttonF3_Edit_Record.Name = "buttonF3_Edit_Record";
-            this.buttonF3_Edit_Record.Size = new System.Drawing.Size(109, 30);
+            this.buttonF3_Edit_Record.Size = new System.Drawing.Size(109, 33);
             this.buttonF3_Edit_Record.TabIndex = 69;
             this.buttonF3_Edit_Record.Text = "F3. Edit Record";
             this.buttonF3_Edit_Record.UseVisualStyleBackColor = true;
@@ -168,9 +168,9 @@
             // 
             this.button_F6_View_Record.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F6_View_Record.ForeColor = System.Drawing.Color.Black;
-            this.button_F6_View_Record.Location = new System.Drawing.Point(736, 43);
+            this.button_F6_View_Record.Location = new System.Drawing.Point(736, 47);
             this.button_F6_View_Record.Name = "button_F6_View_Record";
-            this.button_F6_View_Record.Size = new System.Drawing.Size(109, 30);
+            this.button_F6_View_Record.Size = new System.Drawing.Size(109, 33);
             this.button_F6_View_Record.TabIndex = 68;
             this.button_F6_View_Record.Text = "F6. View Record";
             this.button_F6_View_Record.UseVisualStyleBackColor = true;
@@ -180,9 +180,9 @@
             // 
             this.button_F2_New_Record.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F2_New_Record.ForeColor = System.Drawing.Color.Black;
-            this.button_F2_New_Record.Location = new System.Drawing.Point(621, 7);
+            this.button_F2_New_Record.Location = new System.Drawing.Point(621, 8);
             this.button_F2_New_Record.Name = "button_F2_New_Record";
-            this.button_F2_New_Record.Size = new System.Drawing.Size(109, 30);
+            this.button_F2_New_Record.Size = new System.Drawing.Size(109, 33);
             this.button_F2_New_Record.TabIndex = 71;
             this.button_F2_New_Record.Text = "F2. New Record";
             this.button_F2_New_Record.UseVisualStyleBackColor = true;
@@ -192,9 +192,9 @@
             // 
             this.button_F5_New_Patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F5_New_Patient.ForeColor = System.Drawing.Color.Black;
-            this.button_F5_New_Patient.Location = new System.Drawing.Point(621, 43);
+            this.button_F5_New_Patient.Location = new System.Drawing.Point(621, 47);
             this.button_F5_New_Patient.Name = "button_F5_New_Patient";
-            this.button_F5_New_Patient.Size = new System.Drawing.Size(109, 30);
+            this.button_F5_New_Patient.Size = new System.Drawing.Size(109, 33);
             this.button_F5_New_Patient.TabIndex = 70;
             this.button_F5_New_Patient.Text = "F5. New Patient";
             this.button_F5_New_Patient.UseVisualStyleBackColor = true;
@@ -204,9 +204,9 @@
             // 
             this.button_F7_Columns.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F7_Columns.ForeColor = System.Drawing.Color.Green;
-            this.button_F7_Columns.Location = new System.Drawing.Point(484, 6);
+            this.button_F7_Columns.Location = new System.Drawing.Point(484, 7);
             this.button_F7_Columns.Name = "button_F7_Columns";
-            this.button_F7_Columns.Size = new System.Drawing.Size(101, 22);
+            this.button_F7_Columns.Size = new System.Drawing.Size(101, 24);
             this.button_F7_Columns.TabIndex = 72;
             this.button_F7_Columns.Text = "F7. Columns";
             this.button_F7_Columns.UseVisualStyleBackColor = true;
@@ -216,9 +216,9 @@
             // 
             this.button_F8_Pic_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F8_Pic_Path.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.button_F8_Pic_Path.Location = new System.Drawing.Point(484, 29);
+            this.button_F8_Pic_Path.Location = new System.Drawing.Point(484, 31);
             this.button_F8_Pic_Path.Name = "button_F8_Pic_Path";
-            this.button_F8_Pic_Path.Size = new System.Drawing.Size(101, 22);
+            this.button_F8_Pic_Path.Size = new System.Drawing.Size(101, 24);
             this.button_F8_Pic_Path.TabIndex = 73;
             this.button_F8_Pic_Path.Text = "F8. Pic. Path";
             this.button_F8_Pic_Path.UseVisualStyleBackColor = true;
@@ -228,9 +228,9 @@
             // 
             this.button_F9_Set_BX_CY.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F9_Set_BX_CY.ForeColor = System.Drawing.Color.Purple;
-            this.button_F9_Set_BX_CY.Location = new System.Drawing.Point(484, 52);
+            this.button_F9_Set_BX_CY.Location = new System.Drawing.Point(484, 56);
             this.button_F9_Set_BX_CY.Name = "button_F9_Set_BX_CY";
-            this.button_F9_Set_BX_CY.Size = new System.Drawing.Size(101, 22);
+            this.button_F9_Set_BX_CY.Size = new System.Drawing.Size(101, 24);
             this.button_F9_Set_BX_CY.TabIndex = 74;
             this.button_F9_Set_BX_CY.Text = "F9. Set BX/CY";
             this.button_F9_Set_BX_CY.UseVisualStyleBackColor = true;
@@ -240,9 +240,9 @@
             // 
             this.button_BB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_BB.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_BB.Location = new System.Drawing.Point(62, 56);
+            this.button_BB.Location = new System.Drawing.Point(62, 61);
             this.button_BB.Name = "button_BB";
-            this.button_BB.Size = new System.Drawing.Size(48, 19);
+            this.button_BB.Size = new System.Drawing.Size(48, 21);
             this.button_BB.TabIndex = 77;
             this.button_BB.Text = "BB";
             this.button_BB.UseVisualStyleBackColor = true;
@@ -252,9 +252,9 @@
             // 
             this.button_CC.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_CC.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_CC.Location = new System.Drawing.Point(158, 56);
+            this.button_CC.Location = new System.Drawing.Point(158, 61);
             this.button_CC.Name = "button_CC";
-            this.button_CC.Size = new System.Drawing.Size(48, 19);
+            this.button_CC.Size = new System.Drawing.Size(48, 21);
             this.button_CC.TabIndex = 79;
             this.button_CC.Text = "CC";
             this.button_CC.UseVisualStyleBackColor = true;
@@ -264,9 +264,9 @@
             // 
             this.button_CY.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_CY.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_CY.Location = new System.Drawing.Point(110, 56);
+            this.button_CY.Location = new System.Drawing.Point(110, 61);
             this.button_CY.Name = "button_CY";
-            this.button_CY.Size = new System.Drawing.Size(48, 19);
+            this.button_CY.Size = new System.Drawing.Size(48, 21);
             this.button_CY.TabIndex = 78;
             this.button_CY.Text = "CY";
             this.button_CY.UseVisualStyleBackColor = true;
@@ -276,9 +276,9 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(207, 56);
+            this.button1.Location = new System.Drawing.Point(207, 61);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(48, 19);
+            this.button1.Size = new System.Drawing.Size(48, 21);
             this.button1.TabIndex = 80;
             this.button1.Text = "MP";
             this.button1.UseVisualStyleBackColor = true;
@@ -290,7 +290,7 @@
             this.button_F1_Search.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_F1_Search.Location = new System.Drawing.Point(220, 4);
             this.button_F1_Search.Name = "button_F1_Search";
-            this.button_F1_Search.Size = new System.Drawing.Size(83, 19);
+            this.button_F1_Search.Size = new System.Drawing.Size(83, 21);
             this.button_F1_Search.TabIndex = 81;
             this.button_F1_Search.Text = "F1. Search";
             this.button_F1_Search.UseVisualStyleBackColor = true;
@@ -306,7 +306,7 @@
             this.button_Digital_Signature.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Digital_Signature.Location = new System.Drawing.Point(351, 4);
             this.button_Digital_Signature.Name = "button_Digital_Signature";
-            this.button_Digital_Signature.Size = new System.Drawing.Size(102, 43);
+            this.button_Digital_Signature.Size = new System.Drawing.Size(102, 47);
             this.button_Digital_Signature.TabIndex = 82;
             this.button_Digital_Signature.Text = "F10 Digital Signature";
             this.button_Digital_Signature.UseVisualStyleBackColor = true;
@@ -318,56 +318,60 @@
             this.radioButton_Data_All.Checked = true;
             this.radioButton_Data_All.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.radioButton_Data_All.ForeColor = System.Drawing.Color.Blue;
-            this.radioButton_Data_All.Location = new System.Drawing.Point(14, 81);
+            this.radioButton_Data_All.Location = new System.Drawing.Point(14, 88);
             this.radioButton_Data_All.Name = "radioButton_Data_All";
             this.radioButton_Data_All.Size = new System.Drawing.Size(43, 20);
             this.radioButton_Data_All.TabIndex = 215;
             this.radioButton_Data_All.TabStop = true;
             this.radioButton_Data_All.Text = "All";
             this.radioButton_Data_All.UseVisualStyleBackColor = true;
+            this.radioButton_Data_All.CheckedChanged += new System.EventHandler(this.radioButton_Data_All_CheckedChanged);
             // 
             // radioButton_Data_Past_7
             // 
             this.radioButton_Data_Past_7.AutoSize = true;
             this.radioButton_Data_Past_7.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.radioButton_Data_Past_7.ForeColor = System.Drawing.Color.Blue;
-            this.radioButton_Data_Past_7.Location = new System.Drawing.Point(76, 81);
+            this.radioButton_Data_Past_7.Location = new System.Drawing.Point(76, 88);
             this.radioButton_Data_Past_7.Name = "radioButton_Data_Past_7";
             this.radioButton_Data_Past_7.Size = new System.Drawing.Size(105, 20);
             this.radioButton_Data_Past_7.TabIndex = 216;
             this.radioButton_Data_Past_7.Text = "Past 7 Days";
             this.radioButton_Data_Past_7.UseVisualStyleBackColor = true;
+            this.radioButton_Data_Past_7.CheckedChanged += new System.EventHandler(this.radioButton_Data_Past_7_CheckedChanged);
             // 
             // radioButton_Data_Past_14
             // 
             this.radioButton_Data_Past_14.AutoSize = true;
             this.radioButton_Data_Past_14.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.radioButton_Data_Past_14.ForeColor = System.Drawing.Color.Blue;
-            this.radioButton_Data_Past_14.Location = new System.Drawing.Point(208, 81);
+            this.radioButton_Data_Past_14.Location = new System.Drawing.Point(208, 88);
             this.radioButton_Data_Past_14.Name = "radioButton_Data_Past_14";
             this.radioButton_Data_Past_14.Size = new System.Drawing.Size(113, 20);
             this.radioButton_Data_Past_14.TabIndex = 217;
             this.radioButton_Data_Past_14.Text = "Past 14 Days";
             this.radioButton_Data_Past_14.UseVisualStyleBackColor = true;
+            this.radioButton_Data_Past_14.CheckedChanged += new System.EventHandler(this.radioButton_Data_Past_14_CheckedChanged);
             // 
             // radioButton_Data_Past_28
             // 
             this.radioButton_Data_Past_28.AutoSize = true;
             this.radioButton_Data_Past_28.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.radioButton_Data_Past_28.ForeColor = System.Drawing.Color.Blue;
-            this.radioButton_Data_Past_28.Location = new System.Drawing.Point(351, 81);
+            this.radioButton_Data_Past_28.Location = new System.Drawing.Point(351, 88);
             this.radioButton_Data_Past_28.Name = "radioButton_Data_Past_28";
             this.radioButton_Data_Past_28.Size = new System.Drawing.Size(113, 20);
             this.radioButton_Data_Past_28.TabIndex = 218;
             this.radioButton_Data_Past_28.Text = "Past 28 Days";
             this.radioButton_Data_Past_28.UseVisualStyleBackColor = true;
+            this.radioButton_Data_Past_28.CheckedChanged += new System.EventHandler(this.radioButton_Data_Past_28_CheckedChanged);
             // 
             // radioButton_Data_From
             // 
             this.radioButton_Data_From.AutoSize = true;
             this.radioButton_Data_From.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.radioButton_Data_From.ForeColor = System.Drawing.Color.Blue;
-            this.radioButton_Data_From.Location = new System.Drawing.Point(497, 83);
+            this.radioButton_Data_From.Location = new System.Drawing.Point(497, 90);
             this.radioButton_Data_From.Name = "radioButton_Data_From";
             this.radioButton_Data_From.Size = new System.Drawing.Size(62, 20);
             this.radioButton_Data_From.TabIndex = 219;
@@ -380,7 +384,7 @@
             this.label_Data_To.AutoSize = true;
             this.label_Data_To.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
             this.label_Data_To.ForeColor = System.Drawing.Color.Blue;
-            this.label_Data_To.Location = new System.Drawing.Point(648, 84);
+            this.label_Data_To.Location = new System.Drawing.Point(648, 91);
             this.label_Data_To.Name = "label_Data_To";
             this.label_Data_To.Size = new System.Drawing.Size(24, 16);
             this.label_Data_To.TabIndex = 220;
@@ -391,12 +395,12 @@
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 107);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 116);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1008, 539);
+            this.dataGridView1.Size = new System.Drawing.Size(1008, 584);
             this.dataGridView1.TabIndex = 244;
             this.dataGridView1.VirtualMode = true;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
@@ -420,7 +424,7 @@
             this.toolStripButton2,
             this.bindingNavigatorSeparator1,
             this.toolStripButton4});
-            this.BindingNavigate.Location = new System.Drawing.Point(0, 649);
+            this.BindingNavigate.Location = new System.Drawing.Point(0, 705);
             this.BindingNavigate.MoveFirstItem = null;
             this.BindingNavigate.MoveLastItem = null;
             this.BindingNavigate.MoveNextItem = null;
@@ -438,7 +442,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(35, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(30, 22);
             this.toolStripButton3.Text = "Top";
             // 
             // bindingNavigatorSeparator2
@@ -452,7 +456,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(61, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(56, 22);
             this.toolStripButton1.Text = "Previous";
             // 
             // toolStripSeparator4
@@ -469,7 +473,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(13, 22);
+            this.toolStripLabel1.Size = new System.Drawing.Size(12, 22);
             this.toolStripLabel1.Text = "/";
             // 
             // lblPageCount
@@ -489,7 +493,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(39, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(36, 22);
             this.toolStripButton2.Text = "Next";
             // 
             // bindingNavigatorSeparator1
@@ -503,16 +507,16 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(34, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(31, 22);
             this.toolStripButton4.Text = "End";
             // 
             // button_D
             // 
             this.button_D.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_D.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_D.Location = new System.Drawing.Point(255, 56);
+            this.button_D.Location = new System.Drawing.Point(255, 61);
             this.button_D.Name = "button_D";
-            this.button_D.Size = new System.Drawing.Size(48, 19);
+            this.button_D.Size = new System.Drawing.Size(48, 21);
             this.button_D.TabIndex = 246;
             this.button_D.Text = "D";
             this.button_D.UseVisualStyleBackColor = true;
@@ -524,7 +528,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.ForeColor = System.Drawing.Color.DarkViolet;
-            this.label1.Location = new System.Drawing.Point(311, 58);
+            this.label1.Location = new System.Drawing.Point(311, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 17);
             this.label1.TabIndex = 247;
@@ -536,7 +540,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.ForeColor = System.Drawing.Color.DarkViolet;
-            this.label2.Location = new System.Drawing.Point(383, 58);
+            this.label2.Location = new System.Drawing.Point(383, 63);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 17);
             this.label2.TabIndex = 248;
@@ -544,9 +548,9 @@
             // 
             // dateTimePicker_From
             // 
-            this.dateTimePicker_From.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.dateTimePicker_From.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.dateTimePicker_From.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker_From.Location = new System.Drawing.Point(554, 81);
+            this.dateTimePicker_From.Location = new System.Drawing.Point(554, 88);
             this.dateTimePicker_From.Name = "dateTimePicker_From";
             this.dateTimePicker_From.Size = new System.Drawing.Size(97, 21);
             this.dateTimePicker_From.TabIndex = 249;
@@ -554,18 +558,18 @@
             // dateTimePicker_To
             // 
             this.dateTimePicker_To.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker_To.Location = new System.Drawing.Point(668, 81);
+            this.dateTimePicker_To.Location = new System.Drawing.Point(668, 88);
             this.dateTimePicker_To.Name = "dateTimePicker_To";
-            this.dateTimePicker_To.Size = new System.Drawing.Size(97, 21);
+            this.dateTimePicker_To.Size = new System.Drawing.Size(97, 20);
             this.dateTimePicker_To.TabIndex = 250;
             // 
             // Form_BXCYRecordSearch
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(216)))), ((int)(((byte)(171)))));
-            this.ClientSize = new System.Drawing.Size(1008, 674);
+            this.ClientSize = new System.Drawing.Size(1008, 730);
             this.ControlBox = false;
             this.Controls.Add(this.dateTimePicker_To);
             this.Controls.Add(this.dateTimePicker_From);

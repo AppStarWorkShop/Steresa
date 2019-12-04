@@ -4,6 +4,25 @@
 
     partial class medlabDataSet
     {
+        partial class reportExtraDataTable
+        {
+        }
+
+        partial class v_reportHeaderDataTable
+        {
+        }
+
+        partial class signedDoctorDataTable
+        {
+        }
+
+        partial class ReportExtraDataTable
+        {
+        }
+
+        partial class HeaderDataTable
+        {
+        }
     }
 }
 

@@ -1365,6 +1365,69 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="v_reportHeaderTableAdapter" GeneratorDataComponentClassName="v_reportHeaderTableAdapter" Name="v_reportHeader" UserDataComponentName="v_reportHeaderTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="medlabConnectionString (Settings)" DbObjectName="medlab.dbo.v_reportHeader" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT case_no, patient, cname, pat_hkid, org_case_no, record_status, pat_age_str, hkas, report_number FROM v_reportHeader</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="case_no" DataSetColumn="case_no" />
+              <Mapping SourceColumn="patient" DataSetColumn="patient" />
+              <Mapping SourceColumn="cname" DataSetColumn="cname" />
+              <Mapping SourceColumn="pat_hkid" DataSetColumn="pat_hkid" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="signedDoctorTableAdapter" GeneratorDataComponentClassName="signedDoctorTableAdapter" Name="signedDoctor" UserDataComponentName="signedDoctorTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="medlabConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        s.case_no, s.sign_dr, d.ename, d.cname, d.title
+FROM            BXCY_SPECIMEN AS s LEFT OUTER JOIN
+                         sign_doctor AS d ON s.sign_dr = d.DOCTOR</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="case_no" DataSetColumn="case_no" />
+              <Mapping SourceColumn="sign_dr" DataSetColumn="sign_dr" />
+              <Mapping SourceColumn="ename" DataSetColumn="ename" />
+              <Mapping SourceColumn="cname" DataSetColumn="cname" />
+              <Mapping SourceColumn="title" DataSetColumn="title" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="reportExtraTableAdapter" GeneratorDataComponentClassName="reportExtraTableAdapter" Name="reportExtra" UserDataComponentName="reportExtraTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="medlabConnectionString (Settings)" DbObjectName="medlab.dbo.v_reportHeader" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT        record_status, pat_age_str, hkas, report_number, org_case_no, lastUpdateInitial
+FROM            v_reportHeader</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="record_status" DataSetColumn="record_status" />
+              <Mapping SourceColumn="pat_age_str" DataSetColumn="pat_age_str" />
+              <Mapping SourceColumn="hkas" DataSetColumn="hkas" />
+              <Mapping SourceColumn="report_number" DataSetColumn="report_number" />
+              <Mapping SourceColumn="org_case_no" DataSetColumn="org_case_no" />
+              <Mapping SourceColumn="lastUpdateInitial" DataSetColumn="lastUpdateInitial" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources>
           <DbSource ConnectionRef="medlabConnectionString (Settings)" DbObjectName="medlab.dbo.generateSecondId" DbObjectType="StoredProcedure" GenerateShortCommands="true" GeneratorSourceName="generateSecondId" MethodsParameterType="CLR" Modifier="Public" Name="generateSecondId" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="generateSecondId">
@@ -1411,7 +1474,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
   <xs:element name="medlabDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="medlabDataSet" msprop:Generator_UserDSName="medlabDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="adminUser" msprop:Generator_TableClassName="adminUserDataTable" msprop:Generator_TableVarName="tableadminUser" msprop:Generator_TablePropName="adminUser" msprop:Generator_RowDeletingName="adminUserRowDeleting" msprop:Generator_RowChangingName="adminUserRowChanging" msprop:Generator_RowEvHandlerName="adminUserRowChangeEventHandler" msprop:Generator_RowDeletedName="adminUserRowDeleted" msprop:Generator_UserTableName="adminUser" msprop:Generator_RowChangedName="adminUserRowChanged" msprop:Generator_RowEvArgName="adminUserRowChangeEvent" msprop:Generator_RowClassName="adminUserRow">
+        <xs:element name="adminUser" msprop:Generator_TableClassName="adminUserDataTable" msprop:Generator_TableVarName="tableadminUser" msprop:Generator_RowChangedName="adminUserRowChanged" msprop:Generator_TablePropName="adminUser" msprop:Generator_RowDeletingName="adminUserRowDeleting" msprop:Generator_RowChangingName="adminUserRowChanging" msprop:Generator_RowEvHandlerName="adminUserRowChangeEventHandler" msprop:Generator_RowDeletedName="adminUserRowDeleted" msprop:Generator_RowClassName="adminUserRow" msprop:Generator_UserTableName="adminUser" msprop:Generator_RowEvArgName="adminUserRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="userid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnuserid" msprop:Generator_ColumnPropNameInRow="userid" msprop:Generator_ColumnPropNameInTable="useridColumn" msprop:Generator_UserColumnName="userid" type="xs:int" />
@@ -1434,7 +1497,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BXCY_DIAG" msprop:Generator_TableClassName="BXCY_DIAGDataTable" msprop:Generator_TableVarName="tableBXCY_DIAG" msprop:Generator_TablePropName="BXCY_DIAG" msprop:Generator_RowDeletingName="BXCY_DIAGRowDeleting" msprop:Generator_RowChangingName="BXCY_DIAGRowChanging" msprop:Generator_RowEvHandlerName="BXCY_DIAGRowChangeEventHandler" msprop:Generator_RowDeletedName="BXCY_DIAGRowDeleted" msprop:Generator_UserTableName="BXCY_DIAG" msprop:Generator_RowChangedName="BXCY_DIAGRowChanged" msprop:Generator_RowEvArgName="BXCY_DIAGRowChangeEvent" msprop:Generator_RowClassName="BXCY_DIAGRow">
+        <xs:element name="BXCY_DIAG" msprop:Generator_TableClassName="BXCY_DIAGDataTable" msprop:Generator_TableVarName="tableBXCY_DIAG" msprop:Generator_RowChangedName="BXCY_DIAGRowChanged" msprop:Generator_TablePropName="BXCY_DIAG" msprop:Generator_RowDeletingName="BXCY_DIAGRowDeleting" msprop:Generator_RowChangingName="BXCY_DIAGRowChanging" msprop:Generator_RowEvHandlerName="BXCY_DIAGRowChangeEventHandler" msprop:Generator_RowDeletedName="BXCY_DIAGRowDeleted" msprop:Generator_RowClassName="BXCY_DIAGRow" msprop:Generator_UserTableName="BXCY_DIAG" msprop:Generator_RowEvArgName="BXCY_DIAGRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="case_no" msprop:Generator_ColumnVarNameInTable="columncase_no" msprop:Generator_ColumnPropNameInRow="case_no" msprop:Generator_ColumnPropNameInTable="case_noColumn" msprop:Generator_UserColumnName="case_no" minOccurs="0">
@@ -1715,7 +1778,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="BXCY_SPECIMEN" msprop:Generator_TableClassName="BXCY_SPECIMENDataTable" msprop:Generator_TableVarName="tableBXCY_SPECIMEN" msprop:Generator_TablePropName="BXCY_SPECIMEN" msprop:Generator_RowDeletingName="BXCY_SPECIMENRowDeleting" msprop:Generator_RowChangingName="BXCY_SPECIMENRowChanging" msprop:Generator_RowEvHandlerName="BXCY_SPECIMENRowChangeEventHandler" msprop:Generator_RowDeletedName="BXCY_SPECIMENRowDeleted" msprop:Generator_UserTableName="BXCY_SPECIMEN" msprop:Generator_RowChangedName="BXCY_SPECIMENRowChanged" msprop:Generator_RowEvArgName="BXCY_SPECIMENRowChangeEvent" msprop:Generator_RowClassName="BXCY_SPECIMENRow">
+        <xs:element name="BXCY_SPECIMEN" msprop:Generator_TableClassName="BXCY_SPECIMENDataTable" msprop:Generator_TableVarName="tableBXCY_SPECIMEN" msprop:Generator_RowChangedName="BXCY_SPECIMENRowChanged" msprop:Generator_TablePropName="BXCY_SPECIMEN" msprop:Generator_RowDeletingName="BXCY_SPECIMENRowDeleting" msprop:Generator_RowChangingName="BXCY_SPECIMENRowChanging" msprop:Generator_RowEvHandlerName="BXCY_SPECIMENRowChangeEventHandler" msprop:Generator_RowDeletedName="BXCY_SPECIMENRowDeleted" msprop:Generator_RowClassName="BXCY_SPECIMENRow" msprop:Generator_UserTableName="BXCY_SPECIMEN" msprop:Generator_RowEvArgName="BXCY_SPECIMENRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="case_no" msprop:Generator_ColumnVarNameInTable="columncase_no" msprop:Generator_ColumnPropNameInRow="case_no" msprop:Generator_ColumnPropNameInTable="case_noColumn" msprop:Generator_UserColumnName="case_no" minOccurs="0">
@@ -2081,7 +2144,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="cassette" msprop:Generator_TableClassName="cassetteDataTable" msprop:Generator_TableVarName="tablecassette" msprop:Generator_TablePropName="cassette" msprop:Generator_RowDeletingName="cassetteRowDeleting" msprop:Generator_RowChangingName="cassetteRowChanging" msprop:Generator_RowEvHandlerName="cassetteRowChangeEventHandler" msprop:Generator_RowDeletedName="cassetteRowDeleted" msprop:Generator_UserTableName="cassette" msprop:Generator_RowChangedName="cassetteRowChanged" msprop:Generator_RowEvArgName="cassetteRowChangeEvent" msprop:Generator_RowClassName="cassetteRow">
+        <xs:element name="cassette" msprop:Generator_TableClassName="cassetteDataTable" msprop:Generator_TableVarName="tablecassette" msprop:Generator_RowChangedName="cassetteRowChanged" msprop:Generator_TablePropName="cassette" msprop:Generator_RowDeletingName="cassetteRowDeleting" msprop:Generator_RowChangingName="cassetteRowChanging" msprop:Generator_RowEvHandlerName="cassetteRowChangeEventHandler" msprop:Generator_RowDeletedName="cassetteRowDeleted" msprop:Generator_RowClassName="cassetteRow" msprop:Generator_UserTableName="cassette" msprop:Generator_RowEvArgName="cassetteRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="cassetteId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncassetteId" msprop:Generator_ColumnPropNameInRow="cassetteId" msprop:Generator_ColumnPropNameInTable="cassetteIdColumn" msprop:Generator_UserColumnName="cassetteId" type="xs:int" />
@@ -2137,7 +2200,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="doctor" msprop:Generator_TableClassName="doctorDataTable" msprop:Generator_TableVarName="tabledoctor" msprop:Generator_TablePropName="doctor" msprop:Generator_RowDeletingName="doctorRowDeleting" msprop:Generator_RowChangingName="doctorRowChanging" msprop:Generator_RowEvHandlerName="doctorRowChangeEventHandler" msprop:Generator_RowDeletedName="doctorRowDeleted" msprop:Generator_UserTableName="doctor" msprop:Generator_RowChangedName="doctorRowChanged" msprop:Generator_RowEvArgName="doctorRowChangeEvent" msprop:Generator_RowClassName="doctorRow">
+        <xs:element name="doctor" msprop:Generator_TableClassName="doctorDataTable" msprop:Generator_TableVarName="tabledoctor" msprop:Generator_RowChangedName="doctorRowChanged" msprop:Generator_TablePropName="doctor" msprop:Generator_RowDeletingName="doctorRowDeleting" msprop:Generator_RowChangingName="doctorRowChanging" msprop:Generator_RowEvHandlerName="doctorRowChangeEventHandler" msprop:Generator_RowDeletedName="doctorRowDeleted" msprop:Generator_RowClassName="doctorRow" msprop:Generator_UserTableName="doctor" msprop:Generator_RowEvArgName="doctorRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="doctor_id" msprop:Generator_ColumnVarNameInTable="columndoctor_id" msprop:Generator_ColumnPropNameInRow="doctor_id" msprop:Generator_ColumnPropNameInTable="doctor_idColumn" msprop:Generator_UserColumnName="doctor_id">
@@ -2322,7 +2385,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FreeSlide" msprop:Generator_TableClassName="FreeSlideDataTable" msprop:Generator_TableVarName="tableFreeSlide" msprop:Generator_TablePropName="FreeSlide" msprop:Generator_RowDeletingName="FreeSlideRowDeleting" msprop:Generator_RowChangingName="FreeSlideRowChanging" msprop:Generator_RowEvHandlerName="FreeSlideRowChangeEventHandler" msprop:Generator_RowDeletedName="FreeSlideRowDeleted" msprop:Generator_UserTableName="FreeSlide" msprop:Generator_RowChangedName="FreeSlideRowChanged" msprop:Generator_RowEvArgName="FreeSlideRowChangeEvent" msprop:Generator_RowClassName="FreeSlideRow">
+        <xs:element name="FreeSlide" msprop:Generator_TableClassName="FreeSlideDataTable" msprop:Generator_TableVarName="tableFreeSlide" msprop:Generator_RowChangedName="FreeSlideRowChanged" msprop:Generator_TablePropName="FreeSlide" msprop:Generator_RowDeletingName="FreeSlideRowDeleting" msprop:Generator_RowChangingName="FreeSlideRowChanging" msprop:Generator_RowEvHandlerName="FreeSlideRowChangeEventHandler" msprop:Generator_RowDeletedName="FreeSlideRowDeleted" msprop:Generator_RowClassName="FreeSlideRow" msprop:Generator_UserTableName="FreeSlide" msprop:Generator_RowEvArgName="FreeSlideRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:decimal" />
@@ -2344,7 +2407,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="FreeSlideInputForm" msprop:Generator_TableClassName="FreeSlideInputFormDataTable" msprop:Generator_TableVarName="tableFreeSlideInputForm" msprop:Generator_TablePropName="FreeSlideInputForm" msprop:Generator_RowDeletingName="FreeSlideInputFormRowDeleting" msprop:Generator_RowChangingName="FreeSlideInputFormRowChanging" msprop:Generator_RowEvHandlerName="FreeSlideInputFormRowChangeEventHandler" msprop:Generator_RowDeletedName="FreeSlideInputFormRowDeleted" msprop:Generator_UserTableName="FreeSlideInputForm" msprop:Generator_RowChangedName="FreeSlideInputFormRowChanged" msprop:Generator_RowEvArgName="FreeSlideInputFormRowChangeEvent" msprop:Generator_RowClassName="FreeSlideInputFormRow">
+        <xs:element name="FreeSlideInputForm" msprop:Generator_TableClassName="FreeSlideInputFormDataTable" msprop:Generator_TableVarName="tableFreeSlideInputForm" msprop:Generator_RowChangedName="FreeSlideInputFormRowChanged" msprop:Generator_TablePropName="FreeSlideInputForm" msprop:Generator_RowDeletingName="FreeSlideInputFormRowDeleting" msprop:Generator_RowChangingName="FreeSlideInputFormRowChanging" msprop:Generator_RowEvHandlerName="FreeSlideInputFormRowChangeEventHandler" msprop:Generator_RowDeletedName="FreeSlideInputFormRowDeleted" msprop:Generator_RowClassName="FreeSlideInputFormRow" msprop:Generator_UserTableName="FreeSlideInputForm" msprop:Generator_RowEvArgName="FreeSlideInputFormRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:decimal" />
@@ -2367,7 +2430,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="runningChar" msprop:Generator_TableClassName="runningCharDataTable" msprop:Generator_TableVarName="tablerunningChar" msprop:Generator_TablePropName="runningChar" msprop:Generator_RowDeletingName="runningCharRowDeleting" msprop:Generator_RowChangingName="runningCharRowChanging" msprop:Generator_RowEvHandlerName="runningCharRowChangeEventHandler" msprop:Generator_RowDeletedName="runningCharRowDeleted" msprop:Generator_UserTableName="runningChar" msprop:Generator_RowChangedName="runningCharRowChanged" msprop:Generator_RowEvArgName="runningCharRowChangeEvent" msprop:Generator_RowClassName="runningCharRow">
+        <xs:element name="runningChar" msprop:Generator_TableClassName="runningCharDataTable" msprop:Generator_TableVarName="tablerunningChar" msprop:Generator_RowChangedName="runningCharRowChanged" msprop:Generator_TablePropName="runningChar" msprop:Generator_RowDeletingName="runningCharRowDeleting" msprop:Generator_RowChangingName="runningCharRowChanging" msprop:Generator_RowEvHandlerName="runningCharRowChangeEventHandler" msprop:Generator_RowDeletedName="runningCharRowDeleted" msprop:Generator_RowClassName="runningCharRow" msprop:Generator_UserTableName="runningChar" msprop:Generator_RowEvArgName="runningCharRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
@@ -2381,7 +2444,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sample" msprop:Generator_TableClassName="sampleDataTable" msprop:Generator_TableVarName="tablesample" msprop:Generator_TablePropName="sample" msprop:Generator_RowDeletingName="sampleRowDeleting" msprop:Generator_RowChangingName="sampleRowChanging" msprop:Generator_RowEvHandlerName="sampleRowChangeEventHandler" msprop:Generator_RowDeletedName="sampleRowDeleted" msprop:Generator_UserTableName="sample" msprop:Generator_RowChangedName="sampleRowChanged" msprop:Generator_RowEvArgName="sampleRowChangeEvent" msprop:Generator_RowClassName="sampleRow">
+        <xs:element name="sample" msprop:Generator_TableClassName="sampleDataTable" msprop:Generator_TableVarName="tablesample" msprop:Generator_RowChangedName="sampleRowChanged" msprop:Generator_TablePropName="sample" msprop:Generator_RowDeletingName="sampleRowDeleting" msprop:Generator_RowChangingName="sampleRowChanging" msprop:Generator_RowEvHandlerName="sampleRowChangeEventHandler" msprop:Generator_RowDeletedName="sampleRowDeleted" msprop:Generator_RowClassName="sampleRow" msprop:Generator_UserTableName="sample" msprop:Generator_RowEvArgName="sampleRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="sampleID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnsampleID" msprop:Generator_ColumnPropNameInRow="sampleID" msprop:Generator_ColumnPropNameInTable="sampleIDColumn" msprop:Generator_UserColumnName="sampleID" type="xs:int" />
@@ -2435,7 +2498,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Slide" msprop:Generator_TableClassName="SlideDataTable" msprop:Generator_TableVarName="tableSlide" msprop:Generator_TablePropName="Slide" msprop:Generator_RowDeletingName="SlideRowDeleting" msprop:Generator_RowChangingName="SlideRowChanging" msprop:Generator_RowEvHandlerName="SlideRowChangeEventHandler" msprop:Generator_RowDeletedName="SlideRowDeleted" msprop:Generator_UserTableName="Slide" msprop:Generator_RowChangedName="SlideRowChanged" msprop:Generator_RowEvArgName="SlideRowChangeEvent" msprop:Generator_RowClassName="SlideRow">
+        <xs:element name="Slide" msprop:Generator_TableClassName="SlideDataTable" msprop:Generator_TableVarName="tableSlide" msprop:Generator_RowChangedName="SlideRowChanged" msprop:Generator_TablePropName="Slide" msprop:Generator_RowDeletingName="SlideRowDeleting" msprop:Generator_RowChangingName="SlideRowChanging" msprop:Generator_RowEvHandlerName="SlideRowChangeEventHandler" msprop:Generator_RowDeletedName="SlideRowDeleted" msprop:Generator_RowClassName="SlideRow" msprop:Generator_UserTableName="Slide" msprop:Generator_RowEvArgName="SlideRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SlideNo" msprop:Generator_ColumnVarNameInTable="columnSlideNo" msprop:Generator_ColumnPropNameInRow="SlideNo" msprop:Generator_ColumnPropNameInTable="SlideNoColumn" msprop:Generator_UserColumnName="SlideNo" minOccurs="0">
@@ -2509,7 +2572,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SubSlide" msprop:Generator_TableClassName="SubSlideDataTable" msprop:Generator_TableVarName="tableSubSlide" msprop:Generator_TablePropName="SubSlide" msprop:Generator_RowDeletingName="SubSlideRowDeleting" msprop:Generator_RowChangingName="SubSlideRowChanging" msprop:Generator_RowEvHandlerName="SubSlideRowChangeEventHandler" msprop:Generator_RowDeletedName="SubSlideRowDeleted" msprop:Generator_UserTableName="SubSlide" msprop:Generator_RowChangedName="SubSlideRowChanged" msprop:Generator_RowEvArgName="SubSlideRowChangeEvent" msprop:Generator_RowClassName="SubSlideRow">
+        <xs:element name="SubSlide" msprop:Generator_TableClassName="SubSlideDataTable" msprop:Generator_TableVarName="tableSubSlide" msprop:Generator_RowChangedName="SubSlideRowChanged" msprop:Generator_TablePropName="SubSlide" msprop:Generator_RowDeletingName="SubSlideRowDeleting" msprop:Generator_RowChangingName="SubSlideRowChanging" msprop:Generator_RowEvHandlerName="SubSlideRowChangeEventHandler" msprop:Generator_RowDeletedName="SubSlideRowDeleted" msprop:Generator_RowClassName="SubSlideRow" msprop:Generator_UserTableName="SubSlide" msprop:Generator_RowEvArgName="SubSlideRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="SlideNo" msprop:Generator_ColumnVarNameInTable="columnSlideNo" msprop:Generator_ColumnPropNameInRow="SlideNo" msprop:Generator_ColumnPropNameInTable="SlideNoColumn" msprop:Generator_UserColumnName="SlideNo" minOccurs="0">
@@ -2583,7 +2646,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="PATIENT" msprop:Generator_TableClassName="PATIENTDataTable" msprop:Generator_TableVarName="tablePATIENT" msprop:Generator_RowChangedName="PATIENTRowChanged" msprop:Generator_TablePropName="PATIENT" msprop:Generator_RowDeletingName="PATIENTRowDeleting" msprop:Generator_RowChangingName="PATIENTRowChanging" msprop:Generator_RowEvHandlerName="PATIENTRowChangeEventHandler" msprop:Generator_RowDeletedName="PATIENTRowDeleted" msprop:Generator_RowClassName="PATIENTRow" msprop:Generator_UserTableName="PATIENT" msprop:Generator_RowEvArgName="PATIENTRowChangeEvent">
+        <xs:element name="PATIENT" msprop:Generator_TableClassName="PATIENTDataTable" msprop:Generator_TableVarName="tablePATIENT" msprop:Generator_TablePropName="PATIENT" msprop:Generator_RowDeletingName="PATIENTRowDeleting" msprop:Generator_RowChangingName="PATIENTRowChanging" msprop:Generator_RowEvHandlerName="PATIENTRowChangeEventHandler" msprop:Generator_RowDeletedName="PATIENTRowDeleted" msprop:Generator_UserTableName="PATIENT" msprop:Generator_RowChangedName="PATIENTRowChanged" msprop:Generator_RowEvArgName="PATIENTRowChangeEvent" msprop:Generator_RowClassName="PATIENTRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="PATIENT" msprop:Generator_ColumnVarNameInTable="columnPATIENT" msprop:Generator_ColumnPropNameInRow="PATIENT" msprop:Generator_ColumnPropNameInTable="PATIENTColumn" msprop:Generator_UserColumnName="PATIENT" minOccurs="0">
@@ -2643,7 +2706,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="client" msprop:Generator_TableClassName="clientDataTable" msprop:Generator_TableVarName="tableclient" msprop:Generator_TablePropName="client" msprop:Generator_RowDeletingName="clientRowDeleting" msprop:Generator_RowChangingName="clientRowChanging" msprop:Generator_RowEvHandlerName="clientRowChangeEventHandler" msprop:Generator_RowDeletedName="clientRowDeleted" msprop:Generator_UserTableName="client" msprop:Generator_RowChangedName="clientRowChanged" msprop:Generator_RowEvArgName="clientRowChangeEvent" msprop:Generator_RowClassName="clientRow">
+        <xs:element name="client" msprop:Generator_TableClassName="clientDataTable" msprop:Generator_TableVarName="tableclient" msprop:Generator_RowChangedName="clientRowChanged" msprop:Generator_TablePropName="client" msprop:Generator_RowDeletingName="clientRowDeleting" msprop:Generator_RowChangingName="clientRowChanging" msprop:Generator_RowEvHandlerName="clientRowChangeEventHandler" msprop:Generator_RowDeletedName="clientRowDeleted" msprop:Generator_RowClassName="clientRow" msprop:Generator_UserTableName="client" msprop:Generator_RowEvArgName="clientRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="CLIENT" msprop:Generator_ColumnVarNameInTable="columnCLIENT" msprop:Generator_ColumnPropNameInRow="CLIENT" msprop:Generator_ColumnPropNameInTable="CLIENTColumn" msprop:Generator_UserColumnName="CLIENT" minOccurs="0">
@@ -2749,6 +2812,140 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="Header" msprop:Generator_TableClassName="HeaderDataTable" msprop:Generator_TableVarName="tableHeader" msprop:Generator_TablePropName="Header" msprop:Generator_RowDeletingName="HeaderRowDeleting" msprop:Generator_RowChangingName="HeaderRowChanging" msprop:Generator_RowEvHandlerName="HeaderRowChangeEventHandler" msprop:Generator_RowDeletedName="HeaderRowDeleted" msprop:Generator_UserTableName="Header" msprop:Generator_RowChangedName="HeaderRowChanged" msprop:Generator_RowEvArgName="HeaderRowChangeEvent" msprop:Generator_RowClassName="HeaderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="case_no" msprop:Generator_ColumnVarNameInTable="columncase_no" msprop:Generator_ColumnPropNameInRow="case_no" msprop:Generator_ColumnPropNameInTable="case_noColumn" msprop:Generator_UserColumnName="case_no" type="xs:string" minOccurs="0" />
+              <xs:element name="patient" msprop:Generator_ColumnVarNameInTable="columnpatient" msprop:Generator_ColumnPropNameInRow="patient" msprop:Generator_ColumnPropNameInTable="patientColumn" msprop:Generator_UserColumnName="patient" type="xs:string" minOccurs="0" />
+              <xs:element name="cname" msprop:Generator_ColumnVarNameInTable="columncname" msprop:Generator_ColumnPropNameInRow="cname" msprop:Generator_ColumnPropNameInTable="cnameColumn" msprop:Generator_UserColumnName="cname" type="xs:string" minOccurs="0" />
+              <xs:element name="pat_hkid" msprop:Generator_ColumnVarNameInTable="columnpat_hkid" msprop:Generator_ColumnPropNameInRow="pat_hkid" msprop:Generator_ColumnPropNameInTable="pat_hkidColumn" msprop:Generator_UserColumnName="pat_hkid" type="xs:string" minOccurs="0" />
+              <xs:element name="hkas" msprop:Generator_ColumnVarNameInTable="columnhkas" msprop:Generator_ColumnPropNameInRow="hkas" msprop:Generator_ColumnPropNameInTable="hkasColumn" msprop:Generator_UserColumnName="hkas" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="v_reportHeader" msprop:Generator_TableClassName="v_reportHeaderDataTable" msprop:Generator_TableVarName="tablev_reportHeader" msprop:Generator_TablePropName="v_reportHeader" msprop:Generator_RowDeletingName="v_reportHeaderRowDeleting" msprop:Generator_RowChangingName="v_reportHeaderRowChanging" msprop:Generator_RowEvHandlerName="v_reportHeaderRowChangeEventHandler" msprop:Generator_RowDeletedName="v_reportHeaderRowDeleted" msprop:Generator_UserTableName="v_reportHeader" msprop:Generator_RowChangedName="v_reportHeaderRowChanged" msprop:Generator_RowEvArgName="v_reportHeaderRowChangeEvent" msprop:Generator_RowClassName="v_reportHeaderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="case_no" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columncase_no" msprop:Generator_ColumnPropNameInRow="case_no" msprop:Generator_ColumnPropNameInTable="case_noColumn" msprop:Generator_UserColumnName="case_no" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="patient" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpatient" msprop:Generator_ColumnPropNameInRow="patient" msprop:Generator_ColumnPropNameInTable="patientColumn" msprop:Generator_UserColumnName="patient" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cname" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columncname" msprop:Generator_ColumnPropNameInRow="cname" msprop:Generator_ColumnPropNameInTable="cnameColumn" msprop:Generator_UserColumnName="cname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="12" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pat_hkid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpat_hkid" msprop:Generator_ColumnPropNameInRow="pat_hkid" msprop:Generator_ColumnPropNameInTable="pat_hkidColumn" msprop:Generator_UserColumnName="pat_hkid" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="signedDoctor" msprop:Generator_TableClassName="signedDoctorDataTable" msprop:Generator_TableVarName="tablesignedDoctor" msprop:Generator_RowChangedName="signedDoctorRowChanged" msprop:Generator_TablePropName="signedDoctor" msprop:Generator_RowDeletingName="signedDoctorRowDeleting" msprop:Generator_RowChangingName="signedDoctorRowChanging" msprop:Generator_RowEvHandlerName="signedDoctorRowChangeEventHandler" msprop:Generator_RowDeletedName="signedDoctorRowDeleted" msprop:Generator_RowClassName="signedDoctorRow" msprop:Generator_UserTableName="signedDoctor" msprop:Generator_RowEvArgName="signedDoctorRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="case_no" msprop:Generator_ColumnVarNameInTable="columncase_no" msprop:Generator_ColumnPropNameInRow="case_no" msprop:Generator_ColumnPropNameInTable="case_noColumn" msprop:Generator_UserColumnName="case_no" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sign_dr" msprop:Generator_ColumnVarNameInTable="columnsign_dr" msprop:Generator_ColumnPropNameInRow="sign_dr" msprop:Generator_ColumnPropNameInTable="sign_drColumn" msprop:Generator_UserColumnName="sign_dr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ename" msprop:Generator_ColumnVarNameInTable="columnename" msprop:Generator_ColumnPropNameInRow="ename" msprop:Generator_ColumnPropNameInTable="enameColumn" msprop:Generator_UserColumnName="ename" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cname" msprop:Generator_ColumnVarNameInTable="columncname" msprop:Generator_ColumnPropNameInRow="cname" msprop:Generator_ColumnPropNameInTable="cnameColumn" msprop:Generator_UserColumnName="cname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="title" msprop:Generator_ColumnVarNameInTable="columntitle" msprop:Generator_ColumnPropNameInRow="title" msprop:Generator_ColumnPropNameInTable="titleColumn" msprop:Generator_UserColumnName="title" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="reportExtra" msprop:Generator_TableClassName="reportExtraDataTable" msprop:Generator_TableVarName="tablereportExtra" msprop:Generator_RowChangedName="reportExtraRowChanged" msprop:Generator_TablePropName="reportExtra" msprop:Generator_RowDeletingName="reportExtraRowDeleting" msprop:Generator_RowChangingName="reportExtraRowChanging" msprop:Generator_RowEvHandlerName="reportExtraRowChangeEventHandler" msprop:Generator_RowDeletedName="reportExtraRowDeleted" msprop:Generator_RowClassName="reportExtraRow" msprop:Generator_UserTableName="reportExtra" msprop:Generator_RowEvArgName="reportExtraRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record_status" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnrecord_status" msprop:Generator_ColumnPropNameInRow="record_status" msprop:Generator_ColumnPropNameInTable="record_statusColumn" msprop:Generator_UserColumnName="record_status" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pat_age_str" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnpat_age_str" msprop:Generator_ColumnPropNameInRow="pat_age_str" msprop:Generator_ColumnPropNameInTable="pat_age_strColumn" msprop:Generator_UserColumnName="pat_age_str" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="hkas" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnhkas" msprop:Generator_ColumnPropNameInRow="hkas" msprop:Generator_ColumnPropNameInTable="hkasColumn" msprop:Generator_UserColumnName="hkas" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="report_number" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnreport_number" msprop:Generator_ColumnPropNameInRow="report_number" msprop:Generator_ColumnPropNameInTable="report_numberColumn" msprop:Generator_UserColumnName="report_number" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="org_case_no" msprop:Generator_ColumnVarNameInTable="columnorg_case_no" msprop:Generator_ColumnPropNameInRow="org_case_no" msprop:Generator_ColumnPropNameInTable="org_case_noColumn" msprop:Generator_UserColumnName="org_case_no" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="lastUpdateInitial" msprop:Generator_ColumnVarNameInTable="columnlastUpdateInitial" msprop:Generator_ColumnPropNameInRow="lastUpdateInitial" msprop:Generator_ColumnPropNameInTable="lastUpdateInitialColumn" msprop:Generator_UserColumnName="lastUpdateInitial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -2790,7 +2987,7 @@ SELECT CLIENT, CNAME, ADDRESS1, ADDRESS2, ADDRESS3, ADDRESS4, TEL, TEL2, FAX, CO
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK__cassette__sample__29572725" msdata:parent="sample" msdata:child="cassette" msdata:parentkey="sampleID" msdata:childkey="sampleId" msprop:Generator_UserChildTable="cassette" msprop:Generator_ChildPropName="GetcassetteRows" msprop:Generator_UserRelationName="FK__cassette__sample__29572725" msprop:Generator_RelationVarName="relationFK__cassette__sample__29572725" msprop:Generator_UserParentTable="sample" msprop:Generator_ParentPropName="sampleRow" />
+      <msdata:Relationship name="FK__cassette__sample__29572725" msdata:parent="sample" msdata:child="cassette" msdata:parentkey="sampleID" msdata:childkey="sampleId" msprop:Generator_UserChildTable="cassette" msprop:Generator_ChildPropName="GetcassetteRows" msprop:Generator_UserRelationName="FK__cassette__sample__29572725" msprop:Generator_ParentPropName="sampleRow" msprop:Generator_RelationVarName="relationFK__cassette__sample__29572725" msprop:Generator_UserParentTable="sample" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
