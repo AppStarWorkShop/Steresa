@@ -99,11 +99,15 @@ namespace St.Teresa_LIS_2019
 
         private void button_Next_Click(object sender, EventArgs e)
         {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
             //currencyManager.Position++;
-            string countSql = string.Format(" [micro_template] WHERE id > {0}", textBox_ID.Text);
+            string countSql = string.Format(" [micro_template] WHERE id > {0} AND DOCTOR = '{1}'", textBox_ID.Text, CurrentUser.currentUserName);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE id > {0} ORDER BY ID", textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE id > {0} AND DOCTOR = '{1}' ORDER BY ID", textBox_ID.Text, CurrentUser.currentUserName);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, micro_templateDataSet, "micro_template");
             }
         }
@@ -111,10 +115,15 @@ namespace St.Teresa_LIS_2019
         private void button_Back_Click(object sender, EventArgs e)
         {
             //currencyManager.Position--;
-            string countSql = string.Format(" [micro_template] WHERE id < {0}", textBox_ID.Text);
+            if(textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
+            string countSql = string.Format(" [micro_template] WHERE id < {0} AND DOCTOR = '{1}'", textBox_ID.Text, CurrentUser.currentUserName);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE id < {0} ORDER BY ID DESC", textBox_ID.Text);
+                string sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE id < {0} AND DOCTOR = '{1}' ORDER BY ID DESC", textBox_ID.Text, CurrentUser.currentUserName);
                 dataAdapter = DBConn.fetchDataIntoDataSet(sql, micro_templateDataSet, "micro_template");
             }
         }
@@ -122,14 +131,14 @@ namespace St.Teresa_LIS_2019
         private void button_Top_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = 0;
-            string sql = string.Format("SELECT TOP 1 * FROM [micro_template] ORDER BY ID", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE DOCTOR = '{0}' ORDER BY ID", CurrentUser.currentUserName);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, micro_templateDataSet, "micro_template");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
             //currencyManager.Position = currencyManager.Count - 1;
-            string sql = string.Format("SELECT TOP 1 * FROM [micro_template] ORDER BY ID DESC", textBox_ID.Text);
+            string sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE DOCTOR = '{0}'  ORDER BY ID DESC", CurrentUser.currentUserName);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, micro_templateDataSet, "micro_template");
         }
 
@@ -193,8 +202,10 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = micro_templateDataSet.Tables["micro_template"].NewRow();
             currentEditRow["id"] = -1;
+            currentEditRow["DOCTOR"] = CurrentUser.currentUserName;
+            //textBox_Doctor.Text = CurrentUser.currentUserName;
 
-            micro_templateDataSet.Clear();
+            micro_templateDataSet.Tables["micro_template"].Rows.Clear();
             micro_templateDataSet.Tables["micro_template"].Rows.Add(currentEditRow);
         }
 
@@ -321,7 +332,7 @@ namespace St.Teresa_LIS_2019
                     button_Undo.Enabled = true;
                     button_Exit.Enabled = false;
 
-                    textBox_Doctor.Enabled = true;
+                    textBox_Doctor.Enabled = false;
                     textBox_Organ.Enabled = true;
                     textBox_Template.Enabled = true;
                     textBox_microscopic_Description.Enabled = true;
@@ -343,7 +354,7 @@ namespace St.Teresa_LIS_2019
                         button_Undo.Enabled = true;
                         button_Exit.Enabled = false;
 
-                        textBox_Doctor.Enabled = true;
+                        textBox_Doctor.Enabled = false;
                         textBox_Organ.Enabled = true;
                         textBox_Template.Enabled = true;
                         textBox_microscopic_Description.Enabled = true;
@@ -404,10 +415,10 @@ namespace St.Teresa_LIS_2019
 
         private void reloadAndBindingDBData(string searchmicroSCOPIC = null)
         {
-            string sql = "SELECT TOP 1 * FROM [micro_template] ORDER BY ID";
+            string sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE DOCTOR = '{0}' ORDER BY ID", CurrentUser.currentUserName);
             if (searchmicroSCOPIC != null)
             {
-                sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE microSCOPIC = '{0}' ORDER BY ID", searchmicroSCOPIC);
+                sql = string.Format("SELECT TOP 1 * FROM [micro_template] WHERE DOCTOR ='{0}' AND microSCOPIC = '{1}' ORDER BY ID", CurrentUser.currentUserName, searchmicroSCOPIC);
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, micro_templateDataSet, "micro_template");
 
@@ -465,11 +476,14 @@ namespace St.Teresa_LIS_2019
             SqlDataAdapter diag_descDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diag_descSql, diag_descDataSet, "diag_desc");
 
             DataTable diag_descDt = new DataTable();
+            DataTable diag_descDt2 = new DataTable();
             diag_descDt.Columns.Add("C_DESC");
+            diag_descDt2 = diag_descDt.Clone();
 
             foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
             {
                 diag_descDt.Rows.Add(new object[] { mDr["C_DESC"] });
+                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"] });
             }
 
             comboBox_Daignosis_Chinese_Desc_1.DataSource = diag_descDt;
@@ -499,6 +513,13 @@ namespace St.Teresa_LIS_2019
             textBox_Daignosis.DataBindings.Add("Text", dt, "DIAGNOSIS", false);
             comboBox_Daignosis_Chinese_Desc_1.DataBindings.Add("Text", dt, "DIAG_DESC1", false);
             comboBox_Daignosis_Chinese_Desc_2.DataBindings.Add("Text", dt, "DIAG_DESC2", false);
+
+            DataTable doctorDt = new DataTable();
+            doctorDt.Columns.Add("doctor");
+
+            doctorDt.Rows.Add(new object[] { CurrentUser.currentUserName });
+
+            comboBox_Serach.DataSource = doctorDt;
         }
 
         private void reloadDBData(int position = 0)

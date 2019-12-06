@@ -190,6 +190,7 @@ namespace St.Teresa_LIS_2019
 
         public Form_BXeHRCCSPFile(bool isNewPatient)
         {
+            this.isNewPatient = isNewPatient;
             InitializeComponent();
         }
 
@@ -274,6 +275,44 @@ namespace St.Teresa_LIS_2019
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
         }
 
+        public void patientCopyWithPatientInfo(string patientNo, string patientHKID, string patientName)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["Pat_age"] = 0;
+            currentEditRow["Pat_sex"] = "M";
+            currentEditRow["CLIENT"] = "ST. Teresa's Hospital";
+            currentEditRow["Institute"] = "ST. Teresa's Hospital";
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
+
+            DataSet copyBxcyDataSet = new DataSet();
+
+            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_specimen] WHERE pat_hkid = '{0}' AND patient = '{1}'", patientHKID, patientName);
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, copyBxcyDataSet, "bxcy_specimen");
+
+            if (copyBxcyDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+            {
+                DataRow mDr = copyBxcyDataSet.Tables["bxcy_specimen"].Rows[0];
+
+                currentEditRow["ETHNIC"] = mDr["ETHNIC"];
+                currentEditRow["PATIENT"] = mDr["PATIENT"];
+                currentEditRow["PAT_SEQ"] = mDr["PAT_SEQ"];
+                currentEditRow["CNAME"] = mDr["CNAME"];
+                currentEditRow["PAT_BIRTH"] = mDr["PAT_BIRTH"];
+                currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
+                currentEditRow["PAT_SEX"] = mDr["PAT_SEX"];
+                currentEditRow["PAT_HKID"] = mDr["PAT_HKID"];
+            }
+
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+        }
+
         private void button_Exit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -281,7 +320,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient);
+            bool isNewRecord = currentStatus == PageStatus.STATUS_NEW ? true : false;
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord);
             open.OnBxcyDiagExit += OnStatusReturn;
             open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
             open.Show();
@@ -449,15 +489,16 @@ namespace St.Teresa_LIS_2019
                         }
                         else
                         {
-                            result = 1;
+                            result = 2;
                         }
                         setButtonStatus(PageStatus.STATUS_VIEW);
                     }
+                    else
+                    {
+                        result = 1;
+                    }
                 }
-                else
-                {
-                    result = 1;
-                }
+                
                 //reloadAndBindingDBData(currencyManager.Count - 1);
             }
             else
@@ -481,7 +522,7 @@ namespace St.Teresa_LIS_2019
 
                     if (!DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                     {
-                        result = 2;
+                        result = 3;
                     }
                 }
 

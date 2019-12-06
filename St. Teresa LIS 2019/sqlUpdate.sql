@@ -343,7 +343,8 @@ BEGIN
 
 	IF @dateMode = 1
 	BEGIN
-		SET @dateQuery=''
+		--SET @dateQuery=''
+		SET @dateQuery=' AND date >= CAST(DATEADD(dd,-2,getDate()) AS date) AND date <= CAST(DATEADD(dd,1,getDate()) AS date)'
 	END
 	ELSE
 	BEGIN
@@ -475,7 +476,8 @@ BEGIN
 
 	IF @dateMode = 1
 	BEGIN
-		SET @dateQuery=''
+		--SET @dateQuery=''
+		SET @dateQuery=' AND date >= CAST(DATEADD(dd,-2,getDate()) AS date) AND date <= CAST(DATEADD(dd,1,getDate()) AS date)'
 	END
 	ELSE
 	BEGIN
@@ -893,3 +895,269 @@ select dbo.reportCaseNo(s.case_no), Rtrim(s.patient) as patient, Rtrim(s.cname) 
 , dbo.fn_recordStatus(s.case_no) as record_status, dbo.reportAge(s.pat_age) as pat_age_str, '1' as hkas, '1' as report_number 
 , u.INITIAL
 from BXCY_SPECIMEN s left join [user] u on (s.update_by = u.[USER_ID])
+
+
+CREATE TABLE cy_result_temp (
+   CODE nvarchar(5), 
+   OPERATION nvarchar(60), 
+   DIAGNOSIS nvarchar(4000), 
+   DIAG_DESC1 nvarchar(40), 
+   SNOP_M nvarchar(30), 
+   MICRO_DESC nvarchar(4000), 
+   UPDATE_BY nvarchar(10), 
+   UPDATE_AT DATETIME, 
+   UPDATE_CTR INTEGER, 
+   UPDATED nvarchar(1));
+
+alter table cy_result alter column diag_desc1 nvarchar(4000);
+alter table cy_result alter column micro_desc nvarchar(4000);
+
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('AS1', 'Peritoneal fluid', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The ascitic fluid contains a small number of inflammatory cells including mostly polymorphs intermixed with scanty mesothelial cells. There is no malignant cell present.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('AS2', 'Peritoneal fluid', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The ascitic fluid contains a moderate number of reactive mesothelial cells intermixed with inflammatory cells. Some atypical cells are present. They have slightly enlarged and hyperchromatic nuclei. No definite malignant cell is seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('AS4AD', 'Peritoneal fluid', 'Adenocarcinoma.', '腺癌', 'Carcinoma adeno', 'The ascitic fluid contains a moderate number of mesothelial cells and abnormal cells in clusters and in isolation. These cells have large vacuoles, enlarged irregular nuclei and nucleoli. The features are those of adenocarcinoma cells.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA0', 'Bronchial specimen', 'Low cellularity with no malignant cells present.', '無發現惡性細胞. 參看上文.', 'Inadequate specimen', 'The submitted bronchial specimen is hypocellular.  There are small numbers of inflammatory cells and epithelial cells present. No eosinophil is seen. Malignant cells are not detected.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA1', 'Bronchial specimen', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The submitted bronchial specimen shows the presence of macrophages, small number of bronchial epithelial cells, red blood cells and a small number of inflammatory cells. There is no malignant cell present.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA1FU', 'Bronchial specimen', 'Negative for malignancy. Fungal organism present.', '無發現惡性細胞. 發現真菌.', 'No malignancy', 'The submitted bronchial specimen contains moderate number of inflammatory cells including polymorphs and lymphocytes. Scanty eosinophils are seen. Macrophages and bronchial epithelial cells are noted. Many fungal organisms consistent with Candida species are also observed. It is uncertain whether the latter is an oral contaminant. Please correlates with clinical findings. Malignant cells are not seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA1TB', 'Bronchial specimen', 'Negative for malignancy. See description.', '無發現惡性細胞. 參看上文.', 'No malignancy', 'The submitted bronchial specimen is blood stained.  There are moderate numbers of macrophages, some polymorphs, lymphocytes and unremarkable bronchial epithelial cells. No eosinophils are seen. Many mutinucleated cells are present. Tuberculosis cannot be excluded. There is no malignant cell present.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA2', 'Bronchial specimen', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The submitted bronchial specimen contains some bronchial epithelial cells of normal morphology. A few clusters of epithelial cells show cellular atypia with nuclear enlargement and hyperchromatism. Malignancy cannot be excluded. Some inflammatory cells are also present. Please investigate further if indicated.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA3', 'Bronchial specimen', 'Suspicious of malignancy.', '懷疑惡性', 'Suspicious of malignant cells', 'The submitted bronchial specimen contains moderate number of bronchial epithelial cells of normal morphology.  A few clusters show cellular atypia with nuclear enlargement. Scanty macrophages and inflammatory cells are also present. The features are suspicious of malignancy.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA4AD', 'Bronchial specimen', 'Adenocarcinoma.', '腺癌', 'Carcinoma adeno', 'The submitted bronchial specimen contains many clusters of large epithelial cells with enlarged vesicular nuclei and prominent nucleoli. The features are compatible with adenocarcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA4NS', 'Bronchial specimen', 'Non-small cell carcinoma.', '非小細胞癌', 'Carcinoma, NOS', 'The submitted bronchial specimen contains large number of bronchial epithelial cells of normal morphology. Some inflammatory cells are also present. In addition, there are many clusters of cells with enlarged nuclei and nucleoli.  Some have vacuolated cytoplasm. The features are those of a non-small cell carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA4SC', 'Bronchial specimen', 'Small cell carcinoma.', '小細胞癌', 'Carcinoma small cell', 'The submitted bronchial specimen contains bronchial epithelial cells of normal morphology. Scanty macrophages and inflammatory cells are also present. In addition, there are a few clusters of small and medium-sized dysplastic cells with dark hyperchromatic nuclei and nuclear moulding. The features are in keeping with small cell carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BA4SQ', 'Bronchial specimen', 'Squamous cell carcinoma.', '鱗狀細胞癌', 'Carcinoma Squamous cell', 'The submitted bronchial specimen contains numerous bronchial epithelial cells of normal morphology. Scanty macrophages and inflammatory cells are also present. In addition, there are occasional clusters of keratinized cells with enlarged hyperchromatic nuclei and nucleoli. The features are those of a squamous cell carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BI1', 'Biliary brushing/ bile', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The specimen contains scanty inflammatory cells, red cells and some ductal epithelial cells.  There is no cellular atypia to suggest dysplasia. Malignant cells are not seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('BI2', 'Biliary brushing/ bile', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The specimen contains small number of inflammatory cells, red cells and some atypical ductal epithelium with slightly enlarged nuclei.  No overt malignant cell is seen.  Please investigate further if indicated.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('CS1', 'Cerebrospinal fluid', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'Cytospin preparations of the CSF show no significant pathology. Only occasional lymphocytes are present. There are no malignant cells seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('CS1BL', 'Cerebrospinal fluid', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'Cytospin preparation of the CSF shows some red blood cells and scanty white blood cells consistent with blood contamination. There is no evidence of infection. Malignant cells are not present.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('CS4ML', 'Cerebrospinal fluid', 'Consistent with lymphoma / leukemia involvement.', '惡性淋巴瘤', 'Lymphoma malignant, NOS', 'Cytospin preparation of the CSF shows small number of mononuclear cells with medium sized nuclei and scanty cytoplasm.  The features are those of abnormal lymphoid cells consistent with lymphoma / leukemia involvement.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('JS1', 'Joint aspirate', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The joint fluid contains scanty inflammatory cells. Many red blood cells are seen. Crystals are not present. Specific pathogen is not identified. There is no malignant cell present.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('JS1AI', 'Joint aspirate', 'Acute arthritis.', '急性關節炎', 'Inflammation, NOS', 'The joint fluid contains large number of inflammatory cells including mostly polymorphs. Scanty synovial cells with inflammatory changes are present. Crystals are not seen. Specific pathogen is not found. There is no malignant cell present. The features are those of acute arthritis. ', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('JS1GA', 'Joint aspirate', 'Gouty arthritis.', '痛風性關節炎', 'Inflammation, NOS', 'The joint fluid contains small number of inflammatory cells including mostly lymphocytes and scanty synovial cells. Red cells are present. Abundant needle-shaped crystals are present. They show negative birefringence under polarized light. Specific pathogen is not identified. There is no malignant cell present. The features are those of gouty arthritis. ', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('JS1IN', 'Joint aspirate', 'Inflammation.', '炎症', 'No malignancy', 'The joint fluid contains moderate number of inflammatory cells including polymorphs and lymphocytes. Many red blood cells are seen. Crystals are not present. Specific pathogen is not identified. There is no malignant cell present.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('NI0', 'Nipple discharge', 'Negative for malignancy.', '無發現惡性細胞', 'Inadequate specimen', 'The smear of the nipple discharge shows that it is an acellular specimen. Epithelial or malignant cells are not seen. There is also no inflammatory cell included.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('NI1', 'Nipple discharge', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The smear of the nipple discharge shows that it is a hypocellular specimen. Some squames and scanty macrophages are present. No malignant cells are seen. There is also no inflammatory cell included.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('NI1AI', 'Nipple discharge', 'Suppurative inflammation.', '化膿性炎症', 'Inflammation,suppurative', 'The smear of the nipple discharge shows many polymorphs and some foam cells. There is no malignant cell seen. The features are those of suppurative inflammation.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('NI1DP', 'Nipple discharge', 'Benign ductal proliferation.', '良性乳房病變', 'No malignancy', 'The nipple discharge shows mainly blood. Some benign epithelial cells in papillary clusters are present. There is also no inflammatory cell included. The features are in keeping with benign ductal proliferation, such as intraduct papilloma. There is no evidence of malignancy.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('NI2', 'Nipple discharge', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The nipple specimen shows large number of inflammatory cells predominantly polymorphs. Clusters of atypical degenerated epithelial cells with enlarged hyperchromatic nuclei are found. Please investigate further.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('NI2PA', 'Nipple discharge', 'Papillary lesion.', '乳頭狀病變', 'Papilloma NOS', 'The specimen contains some clusters of epithelial cells arranged in papillary fragments. The epithelial cells show mild nuclear atypia. The features are suggestive of ductal papillary lesion. Please investigate further.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('NI3', 'Nipple discharge', 'Suspicious of malignancy.', '懷疑惡性', 'Suspicious of malignant cells', 'The nipple specimen shows some clusters of epithelial cells in an inflamed background. These cells show enlarged vesicular nuclei with small nucleoli. The features are suspicious of carcinoma. Further investigation is advisable.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PC1', 'Pericardial fluid', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The pericardial fluid contains moderate number of inflammatory cells including mostly lymphocytes and some macrophages. Some mesothelial cells are also noted. Malignant cells are not seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PC2', 'Pericardial fluid', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The pericardial fluid contains a moderate number of cells including mesothelial cells, inflammatory cells and some clusters of degenerated cells with enlarged nuclei. The features are atypical. Please investigate further.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PC3', 'Pericardial fluid', 'Suspicious of malignancy.', '懷疑惡性', 'Suspicious of malignant cells', 'The pericardial fluid contains a moderate number of cells including mesothelial cells, inflammatory cells and clusters of cells with enlarged nuclei, open chromatin and occasional nucleoli. The features are suspicious of adenocarcinoma. Please investigate further.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PC4AD', 'Pericardial fluid', 'Metastatic adenocarcinoma.', '轉移癌', 'Carcinomatosis / Metastatic Ca', 'The pericardial fluid contains a large number of cells including mesothelial cells, inflammatory cells and clusters of cells with enlarged nuclei, hyperchromasia and occasional nucleoli. The cytoplasm is focally vacuolated. The features are those of pericardial involvement by metastatic adenocarcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL1', 'Pleural fluid', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The pleural fluid contains a moderate number of inflammatory cells including polymorphs, lymphocytes and  macrophages. Some mesothelial cells are also present. There is no malignant cell or multinucleated giant cell seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL1BL', 'Pleural fluid', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The pleural fluid specimen is heavily blood stained. It contains a moderate number of inflammatory cells including polymorphs, lymphocytes and some macrophages. Reactive mesothelial cells are also present. There is no malignant cell seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL1TB', 'Pleural fluid', 'Negative for malignancy. See description.', '無發現惡性細胞. 參看上文.', 'No malignancy', 'The pleural fluid contains abundant inflammatory cells including mostly lymphocytes and some macrophages. An abundance of lymphocytes is common in tuberculosis. Please investigate further if indicated. Malignant cells are not seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL2', 'Pleural fluid', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The pleural fluid contains large number of inflammatory cells, mesothelial cells and a small number of large cells with slightly irregular nuclei. The features are atypical but not diagnostic of malignancy. Please proceed to further investigations if indicated.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL3', 'Pleural fluid', 'Suspicious of malignancy.', '懷疑惡性', 'Suspicious of malignant cells', 'The pleural fluid contains a moderate number of cells including mesothelial cells, inflammatory cells and clusters of cells with enlarged irregular or eccentric nuclei, slightly coarse chromatin, nucleoli and vacuolated cytoplasm. The features are suspicious of adenocarcinoma. ', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL4AD', 'Pleural fluid', 'Metastatic adenocarcinoma.', '轉移腺癌', 'Carcinomatosis / Metastatic Ca', 'The pleural fluid is blood stained and contains a large number of cells including mesothelial cells,  inflammatory cells and many clusters of large cells with enlarged irregular or eccentric nuclei, coarse chromatin and occasional nucleoli. The features are those of adenocarcinoma. ', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL4NS', 'Pleural fluid', 'Metastatic non small cell carcinoma.', '轉移非小細胞癌', 'Carcinomatosis / Metastatic Ca', 'The pleural fluid contains a moderate number of cells including mesothelial cells, inflammatory cells and many clusters of cells with enlarged irregular nuclei and prominent nucleoli. The features are those of non-small cell carcinoma cells.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PL4SQ', 'Pleural fluid', 'Metastatic squamous cell carcinoma.', '轉移鱗狀細胞癌', 'Carcinomatosis / Metastatic Ca', 'The pleural fluid contains a moderate number of cells including inflammatory cells and moderate number of large cells with enlarged irregular nuclei and prominent nucleoli. Some are spindle and show cytoplasmic keratinisation. The features are those of non-small malignant cells in favour of squamous cell carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PT1', 'Peritoneal fluid', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The peritoneal fluid contains some inflammatory cells and a moderate number of reactive mesothelial cells. There is no malignant cell seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PT2', 'Peritoneal fluid', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The peritoneal fluid contains moderate number of inflammatory cells and mesothelial cells. Some clusters of cells have large hyperchromatic nuclei. The features are atypical. Please investigate further if indicated.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PT3', 'Peritoneal fluid', 'Suspicious of malignancy.', '懷疑惡性', 'Suspicious of malignant cells', 'The peritoneal fluid contains many inflammatory cells and a small number of isolated large cells with large nuclei and nucleoli. The features are suspicious of carcinoma cells, but too scanty for definitive diagnosis. Please proceed to further investigations.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('PT4AD', 'Peritoneal fluid', 'Adenocarcinoma.', '腺癌', 'Carcinoma adeno', 'The peritoneal fluid contains a moderate number of cells including mesothelial cells, inflammatory cells and small clusters of cells with enlarged irregular or eccentric nuclei, coarse chromatin and occasional nucleoli. The features are those of adenocarcinoma. ', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP1', 'Sputum', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The sputum specimen contains moderate numbers of inflammatory cells including polymorphs and lymphocytes. No eosinophils are seen. Some macrophages, buccal squamous cells and bronchial epithelial cells are also present. There is no malignant cell or multinucleated giant cell found.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP1BL', 'Sputum', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The sputum specimen contains small numbers of red blood cells, inflammatory cells, macrophages, buccal squamous cells and scanty bronchial epithelial cells. No haemosiderin laden macrophages are found. There is no malignant cell present.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP2', 'Sputum', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The sputum specimen show the presence of inflammatory cells, bronchial cells and squamous cells. Scanty atypical bronchial cells with enlarged nuclei are present. Please investigate further if indicated.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP3', 'Sputum', 'Suspicious of malignancy.', '懷疑惡性', 'Suspicious of malignant cells', 'The sputum specimen shows the presence of inflammatory cells, some bronchial cells and squamous cells. Small number of atypical epithelial cells with enlarged nuclei and increased nuclear to cytoplasmic ratio are present. The features are suspicious of malignancy.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP3NS', 'Sputum', 'Suspicious of non small cell carcinoma.', '懷疑非小細胞癌', 'Suspicious of malignant cells', 'The sputum specimen shows the presence of inflammatory cells, some bronchial cells and squamous cells. Many atypical epithelial cells with enlarged hyperchromatic nuclei and increased nuclear to cytoplasmic ratio are present. The features are suspicious of non-small cell carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP3SC', 'Sputum', 'Suspicious of small cell carcinoma.', '懷疑小細胞癌', 'Suspicious of malignant cells', 'The sputum specimen show the presence of inflammatory cells, some bronchial cells and epithelial cells. There are a few clusters of atypical small to intermediate size epithelial cells with enlarged nuclei and increased nuclear to cytoplasmic ratio. The features are suspicious of small cell carcinoma. Please investigate further. ', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP4AD', 'Sputum', 'Adenocarcinoma.', '腺癌', 'Carcinoma adeno', 'The sputum specimen shows the presence of inflammatory cells, some bronchial cells and clusters of abnormal cells with scanty cytoplasm, large vesicular nuclei and prominent nucleoli. There is no nuclear moulding. The features are those of adenocarcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP4NS', 'Sputum', 'Non-small cell carcinoma.', '非小細胞癌', 'Carcinoma, NOS', 'The sputum specimen contains small number of large malignant cells. Most of these show poor differentiation. Some of these cells have abundant eosinophilic cytoplasm, increased nuclear to cytoplasmic ratio, hyperchromatic enlarged nuclei and occasional nucleoli. The features are those of non-small cell carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP4SC', 'Sputum', 'Small cell carcinoma.', '小細胞癌', 'Carcinoma small cell', 'The sputum specimen contains inflammatory cells including some macrophages. In addition, there are a few clusters of small and medium-sized dysplastic cells with dark hyperchromatic nuclei and nuclear moulding. The features are in keeping with small cell carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('SP4SQ', 'Sputum', 'Squamous cell carcinoma.', '鱗狀細胞癌', 'Carcinoma Squamous cell', 'The sputum specimen contains inflammatory cells and small number of malignant cells. Some of these cells have abundant eosinophilic cytoplasm and some cells are spindle in shape. The features are those of squamous carcinoma.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('UR0', 'Urine', 'Negative for malignancy.', '無發現惡性細胞', 'Inadequate specimen', 'The urine specimen is almost completely acellular. Only a few epithelial cells are present. Malignant cells are not found. There are scanty inflammatory cells.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('UR1', 'Urine', 'Negative for malignancy.', '無發現惡性細胞', 'No malignancy', 'The urine specimen contains moderate numbers of red blood cells and some inflammatory cells. Moderate numbers of epithelial cells are also included. There is no malignant cell seen.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('UR2', 'Urine', 'Atypical cells present.', '非典型細胞存在', 'Atypia', 'The urine contains scanty atypical epithelial cells with enlarged hyperchromatic nuclei. The cells are degenerated epithelial cells with moderate amount of cytoplasm.  Dysplasia or malignancy cannot be excluded. Please investigate further if indicated.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('UR3', 'Urine', 'Suspicious of malignancy.', '懷疑惡性', 'Suspicious of malignant cells', 'The urine contains small number of cells including some atypical epithelial cells with enlarged hyerchromatic nuclei. The features are suspicious of malignancy. Please investigate further.', null, null, 0, null);
+INSERT INTO cy_result_temp
+  (CODE, OPERATION, DIAGNOSIS, DIAG_DESC1, SNOP_M, MICRO_DESC, UPDATE_BY, UPDATE_AT, UPDATE_CTR, UPDATED)
+VALUES
+  ('UR4', 'Urine', 'Carcinoma.', '癌', 'Carcinoma, NOS', 'The urine specimen contains many papillary clusters of pleomorphic cells with enlarged nuclei, coarse chromatin and nucleoli. The overall features are those of carcinoma cells, in keeping with transitional carcinoma cells.', null, null, 0, null);
+
+merge cy_result r using cy_result_temp t
+on (r.code = t.code)
+when matched
+	then update set
+		r.diagnosis = t.diagnosis,
+		r.diag_desc1 = t.diag_desc1,
+		r.micro_desc = t.micro_desc
+;

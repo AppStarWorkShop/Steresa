@@ -98,18 +98,18 @@ namespace St.Teresa_LIS_2019
             checkCmd.Parameters["@whereVal"].Value = whereVal;
             checkCmd.Parameters["@snopCode"].Value = snopCodeWhereStr;
 
-            if (whereVal == "" && snopCodeWhereStr == "")
+            /*if (whereVal == "" && snopCodeWhereStr == "")
             {
                 checkCmd.Parameters["@dateMode"].Value = DATE_MODE_CUSTOM;
                 checkCmd.Parameters["@dateFrom"].Value = DateTime.Now.AddDays(-2).ToString("yyyy-MM-dd");
                 checkCmd.Parameters["@dateTo"].Value = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
             } 
             else
-            {
-                checkCmd.Parameters["@dateMode"].Value = dateMode;
-                checkCmd.Parameters["@dateFrom"].Value = dateFrom;
-                checkCmd.Parameters["@dateTo"].Value = dateTo;
-            }
+            {*/
+            checkCmd.Parameters["@dateMode"].Value = dateMode;
+            checkCmd.Parameters["@dateFrom"].Value = dateFrom;
+            checkCmd.Parameters["@dateTo"].Value = dateTo;
+            //}
 
             checkCmd.Parameters.Add("@RETURN_VALUE",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             checkCmd.CommandTimeout = 600;

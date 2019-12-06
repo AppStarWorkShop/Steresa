@@ -15,7 +15,6 @@ namespace St.Teresa_LIS_2019
         private int currentStatus;
         private string caseNo;
         private string bxcy_id;
-        private string currentReportNo;
         private DataSet bxcy_diagDataSet = new DataSet();
         private SqlDataAdapter dataAdapter;
         private DataTable dt;
@@ -38,7 +37,7 @@ namespace St.Teresa_LIS_2019
 
         private string patientName;
         private string patientHKID;
-        private bool isNewPatient = false;
+        private bool isNewRecord = false;
 
         private Object snopT1, snopT2, snopT3, snopM1, snopM2, snopM3;
 
@@ -147,7 +146,7 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
-        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewPatient)
+        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewRecord)
         {
             this.caseNo = caseNo;
             this.bxcy_id = bxcy_id;
@@ -159,7 +158,7 @@ namespace St.Teresa_LIS_2019
             this.snopM3 = snopM3;
             this.patientName = patientName;
             this.patientHKID = patientHKID;
-            this.isNewPatient = isNewPatient;
+            this.isNewRecord = isNewRecord;
             currentStatus = status;
             InitializeComponent();
         }
@@ -196,7 +195,7 @@ namespace St.Teresa_LIS_2019
             }
         }
 
-        public bool checkDuplicateHKID()
+        /*public bool checkDuplicateHKID()
         {
             bool result = false;
 
@@ -215,7 +214,7 @@ namespace St.Teresa_LIS_2019
             }
 
             return result;
-        }
+        }*/
 
         private void reloadMacroscopicTemplateRecord()
         {
@@ -372,7 +371,6 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
-            String reportNo = currentReportNo;
             Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
             open.Show();
         }
@@ -510,6 +508,10 @@ namespace St.Teresa_LIS_2019
             textBox_Parts.DataBindings.Clear();
             textBox_Parts2.DataBindings.Clear();
             textBox_Parts3.DataBindings.Clear();
+
+            textBox_DiagnosisNo.DataBindings.Clear();
+            textBox_DiagnosisNo2.DataBindings.Clear();
+            textBox_DiagnosisNo3.DataBindings.Clear();
 
             textBox_Picture_File_1.DataBindings.Clear();
             textBox_Picture_File_2.DataBindings.Clear();
@@ -743,6 +745,10 @@ namespace St.Teresa_LIS_2019
             textBox_Parts2.DataBindings.Add("Text", dt, "group", false);
             textBox_Parts3.DataBindings.Add("Text", dt, "group", false);
 
+            textBox_DiagnosisNo.DataBindings.Add("Text", dt, "seq", false);
+            textBox_DiagnosisNo2.DataBindings.Add("Text", dt, "seq", false);
+            textBox_DiagnosisNo3.DataBindings.Add("Text", dt, "seq", false);
+
             textBox_Picture_File_1.DataBindings.Add("Text", dt, "macro_pic1", false);
             textBox_Picture_File_2.DataBindings.Add("Text", dt, "macro_pic2", false);
             textBox_Picture_File_3.DataBindings.Add("Text", dt, "macro_pic3", false);
@@ -900,10 +906,10 @@ namespace St.Teresa_LIS_2019
 
             if (textBox_ID.Text.Trim() != "")
             {
-                string countSql = string.Format(" [bxcy_diag] WHERE id > {0} and case_no = '{1}'", textBox_ID.Text, caseNo);
+                string countSql = string.Format(" [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}'", textBox_Parts.Text, caseNo);
                 if (DBConn.getSqlRecordCount(countSql) > 0)
                 {
-                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id > {0} and case_no = '{1}' ORDER BY ID", textBox_ID.Text, caseNo);
+                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}' ORDER BY ID", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
             }
@@ -918,10 +924,10 @@ namespace St.Teresa_LIS_2019
 
             if (textBox_ID.Text.Trim() != "")
             {
-                string countSql = string.Format(" [bxcy_diag] WHERE id < {0} and case_no = '{1}'", textBox_ID.Text, caseNo);
+                string countSql = string.Format(" [bxcy_diag] WHERE [group] < {0} and case_no = '{1}'", textBox_Parts.Text, caseNo);
                 if (DBConn.getSqlRecordCount(countSql) > 0)
                 {
-                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id < {0} and case_no = '{1}' ORDER BY ID DESC", textBox_ID.Text, caseNo);
+                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE [group] < '{0}' and case_no = '{1}' ORDER BY ID DESC", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
             }
@@ -929,13 +935,13 @@ namespace St.Teresa_LIS_2019
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY ID", caseNo);
+            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group]", caseNo);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY ID DESC", caseNo);
+            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group] DESC", caseNo);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
         }
 
@@ -994,7 +1000,14 @@ namespace St.Teresa_LIS_2019
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
             currentEditRow["id"] = -1;
             currentEditRow["case_no"] = caseNo;
-            //currentEditRow["group"] = 0;
+
+            string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+            DataSet groupDataSet1 = new DataSet();
+            SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
+
+            DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
+            string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();
+            currentEditRow["group"] = (Convert.ToInt32(strMaxGroup) + 1).ToString();
 
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
@@ -1117,9 +1130,15 @@ namespace St.Teresa_LIS_2019
                 button_Back.Enabled = true;
                 button_Next.Enabled = true;
                 button_End.Enabled = true;
+                button_New.Enabled = true;
+
+                button_Top2.Enabled = true;
+                button_Back2.Enabled = true;
+                button_Next2.Enabled = true;
+                button_End2.Enabled = true;
+                button_New2.Enabled = true;
 
                 button_Save.Enabled = false;
-                button_New.Enabled = true;
                 button_F6_Edit.Enabled = true;
                 button_Delete.Enabled = true;
                 button_Label.Enabled = true;
@@ -1225,15 +1244,22 @@ namespace St.Teresa_LIS_2019
                     button_Back.Enabled = false;
                     button_Next.Enabled = false;
                     button_End.Enabled = false;
+                    button_New.Enabled = false;
+
+                    button_Top2.Enabled = false;
+                    button_Back2.Enabled = false;
+                    button_Next2.Enabled = false;
+                    button_End2.Enabled = false;
+                    button_New2.Enabled = false;
 
                     button_Save.Enabled = true;
-                    button_New.Enabled = false;
+                    
                     button_F6_Edit.Enabled = false;
                     button_Delete.Enabled = false;
                     button_Label.Enabled = false;
                     button_Path.Enabled = true;
-                    button_F8_Back_To_Main.Enabled = false;
-                    button_Undo.Enabled = true;
+                    button_F8_Back_To_Main.Enabled = true;
+                    button_Undo.Enabled = false;
 
                     comboBox_MIC_Add2.Enabled = true;
                     buttonremoveCinese.Enabled = true;
@@ -1332,9 +1358,16 @@ namespace St.Teresa_LIS_2019
                         button_Back.Enabled = false;
                         button_Next.Enabled = false;
                         button_End.Enabled = false;
+                        button_New.Enabled = false;
+
+                        button_Top2.Enabled = false;
+                        button_Back2.Enabled = false;
+                        button_Next2.Enabled = false;
+                        button_End2.Enabled = false;
+                        button_New2.Enabled = false;
 
                         button_Save.Enabled = true;
-                        button_New.Enabled = false;
+                        
                         button_F6_Edit.Enabled = false;
                         button_Delete.Enabled = false;
                         button_Label.Enabled = false;
@@ -1465,29 +1498,29 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            if (!checkDuplicateHKID())
-            {
+            /*if (!checkDuplicateHKID())
+            {*/
                 int mainPageUpdateResult = 0;
                 if (OnBxcyDiagSaveBoth != null)
                 {
                     mainPageUpdateResult = OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue);
                 }
 
-                if (mainPageUpdateResult != 1)
+                if (mainPageUpdateResult != 1 && mainPageUpdateResult != 2)
                 {
                     bool updated = true;
                     if (currentStatus == PageStatus.STATUS_NEW)
                     {
                         if (currentEditRow != null)
                         {
-                            if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
+                            /*if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
                             {
                                 currentEditRow["group"] = (Convert.ToInt32(label_Total_Parts_No.Text) + 1).ToString();
                             }
                             else
                             {
                                 currentEditRow["group"] = label_Total_Parts_No.Text;
-                            }
+                            }*/
 
                             currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
                             textBox_ID.BindingContext[dt].Position++;
@@ -1502,7 +1535,6 @@ namespace St.Teresa_LIS_2019
                             {
                                 updated = false;
                             }
-                            setButtonStatus(PageStatus.STATUS_VIEW);
                         }
                     }
                     else
@@ -1519,14 +1551,13 @@ namespace St.Teresa_LIS_2019
                                     updated = false;
                                 }
                             }
-
-                            setButtonStatus(PageStatus.STATUS_VIEW);
                         }
                     }
 
                     if (updated || mainPageUpdateResult == 0)
                     {
                         MessageBox.Show("Record updated");
+                        setButtonStatus(PageStatus.STATUS_VIEW);
                     }
                     else
                     {
@@ -1535,9 +1566,12 @@ namespace St.Teresa_LIS_2019
                 }
                 else
                 {
-                    MessageBox.Show("Record updated fail, please contact Admin");
+                    if (mainPageUpdateResult != 1)
+                    {
+                        MessageBox.Show("Record updated fail, please contact Admin");
+                    }
                 }
-            }
+            //}
         }
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
@@ -2069,6 +2103,67 @@ namespace St.Teresa_LIS_2019
             r2.X = r1.Width + 1;
             r2.Width = r2.Width / 2;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void button_Top2_Click(object sender, EventArgs e)
+        {
+            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID", caseNo, textBox_Parts.Text.ToString());
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+        }
+
+        private void button_Back2_Click(object sender, EventArgs e)
+        {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
+            if (textBox_ID.Text.Trim() != "")
+            {
+                string countSql = string.Format(" [bxcy_diag] WHERE id < {0} and case_no = '{1}' and [group] = '{2}'", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
+                if (DBConn.getSqlRecordCount(countSql) > 0)
+                {
+                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id < {0} and case_no = '{1}' and [group] = '{2}' ORDER BY ID DESC", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
+                    dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                }
+            }
+        }
+
+        private void button_Next2_Click(object sender, EventArgs e)
+        {
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
+
+            if (textBox_ID.Text.Trim() != "")
+            {
+                string countSql = string.Format(" [bxcy_diag] WHERE id > {0} and case_no = '{1}' and [group] = '{2}'", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
+                if (DBConn.getSqlRecordCount(countSql) > 0)
+                {
+                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id > {0} and case_no = '{1}' and [group] = '{2}' ORDER BY ID", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
+                    dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                }
+            }
+        }
+
+        private void button_End2_Click(object sender, EventArgs e)
+        {
+            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID DESC", caseNo, textBox_Parts.Text.ToString());
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+        }
+
+        private void button_New2_Click(object sender, EventArgs e)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+
+            currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["case_no"] = caseNo;
+            currentEditRow["group"] = textBox_Parts.Text.Trim();
+
+            bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
+            bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
         }
 
         private void comboBox_Snop_M3_DrawItem(object sender, DrawItemEventArgs e)

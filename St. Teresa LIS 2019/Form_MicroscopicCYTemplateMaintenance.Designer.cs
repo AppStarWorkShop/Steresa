@@ -87,51 +87,57 @@
             this.panel_Update.Controls.Add(this.textBox_Last_Updated_By_No);
             this.panel_Update.Controls.Add(this.textBox_Last_Updated_By);
             this.panel_Update.Controls.Add(this.label_Updated_By);
-            this.panel_Update.Location = new System.Drawing.Point(555, -1);
+            this.panel_Update.Location = new System.Drawing.Point(740, -1);
+            this.panel_Update.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel_Update.Name = "panel_Update";
-            this.panel_Update.Size = new System.Drawing.Size(229, 44);
+            this.panel_Update.Size = new System.Drawing.Size(305, 54);
             this.panel_Update.TabIndex = 183;
             // 
             // textBox_Update_At
             // 
-            this.textBox_Update_At.Location = new System.Drawing.Point(79, 20);
+            this.textBox_Update_At.Location = new System.Drawing.Point(105, 25);
+            this.textBox_Update_At.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Update_At.Name = "textBox_Update_At";
             this.textBox_Update_At.ReadOnly = true;
-            this.textBox_Update_At.Size = new System.Drawing.Size(145, 21);
+            this.textBox_Update_At.Size = new System.Drawing.Size(192, 25);
             this.textBox_Update_At.TabIndex = 4;
             this.textBox_Update_At.Text = "  /  /        :  :   AM";
             // 
             // label_Updated_At
             // 
             this.label_Updated_At.AutoSize = true;
-            this.label_Updated_At.Location = new System.Drawing.Point(7, 23);
+            this.label_Updated_At.Location = new System.Drawing.Point(9, 29);
+            this.label_Updated_At.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Updated_At.Name = "label_Updated_At";
-            this.label_Updated_At.Size = new System.Drawing.Size(71, 12);
+            this.label_Updated_At.Size = new System.Drawing.Size(95, 15);
             this.label_Updated_At.TabIndex = 3;
             this.label_Updated_At.Text = "Updated At:";
             // 
             // textBox_Last_Updated_By_No
             // 
-            this.textBox_Last_Updated_By_No.Location = new System.Drawing.Point(175, 3);
+            this.textBox_Last_Updated_By_No.Location = new System.Drawing.Point(233, 4);
+            this.textBox_Last_Updated_By_No.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Last_Updated_By_No.Name = "textBox_Last_Updated_By_No";
             this.textBox_Last_Updated_By_No.ReadOnly = true;
-            this.textBox_Last_Updated_By_No.Size = new System.Drawing.Size(49, 21);
+            this.textBox_Last_Updated_By_No.Size = new System.Drawing.Size(64, 25);
             this.textBox_Last_Updated_By_No.TabIndex = 2;
             // 
             // textBox_Last_Updated_By
             // 
-            this.textBox_Last_Updated_By.Location = new System.Drawing.Point(79, 3);
+            this.textBox_Last_Updated_By.Location = new System.Drawing.Point(105, 4);
+            this.textBox_Last_Updated_By.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Last_Updated_By.Name = "textBox_Last_Updated_By";
             this.textBox_Last_Updated_By.ReadOnly = true;
-            this.textBox_Last_Updated_By.Size = new System.Drawing.Size(90, 21);
+            this.textBox_Last_Updated_By.Size = new System.Drawing.Size(119, 25);
             this.textBox_Last_Updated_By.TabIndex = 1;
             // 
             // label_Updated_By
             // 
             this.label_Updated_By.AutoSize = true;
-            this.label_Updated_By.Location = new System.Drawing.Point(7, 6);
+            this.label_Updated_By.Location = new System.Drawing.Point(9, 8);
+            this.label_Updated_By.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Updated_By.Name = "label_Updated_By";
-            this.label_Updated_By.Size = new System.Drawing.Size(71, 12);
+            this.label_Updated_By.Size = new System.Drawing.Size(95, 15);
             this.label_Updated_By.TabIndex = 0;
             this.label_Updated_By.Text = "Updated By:";
             // 
@@ -139,11 +145,12 @@
             // 
             this.textBox_microscopic_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_microscopic_Description.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_microscopic_Description.Location = new System.Drawing.Point(119, 106);
+            this.textBox_microscopic_Description.Location = new System.Drawing.Point(159, 132);
+            this.textBox_microscopic_Description.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_microscopic_Description.Multiline = true;
             this.textBox_microscopic_Description.Name = "textBox_microscopic_Description";
             this.textBox_microscopic_Description.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_microscopic_Description.Size = new System.Drawing.Size(653, 92);
+            this.textBox_microscopic_Description.Size = new System.Drawing.Size(869, 114);
             this.textBox_microscopic_Description.TabIndex = 243;
             // 
             // label_Microscopic
@@ -152,22 +159,26 @@
             this.label_Microscopic.BackColor = System.Drawing.Color.Transparent;
             this.label_Microscopic.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Microscopic.ForeColor = System.Drawing.Color.Black;
-            this.label_Microscopic.Location = new System.Drawing.Point(12, 106);
+            this.label_Microscopic.Location = new System.Drawing.Point(16, 132);
+            this.label_Microscopic.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Microscopic.Name = "label_Microscopic";
-            this.label_Microscopic.Size = new System.Drawing.Size(101, 18);
+            this.label_Microscopic.Size = new System.Drawing.Size(123, 24);
             this.label_Microscopic.TabIndex = 242;
             this.label_Microscopic.Text = "Microscopic";
             // 
             // comboBox_Serach
             // 
             this.comboBox_Serach.BackColor = System.Drawing.Color.Khaki;
+            this.comboBox_Serach.DisplayMember = "doctor";
             this.comboBox_Serach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Serach.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Serach.FormattingEnabled = true;
-            this.comboBox_Serach.Location = new System.Drawing.Point(119, 17);
+            this.comboBox_Serach.Location = new System.Drawing.Point(159, 21);
+            this.comboBox_Serach.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox_Serach.Name = "comboBox_Serach";
-            this.comboBox_Serach.Size = new System.Drawing.Size(194, 26);
+            this.comboBox_Serach.Size = new System.Drawing.Size(257, 30);
             this.comboBox_Serach.TabIndex = 241;
+            this.comboBox_Serach.ValueMember = "doctor";
             // 
             // label_Serach
             // 
@@ -175,21 +186,23 @@
             this.label_Serach.BackColor = System.Drawing.Color.Transparent;
             this.label_Serach.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Serach.ForeColor = System.Drawing.Color.Black;
-            this.label_Serach.Location = new System.Drawing.Point(12, 19);
+            this.label_Serach.Location = new System.Drawing.Point(16, 24);
+            this.label_Serach.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Serach.Name = "label_Serach";
-            this.label_Serach.Size = new System.Drawing.Size(71, 18);
+            this.label_Serach.Size = new System.Drawing.Size(88, 24);
             this.label_Serach.TabIndex = 240;
             this.label_Serach.Text = "Serach :";
             // 
             // textBox_Doctor
             // 
+            this.textBox_Doctor.Enabled = false;
             this.textBox_Doctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Doctor.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Doctor.Location = new System.Drawing.Point(119, 54);
+            this.textBox_Doctor.Location = new System.Drawing.Point(159, 68);
+            this.textBox_Doctor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Doctor.Name = "textBox_Doctor";
-            this.textBox_Doctor.Size = new System.Drawing.Size(169, 26);
+            this.textBox_Doctor.Size = new System.Drawing.Size(224, 30);
             this.textBox_Doctor.TabIndex = 239;
-            this.textBox_Doctor.Text = "Chan Tai Man";
             // 
             // label_Patient
             // 
@@ -197,9 +210,10 @@
             this.label_Patient.BackColor = System.Drawing.Color.Transparent;
             this.label_Patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Patient.ForeColor = System.Drawing.Color.Black;
-            this.label_Patient.Location = new System.Drawing.Point(-73, 172);
+            this.label_Patient.Location = new System.Drawing.Point(-97, 215);
+            this.label_Patient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Patient.Name = "label_Patient";
-            this.label_Patient.Size = new System.Drawing.Size(76, 20);
+            this.label_Patient.Size = new System.Drawing.Size(92, 25);
             this.label_Patient.TabIndex = 238;
             this.label_Patient.Text = "Patient :";
             // 
@@ -209,9 +223,10 @@
             this.label_Line_1.BackColor = System.Drawing.Color.Transparent;
             this.label_Line_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Line_1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label_Line_1.Location = new System.Drawing.Point(-112, 426);
+            this.label_Line_1.Location = new System.Drawing.Point(-149, 532);
+            this.label_Line_1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Line_1.Name = "label_Line_1";
-            this.label_Line_1.Size = new System.Drawing.Size(1103, 54);
+            this.label_Line_1.Size = new System.Drawing.Size(1389, 67);
             this.label_Line_1.TabIndex = 237;
             this.label_Line_1.Text = "________________________________________";
             // 
@@ -221,9 +236,10 @@
             this.button_End.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_End.Image = ((System.Drawing.Image)(resources.GetObject("button_End.Image")));
             this.button_End.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_End.Location = new System.Drawing.Point(197, 472);
+            this.button_End.Location = new System.Drawing.Point(263, 590);
+            this.button_End.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_End.Name = "button_End";
-            this.button_End.Size = new System.Drawing.Size(58, 42);
+            this.button_End.Size = new System.Drawing.Size(77, 52);
             this.button_End.TabIndex = 247;
             this.button_End.Text = "End";
             this.button_End.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -236,9 +252,10 @@
             this.button_Next.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Next.Image = ((System.Drawing.Image)(resources.GetObject("button_Next.Image")));
             this.button_Next.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Next.Location = new System.Drawing.Point(133, 472);
+            this.button_Next.Location = new System.Drawing.Point(177, 590);
+            this.button_Next.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Next.Name = "button_Next";
-            this.button_Next.Size = new System.Drawing.Size(58, 42);
+            this.button_Next.Size = new System.Drawing.Size(77, 52);
             this.button_Next.TabIndex = 246;
             this.button_Next.Text = "Next";
             this.button_Next.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -251,9 +268,10 @@
             this.button_Back.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Back.Image = ((System.Drawing.Image)(resources.GetObject("button_Back.Image")));
             this.button_Back.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Back.Location = new System.Drawing.Point(69, 472);
+            this.button_Back.Location = new System.Drawing.Point(92, 590);
+            this.button_Back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Back.Name = "button_Back";
-            this.button_Back.Size = new System.Drawing.Size(58, 42);
+            this.button_Back.Size = new System.Drawing.Size(77, 52);
             this.button_Back.TabIndex = 245;
             this.button_Back.Text = "Back";
             this.button_Back.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -266,9 +284,10 @@
             this.button_Top.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Top.Image = ((System.Drawing.Image)(resources.GetObject("button_Top.Image")));
             this.button_Top.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Top.Location = new System.Drawing.Point(5, 472);
+            this.button_Top.Location = new System.Drawing.Point(7, 590);
+            this.button_Top.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Top.Name = "button_Top";
-            this.button_Top.Size = new System.Drawing.Size(58, 42);
+            this.button_Top.Size = new System.Drawing.Size(77, 52);
             this.button_Top.TabIndex = 244;
             this.button_Top.Text = "Top";
             this.button_Top.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -281,9 +300,10 @@
             this.button_Delete.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Delete.Image = ((System.Drawing.Image)(resources.GetObject("button_Delete.Image")));
             this.button_Delete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Delete.Location = new System.Drawing.Point(601, 474);
+            this.button_Delete.Location = new System.Drawing.Point(801, 592);
+            this.button_Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Delete.Name = "button_Delete";
-            this.button_Delete.Size = new System.Drawing.Size(64, 40);
+            this.button_Delete.Size = new System.Drawing.Size(85, 50);
             this.button_Delete.TabIndex = 254;
             this.button_Delete.Text = "Delete";
             this.button_Delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -296,9 +316,10 @@
             this.button_Save.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button_Save.Image = ((System.Drawing.Image)(resources.GetObject("button_Save.Image")));
             this.button_Save.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Save.Location = new System.Drawing.Point(414, 474);
+            this.button_Save.Location = new System.Drawing.Point(552, 592);
+            this.button_Save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Save.Name = "button_Save";
-            this.button_Save.Size = new System.Drawing.Size(55, 40);
+            this.button_Save.Size = new System.Drawing.Size(73, 50);
             this.button_Save.TabIndex = 253;
             this.button_Save.Text = "Save";
             this.button_Save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -311,9 +332,10 @@
             this.button_New.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_New.Image = ((System.Drawing.Image)(resources.GetObject("button_New.Image")));
             this.button_New.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_New.Location = new System.Drawing.Point(469, 474);
+            this.button_New.Location = new System.Drawing.Point(625, 592);
+            this.button_New.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_New.Name = "button_New";
-            this.button_New.Size = new System.Drawing.Size(55, 40);
+            this.button_New.Size = new System.Drawing.Size(73, 50);
             this.button_New.TabIndex = 252;
             this.button_New.Text = "New";
             this.button_New.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -326,9 +348,10 @@
             this.button_Edit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Edit.Image = ((System.Drawing.Image)(resources.GetObject("button_Edit.Image")));
             this.button_Edit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Edit.Location = new System.Drawing.Point(527, 474);
+            this.button_Edit.Location = new System.Drawing.Point(703, 592);
+            this.button_Edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Edit.Name = "button_Edit";
-            this.button_Edit.Size = new System.Drawing.Size(72, 40);
+            this.button_Edit.Size = new System.Drawing.Size(96, 50);
             this.button_Edit.TabIndex = 251;
             this.button_Edit.Text = "F11 Edit";
             this.button_Edit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -341,9 +364,10 @@
             this.button_Undo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button_Undo.Image = ((System.Drawing.Image)(resources.GetObject("button_Undo.Image")));
             this.button_Undo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Undo.Location = new System.Drawing.Point(665, 474);
+            this.button_Undo.Location = new System.Drawing.Point(887, 592);
+            this.button_Undo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Undo.Name = "button_Undo";
-            this.button_Undo.Size = new System.Drawing.Size(60, 40);
+            this.button_Undo.Size = new System.Drawing.Size(80, 50);
             this.button_Undo.TabIndex = 250;
             this.button_Undo.Text = "Undo";
             this.button_Undo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -356,9 +380,10 @@
             this.button_Exit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_Exit.Image")));
             this.button_Exit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Exit.Location = new System.Drawing.Point(725, 474);
+            this.button_Exit.Location = new System.Drawing.Point(967, 592);
+            this.button_Exit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Exit.Name = "button_Exit";
-            this.button_Exit.Size = new System.Drawing.Size(55, 40);
+            this.button_Exit.Size = new System.Drawing.Size(73, 50);
             this.button_Exit.TabIndex = 248;
             this.button_Exit.Text = "Exit";
             this.button_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -371,9 +396,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label1.Location = new System.Drawing.Point(-77, 162);
+            this.label1.Location = new System.Drawing.Point(-103, 202);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1103, 54);
+            this.label1.Size = new System.Drawing.Size(1389, 67);
             this.label1.TabIndex = 255;
             this.label1.Text = "________________________________________";
             // 
@@ -383,9 +409,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 60F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(-40, 24);
+            this.label2.Location = new System.Drawing.Point(-53, 30);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1074, 91);
+            this.label2.Size = new System.Drawing.Size(1336, 113);
             this.label2.TabIndex = 256;
             this.label2.Text = "_______________________";
             // 
@@ -395,9 +422,10 @@
             this.label_Doctor.BackColor = System.Drawing.Color.Transparent;
             this.label_Doctor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Doctor.ForeColor = System.Drawing.Color.Blue;
-            this.label_Doctor.Location = new System.Drawing.Point(12, 58);
+            this.label_Doctor.Location = new System.Drawing.Point(16, 72);
+            this.label_Doctor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Doctor.Name = "label_Doctor";
-            this.label_Doctor.Size = new System.Drawing.Size(70, 18);
+            this.label_Doctor.Size = new System.Drawing.Size(83, 24);
             this.label_Doctor.TabIndex = 257;
             this.label_Doctor.Text = "Doctor :";
             // 
@@ -407,9 +435,10 @@
             this.label_Template.BackColor = System.Drawing.Color.Transparent;
             this.label_Template.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Template.ForeColor = System.Drawing.Color.Blue;
-            this.label_Template.Location = new System.Drawing.Point(542, 58);
+            this.label_Template.Location = new System.Drawing.Point(723, 72);
+            this.label_Template.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Template.Name = "label_Template";
-            this.label_Template.Size = new System.Drawing.Size(87, 18);
+            this.label_Template.Size = new System.Drawing.Size(109, 24);
             this.label_Template.TabIndex = 259;
             this.label_Template.Text = "Template :";
             // 
@@ -417,11 +446,11 @@
             // 
             this.textBox_Template.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Template.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Template.Location = new System.Drawing.Point(635, 54);
+            this.textBox_Template.Location = new System.Drawing.Point(847, 68);
+            this.textBox_Template.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Template.Name = "textBox_Template";
-            this.textBox_Template.Size = new System.Drawing.Size(137, 26);
+            this.textBox_Template.Size = new System.Drawing.Size(181, 30);
             this.textBox_Template.TabIndex = 258;
-            this.textBox_Template.Text = "FA1";
             // 
             // label_Organ
             // 
@@ -429,9 +458,10 @@
             this.label_Organ.BackColor = System.Drawing.Color.Transparent;
             this.label_Organ.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Organ.ForeColor = System.Drawing.Color.Blue;
-            this.label_Organ.Location = new System.Drawing.Point(337, 58);
+            this.label_Organ.Location = new System.Drawing.Point(449, 72);
+            this.label_Organ.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Organ.Name = "label_Organ";
-            this.label_Organ.Size = new System.Drawing.Size(64, 18);
+            this.label_Organ.Size = new System.Drawing.Size(80, 24);
             this.label_Organ.TabIndex = 261;
             this.label_Organ.Text = "Organ :";
             // 
@@ -439,11 +469,11 @@
             // 
             this.textBox_Organ.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Organ.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Organ.Location = new System.Drawing.Point(407, 54);
+            this.textBox_Organ.Location = new System.Drawing.Point(543, 68);
+            this.textBox_Organ.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Organ.Name = "textBox_Organ";
-            this.textBox_Organ.Size = new System.Drawing.Size(90, 26);
+            this.textBox_Organ.Size = new System.Drawing.Size(119, 30);
             this.textBox_Organ.TabIndex = 260;
-            this.textBox_Organ.Text = "BR";
             // 
             // label_Description
             // 
@@ -451,9 +481,10 @@
             this.label_Description.BackColor = System.Drawing.Color.Transparent;
             this.label_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Description.ForeColor = System.Drawing.Color.Black;
-            this.label_Description.Location = new System.Drawing.Point(12, 123);
+            this.label_Description.Location = new System.Drawing.Point(16, 154);
+            this.label_Description.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Description.Name = "label_Description";
-            this.label_Description.Size = new System.Drawing.Size(104, 18);
+            this.label_Description.Size = new System.Drawing.Size(127, 24);
             this.label_Description.TabIndex = 262;
             this.label_Description.Text = "Description :";
             // 
@@ -463,9 +494,10 @@
             this.label_Site.BackColor = System.Drawing.Color.Transparent;
             this.label_Site.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Site.ForeColor = System.Drawing.Color.Black;
-            this.label_Site.Location = new System.Drawing.Point(12, 212);
+            this.label_Site.Location = new System.Drawing.Point(16, 265);
+            this.label_Site.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Site.Name = "label_Site";
-            this.label_Site.Size = new System.Drawing.Size(47, 18);
+            this.label_Site.Size = new System.Drawing.Size(57, 24);
             this.label_Site.TabIndex = 264;
             this.label_Site.Text = "Site :";
             // 
@@ -477,11 +509,11 @@
             this.comboBox_Site.FormattingEnabled = true;
             this.comboBox_Site.Items.AddRange(new object[] {
             "Chinese"});
-            this.comboBox_Site.Location = new System.Drawing.Point(119, 210);
+            this.comboBox_Site.Location = new System.Drawing.Point(159, 262);
+            this.comboBox_Site.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox_Site.Name = "comboBox_Site";
-            this.comboBox_Site.Size = new System.Drawing.Size(510, 26);
+            this.comboBox_Site.Size = new System.Drawing.Size(679, 30);
             this.comboBox_Site.TabIndex = 265;
-            this.comboBox_Site.Text = "Brain damage";
             this.comboBox_Site.ValueMember = "SITE";
             // 
             // button_Print
@@ -490,9 +522,10 @@
             this.button_Print.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Print.Image = ((System.Drawing.Image)(resources.GetObject("button_Print.Image")));
             this.button_Print.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Print.Location = new System.Drawing.Point(665, 235);
+            this.button_Print.Location = new System.Drawing.Point(887, 294);
+            this.button_Print.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Print.Name = "button_Print";
-            this.button_Print.Size = new System.Drawing.Size(82, 56);
+            this.button_Print.Size = new System.Drawing.Size(109, 70);
             this.button_Print.TabIndex = 266;
             this.button_Print.Text = "Print";
             this.button_Print.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -504,9 +537,10 @@
             this.label_Site_Chinese_Desc.BackColor = System.Drawing.Color.Transparent;
             this.label_Site_Chinese_Desc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Site_Chinese_Desc.ForeColor = System.Drawing.Color.Black;
-            this.label_Site_Chinese_Desc.Location = new System.Drawing.Point(165, 239);
+            this.label_Site_Chinese_Desc.Location = new System.Drawing.Point(220, 299);
+            this.label_Site_Chinese_Desc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Site_Chinese_Desc.Name = "label_Site_Chinese_Desc";
-            this.label_Site_Chinese_Desc.Size = new System.Drawing.Size(113, 18);
+            this.label_Site_Chinese_Desc.Size = new System.Drawing.Size(143, 24);
             this.label_Site_Chinese_Desc.TabIndex = 268;
             this.label_Site_Chinese_Desc.Text = "Chinese Desc. :";
             // 
@@ -514,11 +548,11 @@
             // 
             this.textBox_Site_Chinese_Desc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Site_Chinese_Desc.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Site_Chinese_Desc.Location = new System.Drawing.Point(277, 235);
+            this.textBox_Site_Chinese_Desc.Location = new System.Drawing.Point(369, 294);
+            this.textBox_Site_Chinese_Desc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Site_Chinese_Desc.Name = "textBox_Site_Chinese_Desc";
-            this.textBox_Site_Chinese_Desc.Size = new System.Drawing.Size(352, 26);
+            this.textBox_Site_Chinese_Desc.Size = new System.Drawing.Size(468, 30);
             this.textBox_Site_Chinese_Desc.TabIndex = 267;
-            this.textBox_Site_Chinese_Desc.Text = "腦殘";
             // 
             // label_Operation_Chinese_Desc
             // 
@@ -526,9 +560,10 @@
             this.label_Operation_Chinese_Desc.BackColor = System.Drawing.Color.Transparent;
             this.label_Operation_Chinese_Desc.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Operation_Chinese_Desc.ForeColor = System.Drawing.Color.Black;
-            this.label_Operation_Chinese_Desc.Location = new System.Drawing.Point(165, 298);
+            this.label_Operation_Chinese_Desc.Location = new System.Drawing.Point(220, 372);
+            this.label_Operation_Chinese_Desc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Operation_Chinese_Desc.Name = "label_Operation_Chinese_Desc";
-            this.label_Operation_Chinese_Desc.Size = new System.Drawing.Size(113, 18);
+            this.label_Operation_Chinese_Desc.Size = new System.Drawing.Size(143, 24);
             this.label_Operation_Chinese_Desc.TabIndex = 272;
             this.label_Operation_Chinese_Desc.Text = "Chinese Desc. :";
             // 
@@ -536,11 +571,11 @@
             // 
             this.textBox_Operation_Chinese_Desc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Operation_Chinese_Desc.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Operation_Chinese_Desc.Location = new System.Drawing.Point(277, 294);
+            this.textBox_Operation_Chinese_Desc.Location = new System.Drawing.Point(369, 368);
+            this.textBox_Operation_Chinese_Desc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Operation_Chinese_Desc.Name = "textBox_Operation_Chinese_Desc";
-            this.textBox_Operation_Chinese_Desc.Size = new System.Drawing.Size(352, 26);
+            this.textBox_Operation_Chinese_Desc.Size = new System.Drawing.Size(468, 30);
             this.textBox_Operation_Chinese_Desc.TabIndex = 271;
-            this.textBox_Operation_Chinese_Desc.Text = "切除術";
             // 
             // comboBox_Daignosis_Chinese_Desc_1
             // 
@@ -550,11 +585,11 @@
             this.comboBox_Daignosis_Chinese_Desc_1.FormattingEnabled = true;
             this.comboBox_Daignosis_Chinese_Desc_1.Items.AddRange(new object[] {
             "Chinese"});
-            this.comboBox_Daignosis_Chinese_Desc_1.Location = new System.Drawing.Point(119, 426);
+            this.comboBox_Daignosis_Chinese_Desc_1.Location = new System.Drawing.Point(159, 532);
+            this.comboBox_Daignosis_Chinese_Desc_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox_Daignosis_Chinese_Desc_1.Name = "comboBox_Daignosis_Chinese_Desc_1";
-            this.comboBox_Daignosis_Chinese_Desc_1.Size = new System.Drawing.Size(282, 26);
+            this.comboBox_Daignosis_Chinese_Desc_1.Size = new System.Drawing.Size(375, 30);
             this.comboBox_Daignosis_Chinese_Desc_1.TabIndex = 270;
-            this.comboBox_Daignosis_Chinese_Desc_1.Text = "腦出血";
             this.comboBox_Daignosis_Chinese_Desc_1.ValueMember = "C_DESC";
             // 
             // label_Operation
@@ -563,9 +598,10 @@
             this.label_Operation.BackColor = System.Drawing.Color.Transparent;
             this.label_Operation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Operation.ForeColor = System.Drawing.Color.Black;
-            this.label_Operation.Location = new System.Drawing.Point(12, 271);
+            this.label_Operation.Location = new System.Drawing.Point(16, 339);
+            this.label_Operation.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Operation.Name = "label_Operation";
-            this.label_Operation.Size = new System.Drawing.Size(92, 18);
+            this.label_Operation.Size = new System.Drawing.Size(114, 24);
             this.label_Operation.TabIndex = 269;
             this.label_Operation.Text = "Operation :";
             // 
@@ -575,9 +611,10 @@
             this.label_Diagnosis.BackColor = System.Drawing.Color.Transparent;
             this.label_Diagnosis.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Diagnosis.ForeColor = System.Drawing.Color.Black;
-            this.label_Diagnosis.Location = new System.Drawing.Point(12, 325);
+            this.label_Diagnosis.Location = new System.Drawing.Point(16, 406);
+            this.label_Diagnosis.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_Diagnosis.Name = "label_Diagnosis";
-            this.label_Diagnosis.Size = new System.Drawing.Size(93, 18);
+            this.label_Diagnosis.Size = new System.Drawing.Size(113, 24);
             this.label_Diagnosis.TabIndex = 273;
             this.label_Diagnosis.Text = "Diagnosis :";
             // 
@@ -585,11 +622,12 @@
             // 
             this.textBox_Daignosis.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Daignosis.ForeColor = System.Drawing.Color.DarkBlue;
-            this.textBox_Daignosis.Location = new System.Drawing.Point(119, 322);
+            this.textBox_Daignosis.Location = new System.Drawing.Point(159, 402);
+            this.textBox_Daignosis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_Daignosis.Multiline = true;
             this.textBox_Daignosis.Name = "textBox_Daignosis";
             this.textBox_Daignosis.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Daignosis.Size = new System.Drawing.Size(653, 98);
+            this.textBox_Daignosis.Size = new System.Drawing.Size(869, 122);
             this.textBox_Daignosis.TabIndex = 274;
             // 
             // comboBox_Operation
@@ -600,11 +638,11 @@
             this.comboBox_Operation.FormattingEnabled = true;
             this.comboBox_Operation.Items.AddRange(new object[] {
             "Chinese"});
-            this.comboBox_Operation.Location = new System.Drawing.Point(119, 269);
+            this.comboBox_Operation.Location = new System.Drawing.Point(159, 336);
+            this.comboBox_Operation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox_Operation.Name = "comboBox_Operation";
-            this.comboBox_Operation.Size = new System.Drawing.Size(510, 26);
+            this.comboBox_Operation.Size = new System.Drawing.Size(679, 30);
             this.comboBox_Operation.TabIndex = 275;
-            this.comboBox_Operation.Text = "Excision";
             this.comboBox_Operation.ValueMember = "OPERATION";
             // 
             // comboBox_Daignosis_Chinese_Desc_2
@@ -615,11 +653,11 @@
             this.comboBox_Daignosis_Chinese_Desc_2.FormattingEnabled = true;
             this.comboBox_Daignosis_Chinese_Desc_2.Items.AddRange(new object[] {
             "Chinese"});
-            this.comboBox_Daignosis_Chinese_Desc_2.Location = new System.Drawing.Point(459, 426);
+            this.comboBox_Daignosis_Chinese_Desc_2.Location = new System.Drawing.Point(612, 532);
+            this.comboBox_Daignosis_Chinese_Desc_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBox_Daignosis_Chinese_Desc_2.Name = "comboBox_Daignosis_Chinese_Desc_2";
-            this.comboBox_Daignosis_Chinese_Desc_2.Size = new System.Drawing.Size(282, 26);
+            this.comboBox_Daignosis_Chinese_Desc_2.Size = new System.Drawing.Size(375, 30);
             this.comboBox_Daignosis_Chinese_Desc_2.TabIndex = 276;
-            this.comboBox_Daignosis_Chinese_Desc_2.Text = "腦出血";
             this.comboBox_Daignosis_Chinese_Desc_2.ValueMember = "C_DESC";
             // 
             // button_Copy_To_New
@@ -627,9 +665,10 @@
             this.button_Copy_To_New.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Copy_To_New.ForeColor = System.Drawing.Color.Purple;
             this.button_Copy_To_New.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Copy_To_New.Location = new System.Drawing.Point(290, 486);
+            this.button_Copy_To_New.Location = new System.Drawing.Point(387, 608);
+            this.button_Copy_To_New.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_Copy_To_New.Name = "button_Copy_To_New";
-            this.button_Copy_To_New.Size = new System.Drawing.Size(98, 21);
+            this.button_Copy_To_New.Size = new System.Drawing.Size(131, 26);
             this.button_Copy_To_New.TabIndex = 277;
             this.button_Copy_To_New.Text = "Copy To New";
             this.button_Copy_To_New.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -638,17 +677,18 @@
             // 
             // textBox_ID
             // 
-            this.textBox_ID.Location = new System.Drawing.Point(873, 54);
+            this.textBox_ID.Location = new System.Drawing.Point(1164, 68);
+            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBox_ID.Name = "textBox_ID";
-            this.textBox_ID.Size = new System.Drawing.Size(10, 21);
+            this.textBox_ID.Size = new System.Drawing.Size(12, 25);
             this.textBox_ID.TabIndex = 278;
             // 
             // Form_MicroscopicCYTemplateMaintenance
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(199)))), ((int)(((byte)(227)))));
-            this.ClientSize = new System.Drawing.Size(784, 519);
+            this.ClientSize = new System.Drawing.Size(1045, 649);
             this.ControlBox = false;
             this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.button_Copy_To_New);
@@ -691,6 +731,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label_Line_1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_MicroscopicCYTemplateMaintenance";
             this.Text = "Microscopic CY Template Maintenance";
             this.panel_Update.ResumeLayout(false);
