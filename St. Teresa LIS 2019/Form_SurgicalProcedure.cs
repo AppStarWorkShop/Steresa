@@ -20,6 +20,8 @@ namespace St.Teresa_LIS_2019
         public delegate void SurgicalSelectedSingle(string str);
         public SurgicalSelectedSingle OnSurgicalSelectedSingle;
 
+        private bool m_isEntering = false;
+
         public Form_SurgicalProcedure(string str)
         {
             InitializeComponent();
@@ -64,13 +66,52 @@ namespace St.Teresa_LIS_2019
 
             DataTable newDt = new DataTable();
             newDt.Columns.Add("Description");
+            newDt.Columns.Add("SurgicalProcedureVal");
 
             foreach (DataRow mDr in SurgicalProcedureDataSetFull.Tables["SurgicalProcedure"].Rows)
             {
-                newDt.Rows.Add(new object[] { mDr["Description"] });
+                newDt.Rows.Add(new object[] { mDr["Description"], mDr["SurgicalProcedureVal"] });
             }
 
             comboBox_Surgical_Procedure.DataSource = newDt;
+        }
+
+        private void comboBox_Surgical_Procedure_TextChanged(object sender, EventArgs e)
+        {
+            if (m_isEntering)
+            {
+                m_isEntering = false;
+                string search = ((ComboBox)sender).Text.Trim();
+                /*if (string.IsNullOrEmpty(search))
+                {
+                    return;
+                }*/
+                //((ComboBox)sender).Items.Clear();
+
+                string sqlFull = string.Format("SELECT * FROM [SurgicalProcedure] WHERE SurgicalProcedureVal LIKE '{0}%' ORDER BY ID", search);
+                dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, SurgicalProcedureDataSetFull, "SurgicalProcedure");
+
+                DataTable newDt = new DataTable();
+                newDt.Columns.Add("Description");
+                newDt.Columns.Add("SurgicalProcedureVal");
+
+                foreach (DataRow mDr in SurgicalProcedureDataSetFull.Tables["SurgicalProcedure"].Rows)
+                {
+                    newDt.Rows.Add(new object[] { mDr["Description"], mDr["SurgicalProcedureVal"] });
+                }
+
+                ((ComboBox)sender).DataSource = newDt;
+
+                //((ComboBox)sender).DroppedDown = true;
+                //this.Cursor = Cursors.Arrow;
+                ((ComboBox)sender).Text = search;
+                ((ComboBox)sender).SelectionStart = search.Length;
+            }
+        }
+
+        private void comboBox_Surgical_Procedure_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            m_isEntering = true;
         }
     }
 }

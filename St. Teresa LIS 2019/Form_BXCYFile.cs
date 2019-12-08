@@ -412,14 +412,14 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_HKID.DataBindings.Add("Text", dt, "PAT_HKID", false);
-            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
             comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
@@ -446,12 +446,12 @@ namespace St.Teresa_LIS_2019
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
             textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
-            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
-            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
 
-            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
+            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
@@ -466,9 +466,9 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
-            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy HH:mm:ss");
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd HH:mm:ss");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy HH:mm:ss");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd HH:mm:ss");
 
             textBox_ER.DataBindings.Add(new Binding("Text", dt, "er"));
             textBox_EM.DataBindings.Add("Text", dt, "em", false);
@@ -618,7 +618,7 @@ namespace St.Teresa_LIS_2019
                     DateTime recordDate;
                     if(DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
                     {
-                        textBox_DOB.Text = recordDate.ToString("yyyy/MM/dd");
+                        textBox_DOB.Text = recordDate.ToString("yyyyMMdd");
                     }
                     textBox_Age.Text = reader.GetValue(5).ToString();
                     textBox_Sex.Text = reader.GetValue(6).ToString();
@@ -1441,7 +1441,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["patient"] = textBox_Patient.Text;
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
-            currentEditRow["pat_birth"] = DateTime.ParseExact(textBox_DOB.Text, "dd/MM/yyyy", null);
+            currentEditRow["pat_birth"] = DateTime.ParseExact(textBox_DOB.Text, "yyyyMMdd", null);
             currentEditRow["class"] = comboBox_Class.Text;
             currentEditRow["pat_age"] = textBox_Age.Text;
             currentEditRow["pat_sex"] = textBox_Sex.Text;
@@ -2241,7 +2241,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
-            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyyMMdd hh:mm:ss");
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);

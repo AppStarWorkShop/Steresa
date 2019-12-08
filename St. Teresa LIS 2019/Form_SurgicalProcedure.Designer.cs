@@ -43,10 +43,9 @@
             this.label_Surgical_Procedure.BackColor = System.Drawing.Color.Transparent;
             this.label_Surgical_Procedure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Surgical_Procedure.ForeColor = System.Drawing.Color.Black;
-            this.label_Surgical_Procedure.Location = new System.Drawing.Point(16, 8);
-            this.label_Surgical_Procedure.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Surgical_Procedure.Location = new System.Drawing.Point(12, 6);
             this.label_Surgical_Procedure.Name = "label_Surgical_Procedure";
-            this.label_Surgical_Procedure.Size = new System.Drawing.Size(202, 24);
+            this.label_Surgical_Procedure.Size = new System.Drawing.Size(162, 18);
             this.label_Surgical_Procedure.TabIndex = 183;
             this.label_Surgical_Procedure.Text = "Surgical Procedure :";
             // 
@@ -56,10 +55,9 @@
             this.button_F8_Back_To_Main.ForeColor = System.Drawing.Color.Black;
             this.button_F8_Back_To_Main.Image = ((System.Drawing.Image)(resources.GetObject("button_F8_Back_To_Main.Image")));
             this.button_F8_Back_To_Main.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_F8_Back_To_Main.Location = new System.Drawing.Point(293, 288);
-            this.button_F8_Back_To_Main.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F8_Back_To_Main.Location = new System.Drawing.Point(220, 230);
             this.button_F8_Back_To_Main.Name = "button_F8_Back_To_Main";
-            this.button_F8_Back_To_Main.Size = new System.Drawing.Size(179, 42);
+            this.button_F8_Back_To_Main.Size = new System.Drawing.Size(134, 34);
             this.button_F8_Back_To_Main.TabIndex = 185;
             this.button_F8_Back_To_Main.Text = "F8: Back To Main";
             this.button_F8_Back_To_Main.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -70,17 +68,16 @@
             // 
             this.textBox_Surgical_Procedure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Surgical_Procedure.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Surgical_Procedure.Location = new System.Drawing.Point(20, 32);
-            this.textBox_Surgical_Procedure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Surgical_Procedure.Location = new System.Drawing.Point(15, 26);
             this.textBox_Surgical_Procedure.Multiline = true;
             this.textBox_Surgical_Procedure.Name = "textBox_Surgical_Procedure";
             this.textBox_Surgical_Procedure.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Surgical_Procedure.Size = new System.Drawing.Size(741, 212);
+            this.textBox_Surgical_Procedure.Size = new System.Drawing.Size(557, 170);
             this.textBox_Surgical_Procedure.TabIndex = 240;
             // 
             // comboBox_Surgical_Procedure
             // 
-            this.comboBox_Surgical_Procedure.DisplayMember = "Description";
+            this.comboBox_Surgical_Procedure.DisplayMember = "SurgicalProcedureVal";
             this.comboBox_Surgical_Procedure.DropDownWidth = 300;
             this.comboBox_Surgical_Procedure.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Surgical_Procedure.ForeColor = System.Drawing.Color.Blue;
@@ -95,22 +92,22 @@
             "Colonoscopy and polypectomy.",
             "Colonoscopy, biopsy and polypectomy.",
             "Colonoscopy, biopsies and polypectomy."});
-            this.comboBox_Surgical_Procedure.Location = new System.Drawing.Point(75, 250);
-            this.comboBox_Surgical_Procedure.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Surgical_Procedure.Location = new System.Drawing.Point(56, 200);
             this.comboBox_Surgical_Procedure.Name = "comboBox_Surgical_Procedure";
-            this.comboBox_Surgical_Procedure.Size = new System.Drawing.Size(580, 30);
+            this.comboBox_Surgical_Procedure.Size = new System.Drawing.Size(436, 26);
             this.comboBox_Surgical_Procedure.TabIndex = 242;
             this.comboBox_Surgical_Procedure.ValueMember = "Description";
             this.comboBox_Surgical_Procedure.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Surgical_Procedure_SelectionChangeCommitted);
+            this.comboBox_Surgical_Procedure.TextChanged += new System.EventHandler(this.comboBox_Surgical_Procedure_TextChanged);
+            this.comboBox_Surgical_Procedure.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_Surgical_Procedure_PreviewKeyDown);
             // 
             // label_Add
             // 
             this.label_Add.AutoSize = true;
             this.label_Add.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_Add.Location = new System.Drawing.Point(12, 256);
-            this.label_Add.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_Add.Location = new System.Drawing.Point(9, 205);
             this.label_Add.Name = "label_Add";
-            this.label_Add.Size = new System.Drawing.Size(48, 20);
+            this.label_Add.Size = new System.Drawing.Size(41, 17);
             this.label_Add.TabIndex = 243;
             this.label_Add.Text = "Add :";
             // 
@@ -118,10 +115,9 @@
             // 
             this.button_Add_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Add_Edit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Add_Edit.Location = new System.Drawing.Point(664, 251);
-            this.button_Add_Edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Add_Edit.Location = new System.Drawing.Point(498, 201);
             this.button_Add_Edit.Name = "button_Add_Edit";
-            this.button_Add_Edit.Size = new System.Drawing.Size(95, 28);
+            this.button_Add_Edit.Size = new System.Drawing.Size(71, 22);
             this.button_Add_Edit.TabIndex = 244;
             this.button_Add_Edit.Text = "Edit";
             this.button_Add_Edit.UseVisualStyleBackColor = true;
@@ -129,10 +125,10 @@
             // 
             // Form_SurgicalProcedure
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(226)))), ((int)(((byte)(182)))));
-            this.ClientSize = new System.Drawing.Size(779, 338);
+            this.ClientSize = new System.Drawing.Size(584, 270);
             this.ControlBox = false;
             this.Controls.Add(this.button_Add_Edit);
             this.Controls.Add(this.label_Add);
@@ -140,7 +136,6 @@
             this.Controls.Add(this.textBox_Surgical_Procedure);
             this.Controls.Add(this.button_F8_Back_To_Main);
             this.Controls.Add(this.label_Surgical_Procedure);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form_SurgicalProcedure";
             this.ResumeLayout(false);
             this.PerformLayout();
