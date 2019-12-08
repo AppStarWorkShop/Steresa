@@ -1174,11 +1174,11 @@ namespace St.Teresa_LIS_2019
                             reloadAndBindingDBData(0, currentCaseNo);
                             button_End.PerformClick();
                             //reloadAndBindingDBData(currencyManager.Count - 1);
-                            MessageBox.Show("New ebv_specimen saved");
+                            MessageBox.Show("New case is saved");
                         }
                         else
                         {
-                            MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
+                            MessageBox.Show("Case saved fail, please contact Admin");
                         }
                         setButtonStatus(PageStatus.STATUS_VIEW);
                     }
@@ -1430,10 +1430,15 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             //currentEditRow["case_no"] = textBox_Case_No.Text;
             //currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
+            currentEditRow["date"] = DateTime.Now;
             currentEditRow["ethnic"] = comboBox_Ethnic.Text;
             currentEditRow["cyto_Type"] = comboBox_cytoType.Text;
+            // Update by Eric  2019-12-05
+            if (textBox_PatSeq.Text != "")
+            {
+                currentEditRow["pat_seq"] = Decimal.Parse(textBox_PatSeq.Text);
+            }
             currentEditRow["patient"] = textBox_Patient.Text;
-            currentEditRow["pat_seq"] = textBox_PatSeq.Text;
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
             currentEditRow["pat_birth"] = DateTime.ParseExact(textBox_DOB.Text, "dd/MM/yyyy", null);
@@ -1442,10 +1447,10 @@ namespace St.Teresa_LIS_2019
             currentEditRow["pat_sex"] = textBox_Sex.Text;
             currentEditRow["bed_room"] = textBox_Room.Text;
             currentEditRow["bed_no"] = textBox_Bed.Text;
-            currentEditRow["clinical_History"] = textBox_Patient_s_Clinical_History.Text;
+            //currentEditRow["clinical_History"] = textBox_Patient_s_Clinical_History.Text;
 
-            currentEditRow["surgical"] = textBox_Surgical.Text;
-            currentEditRow["nature"] = textBox_Nature.Text;
+            //currentEditRow["surgical"] = textBox_Surgical.Text;
+            //currentEditRow["nature"] = textBox_Nature.Text;
 
             currentEditRow["client"] = textBox_Client.Text;
             currentEditRow["institute"] = textBox_Institute.Text;
@@ -1455,43 +1460,43 @@ namespace St.Teresa_LIS_2019
             currentEditRow["doctor_ic"] = textBox_Doctor_I_C.Text;
             currentEditRow["doctor_id"] = textBox_Doctor_I_C_ID_1.Text;
 
-            currentEditRow["doctor_id2"] = textBox_Doctor_I_C_2.Text;
+            currentEditRow["doctor_ic2"] = textBox_Doctor_I_C_2.Text;
             currentEditRow["doctor_id2"] = textBox_Doctor_I_C_ID_2.Text;
 
-            currentEditRow["doctor_id3"] = textBox_Doctor_I_C_3.Text;
+            currentEditRow["doctor_ic3"] = textBox_Doctor_I_C_3.Text;
             currentEditRow["doctor_id3"] = textBox_Doctor_I_C_ID_3.Text;
 
             currentEditRow["inv_no"] = textBox_Involce_No.Text;
-            currentEditRow["receipt"] = textBox_Receipt.Text;
-            if (textBox_Invoice_Date.Text.Trim() != "") { 
-                currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
-            }
-            currentEditRow["inv_amt"] = textBox_Amount_HK.Text;
+            //currentEditRow["receipt"] = textBox_Receipt.Text;
+            //if (textBox_Invoice_Date.Text.Trim() != "") { 
+            //    currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
+            //}
+            //currentEditRow["inv_amt"] = textBox_Amount_HK.Text;
 
-            if (textBox_Paid_Date.Text.Trim() != "")
-            {
-                currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null);
-            }
+            //if (textBox_Paid_Date.Text.Trim() != "")
+            //{
+            //    currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null);
+            //}
 
             //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text; 
-            currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
-            currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
-            currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
+            //currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
+            //currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
+            //currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
             //currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
-            currentEditRow["snopcode_m"] = comboBox_Snop_M1.Text;
-            currentEditRow["snopcode_m2"] = comboBox_Snop_M2.Text;
-            currentEditRow["snopcode_m3"] = comboBox_Snop_M3.Text;
+            //currentEditRow["snopcode_m"] = comboBox_Snop_M1.Text;
+            //currentEditRow["snopcode_m2"] = comboBox_Snop_M2.Text;
+            //currentEditRow["snopcode_m3"] = comboBox_Snop_M3.Text;
             //currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
-            currentEditRow["histo"] = comboBox_HistoType.Text;
+            //currentEditRow["histo"] = comboBox_HistoType.Text;
 
             //currentEditRow["remark"] = textBox_Remarks.Text;
-            currentEditRow["initial"] = textBox_Cytology.Text;
+            //currentEditRow["initial"] = textBox_Cytology.Text;
 
             currentEditRow["er"] = textBox_ER.Text;
             currentEditRow["em"] = textBox_EM.Text;
             currentEditRow["sish"] = textBox_SISH.Text;
             currentEditRow["fz_section"] = checkBox_F_S.Checked;
-            currentEditRow["fz_detail"] = textBox_FZDetail.Text;
+            //currentEditRow["fz_detail"] = textBox_FZDetail.Text;
             currentEditRow["uploaded"] = checkBox_Uploaded.Checked;
             currentEditRow["supp"] = checkBox_Supp.Checked;
 

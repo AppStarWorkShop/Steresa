@@ -558,6 +558,7 @@
       <DependentUpon>Form_UserFileSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="HisHistoReport.cs" />
+    <Compile Include="HisOperator.cs" />
     <Compile Include="HisPatient.cs" />
     <Compile Include="medlabDataSet.cs">
       <DependentUpon>medlabDataSet.xsd</DependentUpon>

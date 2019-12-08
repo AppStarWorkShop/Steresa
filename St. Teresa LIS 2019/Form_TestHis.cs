@@ -27,12 +27,38 @@ namespace St.Teresa_LIS_2019
         {
             string r = "";
             
-            r = row["site"].ToString() + ", " + row["operation"].ToString() + Environment.NewLine
-                            + row["diagnosis"].ToString() + Environment.NewLine
-                            + row["siteChi"].ToString() + ", " + row["operationChi"].ToString() + Environment.NewLine
-                            + row["diagnosisChi"].ToString();
+            r = row["seq"].ToString().Trim() + " " + row["site"].ToString().Trim() + ", " + row["operation"].ToString().Trim() + Environment.NewLine
+                            + row["diagnosis"].ToString().Trim() + Environment.NewLine
+                            + row["siteChi"].ToString().Trim() + ", " + row["operationChi"].ToString().Trim() + Environment.NewLine
+                            + "- " + row["diagnosisChi"].ToString().Trim();
 
             return r;
+        }
+
+        private void writeStringToXml(XmlWriter xmlWriter, String strIn, int maxLen)
+        {
+            if (strIn == null )
+            {
+                xmlWriter.WriteString("");
+            } else
+            {
+                if (strIn.Trim() == "")
+                {
+                    xmlWriter.WriteString("");
+                }
+                else
+                {
+                    String i = strIn.Trim();
+                    if (i.Length > maxLen)
+                    {
+                        xmlWriter.WriteString(strIn.Trim().Substring(0, maxLen - 1));
+                    } else
+                    {
+                        xmlWriter.WriteString(strIn.Trim());
+                    }
+                    
+                }
+            }
         }
 
         private String generateReportXml(HisHistoReport r)
@@ -64,94 +90,101 @@ namespace St.Teresa_LIS_2019
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Report_DT");
-            xmlWriter.WriteString(r.reportDateTime.ToString());
+            xmlWriter.WriteString(r.reportDateTime.ToString("d/M/yyyy"));
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Order_Doctor_Code");
-            xmlWriter.WriteString(r.orderDoctorCode);
+            writeStringToXml(xmlWriter, r.orderDoctorCode, 5);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Order_Doctor_Name");
-            xmlWriter.WriteString(r.orderDoctorName);
+            writeStringToXml(xmlWriter, r.orderDoctorName, 60);
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Copy1_Doctor_Code");
-            xmlWriter.WriteString(r.copy1DoctorCode);
+            writeStringToXml(xmlWriter, r.copy1DoctorCode, 5);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Copy1_Doctor_Name");
-            xmlWriter.WriteString(r.copy1DoctorName);
+            writeStringToXml(xmlWriter, r.copy1DoctorName, 60);
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Copy2_Doctor_Code");
-            xmlWriter.WriteString(r.copy2DoctorCode);
+            writeStringToXml(xmlWriter, r.copy2DoctorCode, 5);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Copy2_Doctor_Name");
-            xmlWriter.WriteString(r.copy2DoctorName);
-            xmlWriter.WriteEndElement();
-
-            xmlWriter.WriteStartElement("Copy2_Doctor_Code");
-            xmlWriter.WriteString(r.copy2DoctorCode);
-            xmlWriter.WriteEndElement();
-            xmlWriter.WriteStartElement("Copy2_Doctor_Name");
-            xmlWriter.WriteString(r.copy2DoctorName);
+            writeStringToXml(xmlWriter, r.copy2DoctorName, 60);
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Copy3_Doctor_Code");
-            xmlWriter.WriteString(r.copy3DoctorCode);
+            writeStringToXml(xmlWriter, r.copy3DoctorCode, 5);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Copy3_Doctor_Name");
-            xmlWriter.WriteString(r.copy3DoctorName);
+            writeStringToXml(xmlWriter, r.copy3DoctorName, 60);
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Copy4_Doctor_Code");
-            xmlWriter.WriteString(r.copy4DoctorCode);
+            writeStringToXml(xmlWriter, r.copy4DoctorCode, 5);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Copy4_Doctor_Name");
-            xmlWriter.WriteString(r.copy4DoctorName);
+            writeStringToXml(xmlWriter, r.copy4DoctorName, 60);
+            xmlWriter.WriteEndElement();
+
+            xmlWriter.WriteStartElement("Copy5_Doctor_Code");
+            writeStringToXml(xmlWriter, r.copy5DoctorCode, 5);
+            xmlWriter.WriteEndElement();
+            xmlWriter.WriteStartElement("Copy5_Doctor_Name");
+            writeStringToXml(xmlWriter, r.copy5DoctorName, 60);
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Approved_Doctor_Name");
-            xmlWriter.WriteString(r.approvedDoctorName);
+            writeStringToXml(xmlWriter, r.approvedDoctorName, 60);
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("Clinical_History");
-            xmlWriter.WriteString(r.clinicalHistory);
+            writeStringToXml(xmlWriter, r.clinicalHistory, 300);
             xmlWriter.WriteEndElement();
 
 
             xmlWriter.WriteStartElement("Diagnosis1");
-            xmlWriter.WriteString(r.diagnosis1);
+            writeStringToXml(xmlWriter, r.diagnosis1, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis2");
-            xmlWriter.WriteString(r.diagnosis2);
+            writeStringToXml(xmlWriter, r.diagnosis2, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis3");
-            xmlWriter.WriteString(r.diagnosis3);
+            writeStringToXml(xmlWriter, r.diagnosis3, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis4");
-            xmlWriter.WriteString(r.diagnosis4);
+            writeStringToXml(xmlWriter, r.diagnosis4, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis5");
-            xmlWriter.WriteString(r.diagnosis5);
+            writeStringToXml(xmlWriter, r.diagnosis5, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis6");
-            xmlWriter.WriteString(r.diagnosis6);
+            writeStringToXml(xmlWriter, r.diagnosis6, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis7");
-            xmlWriter.WriteString(r.diagnosis7);
+            writeStringToXml(xmlWriter, r.diagnosis7, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis8");
-            xmlWriter.WriteString(r.diagnosis8);
+            writeStringToXml(xmlWriter, r.diagnosis8, 800);
             xmlWriter.WriteEndElement();
             xmlWriter.WriteStartElement("Diagnosis9");
-            xmlWriter.WriteString(r.diagnosis9);
+            writeStringToXml(xmlWriter, r.diagnosis9, 800);
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("File_Name");
-            xmlWriter.WriteString(r.visitNo + r.pathNo + r.versionNo.ToString());
+            xmlWriter.WriteString(r.visitNo + r.caseNo + r.versionNo.ToString() + ".pdf");
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteStartElement("File_Content");
-            xmlWriter.WriteString("ABCDEF");
+            if (r.fileContent == null || r.fileContent == "")
+            {
+                xmlWriter.WriteString("");
+            } else
+            {
+                xmlWriter.WriteString(r.fileContent);
+            }
+            xmlWriter.WriteString("");
             xmlWriter.WriteEndElement();
 
             xmlWriter.WriteEndElement(); //Record
@@ -163,18 +196,17 @@ namespace St.Teresa_LIS_2019
             return stringWriter.ToString();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private HisHistoReport generateHisHistoReport(String case_no, String reportNo, String pdfReportFile)
         {
-            textBox_output.Text = "";
-
             string sqlCon = Properties.Settings.Default.medlabConnectionString;
             DataSet userDataSet = new DataSet();
             string tableName = "v_hisReportContent";
-            string sql = string.Format("select * FROM v_hisReportContent where case_no='" + textBox_caseNo.Text.Trim().ToUpper() + "' AND versionNo = '" + textBox_reportNo.Text + "'");
+            string sql = string.Format("select * FROM v_hisReportContent where case_no='" + case_no + "' AND versionNo = '" + reportNo + "'");
             DBConn.fetchDataIntoDataSetSelectOnly(sql, userDataSet, tableName);
+
+            HisHistoReport r = new HisHistoReport();
             if (userDataSet.Tables[tableName].Rows.Count > 0)
             {
-                HisHistoReport r = new HisHistoReport();
                 Boolean notFillinFirstPart = true;
                 int diagNo = 1;
                 foreach (DataRow row in userDataSet.Tables[tableName].Rows)
@@ -182,25 +214,38 @@ namespace St.Teresa_LIS_2019
                     if (notFillinFirstPart)
                     {
                         r.caseNo = row["case_no"].ToString();
-                        r.pathNo = row["pathNo"].ToString();
+                        if ("" == textBox_reportNo.Text || "1" == textBox_reportNo.Text)
+                        {
+                            r.pathNo = row["case_no"].ToString();
+                        }
+                        else
+                        {
+                            r.pathNo = row["case_no"].ToString() + "-" + textBox_reportNo.Text;
+                        }
+
                         r.visitNo = row["visitNo"].ToString();
                         r.versionNo = int.Parse(row["versionNo"].ToString());
                         r.reportDateTime = DateTime.Parse(row["reportDateTime"].ToString());
                         if (row["orderDoctorCode"] != null)
                         {
                             r.orderDoctorCode = row["orderDoctorCode"].ToString();
-                        } 
+                        }
                         r.orderDoctorName = row["orderDoctorName"].ToString();
                         //r.copy1DoctorCode = row["copy1DoctorCode"].ToString();
                         r.approvedDoctorName = row["approvedDoctorName"].ToString();
                         r.clinicalHistory = row["clinicalHistory"].ToString();
+
+                        Byte[] b = File.ReadAllBytes(pdfReportFile);
+                        r.fileContent = Convert.ToBase64String(b);
+
                         notFillinFirstPart = true;
                     }
 
-                    if (diagNo ==1 )
+                    if (diagNo == 1)
                     {
                         r.diagnosis1 = generateDiagnosis(row);
-                    } else if (diagNo == 2)
+                    }
+                    else if (diagNo == 2)
                     {
                         r.diagnosis2 = generateDiagnosis(row);
                     }
@@ -236,9 +281,40 @@ namespace St.Teresa_LIS_2019
                     diagNo++;
                 }
 
-                textBox_output.Text = this.generateReportXml(r);
+                
             }
 
+            return r;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            textBox_output.Text = "";
+
+            HisHistoReport r = this.generateHisHistoReport(textBox_caseNo.Text.Trim().ToUpper(), textBox_reportNo.Text, textBox_reportFilePath.Text);
+
+            String xml = this.generateReportXml(r);
+            textBox_output.Text = xml.Substring(0, 2000) + Environment.NewLine
+                + "..." + Environment.NewLine
+                + "..." + Environment.NewLine
+                + "..." + Environment.NewLine
+                + xml.Substring(xml.Length - 100, 100);
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox_output.Text = "";
+            String caseNo = textBox_caseNo.Text.Trim().ToUpper();
+            String reportNo = textBox_reportNo.Text;
+
+            HisHistoReport r = this.generateHisHistoReport(caseNo, reportNo, textBox_reportFilePath.Text);
+
+            String xml = this.generateReportXml(r);
+
+            HisOperator hisOperator = new HisOperator();
+            textBox_output.Text = hisOperator.sentReportToHis(caseNo, reportNo, xml, "sys");
+            
         }
     }
 }

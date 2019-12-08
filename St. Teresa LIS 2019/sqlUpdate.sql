@@ -896,6 +896,471 @@ select dbo.reportCaseNo(s.case_no), Rtrim(s.patient) as patient, Rtrim(s.cname) 
 , u.INITIAL
 from BXCY_SPECIMEN s left join [user] u on (s.update_by = u.[USER_ID])
 
+-------------------------------------------------------------
+-- 2019-12-05
+-------------------------------------------------------------
+DROP FUNCTION [dbo].[fn_recordStatus]
+
+create function [dbo].[fn_recordStatus](@case_no nvarchar(15))
+returns nvarchar(10)
+as begin
+	DECLARE @bCount int;
+	declare @cCount int;
+	declare @gCount int;
+	declare @rStatus nvarchar(10);
+	
+	select @bCount = COUNT(1) from
+	BXCY_SPECIMEN 
+	where pat_hkid in (
+		select s.pat_hkid
+		from BXCY_SPECIMEN s where s.case_no = @case_no
+	)
+	and case_no <> @case_no
+	AND case_no like 'BX%'
+	;
+	
+	select @cCount = COUNT(1) from
+	BXCY_SPECIMEN 
+	where pat_hkid in (
+		select s.pat_hkid
+		from BXCY_SPECIMEN s where s.case_no = @case_no
+	)
+	and case_no <> @case_no
+	AND case_no like 'CY%' AND case_no not like '%G'
+	
+	select @gCount= COUNT(1) from
+	BXCY_SPECIMEN 
+	where pat_hkid in (
+		select s.pat_hkid
+		from BXCY_SPECIMEN s where s.case_no = @case_no
+	)
+	and case_no <> @case_no
+	AND case_no like 'CY%G'
+	
+	IF @bCount > 0 
+	begin 
+		SET @rStatus = 'B '
+	End
+	
+	IF @cCount > 0
+	begin
+		SET @rStatus = @rStatus + 'C '
+	end
+	
+	IF @gCount > 0
+	begin
+		SET @rStatus = @rStatus + 'G '
+	end 
+	
+	return Rtrim(@rStatus);
+end
+;
+
+GO
+
+DROP FUNCTION [dbo].[reportAge]
+GO
+
+create function [dbo].[reportAge](
+	@age decimal(5, 2)
+)
+returns varchar(10)
+AS
+BEGIN
+	return cast( cast((@age) as integer)  as varchar) + 'Yr' + cast( cast((@age % 1) * 12 as integer)  as varchar) + 'M'
+END;
+GO
+
+DROP FUNCTION [dbo].[reportCaseNo]
+GO
+
+
+create function [dbo].[reportCaseNo](
+	@caseNo nvarchar(15)
+)
+returns nvarchar(15)
+AS
+Begin
+	return replace(replace(@caseNo, 'BX', 'B'), 'CY', '');
+	
+END;
+GO
+
+/****** Object:  StoredProcedure [dbo].[getBXCYSpecimentByPage]    Script Date: 12/05/2019 09:52:43 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[getBXCYSpecimentByPage]') AND type in (N'P', N'PC'))
+DROP PROCEDURE [dbo].[getBXCYSpecimentByPage]
+GO
+
+
+CREATE PROCEDURE [dbo].[getBXCYSpecimentByPage]
+	-- Add the parameters for the stored procedure here
+	@pageCount int = 30,
+	@pageNum int = 1,
+	@whereStr nvarchar(100) = '',
+	@whereVal nvarchar(100) = '',
+	@snopCode nvarchar(100) ='',
+	@dateMode int = 1,
+	@dateFrom nvarchar(10)='',
+	@dateTo nvarchar(10)=''
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @pageSum INT=0
+	DECLARE @sqlQuery NVARCHAR(max)=''
+	DECLARE @sqlQueryCount NVARCHAR(max)=''
+	DECLARE @dateQuery NVARCHAR(max)=''
+	DECLARE @orderBy NVARCHAR(100)=''
+
+	IF @pageCount IS NULL
+	BEGIN
+		SET @pageCount = 30
+	END
+
+	IF @pageNum IS NULL OR @pageNum < 1
+	BEGIN
+		SET @pageNum = 1
+	END
+
+	IF @whereStr IS NULL
+	BEGIN
+		SET @whereStr=''
+	END
+
+	IF @whereVal IS NULL
+	BEGIN
+		SET @whereVal=''
+	END
+
+	IF @snopCode IS NULL
+	BEGIN
+		SET @snopCode=''
+	END
+
+	IF @dateMode IS NULL OR @dateMode < 1 OR @dateMode > 5
+	BEGIN
+		SET @dateMode = 1
+	END
+
+	IF @dateMode = 1
+	BEGIN
+		SET @dateQuery=''
+	END
+	ELSE
+	BEGIN
+		IF @dateMode = 2
+		BEGIN
+			SET @dateQuery=' AND date >= CAST(DATEADD(dd,-7,getDate()) AS date) '
+		END
+		ELSE
+		BEGIN
+			IF @dateMode = 3
+			BEGIN
+				SET @dateQuery=' AND date >= CAST(DATEADD(dd,-14,getDate()) AS date) '
+			END
+			ELSE
+			BEGIN
+				IF @dateMode = 4
+				BEGIN
+					SET @dateQuery=' AND date >= CAST(DATEADD(dd,-28,getDate()) AS date) '
+				END
+				ELSE
+				BEGIN
+					SET @dateQuery=' AND date >= CAST(@dateFrom AS date) AND date <= CAST(@dateTo AS date) '
+				END
+			END
+		END
+	END
+
+	IF @dateFrom IS NULL
+	BEGIN
+		SET @dateFrom=''
+	END
+
+	IF @dateTo IS NULL
+	BEGIN
+		SET @dateTo=''
+	END	
+
+	IF @whereStr <> '' AND @whereVal <> ''
+	BEGIN
+		set @orderBy = ' case_no'
+		if @whereStr <> ''
+			BEGIN
+				if 'PATIENT' = UPPER(@whereStr) 
+					BEGIN
+						set @orderBy = ' patient, case_no'
+					END
+			END
+		
+		if 'DOCTOR_ID' = UPPER(@whereStr)
+		begin
+			SET @sqlQuery = 
+			'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID FROM BXCY_SPECIMEN
+			WHERE id >
+			(
+			 SELECT ISNULL(MAX(id),0)
+			 FROM 
+			  (
+				SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE (doctor_ic like ''' + @whereVal + '%'' or doctor_ic2 like ''' + @whereVal + '%'' or doctor_ic3 like''' + @whereVal + '%'' ) ' + @dateQuery +' ORDER BY ' + @orderBy + '
+			  ) A
+			)
+			AND (doctor_ic LIKE ''' + @whereVal + '%'' or doctor_ic2 like ''' + @whereVal + '%'' or doctor_ic3 like''' + @whereVal + '%'' ) '+ @dateQuery+ 'ORDER BY ' + @orderBy
+			SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE (doctor_ic LIKE ''' + @whereVal + '%'' or doctor_ic2 like ''' + @whereVal + '%'' or doctor_ic3 like''' + @whereVal + '%'') ' + @dateQuery
+		end
+		ELSE
+		begin 
+			SET @sqlQuery = 
+			'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID FROM BXCY_SPECIMEN
+			WHERE id >
+			(
+			 SELECT ISNULL(MAX(id),0)
+			 FROM 
+			  (
+				SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery +' ORDER BY ' + @orderBy + '
+			  ) A
+			)
+			AND ' + @whereStr + ' LIKE ''' + @whereVal + '%'''+ @dateQuery+ 'ORDER BY ' + @orderBy
+			SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery
+		END
+		
+
+	END
+	ELSE
+	BEGIN
+		SET @sqlQuery = 
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID FROM BXCY_SPECIMEN
+		WHERE id >
+		(
+		 SELECT ISNULL(MAX(id),0)
+		 FROM 
+		  (
+			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery + ' ORDER BY case_no
+		  ) A
+		)
+		AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery +
+		' ORDER BY case_no'
+		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery
+	END
+
+	PRINT @sqlQuery
+	PRINT @sqlQueryCount
+	EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo
+	EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@snopCode,@dateFrom,@dateTo
+
+	--SET @recordCount = @pageSum
+	RETURN @pageSum
+END
+
+GO
+
+CREATE INDEX idx_bxcy_diag_caseNo ON [BXCY_DIAG] ([case_no])
+CREATE INDEX idx_bxcy_specimen_case_no ON [BXCY_SPECIMEN] ([case_no])
+CREATE INDEX idx_bxcy_specimen_patient ON [BXCY_SPECIMEN] ([patient])
+CREATE INDEX idx_bxcy_specimen_date ON [BXCY_SPECIMEN] ([date])
+CREATE INDEX idx_bxcy_specimen_doctor ON [BXCY_SPECIMEN] ([doctor_ic])
+CREATE INDEX idx_bxcy_specimen_hkid ON [BXCY_SPECIMEN] ([pat_hkid])
+CREATE INDEX idx_bxcy_specimen_client ON [BXCY_SPECIMEN] ([client])
+CREATE INDEX idx_bxcy_specimen_snop_t1 ON [BXCY_SPECIMEN] ([snopcode_t])
+CREATE INDEX idx_bxcy_specimen_snop_t2 ON [BXCY_SPECIMEN] ([snopcode_t2])
+CREATE INDEX idx_bxcy_specimen_snop_t3 ON [BXCY_SPECIMEN] ([snopcode_t3])
+CREATE INDEX idx_bxcy_specimen_caseno_id ON [BXCY_SPECIMEN] ([case_no], [id])
+CREATE INDEX idx_bxcy_specimen_id ON [BXCY_SPECIMEN] ([id])
+CREATE INDEX idx_bxcy_specimen_lab_ref ON [BXCY_SPECIMEN] ([lab_ref])
+CREATE INDEX idx_bxcy_specimen_doctor_2 ON [BXCY_SPECIMEN] ([Doctor_ic2])
+CREATE INDEX idx_bxcy_specimen_doctor_3 ON [BXCY_SPECIMEN] ([Doctor_ic3])
+
+create view [dbo].[v_hisReportContent] (case_no, pathNo, visitNo, versionNo
+,reportDateTime, orderDoctorCode,orderDoctorName
+, copy1DoctorCode, copy1DoctorName
+, copy2DoctorCode, copy2DoctorName
+, copy3DoctorCode, copy3DoctorName
+, copy4DoctorCode, copy4DoctorName
+, copy5DoctorCode, copy5DoctorName
+, approvedDoctorName, clinicalHistory
+, [site], [operation]
+, diagnosis
+, siteChi, operationChi
+, diagnosisChi )
+as 
+select s.case_no, dbo.reportCaseNo(s.case_no) as pathNo, s.lab_ref as visitNo, d.[group] as versionNo
+, s.[date] as reportDateTime
+, s.doctor_id as orderDoctorCode, s.doctor_ic as orderDoctorName
+, s.Doctor_id2 as copy1DoctorCode, s.Doctor_ic2 as copy1DoctorName
+, s.Doctor_id3 as copy2DoctorCode, s.Doctor_ic3 as copy2DoctorName
+, '' as copy3DoctorCode, '' as copy3DoctorName
+, '' as copy4DoctorCode, '' as copy4DoctorName
+, '' as copy5DoctorCode, '' as copy5DoctorName
+, s.sign_dr as approvedDoctorName
+, s.pat_hist as clinicalHistory
+, d.[site] as [site], d.operation as [operation]
+, d.diagnosis
+, d.[site2] as 'siteChi', d.operation2 as 'operationChi'
+, d.diag_desc1 as 'diagnosisChi'
+from BXCY_SPECIMEN s inner join BXCY_DIAG d on (s.case_no = d.case_no)
+GO
+/****** Object:  View [dbo].[View_bxcy_spe_diag]    Script Date: 12/05/2019 09:56:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[View_bxcy_spe_diag]
+AS
+SELECT        dbo.BXCY_DIAG.case_no AS Expr1, dbo.BXCY_DIAG.barcode, dbo.BXCY_SPECIMEN.ver, dbo.BXCY_SPECIMEN.date, dbo.BXCY_SPECIMEN.client, 
+                         dbo.BXCY_SPECIMEN.sign_dr2, dbo.BXCY_SPECIMEN.sign_dr, dbo.BXCY_SPECIMEN.rpt_date, dbo.BXCY_SPECIMEN.patient, dbo.BXCY_SPECIMEN.cname, 
+                         dbo.BXCY_DIAG.site2, dbo.BXCY_DIAG.site, dbo.BXCY_DIAG.ver AS Expr2, dbo.BXCY_DIAG.[group], dbo.BXCY_DIAG.seq, dbo.BXCY_DIAG.operation, 
+                         dbo.BXCY_DIAG.operation2, dbo.BXCY_DIAG.diag_desc1, dbo.BXCY_DIAG.diag_desc2, dbo.BXCY_DIAG.macro_name, dbo.BXCY_DIAG.macro_pic1, 
+                         dbo.BXCY_DIAG.macro_cap1, dbo.BXCY_DIAG.macro_pic2, dbo.BXCY_DIAG.macro_cap2
+FROM            dbo.BXCY_DIAG INNER JOIN
+                         dbo.BXCY_SPECIMEN ON dbo.BXCY_DIAG.case_no = dbo.BXCY_SPECIMEN.case_no
+WHERE        (dbo.BXCY_SPECIMEN.rpt_date > CONVERT(DATETIME, '2018-10-01 00:00:00', 102))
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[40] 4[20] 2[20] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "BXCY_DIAG"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 263
+               Right = 212
+            End
+            DisplayFlags = 280
+            TopColumn = 7
+         End
+         Begin Table = "BXCY_SPECIMEN"
+            Begin Extent = 
+               Top = 5
+               Left = 277
+               Bottom = 271
+               Right = 433
+            End
+            DisplayFlags = 280
+            TopColumn = 2
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 9
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1200
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_bxcy_spe_diag'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=1 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'View_bxcy_spe_diag'
+GO
+/****** Object:  View [dbo].[v_reportHeader]    Script Date: 12/05/2019 09:56:50 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+create view [dbo].[v_reportHeader] (case_no, patient, cname, pat_hkid, org_case_no, record_status, pat_age_str, hkas, report_number, lastUpdateInitial) as
+select dbo.reportCaseNo(s.case_no), Rtrim(s.patient) as patient, Rtrim(s.cname) as cname, Rtrim(s.pat_hkid) as pat_hkid, s.case_no as org_case_no
+, dbo.fn_recordStatus(s.case_no) as record_status, dbo.reportAge(s.pat_age) as pat_age_str, '1' as hkas, '1' as report_number 
+, u.INITIAL
+from BXCY_SPECIMEN s left join [user] u on (s.update_by = u.[USER_ID])
+GO
+
 
 CREATE TABLE cy_result_temp (
    CODE nvarchar(5), 

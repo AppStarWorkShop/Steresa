@@ -782,25 +782,12 @@
           </Border>
         </Style>
       </Subreport>
-      <Subreport Name="SubreportImages">
-        <ReportName>BodyEnImage</ReportName>
-        <Top>7.44928cm</Top>
-        <Left>0.2cm</Left>
-        <Height>2.89041cm</Height>
-        <Width>20.5cm</Width>
-        <ZIndex>6</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-        </Style>
-      </Subreport>
       <Line Name="Line1">
         <Top>0.4cm</Top>
         <Left>0.6cm</Left>
         <Height>0cm</Height>
         <Width>19.86006cm</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Color>LightGrey</Color>
@@ -810,7 +797,7 @@
         </Style>
       </Line>
     </ReportItems>
-    <Height>10.37497cm</Height>
+    <Height>7.4381cm</Height>
     <Style />
   </Body>
   <Width>20.92853cm</Width>
