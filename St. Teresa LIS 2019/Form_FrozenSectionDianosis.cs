@@ -27,6 +27,8 @@ namespace St.Teresa_LIS_2019
         public delegate void valueUpdated(string val);
         public valueUpdated OnValueUpdated;
 
+        private bool m_isEntering = false;
+
         public class frozen_section
         {
             public int id { get; set; }
@@ -487,6 +489,36 @@ namespace St.Teresa_LIS_2019
             {
                 comboBox_FZ_Detail.SelectedValue = nameStr.Trim();
             }
+        }
+
+        private void comboBox_FZ_Detail_TextChanged(object sender, EventArgs e)
+        {
+            if (m_isEntering)
+            {
+                m_isEntering = false;
+                string search = ((ComboBox)sender).Text.Trim();
+
+                string sqlFull = string.Format("SELECT * FROM [frozen_section] WHERE FZ_DETAIL LIKE '{0}%' ORDER BY ID", search);
+                dataAdapterFull = DBConn.fetchDataIntoDataSet(sqlFull, frozen_sectionDataSetFull, "frozen_section");
+
+                DataTable newDt = new DataTable();
+                newDt.Columns.Add("FZ_DETAIL");
+
+                foreach (DataRow mDr in frozen_sectionDataSetFull.Tables["frozen_section"].Rows)
+                {
+                    newDt.Rows.Add(new object[] { mDr["FZ_DETAIL"] });
+                }
+
+                ((ComboBox)sender).DataSource = newDt;
+
+                ((ComboBox)sender).Text = search;
+                ((ComboBox)sender).SelectionStart = search.Length;
+            }
+        }
+
+        private void comboBox_FZ_Detail_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            m_isEntering = true;
         }
     }
 }

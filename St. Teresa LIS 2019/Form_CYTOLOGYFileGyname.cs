@@ -314,24 +314,27 @@ namespace St.Teresa_LIS_2019
                 {
                     if (!checkDuplicateHKID())
                     {
-                        currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
-                        currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
-                        currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
-                        textBox_ID.BindingContext[dt].Position++;
+                        if (!checkDuplicateCaseNo())
+                        {
+                            currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
+                            currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
+                            currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                            textBox_ID.BindingContext[dt].Position++;
 
-                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
-                        {
-                            //reloadDBData(currencyManager.Count - 1);
-                            reloadAndBindingDBData();
-                            button_End.PerformClick();
-                            //reloadAndBindingDBData(currencyManager.Count - 1);
-                            MessageBox.Show("New ebv_specimen saved");
+                            if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                            {
+                                //reloadDBData(currencyManager.Count - 1);
+                                reloadAndBindingDBData();
+                                button_End.PerformClick();
+                                //reloadAndBindingDBData(currencyManager.Count - 1);
+                                MessageBox.Show("New ebv_specimen saved");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
+                            }
+                            setButtonStatus(PageStatus.STATUS_VIEW);
                         }
-                        else
-                        {
-                            MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
-                        }
-                        setButtonStatus(PageStatus.STATUS_VIEW);
                     }
                 }
                 //reloadAndBindingDBData(currencyManager.Count - 1);
@@ -362,6 +365,24 @@ namespace St.Teresa_LIS_2019
                     reloadAndBindingDBData();
                 }
             }
+        }
+
+        public bool checkDuplicateCaseNo()
+        {
+            bool result = false;
+
+            DataSet checkBxcy_specimenDataSet = new DataSet();
+            SqlDataAdapter checkdataAdapter;
+            string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE case_no = '{0}'", textBox_Case_No.Text.Trim());
+            checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
+
+            if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+            {
+                result = true;
+                MessageBox.Show("Duplicate case no., unable to save");
+            }
+
+            return result;
         }
 
         public void processEdit()
@@ -931,14 +952,14 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_HKID.DataBindings.Add("Text", dt, "PAT_HKID", false);
-            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             //comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
@@ -965,10 +986,10 @@ namespace St.Teresa_LIS_2019
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
             //textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
-            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
-            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
 
             textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
@@ -985,9 +1006,9 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
-            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
 
             label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
@@ -1579,7 +1600,7 @@ namespace St.Teresa_LIS_2019
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
-            textBox_Rpt_Date.ScrollToCaret();
+            //textBox_Rpt_Date.ScrollToCaret();
         }
 
         private void button_Sign_By_Dr_1_Click(object sender, EventArgs e)

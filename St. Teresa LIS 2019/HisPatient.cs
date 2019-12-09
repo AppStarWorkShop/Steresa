@@ -49,8 +49,16 @@ namespace St.Teresa_LIS_2019
                 return Double.NaN;
             }
 
-            DateTime dob = DateTime.ParseExact(pvDob, "yyyyMMdd", null);
-            if (dob == null)
+            DateTime dob = DateTime.MinValue;
+            try
+            {
+                DateTime.ParseExact(pvDob, "yyyyMMdd", null);
+            }catch(Exception ex)
+            {
+
+            }
+
+            if (dob == DateTime.MinValue)
             {
                 return Double.NaN;
             }

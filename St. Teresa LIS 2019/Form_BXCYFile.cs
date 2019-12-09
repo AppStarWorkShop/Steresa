@@ -411,15 +411,15 @@ namespace St.Teresa_LIS_2019
             comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
-            textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
+            textBox_Case_No.DataBindings.Add("Text", dt, "case_no", false);
+            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_HKID.DataBindings.Add("Text", dt, "PAT_HKID", false);
-            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
+            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
@@ -446,12 +446,12 @@ namespace St.Teresa_LIS_2019
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
             textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
-            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
+            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
-            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
+            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
 
-            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd");
+            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
@@ -466,9 +466,9 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
-            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd HH:mm:ss");
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy HH:mm:ss");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "yyyyMMdd HH:mm:ss");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy HH:mm:ss");
 
             textBox_ER.DataBindings.Add(new Binding("Text", dt, "er"));
             textBox_EM.DataBindings.Add("Text", dt, "em", false);
@@ -618,7 +618,7 @@ namespace St.Teresa_LIS_2019
                     DateTime recordDate;
                     if(DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
                     {
-                        textBox_DOB.Text = recordDate.ToString("yyyyMMdd");
+                        textBox_DOB.Text = recordDate.ToString("ddMMyyyy");
                     }
                     textBox_Age.Text = reader.GetValue(5).ToString();
                     textBox_Sex.Text = reader.GetValue(6).ToString();
@@ -1128,9 +1128,27 @@ namespace St.Teresa_LIS_2019
                 if(checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
                 {
                     result = true;
+                    MessageBox.Show("Duplicate Patient's name and HKID, unable to save");
                 }
+                
+            }
 
-                MessageBox.Show("Duplicate Patient's name and HKID, unable to save");
+            return result;
+        }
+
+        public bool checkDuplicateCaseNo()
+        {
+            bool result = false;
+
+            DataSet checkBxcy_specimenDataSet = new DataSet();
+            SqlDataAdapter checkdataAdapter;
+            string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE case_no = '{0}'", textBox_Case_No.Text.Trim());
+            checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
+
+            if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+            {
+                result = true;
+                MessageBox.Show("Duplicate case no., unable to save");
             }
 
             return result;
@@ -1156,31 +1174,30 @@ namespace St.Teresa_LIS_2019
                 {
                     if (!checkDuplicateHKID())
                     {
-                        string currentCaseNo = textBox_Case_No.Text.Trim();
-                        currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
-                        currentEditRow["ISSUE_AT"] = DateTime.Now.ToString("");
-                        currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
-                        currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
-
-                        /*currentEditRow["er"] = textBox_ER.Text.Trim();
-                        currentEditRow["em"] = textBox_EM.Text.Trim();
-                        currentEditRow["sish"] = textBox_SISH.Text.Trim();*/
-
-                        textBox_ID.BindingContext[dt].Position++;
-
-                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                        if (!checkDuplicateCaseNo())
                         {
-                            //reloadDBData(currencyManager.Count - 1);
-                            reloadAndBindingDBData(0, currentCaseNo);
-                            button_End.PerformClick();
-                            //reloadAndBindingDBData(currencyManager.Count - 1);
-                            MessageBox.Show("New case is saved");
+                            string currentCaseNo = textBox_Case_No.Text.Trim();
+                            currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
+                            currentEditRow["ISSUE_AT"] = DateTime.Now.ToString("");
+                            currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
+                            currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+
+                            textBox_ID.BindingContext[dt].Position++;
+
+                            if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                            {
+                                //reloadDBData(currencyManager.Count - 1);
+                                reloadAndBindingDBData(0, currentCaseNo);
+                                button_End.PerformClick();
+                                //reloadAndBindingDBData(currencyManager.Count - 1);
+                                MessageBox.Show("New case is saved");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Case saved fail, please contact Admin");
+                            }
+                            setButtonStatus(PageStatus.STATUS_VIEW);
                         }
-                        else
-                        {
-                            MessageBox.Show("Case saved fail, please contact Admin");
-                        }
-                        setButtonStatus(PageStatus.STATUS_VIEW);
                     }
                 }
                 //reloadAndBindingDBData(currencyManager.Count - 1);
@@ -1197,9 +1214,6 @@ namespace St.Teresa_LIS_2019
                         drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
 
-                        /*drow["er"] = textBox_ER.Text.Trim();
-                        drow["em"] = textBox_EM.Text.Trim();
-                        drow["sish"] = textBox_SISH.Text.Trim();*/
                         textBox_ID.BindingContext[dt].Position++;
 
                         if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
@@ -1362,8 +1376,16 @@ namespace St.Teresa_LIS_2019
             currentEditRow["CNAME"] = hp.pvChiName;
             if (hp.pvDob != null)
             {
-                DateTime dob = DateTime.ParseExact(hp.pvDob, "yyyyMMdd", null);
-                if (dob != null)
+                DateTime dob = DateTime.MinValue;
+                try
+                {
+                    dob = DateTime.ParseExact(hp.pvDob, "ddMMyyyy", null);
+                }catch(Exception ex)
+                {
+
+                }
+
+                if (dob != DateTime.MinValue)
                 {
                     currentEditRow["pat_birth"] = dob;
                     currentEditRow["pat_age"] = Math.Round(((DateTime.Now - dob).TotalDays / 365), 2);
@@ -1441,7 +1463,8 @@ namespace St.Teresa_LIS_2019
             currentEditRow["patient"] = textBox_Patient.Text;
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
-            currentEditRow["pat_birth"] = DateTime.ParseExact(textBox_DOB.Text, "yyyyMMdd", null);
+
+            CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text);
             currentEditRow["class"] = comboBox_Class.Text;
             currentEditRow["pat_age"] = textBox_Age.Text;
             currentEditRow["pat_sex"] = textBox_Sex.Text;
@@ -2245,7 +2268,7 @@ namespace St.Teresa_LIS_2019
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
-            textBox_Rpt_Date.ScrollToCaret();
+            //textBox_Rpt_Date.ScrollToCaret();
         }
 
         private void button_Printed_Click(object sender, EventArgs e)
@@ -2496,6 +2519,11 @@ namespace St.Teresa_LIS_2019
             button_Advance.Enabled = false;
             button_Delete.Enabled = false;
             button_New.Enabled = false;
+        }
+
+        private void textBox_Remarks_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -204,6 +204,20 @@ namespace St.Teresa_LIS_2019
 
             return BarcodePicture;
         }
+
+        public static void setDateWithStr(DataRow currentEditRow, string fieldName, string strVal, string format = "ddMMyyyy")
+        {
+            if(currentEditRow != null)
+            {
+                try
+                {
+                    currentEditRow[fieldName] = DateTime.ParseExact(strVal, format, null);
+                }catch(Exception ex)
+                {
+
+                }
+            }
+        }
     }
 
     public static class CurrentUser

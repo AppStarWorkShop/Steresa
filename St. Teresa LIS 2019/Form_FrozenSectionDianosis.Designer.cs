@@ -70,6 +70,8 @@
             this.comboBox_FZ_Detail.Size = new System.Drawing.Size(519, 26);
             this.comboBox_FZ_Detail.TabIndex = 113;
             this.comboBox_FZ_Detail.ValueMember = "FZ_DETAIL";
+            this.comboBox_FZ_Detail.TextChanged += new System.EventHandler(this.comboBox_FZ_Detail_TextChanged);
+            this.comboBox_FZ_Detail.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_FZ_Detail_PreviewKeyDown);
             // 
             // label_Frozen_Section_Diagnosis
             // 

@@ -39,6 +39,8 @@ namespace St.Teresa_LIS_2019
         private string patientHKID;
         private bool isNewRecord = false;
 
+        private bool isSameGroupNewRecord = false;
+
         private Object snopT1, snopT2, snopT3, snopM1, snopM2, snopM3;
 
         public class Bxcy_diag
@@ -997,6 +999,8 @@ namespace St.Teresa_LIS_2019
         {
             setButtonStatus(PageStatus.STATUS_NEW);
 
+            isSameGroupNewRecord = false;
+
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
             currentEditRow["id"] = -1;
             currentEditRow["case_no"] = caseNo;
@@ -1498,80 +1502,72 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            /*if (!checkDuplicateHKID())
-            {*/
-                int mainPageUpdateResult = 0;
-                if (OnBxcyDiagSaveBoth != null)
-                {
-                    mainPageUpdateResult = OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue);
-                }
+            int mainPageUpdateResult = 0;
+            if (OnBxcyDiagSaveBoth != null)
+            {
+                mainPageUpdateResult = OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue);
+            }
 
-                if (mainPageUpdateResult != 1 && mainPageUpdateResult != 2)
+            if (mainPageUpdateResult != 1 && mainPageUpdateResult != 2)
+            {
+                bool updated = true;
+                if (currentStatus == PageStatus.STATUS_NEW)
                 {
-                    bool updated = true;
-                    if (currentStatus == PageStatus.STATUS_NEW)
+                    if (currentEditRow != null)
                     {
-                        if (currentEditRow != null)
+                        if (isSameGroupNewRecord)
                         {
-                            /*if (textBox_Remarks.Text.Trim() != "" || textBox_Remarks_CY.Text.Trim() != "")
-                            {
-                                currentEditRow["group"] = (Convert.ToInt32(label_Total_Parts_No.Text) + 1).ToString();
-                            }
-                            else
-                            {
-                                currentEditRow["group"] = label_Total_Parts_No.Text;
-                            }*/
+                            setFirstMarcoAndMicroValue(currentEditRow);
+                        }
 
-                            currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
+                        currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
+                        textBox_ID.BindingContext[dt].Position++;
+
+                        if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
+                        {
+                            reloadAndBindingDBData();
+                            button_End.PerformClick();
+                        }
+                        else
+                        {
+                            updated = false;
+                        }
+                    }
+                }
+                else
+                {
+                    if (currentStatus == PageStatus.STATUS_EDIT)
+                    {
+                        DataRow drow = bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Find(textBox_ID.Text);
+                        if (drow != null)
+                        {
                             textBox_ID.BindingContext[dt].Position++;
 
-                            if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
-                            {
-                                //reloadDBData(currencyManager.Count - 1);
-                                reloadAndBindingDBData();
-                                button_End.PerformClick();
-                            }
-                            else
+                            if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
                             {
                                 updated = false;
                             }
                         }
                     }
-                    else
-                    {
-                        if (currentStatus == PageStatus.STATUS_EDIT)
-                        {
-                            DataRow drow = bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Find(textBox_ID.Text);
-                            if (drow != null)
-                            {
-                                textBox_ID.BindingContext[dt].Position++;
+                }
 
-                                if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
-                                {
-                                    updated = false;
-                                }
-                            }
-                        }
-                    }
-
-                    if (updated || mainPageUpdateResult == 0)
-                    {
-                        MessageBox.Show("Record updated");
-                        setButtonStatus(PageStatus.STATUS_VIEW);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Record updated fail, please contact Admin");
-                    }
+                if (updated || mainPageUpdateResult == 0)
+                {
+                    MessageBox.Show("Record updated");
+                    setButtonStatus(PageStatus.STATUS_VIEW);
                 }
                 else
                 {
-                    if (mainPageUpdateResult != 1)
-                    {
-                        MessageBox.Show("Record updated fail, please contact Admin");
-                    }
+                    MessageBox.Show("Record updated fail, please contact Admin");
                 }
-            //}
+            }
+            else
+            {
+                if (mainPageUpdateResult != 1)
+                {
+                    MessageBox.Show("Record updated fail, please contact Admin");
+                }
+            }
         }
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
@@ -2157,13 +2153,35 @@ namespace St.Teresa_LIS_2019
         {
             setButtonStatus(PageStatus.STATUS_NEW);
 
+            isSameGroupNewRecord = true;
+
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
             currentEditRow["id"] = -1;
             currentEditRow["case_no"] = caseNo;
             currentEditRow["group"] = textBox_Parts.Text.Trim();
 
+            setFirstMarcoAndMicroValue(currentEditRow);
+
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+        }
+
+        private void setFirstMarcoAndMicroValue(DataRow currentEditRow)
+        {
+            if (currentEditRow != null && currentEditRow["case_no"] != null && currentEditRow["case_no"].ToString() != "" && currentEditRow["group"] != null && currentEditRow["group"].ToString() != "")
+            {
+                string checkSql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID", currentEditRow["case_no"].ToString(), currentEditRow["group"].ToString());
+                DataSet firstBxcy_diagDataSet = new DataSet();
+                SqlDataAdapter firstDataAdapter = DBConn.fetchDataIntoDataSet(checkSql, firstBxcy_diagDataSet, "bxcy_diag");
+
+                if (firstBxcy_diagDataSet.Tables["bxcy_diag"].Rows.Count > 0)
+                {
+                    DataRow mDr = firstBxcy_diagDataSet.Tables["bxcy_diag"].Rows[0];
+
+                    currentEditRow["micro_desc"] = mDr["micro_desc"].ToString().Trim(); ;
+                    currentEditRow["macro_desc"] = mDr["macro_desc"].ToString().Trim(); ;
+                }
+            }
         }
 
         private void comboBox_Snop_M3_DrawItem(object sender, DrawItemEventArgs e)
