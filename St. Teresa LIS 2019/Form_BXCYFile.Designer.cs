@@ -1968,7 +1968,6 @@
             this.textBox_Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Remarks.Size = new System.Drawing.Size(605, 115);
             this.textBox_Remarks.TabIndex = 237;
-            this.textBox_Remarks.TextChanged += new System.EventHandler(this.textBox_Remarks_TextChanged);
             // 
             // button_F11_Add_test
             // 

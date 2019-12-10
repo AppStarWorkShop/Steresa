@@ -109,7 +109,8 @@ namespace St.Teresa_LIS_2019
             public string sish { get; set; }
         }
 
-        public class Bxcy_specimenStr{
+        public class Bxcy_specimenStr
+        {
             public int id { get; set; }
             public string case_no { get; set; }
             public string barcode { get; set; }
@@ -221,14 +222,14 @@ namespace St.Teresa_LIS_2019
         private void reloadAndBindingDBData(int position = 0, string caseNo = null)
         {
             string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY case_no,id";
-            if(this.id != null)
+            if (this.id != null)
             {
                 sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY  case_no,id", this.id);
                 id = null;
             }
             else
             {
-                if(caseNo != null)
+                if (caseNo != null)
                 {
                     sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no='{0}' AND case_no NOT LIKE '%G' AND case_no NOT LIKE 'D%' ORDER BY  case_no,id", caseNo);
                 }
@@ -411,7 +412,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
-            textBox_Case_No.DataBindings.Add("Text", dt, "case_no", false);
+            textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
             textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
@@ -446,12 +447,12 @@ namespace St.Teresa_LIS_2019
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
             textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
-            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
-            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
-            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
@@ -466,9 +467,9 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
-            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy HH:mm:ss");
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy HH:mm:ss");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy HH:mm:ss");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy HH:mm:ss");
 
             textBox_ER.DataBindings.Add(new Binding("Text", dt, "er"));
             textBox_EM.DataBindings.Add("Text", dt, "em", false);
@@ -476,7 +477,7 @@ namespace St.Teresa_LIS_2019
 
             checkBox_F_S.DataBindings.Add("Checked", dt, "fz_section", false);
             textBox_FZDetail.DataBindings.Add("Text", dt, "fz_detail", false);
-            label_Printed.DataBindings.Add("Text",dt, "print_ctr",false);
+            label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
             checkBox_Uploaded.DataBindings.Add("Checked", dt, "uploaded", false);
 
             label_Version.DataBindings.Add("Text", dt, "update_ctr", false);
@@ -509,7 +510,7 @@ namespace St.Teresa_LIS_2019
                 id = null;
             }*/
 
-            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0":label_Printed.Text.Trim());
+            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
 
             setPreviousRecordMark();
 
@@ -585,7 +586,7 @@ namespace St.Teresa_LIS_2019
 
         private void onFZDetailValueChange(string val)
         {
-            if(val != null)
+            if (val != null)
             {
                 textBox_FZDetail.Text = val;
                 textBox_FZDetail.Focus();
@@ -616,9 +617,9 @@ namespace St.Teresa_LIS_2019
                     textBox_Chinese_Name.Text = reader.GetValue(2).ToString();
                     textBox_HKID.Text = reader.GetValue(3).ToString();
                     DateTime recordDate;
-                    if(DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
+                    if (DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
                     {
-                        textBox_DOB.Text = recordDate.ToString("ddMMyyyy");
+                        textBox_DOB.Text = recordDate.ToString("yyyy/MM/dd");
                     }
                     textBox_Age.Text = reader.GetValue(5).ToString();
                     textBox_Sex.Text = reader.GetValue(6).ToString();
@@ -860,7 +861,7 @@ namespace St.Teresa_LIS_2019
 
         private void onAdditionalTestValueUpdated(string er, string em, string sish)
         {
-            if(er != null)
+            if (er != null)
             {
                 textBox_ER.Text = er;
                 textBox_ER.Focus();
@@ -903,7 +904,7 @@ namespace St.Teresa_LIS_2019
                 Form_FeeCalculationPrivate open = new Form_FeeCalculationPrivate();
                 open.Show();
             }
-            
+
         }
 
         private void button_Sign_By_Dr_1_Click(object sender, EventArgs e)
@@ -977,7 +978,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Shif_Click(object sender, EventArgs e)
         {
-            
+
             if (textBox_Doctor_I_C.Text != "")
             {
                 if (textBox_Doctor_I_C_2.Text != "")
@@ -987,7 +988,7 @@ namespace St.Teresa_LIS_2019
                         Shif_3_4();
                     }
                     Shif_2_3();
-                }  
+                }
                 Shif_1_2();
             }
         }
@@ -1002,7 +1003,7 @@ namespace St.Teresa_LIS_2019
                 }
                 Shif_2_3();
             }
-            
+
         }
 
         private void button_Shif_3_Click(object sender, EventArgs e)
@@ -1031,13 +1032,13 @@ namespace St.Teresa_LIS_2019
         {
             if (textBox_Doctor_I_C_3.Text != "")
             {
-            textBox_Dr_I_C_Free_Text.Text += "\r\n" + textBox_Doctor_I_C_3.Text;
-            textBox_Dr_I_C_Free_Text.Text += " (" + textBox_Doctor_I_C_ID_3.Text + ")";
-            textBox_Doctor_I_C_3.Text = "";
-            textBox_Doctor_I_C_ID_3.Text = "";
+                textBox_Dr_I_C_Free_Text.Text += "\r\n" + textBox_Doctor_I_C_3.Text;
+                textBox_Dr_I_C_Free_Text.Text += " (" + textBox_Doctor_I_C_ID_3.Text + ")";
+                textBox_Doctor_I_C_3.Text = "";
+                textBox_Doctor_I_C_ID_3.Text = "";
 
             }
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1379,7 +1380,7 @@ namespace St.Teresa_LIS_2019
                 DateTime dob = DateTime.MinValue;
                 try
                 {
-                    dob = DateTime.ParseExact(hp.pvDob, "ddMMyyyy", null);
+                    dob = DateTime.ParseExact(hp.pvDob, "yyyyMMdd", null);
                 }catch(Exception ex)
                 {
 
@@ -1464,7 +1465,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
 
-            CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text);
+            CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text, "ddMMyyyy");
             currentEditRow["class"] = comboBox_Class.Text;
             currentEditRow["pat_age"] = textBox_Age.Text;
             currentEditRow["pat_sex"] = textBox_Sex.Text;
@@ -1571,7 +1572,7 @@ namespace St.Teresa_LIS_2019
             copybxcy_specimen.receipt = textBox_Receipt.Text;
             copybxcy_specimen.inv_date = textBox_Invoice_Date.Text;
             copybxcy_specimen.inv_amt = textBox_Amount_HK.Text;
-            
+
             copybxcy_specimen.pay_date = textBox_Paid_Date.Text;
 
             copybxcy_specimen.rpt_date = textBox_Rpt_Date.Text;
@@ -1701,10 +1702,10 @@ namespace St.Teresa_LIS_2019
                         textBox_ER.Text = copybxcy_specimen.er;
                         textBox_EM.Text = copybxcy_specimen.em;
                         textBox_SISH.Text = copybxcy_specimen.sish;
-                        checkBox_F_S.Checked = copybxcy_specimen.fz_section.HasValue?copybxcy_specimen.fz_section.Value:false;
+                        checkBox_F_S.Checked = copybxcy_specimen.fz_section.HasValue ? copybxcy_specimen.fz_section.Value : false;
                         textBox_FZDetail.Text = copybxcy_specimen.fz_detail;
-                        checkBox_Uploaded.Checked = copybxcy_specimen.uploaded.HasValue?copybxcy_specimen.uploaded.HasValue:false;
-                        checkBox_Supp.Checked = copybxcy_specimen.supp.HasValue? copybxcy_specimen.supp.Value:false;
+                        checkBox_Uploaded.Checked = copybxcy_specimen.uploaded.HasValue ? copybxcy_specimen.uploaded.HasValue : false;
+                        checkBox_Supp.Checked = copybxcy_specimen.supp.HasValue ? copybxcy_specimen.supp.Value : false;
 
                         textBox_Remarks.Text = copybxcy_specimen.remark;
                         textBox_Cytology.Text = copybxcy_specimen.initial;
@@ -2264,11 +2265,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
-            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyyMMdd hh:mm:ss");
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
-            //textBox_Rpt_Date.ScrollToCaret();
+            textBox_Rpt_Date.ScrollToCaret();
         }
 
         private void button_Printed_Click(object sender, EventArgs e)
@@ -2284,7 +2285,7 @@ namespace St.Teresa_LIS_2019
             string message = string.Format("Uploaded Record(s) With PDF File To STH's Database Server:\n" +
                 "Uploaded At       Uploaded By       Version\n" +
                 "===========================================\n" +
-                "{0}{1}{2}", textBox_Updated_At.Text.Trim().PadRight(20,' '), textBox_Updated_By_1.Text.Trim().PadRight(24, ' '), label_Version.Text.Trim());
+                "{0}{1}{2}", textBox_Updated_At.Text.Trim().PadRight(20, ' '), textBox_Updated_By_1.Text.Trim().PadRight(24, ' '), label_Version.Text.Trim());
             MessageBox.Show(message, "Uploaded Record(s)");
         }
 
@@ -2430,7 +2431,7 @@ namespace St.Teresa_LIS_2019
                     textBox_Case_No.SelectionStart = textBox_Case_No.Text.Length;
                     textBox_Case_No.SelectionLength = 0;
                 }
-                
+
             }
             else
             {
@@ -2443,7 +2444,7 @@ namespace St.Teresa_LIS_2019
                         textBox_Case_No.SelectionStart = textBox_Case_No.Text.Length;
                         textBox_Case_No.SelectionLength = 0;
                     }
-                        
+
                 }
                 else
                 {
@@ -2456,7 +2457,7 @@ namespace St.Teresa_LIS_2019
                             textBox_Case_No.SelectionStart = textBox_Case_No.Text.Length;
                             textBox_Case_No.SelectionLength = 0;
                         }
-                            
+
                     }
                     else
                     {
@@ -2469,7 +2470,7 @@ namespace St.Teresa_LIS_2019
                                 textBox_Case_No.SelectionStart = textBox_Case_No.Text.Length;
                                 textBox_Case_No.SelectionLength = 0;
                             }
-                                
+
                         }
                     }
                 }
@@ -2486,7 +2487,7 @@ namespace St.Teresa_LIS_2019
             {
                 button_F_S_Detail.Enabled = false;
             }
-                
+
         }
 
         private void textBox_Doctor_I_C_TextChanged(object sender, EventArgs e)
@@ -2519,11 +2520,6 @@ namespace St.Teresa_LIS_2019
             button_Advance.Enabled = false;
             button_Delete.Enabled = false;
             button_New.Enabled = false;
-        }
-
-        private void textBox_Remarks_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

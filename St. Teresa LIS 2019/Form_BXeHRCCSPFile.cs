@@ -1064,7 +1064,7 @@ namespace St.Teresa_LIS_2019
             textBox_LabHCIID_2.DataBindings.Add("Text", dt, "Inv_no", false);
             textBox_eHR_No.DataBindings.Add("Text", dt, "Remind", false);
             textBox_Record_Key.DataBindings.Add("Text", dt, "RECEIPT", false);
-            textBox_Date_Requested.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Date_Requested.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
             textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
@@ -1081,9 +1081,9 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
-            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
             label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
 
@@ -1658,11 +1658,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
-            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyyMMdd hh:mm:ss");
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
-            //textBox_Rpt_Date.ScrollToCaret();
+            textBox_Rpt_Date.ScrollToCaret();
         }
 
         private void label3_Click(object sender, EventArgs e)
