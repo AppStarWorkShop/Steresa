@@ -986,10 +986,10 @@ namespace St.Teresa_LIS_2019
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
             //textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
-            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
-            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
             textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
@@ -1006,9 +1006,9 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
-            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
 
             label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
@@ -1600,7 +1600,7 @@ namespace St.Teresa_LIS_2019
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
-            //textBox_Rpt_Date.ScrollToCaret();
+            textBox_Rpt_Date.ScrollToCaret();
         }
 
         private void button_Sign_By_Dr_1_Click(object sender, EventArgs e)
