@@ -25,7 +25,7 @@ namespace St.Teresa_LIS_2019
         private DataTable bxcy_specimentDt;
         private SqlDataAdapter bxcy_specimentDataAdapter;
 
-        public delegate void BxcyDiagExit(int status, bool refresh);
+        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet);
         public BxcyDiagExit OnBxcyDiagExit;
 
         public delegate int BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
@@ -42,6 +42,16 @@ namespace St.Teresa_LIS_2019
         private bool isSameGroupNewRecord = false;
 
         private Object snopT1, snopT2, snopT3, snopM1, snopM2, snopM3;
+
+        public CurrencyManager currencyManager;
+
+        public static class NevigateMode
+        {
+            public const int MODE_GROUP = 1;
+            public const int MODE_DIAGNOSIS = 2;
+        }
+
+        private int currentNevigateMode = NevigateMode.MODE_GROUP;
 
         public class Bxcy_diag
         {
@@ -148,7 +158,7 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
-        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewRecord)
+        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewRecord, DataSet existDataSet = null)
         {
             this.caseNo = caseNo;
             this.bxcy_id = bxcy_id;
@@ -163,6 +173,46 @@ namespace St.Teresa_LIS_2019
             this.isNewRecord = isNewRecord;
             currentStatus = status;
             InitializeComponent();
+
+            setButtonStatus(currentStatus);
+
+            if (currentStatus == PageStatus.STATUS_VIEW)
+            {
+                reloadAndBindingDBData();
+            }
+            else
+            {
+                if (existDataSet != null)
+                {
+                    reloadAndBindingDBDataWithExistDataSet(existDataSet);
+                }
+                else
+                {
+                    reloadAndBindingDBData();
+                }
+
+                if (currentStatus == PageStatus.STATUS_NEW && existDataSet == null)
+                {
+                    isSameGroupNewRecord = false;
+
+                    currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
+                    currentEditRow["id"] = -1;
+                    currentEditRow["case_no"] = caseNo;
+
+                    string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+                    DataSet groupDataSet1 = new DataSet();
+                    SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
+
+                    DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
+                    string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();
+                    currentEditRow["group"] = (Convert.ToInt32(strMaxGroup) + 1).ToString();
+
+                    currentEditRow["diagnosisId"] = 1;
+
+                    bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
+                    bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+                }
+            }
         }
 
         public Form_Description(string caseNo, string bxcy_id)
@@ -177,7 +227,7 @@ namespace St.Teresa_LIS_2019
         {
             if (OnBxcyDiagExit != null)
             {
-                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage);
+                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage, bxcy_diagDataSet);
             }
             this.Close();
         }
@@ -489,19 +539,21 @@ namespace St.Teresa_LIS_2019
 
         private void Form_Description_Load(object sender, EventArgs e)
         {
-            setButtonStatus(currentStatus);
-            reloadAndBindingDBData();
+            /*setButtonStatus(currentStatus);
+            reloadAndBindingDBData();*/
         }
 
-        private void reloadAndBindingDBData(int position = 0)
+        private void reloadAndBindingDBDataWithExistDataSet(DataSet existBxcy_diagDataSet)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [BXCY_DIAG] WHERE case_no = '{0}' ORDER BY ID",caseNo);
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            currentNevigateMode = NevigateMode.MODE_GROUP;
+            bxcy_diagDataSet = existBxcy_diagDataSet;
 
             dt = bxcy_diagDataSet.Tables["bxcy_diag"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
             dt.Columns["id"].AutoIncrement = true;
             dt.Columns["id"].AutoIncrementStep = 1;
+
+            currencyManager = (CurrencyManager)this.BindingContext[dt];
 
             textBox_ID.DataBindings.Clear();
             comboBox_Description.DataBindings.Clear();
@@ -747,9 +799,400 @@ namespace St.Teresa_LIS_2019
             textBox_Parts2.DataBindings.Add("Text", dt, "group", false);
             textBox_Parts3.DataBindings.Add("Text", dt, "group", false);
 
-            textBox_DiagnosisNo.DataBindings.Add("Text", dt, "seq", false);
-            textBox_DiagnosisNo2.DataBindings.Add("Text", dt, "seq", false);
-            textBox_DiagnosisNo3.DataBindings.Add("Text", dt, "seq", false);
+            textBox_DiagnosisNo.DataBindings.Add("Text", dt, "diagnosisId", false);
+            textBox_DiagnosisNo2.DataBindings.Add("Text", dt, "diagnosisId", false);
+            textBox_DiagnosisNo3.DataBindings.Add("Text", dt, "diagnosisId", false);
+
+            textBox_Picture_File_1.DataBindings.Add("Text", dt, "macro_pic1", false);
+            textBox_Picture_File_2.DataBindings.Add("Text", dt, "macro_pic2", false);
+            textBox_Picture_File_3.DataBindings.Add("Text", dt, "macro_pic3", false);
+            textBox_Picture_File_4.DataBindings.Add("Text", dt, "macro_pic4", false);
+            textBox_Picture_File_5.DataBindings.Add("Text", dt, "micro_pic1", false);
+            textBox_Picture_File_6.DataBindings.Add("Text", dt, "micro_pic2", false);
+            textBox_Picture_File_7.DataBindings.Add("Text", dt, "micro_pic3", false);
+            textBox_Picture_File_8.DataBindings.Add("Text", dt, "micro_pic4", false);
+
+            comboBox_Caption_1.DataBindings.Add("Text", dt, "macro_cap1", false);
+            comboBox_Caption_2.DataBindings.Add("Text", dt, "macro_cap2", false);
+            comboBox_Caption_3.DataBindings.Add("Text", dt, "macro_cap3", false);
+            comboBox_Caption_4.DataBindings.Add("Text", dt, "macro_cap4", false);
+            comboBox_Caption_5.DataBindings.Add("Text", dt, "micro_cap1", false);
+            comboBox_Caption_6.DataBindings.Add("Text", dt, "micro_cap2", false);
+            comboBox_Caption_7.DataBindings.Add("Text", dt, "micro_cap3", false);
+            comboBox_Caption_8.DataBindings.Add("Text", dt, "micro_cap4", false);
+
+            textBox_Remarks.DataBindings.Add("Text", dt, "macro_desc", false);
+
+            textBox_Site_frort.DataBindings.Add("Text", dt, "seq", false);
+            comboBox_Site.DataBindings.Add("SelectedValue", dt, "site", false);
+            textBox_Chinese_Description_1_DIA.DataBindings.Add("Text", dt, "Site2", false);
+            comboBox_Operation.DataBindings.Add("SelectedValue", dt, "Operation", false);
+            textBox_Chinese_Description_2_DIA.DataBindings.Add("Text", dt, "Operation2", false);
+            textBox_Diagnosis.DataBindings.Add("Text", dt, "Diagnosis", false);
+            comboBox_Diagnosis_1.DataBindings.Add("SelectedValue", dt, "Diag_desc1", false);
+            comboBox_Diagnosis_2.DataBindings.Add("SelectedValue", dt, "Diag_desc2", false);
+
+            string snopcodeTSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'T' ORDER BY [desc]";
+            DataSet snopcodeTDataSet = new DataSet();
+            SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
+
+            DataTable snopcodeTDt1 = new DataTable();
+            snopcodeTDt1.Columns.Add("SNOPCODE");
+            snopcodeTDt1.Columns.Add("Desc");
+            snopcodeTDt1.Columns.Add("id");
+            DataTable snopcodeTDt2 = snopcodeTDt1.Clone();
+            DataTable snopcodeTDt3 = snopcodeTDt1.Clone();
+
+            foreach (DataRow mDr in snopcodeTDataSet.Tables["snopcode"].Rows)
+            {
+                snopcodeTDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeTDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeTDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+            }
+
+            comboBox_Snop_T1.DataSource = snopcodeTDt1;
+            comboBox_Snop_T2.DataSource = snopcodeTDt2;
+            comboBox_Snop_T3.DataSource = snopcodeTDt3;
+
+            string snopcodeMSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'M' ORDER BY [desc]";
+            DataSet snopcodeMDataSet = new DataSet();
+            SqlDataAdapter snopcodeMDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeMSql, snopcodeMDataSet, "snopcode");
+
+            DataTable snopcodeMDt1 = new DataTable();
+            snopcodeMDt1.Columns.Add("SNOPCODE");
+            snopcodeMDt1.Columns.Add("Desc");
+            snopcodeMDt1.Columns.Add("id");
+            DataTable snopcodeMDt2 = snopcodeMDt1.Clone();
+            DataTable snopcodeMDt3 = snopcodeMDt1.Clone();
+
+            foreach (DataRow mDr in snopcodeMDataSet.Tables["snopcode"].Rows)
+            {
+                snopcodeMDt1.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeMDt2.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+                snopcodeMDt3.Rows.Add(new object[] { mDr["SNOPCODE"], mDr["desc"].ToString().Trim(), mDr["id"].ToString() });
+            }
+
+            comboBox_Snop_M1.DataSource = snopcodeMDt1;
+            comboBox_Snop_M2.DataSource = snopcodeMDt2;
+            comboBox_Snop_M3.DataSource = snopcodeMDt3;
+
+            /*string bxcy_sql = string.Format("SELECT * FROM [bxcy_specimen] WHERE id={0}", bxcy_id);
+            bxcy_specimentDataAdapter = DBConn.fetchDataIntoDataSet(bxcy_sql, bxcy_specimenDataSet, "bxcy_specimen");
+
+            bxcy_specimentDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
+            bxcy_specimentDt.PrimaryKey = new DataColumn[] { bxcy_specimentDt.Columns["id"] };
+            bxcy_specimentDt.Columns["id"].AutoIncrement = true;
+            bxcy_specimentDt.Columns["id"].AutoIncrementStep = 1;
+
+            textBox_specimenID.DataBindings.Add("Text", bxcy_specimentDt, "id", false);
+
+            comboBox_Snop_T1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
+            comboBox_Snop_T2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t2", false);
+            comboBox_Snop_T3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t3", false);
+            comboBox_Snop_M1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
+            comboBox_Snop_M2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m2", false);
+            comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);*/
+
+            label_Total_Parts_No.DataBindings.Clear();
+            string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+            DataSet groupDataSet = new DataSet();
+            SqlDataAdapter groupDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet, "bxcy_diag");
+
+            DataTable groupDt = groupDataSet.Tables["bxcy_diag"];
+            label_Total_Parts_No.DataBindings.Add("Text", groupDt, "maxGroup", false);
+
+            if (snopT1 != null)
+            {
+                comboBox_Snop_T1.SelectedValue = snopT1;
+            }
+            if (snopT2 != null)
+            {
+                comboBox_Snop_T2.SelectedValue = snopT2;
+            }
+            if (snopT3 != null)
+            {
+                comboBox_Snop_T3.SelectedValue = snopT3;
+            }
+            if (snopM1 != null)
+            {
+                comboBox_Snop_M1.SelectedValue = snopM1;
+            }
+            if (snopM2 != null)
+            {
+                comboBox_Snop_M2.SelectedValue = snopM2;
+            }
+            if (snopM3 != null)
+            {
+                comboBox_Snop_M3.SelectedValue = snopM3;
+            }
+
+            /*if (groupDt != null && groupDt.Rows.Count > 0)
+            {
+                label_Total_Parts_No.Text = groupDt.Rows[0]["maxGroup"].ToString();
+            }*/
+        }
+
+        private void reloadAndBindingDBData(int position = 0)
+        {
+            currentNevigateMode = NevigateMode.MODE_GROUP;
+
+            string sql = string.Format("SELECT * FROM [BXCY_DIAG] WHERE case_no = '{0}' ORDER BY [group]",caseNo);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+
+            dt = bxcy_diagDataSet.Tables["bxcy_diag"];
+            dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
+            dt.Columns["id"].AutoIncrement = true;
+            dt.Columns["id"].AutoIncrementStep = 1;
+
+            currencyManager = (CurrencyManager)this.BindingContext[dt];
+
+            textBox_ID.DataBindings.Clear();
+            comboBox_Description.DataBindings.Clear();
+            comboBox_Description2.DataBindings.Clear();
+            textBox_Remarks_CY.DataBindings.Clear();
+            textBox_Parts.DataBindings.Clear();
+            textBox_Parts2.DataBindings.Clear();
+            textBox_Parts3.DataBindings.Clear();
+
+            textBox_DiagnosisNo.DataBindings.Clear();
+            textBox_DiagnosisNo2.DataBindings.Clear();
+            textBox_DiagnosisNo3.DataBindings.Clear();
+
+            textBox_Picture_File_1.DataBindings.Clear();
+            textBox_Picture_File_2.DataBindings.Clear();
+            textBox_Picture_File_3.DataBindings.Clear();
+            textBox_Picture_File_4.DataBindings.Clear();
+            textBox_Picture_File_5.DataBindings.Clear();
+            textBox_Picture_File_6.DataBindings.Clear();
+            textBox_Picture_File_7.DataBindings.Clear();
+            textBox_Picture_File_8.DataBindings.Clear();
+
+            comboBox_Caption_1.DataBindings.Clear();
+            comboBox_Caption_2.DataBindings.Clear();
+            comboBox_Caption_3.DataBindings.Clear();
+            comboBox_Caption_4.DataBindings.Clear();
+            comboBox_Caption_5.DataBindings.Clear();
+            comboBox_Caption_6.DataBindings.Clear();
+            comboBox_Caption_7.DataBindings.Clear();
+            comboBox_Caption_8.DataBindings.Clear();
+
+            textBox_Remarks.DataBindings.Clear();
+            textBox_Site_frort.DataBindings.Clear();
+            comboBox_Site.DataBindings.Clear();
+            textBox_Chinese_Description_1_DIA.DataBindings.Clear();
+            comboBox_Operation.DataBindings.Clear();
+            textBox_Chinese_Description_2_DIA.DataBindings.Clear();
+            textBox_Diagnosis.DataBindings.Clear();
+            comboBox_Diagnosis_1.DataBindings.Clear();
+            comboBox_Diagnosis_2.DataBindings.Clear();
+
+            comboBox_Snop_T1.DataBindings.Clear();
+            comboBox_Snop_T2.DataBindings.Clear();
+            comboBox_Snop_T3.DataBindings.Clear();
+            comboBox_Snop_M1.DataBindings.Clear();
+            comboBox_Snop_M2.DataBindings.Clear();
+            comboBox_Snop_M3.DataBindings.Clear();
+
+            textBox_specimenID.DataBindings.Clear();
+
+            string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
+            DataSet siteDataSet = new DataSet();
+            SqlDataAdapter siteDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(siteSql, siteDataSet, "site");
+
+            DataTable siteDt = new DataTable();
+            siteDt.Columns.Add("site");
+            siteDt.Columns.Add("Desc");
+
+            siteDt.Rows.Add(new object[] { "", "" });
+
+            foreach (DataRow mDr in siteDataSet.Tables["site"].Rows)
+            {
+                siteDt.Rows.Add(new object[] { mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim() });
+            }
+
+            comboBox_Site.DataSource = siteDt;
+            //comboBox_Site.SelectedValue
+
+            string operationSql = "SELECT [operation],[desc] FROM [operation] WHERE operation is not null ORDER BY operation";
+            DataSet operationDataSet = new DataSet();
+            SqlDataAdapter operationDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(operationSql, operationDataSet, "operation");
+
+            DataTable operationDt = new DataTable();
+            operationDt.Columns.Add("operation");
+            operationDt.Columns.Add("Desc");
+
+            operationDt.Rows.Add(new object[] { "", "" });
+            foreach (DataRow mDr in operationDataSet.Tables["operation"].Rows)
+            {
+                operationDt.Rows.Add(new object[] { mDr["operation"].ToString().Trim(), mDr["desc"].ToString().Trim() });
+            }
+
+            comboBox_Operation.DataSource = operationDt;
+
+            string marco_nameSql = "SELECT [marco_name] FROM [marco_name]";
+            DataSet marco_nameDataSet = new DataSet();
+            SqlDataAdapter marco_nameDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(marco_nameSql, marco_nameDataSet, "marco_name");
+
+            DataTable marco_nameDt = new DataTable();
+            marco_nameDt.Columns.Add("marco_name");
+
+            foreach (DataRow mDr in marco_nameDataSet.Tables["marco_name"].Rows)
+            {
+                marco_nameDt.Rows.Add(new object[] { mDr["marco_name"] });
+            }
+
+            comboBox_Description.DataSource = marco_nameDt;
+
+            string micro_nameSql = "SELECT [micro_name] FROM [micro_name]";
+            DataSet micro_nameDataSet = new DataSet();
+            SqlDataAdapter micro_nameDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_nameSql, micro_nameDataSet, "micro_name");
+
+            DataTable micro_nameDt = new DataTable();
+            micro_nameDt.Columns.Add("micro_name");
+
+            foreach (DataRow mDr in micro_nameDataSet.Tables["micro_name"].Rows)
+            {
+                micro_nameDt.Rows.Add(new object[] { mDr["micro_name"] });
+            }
+
+            comboBox_Description2.DataSource = micro_nameDt;
+
+            string MACROSCOPIC_ReportSql = "SELECT [MACROSCOPIC],[Description] FROM [MACROSCOPIC_Report]";
+            DataSet MACROSCOPIC_ReportDataSet = new DataSet();
+            SqlDataAdapter MACROSCOPIC_ReportDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(MACROSCOPIC_ReportSql, MACROSCOPIC_ReportDataSet, "MACROSCOPIC_Report");
+
+            DataTable MACROSCOPIC_ReportDt = new DataTable();
+            MACROSCOPIC_ReportDt.Columns.Add("MACROSCOPIC");
+            MACROSCOPIC_ReportDt.Columns.Add("Description");
+
+            foreach (DataRow mDr in MACROSCOPIC_ReportDataSet.Tables["MACROSCOPIC_Report"].Rows)
+            {
+                MACROSCOPIC_ReportDt.Rows.Add(new object[] { mDr["MACROSCOPIC"], mDr["Description"] });
+            }
+
+            comboBox_MAC_Add.DataSource = MACROSCOPIC_ReportDt;
+
+            string MICROSCOPIC_ReportSql = "SELECT [MICROSCOPIC],[Description] FROM [MICROSCOPIC_Report]";
+            DataSet MICROSCOPIC_ReportDataSet = new DataSet();
+            SqlDataAdapter MICROSCOPIC_ReportDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(MICROSCOPIC_ReportSql, MICROSCOPIC_ReportDataSet, "MICROSCOPIC_Report");
+
+            DataTable MICROSCOPIC_ReportDt = new DataTable();
+            MICROSCOPIC_ReportDt.Columns.Add("MICROSCOPIC");
+            MICROSCOPIC_ReportDt.Columns.Add("Description");
+
+            foreach (DataRow mDr in MICROSCOPIC_ReportDataSet.Tables["MICROSCOPIC_Report"].Rows)
+            {
+                MICROSCOPIC_ReportDt.Rows.Add(new object[] { mDr["MICROSCOPIC"], mDr["Description"] });
+            }
+
+            comboBox_MIC_Add2.DataSource = MICROSCOPIC_ReportDt;
+
+
+            string macro_templateSql = "SELECT distinct DOCTOR FROM [macro_template]";
+            DataSet macro_templateDataSet = new DataSet();
+            SqlDataAdapter macro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(macro_templateSql, macro_templateDataSet, "macro_template");
+
+            DataTable macro_templateDt = new DataTable();
+            macro_templateDt.Columns.Add("DOCTOR");
+
+            macro_templateDt.Rows.Add(new object[] { "" });
+            foreach (DataRow mDr in macro_templateDataSet.Tables["macro_template"].Rows)
+            {
+                macro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
+            }
+
+            comboBox_Doctor.DataSource = macro_templateDt;
+
+            string micro_templateSql = "SELECT distinct DOCTOR FROM [micro_template]";
+            DataSet micro_templateDataSet = new DataSet();
+            SqlDataAdapter micro_templateDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(micro_templateSql, micro_templateDataSet, "micro_template");
+
+            DataTable micro_templateDt = new DataTable();
+            micro_templateDt.Columns.Add("DOCTOR");
+
+            micro_templateDt.Rows.Add(new object[] { "" });
+            foreach (DataRow mDr in micro_templateDataSet.Tables["micro_template"].Rows)
+            {
+                micro_templateDt.Rows.Add(new object[] { mDr["DOCTOR"] });
+            }
+
+            comboBox_Doctor2.DataSource = micro_templateDt;
+
+            string diag_descSql = "SELECT C_DESC,E_DESC FROM [diag_desc] WHERE E_DESC is not null ORDER BY E_DESC";
+            DataSet diag_descDataSet = new DataSet();
+            SqlDataAdapter diag_descDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(diag_descSql, diag_descDataSet, "diag_desc");
+
+            DataTable diag_descDt1 = new DataTable();
+            diag_descDt1.Columns.Add("C_DESC");
+            diag_descDt1.Columns.Add("E_DESC");
+            DataTable diag_descDt2 = diag_descDt1.Clone();
+
+            diag_descDt1.Rows.Add(new object[] { "", "" });
+            diag_descDt2.Rows.Add(new object[] { "", "" });
+            foreach (DataRow mDr in diag_descDataSet.Tables["diag_desc"].Rows)
+            {
+                diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
+                diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
+            }
+
+            comboBox_Diagnosis_1.DataSource = diag_descDt1;
+            comboBox_Diagnosis_2.DataSource = diag_descDt2;
+
+            string picture_capSql = "SELECT [CAPTION] FROM [picture_cap]";
+            DataSet picture_capDataSet = new DataSet();
+            SqlDataAdapter picture_capDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(picture_capSql, picture_capDataSet, "picture_cap");
+
+            DataTable picture_capDt1 = new DataTable();
+            picture_capDt1.Columns.Add("CAPTION");
+            DataTable picture_capDt2 = picture_capDt1.Clone();
+            DataTable picture_capDt3 = picture_capDt1.Clone();
+            DataTable picture_capDt4 = picture_capDt1.Clone();
+            DataTable picture_capDt5 = picture_capDt1.Clone();
+            DataTable picture_capDt6 = picture_capDt1.Clone();
+            DataTable picture_capDt7 = picture_capDt1.Clone();
+            DataTable picture_capDt8 = picture_capDt1.Clone();
+
+            picture_capDt1.Rows.Add(new object[] { "" });
+            picture_capDt2.Rows.Add(new object[] { "" });
+            picture_capDt3.Rows.Add(new object[] { "" });
+            picture_capDt4.Rows.Add(new object[] { "" });
+            picture_capDt5.Rows.Add(new object[] { "" });
+            picture_capDt6.Rows.Add(new object[] { "" });
+            picture_capDt7.Rows.Add(new object[] { "" });
+            picture_capDt8.Rows.Add(new object[] { "" });
+
+            foreach (DataRow mDr in picture_capDataSet.Tables["picture_cap"].Rows)
+            {
+                picture_capDt1.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt2.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt3.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt4.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt5.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt6.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt7.Rows.Add(new object[] { mDr["CAPTION"] });
+                picture_capDt8.Rows.Add(new object[] { mDr["CAPTION"] });
+            }
+
+            comboBox_Caption_1.DataSource = picture_capDt1;
+            comboBox_Caption_2.DataSource = picture_capDt2;
+            comboBox_Caption_3.DataSource = picture_capDt3;
+            comboBox_Caption_4.DataSource = picture_capDt4;
+            comboBox_Caption_5.DataSource = picture_capDt5;
+            comboBox_Caption_6.DataSource = picture_capDt6;
+            comboBox_Caption_7.DataSource = picture_capDt7;
+            comboBox_Caption_8.DataSource = picture_capDt8;
+
+            textBox_ID.DataBindings.Add("Text", dt, "id", false);
+            comboBox_Description.DataBindings.Add("Text", dt, "macro_name", false);
+            comboBox_Description2.DataBindings.Add("Text", dt, "micro_name", false);
+            textBox_Remarks_CY.DataBindings.Add("Text", dt, "micro_desc", false);
+            textBox_Parts.DataBindings.Add("Text", dt, "group", false);
+            textBox_Parts2.DataBindings.Add("Text", dt, "group", false);
+            textBox_Parts3.DataBindings.Add("Text", dt, "group", false);
+
+            textBox_DiagnosisNo.DataBindings.Add("Text", dt, "diagnosisId", false);
+            textBox_DiagnosisNo2.DataBindings.Add("Text", dt, "diagnosisId", false);
+            textBox_DiagnosisNo3.DataBindings.Add("Text", dt, "diagnosisId", false);
 
             textBox_Picture_File_1.DataBindings.Add("Text", dt, "macro_pic1", false);
             textBox_Picture_File_2.DataBindings.Add("Text", dt, "macro_pic2", false);
@@ -911,7 +1354,7 @@ namespace St.Teresa_LIS_2019
                 string countSql = string.Format(" [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}'", textBox_Parts.Text, caseNo);
                 if (DBConn.getSqlRecordCount(countSql) > 0)
                 {
-                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}' ORDER BY ID", textBox_Parts.Text, caseNo);
+                    string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}' ORDER BY ID", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
             }
@@ -929,7 +1372,7 @@ namespace St.Teresa_LIS_2019
                 string countSql = string.Format(" [bxcy_diag] WHERE [group] < {0} and case_no = '{1}'", textBox_Parts.Text, caseNo);
                 if (DBConn.getSqlRecordCount(countSql) > 0)
                 {
-                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE [group] < '{0}' and case_no = '{1}' ORDER BY ID DESC", textBox_Parts.Text, caseNo);
+                    string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE [group] < '{0}' and case_no = '{1}' ORDER BY ID", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
             }
@@ -937,14 +1380,38 @@ namespace St.Teresa_LIS_2019
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group]", caseNo);
+            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+
+            /*if (currentNevigateMode == NevigateMode.MODE_DIAGNOSIS)
+            {
+                string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group]", caseNo);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            }
+
+            if (currencyManager != null)
+            {
+                currencyManager.Position = 0;
+            }*/
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group] DESC", caseNo);
+            
+            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT max([group]) FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY id", caseNo);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            
+
+            /*if (currentNevigateMode == NevigateMode.MODE_DIAGNOSIS)
+            {
+                string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group]", caseNo);
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            }
+
+            if (currencyManager != null)
+            {
+                currencyManager.Position = 0;
+            }*/
         }
 
         private void button_F6_Edit_Click(object sender, EventArgs e)
@@ -1012,6 +1479,8 @@ namespace St.Teresa_LIS_2019
             DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
             string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();
             currentEditRow["group"] = (Convert.ToInt32(strMaxGroup) + 1).ToString();
+
+            currentEditRow["diagnosisId"] = 1;
 
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
@@ -1250,11 +1719,11 @@ namespace St.Teresa_LIS_2019
                     button_End.Enabled = false;
                     button_New.Enabled = false;
 
-                    button_Top2.Enabled = false;
-                    button_Back2.Enabled = false;
-                    button_Next2.Enabled = false;
-                    button_End2.Enabled = false;
-                    button_New2.Enabled = false;
+                    button_Top2.Enabled = true;
+                    button_Back2.Enabled = true;
+                    button_Next2.Enabled = true;
+                    button_End2.Enabled = true;
+                    button_New2.Enabled = true;
 
                     button_Save.Enabled = true;
                     
@@ -1364,11 +1833,11 @@ namespace St.Teresa_LIS_2019
                         button_End.Enabled = false;
                         button_New.Enabled = false;
 
-                        button_Top2.Enabled = false;
-                        button_Back2.Enabled = false;
-                        button_Next2.Enabled = false;
-                        button_End2.Enabled = false;
-                        button_New2.Enabled = false;
+                        button_Top2.Enabled = true;
+                        button_Back2.Enabled = true;
+                        button_Next2.Enabled = true;
+                        button_End2.Enabled = true;
+                        button_New2.Enabled = true;
 
                         button_Save.Enabled = true;
                         
@@ -2103,8 +2572,18 @@ namespace St.Teresa_LIS_2019
 
         private void button_Top2_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID", caseNo, textBox_Parts.Text.ToString());
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            /*if (currentStatus == PageStatus.STATUS_VIEW)
+            {
+                string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID", caseNo, textBox_Parts.Text.ToString());
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            }
+            else
+            {*/
+                if (currencyManager != null)
+                {
+                    currencyManager.Position = 0;
+                }
+            //}
         }
 
         private void button_Back2_Click(object sender, EventArgs e)
@@ -2114,14 +2593,29 @@ namespace St.Teresa_LIS_2019
                 return;
             }
 
-            if (textBox_ID.Text.Trim() != "")
+            /*if (textBox_ID.Text.Trim() != "")
             {
-                string countSql = string.Format(" [bxcy_diag] WHERE id < {0} and case_no = '{1}' and [group] = '{2}'", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
-                if (DBConn.getSqlRecordCount(countSql) > 0)
+                if (currentStatus == PageStatus.STATUS_VIEW)
                 {
-                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id < {0} and case_no = '{1}' and [group] = '{2}' ORDER BY ID DESC", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
-                    dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                    string countSql = string.Format(" [bxcy_diag] WHERE id < {0} and case_no = '{1}' and [group] = '{2}'", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
+                    if (DBConn.getSqlRecordCount(countSql) > 0)
+                    {
+                        string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE id < {0} and case_no = '{1}' and [group] = '{2}' ORDER BY ID DESC", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
+                        dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                    }
                 }
+                else
+                {
+                    if (currencyManager != null)
+                    {
+                        currencyManager.Position --;
+                    }
+                }
+            }*/
+
+            if (currencyManager != null)
+            {
+                currencyManager.Position--;
             }
         }
 
@@ -2132,38 +2626,85 @@ namespace St.Teresa_LIS_2019
                 return;
             }
 
-            if (textBox_ID.Text.Trim() != "")
+            /*if (textBox_ID.Text.Trim() != "")
             {
                 string countSql = string.Format(" [bxcy_diag] WHERE id > {0} and case_no = '{1}' and [group] = '{2}'", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
                 if (DBConn.getSqlRecordCount(countSql) > 0)
                 {
-                    string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE id > {0} and case_no = '{1}' and [group] = '{2}' ORDER BY ID", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
-                    dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                    if (currentStatus == PageStatus.STATUS_VIEW)
+                    {
+                        string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE id > {0} and case_no = '{1}' and [group] = '{2}' ORDER BY ID", textBox_ID.Text, caseNo, textBox_Parts.Text.ToString());
+                        dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                    }
+                    else
+                    {
+                        if (currencyManager != null)
+                        {
+                            currencyManager.Position++;
+                        }
+                    }
                 }
+            }*/
+
+            if (currencyManager != null)
+            {
+                currencyManager.Position++;
             }
         }
 
         private void button_End2_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID DESC", caseNo, textBox_Parts.Text.ToString());
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            /*if (currentStatus == PageStatus.STATUS_VIEW)
+            {
+                string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID DESC", caseNo, textBox_Parts.Text.ToString());
+                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            }
+            else
+            {*/
+                if (currencyManager != null)
+                {
+                    currencyManager.Position = currencyManager.Count - 1;
+                }
+            //}
         }
 
         private void button_New2_Click(object sender, EventArgs e)
         {
+            int currentDiagnosisId = 1;
+            int.TryParse(textBox_DiagnosisNo.Text.Trim(), out currentDiagnosisId);
+
             setButtonStatus(PageStatus.STATUS_NEW);
 
             isSameGroupNewRecord = true;
 
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
-            currentEditRow["id"] = -1;
+            //currentEditRow["id"] = -1;
             currentEditRow["case_no"] = caseNo;
             currentEditRow["group"] = textBox_Parts.Text.Trim();
 
+            string groupSql = string.Format("SELECT ISNULL(max([diagnosisId]),0) as maxDiagnosisId FROM [bxcy_diag] WHERE case_no='{0}' and [group] = '{1}'", caseNo, textBox_Parts.Text.Trim());
+            DataSet groupDataSet1 = new DataSet();
+            SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
+
+            DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
+            int currentDiagnosisIdInDB = 1;
+            int.TryParse(groupDt.Rows[0]["maxDiagnosisId"].ToString(), out currentDiagnosisIdInDB);
+
+            if(currentDiagnosisId > currentDiagnosisIdInDB)
+            {
+                currentEditRow["diagnosisId"] = currentDiagnosisId+1;
+            }
+            else
+            {
+                currentEditRow["diagnosisId"] = currentDiagnosisIdInDB+1;
+            }
+
             setFirstMarcoAndMicroValue(currentEditRow);
 
-            bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
+            //bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+
+            currencyManager.Position++;
         }
 
         private void setFirstMarcoAndMicroValue(DataRow currentEditRow)

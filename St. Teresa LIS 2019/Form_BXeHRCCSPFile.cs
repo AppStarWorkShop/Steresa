@@ -25,6 +25,8 @@ namespace St.Teresa_LIS_2019
 
         private bool isNewPatient = false;
 
+        private DataSet existDiagDataSet = null;
+
         public class Bxcy_specimen
         {
             public int id { get; set; }
@@ -321,14 +323,15 @@ namespace St.Teresa_LIS_2019
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
             bool isNewRecord = currentStatus == PageStatus.STATUS_NEW ? true : false;
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord);
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord, existDiagDataSet);
             open.OnBxcyDiagExit += OnStatusReturn;
             open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet)
         {
+            this.existDiagDataSet = existDiagDataSet;
             if (refresh)
             {
                 reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
@@ -359,6 +362,8 @@ namespace St.Teresa_LIS_2019
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
+
+            this.existDiagDataSet = null;
         }
 
         private void button_Back_Click(object sender, EventArgs e)
@@ -378,6 +383,8 @@ namespace St.Teresa_LIS_2019
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
+
+            this.existDiagDataSet = null;
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -388,6 +395,8 @@ namespace St.Teresa_LIS_2019
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
+
+            this.existDiagDataSet = null;
         }
 
         private void button_End_Click(object sender, EventArgs e)
@@ -398,6 +407,8 @@ namespace St.Teresa_LIS_2019
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
+
+            this.existDiagDataSet = null;
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -582,6 +593,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_New_Click(object sender, EventArgs e)
         {
+            this.existDiagDataSet = null;
             setButtonStatus(PageStatus.STATUS_NEW);
 
             currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
@@ -646,6 +658,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Edit_Click(object sender, EventArgs e)
         {
+            this.existDiagDataSet = null;
             copybxcy_specimen = new Bxcy_specimenStr();
             copybxcy_specimen.case_no = textBox_Case_No.Text;
             //copybxcy_specimen.date = textBox_Date.Text;
@@ -759,12 +772,35 @@ namespace St.Teresa_LIS_2019
                 copybxcy_specimen.initial = textBox_Cytology.Text;
 
                 setButtonStatus(PageStatus.STATUS_ADVANCE_EDIT);
+
+                this.existDiagDataSet = null;
             }
         }
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string deleteSql = string.Format("DELETE FROM BXCY_SPECIMEN WHERE id = '{0}'", textBox_ID.Text);
 
+                if (DBConn.executeUpdate(deleteSql))
+                {
+                    this.existDiagDataSet = null;
+                    DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
+                    rowToDelete.Delete();
+                    //currencyManager.Position = 0;
+                    button_Top.PerformClick();
+                    reloadDBData(0);
+                    MessageBox.Show("Bxcy_specimen deleted");
+                }
+                else
+                {
+                    MessageBox.Show("Bxcy_specimen deleted fail, please contact Admin");
+                }
+
+                setButtonStatus(PageStatus.STATUS_VIEW);
+                //reloadDBData();
+            }
         }
 
         private void button_Undo_Click(object sender, EventArgs e)
@@ -837,6 +873,8 @@ namespace St.Teresa_LIS_2019
                     setButtonStatus(PageStatus.STATUS_VIEW);
                 }
             }
+
+            this.existDiagDataSet = null;
         }
 
         private void button_Label_Click(object sender, EventArgs e)

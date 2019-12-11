@@ -27,6 +27,11 @@ namespace St.Teresa_LIS_2019
         public delegate void valueUpdated(string val);
         public valueUpdated OnValueUpdated;
 
+        public delegate void RecordUpdateDone(bool isUpdted);
+        public RecordUpdateDone OnRecordUpdateDone;
+
+        private bool isNeedRefreshMotherPage = false;
+
         private bool m_isEntering = false;
 
         public class frozen_section
@@ -63,9 +68,9 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
-            if(OnValueUpdated != null)
+            if (OnRecordUpdateDone != null)
             {
-                OnValueUpdated(comboBox_FZ_Detail.SelectedValue.ToString());
+                OnRecordUpdateDone(isNeedRefreshMotherPage);
             }
             this.Close();
         }
@@ -151,6 +156,7 @@ namespace St.Teresa_LIS_2019
 
                     if (DBConn.updateObject(dataAdapter, frozen_sectionDataSet, "frozen_section"))
                     {
+                        isNeedRefreshMotherPage = true;
                         reloadAndBindingDBData();
                         //comboBox_Diagnosis.SelectedIndex = currentPosition+1;
                         MessageBox.Show("New Frozen Section saved");
@@ -177,6 +183,7 @@ namespace St.Teresa_LIS_2019
 
                         if (DBConn.updateObject(dataAdapter, frozen_sectionDataSet, "frozen_section"))
                         {
+                            isNeedRefreshMotherPage = true;
                             reloadAndBindingDBData();
                             //comboBox_Diagnosis.SelectedIndex = currentPosition;
                             MessageBox.Show("Frozen Section updated");
@@ -227,6 +234,7 @@ namespace St.Teresa_LIS_2019
 
                 if (DBConn.executeUpdate(deleteSql))
                 {
+                    isNeedRefreshMotherPage = true;
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
 
@@ -493,7 +501,7 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_FZ_Detail_TextChanged(object sender, EventArgs e)
         {
-            if (m_isEntering)
+            /*if (m_isEntering)
             {
                 m_isEntering = false;
                 string search = ((ComboBox)sender).Text.Trim();
@@ -513,12 +521,12 @@ namespace St.Teresa_LIS_2019
 
                 ((ComboBox)sender).Text = search;
                 ((ComboBox)sender).SelectionStart = search.Length;
-            }
+            }*/
         }
 
         private void comboBox_FZ_Detail_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
-            m_isEntering = true;
+            //m_isEntering = true;
         }
     }
 }

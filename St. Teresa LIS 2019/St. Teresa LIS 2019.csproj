@@ -281,6 +281,12 @@
     <Compile Include="Form_FindingCommentsReportMaintenance.Designer.cs">
       <DependentUpon>Form_FindingCommentsReportMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form_FrozenSection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_FrozenSection.Designer.cs">
+      <DependentUpon>Form_FrozenSection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_FrozenSectionDianosis.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -680,6 +686,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form_FindingCommentsReportMaintenance.resx">
       <DependentUpon>Form_FindingCommentsReportMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form_FrozenSection.resx">
+      <DependentUpon>Form_FrozenSection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form_FrozenSectionDianosis.resx">
       <DependentUpon>Form_FrozenSectionDianosis.cs</DependentUpon>
