@@ -932,11 +932,15 @@ namespace St.Teresa_LIS_2019
             }*/
         }
 
-        private void reloadAndBindingDBData(int position = 0)
+        private void reloadAndBindingDBData(string groupNo = null)
         {
             currentNevigateMode = NevigateMode.MODE_GROUP;
 
-            string sql = string.Format("SELECT * FROM [BXCY_DIAG] WHERE case_no = '{0}' ORDER BY [group]",caseNo);
+            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
+            if(groupNo != null && groupNo.Trim() != "")
+            {
+                sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] = '{1}' ORDER BY id", caseNo, groupNo);
+            }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
 
             dt = bxcy_diagDataSet.Tables["bxcy_diag"];
@@ -1984,18 +1988,25 @@ namespace St.Teresa_LIS_2019
                 {
                     if (currentEditRow != null)
                     {
-                        if (isSameGroupNewRecord)
+                        /*if (isSameGroupNewRecord)
                         {
                             setFirstMarcoAndMicroValue(currentEditRow);
-                        }
+                        }*/
 
                         currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
                         textBox_ID.BindingContext[dt].Position++;
 
+                        string currentGroupNo = textBox_Parts.Text.Trim();
+                        int currentPosition = currencyManager.Position;
+
                         if (DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
                         {
-                            reloadAndBindingDBData();
-                            button_End.PerformClick();
+                            reloadAndBindingDBData(currentGroupNo);
+                            if (currentPosition < currencyManager.Count)
+                            {
+                                currencyManager.Position = currentPosition;
+                            }
+                            //button_End.PerformClick();
                         }
                         else
                         {
@@ -2678,7 +2689,36 @@ namespace St.Teresa_LIS_2019
             isSameGroupNewRecord = true;
 
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
-            //currentEditRow["id"] = -1;
+
+            currentEditRow["macro_name"] = "";
+            currentEditRow["micro_name"] = "";
+            currentEditRow["micro_desc"] = "";
+            currentEditRow["macro_pic1"] = "";
+            currentEditRow["macro_pic2"] = "";
+            currentEditRow["macro_pic3"] = "";
+            currentEditRow["macro_pic4"] = "";
+            currentEditRow["micro_pic1"] = "";
+            currentEditRow["micro_pic2"] = "";
+            currentEditRow["micro_pic3"] = "";
+            currentEditRow["micro_pic4"] = "";
+            currentEditRow["macro_cap1"] = "";
+            currentEditRow["macro_cap2"] = "";
+            currentEditRow["macro_cap3"] = "";
+            currentEditRow["macro_cap4"] = "";
+            currentEditRow["micro_cap1"] = "";
+            currentEditRow["micro_cap2"] = "";
+            currentEditRow["micro_cap3"] = "";
+            currentEditRow["micro_cap4"] = "";
+            currentEditRow["macro_desc"] = "";
+            currentEditRow["site"] = "";
+            currentEditRow["Site2"] = "";
+            currentEditRow["Operation"] = "";
+            currentEditRow["Operation2"] = "";
+            currentEditRow["Diagnosis"] = "";
+            currentEditRow["Diag_desc1"] = "";
+            currentEditRow["Diag_desc2"] = "";
+            currentEditRow["seq"] = "";
+
             currentEditRow["case_no"] = caseNo;
             currentEditRow["group"] = textBox_Parts.Text.Trim();
 
@@ -2704,14 +2744,14 @@ namespace St.Teresa_LIS_2019
             //bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
 
-            currencyManager.Position++;
+            currencyManager.Position = currencyManager.Count - 1;
         }
 
         private void setFirstMarcoAndMicroValue(DataRow currentEditRow)
         {
             if (currentEditRow != null && currentEditRow["case_no"] != null && currentEditRow["case_no"].ToString() != "" && currentEditRow["group"] != null && currentEditRow["group"].ToString() != "")
             {
-                string checkSql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY ID", currentEditRow["case_no"].ToString(), currentEditRow["group"].ToString());
+                string checkSql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY diagnosisId", currentEditRow["case_no"].ToString(), currentEditRow["group"].ToString());
                 DataSet firstBxcy_diagDataSet = new DataSet();
                 SqlDataAdapter firstDataAdapter = DBConn.fetchDataIntoDataSet(checkSql, firstBxcy_diagDataSet, "bxcy_diag");
 
