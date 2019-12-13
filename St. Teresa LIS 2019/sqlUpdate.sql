@@ -1457,3 +1457,66 @@ when matched
 		r.diag_desc1 = t.diag_desc1,
 		r.micro_desc = t.micro_desc
 ;
+
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'diagnosisId' AND LTRIM(b.name)='BXCY_DIAG')
+BEGIN
+ALTER TABLE BXCY_DIAG ADD [diagnosisId] [int] NULL;
+END
+
+
+update BXCY_DIAG 
+set diagnosisId = s.rank
+from BXCY_DIAG d inner join 
+(
+ select id 
+ , RANK() over (PARTITION BY case_no, [group] ORDER BY id) AS Rank 
+ from bxcy_diag
+) s
+on (d.id = s.id)
+
+
+ALTER TABLE BXCY_DIAG ALTER column micro_desc NVARCHAR(MAX) NULL;
+ALTER TABLE BXCY_DIAG ALTER column macro_desc NVARCHAR(MAX) NULL;
+
+
+IF EXISTS(SELECT name FROM sys.triggers WHERE name='t_syncFirstMarcoAndMicroInGroup')
+BEGIN
+DROP TRIGGER [dbo].[t_syncFirstMarcoAndMicroInGroup]
+END
+GO
+
+CREATE TRIGGER [dbo].[t_syncFirstMarcoAndMicroInGroup]
+   ON  [dbo].[BXCY_DIAG]
+   AFTER update,insert
+AS 
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	DECLARE @currentId int
+	DECLARE @currentCaseNo varchar(15)
+	DECLARE @currentGroup int
+	DECLARE @currentMinId int = -1
+
+	SELECT @currentId = id, @currentCaseNo = case_no, @currentGroup = [group] FROM Inserted
+	SELECT @currentMinId = min(diagnosisId) FROM BXCY_DIAG WHERE case_no = @currentCaseNo AND [group] = @currentGroup
+
+	IF update(micro_desc)
+	BEGIN
+		UPDATE BXCY_DIAG SET micro_desc = b.micro_desc FROM BXCY_DIAG a LEFT JOIN Inserted b ON 1=1 WHERE a.case_no = @currentCaseNo AND a.[group] = @currentGroup AND a.diagnosisId <> @currentId
+	END
+	
+	IF update(macro_desc)
+	BEGIN
+		UPDATE BXCY_DIAG SET macro_desc = b.macro_desc FROM BXCY_DIAG a LEFT JOIN Inserted b ON 1=1 WHERE a.case_no = @currentCaseNo AND a.[group] = @currentGroup AND a.diagnosisId <> @currentId
+	END
+	/*IF(@currentMinId <> @currentId)
+	BEGIN
+		UPDATE BXCY_DIAG SET micro_desc = b.micro_desc, macro_desc = b.macro_desc FROM BXCY_DIAG a LEFT JOIN Inserted b ON 1=1 WHERE a.case_no = @currentCaseNo AND a.[group] = @currentGroup AND a.diagnosisId = @currentMinId
+	END*/
+    -- Insert statements for trigger here
+
+END
+
+GO

@@ -2023,9 +2023,20 @@ namespace St.Teresa_LIS_2019
                         {
                             textBox_ID.BindingContext[dt].Position++;
 
+                            string currentGroupNo = textBox_Parts.Text.Trim();
+                            int currentPosition = currencyManager.Position;
+
                             if (!DBConn.updateObject(dataAdapter, bxcy_diagDataSet, "bxcy_diag"))
                             {
                                 updated = false;
+                            }
+                            else
+                            {
+                                reloadAndBindingDBData(currentGroupNo);
+                                if (currentPosition < currencyManager.Count)
+                                {
+                                    currencyManager.Position = currentPosition;
+                                }
                             }
                         }
                     }
@@ -2152,6 +2163,63 @@ namespace St.Teresa_LIS_2019
 
             if (micro_templateDataSet.Tables["micro_template"].Rows.Count > 0)
             {
+                isSameGroupNewRecord = true;
+
+                int currentDiagnosisId = 1;
+                int.TryParse(textBox_DiagnosisNo.Text.Trim(), out currentDiagnosisId);
+                currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
+
+                currentEditRow["macro_name"] = "";
+                currentEditRow["micro_name"] = "";
+                currentEditRow["micro_desc"] = "";
+                currentEditRow["macro_pic1"] = "";
+                currentEditRow["macro_pic2"] = "";
+                currentEditRow["macro_pic3"] = "";
+                currentEditRow["macro_pic4"] = "";
+                currentEditRow["micro_pic1"] = "";
+                currentEditRow["micro_pic2"] = "";
+                currentEditRow["micro_pic3"] = "";
+                currentEditRow["micro_pic4"] = "";
+                currentEditRow["macro_cap1"] = "";
+                currentEditRow["macro_cap2"] = "";
+                currentEditRow["macro_cap3"] = "";
+                currentEditRow["macro_cap4"] = "";
+                currentEditRow["micro_cap1"] = "";
+                currentEditRow["micro_cap2"] = "";
+                currentEditRow["micro_cap3"] = "";
+                currentEditRow["micro_cap4"] = "";
+                currentEditRow["macro_desc"] = "";
+                currentEditRow["site"] = "";
+                currentEditRow["Site2"] = "";
+                currentEditRow["Operation"] = "";
+                currentEditRow["Operation2"] = "";
+                currentEditRow["Diagnosis"] = "";
+                currentEditRow["Diag_desc1"] = "";
+                currentEditRow["Diag_desc2"] = "";
+                currentEditRow["seq"] = "";
+
+                currentEditRow["case_no"] = caseNo;
+                currentEditRow["group"] = textBox_Parts.Text.Trim();
+
+                string groupSql = string.Format("SELECT ISNULL(max([diagnosisId]),0) as maxDiagnosisId FROM [bxcy_diag] WHERE case_no='{0}' and [group] = '{1}'", caseNo, textBox_Parts.Text.Trim());
+                DataSet groupDataSet1 = new DataSet();
+                SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
+
+                DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
+                int currentDiagnosisIdInDB = 1;
+                int.TryParse(groupDt.Rows[0]["maxDiagnosisId"].ToString(), out currentDiagnosisIdInDB);
+
+                if (currentDiagnosisId > currentDiagnosisIdInDB)
+                {
+                    currentEditRow["diagnosisId"] = currentDiagnosisId + 1;
+                }
+                else
+                {
+                    currentEditRow["diagnosisId"] = currentDiagnosisIdInDB + 1;
+                }
+
+                setFirstMarcoAndMicroValue(currentEditRow);
+
                 if (textBox_Remarks_CY.Text == "")
                 {
                     textBox_Remarks_CY.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
@@ -2160,49 +2228,25 @@ namespace St.Teresa_LIS_2019
                 {
                     textBox_Remarks_CY.Text += Environment.NewLine + Environment.NewLine + micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
                 }
-                
 
-                try
-                {
-                    comboBox_Site.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString();
-                }
-                catch (Exception ex)
-                {
+                currentEditRow["micro_desc"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
 
-                }
+                currentEditRow["site"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString();
 
-                textBox_Chinese_Description_1_DIA.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString();
+                currentEditRow["site2"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString();
 
-                try
-                {
-                    comboBox_Operation.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString();
-                }
-                catch (Exception ex)
-                {
+                currentEditRow["operation"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString();
 
-                }
+                currentEditRow["operation2"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString();
 
-                textBox_Chinese_Description_2_DIA.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString();
+                currentEditRow["Diagnosis"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString();
 
-                textBox_Diagnosis.Text += micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString();
+                currentEditRow["Diag_desc1"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString();
 
-                try
-                {
-                    comboBox_Diagnosis_1.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString();
-                }
-                catch (Exception ex)
-                {
+                currentEditRow["Diag_desc2"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString();
 
-                }
-
-                try
-                {
-                    comboBox_Diagnosis_2.SelectedValue = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString();
-                }
-                catch (Exception ex)
-                {
-
-                }
+                bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+                //currencyManager.Position = currencyManager.Count - 1;
             }
         }
 
