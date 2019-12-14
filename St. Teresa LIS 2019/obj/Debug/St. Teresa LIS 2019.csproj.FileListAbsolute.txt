@@ -1225,3 +1225,4 @@ C:\eric\MyCode\GitHub\pacmobile\LIS\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_
 C:\eric\MyCode\GitHub\pacmobile\LIS\St. Teresa LIS 2019\obj\Debug\St. Teresa LIS 2019.csproj.GenerateResource.Cache
 C:\eric\MyCode\GitHub\pacmobile\LIS\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.exe
 C:\eric\MyCode\GitHub\pacmobile\LIS\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.pdb
+D:\WorkStation\Pacmobile\StTeresa\LIS_20190530\St. Teresa LIS 2019\obj\Debug\St.Teresa_LIS_2019.Form_FrozenSection.resources
