@@ -2229,7 +2229,15 @@ namespace St.Teresa_LIS_2019
                     textBox_Remarks_CY.Text += Environment.NewLine + Environment.NewLine + micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
                 }*/
 
-                currentEditRow["micro_desc"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+                // updated by Eric Leung 2019-12-14 14:11
+                if (textBox_Remarks_CY.Text == "")
+                {
+                    currentEditRow["micro_desc"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+                }
+                else
+                {
+                    currentEditRow["micro_desc"] = textBox_Remarks_CY.Text + Environment.NewLine + Environment.NewLine + micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
+                }
 
                 currentEditRow["site"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString();
 
