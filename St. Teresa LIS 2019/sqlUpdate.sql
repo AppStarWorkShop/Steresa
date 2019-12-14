@@ -1458,6 +1458,199 @@ when matched
 		r.micro_desc = t.micro_desc
 ;
 
+-- Eric Leung 2019-Dec-10
+
+drop function fn_reportName
+
+create function fn_reportName(
+	@groupNo varchar(1)
+)
+returns nvarchar(50)
+AS
+Begin
+	IF (@groupNo is null or @groupNo = '')
+		BEGIN
+		return null
+		END
+	ELSE
+		BEGIN
+			IF @groupNo = '1'
+				BEGIN
+					return null
+				END
+			ELSE
+				BEGIN
+					IF @groupNo = '2'
+						BEGIN
+							return 'Second report'
+						END
+					ELSE
+						BEGIN
+							IF @groupNo = '3'
+								BEGIN
+									return 'Third report'
+								END
+							ELSE
+								BEGIN
+									IF @groupNo = '4'
+										BEGIN
+											return 'Fourth report'
+										END
+									ELSE
+										BEGIN
+											IF @groupNo = '5'
+												BEGIN
+													return 'Fifth report'
+												END
+											ELSE
+												BEGIN
+													IF @groupNo = '6'
+														BEGIN
+															return 'Sixth report'
+														END
+													ELSE
+														BEGIN
+															IF @groupNo = '7'
+																BEGIN
+																	return 'Seventh report'
+																END
+															ELSE
+																BEGIN
+																	IF @groupNo = '8'
+																		BEGIN
+																			return 'Eighth report'
+																		END
+																	ELSE
+																		BEGIN
+																			IF @groupNo = '9'
+																				BEGIN
+																					return 'Ninth report'
+																				END
+																			ELSE
+																				BEGIN
+																					return @groupNo + 'th report'
+																				END
+																		END
+																END
+														END
+												END
+										END
+								END
+						END
+				END
+		END
+	return null
+END;
+GO
+
+-- Eric Leung 2019-12-12
+
+alter table bxcy_diag add diagnosisId int 
+
+update BXCY_DIAG 
+set diagnosisId = s.rank
+from BXCY_DIAG d inner join 
+(
+	select id 
+	, RANK() over (PARTITION BY case_no, [group] ORDER BY id) AS Rank 
+	from bxcy_diag
+) s
+on (d.id = s.id)
+
+alter table bxcy_specimen alter column fz_detail nvarchar(2000)
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[fn_reportName]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))
+DROP FUNCTION [dbo].[fn_reportName]
+GO
+
+/****** Object:  UserDefinedFunction [dbo].[fn_reportName]    Script Date: 12/12/2019 16:54:37 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+create function [dbo].[fn_reportName](
+	@groupNo varchar(1)
+)
+returns nvarchar(50)
+AS
+Begin
+	IF (@groupNo is null or @groupNo = '')
+		BEGIN
+		return null
+		END
+	ELSE
+		BEGIN
+			IF @groupNo = '1'
+				BEGIN
+					return null
+				END
+			ELSE
+				BEGIN
+					IF @groupNo = '2'
+						BEGIN
+							return '2nd report'
+						END
+					ELSE
+						BEGIN
+							IF @groupNo = '3'
+								BEGIN
+									return '3rd report'
+								END
+							ELSE
+								BEGIN
+									IF @groupNo = '4'
+										BEGIN
+											return '4th report'
+										END
+									ELSE
+										BEGIN
+											IF @groupNo = '5'
+												BEGIN
+													return '5th report'
+												END
+											ELSE
+												BEGIN
+													IF @groupNo = '6'
+														BEGIN
+															return '6th report'
+														END
+													ELSE
+														BEGIN
+															IF @groupNo = '7'
+																BEGIN
+																	return '7th report'
+																END
+															ELSE
+																BEGIN
+																	IF @groupNo = '8'
+																		BEGIN
+																			return '8th report'
+																		END
+																	ELSE
+																		BEGIN
+																			IF @groupNo = '9'
+																				BEGIN
+																					return '9th report'
+																				END
+																			ELSE
+																				BEGIN
+																					return @groupNo + 'th report'
+																				END
+																		END
+																END
+														END
+												END
+										END
+								END
+						END
+				END
+		END
+	return null
+END;
+
 
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'diagnosisId' AND LTRIM(b.name)='BXCY_DIAG')
 BEGIN
