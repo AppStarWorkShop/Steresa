@@ -2220,14 +2220,14 @@ namespace St.Teresa_LIS_2019
 
                 setFirstMarcoAndMicroValue(currentEditRow);
 
-                if (textBox_Remarks_CY.Text == "")
+                /*if (textBox_Remarks_CY.Text == "")
                 {
                     textBox_Remarks_CY.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
                 }
                 else
                 {
                     textBox_Remarks_CY.Text += Environment.NewLine + Environment.NewLine + micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
-                }
+                }*/
 
                 currentEditRow["micro_desc"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
 
@@ -2246,7 +2246,7 @@ namespace St.Teresa_LIS_2019
                 currentEditRow["Diag_desc2"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString();
 
                 bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
-                //currencyManager.Position = currencyManager.Count - 1;
+                currencyManager.Position = currencyManager.Count - 1;
             }
         }
 
