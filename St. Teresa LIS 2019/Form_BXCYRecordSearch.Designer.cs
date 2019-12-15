@@ -94,6 +94,7 @@
             // 
             // textBox_Search_Type
             // 
+            this.textBox_Search_Type.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.textBox_Search_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Search_Type.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Search_Type.Location = new System.Drawing.Point(14, 28);
@@ -136,7 +137,7 @@
             this.button_BX.Name = "button_BX";
             this.button_BX.Size = new System.Drawing.Size(48, 21);
             this.button_BX.TabIndex = 66;
-            this.button_BX.Text = "BX";
+            this.button_BX.Text = "&BX";
             this.button_BX.UseVisualStyleBackColor = true;
             this.button_BX.Click += new System.EventHandler(this.button_BX_Click);
             // 
@@ -268,7 +269,7 @@
             this.button_CY.Name = "button_CY";
             this.button_CY.Size = new System.Drawing.Size(48, 21);
             this.button_CY.TabIndex = 78;
-            this.button_CY.Text = "CY";
+            this.button_CY.Text = "&CY";
             this.button_CY.UseVisualStyleBackColor = true;
             this.button_CY.Click += new System.EventHandler(this.button_CY_Click);
             // 
@@ -280,7 +281,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(48, 21);
             this.button1.TabIndex = 80;
-            this.button1.Text = "MP";
+            this.button1.Text = "&MP";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -518,7 +519,7 @@
             this.button_D.Name = "button_D";
             this.button_D.Size = new System.Drawing.Size(48, 21);
             this.button_D.TabIndex = 246;
-            this.button_D.Text = "D";
+            this.button_D.Text = "&D";
             this.button_D.UseVisualStyleBackColor = true;
             this.button_D.Click += new System.EventHandler(this.button_D_Click);
             // 

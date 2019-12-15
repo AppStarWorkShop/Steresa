@@ -40,6 +40,7 @@ namespace St.Teresa_LIS_2019
         private int dateMode = 1;
         private string dateFrom = "";
         private string dateTo = "";
+        public Boolean initSearch = false; // updated by Eric Leung
 
         private HisPatient currentHisPatient = null;
 
@@ -75,6 +76,7 @@ namespace St.Teresa_LIS_2019
             loadDataGridViewDate();
             dataGridViewFormat();
             setButtonStatus();
+            initSearch = false;
         }
 
         private void loadDataGridViewDate(int currentPageNum = 1)
@@ -98,18 +100,20 @@ namespace St.Teresa_LIS_2019
             checkCmd.Parameters["@whereVal"].Value = whereVal;
             checkCmd.Parameters["@snopCode"].Value = snopCodeWhereStr;
 
-            /*if (whereVal == "" && snopCodeWhereStr == "")
+            // updated by Eric Leung
+            
+            if (initSearch)
             {
                 checkCmd.Parameters["@dateMode"].Value = DATE_MODE_CUSTOM;
                 checkCmd.Parameters["@dateFrom"].Value = DateTime.Now.AddDays(-2).ToString("yyyy-MM-dd");
                 checkCmd.Parameters["@dateTo"].Value = DateTime.Now.AddDays(1).ToString("yyyy-MM-dd");
             } 
             else
-            {*/
-            checkCmd.Parameters["@dateMode"].Value = dateMode;
-            checkCmd.Parameters["@dateFrom"].Value = dateFrom;
-            checkCmd.Parameters["@dateTo"].Value = dateTo;
-            //}
+            {
+                checkCmd.Parameters["@dateMode"].Value = dateMode;
+                checkCmd.Parameters["@dateFrom"].Value = dateFrom;
+                checkCmd.Parameters["@dateTo"].Value = dateTo;
+            }
 
             checkCmd.Parameters.Add("@RETURN_VALUE",SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
             checkCmd.CommandTimeout = 600;
@@ -329,6 +333,8 @@ namespace St.Teresa_LIS_2019
                 buttonF3_Edit_Record.Enabled = false;
                 button_F6_View_Record.Enabled = false;
             }
+
+            textBox_Search_Type.Focus();
         }
 
         private HisPatient searchHospitalRecord()
@@ -457,6 +463,17 @@ namespace St.Teresa_LIS_2019
             if (keyData == Keys.F1)
             {
                 button_F1_Search.PerformClick();
+            }
+            else if (keyData == Keys.F && textBox_Search_Type.Focused)
+            {
+                if (contentSearching == SEARCH_TYPE_LAB_REF)
+                {
+                    textBox_Search_Type.Text = string.Format("HN{0}", DateTime.Now.ToString("yyyy"));
+                    textBox_Search_Type.Focus();
+                    textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
+                    textBox_Search_Type.SelectionLength = 0;
+                    return true;
+                }
             }
 
             if (keyData == Keys.Enter && (textBox_Search_Type.Focused || radioButton_Data_All.Focused || radioButton_Data_Past_7.Focused || radioButton_Data_Past_14.Focused || radioButton_Data_Past_28.Focused || radioButton_Data_From.Focused || dateTimePicker_From.Focused || dateTimePicker_To.Focused))

@@ -1617,7 +1617,6 @@
             this.comboBox_Diagnosis_2.ValueMember = "C_DESC";
             this.comboBox_Diagnosis_2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Diagnosis_2_DrawItem);
             this.comboBox_Diagnosis_2.SelectedIndexChanged += new System.EventHandler(this.comboBox_Diagnosis_2_SelectedIndexChanged);
-            //this.comboBox_Diagnosis_2.Validated += new System.EventHandler(this.comboBox_Diagnosis_2_Validated);
             // 
             // button_Detail_3_DIA
             // 
@@ -1646,9 +1645,6 @@
             this.comboBox_Diagnosis_1.TabIndex = 217;
             this.comboBox_Diagnosis_1.ValueMember = "C_DESC";
             this.comboBox_Diagnosis_1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Diagnosis_1_DrawItem);
-            //this.comboBox_Diagnosis_1.SelectedIndexChanged += new System.EventHandler(this.comboBox_Diagnosis_1_SelectedIndexChanged);
-            //this.comboBox_Diagnosis_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Diagnosis_1_SelectionChangeCommitted);
-            //this.comboBox_Diagnosis_1.Validated += new System.EventHandler(this.comboBox_Diagnosis_1_Validated);
             // 
             // label_Diagnosis
             // 
@@ -1685,6 +1681,8 @@
             // 
             // comboBox_Operation
             // 
+            this.comboBox_Operation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_Operation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox_Operation.DisplayMember = "operation";
             this.comboBox_Operation.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.comboBox_Operation.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1776,6 +1774,8 @@
             // 
             // comboBox_Site
             // 
+            this.comboBox_Site.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBox_Site.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBox_Site.DisplayMember = "site";
             this.comboBox_Site.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
             this.comboBox_Site.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

@@ -1518,17 +1518,17 @@ namespace St.Teresa_LIS_2019
 
             if (status == PageStatus.STATUS_VIEW)
             {
-                comboBox_Description.Enabled = true;
+                comboBox_Description.Enabled = false;
 
-                button_Caption_Detail.Enabled = true;
-                textBox_Picture_File_1.Enabled = true;
-                textBox_Picture_File_2.Enabled = true;
+                button_Caption_Detail.Enabled = false;
+                textBox_Picture_File_1.Enabled = false;
+                textBox_Picture_File_2.Enabled = false;
                 textBox_Picture_File_3.Enabled = false;
-                textBox_Picture_File_4.Enabled = true;
-                textBox_Picture_File_5.Enabled = true;
-                textBox_Picture_File_6.Enabled = true;
+                textBox_Picture_File_4.Enabled = false;
+                textBox_Picture_File_5.Enabled = false;
+                textBox_Picture_File_6.Enabled = false;
                 textBox_Picture_File_7.Enabled = false;
-                textBox_Picture_File_8.Enabled = true;
+                textBox_Picture_File_8.Enabled = false;
 
                 comboBox_Caption_1.Enabled = false;
                 comboBox_Caption_2.Enabled = false;

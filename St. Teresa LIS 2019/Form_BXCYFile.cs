@@ -414,15 +414,17 @@ namespace St.Teresa_LIS_2019
             comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
+
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+
+            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_HKID.DataBindings.Add("Text", dt, "PAT_HKID", false);
-            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
@@ -449,12 +451,14 @@ namespace St.Teresa_LIS_2019
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
             textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
+
             textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
             textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
             textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
+
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
@@ -469,6 +473,7 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
+
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy HH:mm:ss");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
             textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy HH:mm:ss");
@@ -621,7 +626,7 @@ namespace St.Teresa_LIS_2019
                     DateTime recordDate;
                     if (DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
                     {
-                        textBox_DOB.Text = recordDate.ToString("yyyy/MM/dd");
+                        textBox_DOB.Text = recordDate.ToString("dd/MM/yyyy");
                     }
                     textBox_Age.Text = reader.GetValue(5).ToString();
                     textBox_Sex.Text = reader.GetValue(6).ToString();
@@ -972,7 +977,7 @@ namespace St.Teresa_LIS_2019
                     Shif_2_3();
                     Shif_1_2();
                     }
-                    
+
                     break;
                 default:
                     break;
@@ -1134,15 +1139,15 @@ namespace St.Teresa_LIS_2019
             {
                 DataSet checkBxcy_specimenDataSet = new DataSet();
                 SqlDataAdapter checkdataAdapter;
-                string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE patient = '{0}' AND pat_hkid = '{1}'",textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim());
+                string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE patient = '{0}' AND pat_hkid = '{1}'", textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim());
                 checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
 
-                if(checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+                if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
                 {
                     result = true;
                     MessageBox.Show("Duplicate Patient's name and HKID, unable to save");
                 }
-                
+
             }
 
             return result;
@@ -1343,6 +1348,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
             currentEditRow["DATE"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -1364,6 +1370,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
             currentEditRow["DATE"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -1377,6 +1384,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["CLIENT"] = DEFAULT_CLIENT;
             currentEditRow["Institute"] = DEFAULT_INSTITUTE;
             currentEditRow["DATE"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
 
             currentEditRow["fz_section"] = 0;
             currentEditRow["uploaded"] = 0;
@@ -1391,8 +1399,10 @@ namespace St.Teresa_LIS_2019
                 DateTime dob = DateTime.MinValue;
                 try
                 {
+
                     dob = DateTime.ParseExact(hp.pvDob, "yyyyMMdd", null);
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
 
                 }
@@ -1402,16 +1412,17 @@ namespace St.Teresa_LIS_2019
                     currentEditRow["pat_birth"] = dob;
                     currentEditRow["pat_age"] = Math.Round(((DateTime.Now - dob).TotalDays / 365), 2);
                 }
-                
+
             }
-            
-            
+
+
             currentEditRow["pat_sex"] = hp.pvSex;
             currentEditRow["pat_hkid"] = hp.getFullHKID();
             currentEditRow["bed_room"] = hp.deptCode;
             currentEditRow["bed_no"] = hp.bedNo;
             currentEditRow["doctor_ic"] = hp.getDoctorFullName();
             currentEditRow["doctor_id"] = hp.doctorCode;
+            currentEditRow["lab_ref"] = hp.visitNo;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -1428,6 +1439,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["CLIENT"] = DEFAULT_CLIENT;
             currentEditRow["Institute"] = DEFAULT_INSTITUTE;
             currentEditRow["Date"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
 
             currentEditRow["fz_section"] = 0;
             currentEditRow["uploaded"] = 0;
@@ -1466,6 +1478,7 @@ namespace St.Teresa_LIS_2019
             //currentEditRow["case_no"] = textBox_Case_No.Text;
             //currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
             currentEditRow["date"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
             currentEditRow["ethnic"] = comboBox_Ethnic.Text;
             currentEditRow["cyto_Type"] = comboBox_cytoType.Text;
             // Update by Eric  2019-12-05
@@ -1477,7 +1490,9 @@ namespace St.Teresa_LIS_2019
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
 
+
             CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text, "ddMMyyyy");
+
             currentEditRow["class"] = comboBox_Class.Text;
             currentEditRow["pat_age"] = textBox_Age.Text;
             currentEditRow["pat_sex"] = textBox_Sex.Text;
@@ -1504,7 +1519,7 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["inv_no"] = textBox_Involce_No.Text;
             //currentEditRow["receipt"] = textBox_Receipt.Text;
-            //if (textBox_Invoice_Date.Text.Trim() != "") { 
+            //if (textBox_Invoice_Date.Text.Trim() != "") {
             //    currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
             //}
             //currentEditRow["inv_amt"] = textBox_Amount_HK.Text;
@@ -1514,7 +1529,7 @@ namespace St.Teresa_LIS_2019
             //    currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null);
             //}
 
-            //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text; 
+            //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text;
             //currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
             //currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
             //currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
@@ -2204,6 +2219,224 @@ namespace St.Teresa_LIS_2019
                 return true;
             }
 
+            // eric leung -- press enter to jump to next field
+            if (keyData == Keys.Enter)
+            {
+                Boolean notJumped = true;
+                if (textBox_Case_No.Focused)
+                {
+                    textBox_Date.Focus();
+                    notJumped = false;
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Date.Focused)
+                    {
+                        comboBox_Ethnic.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Ethnic.Focused)
+                    {
+                        comboBox_cytoType.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_cytoType.Focused)
+                    {
+                        textBox_Patient.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Patient.Focused)
+                    {
+                        textBox_Chinese_Name.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Chinese_Name.Focused)
+                    {
+                        textBox_HKID.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_HKID.Focused)
+                    {
+                        textBox_DOB.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_DOB.Focused)
+                    {
+                        comboBox_Class.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Class.Focused)
+                    {
+                        textBox_Age.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Age.Focused)
+                    {
+                        textBox_Sex.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Sex.Focused)
+                    {
+                        textBox_Room.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Room.Focused)
+                    {
+                        textBox_Bed.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Bed.Focused)
+                    {
+                        textBox_Patient_s_Clinical_History.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Ref_No.Focused)
+                    {
+                        textBox_Rpt_Date.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (textBox_Rpt_Date.Focused)
+                    {
+                        comboBox_Sign_By_Dr_1.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Sign_By_Dr_1.Focused)
+                    {
+                        comboBox_Sign_By_Dr_2.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Sign_By_Dr_2.Focused)
+                    {
+                        comboBox_Snop_T1.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Snop_T1.Focused)
+                    {
+                        comboBox_Snop_M1.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Snop_M1.Focused)
+                    {
+                        comboBox_Snop_T2.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Snop_T2.Focused)
+                    {
+                        comboBox_Snop_M2.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Snop_M2.Focused)
+                    {
+                        comboBox_Snop_T3.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Snop_T3.Focused)
+                    {
+                        comboBox_Snop_M3.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_Snop_M3.Focused)
+                    {
+                        comboBox_HistoType.Focus();
+                        notJumped = false;
+                    }
+                }
+
+                if (notJumped)
+                {
+                    if (comboBox_HistoType.Focused)
+                    {
+                        textBox_Remarks.Focus();
+                        notJumped = false;
+                    }
+                }
+            }
+
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -2288,11 +2521,11 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
-            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
-
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             textBox_Rpt_Date.Focus();
-            textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
-            textBox_Rpt_Date.ScrollToCaret();
+            textBox_Rpt_Date.SelectionStart = 0;
+            textBox_Rpt_Date.SelectionLength = 0;
+
         }
 
         private void button_Printed_Click(object sender, EventArgs e)
@@ -2341,13 +2574,13 @@ namespace St.Teresa_LIS_2019
             string desc = drv.Row["desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 4;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(snopcode, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 4) * 3;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
         }
 
@@ -2359,13 +2592,13 @@ namespace St.Teresa_LIS_2019
             string desc = drv.Row["desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 4;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(snopcode, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 4) * 3;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
         }
 
@@ -2377,13 +2610,13 @@ namespace St.Teresa_LIS_2019
             string desc = drv.Row["desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 4;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(snopcode, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 4) * 3;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
         }
 
@@ -2395,13 +2628,13 @@ namespace St.Teresa_LIS_2019
             string desc = drv.Row["desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 4;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(snopcode, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 4) * 3;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
 
             Console.WriteLine("M1 draw");
@@ -2415,13 +2648,13 @@ namespace St.Teresa_LIS_2019
             string desc = drv.Row["desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 4;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(snopcode, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 4) * 3;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
         }
 
@@ -2433,13 +2666,13 @@ namespace St.Teresa_LIS_2019
             string desc = drv.Row["desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 4;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(snopcode, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 4) * 3;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
         }
 
@@ -2543,6 +2776,16 @@ namespace St.Teresa_LIS_2019
             button_Advance.Enabled = false;
             button_Delete.Enabled = false;
             button_New.Enabled = false;
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void comboBox_Snop_T1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
