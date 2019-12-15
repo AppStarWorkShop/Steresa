@@ -2802,19 +2802,93 @@ namespace St.Teresa_LIS_2019
 
         private void setFirstMarcoAndMicroValue(DataRow currentEditRow)
         {
-            if (currentEditRow != null && currentEditRow["case_no"] != null && currentEditRow["case_no"].ToString() != "" && currentEditRow["group"] != null && currentEditRow["group"].ToString() != "")
+            var changeList = from p in dt.AsEnumerable()
+                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                             && p.Field<string>("case_no") == caseNo
+                             select p;
+            if (changeList.Any())
             {
-                string checkSql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY diagnosisId", currentEditRow["case_no"].ToString(), currentEditRow["group"].ToString());
-                DataSet firstBxcy_diagDataSet = new DataSet();
-                SqlDataAdapter firstDataAdapter = DBConn.fetchDataIntoDataSet(checkSql, firstBxcy_diagDataSet, "bxcy_diag");
+                DataRow dr = changeList.FirstOrDefault();
 
-                if (firstBxcy_diagDataSet.Tables["bxcy_diag"].Rows.Count > 0)
+                currentEditRow["micro_desc"] = dr["micro_desc"].ToString().Trim();
+                currentEditRow["macro_desc"] = dr["macro_desc"].ToString().Trim();
+                currentEditRow["micro_name"] = dr["micro_name"].ToString().Trim();
+                currentEditRow["macro_name"] = dr["macro_name"].ToString().Trim();
+            }
+            else
+            {
+                if (currentEditRow != null && currentEditRow["case_no"] != null && currentEditRow["case_no"].ToString() != "" && currentEditRow["group"] != null && currentEditRow["group"].ToString() != "")
                 {
-                    DataRow mDr = firstBxcy_diagDataSet.Tables["bxcy_diag"].Rows[0];
+                    string checkSql = string.Format("SELECT TOP 1 * FROM [bxcy_diag] WHERE case_no = '{0}' and [group] = '{1}' ORDER BY diagnosisId", currentEditRow["case_no"].ToString(), currentEditRow["group"].ToString());
+                    DataSet firstBxcy_diagDataSet = new DataSet();
+                    SqlDataAdapter firstDataAdapter = DBConn.fetchDataIntoDataSet(checkSql, firstBxcy_diagDataSet, "bxcy_diag");
 
-                    currentEditRow["micro_desc"] = mDr["micro_desc"].ToString().Trim(); ;
-                    currentEditRow["macro_desc"] = mDr["macro_desc"].ToString().Trim(); ;
+                    if (firstBxcy_diagDataSet.Tables["bxcy_diag"].Rows.Count > 0)
+                    {
+                        DataRow mDr = firstBxcy_diagDataSet.Tables["bxcy_diag"].Rows[0];
+
+                        currentEditRow["micro_desc"] = mDr["micro_desc"].ToString().Trim();
+                        currentEditRow["macro_desc"] = mDr["macro_desc"].ToString().Trim();
+                        currentEditRow["micro_name"] = mDr["micro_name"].ToString().Trim();
+                        currentEditRow["macro_name"] = mDr["macro_name"].ToString().Trim();
+                    }
                 }
+            }
+        }
+
+        private void textBox_Remarks_TextChanged(object sender, EventArgs e)
+        {
+            var changeList = from p in dt.AsEnumerable()
+                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                             && p.Field<string>("case_no") == caseNo
+                             && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
+                             select p;
+
+            foreach (DataRow dr in changeList)
+            {
+                dr["macro_desc"] = textBox_Remarks.Text.Trim();
+            }
+        }
+
+        private void textBox_Remarks_CY_TextChanged(object sender, EventArgs e)
+        {
+            var changeList = from p in dt.AsEnumerable()
+                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                             && p.Field<string>("case_no") == caseNo
+                             && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
+                             select p;
+
+            foreach (DataRow dr in changeList)
+            {
+                dr["micro_desc"] = textBox_Remarks_CY.Text.Trim();
+            }
+        }
+
+        private void comboBox_Description2_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var changeList = from p in dt.AsEnumerable()
+                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                             && p.Field<string>("case_no") == caseNo
+                             && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
+                             select p;
+
+            foreach (DataRow dr in changeList)
+            {
+                dr["micro_name"] = comboBox_Description2.SelectedValue.ToString().Trim();
+            }
+        }
+
+        private void comboBox_Description_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var changeList = from p in dt.AsEnumerable()
+                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                             && p.Field<string>("case_no") == caseNo
+                             && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
+                             select p;
+
+            foreach (DataRow dr in changeList)
+            {
+                dr["macro_name"] = comboBox_Description.SelectedValue.ToString().Trim();
             }
         }
 
