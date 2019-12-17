@@ -199,6 +199,9 @@ namespace St.Teresa_LIS_2019
                     currentEditRow["id"] = -1;
                     currentEditRow["case_no"] = caseNo;
 
+                    currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
+                    currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
+
                     string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
                     DataSet groupDataSet1 = new DataSet();
                     SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
@@ -1359,7 +1362,7 @@ namespace St.Teresa_LIS_2019
                 string countSql = string.Format(" [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}'", textBox_Parts.Text, caseNo);
                 if (DBConn.getSqlRecordCount(countSql) > 0)
                 {
-                    string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}' ORDER BY ID", textBox_Parts.Text, caseNo);
+                    string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{1}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE [group] > '{0}' AND case_no = '{1}') ORDER BY ID", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
             }
@@ -1367,7 +1370,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            if (textBox_ID.Text.Trim() == "")
+            /*if (textBox_ID.Text.Trim() == "")
             {
                 return;
             }
@@ -1380,13 +1383,16 @@ namespace St.Teresa_LIS_2019
                     string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE [group] < '{0}' and case_no = '{1}' ORDER BY ID", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
-            }
+            }*/
+
+            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
         }
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            /*string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");*/
 
             /*if (currentNevigateMode == NevigateMode.MODE_DIAGNOSIS)
             {
@@ -1403,8 +1409,8 @@ namespace St.Teresa_LIS_2019
         private void button_End_Click(object sender, EventArgs e)
         {
             
-            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT max([group]) FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY id", caseNo);
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            /*string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT max([group]) FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY id", caseNo);
+            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");*/
             
 
             /*if (currentNevigateMode == NevigateMode.MODE_DIAGNOSIS)
@@ -1487,15 +1493,18 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["diagnosisId"] = 1;
 
+            currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
+            currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
+
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
         }
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(string.Format("Sure to delete this record in group {0}?", textBox_Parts.Text), "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE id = '{0}'", textBox_ID.Text);
+                string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE [group] = '{0}' and case_no = '{1}'", textBox_Parts.Text, caseNo);
 
                 if (DBConn.executeUpdate(deleteSql))
                 {
@@ -1604,16 +1613,16 @@ namespace St.Teresa_LIS_2019
                 comboBox_Snop_M2.Enabled = false;
                 comboBox_Snop_M3.Enabled = false;
 
-                button_Top.Enabled = true;
+                //button_Top.Enabled = true;
                 button_Back.Enabled = true;
                 button_Next.Enabled = true;
-                button_End.Enabled = true;
+                //button_End.Enabled = true;
                 button_New.Enabled = true;
 
-                button_Top2.Enabled = true;
+                //button_Top2.Enabled = true;
                 button_Back2.Enabled = true;
                 button_Next2.Enabled = true;
-                button_End2.Enabled = true;
+                //button_End2.Enabled = true;
                 button_New2.Enabled = true;
 
                 button_Save.Enabled = false;
@@ -1626,6 +1635,7 @@ namespace St.Teresa_LIS_2019
 
                 comboBox_MIC_Add2.Enabled = false;
                 buttonremoveCinese.Enabled = false;
+                button_Copy.Enabled = true;
 
                 disedit_modle();
             }
@@ -1718,16 +1728,16 @@ namespace St.Teresa_LIS_2019
                     comboBox_Snop_M2.Enabled = true;
                     comboBox_Snop_M3.Enabled = true;
 
-                    button_Top.Enabled = false;
+                    //button_Top.Enabled = false;
                     button_Back.Enabled = false;
                     button_Next.Enabled = false;
-                    button_End.Enabled = false;
+                    //button_End.Enabled = false;
                     button_New.Enabled = false;
 
-                    button_Top2.Enabled = true;
+                    //button_Top2.Enabled = true;
                     button_Back2.Enabled = true;
                     button_Next2.Enabled = true;
-                    button_End2.Enabled = true;
+                    //button_End2.Enabled = true;
                     button_New2.Enabled = true;
 
                     button_Save.Enabled = true;
@@ -1741,6 +1751,7 @@ namespace St.Teresa_LIS_2019
 
                     comboBox_MIC_Add2.Enabled = true;
                     buttonremoveCinese.Enabled = true;
+                    button_Copy.Enabled = false;
                     edit_modle();
                 }
                 else
@@ -1832,16 +1843,16 @@ namespace St.Teresa_LIS_2019
                         comboBox_Snop_M2.Enabled = true;
                         comboBox_Snop_M3.Enabled = true;
 
-                        button_Top.Enabled = false;
+                        //button_Top.Enabled = false;
                         button_Back.Enabled = false;
                         button_Next.Enabled = false;
-                        button_End.Enabled = false;
+                        //button_End.Enabled = false;
                         button_New.Enabled = false;
 
-                        button_Top2.Enabled = true;
+                        //button_Top2.Enabled = true;
                         button_Back2.Enabled = true;
                         button_Next2.Enabled = true;
-                        button_End2.Enabled = true;
+                        //button_End2.Enabled = true;
                         button_New2.Enabled = true;
 
                         button_Save.Enabled = true;
@@ -1855,6 +1866,7 @@ namespace St.Teresa_LIS_2019
 
                         comboBox_MIC_Add2.Enabled = true;
                         buttonremoveCinese.Enabled = true;
+                        button_Copy.Enabled = false;
                         edit_modle();
                     }
                 }
@@ -1863,14 +1875,14 @@ namespace St.Teresa_LIS_2019
 
         private void edit_modle()
         {
-            button_Top.Image = Image.FromFile("Resources/topGra.png");
-            button_Top.ForeColor = Color.Gray;
+            //button_Top.Image = Image.FromFile("Resources/topGra.png");
+            //button_Top.ForeColor = Color.Gray;
             button_Back.Image = Image.FromFile("Resources/backGra.png");
             button_Back.ForeColor = Color.Gray;
             button_Next.Image = Image.FromFile("Resources/nextGra.png");
             button_Next.ForeColor = Color.Gray;
-            button_End.Image = Image.FromFile("Resources/endGra.png");
-            button_End.ForeColor = Color.Gray;
+            //button_End.Image = Image.FromFile("Resources/endGra.png");
+            //button_End.ForeColor = Color.Gray;
             button_Save.Image = Image.FromFile("Resources/save.png");
             button_Save.ForeColor = Color.Black;
             button_New.Image = Image.FromFile("Resources/newGra.png");
@@ -1884,20 +1896,22 @@ namespace St.Teresa_LIS_2019
             button_F8_Back_To_Main.Image = Image.FromFile("Resources/exit.png");
             button_F8_Back_To_Main.ForeColor = Color.Black;
 
+            button_Copy.Image = Image.FromFile("Resources/newGra.png");
+            button_Copy.ForeColor = Color.Gray;
             /*button_Label.Image = Image.FromFile("Resources/print.png");
             button_Label.ForeColor = Color.Black;*/
         }
 
         private void disedit_modle()
         {
-            button_Top.Image = Image.FromFile("Resources/top.png");
-            button_Top.ForeColor = Color.Black;
+            //button_Top.Image = Image.FromFile("Resources/top.png");
+            //button_Top.ForeColor = Color.Black;
             button_Back.Image = Image.FromFile("Resources/back.png");
             button_Back.ForeColor = Color.Black;
             button_Next.Image = Image.FromFile("Resources/next.png");
             button_Next.ForeColor = Color.Black;
-            button_End.Image = Image.FromFile("Resources/end.png");
-            button_End.ForeColor = Color.Black;
+            //button_End.Image = Image.FromFile("Resources/end.png");
+            //button_End.ForeColor = Color.Black;
             button_Save.Image = Image.FromFile("Resources/saveGra.png");
             button_Save.ForeColor = Color.Gray;
             button_New.Image = Image.FromFile("Resources/new.png");
@@ -1911,6 +1925,8 @@ namespace St.Teresa_LIS_2019
             button_F8_Back_To_Main.Image = Image.FromFile("Resources/exit.png");
             button_F8_Back_To_Main.ForeColor = Color.Black;
 
+            button_Copy.Image = Image.FromFile("Resources/new.png");
+            button_Copy.ForeColor = Color.Black;
             /*button_Label.Image = Image.FromFile("Resources/print.png");
             button_Label.ForeColor = Color.Black;*/
             /*button_Label.Image = Image.FromFile("Resources/print.png");
@@ -2164,8 +2180,44 @@ namespace St.Teresa_LIS_2019
 
             if (micro_templateDataSet.Tables["micro_template"].Rows.Count > 0)
             {
-                isSameGroupNewRecord = true;
+                var countList = from p in dt.AsEnumerable()
+                                 where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                 && p.Field<string>("case_no") == caseNo
+                                 select p;
+                if (countList.Count() == 1)
+                {
+                    currentEditRow = countList.FirstOrDefault();
+                    if (currentEditRow["micro_desc"].ToString() == "" 
+                        && currentEditRow["site"].ToString() == ""
+                        && currentEditRow["site2"].ToString() == ""
+                        && currentEditRow["operation"].ToString() == ""
+                        && currentEditRow["operation2"].ToString() == ""
+                        && currentEditRow["Diagnosis"].ToString() == ""
+                        && currentEditRow["Diag_desc1"].ToString() == ""
+                        && currentEditRow["Diag_desc2"].ToString() == ""
+                        )
+                    {
+                        currentEditRow["micro_desc"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
 
+                        currentEditRow["site"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE"].ToString();
+
+                        currentEditRow["site2"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["SITE2"].ToString();
+
+                        currentEditRow["operation"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION"].ToString();
+
+                        currentEditRow["operation2"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["OPERATION2"].ToString();
+
+                        currentEditRow["Diagnosis"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAGNOSIS"].ToString();
+
+                        currentEditRow["Diag_desc1"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC1"].ToString();
+
+                        currentEditRow["Diag_desc2"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString() == null ? "" : micro_templateDataSet.Tables["micro_template"].Rows[0]["DIAG_DESC2"].ToString();
+
+                        return;
+                    }
+                }
+
+                isSameGroupNewRecord = true;
                 int currentDiagnosisId = 1;
                 int.TryParse(textBox_DiagnosisNo.Text.Trim(), out currentDiagnosisId);
                 currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
@@ -2220,15 +2272,6 @@ namespace St.Teresa_LIS_2019
                 }
 
                 setFirstMarcoAndMicroValue(currentEditRow);
-
-                /*if (textBox_Remarks_CY.Text == "")
-                {
-                    textBox_Remarks_CY.Text = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
-                }
-                else
-                {
-                    textBox_Remarks_CY.Text += Environment.NewLine + Environment.NewLine + micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
-                }*/
 
                 // updated by Eric Leung 2019-12-14 14:11
                 if (textBox_Remarks_CY.Text == "")
@@ -2643,10 +2686,10 @@ namespace St.Teresa_LIS_2019
             }
             else
             {*/
-                if (currencyManager != null)
+                /*if (currencyManager != null)
                 {
                     currencyManager.Position = 0;
-                }
+                }*/
             //}
         }
 
@@ -2725,10 +2768,10 @@ namespace St.Teresa_LIS_2019
             }
             else
             {*/
-                if (currencyManager != null)
+                /*if (currencyManager != null)
                 {
                     currencyManager.Position = currencyManager.Count - 1;
-                }
+                }*/
             //}
         }
 
@@ -2812,8 +2855,8 @@ namespace St.Teresa_LIS_2019
 
                 currentEditRow["micro_desc"] = dr["micro_desc"].ToString().Trim();
                 currentEditRow["macro_desc"] = dr["macro_desc"].ToString().Trim();
-                currentEditRow["micro_name"] = dr["micro_name"].ToString().Trim();
-                currentEditRow["macro_name"] = dr["macro_name"].ToString().Trim();
+                currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
+                currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
             }
             else
             {
@@ -2829,8 +2872,8 @@ namespace St.Teresa_LIS_2019
 
                         currentEditRow["micro_desc"] = mDr["micro_desc"].ToString().Trim();
                         currentEditRow["macro_desc"] = mDr["macro_desc"].ToString().Trim();
-                        currentEditRow["micro_name"] = mDr["micro_name"].ToString().Trim();
-                        currentEditRow["macro_name"] = mDr["macro_name"].ToString().Trim();
+                        currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
+                        currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
                     }
                 }
             }
@@ -2890,6 +2933,117 @@ namespace St.Teresa_LIS_2019
             {
                 dr["macro_name"] = comboBox_Description.SelectedValue.ToString().Trim();
             }
+        }
+
+        private void button_Delete2_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE id = '{0}'", textBox_ID.Text);
+
+                if (DBConn.executeUpdate(deleteSql))
+                {
+                    DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
+                    rowToDelete.Delete();
+                    reloadDBData(0);
+                    MessageBox.Show("Bxcy Diag deleted");
+                }
+                else
+                {
+                    MessageBox.Show("Bxcy Diag deleted fail, please contact Admin");
+                }
+
+                setButtonStatus(PageStatus.STATUS_VIEW);
+            }
+        }
+
+        private void button_Copy_Click(object sender, EventArgs e)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+            isSameGroupNewRecord = false;
+            string newGroup;
+
+            var maxGroupFromProg = (from p in dt.AsEnumerable()
+                             where p.Field<string>("case_no") == caseNo
+                             select p.Field<string>("group")).Max();
+
+            int intMaxGroupFromProg = Convert.ToInt32(maxGroupFromProg);
+
+            string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+            DataSet groupDataSet1 = new DataSet();
+            SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
+
+            DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
+            string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();
+            int intMaxGroupFromDB = Convert.ToInt32(strMaxGroup);
+
+            if(intMaxGroupFromDB > intMaxGroupFromProg)
+            {
+                newGroup = (intMaxGroupFromDB + 1).ToString();
+            }
+            else
+            {
+                newGroup = (intMaxGroupFromProg + 1).ToString();
+            }
+
+            var varGroupList = from p in dt.AsEnumerable()
+                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                             && p.Field<string>("case_no") == caseNo
+                             select p;
+
+            List<DataRow> groupList = varGroupList.ToList();
+
+            foreach (DataRow dr in groupList)
+            {
+                currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
+                currentEditRow["group"] = newGroup;
+                currentEditRow["case_no"] = caseNo;
+
+                currentEditRow["macro_name"] = dr["macro_name"];
+                currentEditRow["micro_name"] = dr["micro_name"];
+                currentEditRow["micro_desc"] = dr["micro_desc"];
+                currentEditRow["macro_desc"] = dr["macro_desc"];
+                currentEditRow["macro_pic1"] = dr["macro_pic1"];
+                currentEditRow["macro_pic2"] = dr["macro_pic2"];
+                currentEditRow["macro_pic3"] = dr["macro_pic3"];
+                currentEditRow["macro_pic4"] = dr["macro_pic4"];
+                currentEditRow["micro_pic1"] = dr["micro_pic1"];
+                currentEditRow["micro_pic2"] = dr["micro_pic2"];
+                currentEditRow["micro_pic3"] = dr["micro_pic3"];
+                currentEditRow["micro_pic4"] = dr["micro_pic4"];
+                currentEditRow["macro_cap1"] = dr["macro_cap1"];
+                currentEditRow["macro_cap2"] = dr["macro_cap2"];
+                currentEditRow["macro_cap3"] = dr["macro_cap3"];
+                currentEditRow["macro_cap4"] = dr["macro_cap4"];
+                currentEditRow["micro_cap1"] = dr["micro_cap1"];
+                currentEditRow["micro_cap2"] = dr["micro_cap2"];
+                currentEditRow["micro_cap3"] = dr["micro_cap3"];
+                currentEditRow["micro_cap4"] = dr["micro_cap4"];
+                currentEditRow["site"] = dr["site"];
+                currentEditRow["Site2"] = dr["Site2"];
+                currentEditRow["Operation"] = dr["Operation"];
+                currentEditRow["Operation2"] = dr["Operation2"];
+                currentEditRow["Diagnosis"] = dr["Diagnosis"];
+                currentEditRow["Diag_desc1"] = dr["Diag_desc1"];
+                currentEditRow["Diag_desc2"] = dr["Diag_desc2"];
+                currentEditRow["seq"] = dr["seq"];
+                currentEditRow["diagnosisId"] = dr["diagnosisId"];
+
+                bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+                bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Remove(dr);
+            }
+
+            /*var varGroupListToDelete = from p in bxcy_diagDataSet.Tables["bxcy_diag"].AsEnumerable()
+                               where p.Field<string>("group") != newGroup
+                               && p.Field<string>("case_no") == caseNo
+                               select p;
+
+            List<DataRow> groupListToDelete = varGroupList.ToList();
+
+            foreach (DataRow dr in groupListToDelete)
+            {
+                bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Remove(dr);
+            }*/
         }
 
         private void comboBox_Snop_M3_DrawItem(object sender, DrawItemEventArgs e)

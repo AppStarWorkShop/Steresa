@@ -290,7 +290,8 @@ IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[getBX
 DROP PROCEDURE [dbo].[getBXCYSpecimentByPage]
 GO
 
-CREATE PROCEDURE getBXCYSpecimentByPage
+
+CREATE PROCEDURE [dbo].[getBXCYSpecimentByPage]
 	-- Add the parameters for the stored procedure here
 	@pageCount int = 30,
 	@pageNum int = 1,
@@ -310,6 +311,7 @@ BEGIN
 	DECLARE @sqlQuery NVARCHAR(max)=''
 	DECLARE @sqlQueryCount NVARCHAR(max)=''
 	DECLARE @dateQuery NVARCHAR(max)=''
+	DECLARE @orderBy NVARCHAR(100)=''
 
 	IF @pageCount IS NULL
 	BEGIN
@@ -384,33 +386,49 @@ BEGIN
 
 	IF @whereStr <> '' AND @whereVal <> ''
 	BEGIN
-		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID FROM BXCY_SPECIMEN
-		WHERE id >
-		(
-		 SELECT ISNULL(MAX(id),0)
-		 FROM 
-		  (
-			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery +' ORDER BY id
-		  ) A
-		)
-		AND ' + @whereStr + ' LIKE ''' + @whereVal + '%'''+ @dateQuery+ 'ORDER BY id'
-		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery
+		set @orderBy = ' case_no'
+		if @whereStr <> ''
+			BEGIN
+				if 'PATIENT' = UPPER(@whereStr) 
+					BEGIN
+						set @orderBy = ' patient, case_no'
+					END
+			END
+		
+		if 'DOCTOR_ID' = UPPER(@whereStr)
+		begin
+			SET @sqlQuery = 
+			'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID 
+			FROM 
+			(
+			SELECT row_number()over(order by @orderBy )rownumber,* FROM BXCY_SPECIMEN WHERE (doctor_ic like ''' + @whereVal + '%'' or doctor_ic2 like ''' + @whereVal + '%'' or doctor_ic3 like''' + @whereVal + '%'' ) ' + @dateQuery + '
+			) A
+			WHERE rownumber >' + CAST(@pageCount*(@pageNum-1) AS NVARCHAR(100))
+			SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE (doctor_ic LIKE ''' + @whereVal + '%'' or doctor_ic2 like ''' + @whereVal + '%'' or doctor_ic3 like''' + @whereVal + '%'') ' + @dateQuery
+		end
+		ELSE
+		begin 
+			SET @sqlQuery = 
+			'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID 
+			FROM 
+			(
+			SELECT row_number()over(order by @orderBy )rownumber,* FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery + '
+			) A
+			WHERE rownumber >' + CAST(@pageCount*(@pageNum-1) AS NVARCHAR(100))
+			SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery
+		END
+		
+
 	END
 	ELSE
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID FROM BXCY_SPECIMEN
-		WHERE id >
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,fz_section,snopcode_m,snopcode_t,cy_report,isnull(sign_dr,'''') + ''' + '/ ' + ''' + isnull(sign_dr2,'''') as sign_dr,er,em,id,pat_seq,LAB_REF,DOCTOR_ID \
+		FROM 
 		(
-		 SELECT ISNULL(MAX(id),0)
-		 FROM 
-		  (
-			SELECT TOP (@pageCount * (@pageNum - 1)) id FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery + ' ORDER BY id
-		  ) A
-		)
-		AND (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery +
-		' ORDER BY id'
+		SELECT row_number()over(order by case_no )rownumber,* FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery + '
+		) A
+		WHERE rownumber >' + CAST(@pageCount*(@pageNum-1) AS NVARCHAR(100))
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM BXCY_SPECIMEN WHERE (@snopCode IS NULL OR @snopCode = '''' OR SNOPCODE_T LIKE ''' + @snopCode + '%'' OR SNOPCODE_T2 LIKE ''' + @snopCode + '%'' OR SNOPCODE_T3 LIKE ''' + @snopCode + '%'')' + @dateQuery
 	END
 
@@ -422,6 +440,7 @@ BEGIN
 	--SET @recordCount = @pageSum
 	RETURN @pageSum
 END
+
 GO
 
 
@@ -469,7 +488,7 @@ BEGIN
 		SET @whereVal=''
 	END
 
-	IF @dateMode < 1 OR @dateMode > 5
+	IF @dateMode IS NULL OR @dateMode < 1 OR @dateMode > 5
 	BEGIN
 		SET @dateMode = 1
 	END
@@ -518,38 +537,28 @@ BEGIN
 	IF @whereStr <> '' AND @whereVal <> ''
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date,LAB_REF,DOCTOR_ID FROM EBV_SPECIMEN
-		WHERE id >
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date,LAB_REF,DOCTOR_ID 
+		FROM 
 		(
-		 SELECT ISNULL(MAX(id),0)
-		 FROM 
-		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery + ' ORDER BY id
-		  ) A
-		)
-		AND ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery +
-		' ORDER BY id'
+		SELECT row_number()over(order by id)rownumber,* FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery + '
+		) A
+		WHERE rownumber >' + CAST(@pageCount*(@pageNum-1) AS NVARCHAR(100)) 
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE ' + @whereStr + ' LIKE ''' + @whereVal + '%''' + @dateQuery
 	END
 	ELSE
 	BEGIN
 		SET @sqlQuery = 
-		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date,LAB_REF,DOCTOR_ID FROM EBV_SPECIMEN
-		WHERE id >
+		'SELECT TOP (@pageCount) CASE_NO,RPT_DATE,PATIENT,VER,PAT_AGE,PAT_SEX,PAT_HKID,CLIENT,DOCTOR_IC,id,pat_seq,result,diagnosis,date,LAB_REF,DOCTOR_ID 
+		FROM
 		(
-		 SELECT ISNULL(MAX(id),0)
-		 FROM 
-		  (
-		   SELECT TOP (@pageCount * (@pageNum - 1)) id FROM EBV_SPECIMEN WHERE id=id ' + @dateQuery + ' ORDER BY id
-		  ) A
-		)
-		' + @dateQuery +
-		' ORDER BY id'
+		SELECT row_number()over(order by id)rownumber,* FROM EBV_SPECIMEN WHERE id=id ' + @dateQuery + '
+		) A
+		WHERE rownumber >' + CAST(@pageCount*(@pageNum-1) AS NVARCHAR(100))
 		SET @sqlQueryCount = 'SELECT @pageSum = CEILING(CAST(COUNT(*) as numeric(18,2))/@pageCount) FROM EBV_SPECIMEN WHERE id=id ' + @dateQuery
 	END
 
-	--PRINT @sqlQuery
-	--PRINT @sqlQueryCount
+	PRINT @sqlQuery
+	PRINT @sqlQueryCount
 
 	EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@dateFrom,@dateTo
 	EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@dateFrom,@dateTo
@@ -1542,21 +1551,6 @@ Begin
 	return null
 END;
 GO
-
--- Eric Leung 2019-12-12
-
-alter table bxcy_diag add diagnosisId int 
-
-update BXCY_DIAG 
-set diagnosisId = s.rank
-from BXCY_DIAG d inner join 
-(
-	select id 
-	, RANK() over (PARTITION BY case_no, [group] ORDER BY id) AS Rank 
-	from bxcy_diag
-) s
-on (d.id = s.id)
-
 alter table bxcy_specimen alter column fz_detail nvarchar(2000)
 
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[fn_reportName]') AND type in (N'FN', N'IF', N'TF', N'FS', N'FT'))

@@ -25,6 +25,19 @@ namespace St.Teresa_LIS_2019
 
         private bool isNewPatient = false;
 
+        private bool m_isEntering1 = false;
+        private bool m_isEntering2 = false;
+        private bool m_isEntering3 = false;
+
+        DataSet doctorDataSet1 = new DataSet();
+        SqlDataAdapter doctorDataAdapter1;
+
+        DataSet doctorDataSet2 = new DataSet();
+        SqlDataAdapter doctorDataAdapter2;
+
+        DataSet doctorDataSet3 = new DataSet();
+        SqlDataAdapter doctorDataAdapter3;
+
         public class Bxcy_specimen
         {
             public int id { get; set; }
@@ -930,24 +943,46 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Ethnic.DataSource = ethnicDt;
 
-            string doctorSql = "SELECT doctor FROM [doctor]";
-            DataSet doctorDataSet = new DataSet();
-            SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "doctor");
+            string doctorSql1 = "SELECT doctor FROM [sign_doctor] order by doctor";
+            doctorDataSet1 = new DataSet();
+            doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql1, doctorDataSet1, "sign_doctor");
 
             DataTable doctorDt1 = new DataTable();
             doctorDt1.Columns.Add("doctor");
-            DataTable doctorDt2 = doctorDt1.Clone();
-            DataTable doctorDt3 = doctorDt1.Clone();
 
-            foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
+            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
             {
                 doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
-                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
-                doctorDt3.Rows.Add(new object[] { mDr["doctor"] });
             }
 
             comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
+
+            string doctorSql2 = "SELECT doctor FROM [sign_doctor] order by doctor";
+            doctorDataSet2 = new DataSet();
+            doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql2, doctorDataSet2, "sign_doctor");
+
+            DataTable doctorDt2 = new DataTable();
+            doctorDt2.Columns.Add("doctor");
+
+            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+            {
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
+            }
+
             comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
+
+            string doctorSql3 = "SELECT doctor FROM [sign_doctor] order by doctor";
+            doctorDataSet3 = new DataSet();
+            doctorDataAdapter3 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql3, doctorDataSet3, "sign_doctor");
+
+            DataTable doctorDt3 = new DataTable();
+            doctorDt3.Columns.Add("doctor");
+
+            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+            {
+                doctorDt3.Rows.Add(new object[] { mDr["doctor"] });
+            }
+
             comboBox_Sign_By_Dr_3.DataSource = doctorDt3;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
@@ -1790,6 +1825,150 @@ namespace St.Teresa_LIS_2019
                         }
                     }
                 }
+            }
+        }
+
+        private void comboBox_Sign_By_Dr_1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            m_isEntering1 = true;
+        }
+
+        private void comboBox_Sign_By_Dr_1_TextChanged(object sender, EventArgs e)
+        {
+            if (m_isEntering1)
+            {
+                m_isEntering1 = false;
+                string search = ((ComboBox)sender).Text.Trim();
+
+                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
+
+                if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
+                {
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+                else
+                {
+                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
+                    doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
+
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+
+                ((ComboBox)sender).Text = search;
+                ((ComboBox)sender).SelectionStart = search.Length;
+            }
+        }
+
+        private void comboBox_Sign_By_Dr_2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            m_isEntering2 = true;
+        }
+
+        private void comboBox_Sign_By_Dr_2_TextChanged(object sender, EventArgs e)
+        {
+            if (m_isEntering2)
+            {
+                m_isEntering2 = false;
+                string search = ((ComboBox)sender).Text.Trim();
+
+                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
+
+                if (doctorDataSet2.Tables["sign_doctor"].Rows.Count > 0)
+                {
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+                else
+                {
+                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
+                    doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
+
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+
+                ((ComboBox)sender).Text = search;
+                ((ComboBox)sender).SelectionStart = search.Length;
+            }
+        }
+
+        private void comboBox_Sign_By_Dr_3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            m_isEntering3 = true;
+        }
+
+        private void comboBox_Sign_By_Dr_3_TextChanged(object sender, EventArgs e)
+        {
+            if (m_isEntering3)
+            {
+                m_isEntering3 = false;
+                string search = ((ComboBox)sender).Text.Trim();
+
+                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                doctorDataAdapter3 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet3, "sign_doctor");
+
+                if (doctorDataSet3.Tables["sign_doctor"].Rows.Count > 0)
+                {
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet3.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+                else
+                {
+                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
+                    doctorDataAdapter3 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet3, "sign_doctor");
+
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet3.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+
+                ((ComboBox)sender).Text = search;
+                ((ComboBox)sender).SelectionStart = search.Length;
             }
         }
     }
