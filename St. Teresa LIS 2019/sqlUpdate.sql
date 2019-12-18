@@ -434,7 +434,7 @@ BEGIN
 
 	PRINT @sqlQuery
 	PRINT @sqlQueryCount
-	EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo
+	EXEC SP_EXECUTESQL @sqlQuery, N'@pageCount int,@pageNum int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10),@orderBy NVARCHAR(100)', @pageCount,@pageNum,@snopCode,@dateFrom,@dateTo,@orderBy
 	EXEC SP_EXECUTESQL @sqlQueryCount, N'@pageSum int out,@pageCount int,@snopCode nvarchar(100),@dateFrom nvarchar(10),@dateTo nvarchar(10)', @pageSum out,@pageCount,@snopCode,@dateFrom,@dateTo
 
 	--SET @recordCount = @pageSum
