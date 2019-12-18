@@ -338,7 +338,7 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, bool readOnly)
         {
             this.existDiagDataSet = existDiagDataSet;
             if (refresh)
@@ -347,6 +347,10 @@ namespace St.Teresa_LIS_2019
             }
             currentStatus = status;
             setButtonStatus(currentStatus);
+            if (readOnly)
+            {
+                
+            }
         }
 
         private int onBxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3)

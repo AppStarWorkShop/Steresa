@@ -729,6 +729,8 @@
             this.textBox_Paid_Date.Size = new System.Drawing.Size(156, 30);
             this.textBox_Paid_Date.TabIndex = 258;
             this.textBox_Paid_Date.ValidatingType = typeof(System.DateTime);
+            this.textBox_Paid_Date.TextChanged += new System.EventHandler(this.textBox_Paid_Date_TextChanged);
+            this.textBox_Paid_Date.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Paid_Date_Validating);
             // 
             // textBox_Invoice_Date
             // 

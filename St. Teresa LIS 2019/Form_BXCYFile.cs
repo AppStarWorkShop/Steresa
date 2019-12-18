@@ -34,6 +34,15 @@ namespace St.Teresa_LIS_2019
 
         private Boolean readOnly = false;
 
+        private bool m_isEntering1 = false;
+        private bool m_isEntering2 = false;
+
+        DataSet doctorDataSet1 = new DataSet();
+        SqlDataAdapter doctorDataAdapter1;
+
+        DataSet doctorDataSet2 = new DataSet();
+        SqlDataAdapter doctorDataAdapter2;
+
         public class Bxcy_specimen
         {
             public int id { get; set; }
@@ -399,21 +408,32 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Ethnic.DataSource = ethnicDt;
 
-            string doctorSql = "SELECT doctor FROM [sign_doctor] order by doctor";
-            DataSet doctorDataSet = new DataSet();
-            SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "sign_doctor");
+            string doctorSql1 = "SELECT doctor FROM [sign_doctor] order by doctor";
+            doctorDataSet1 = new DataSet();
+            doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql1, doctorDataSet1, "sign_doctor");
 
             DataTable doctorDt1 = new DataTable();
             doctorDt1.Columns.Add("doctor");
-            DataTable doctorDt2 = doctorDt1.Clone();
 
-            foreach (DataRow mDr in doctorDataSet.Tables["sign_doctor"].Rows)
+            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
             {
                 doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
-                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
             }
 
             comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
+
+            string doctorSql2 = "SELECT doctor FROM [sign_doctor] order by doctor";
+            doctorDataSet2 = new DataSet();
+            doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql2, doctorDataSet2, "sign_doctor");
+
+            DataTable doctorDt2 = new DataTable();
+            doctorDt2.Columns.Add("doctor");
+
+            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+            {
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
+            }
+
             comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
@@ -1494,13 +1514,10 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
             currentEditRow["id"] = -1;
-            //currentEditRow["case_no"] = textBox_Case_No.Text;
-            //currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
             currentEditRow["date"] = DateTime.Now;
             currentEditRow["INV_DATE"] = DateTime.Now;
             currentEditRow["ethnic"] = comboBox_Ethnic.Text;
             currentEditRow["cyto_Type"] = comboBox_cytoType.Text;
-            // Update by Eric  2019-12-05
             if (textBox_PatSeq.Text != "")
             {
                 currentEditRow["pat_seq"] = Decimal.Parse(textBox_PatSeq.Text);
@@ -1508,71 +1525,32 @@ namespace St.Teresa_LIS_2019
             currentEditRow["patient"] = textBox_Patient.Text;
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
-
-
             CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text, "ddMMyyyy");
-
             currentEditRow["class"] = comboBox_Class.Text;
             currentEditRow["pat_age"] = textBox_Age.Text;
             currentEditRow["pat_sex"] = textBox_Sex.Text;
             currentEditRow["bed_room"] = textBox_Room.Text;
             currentEditRow["bed_no"] = textBox_Bed.Text;
-            //currentEditRow["clinical_History"] = textBox_Patient_s_Clinical_History.Text;
-
-            //currentEditRow["surgical"] = textBox_Surgical.Text;
-            //currentEditRow["nature"] = textBox_Nature.Text;
-
             currentEditRow["client"] = textBox_Client.Text;
             currentEditRow["institute"] = textBox_Institute.Text;
             currentEditRow["lab_ref"] = textBox_Ref_No.Text;
             currentEditRow["doctor_o"] = textBox_Dr_I_C_Free_Text.Text;
-
             currentEditRow["doctor_ic"] = textBox_Doctor_I_C.Text;
             currentEditRow["doctor_id"] = textBox_Doctor_I_C_ID_1.Text;
-
             currentEditRow["doctor_ic2"] = textBox_Doctor_I_C_2.Text;
             currentEditRow["doctor_id2"] = textBox_Doctor_I_C_ID_2.Text;
-
             currentEditRow["doctor_ic3"] = textBox_Doctor_I_C_3.Text;
             currentEditRow["doctor_id3"] = textBox_Doctor_I_C_ID_3.Text;
-
             currentEditRow["inv_no"] = textBox_Involce_No.Text;
-            //currentEditRow["receipt"] = textBox_Receipt.Text;
-            //if (textBox_Invoice_Date.Text.Trim() != "") {
-            //    currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
-            //}
-            //currentEditRow["inv_amt"] = textBox_Amount_HK.Text;
-
-            //if (textBox_Paid_Date.Text.Trim() != "")
-            //{
-            //    currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null);
-            //}
-
-            //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text;
-            //currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
-            //currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
-            //currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
-            //currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
-            //currentEditRow["snopcode_m"] = comboBox_Snop_M1.Text;
-            //currentEditRow["snopcode_m2"] = comboBox_Snop_M2.Text;
-            //currentEditRow["snopcode_m3"] = comboBox_Snop_M3.Text;
-            //currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
-            //currentEditRow["histo"] = comboBox_HistoType.Text;
-
-            //currentEditRow["remark"] = textBox_Remarks.Text;
-            //currentEditRow["initial"] = textBox_Cytology.Text;
-
             currentEditRow["er"] = textBox_ER.Text;
             currentEditRow["em"] = textBox_EM.Text;
             currentEditRow["sish"] = textBox_SISH.Text;
             currentEditRow["fz_section"] = checkBox_F_S.Checked;
-            //currentEditRow["fz_detail"] = textBox_FZDetail.Text;
             currentEditRow["uploaded"] = checkBox_Uploaded.Checked;
             currentEditRow["supp"] = checkBox_Supp.Checked;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
-
             //currencyManager.Position = currencyManager.Count - 1;
         }
 
@@ -2158,6 +2136,7 @@ namespace St.Teresa_LIS_2019
             button_Exit.Image = Image.FromFile("Resources/exitGra.png");
             button_Exit.ForeColor = Color.Gray;
         }
+
         private void disedit_modle()
         {
             button_Top.Image = Image.FromFile("Resources/top.png");
@@ -3138,7 +3117,103 @@ namespace St.Teresa_LIS_2019
 
         }
 
-        private void textBox_Paid_Date_TextChanged(object sender, EventArgs e)
+        private void comboBox_Sign_By_Dr_1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            m_isEntering1 = true;
+        }
+
+        private void comboBox_Sign_By_Dr_1_TextChanged(object sender, EventArgs e)
+        {
+            if (m_isEntering1)
+            {
+                m_isEntering1 = false;
+                string search = ((ComboBox)sender).Text.Trim();
+
+                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
+
+                if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
+                {
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+                else
+                {
+                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
+                    doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
+
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+
+                ((ComboBox)sender).Text = search;
+                ((ComboBox)sender).SelectionStart = search.Length;
+            }
+        }
+
+        private void comboBox_Sign_By_Dr_2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            m_isEntering2 = true;
+        }
+
+        private void comboBox_Sign_By_Dr_2_TextChanged(object sender, EventArgs e)
+        {
+            if (m_isEntering2)
+            {
+                m_isEntering2 = false;
+                string search = ((ComboBox)sender).Text.Trim();
+
+                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
+
+                if (doctorDataSet2.Tables["sign_doctor"].Rows.Count > 0)
+                {
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+                else
+                {
+                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
+                    doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
+
+                    DataTable newDt = new DataTable();
+                    newDt.Columns.Add("doctor");
+
+                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    {
+                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                    }
+
+                    ((ComboBox)sender).DataSource = newDt;
+                }
+
+                ((ComboBox)sender).Text = search;
+                ((ComboBox)sender).SelectionStart = search.Length;
+            }
+        }
+		
+		private void textBox_Paid_Date_TextChanged(object sender, EventArgs e)
         {
             /*
             if (textBox_Paid_Date.Text == "")

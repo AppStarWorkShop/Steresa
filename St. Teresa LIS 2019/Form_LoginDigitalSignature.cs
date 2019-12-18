@@ -17,7 +17,7 @@ namespace St.Teresa_LIS_2019
         {
             InitializeComponent();
             loadDataGridViewDate();
-            comboBox_Dr.Enabled = false;
+            comboBox_Dr.Enabled = true;
             textBox_Password.Focus();
         }
 
@@ -32,6 +32,7 @@ namespace St.Teresa_LIS_2019
 
                 if (userDataSet.Tables["USER"].Rows.Count > 0)
                 {
+                    /*
                     string selectedDoctor = "";
                     if (radioButton_Self_Cases.Checked)
                     {
@@ -41,7 +42,8 @@ namespace St.Teresa_LIS_2019
                     {
                         selectedDoctor = comboBox_Dr.SelectedValue.ToString();
                     }
-                    Form_DigitalSignature open = new Form_DigitalSignature(selectedDoctor);
+                    */
+                    Form_DigitalSignature open = new Form_DigitalSignature(comboBox_Dr.SelectedValue.ToString());
                     open.Show();
                     this.Close();
                 }
@@ -75,16 +77,6 @@ namespace St.Teresa_LIS_2019
             comboBox_Dr.DataSource = sign_doctorDt;
         }
 
-        private void radioButton_Cases_of_other_doctors_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton_Cases_of_other_doctors.Checked)
-            {
-                comboBox_Dr.Enabled = true;
-            }
-            else
-            {
-                comboBox_Dr.Enabled = false;
-            }
-        }
+        
     }
 }

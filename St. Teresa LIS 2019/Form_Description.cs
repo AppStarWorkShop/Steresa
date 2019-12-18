@@ -25,7 +25,7 @@ namespace St.Teresa_LIS_2019
         private DataTable bxcy_specimentDt;
         private SqlDataAdapter bxcy_specimentDataAdapter;
 
-        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet);
+        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet, bool readOnly);
         public BxcyDiagExit OnBxcyDiagExit;
 
         public delegate int BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
@@ -44,6 +44,8 @@ namespace St.Teresa_LIS_2019
         private Object snopT1, snopT2, snopT3, snopM1, snopM2, snopM3;
 
         public CurrencyManager currencyManager;
+        private Boolean readOnly = false;
+        private int currentNevigateMode = NevigateMode.MODE_GROUP;
 
         public static class NevigateMode
         {
@@ -51,7 +53,36 @@ namespace St.Teresa_LIS_2019
             public const int MODE_DIAGNOSIS = 2;
         }
 
-        private int currentNevigateMode = NevigateMode.MODE_GROUP;
+        public void setReadOnly(Boolean readOnly)
+        {
+            this.readOnly = readOnly;
+            if (readOnly)
+            {
+                disableEditbuttons();
+            }
+        }
+
+        public void disableEditbuttons()
+        {
+            button_New.Enabled = false;
+            button_New2.Enabled = false;
+            button_Save.Enabled = false;
+            button_F6_Edit.Enabled = false;
+            button_Delete.Enabled = false;
+            button_Undo.Enabled = false;
+            button_Path.Enabled = false;
+        }
+
+        public void enableEditbuttons()
+        {
+            button_New.Enabled = true;
+            button_New2.Enabled = true;
+            button_Save.Enabled = true;
+            button_F6_Edit.Enabled = true;
+            button_Delete.Enabled = true;
+            button_Undo.Enabled = true;
+            button_Path.Enabled = true;
+        }
 
         public class Bxcy_diag
         {
@@ -230,7 +261,8 @@ namespace St.Teresa_LIS_2019
         {
             if (OnBxcyDiagExit != null)
             {
-                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage, bxcy_diagDataSet);
+                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage, bxcy_diagDataSet, readOnly);
+                
             }
             this.Close();
         }

@@ -228,4 +228,26 @@ namespace St.Teresa_LIS_2019
         public static string currentUserId;
         public static string currentUserName;
     }
+
+    public static class PaymentStatus
+    {
+        public static string PAID_YES = "Yes";
+        public static string PAID_NO = "No";
+    }
+
+    public static class PatientAgeCalculator
+    {
+        public static Double calculate(DateTime dob)
+        {
+            Double age = Double.NaN;
+
+            if (dob != null)
+            {
+                TimeSpan ts = DateTime.Now - dob;
+                age = Math.Round(ts.TotalDays / 365.25, 2);
+            }
+
+            return age;
+        }
+    }
 }

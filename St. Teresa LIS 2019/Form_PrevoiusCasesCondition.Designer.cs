@@ -105,11 +105,11 @@
             this.button_F6_View_Diagnosis.ForeColor = System.Drawing.Color.Purple;
             this.button_F6_View_Diagnosis.Image = ((System.Drawing.Image)(resources.GetObject("button_F6_View_Diagnosis.Image")));
             this.button_F6_View_Diagnosis.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_F6_View_Diagnosis.Location = new System.Drawing.Point(244, 438);
+            this.button_F6_View_Diagnosis.Location = new System.Drawing.Point(193, 438);
             this.button_F6_View_Diagnosis.Name = "button_F6_View_Diagnosis";
-            this.button_F6_View_Diagnosis.Size = new System.Drawing.Size(126, 42);
+            this.button_F6_View_Diagnosis.Size = new System.Drawing.Size(177, 42);
             this.button_F6_View_Diagnosis.TabIndex = 167;
-            this.button_F6_View_Diagnosis.Text = "F6: View Diagnosis";
+            this.button_F6_View_Diagnosis.Text = "F6: Go to Selected Record";
             this.button_F6_View_Diagnosis.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_F6_View_Diagnosis.UseVisualStyleBackColor = true;
             this.button_F6_View_Diagnosis.Click += new System.EventHandler(this.button_F6_View_Diagnosis_Click);
@@ -124,7 +124,7 @@
             this.button_F7_View_Details.Name = "button_F7_View_Details";
             this.button_F7_View_Details.Size = new System.Drawing.Size(126, 42);
             this.button_F7_View_Details.TabIndex = 168;
-            this.button_F7_View_Details.Text = "F7: View Details";
+            this.button_F7_View_Details.Text = "F7: View Records";
             this.button_F7_View_Details.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_F7_View_Details.UseVisualStyleBackColor = true;
             this.button_F7_View_Details.Click += new System.EventHandler(this.button_F7_View_Details_Click);

@@ -12,6 +12,7 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_PrevoiusCasesCondition : Form
     {
+
         private DataTable dt;
         private DataSet bxcy_specimenDataSet = new DataSet();
         private string hkid;
@@ -19,10 +20,27 @@ namespace St.Teresa_LIS_2019
 
         public delegate void BxcySpecimentSelectedSingle(string str);
         public BxcySpecimentSelectedSingle OnBxcySpecimentSelectedSingle;
+        public Form_BXCYFile bxcyDetailFileForm;
+        public int currentStatus;
 
         public Form_PrevoiusCasesCondition()
         {
             InitializeComponent();
+        }
+
+        public void setCurrentStatus(int pageStatus)
+        {
+            this.currentStatus = pageStatus;
+        }
+
+        public void setBxcyDetailFileForm(Form_BXCYFile form)
+        {
+            this.bxcyDetailFileForm = form;
+        }
+
+        public Form_BXCYFile getBxcyDetailFileForm()
+        {
+            return this.bxcyDetailFileForm;
         }
 
         public Form_PrevoiusCasesCondition(string hkid, string currentId)
@@ -238,6 +256,45 @@ namespace St.Teresa_LIS_2019
         private void button_F6_View_Diagnosis_Click(object sender, EventArgs e)
         {
             string idStr = "";
+            string case_no = "";
+
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                idStr = dataGridView1.SelectedRows[0].Cells[6].Value.ToString();
+                case_no = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+            }
+
+            if (idStr == "")
+            {
+                MessageBox.Show("No record selected");
+                return;
+            }
+
+            if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(case_no.Length - 1, 1).ToLower() == "g")
+            {
+                Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname(idStr);
+                open.Show();
+            }
+            else
+            {
+                if (case_no != null && case_no.Trim() != "" && case_no.Length > 0 && case_no.Trim().Substring(0, 1).ToLower() == "d")
+                {
+                    Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(idStr);
+                    open.Show();
+                }
+                else
+                {
+                    Form_BXCYFile open = new Form_BXCYFile(idStr);
+                    open.Show();
+                    if (bxcyDetailFileForm != null)
+                    {
+                        bxcyDetailFileForm.Close();
+                    }
+                }
+            }
+
+            /*
+            string idStr = "";
             string caseNoStr = "";
 
             if (dataGridView1.SelectedRows.Count > 0)
@@ -255,6 +312,7 @@ namespace St.Teresa_LIS_2019
             Form_Description open = new Form_Description(caseNoStr, idStr);
             open.Show();
             open.disableEdit();
+            */
         }
     }
 }
