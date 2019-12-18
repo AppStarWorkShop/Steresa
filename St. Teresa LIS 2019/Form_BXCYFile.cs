@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace St.Teresa_LIS_2019
 {
@@ -31,14 +32,7 @@ namespace St.Teresa_LIS_2019
 
         private DataSet existDiagDataSet = null;
 
-        private bool m_isEntering1 = false;
-        private bool m_isEntering2 = false;
-
-        DataSet doctorDataSet1 = new DataSet();
-        SqlDataAdapter doctorDataAdapter1;
-
-        DataSet doctorDataSet2 = new DataSet();
-        SqlDataAdapter doctorDataAdapter2;
+        private Boolean readOnly = false;
 
         public class Bxcy_specimen
         {
@@ -405,32 +399,21 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Ethnic.DataSource = ethnicDt;
 
-            string doctorSql1 = "SELECT doctor FROM [sign_doctor] order by doctor";
-            doctorDataSet1 = new DataSet();
-            doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql1, doctorDataSet1, "sign_doctor");
+            string doctorSql = "SELECT doctor FROM [sign_doctor] order by doctor";
+            DataSet doctorDataSet = new DataSet();
+            SqlDataAdapter doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql, doctorDataSet, "sign_doctor");
 
             DataTable doctorDt1 = new DataTable();
             doctorDt1.Columns.Add("doctor");
+            DataTable doctorDt2 = doctorDt1.Clone();
 
-            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+            foreach (DataRow mDr in doctorDataSet.Tables["sign_doctor"].Rows)
             {
                 doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
-            }
-
-            comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
-
-            string doctorSql2 = "SELECT doctor FROM [sign_doctor] order by doctor";
-            doctorDataSet2 = new DataSet();
-            doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql2, doctorDataSet2, "sign_doctor");
-
-            DataTable doctorDt2 = new DataTable();
-            doctorDt2.Columns.Add("doctor");
-
-            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
-            {
                 doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
             }
 
+            comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
             comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
@@ -658,6 +641,8 @@ namespace St.Teresa_LIS_2019
         private void button_F2_Previous_Click(object sender, EventArgs e)
         {
             Form_PrevoiusCasesCondition open = new Form_PrevoiusCasesCondition(textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
+            open.setBxcyDetailFileForm(this);
+            open.setCurrentStatus(currentStatus);
             //open.OnBxcySpecimentSelectedSingle += OnBxcySpecimentSelected;
             open.Show();
         }
@@ -724,10 +709,11 @@ namespace St.Teresa_LIS_2019
             Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, existDiagDataSet);
             open.OnBxcyDiagExit += OnStatusReturn;
             open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
+            open.setReadOnly(readOnly);
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, bool readOnly)
         {
             this.existDiagDataSet = existDiagDataSet;
             if (refresh)
@@ -736,6 +722,10 @@ namespace St.Teresa_LIS_2019
             }
             currentStatus = status;
             setButtonStatus(currentStatus);
+            if (readOnly)
+            {
+                this.disableEdit();
+            }
         }
 
         private int onBxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3)
@@ -1482,6 +1472,15 @@ namespace St.Teresa_LIS_2019
                 currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
                 currentEditRow["PAT_SEX"] = mDr["PAT_SEX"];
                 currentEditRow["PAT_HKID"] = mDr["PAT_HKID"];
+                if (mDr["PAT_BIRTH"] != null)
+                {
+                    DateTime dob = (DateTime) mDr["PAT_BIRTH"];
+                    Double age = PatientAgeCalculator.calculate(dob);
+                    if (age != Double.NaN)
+                    {
+                        currentEditRow["PAT_AGE"] = age;
+                    }
+                }
             }
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
@@ -1495,10 +1494,13 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
             currentEditRow["id"] = -1;
+            //currentEditRow["case_no"] = textBox_Case_No.Text;
+            //currentEditRow["date"] = DateTime.ParseExact(textBox_Date.Text, "dd/MM/yyyy", null);
             currentEditRow["date"] = DateTime.Now;
             currentEditRow["INV_DATE"] = DateTime.Now;
             currentEditRow["ethnic"] = comboBox_Ethnic.Text;
             currentEditRow["cyto_Type"] = comboBox_cytoType.Text;
+            // Update by Eric  2019-12-05
             if (textBox_PatSeq.Text != "")
             {
                 currentEditRow["pat_seq"] = Decimal.Parse(textBox_PatSeq.Text);
@@ -1506,32 +1508,71 @@ namespace St.Teresa_LIS_2019
             currentEditRow["patient"] = textBox_Patient.Text;
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
+
+
             CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text, "ddMMyyyy");
+
             currentEditRow["class"] = comboBox_Class.Text;
             currentEditRow["pat_age"] = textBox_Age.Text;
             currentEditRow["pat_sex"] = textBox_Sex.Text;
             currentEditRow["bed_room"] = textBox_Room.Text;
             currentEditRow["bed_no"] = textBox_Bed.Text;
+            //currentEditRow["clinical_History"] = textBox_Patient_s_Clinical_History.Text;
+
+            //currentEditRow["surgical"] = textBox_Surgical.Text;
+            //currentEditRow["nature"] = textBox_Nature.Text;
+
             currentEditRow["client"] = textBox_Client.Text;
             currentEditRow["institute"] = textBox_Institute.Text;
             currentEditRow["lab_ref"] = textBox_Ref_No.Text;
             currentEditRow["doctor_o"] = textBox_Dr_I_C_Free_Text.Text;
+
             currentEditRow["doctor_ic"] = textBox_Doctor_I_C.Text;
             currentEditRow["doctor_id"] = textBox_Doctor_I_C_ID_1.Text;
+
             currentEditRow["doctor_ic2"] = textBox_Doctor_I_C_2.Text;
             currentEditRow["doctor_id2"] = textBox_Doctor_I_C_ID_2.Text;
+
             currentEditRow["doctor_ic3"] = textBox_Doctor_I_C_3.Text;
             currentEditRow["doctor_id3"] = textBox_Doctor_I_C_ID_3.Text;
+
             currentEditRow["inv_no"] = textBox_Involce_No.Text;
+            //currentEditRow["receipt"] = textBox_Receipt.Text;
+            //if (textBox_Invoice_Date.Text.Trim() != "") {
+            //    currentEditRow["inv_date"] = DateTime.ParseExact(textBox_Invoice_Date.Text, "dd/MM/yyyy", null);
+            //}
+            //currentEditRow["inv_amt"] = textBox_Amount_HK.Text;
+
+            //if (textBox_Paid_Date.Text.Trim() != "")
+            //{
+            //    currentEditRow["pay_date"] = DateTime.ParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", null);
+            //}
+
+            //currentEditRow["rpt_date"] = textBox_Rpt_Date.Text;
+            //currentEditRow["snopcode_t"] = comboBox_Snop_T1.Text;
+            //currentEditRow["snopcode_t2"] = comboBox_Snop_T2.Text;
+            //currentEditRow["snopcode_t3"] = comboBox_Snop_T3.Text;
+            //currentEditRow["sign_dr"] = comboBox_Sign_By_Dr_1.Text;
+            //currentEditRow["snopcode_m"] = comboBox_Snop_M1.Text;
+            //currentEditRow["snopcode_m2"] = comboBox_Snop_M2.Text;
+            //currentEditRow["snopcode_m3"] = comboBox_Snop_M3.Text;
+            //currentEditRow["sign_dr2"] = comboBox_Sign_By_Dr_2.Text;
+            //currentEditRow["histo"] = comboBox_HistoType.Text;
+
+            //currentEditRow["remark"] = textBox_Remarks.Text;
+            //currentEditRow["initial"] = textBox_Cytology.Text;
+
             currentEditRow["er"] = textBox_ER.Text;
             currentEditRow["em"] = textBox_EM.Text;
             currentEditRow["sish"] = textBox_SISH.Text;
             currentEditRow["fz_section"] = checkBox_F_S.Checked;
+            //currentEditRow["fz_detail"] = textBox_FZDetail.Text;
             currentEditRow["uploaded"] = checkBox_Uploaded.Checked;
             currentEditRow["supp"] = checkBox_Supp.Checked;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
             //currencyManager.Position = currencyManager.Count - 1;
         }
 
@@ -2117,7 +2158,6 @@ namespace St.Teresa_LIS_2019
             button_Exit.Image = Image.FromFile("Resources/exitGra.png");
             button_Exit.ForeColor = Color.Gray;
         }
-
         private void disedit_modle()
         {
             button_Top.Image = Image.FromFile("Resources/top.png");
@@ -2140,6 +2180,538 @@ namespace St.Teresa_LIS_2019
             button_Undo.ForeColor = Color.Gray;
             button_Exit.Image = Image.FromFile("Resources/exit.png");
             button_Exit.ForeColor = Color.Black;
+        }
+
+        private void jumpReverse()
+        {
+            Boolean notJumped = true;
+
+            if (textBox_Date.Focused)
+            {
+                textBox_Case_No.Focus();
+                notJumped = false;
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Ethnic.Focused)
+                {
+                    textBox_Date.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_cytoType.Focused)
+                {
+                    comboBox_Ethnic.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Patient.Focused)
+                {
+                    comboBox_cytoType.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Chinese_Name.Focused)
+                {
+                    textBox_Patient.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_HKID.Focused)
+                {
+                    textBox_Chinese_Name.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_DOB.Focused)
+                {
+                    textBox_HKID.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Class.Focused)
+                {
+                    textBox_DOB.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Age.Focused)
+                {
+                    comboBox_Class.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Sex.Focused)
+                {
+                    textBox_Age.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Room.Focused)
+                {
+                    textBox_Sex.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Bed.Focused)
+                {
+                    textBox_Room.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Patient_s_Clinical_History.Focused)
+                {
+                    textBox_Bed.Focus();
+                    notJumped = false;
+                }
+            }
+
+            // second part 
+
+            if (notJumped)
+            {
+                if (textBox_Doctor_I_C.Focused)
+                {
+                    textBox_Ref_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Involce_No.Focused)
+                {
+                    textBox_Doctor_I_C.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Receipt.Focused)
+                {
+                    textBox_Involce_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Invoice_Date.Focused)
+                {
+                    textBox_Receipt.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Amount_HK.Focused)
+                {
+                    textBox_Invoice_Date.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Paid_Up.Focused)
+                {
+                    textBox_Amount_HK.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Paid_Date.Focused)
+                {
+                    textBox_Paid_Up.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T1.Focused)
+                {
+                    textBox_Paid_Date.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T2.Focused)
+                {
+                    comboBox_Snop_T1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T3.Focused)
+                {
+                    comboBox_Snop_T2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M1.Focused)
+                {
+                    comboBox_Snop_T3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M2.Focused)
+                {
+                    comboBox_Snop_M1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M3.Focused)
+                {
+                    comboBox_Snop_M2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_1.Focused)
+                {
+                    comboBox_Snop_M3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_2.Focused)
+                {
+                    comboBox_Sign_By_Dr_1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Remarks.Focused)
+                {
+                    textBox_Remarks.Focus();
+                    comboBox_Sign_By_Dr_2.Focus();
+                    notJumped = false;
+                }
+            }
+        }
+
+        private void jumpNext()
+        {
+            Boolean notJumped = true;
+
+            if (textBox_Case_No.Focused)
+            {
+                textBox_Date.Focus();
+                notJumped = false;
+            }
+
+            if (notJumped)
+            {
+
+                if (textBox_Date.Focused)
+                {
+                    comboBox_Ethnic.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Ethnic.Focused)
+                {
+                    comboBox_cytoType.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_cytoType.Focused)
+                {
+                    textBox_Patient.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Patient.Focused)
+                {
+                    textBox_Chinese_Name.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Chinese_Name.Focused)
+                {
+                    textBox_HKID.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_HKID.Focused)
+                {
+                    textBox_DOB.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_DOB.Focused)
+                {
+                    comboBox_Class.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Class.Focused)
+                {
+                    textBox_Age.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Age.Focused)
+                {
+                    textBox_Sex.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Sex.Focused)
+                {
+                    textBox_Room.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Room.Focused)
+                {
+                    textBox_Bed.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Bed.Focused)
+                {
+                    textBox_Patient_s_Clinical_History.Focus();
+                    notJumped = false;
+                }
+            }
+
+            // second part 
+
+            if (notJumped)
+            {
+                if (textBox_Ref_No.Focused)
+                {
+                    textBox_Doctor_I_C.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Doctor_I_C.Focused)
+                {
+                    textBox_Involce_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Involce_No.Focused)
+                {
+                    textBox_Receipt.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Receipt.Focused)
+                {
+                    textBox_Invoice_Date.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Invoice_Date.Focused)
+                {
+                    textBox_Amount_HK.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Amount_HK.Focused)
+                {
+                    textBox_Paid_Up.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Paid_Up.Focused)
+                {
+                    textBox_Paid_Date.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Paid_Date.Focused)
+                {
+                    comboBox_Snop_T1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T1.Focused)
+                {
+                    comboBox_Snop_T2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T2.Focused)
+                {
+                    comboBox_Snop_T3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T3.Focused)
+                {
+                    comboBox_Snop_M1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M1.Focused)
+                {
+                    comboBox_Snop_M2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M2.Focused)
+                {
+                    comboBox_Snop_M3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M3.Focused)
+                {
+                    comboBox_Sign_By_Dr_1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_1.Focused)
+                {
+                    comboBox_Sign_By_Dr_2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_2.Focused)
+                {
+                    textBox_Remarks.Focus();
+                    notJumped = false;
+                }
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -2199,222 +2771,20 @@ namespace St.Teresa_LIS_2019
             }
 
             // eric leung -- press enter to jump to next field
-            if (keyData == Keys.Enter)
+            if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
             {
-                Boolean notJumped = true;
-                if (textBox_Case_No.Focused)
+                this.jumpReverse();
+                
+            }
+            else
+            {
+                if (keyData == Keys.Enter)
                 {
-                    textBox_Date.Focus();
-                    notJumped = false;
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Date.Focused)
-                    {
-                        comboBox_Ethnic.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Ethnic.Focused)
-                    {
-                        comboBox_cytoType.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_cytoType.Focused)
-                    {
-                        textBox_Patient.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Patient.Focused)
-                    {
-                        textBox_Chinese_Name.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Chinese_Name.Focused)
-                    {
-                        textBox_HKID.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_HKID.Focused)
-                    {
-                        textBox_DOB.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_DOB.Focused)
-                    {
-                        comboBox_Class.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Class.Focused)
-                    {
-                        textBox_Age.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Age.Focused)
-                    {
-                        textBox_Sex.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Sex.Focused)
-                    {
-                        textBox_Room.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Room.Focused)
-                    {
-                        textBox_Bed.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Bed.Focused)
-                    {
-                        textBox_Patient_s_Clinical_History.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Ref_No.Focused)
-                    {
-                        textBox_Rpt_Date.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (textBox_Rpt_Date.Focused)
-                    {
-                        comboBox_Sign_By_Dr_1.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Sign_By_Dr_1.Focused)
-                    {
-                        comboBox_Sign_By_Dr_2.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Sign_By_Dr_2.Focused)
-                    {
-                        comboBox_Snop_T1.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Snop_T1.Focused)
-                    {
-                        comboBox_Snop_M1.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Snop_M1.Focused)
-                    {
-                        comboBox_Snop_T2.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Snop_T2.Focused)
-                    {
-                        comboBox_Snop_M2.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Snop_M2.Focused)
-                    {
-                        comboBox_Snop_T3.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Snop_T3.Focused)
-                    {
-                        comboBox_Snop_M3.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_Snop_M3.Focused)
-                    {
-                        comboBox_HistoType.Focus();
-                        notJumped = false;
-                    }
-                }
-
-                if (notJumped)
-                {
-                    if (comboBox_HistoType.Focused)
-                    {
-                        textBox_Remarks.Focus();
-                        notJumped = false;
-                    }
+                    this.jumpNext();
                 }
             }
+
+            
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -2755,6 +3125,7 @@ namespace St.Teresa_LIS_2019
             button_Advance.Enabled = false;
             button_Delete.Enabled = false;
             button_New.Enabled = false;
+            readOnly = true;
         }
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
@@ -2767,100 +3138,51 @@ namespace St.Teresa_LIS_2019
 
         }
 
-        private void comboBox_Sign_By_Dr_1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void textBox_Paid_Date_TextChanged(object sender, EventArgs e)
         {
-            m_isEntering1 = true;
-        }
-
-        private void comboBox_Sign_By_Dr_1_TextChanged(object sender, EventArgs e)
-        {
-            if (m_isEntering1)
+            /*
+            if (textBox_Paid_Date.Text == "")
             {
-                m_isEntering1 = false;
-                string search = ((ComboBox)sender).Text.Trim();
-
-                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
-                doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
-
-                if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
+                textBox_Paid_Up.Text = "";
+            }
+            else
+            {
+                DateTime dDate;
+                if (textBox_Paid_Date.Text.Length == 10 && DateTime.TryParse(textBox_Paid_Date.Text, out dDate))
                 {
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;
+                    textBox_Paid_Up.Text = PaymentStatus.PAID_YES;
                 }
                 else
                 {
-                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
 
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;
                 }
-
-                ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
+                
             }
+            */
         }
 
-        private void comboBox_Sign_By_Dr_2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void textBox_Paid_Date_Validating(object sender, CancelEventArgs e)
         {
-            m_isEntering2 = true;
-        }
-
-        private void comboBox_Sign_By_Dr_2_TextChanged(object sender, EventArgs e)
-        {
-            if (m_isEntering2)
+            if (textBox_Paid_Date.Text == "  /  /")
             {
-                m_isEntering2 = false;
-                string search = ((ComboBox)sender).Text.Trim();
-
-                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
-                doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
-
-                if (doctorDataSet2.Tables["sign_doctor"].Rows.Count > 0)
+                
+               
+            }
+            else
+            {
+                DateTime dDate;
+                CultureInfo ci = new CultureInfo("en-IE");
+                if (textBox_Paid_Date.Text.Length == 10 && DateTime.TryParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", ci, DateTimeStyles.None, out dDate))
                 {
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;
+                    textBox_Paid_Up.Text = PaymentStatus.PAID_YES;
+                    
                 }
                 else
                 {
-                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
-
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;
+                    e.Cancel = true;
                 }
-
-                ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
             }
+
         }
     }
 }
