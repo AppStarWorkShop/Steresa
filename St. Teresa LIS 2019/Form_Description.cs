@@ -458,8 +458,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
-            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
-            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
+            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
+            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
             open.Show();
         }
 
@@ -1416,9 +1416,16 @@ namespace St.Teresa_LIS_2019
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
             }*/
-
-            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+            // edit by eirc to fix the report back problem
+            if (textBox_ID.Text != "" && textBox_Parts.Text != "")
+            {
+                if (textBox_Parts.Text != "1")
+                {
+                    string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{1}' AND [group] in (SELECT top 1 [group] FROM [bxcy_diag] WHERE [group] < '{0}' AND case_no = '{1}' order by [group] desc) ORDER BY id", textBox_Parts.Text, caseNo);
+                    dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
+                }
+            }
+            
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -2219,7 +2226,7 @@ namespace St.Teresa_LIS_2019
                 if (countList.Count() == 1)
                 {
                     currentEditRow = countList.FirstOrDefault();
-                    if (currentEditRow["micro_desc"].ToString() == "" 
+                    /*if (currentEditRow["micro_desc"].ToString() == "" 
                         && currentEditRow["site"].ToString() == ""
                         && currentEditRow["site2"].ToString() == ""
                         && currentEditRow["operation"].ToString() == ""
@@ -2228,6 +2235,17 @@ namespace St.Teresa_LIS_2019
                         && currentEditRow["Diag_desc1"].ToString() == ""
                         && currentEditRow["Diag_desc2"].ToString() == ""
                         )
+                        */
+                    // Updated by eric leung removed the micro description checking
+                    if (
+                        currentEditRow["site"].ToString() == ""
+                        && currentEditRow["site2"].ToString() == ""
+                        && currentEditRow["operation"].ToString() == ""
+                        && currentEditRow["operation2"].ToString() == ""
+                        && currentEditRow["Diagnosis"].ToString() == ""
+                        && currentEditRow["Diag_desc1"].ToString() == ""
+                        && currentEditRow["Diag_desc2"].ToString() == ""
+                    )
                     {
                         currentEditRow["micro_desc"] = micro_templateDataSet.Tables["micro_template"].Rows[0]["micro_DESC"].ToString();
 
