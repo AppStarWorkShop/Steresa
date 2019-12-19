@@ -1823,4 +1823,6 @@ END
 GO
 
 
+-- fix the new line issue for the micro template
+update micro_template set DIAGNOSIS = REPLACE(diagnosis, char(10) + CHAR(13), char(13) + char(10))
 

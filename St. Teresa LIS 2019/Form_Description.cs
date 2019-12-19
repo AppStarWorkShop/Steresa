@@ -458,8 +458,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
-            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
-            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
+            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
+            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
             open.Show();
         }
 
@@ -488,6 +488,8 @@ namespace St.Teresa_LIS_2019
             diag_descDt1.Columns.Add("C_DESC");
             diag_descDt1.Columns.Add("E_DESC");
             DataTable diag_descDt2 = diag_descDt1.Clone();
+            AutoCompleteStringCollection autoCompleteCollection1 = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection autoCompleteCollection2 = new AutoCompleteStringCollection();
 
             diag_descDt1.Rows.Add(new object[] { "", "" });
             diag_descDt2.Rows.Add(new object[] { "", "" });
@@ -495,10 +497,19 @@ namespace St.Teresa_LIS_2019
             {
                 diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
                 diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
+                autoCompleteCollection1.Add(mDr["E_DESC"].ToString().Trim() + " | " + mDr["C_DESC"].ToString().Trim());
+                autoCompleteCollection2.Add(mDr["E_DESC"].ToString().Trim() + " | " + mDr["C_DESC"].ToString().Trim());
             }
 
             comboBox_Diagnosis_1.DataSource = diag_descDt1;
+            comboBox_Diagnosis_1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            comboBox_Diagnosis_1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            comboBox_Diagnosis_1.AutoCompleteCustomSource = autoCompleteCollection1;
+
             comboBox_Diagnosis_2.DataSource = diag_descDt2;
+            comboBox_Diagnosis_2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            comboBox_Diagnosis_2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            comboBox_Diagnosis_2.AutoCompleteCustomSource = autoCompleteCollection2;
         }
 
         private void button_Path_Click(object sender, EventArgs e)
@@ -771,6 +782,8 @@ namespace St.Teresa_LIS_2019
             diag_descDt1.Columns.Add("C_DESC");
             diag_descDt1.Columns.Add("E_DESC");
             DataTable diag_descDt2 = diag_descDt1.Clone();
+            AutoCompleteStringCollection autoCol1 = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection autoCol2 = new AutoCompleteStringCollection();
 
             diag_descDt1.Rows.Add(new object[] { "", "" });
             diag_descDt2.Rows.Add(new object[] { "", "" });
@@ -778,10 +791,19 @@ namespace St.Teresa_LIS_2019
             {
                 diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
                 diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
+                autoCol1.Add(mDr["E_DESC"].ToString().Trim() + " | " + mDr["C_DESC"].ToString().Trim());
+                autoCol2.Add(mDr["E_DESC"].ToString().Trim() + " | " + mDr["C_DESC"].ToString().Trim());
             }
 
             comboBox_Diagnosis_1.DataSource = diag_descDt1;
+            comboBox_Diagnosis_1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            comboBox_Diagnosis_1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            comboBox_Diagnosis_1.AutoCompleteCustomSource = autoCol1;
+
             comboBox_Diagnosis_2.DataSource = diag_descDt2;
+            comboBox_Diagnosis_2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            comboBox_Diagnosis_2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            comboBox_Diagnosis_2.AutoCompleteCustomSource = autoCol2;
 
             string picture_capSql = "SELECT [CAPTION] FROM [picture_cap]";
             DataSet picture_capDataSet = new DataSet();
@@ -1056,7 +1078,6 @@ namespace St.Teresa_LIS_2019
             string operationSql = "SELECT [operation],[desc] FROM [operation] WHERE operation is not null ORDER BY operation";
             DataSet operationDataSet = new DataSet();
             SqlDataAdapter operationDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(operationSql, operationDataSet, "operation");
-
             DataTable operationDt = new DataTable();
             operationDt.Columns.Add("operation");
             operationDt.Columns.Add("Desc");
@@ -1166,6 +1187,8 @@ namespace St.Teresa_LIS_2019
             diag_descDt1.Columns.Add("C_DESC");
             diag_descDt1.Columns.Add("E_DESC");
             DataTable diag_descDt2 = diag_descDt1.Clone();
+            AutoCompleteStringCollection autoCol1 = new AutoCompleteStringCollection();
+            AutoCompleteStringCollection autoCol2 = new AutoCompleteStringCollection();
 
             diag_descDt1.Rows.Add(new object[] { "", "" });
             diag_descDt2.Rows.Add(new object[] { "", "" });
@@ -1173,10 +1196,19 @@ namespace St.Teresa_LIS_2019
             {
                 diag_descDt1.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
                 diag_descDt2.Rows.Add(new object[] { mDr["C_DESC"].ToString().Trim(), mDr["E_DESC"].ToString().Trim() });
+                autoCol1.Add(mDr["E_DESC"].ToString().Trim() + " | " + mDr["C_DESC"].ToString().Trim());
+                autoCol2.Add(mDr["E_DESC"].ToString().Trim() + " | " + mDr["C_DESC"].ToString().Trim());
             }
 
             comboBox_Diagnosis_1.DataSource = diag_descDt1;
+            comboBox_Diagnosis_1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            comboBox_Diagnosis_1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            comboBox_Diagnosis_1.AutoCompleteCustomSource = autoCol1;
+
             comboBox_Diagnosis_2.DataSource = diag_descDt2;
+            comboBox_Diagnosis_2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            comboBox_Diagnosis_2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            comboBox_Diagnosis_2.AutoCompleteCustomSource = autoCol2;
 
             string picture_capSql = "SELECT [CAPTION] FROM [picture_cap]";
             DataSet picture_capDataSet = new DataSet();
@@ -3094,6 +3126,97 @@ namespace St.Teresa_LIS_2019
             {
                 bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Remove(dr);
             }*/
+        }
+
+        private void comboBox_Diagnosis_1_Validated(object sender, EventArgs e)
+        {
+            // added by eric 
+            string test = comboBox_Diagnosis_1.Text;
+            if (test != string.Empty && test != "")
+            {
+                if (test.Contains("|"))
+                {
+                    string[] StringArg = test.Split("|".ToCharArray());
+                    if (StringArg != null && StringArg.Length == 2)
+                    {
+                        comboBox_Diagnosis_1.Text = StringArg[1].Trim();
+                    }
+                    else
+                    {
+                        String error = "Cannot found matched chinese diagnosis";
+
+                    }
+
+                }
+            }
+            //MessageBox.Show("Validated " + test);
+        }
+
+        private void comboBox_Diagnosis_2_Validated(object sender, EventArgs e)
+        {
+            // added by eric
+            string test = comboBox_Diagnosis_2.Text;
+            if (test != string.Empty && test != "")
+            {
+                if (test.Contains("|"))
+                {
+                    string[] StringArg = test.Split("|".ToCharArray());
+                    if (StringArg != null && StringArg.Length == 2)
+                    {
+                        comboBox_Diagnosis_2.Text = StringArg[1].Trim();
+                    }
+                    else
+                    {
+                        String error = "Cannot found matched chinese diagnosis";
+
+                    }
+
+                }
+            }
+        }
+
+        private void comboBox_Site_Validated(object sender, EventArgs e)
+        {
+            DataSet siteResultDataSet = new DataSet();
+
+            string sql = string.Format("SELECT * FROM [site] WHERE site ='{0}'", StringUtil.escapeDBSpecialChar(comboBox_Site.SelectedValue.ToString()));
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, siteResultDataSet, "site");
+
+            if (siteResultDataSet.Tables["site"].Rows.Count > 0)
+            {
+                DataRow mDr = siteResultDataSet.Tables["site"].Rows[0];
+                textBox_Chinese_Description_1_DIA.Text = mDr["desc"].ToString().Trim();
+            }
+        }
+
+        private void comboBox_Operation_Validated(object sender, EventArgs e)
+        {
+            DataSet operationResultDataSet = new DataSet();
+
+            string sql = string.Format("SELECT * FROM [operation] WHERE operation ='{0}'", StringUtil.escapeDBSpecialChar(comboBox_Operation.SelectedValue.ToString()));
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, operationResultDataSet, "operation");
+
+            if (operationResultDataSet.Tables["operation"].Rows.Count > 0)
+            {
+                DataRow mDr = operationResultDataSet.Tables["operation"].Rows[0];
+                textBox_Chinese_Description_2_DIA.Text = mDr["desc"].ToString().Trim();
+            }
+        }
+
+        private void comboBox_Site_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_Site.Text == "")
+            {
+                textBox_Chinese_Description_1_DIA.Text = "";
+            }
+        }
+
+        private void comboBox_Operation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_Operation.Text == "")
+            {
+                textBox_Chinese_Description_2_DIA.Text = "";
+            }
         }
 
         private void comboBox_Snop_M3_DrawItem(object sender, DrawItemEventArgs e)

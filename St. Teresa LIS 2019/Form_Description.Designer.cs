@@ -267,7 +267,7 @@
             this.tabPage_MACROSCOPIC.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.tabPage_MACROSCOPIC.Location = new System.Drawing.Point(4, 29);
             this.tabPage_MACROSCOPIC.Name = "tabPage_MACROSCOPIC";
-            this.tabPage_MACROSCOPIC.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage_MACROSCOPIC.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_MACROSCOPIC.Size = new System.Drawing.Size(1228, 562);
             this.tabPage_MACROSCOPIC.TabIndex = 0;
             this.tabPage_MACROSCOPIC.Text = "F1. MACROSCOPIC";
@@ -277,7 +277,7 @@
             // 
             this.textBox_DiagnosisNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DiagnosisNo.ForeColor = System.Drawing.Color.DarkViolet;
-            this.textBox_DiagnosisNo.Location = new System.Drawing.Point(1180, 10);
+            this.textBox_DiagnosisNo.Location = new System.Drawing.Point(1180, 12);
             this.textBox_DiagnosisNo.Name = "textBox_DiagnosisNo";
             this.textBox_DiagnosisNo.ReadOnly = true;
             this.textBox_DiagnosisNo.Size = new System.Drawing.Size(31, 24);
@@ -309,11 +309,11 @@
             // 
             // textBox_Remarks
             // 
-            this.textBox_Remarks.Location = new System.Drawing.Point(21, 149);
+            this.textBox_Remarks.Location = new System.Drawing.Point(22, 155);
             this.textBox_Remarks.Multiline = true;
             this.textBox_Remarks.Name = "textBox_Remarks";
             this.textBox_Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_Remarks.Size = new System.Drawing.Size(1190, 339);
+            this.textBox_Remarks.Size = new System.Drawing.Size(1190, 322);
             this.textBox_Remarks.TabIndex = 235;
             this.textBox_Remarks.TextChanged += new System.EventHandler(this.textBox_Remarks_TextChanged);
             // 
@@ -322,7 +322,7 @@
             this.button_Picture_File_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_8.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_8.Image")));
-            this.button_Picture_File_8.Location = new System.Drawing.Point(1184, 123);
+            this.button_Picture_File_8.Location = new System.Drawing.Point(1185, 128);
             this.button_Picture_File_8.Name = "button_Picture_File_8";
             this.button_Picture_File_8.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_8.TabIndex = 223;
@@ -335,7 +335,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(928, 129);
+            this.label7.Location = new System.Drawing.Point(929, 134);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 15);
             this.label7.TabIndex = 222;
@@ -347,7 +347,7 @@
             this.comboBox_Caption_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_8.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_8.FormattingEnabled = true;
-            this.comboBox_Caption_8.Location = new System.Drawing.Point(968, 123);
+            this.comboBox_Caption_8.Location = new System.Drawing.Point(969, 128);
             this.comboBox_Caption_8.Name = "comboBox_Caption_8";
             this.comboBox_Caption_8.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_8.TabIndex = 221;
@@ -358,7 +358,7 @@
             // 
             this.button_Picture_File_8_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_8_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_8_Path.Location = new System.Drawing.Point(1184, 103);
+            this.button_Picture_File_8_Path.Location = new System.Drawing.Point(1185, 108);
             this.button_Picture_File_8_Path.Name = "button_Picture_File_8_Path";
             this.button_Picture_File_8_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_8_Path.TabIndex = 220;
@@ -372,7 +372,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(917, 109);
+            this.label8.Location = new System.Drawing.Point(918, 114);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(43, 15);
             this.label8.TabIndex = 219;
@@ -382,7 +382,7 @@
             // 
             this.textBox_Picture_File_8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_8.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_8.Location = new System.Drawing.Point(968, 104);
+            this.textBox_Picture_File_8.Location = new System.Drawing.Point(969, 109);
             this.textBox_Picture_File_8.Name = "textBox_Picture_File_8";
             this.textBox_Picture_File_8.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_8.TabIndex = 218;
@@ -392,7 +392,7 @@
             this.button_Picture_File_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_7.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_7.Image")));
-            this.button_Picture_File_7.Location = new System.Drawing.Point(879, 123);
+            this.button_Picture_File_7.Location = new System.Drawing.Point(880, 128);
             this.button_Picture_File_7.Name = "button_Picture_File_7";
             this.button_Picture_File_7.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_7.TabIndex = 217;
@@ -405,7 +405,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(630, 125);
+            this.label10.Location = new System.Drawing.Point(631, 130);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(32, 15);
             this.label10.TabIndex = 216;
@@ -417,7 +417,7 @@
             this.comboBox_Caption_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_7.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_7.FormattingEnabled = true;
-            this.comboBox_Caption_7.Location = new System.Drawing.Point(662, 122);
+            this.comboBox_Caption_7.Location = new System.Drawing.Point(663, 127);
             this.comboBox_Caption_7.Name = "comboBox_Caption_7";
             this.comboBox_Caption_7.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_7.TabIndex = 215;
@@ -428,7 +428,7 @@
             // 
             this.button_Picture_File_7_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_7_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_7_Path.Location = new System.Drawing.Point(879, 103);
+            this.button_Picture_File_7_Path.Location = new System.Drawing.Point(880, 108);
             this.button_Picture_File_7_Path.Name = "button_Picture_File_7_Path";
             this.button_Picture_File_7_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_7_Path.TabIndex = 214;
@@ -442,7 +442,7 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(619, 105);
+            this.label11.Location = new System.Drawing.Point(620, 110);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(43, 15);
             this.label11.TabIndex = 213;
@@ -452,7 +452,7 @@
             // 
             this.textBox_Picture_File_7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_7.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_7.Location = new System.Drawing.Point(662, 103);
+            this.textBox_Picture_File_7.Location = new System.Drawing.Point(663, 108);
             this.textBox_Picture_File_7.Name = "textBox_Picture_File_7";
             this.textBox_Picture_File_7.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_7.TabIndex = 212;
@@ -462,7 +462,7 @@
             this.button_Picture_File_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_6.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_6.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_6.Image")));
-            this.button_Picture_File_6.Location = new System.Drawing.Point(582, 123);
+            this.button_Picture_File_6.Location = new System.Drawing.Point(583, 128);
             this.button_Picture_File_6.Name = "button_Picture_File_6";
             this.button_Picture_File_6.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_6.TabIndex = 211;
@@ -475,7 +475,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(334, 122);
+            this.label12.Location = new System.Drawing.Point(335, 127);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(32, 15);
             this.label12.TabIndex = 210;
@@ -487,7 +487,7 @@
             this.comboBox_Caption_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_6.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_6.FormattingEnabled = true;
-            this.comboBox_Caption_6.Location = new System.Drawing.Point(366, 121);
+            this.comboBox_Caption_6.Location = new System.Drawing.Point(367, 126);
             this.comboBox_Caption_6.Name = "comboBox_Caption_6";
             this.comboBox_Caption_6.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_6.TabIndex = 209;
@@ -498,7 +498,7 @@
             // 
             this.button_Picture_File_6_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_6_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_6_Path.Location = new System.Drawing.Point(582, 103);
+            this.button_Picture_File_6_Path.Location = new System.Drawing.Point(583, 108);
             this.button_Picture_File_6_Path.Name = "button_Picture_File_6_Path";
             this.button_Picture_File_6_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_6_Path.TabIndex = 208;
@@ -512,7 +512,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(323, 103);
+            this.label13.Location = new System.Drawing.Point(324, 108);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(43, 15);
             this.label13.TabIndex = 207;
@@ -522,7 +522,7 @@
             // 
             this.textBox_Picture_File_6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_6.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_6.Location = new System.Drawing.Point(366, 102);
+            this.textBox_Picture_File_6.Location = new System.Drawing.Point(367, 107);
             this.textBox_Picture_File_6.Name = "textBox_Picture_File_6";
             this.textBox_Picture_File_6.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_6.TabIndex = 206;
@@ -532,7 +532,7 @@
             this.button_Picture_File_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_5.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_5.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_5.Image")));
-            this.button_Picture_File_5.Location = new System.Drawing.Point(272, 123);
+            this.button_Picture_File_5.Location = new System.Drawing.Point(273, 128);
             this.button_Picture_File_5.Name = "button_Picture_File_5";
             this.button_Picture_File_5.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_5.TabIndex = 205;
@@ -545,7 +545,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(24, 125);
+            this.label14.Location = new System.Drawing.Point(25, 130);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(32, 15);
             this.label14.TabIndex = 204;
@@ -557,7 +557,7 @@
             this.comboBox_Caption_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_5.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_5.FormattingEnabled = true;
-            this.comboBox_Caption_5.Location = new System.Drawing.Point(56, 123);
+            this.comboBox_Caption_5.Location = new System.Drawing.Point(57, 128);
             this.comboBox_Caption_5.Name = "comboBox_Caption_5";
             this.comboBox_Caption_5.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_5.TabIndex = 203;
@@ -568,7 +568,7 @@
             // 
             this.button_Picture_File_5_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_5_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_5_Path.Location = new System.Drawing.Point(272, 103);
+            this.button_Picture_File_5_Path.Location = new System.Drawing.Point(273, 108);
             this.button_Picture_File_5_Path.Name = "button_Picture_File_5_Path";
             this.button_Picture_File_5_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_5_Path.TabIndex = 202;
@@ -582,7 +582,7 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(13, 105);
+            this.label15.Location = new System.Drawing.Point(14, 110);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(43, 15);
             this.label15.TabIndex = 201;
@@ -592,7 +592,7 @@
             // 
             this.textBox_Picture_File_5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_5.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_5.Location = new System.Drawing.Point(56, 104);
+            this.textBox_Picture_File_5.Location = new System.Drawing.Point(57, 109);
             this.textBox_Picture_File_5.Name = "textBox_Picture_File_5";
             this.textBox_Picture_File_5.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_5.TabIndex = 200;
@@ -602,7 +602,7 @@
             this.button_Picture_File_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_4.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_4.Image")));
-            this.button_Picture_File_4.Location = new System.Drawing.Point(1184, 69);
+            this.button_Picture_File_4.Location = new System.Drawing.Point(1185, 74);
             this.button_Picture_File_4.Name = "button_Picture_File_4";
             this.button_Picture_File_4.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_4.TabIndex = 199;
@@ -615,7 +615,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(930, 70);
+            this.label3.Location = new System.Drawing.Point(931, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 15);
             this.label3.TabIndex = 198;
@@ -627,7 +627,7 @@
             this.comboBox_Caption_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_4.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_4.FormattingEnabled = true;
-            this.comboBox_Caption_4.Location = new System.Drawing.Point(968, 69);
+            this.comboBox_Caption_4.Location = new System.Drawing.Point(969, 74);
             this.comboBox_Caption_4.Name = "comboBox_Caption_4";
             this.comboBox_Caption_4.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_4.TabIndex = 197;
@@ -638,7 +638,7 @@
             // 
             this.button_Picture_File_4_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_4_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_4_Path.Location = new System.Drawing.Point(1184, 48);
+            this.button_Picture_File_4_Path.Location = new System.Drawing.Point(1185, 53);
             this.button_Picture_File_4_Path.Name = "button_Picture_File_4_Path";
             this.button_Picture_File_4_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_4_Path.TabIndex = 196;
@@ -652,7 +652,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(919, 50);
+            this.label4.Location = new System.Drawing.Point(920, 55);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 15);
             this.label4.TabIndex = 195;
@@ -662,7 +662,7 @@
             // 
             this.textBox_Picture_File_4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_4.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_4.Location = new System.Drawing.Point(968, 49);
+            this.textBox_Picture_File_4.Location = new System.Drawing.Point(969, 54);
             this.textBox_Picture_File_4.Name = "textBox_Picture_File_4";
             this.textBox_Picture_File_4.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_4.TabIndex = 194;
@@ -672,7 +672,7 @@
             this.button_Picture_File_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_3.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_3.Image")));
-            this.button_Picture_File_3.Location = new System.Drawing.Point(879, 69);
+            this.button_Picture_File_3.Location = new System.Drawing.Point(880, 74);
             this.button_Picture_File_3.Name = "button_Picture_File_3";
             this.button_Picture_File_3.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_3.TabIndex = 193;
@@ -685,7 +685,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(630, 70);
+            this.label5.Location = new System.Drawing.Point(631, 75);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(32, 15);
             this.label5.TabIndex = 192;
@@ -697,7 +697,7 @@
             this.comboBox_Caption_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_3.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_3.FormattingEnabled = true;
-            this.comboBox_Caption_3.Location = new System.Drawing.Point(662, 69);
+            this.comboBox_Caption_3.Location = new System.Drawing.Point(663, 74);
             this.comboBox_Caption_3.Name = "comboBox_Caption_3";
             this.comboBox_Caption_3.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_3.TabIndex = 191;
@@ -708,7 +708,7 @@
             // 
             this.button_Picture_File_3_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_3_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_3_Path.Location = new System.Drawing.Point(879, 48);
+            this.button_Picture_File_3_Path.Location = new System.Drawing.Point(880, 53);
             this.button_Picture_File_3_Path.Name = "button_Picture_File_3_Path";
             this.button_Picture_File_3_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_3_Path.TabIndex = 190;
@@ -722,7 +722,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(619, 50);
+            this.label6.Location = new System.Drawing.Point(620, 55);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(43, 15);
             this.label6.TabIndex = 189;
@@ -732,7 +732,7 @@
             // 
             this.textBox_Picture_File_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_3.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_3.Location = new System.Drawing.Point(662, 49);
+            this.textBox_Picture_File_3.Location = new System.Drawing.Point(663, 54);
             this.textBox_Picture_File_3.Name = "textBox_Picture_File_3";
             this.textBox_Picture_File_3.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_3.TabIndex = 188;
@@ -742,7 +742,7 @@
             this.button_Picture_File_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_2.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_2.Image")));
-            this.button_Picture_File_2.Location = new System.Drawing.Point(582, 69);
+            this.button_Picture_File_2.Location = new System.Drawing.Point(583, 74);
             this.button_Picture_File_2.Name = "button_Picture_File_2";
             this.button_Picture_File_2.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_2.TabIndex = 187;
@@ -755,7 +755,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(334, 70);
+            this.label1.Location = new System.Drawing.Point(335, 75);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 15);
             this.label1.TabIndex = 186;
@@ -767,7 +767,7 @@
             this.comboBox_Caption_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_2.FormattingEnabled = true;
-            this.comboBox_Caption_2.Location = new System.Drawing.Point(366, 69);
+            this.comboBox_Caption_2.Location = new System.Drawing.Point(367, 74);
             this.comboBox_Caption_2.Name = "comboBox_Caption_2";
             this.comboBox_Caption_2.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_2.TabIndex = 185;
@@ -778,7 +778,7 @@
             // 
             this.button_Picture_File_2_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_2_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_2_Path.Location = new System.Drawing.Point(582, 48);
+            this.button_Picture_File_2_Path.Location = new System.Drawing.Point(583, 53);
             this.button_Picture_File_2_Path.Name = "button_Picture_File_2_Path";
             this.button_Picture_File_2_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_2_Path.TabIndex = 184;
@@ -792,7 +792,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(323, 50);
+            this.label2.Location = new System.Drawing.Point(324, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 15);
             this.label2.TabIndex = 183;
@@ -802,7 +802,7 @@
             // 
             this.textBox_Picture_File_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_2.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_2.Location = new System.Drawing.Point(366, 49);
+            this.textBox_Picture_File_2.Location = new System.Drawing.Point(367, 54);
             this.textBox_Picture_File_2.Name = "textBox_Picture_File_2";
             this.textBox_Picture_File_2.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_2.TabIndex = 182;
@@ -897,7 +897,7 @@
             // 
             this.textBox_Parts.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Parts.ForeColor = System.Drawing.Color.DarkViolet;
-            this.textBox_Parts.Location = new System.Drawing.Point(1028, 9);
+            this.textBox_Parts.Location = new System.Drawing.Point(1028, 12);
             this.textBox_Parts.Name = "textBox_Parts";
             this.textBox_Parts.ReadOnly = true;
             this.textBox_Parts.Size = new System.Drawing.Size(31, 24);
@@ -932,7 +932,7 @@
             this.button_Picture_File_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Picture_File_1.Image = ((System.Drawing.Image)(resources.GetObject("button_Picture_File_1.Image")));
-            this.button_Picture_File_1.Location = new System.Drawing.Point(272, 68);
+            this.button_Picture_File_1.Location = new System.Drawing.Point(273, 73);
             this.button_Picture_File_1.Name = "button_Picture_File_1";
             this.button_Picture_File_1.Size = new System.Drawing.Size(27, 22);
             this.button_Picture_File_1.TabIndex = 168;
@@ -969,7 +969,7 @@
             this.label_Caption_1.BackColor = System.Drawing.Color.Transparent;
             this.label_Caption_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Caption_1.ForeColor = System.Drawing.Color.Black;
-            this.label_Caption_1.Location = new System.Drawing.Point(24, 69);
+            this.label_Caption_1.Location = new System.Drawing.Point(25, 74);
             this.label_Caption_1.Name = "label_Caption_1";
             this.label_Caption_1.Size = new System.Drawing.Size(32, 15);
             this.label_Caption_1.TabIndex = 130;
@@ -981,7 +981,7 @@
             this.comboBox_Caption_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox_Caption_1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Caption_1.FormattingEnabled = true;
-            this.comboBox_Caption_1.Location = new System.Drawing.Point(56, 68);
+            this.comboBox_Caption_1.Location = new System.Drawing.Point(57, 73);
             this.comboBox_Caption_1.Name = "comboBox_Caption_1";
             this.comboBox_Caption_1.Size = new System.Drawing.Size(215, 21);
             this.comboBox_Caption_1.TabIndex = 129;
@@ -992,7 +992,7 @@
             // 
             this.button_Picture_File_1_Path.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Picture_File_1_Path.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button_Picture_File_1_Path.Location = new System.Drawing.Point(272, 47);
+            this.button_Picture_File_1_Path.Location = new System.Drawing.Point(273, 52);
             this.button_Picture_File_1_Path.Name = "button_Picture_File_1_Path";
             this.button_Picture_File_1_Path.Size = new System.Drawing.Size(27, 21);
             this.button_Picture_File_1_Path.TabIndex = 128;
@@ -1006,7 +1006,7 @@
             this.label_Picture_File_1.BackColor = System.Drawing.Color.Transparent;
             this.label_Picture_File_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Picture_File_1.ForeColor = System.Drawing.Color.Black;
-            this.label_Picture_File_1.Location = new System.Drawing.Point(13, 49);
+            this.label_Picture_File_1.Location = new System.Drawing.Point(14, 54);
             this.label_Picture_File_1.Name = "label_Picture_File_1";
             this.label_Picture_File_1.Size = new System.Drawing.Size(43, 15);
             this.label_Picture_File_1.TabIndex = 127;
@@ -1029,7 +1029,7 @@
             // 
             this.textBox_Picture_File_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Picture_File_1.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_Picture_File_1.Location = new System.Drawing.Point(56, 48);
+            this.textBox_Picture_File_1.Location = new System.Drawing.Point(57, 53);
             this.textBox_Picture_File_1.Name = "textBox_Picture_File_1";
             this.textBox_Picture_File_1.Size = new System.Drawing.Size(215, 20);
             this.textBox_Picture_File_1.TabIndex = 22;
@@ -1067,7 +1067,7 @@
             this.tabPage_MICROSCOPIC_CY.Controls.Add(this.label17);
             this.tabPage_MICROSCOPIC_CY.Location = new System.Drawing.Point(4, 29);
             this.tabPage_MICROSCOPIC_CY.Name = "tabPage_MICROSCOPIC_CY";
-            this.tabPage_MICROSCOPIC_CY.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage_MICROSCOPIC_CY.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_MICROSCOPIC_CY.Size = new System.Drawing.Size(1228, 562);
             this.tabPage_MICROSCOPIC_CY.TabIndex = 1;
             this.tabPage_MICROSCOPIC_CY.Text = "F2. MICROSCOPIC - CY";
@@ -1312,7 +1312,7 @@
             this.tabPage_DIAGNOSIS.Controls.Add(this.button_Detail_1_DIA);
             this.tabPage_DIAGNOSIS.Location = new System.Drawing.Point(4, 29);
             this.tabPage_DIAGNOSIS.Name = "tabPage_DIAGNOSIS";
-            this.tabPage_DIAGNOSIS.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage_DIAGNOSIS.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_DIAGNOSIS.Size = new System.Drawing.Size(1228, 562);
             this.tabPage_DIAGNOSIS.TabIndex = 2;
             this.tabPage_DIAGNOSIS.Text = "F3. DIAGNOSIS";
@@ -1620,6 +1620,7 @@
             this.comboBox_Diagnosis_2.ValueMember = "C_DESC";
             this.comboBox_Diagnosis_2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Diagnosis_2_DrawItem);
             this.comboBox_Diagnosis_2.SelectedIndexChanged += new System.EventHandler(this.comboBox_Diagnosis_2_SelectedIndexChanged);
+            this.comboBox_Diagnosis_2.Validated += new System.EventHandler(this.comboBox_Diagnosis_2_Validated);
             // 
             // button_Detail_3_DIA
             // 
@@ -1648,6 +1649,7 @@
             this.comboBox_Diagnosis_1.TabIndex = 217;
             this.comboBox_Diagnosis_1.ValueMember = "C_DESC";
             this.comboBox_Diagnosis_1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Diagnosis_1_DrawItem);
+            this.comboBox_Diagnosis_1.Validated += new System.EventHandler(this.comboBox_Diagnosis_1_Validated);
             // 
             // label_Diagnosis
             // 
@@ -1697,7 +1699,9 @@
             this.comboBox_Operation.TabIndex = 212;
             this.comboBox_Operation.ValueMember = "operation";
             this.comboBox_Operation.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Operation_DrawItem);
+            this.comboBox_Operation.SelectedIndexChanged += new System.EventHandler(this.comboBox_Operation_SelectedIndexChanged);
             this.comboBox_Operation.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Operation_SelectionChangeCommitted);
+            this.comboBox_Operation.Validated += new System.EventHandler(this.comboBox_Operation_Validated);
             // 
             // label_Operation
             // 
@@ -1790,7 +1794,9 @@
             this.comboBox_Site.TabIndex = 201;
             this.comboBox_Site.ValueMember = "site";
             this.comboBox_Site.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Site_DrawItem);
+            this.comboBox_Site.SelectedIndexChanged += new System.EventHandler(this.comboBox_Site_SelectedIndexChanged);
             this.comboBox_Site.SelectionChangeCommitted += new System.EventHandler(this.comboBox_Site_SelectionChangeCommitted);
+            this.comboBox_Site.Validated += new System.EventHandler(this.comboBox_Site_Validated);
             // 
             // label_Site
             // 
@@ -1819,7 +1825,7 @@
             // textBox_specimenID
             // 
             this.textBox_specimenID.Location = new System.Drawing.Point(1341, 36);
-            this.textBox_specimenID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_specimenID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_specimenID.Name = "textBox_specimenID";
             this.textBox_specimenID.Size = new System.Drawing.Size(12, 20);
             this.textBox_specimenID.TabIndex = 234;

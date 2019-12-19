@@ -250,4 +250,20 @@ namespace St.Teresa_LIS_2019
             return age;
         }
     }
+
+    public static class StringUtil
+    {
+        public static String escapeDBSpecialChar(String str)
+        {
+            if (str == null)
+            {
+                return null;
+            }
+            if (str == "")
+            {
+                return "";
+            }
+            return str.Replace("'", "''");
+        }
+    }
 }

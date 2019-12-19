@@ -3259,5 +3259,10 @@ namespace St.Teresa_LIS_2019
             }
 
         }
+
+        private void comboBox_Sign_By_Dr_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
