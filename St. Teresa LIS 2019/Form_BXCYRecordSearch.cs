@@ -1164,22 +1164,39 @@ namespace St.Teresa_LIS_2019
 
         private void textBox_Search_Type_KeyUp(object sender, KeyEventArgs e)
         {
-            if (textBox_Search_Type.Text.Trim().IndexOf("/") != -1)
+            switch (contentSearching)
             {
-                string subTextStr = textBox_Search_Type.Text.Trim().Substring(textBox_Search_Type.Text.Trim().IndexOf("/"));
-                if (subTextStr.Length >= 4)
-                {
-                    searchRecord();
-                }
+                case SEARCH_TYPE_CASE_NO:
+                    if (textBox_Search_Type.Text.Trim().IndexOf("/") != -1)
+                    {
+                        string subTextStr = textBox_Search_Type.Text.Trim().Substring(textBox_Search_Type.Text.Trim().IndexOf("/"));
+                        if (subTextStr.Length >= 4)
+                        {
+                            searchRecord();
+                        }
+                    }
+                    else if (textBox_Search_Type.Text.Trim().IndexOf("-") != -1)
+                    {
+                        string subTextStr = textBox_Search_Type.Text.Trim().Substring(textBox_Search_Type.Text.Trim().IndexOf("-"));
+                        if (subTextStr.Length > 3)
+                        {
+                            searchRecord();
+                        }
+                    }
+                    break;
+
+                case SEARCH_TYPE_LAB_REF:
+                    break;
+
+                default:
+                    if (textBox_Search_Type.Text.Trim().Length > 4)
+                    {
+                        searchRecord();
+                    }
+                    break;
             }
-            else if (textBox_Search_Type.Text.Trim().IndexOf("-") != -1)
-            {
-                string subTextStr = textBox_Search_Type.Text.Trim().Substring(textBox_Search_Type.Text.Trim().IndexOf("-"));
-                if (subTextStr.Length > 3)
-                {
-                    searchRecord();
-                }
-            }
+
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
