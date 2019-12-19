@@ -25,7 +25,7 @@ namespace St.Teresa_LIS_2019
         private DataTable bxcy_specimentDt;
         private SqlDataAdapter bxcy_specimentDataAdapter;
 
-        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet, bool readOnly);
+        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, bool readOnly);
         public BxcyDiagExit OnBxcyDiagExit;
 
         public delegate int BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
@@ -261,7 +261,8 @@ namespace St.Teresa_LIS_2019
         {
             if (OnBxcyDiagExit != null)
             {
-                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage, bxcy_diagDataSet, readOnly);
+                textBox_ID.BindingContext[dt].Position++;
+                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, readOnly);
                 
             }
             this.Close();
@@ -1078,6 +1079,7 @@ namespace St.Teresa_LIS_2019
             string operationSql = "SELECT [operation],[desc] FROM [operation] WHERE operation is not null ORDER BY operation";
             DataSet operationDataSet = new DataSet();
             SqlDataAdapter operationDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(operationSql, operationDataSet, "operation");
+
             DataTable operationDt = new DataTable();
             operationDt.Columns.Add("operation");
             operationDt.Columns.Add("Desc");
@@ -2063,7 +2065,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            int mainPageUpdateResult = 0;
+            /*int mainPageUpdateResult = 0;
             if (OnBxcyDiagSaveBoth != null)
             {
                 mainPageUpdateResult = OnBxcyDiagSaveBoth(comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue);
@@ -2076,11 +2078,6 @@ namespace St.Teresa_LIS_2019
                 {
                     if (currentEditRow != null)
                     {
-                        /*if (isSameGroupNewRecord)
-                        {
-                            setFirstMarcoAndMicroValue(currentEditRow);
-                        }*/
-
                         currentEditRow["barcode"] = currentEditRow["case_no"].ToString().Trim().Replace("/", "") + currentEditRow["group"].ToString().Trim();
                         textBox_ID.BindingContext[dt].Position++;
 
@@ -2094,7 +2091,6 @@ namespace St.Teresa_LIS_2019
                             {
                                 currencyManager.Position = currentPosition;
                             }
-                            //button_End.PerformClick();
                         }
                         else
                         {
@@ -2146,7 +2142,7 @@ namespace St.Teresa_LIS_2019
                 {
                     MessageBox.Show("Record updated fail, please contact Admin");
                 }
-            }
+            }*/
         }
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
@@ -2300,8 +2296,6 @@ namespace St.Teresa_LIS_2019
                 }
 
                 isSameGroupNewRecord = true;
-                int currentDiagnosisId = 1;
-                int.TryParse(textBox_DiagnosisNo.Text.Trim(), out currentDiagnosisId);
                 currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
 
                 currentEditRow["macro_name"] = "";
@@ -2336,6 +2330,13 @@ namespace St.Teresa_LIS_2019
                 currentEditRow["case_no"] = caseNo;
                 currentEditRow["group"] = textBox_Parts.Text.Trim();
 
+                var maxDiagnosisIdFromProg = (from p in dt.AsEnumerable()
+                                              where p.Field<string>("case_no") == caseNo
+                                                  && p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                              select p.Field<int>("diagnosisId")).Max();
+
+                int maxDiagnosisFromProg = Convert.ToInt32(maxDiagnosisIdFromProg);
+
                 string groupSql = string.Format("SELECT ISNULL(max([diagnosisId]),0) as maxDiagnosisId FROM [bxcy_diag] WHERE case_no='{0}' and [group] = '{1}'", caseNo, textBox_Parts.Text.Trim());
                 DataSet groupDataSet1 = new DataSet();
                 SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
@@ -2344,9 +2345,9 @@ namespace St.Teresa_LIS_2019
                 int currentDiagnosisIdInDB = 1;
                 int.TryParse(groupDt.Rows[0]["maxDiagnosisId"].ToString(), out currentDiagnosisIdInDB);
 
-                if (currentDiagnosisId > currentDiagnosisIdInDB)
+                if (maxDiagnosisFromProg > currentDiagnosisIdInDB)
                 {
-                    currentEditRow["diagnosisId"] = currentDiagnosisId + 1;
+                    currentEditRow["diagnosisId"] = maxDiagnosisFromProg + 1;
                 }
                 else
                 {
@@ -2859,10 +2860,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_New2_Click(object sender, EventArgs e)
         {
-            int currentDiagnosisId = 1;
-            int.TryParse(textBox_DiagnosisNo.Text.Trim(), out currentDiagnosisId);
-
-            setButtonStatus(PageStatus.STATUS_NEW);
+            setButtonStatus(PageStatus.STATUS_EDIT);
 
             isSameGroupNewRecord = true;
 
@@ -2900,6 +2898,13 @@ namespace St.Teresa_LIS_2019
             currentEditRow["case_no"] = caseNo;
             currentEditRow["group"] = textBox_Parts.Text.Trim();
 
+            var maxDiagnosisIdFromProg = (from p in dt.AsEnumerable()
+                                    where p.Field<string>("case_no") == caseNo
+                                        && p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                        select p.Field<int>("diagnosisId")).Max();
+
+            int maxDiagnosisFromProg = Convert.ToInt32(maxDiagnosisIdFromProg);
+
             string groupSql = string.Format("SELECT ISNULL(max([diagnosisId]),0) as maxDiagnosisId FROM [bxcy_diag] WHERE case_no='{0}' and [group] = '{1}'", caseNo, textBox_Parts.Text.Trim());
             DataSet groupDataSet1 = new DataSet();
             SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
@@ -2908,9 +2913,9 @@ namespace St.Teresa_LIS_2019
             int currentDiagnosisIdInDB = 1;
             int.TryParse(groupDt.Rows[0]["maxDiagnosisId"].ToString(), out currentDiagnosisIdInDB);
 
-            if(currentDiagnosisId > currentDiagnosisIdInDB)
+            if(maxDiagnosisFromProg > currentDiagnosisIdInDB)
             {
-                currentEditRow["diagnosisId"] = currentDiagnosisId+1;
+                currentEditRow["diagnosisId"] = maxDiagnosisFromProg + 1;
             }
             else
             {

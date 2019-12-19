@@ -31,6 +31,7 @@ namespace St.Teresa_LIS_2019
         private bool isNewPatient = false;
 
         private DataSet existDiagDataSet = null;
+        private SqlDataAdapter existDiagDataAdapter = null;
 
         private Boolean readOnly = false;
 
@@ -733,9 +734,10 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, bool readOnly)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, bool readOnly)
         {
             this.existDiagDataSet = existDiagDataSet;
+            this.existDiagDataAdapter = existDiagDataAdapter;
             if (refresh)
             {
                 reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
@@ -1233,11 +1235,23 @@ namespace St.Teresa_LIS_2019
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                             {
-                                //reloadDBData(currencyManager.Count - 1);
                                 reloadAndBindingDBData(0, currentCaseNo);
                                 button_End.PerformClick();
-                                //reloadAndBindingDBData(currencyManager.Count - 1);
-                                MessageBox.Show("New case is saved");
+
+                                if (existDiagDataAdapter != null && existDiagDataSet != null) { 
+                                    if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
+                                    {
+                                        MessageBox.Show("New case is saved");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("New case is saved, New diag save fail or no need to save");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("New case is saved");
+                                }
                             }
                             else
                             {
@@ -1247,7 +1261,6 @@ namespace St.Teresa_LIS_2019
                         }
                     }
                 }
-                //reloadAndBindingDBData(currencyManager.Count - 1);
             }
             else
             {
@@ -1257,19 +1270,28 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        //drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
 
                         textBox_ID.BindingContext[dt].Position++;
 
-                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                        bool bxcyUpdateResult = DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen");
+                        bool diagUpdateResult = false;
+                        if (existDiagDataAdapter != null && existDiagDataSet != null)
                         {
-                            MessageBox.Show("Bxcy_specimen updated");
+                            if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
+                            {
+                                diagUpdateResult = true;
+                            }
+                        }
+
+                        if (!bxcyUpdateResult && !diagUpdateResult)
+                        {
+                            MessageBox.Show("Case record updated fail or no record to update");
                         }
                         else
                         {
-                            MessageBox.Show("Bxcy_specimen updated fail, please contact Admin");
+                            MessageBox.Show("Case record updated");
                         }
                     }
 
@@ -1747,6 +1769,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
+            this.existDiagDataAdapter = null;
             this.existDiagDataSet = null;
         }
 
@@ -3129,22 +3152,27 @@ namespace St.Teresa_LIS_2019
                 m_isEntering1 = false;
                 string search = ((ComboBox)sender).Text.Trim();
 
-                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                string sqlFull = string.Format("SELECT TOP 1 doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
                 doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
 
                 if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    DataTable newDt = new DataTable();
+                    /*DataTable newDt = new DataTable();
                     newDt.Columns.Add("doctor");
 
                     foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
                     {
                         newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
+                    }*/
+                    try
+                    {
+                        ((ComboBox)sender).SelectedValue = doctorDataSet1.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
+                    }catch(Exception ex)
+                    {
 
-                    ((ComboBox)sender).DataSource = newDt;
+                    }
                 }
-                else
+                /*else
                 {
                     sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
                     doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
@@ -3161,7 +3189,7 @@ namespace St.Teresa_LIS_2019
                 }
 
                 ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
+                ((ComboBox)sender).SelectionStart = search.Length;*/
             }
         }
 
@@ -3177,12 +3205,12 @@ namespace St.Teresa_LIS_2019
                 m_isEntering2 = false;
                 string search = ((ComboBox)sender).Text.Trim();
 
-                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                string sqlFull = string.Format("SELECT TOP 1 doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
                 doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
 
                 if (doctorDataSet2.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    DataTable newDt = new DataTable();
+                    /*DataTable newDt = new DataTable();
                     newDt.Columns.Add("doctor");
 
                     foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
@@ -3190,9 +3218,18 @@ namespace St.Teresa_LIS_2019
                         newDt.Rows.Add(new object[] { mDr["doctor"] });
                     }
 
-                    ((ComboBox)sender).DataSource = newDt;
+                    ((ComboBox)sender).DataSource = newDt;*/
+
+                    try
+                    {
+                        ((ComboBox)sender).SelectedValue = doctorDataSet2.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                 }
-                else
+                /*else
                 {
                     sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
                     doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
@@ -3209,7 +3246,7 @@ namespace St.Teresa_LIS_2019
                 }
 
                 ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
+                ((ComboBox)sender).SelectionStart = search.Length;*/
             }
         }
 		

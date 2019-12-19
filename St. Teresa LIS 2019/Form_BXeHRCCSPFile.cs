@@ -26,6 +26,7 @@ namespace St.Teresa_LIS_2019
         private bool isNewPatient = false;
 
         private DataSet existDiagDataSet = null;
+        private SqlDataAdapter existDiagDataAdapter = null;
 
         private bool m_isEntering1 = false;
         private bool m_isEntering2 = false;
@@ -338,9 +339,10 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, bool readOnly)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, bool readOnly)
         {
             this.existDiagDataSet = existDiagDataSet;
+            this.existDiagDataAdapter = existDiagDataAdapter;
             if (refresh)
             {
                 reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
@@ -434,6 +436,7 @@ namespace St.Teresa_LIS_2019
                     {
                         if (!checkDuplicateCaseNo())
                         {
+                            string currentCaseNo = textBox_Case_No.Text.Trim();
                             currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
                             currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
                             currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
@@ -441,21 +444,33 @@ namespace St.Teresa_LIS_2019
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                             {
-                                //reloadDBData(currencyManager.Count - 1);
-                                reloadAndBindingDBData();
+                                reloadAndBindingDBData(0, currentCaseNo);
                                 button_End.PerformClick();
-                                //reloadAndBindingDBData(currencyManager.Count - 1);
-                                MessageBox.Show("New ebv_specimen saved");
+
+                                if (existDiagDataAdapter != null && existDiagDataSet != null)
+                                {
+                                    if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
+                                    {
+                                        MessageBox.Show("New case is saved");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("New case is saved, New diag save fail or no need to save");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("New case is saved");
+                                }
                             }
                             else
                             {
-                                MessageBox.Show("Bxcy_specimen saved fail, please contact Admin");
+                                MessageBox.Show("Case saved fail, please contact Admin");
                             }
                             setButtonStatus(PageStatus.STATUS_VIEW);
                         }
                     }
                 }
-                //reloadAndBindingDBData(currencyManager.Count - 1);
             }
             else
             {
@@ -464,18 +479,27 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        //drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_BY"] = CurrentUser.currentUserId;
                         drow["UPDATE_AT"] = DateTime.Now.ToString("");
                         textBox_ID.BindingContext[dt].Position++;
 
-                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                        bool bxcyUpdateResult = DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen");
+                        bool diagUpdateResult = false;
+                        if (existDiagDataAdapter != null && existDiagDataSet != null)
                         {
-                            MessageBox.Show("Bxcy_specimen updated");
+                            if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
+                            {
+                                diagUpdateResult = true;
+                            }
+                        }
+
+                        if (!bxcyUpdateResult && !diagUpdateResult)
+                        {
+                            MessageBox.Show("Case record updated fail or no record to update");
                         }
                         else
                         {
-                            MessageBox.Show("Bxcy_specimen updated fail, please contact Admin");
+                            MessageBox.Show("Case record updated");
                         }
                     }
 
