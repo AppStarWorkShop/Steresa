@@ -1259,6 +1259,9 @@ namespace St.Teresa_LIS_2019
                                 {
                                     MessageBox.Show("New case is saved");
                                 }
+
+                                this.existDiagDataAdapter = null;
+                                this.existDiagDataSet = null;
                             }
                             else
                             {
@@ -1300,6 +1303,9 @@ namespace St.Teresa_LIS_2019
                         {
                             MessageBox.Show("Case record updated");
                         }
+
+                        this.existDiagDataAdapter = null;
+                        this.existDiagDataSet = null;
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
@@ -3325,6 +3331,11 @@ namespace St.Teresa_LIS_2019
                     textBox_Age.Text = PatientAgeCalculator.calculate(dob).ToString();
                 }
             }
+        }
+
+        private void comboBox_Snop_T3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

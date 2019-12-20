@@ -464,8 +464,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
-            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, getNoOfPhotos());
-            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
+            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
+            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
             open.Show();
         }
 
@@ -1000,11 +1000,13 @@ namespace St.Teresa_LIS_2019
         {
             currentNevigateMode = NevigateMode.MODE_GROUP;
 
-            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
-            if(groupNo != null && groupNo.Trim() != "")
+            //string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE case_no = '{0}') ORDER BY id", caseNo);
+            string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group] , diagnosisid", caseNo);
+            if (groupNo != null && groupNo.Trim() != "")
             {
-                sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] = '{1}' ORDER BY id", caseNo, groupNo);
+                sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] = {1} ORDER BY diagnosisid", caseNo, groupNo);
             }
+
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
 
             dt = bxcy_diagDataSet.Tables["bxcy_diag"];
@@ -1013,7 +1015,6 @@ namespace St.Teresa_LIS_2019
             dt.Columns["id"].AutoIncrementStep = 1;
 
             currencyManager = (CurrencyManager)this.BindingContext[dt];
-
             textBox_ID.DataBindings.Clear();
             comboBox_Description.DataBindings.Clear();
             comboBox_Description2.DataBindings.Clear();
@@ -1423,12 +1424,12 @@ namespace St.Teresa_LIS_2019
 
         private void button_Next_Click(object sender, EventArgs e)
         {
-            if (textBox_ID.Text.Trim() == "")
+            if (textBox_Parts.Text.Trim() == "")
             {
                 return;
             }
 
-            if (textBox_ID.Text.Trim() != "")
+            /*if (textBox_ID.Text.Trim() != "")
             {
                 string countSql = string.Format(" [bxcy_diag] WHERE [group] > '{0}' and case_no = '{1}'", textBox_Parts.Text, caseNo);
                 if (DBConn.getSqlRecordCount(countSql) > 0)
@@ -1436,16 +1437,28 @@ namespace St.Teresa_LIS_2019
                     string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{1}' AND [group] in (SELECT min([group]) FROM [bxcy_diag] WHERE [group] > '{0}' AND case_no = '{1}') ORDER BY ID", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
+            }*/
+
+            var minGroupFromProg = (from p in dt.AsEnumerable()
+                                    where p.Field<string>("group").CompareTo(textBox_Parts.Text.Trim()) == 1
+                                    select p.Field<string>("group")).Min();
+            if (minGroupFromProg != null)
+            { 
+                string strMinGroupFromProg = Convert.ToString(minGroupFromProg);
+
+                DataRow dr = dt.Select("group=" + strMinGroupFromProg)[0];
+                currencyManager.Position = dt.Rows.IndexOf(dr);
             }
         }
 
         private void button_Back_Click(object sender, EventArgs e)
         {
-            /*if (textBox_ID.Text.Trim() == "")
+            if (textBox_Parts.Text.Trim() == "")
             {
                 return;
             }
 
+            /*
             if (textBox_ID.Text.Trim() != "")
             {
                 string countSql = string.Format(" [bxcy_diag] WHERE [group] < {0} and case_no = '{1}'", textBox_Parts.Text, caseNo);
@@ -1456,15 +1469,26 @@ namespace St.Teresa_LIS_2019
                 }
             }*/
             // edit by eirc to fix the report back problem
-            if (textBox_ID.Text != "" && textBox_Parts.Text != "")
+            /*if (textBox_ID.Text != "" && textBox_Parts.Text != "")
             {
                 if (textBox_Parts.Text != "1")
                 {
                     string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{1}' AND [group] in (SELECT top 1 [group] FROM [bxcy_diag] WHERE [group] < '{0}' AND case_no = '{1}' order by [group] desc) ORDER BY id", textBox_Parts.Text, caseNo);
                     dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");
                 }
+            }*/
+
+            var minGroupFromProg = (from p in dt.AsEnumerable()
+                                    select p.Field<string>("group")).Min();
+
+            if (minGroupFromProg != null)
+            {
+                string strMinGroupFromProg = Convert.ToString(minGroupFromProg);
+
+                DataRow dr = dt.Select("group=" + strMinGroupFromProg)[0];
+                currencyManager.Position = dt.Rows.IndexOf(dr);
             }
-            
+
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -1553,7 +1577,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_New_Click(object sender, EventArgs e)
         {
-            setButtonStatus(PageStatus.STATUS_NEW);
+            setButtonStatus(PageStatus.STATUS_EDIT);
 
             isSameGroupNewRecord = false;
 
@@ -1566,16 +1590,36 @@ namespace St.Teresa_LIS_2019
             SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
 
             DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
-            string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();
-            currentEditRow["group"] = (Convert.ToInt32(strMaxGroup) + 1).ToString();
+            int intMaxGroupFromDB = 1;
+            int.TryParse(groupDt.Rows[0]["maxGroup"].ToString(), out intMaxGroupFromDB);
+
+            var maxGroupFromProgFromDB = (from p in dt.AsEnumerable()
+                                          where p.Field<string>("case_no") == caseNo
+                                          select p.Field<string>("group")).Max();
+
+            int intMaxGroupFromProg = 1;
+            if (maxGroupFromProgFromDB != null)
+            {
+                int.TryParse(maxGroupFromProgFromDB, out intMaxGroupFromProg);
+            }
+
+            if(intMaxGroupFromDB > intMaxGroupFromProg)
+            {
+                currentEditRow["group"] = (Convert.ToInt32(intMaxGroupFromDB) + 1).ToString();
+            }
+            else
+            {
+                currentEditRow["group"] = (Convert.ToInt32(intMaxGroupFromProg) + 1).ToString();
+            }
 
             currentEditRow["diagnosisId"] = 1;
 
             currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
             currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
 
-            bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
+            //bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+            currencyManager.Position = currencyManager.Count - 1;
         }
 
         private void button_Delete_Click(object sender, EventArgs e)
@@ -2783,7 +2827,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Back2_Click(object sender, EventArgs e)
         {
-            if (textBox_ID.Text.Trim() == "")
+            if (textBox_DiagnosisNo.Text.Trim() == "")
             {
                 return;
             }
@@ -2808,15 +2852,26 @@ namespace St.Teresa_LIS_2019
                 }
             }*/
 
-            if (currencyManager != null)
+            /*if (currencyManager != null)
             {
                 currencyManager.Position--;
+            }*/
+
+            var prevFromProg = from p in dt.AsEnumerable()
+                                    where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                    && p.Field<int>("diagnosisId") < Convert.ToInt32(textBox_DiagnosisNo.Text.Trim())
+                                    orderby p.Field<int>("diagnosisId") descending
+                               select p;
+
+            if (prevFromProg.Any())
+            {
+                currencyManager.Position = dt.Rows.IndexOf(prevFromProg.FirstOrDefault());
             }
         }
 
         private void button_Next2_Click(object sender, EventArgs e)
         {
-            if (textBox_ID.Text.Trim() == "")
+            if (textBox_DiagnosisNo.Text.Trim() == "")
             {
                 return;
             }
@@ -2841,9 +2896,15 @@ namespace St.Teresa_LIS_2019
                 }
             }*/
 
-            if (currencyManager != null)
+            var nextFromProg = from p in dt.AsEnumerable()
+                               where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                               && p.Field<int>("diagnosisId") > Convert.ToInt32(textBox_DiagnosisNo.Text.Trim())
+                               orderby p.Field<int>("diagnosisId") ascending
+                               select p;
+
+            if (nextFromProg.Any())
             {
-                currencyManager.Position++;
+                currencyManager.Position = dt.Rows.IndexOf(nextFromProg.FirstOrDefault());
             }
         }
 
