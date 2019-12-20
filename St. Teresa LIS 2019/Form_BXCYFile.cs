@@ -3308,5 +3308,23 @@ namespace St.Teresa_LIS_2019
         {
 
         }
+
+        private void textBox_DOB_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            //MessageBox.Show("input rejectd - " + textBox_DOB.Text);
+        }
+
+        private void textBox_DOB_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            //MessageBox.Show("textBox_DOB_TypeValidationCompleted - " + textBox_DOB.Text);
+            if (textBox_DOB.Text != "")
+            {
+                DateTime dob = DateTime.Parse(textBox_DOB.Text);
+                if (dob != null)
+                {
+                    textBox_Age.Text = PatientAgeCalculator.calculate(dob).ToString();
+                }
+            }
+        }
     }
 }
