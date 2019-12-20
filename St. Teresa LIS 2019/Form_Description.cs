@@ -262,7 +262,12 @@ namespace St.Teresa_LIS_2019
             if (OnBxcyDiagExit != null)
             {
                 textBox_ID.BindingContext[dt].Position++;
-                OnBxcyDiagExit(currentStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, readOnly);
+                int backStatus = currentStatus;
+                if (currentStatus == PageStatus.STATUS_NEW)
+                {
+                    backStatus = PageStatus.STATUS_EDIT;
+                }
+                OnBxcyDiagExit(backStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, readOnly);
                 
             }
             this.Close();
@@ -459,8 +464,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
-            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
-            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
+            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, getNoOfPhotos());
+            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
             open.Show();
         }
 
@@ -1802,10 +1807,10 @@ namespace St.Teresa_LIS_2019
                     comboBox_Snop_M3.Enabled = true;
 
                     //button_Top.Enabled = false;
-                    button_Back.Enabled = false;
-                    button_Next.Enabled = false;
+                    button_Back.Enabled = true;
+                    button_Next.Enabled = true;
                     //button_End.Enabled = false;
-                    button_New.Enabled = false;
+                    button_New.Enabled = true;
 
                     //button_Top2.Enabled = true;
                     button_Back2.Enabled = true;
@@ -1816,7 +1821,7 @@ namespace St.Teresa_LIS_2019
                     button_Save.Enabled = true;
                     
                     button_F6_Edit.Enabled = false;
-                    button_Delete.Enabled = false;
+                    button_Delete.Enabled = true;
                     button_Label.Enabled = false;
                     button_Path.Enabled = true;
                     button_F8_Back_To_Main.Enabled = true;
@@ -1824,7 +1829,7 @@ namespace St.Teresa_LIS_2019
 
                     comboBox_MIC_Add2.Enabled = true;
                     buttonremoveCinese.Enabled = true;
-                    button_Copy.Enabled = false;
+                    button_Copy.Enabled = true;
                     edit_modle();
                 }
                 else
@@ -1917,10 +1922,10 @@ namespace St.Teresa_LIS_2019
                         comboBox_Snop_M3.Enabled = true;
 
                         //button_Top.Enabled = false;
-                        button_Back.Enabled = false;
-                        button_Next.Enabled = false;
+                        button_Back.Enabled = true;
+                        button_Next.Enabled = true;
                         //button_End.Enabled = false;
-                        button_New.Enabled = false;
+                        button_New.Enabled = true;
 
                         //button_Top2.Enabled = true;
                         button_Back2.Enabled = true;
@@ -1950,16 +1955,16 @@ namespace St.Teresa_LIS_2019
         {
             //button_Top.Image = Image.FromFile("Resources/topGra.png");
             //button_Top.ForeColor = Color.Gray;
-            button_Back.Image = Image.FromFile("Resources/backGra.png");
-            button_Back.ForeColor = Color.Gray;
-            button_Next.Image = Image.FromFile("Resources/nextGra.png");
-            button_Next.ForeColor = Color.Gray;
+            button_Back.Image = Image.FromFile("Resources/back.png");
+            button_Back.ForeColor = Color.Black;
+            button_Next.Image = Image.FromFile("Resources/next.png");
+            button_Next.ForeColor = Color.Black;
             //button_End.Image = Image.FromFile("Resources/endGra.png");
             //button_End.ForeColor = Color.Gray;
             button_Save.Image = Image.FromFile("Resources/save.png");
             button_Save.ForeColor = Color.Black;
-            button_New.Image = Image.FromFile("Resources/newGra.png");
-            button_New.ForeColor = Color.Gray;
+            button_New.Image = Image.FromFile("Resources/new.png");
+            button_New.ForeColor = Color.Black;
             button_F6_Edit.Image = Image.FromFile("Resources/editGra.png");
             button_F6_Edit.ForeColor = Color.Gray;
             button_Delete.Image = Image.FromFile("Resources/deleteGra.png");
@@ -3250,13 +3255,13 @@ namespace St.Teresa_LIS_2019
             string e_desc = drv.Row["e_desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 3;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(e_desc, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 3) * 2;
             e.Graphics.DrawString(c_desc, e.Font, sb, r2);
         }
 
@@ -3268,13 +3273,13 @@ namespace St.Teresa_LIS_2019
             string e_desc = drv.Row["e_desc"].ToString();
 
             Rectangle r1 = e.Bounds;
-            r1.Width = r1.Width / 2;
+            r1.Width = r1.Width / 3;
             SolidBrush sb = new SolidBrush(Color.Black);
             e.Graphics.DrawString(e_desc, e.Font, sb, r1);
 
             Rectangle r2 = e.Bounds;
             r2.X = r1.Width + 1;
-            r2.Width = r2.Width / 2;
+            r2.Width = (r2.Width / 3) * 2;
             e.Graphics.DrawString(c_desc, e.Font, sb, r2);
         }
 
@@ -3289,5 +3294,54 @@ namespace St.Teresa_LIS_2019
             button_New.Enabled = false;
             button_Delete.Enabled = false;
         }
+
+        private int getNoOfPhotos()
+        {
+            int noOfPhotos = 0;
+
+            if (textBox_Picture_File_1.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            if (textBox_Picture_File_2.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            if (textBox_Picture_File_3.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            if (textBox_Picture_File_4.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            if (textBox_Picture_File_5.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            if (textBox_Picture_File_6.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            if (textBox_Picture_File_7.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            if (textBox_Picture_File_8.Text.Trim() != "")
+            {
+                noOfPhotos++;
+            }
+
+            return noOfPhotos;
+        }
     }
+
+    
 }

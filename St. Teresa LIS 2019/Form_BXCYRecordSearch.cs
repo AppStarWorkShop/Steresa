@@ -727,6 +727,7 @@ namespace St.Teresa_LIS_2019
                     else
                     {
                         Form_BXCYFile open = new Form_BXCYFile(id);
+                        
                         open.Show();
                         open.processEdit();
                     }

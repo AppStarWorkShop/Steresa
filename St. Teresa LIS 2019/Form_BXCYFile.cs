@@ -730,7 +730,14 @@ namespace St.Teresa_LIS_2019
             Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, existDiagDataSet);
             open.OnBxcyDiagExit += OnStatusReturn;
             open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
-            open.setReadOnly(readOnly);
+            if (currentStatus == PageStatus.STATUS_EDIT)
+            {
+                
+            } else
+            {
+                open.setReadOnly(readOnly);
+            }
+            
             open.Show();
         }
 
