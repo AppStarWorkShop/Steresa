@@ -727,9 +727,10 @@ namespace St.Teresa_LIS_2019
         }*/
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, existDiagDataSet);
+            //Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, existDiagDataSet);
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet);
             open.OnBxcyDiagExit += OnStatusReturn;
-            open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
+            //open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
             if (currentStatus == PageStatus.STATUS_EDIT)
             {
                 
@@ -741,19 +742,48 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, bool readOnly)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly)
         {
             this.existDiagDataSet = existDiagDataSet;
             this.existDiagDataAdapter = existDiagDataAdapter;
+            //this.bxcy_specimenDataSet = existBxcySpecimentDataSet;
             if (refresh)
             {
                 reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
             }
-            currentStatus = status;
+            if (currentStatus != PageStatus.STATUS_NEW)
+            {
+                currentStatus = status;
+            }
             setButtonStatus(currentStatus);
             if (readOnly)
             {
                 this.disableEdit();
+            }
+
+            if (snopT1 != null)
+            {
+                comboBox_Snop_T1.SelectedValue = snopT1;
+            }
+            if (snopT2 != null)
+            {
+                comboBox_Snop_T2.SelectedValue = snopT2;
+            }
+            if (snopT3 != null)
+            {
+                comboBox_Snop_T3.SelectedValue = snopT3;
+            }
+            if (snopM1 != null)
+            {
+                comboBox_Snop_M1.SelectedValue = snopM1;
+            }
+            if (snopM2 != null)
+            {
+                comboBox_Snop_M2.SelectedValue = snopM2;
+            }
+            if (snopM3 != null)
+            {
+                comboBox_Snop_M3.SelectedValue = snopM3;
             }
         }
 
@@ -1244,6 +1274,12 @@ namespace St.Teresa_LIS_2019
                             {
                                 reloadAndBindingDBData(0, currentCaseNo);
                                 button_End.PerformClick();
+
+                                foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
+                                {
+                                    dr["barcode"] = dr["case_no"].ToString().Trim().Replace("/", "") + dr["group"].ToString().Trim();
+                                    dr["case_no"] = textBox_Case_No.Text.Trim();
+                                }
 
                                 if (existDiagDataAdapter != null && existDiagDataSet != null) { 
                                     if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
@@ -3334,6 +3370,11 @@ namespace St.Teresa_LIS_2019
         }
 
         private void comboBox_Snop_T3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_Paid_Date_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

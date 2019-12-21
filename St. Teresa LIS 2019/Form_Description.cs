@@ -25,7 +25,7 @@ namespace St.Teresa_LIS_2019
         private DataTable bxcy_specimentDt;
         private SqlDataAdapter bxcy_specimentDataAdapter;
 
-        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, bool readOnly);
+        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly);
         public BxcyDiagExit OnBxcyDiagExit;
 
         public delegate int BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
@@ -233,13 +233,63 @@ namespace St.Teresa_LIS_2019
                     currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
                     currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
 
-                    string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+                    /*string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
                     DataSet groupDataSet1 = new DataSet();
                     SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
 
                     DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
-                    string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();
-                    currentEditRow["group"] = (Convert.ToInt32(strMaxGroup) + 1).ToString();
+                    string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();*/
+                    //currentEditRow["group"] = (Convert.ToInt32(strMaxGroup) + 1).ToString();
+                    currentEditRow["group"] = "1";
+
+                    currentEditRow["diagnosisId"] = 1;
+
+                    bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
+                    bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
+                }
+            }
+        }
+
+        public Form_Description(string caseNo, string bxcy_id, int status, string patientName, string patientHKID, bool isNewRecord, DataSet bxcySpecimentDataSet, DataSet existDataSet = null)
+        {
+            this.caseNo = caseNo;
+            this.bxcy_id = bxcy_id;
+            this.bxcy_specimenDataSet = bxcySpecimentDataSet;
+            this.patientName = patientName;
+            this.patientHKID = patientHKID;
+            this.isNewRecord = isNewRecord;
+            currentStatus = status;
+            InitializeComponent();
+
+            setButtonStatus(currentStatus);
+
+            if (currentStatus == PageStatus.STATUS_VIEW)
+            {
+                reloadAndBindingDBData();
+            }
+            else
+            {
+                if (existDataSet != null)
+                {
+                    reloadAndBindingDBDataWithExistDataSet(existDataSet);
+                }
+                else
+                {
+                    reloadAndBindingDBData();
+                }
+
+                if (currentStatus == PageStatus.STATUS_NEW && existDataSet == null)
+                {
+                    isSameGroupNewRecord = false;
+
+                    currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
+                    currentEditRow["id"] = -1;
+                    currentEditRow["case_no"] = caseNo;
+
+                    currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
+                    currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
+
+                    currentEditRow["group"] = "1";
 
                     currentEditRow["diagnosisId"] = 1;
 
@@ -267,7 +317,7 @@ namespace St.Teresa_LIS_2019
                 {
                     backStatus = PageStatus.STATUS_EDIT;
                 }
-                OnBxcyDiagExit(backStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, readOnly);
+                OnBxcyDiagExit(backStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, readOnly);
                 
             }
             this.Close();
@@ -464,8 +514,8 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
-            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
-            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
+            //Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
+            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo);
             open.Show();
         }
 
@@ -657,6 +707,16 @@ namespace St.Teresa_LIS_2019
 
             textBox_specimenID.DataBindings.Clear();
 
+            comboBox_Report_Status.DataBindings.Clear();
+
+            DataTable reportStatusDt = new DataTable();
+            reportStatusDt.Columns.Add("reportStatus");
+            reportStatusDt.Rows.Add(new object[] { "final F" });
+            reportStatusDt.Rows.Add(new object[] { "supplementary S" });
+            reportStatusDt.Rows.Add(new object[] { "amendment A" });
+            reportStatusDt.Rows.Add(new object[] { "provisional P" });
+            reportStatusDt.Rows.Add(new object[] { "unspecified U" });
+
             string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
             DataSet siteDataSet = new DataSet();
             SqlDataAdapter siteDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(siteSql, siteDataSet, "site");
@@ -895,6 +955,7 @@ namespace St.Teresa_LIS_2019
             textBox_Diagnosis.DataBindings.Add("Text", dt, "Diagnosis", false);
             comboBox_Diagnosis_1.DataBindings.Add("SelectedValue", dt, "Diag_desc1", false);
             comboBox_Diagnosis_2.DataBindings.Add("SelectedValue", dt, "Diag_desc2", false);
+            comboBox_Report_Status.DataBindings.Add("SelectedValue", dt, "report_status", false);
 
             string snopcodeTSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'T' ORDER BY [desc]";
             DataSet snopcodeTDataSet = new DataSet();
@@ -948,14 +1009,19 @@ namespace St.Teresa_LIS_2019
             bxcy_specimentDt.Columns["id"].AutoIncrement = true;
             bxcy_specimentDt.Columns["id"].AutoIncrementStep = 1;
 
-            textBox_specimenID.DataBindings.Add("Text", bxcy_specimentDt, "id", false);
+            textBox_specimenID.DataBindings.Add("Text", bxcy_specimentDt, "id", false);*/
 
-            comboBox_Snop_T1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
-            comboBox_Snop_T2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t2", false);
-            comboBox_Snop_T3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t3", false);
-            comboBox_Snop_M1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
-            comboBox_Snop_M2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m2", false);
-            comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);*/
+            if (bxcy_specimenDataSet != null)
+            {
+                bxcy_specimentDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
+
+                comboBox_Snop_T1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
+                comboBox_Snop_T2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t2", false);
+                comboBox_Snop_T3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t3", false);
+                comboBox_Snop_M1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
+                comboBox_Snop_M2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m2", false);
+                comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);
+            }
 
             label_Total_Parts_No.DataBindings.Clear();
             string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
@@ -965,7 +1031,7 @@ namespace St.Teresa_LIS_2019
             DataTable groupDt = groupDataSet.Tables["bxcy_diag"];
             label_Total_Parts_No.DataBindings.Add("Text", groupDt, "maxGroup", false);
 
-            if (snopT1 != null)
+            /*if (snopT1 != null)
             {
                 comboBox_Snop_T1.SelectedValue = snopT1;
             }
@@ -988,7 +1054,7 @@ namespace St.Teresa_LIS_2019
             if (snopM3 != null)
             {
                 comboBox_Snop_M3.SelectedValue = snopM3;
-            }
+            }*/
 
             /*if (groupDt != null && groupDt.Rows.Count > 0)
             {
@@ -1064,6 +1130,19 @@ namespace St.Teresa_LIS_2019
 
             textBox_specimenID.DataBindings.Clear();
 
+            comboBox_Report_Status.DataBindings.Clear();
+
+            DataTable reportStatusDt = new DataTable();
+            reportStatusDt.Columns.Add("reportStatus");
+            reportStatusDt.Rows.Add(new object[] { "final F" });
+            reportStatusDt.Rows.Add(new object[] { "supplementary S" });
+            reportStatusDt.Rows.Add(new object[] { "amendment A" });
+            reportStatusDt.Rows.Add(new object[] { "provisional P" });
+            reportStatusDt.Rows.Add(new object[] { "unspecified U" });
+
+            comboBox_Report_Status.DataSource = reportStatusDt;
+
+
             string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
             DataSet siteDataSet = new DataSet();
             SqlDataAdapter siteDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(siteSql, siteDataSet, "site");
@@ -1303,6 +1382,8 @@ namespace St.Teresa_LIS_2019
             comboBox_Diagnosis_1.DataBindings.Add("SelectedValue", dt, "Diag_desc1", false);
             comboBox_Diagnosis_2.DataBindings.Add("SelectedValue", dt, "Diag_desc2", false);
 
+            comboBox_Report_Status.DataBindings.Add("SelectedValue", dt, "report_status", false);
+
             string snopcodeTSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'T' ORDER BY [desc]";
             DataSet snopcodeTDataSet = new DataSet();
             SqlDataAdapter snopcodeTDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(snopcodeTSql, snopcodeTDataSet, "snopcode");
@@ -1356,13 +1437,18 @@ namespace St.Teresa_LIS_2019
             bxcy_specimentDt.Columns["id"].AutoIncrementStep = 1;
 
             textBox_specimenID.DataBindings.Add("Text", bxcy_specimentDt, "id", false);
+            */
+            if (bxcy_specimenDataSet != null)
+            {
+                bxcy_specimentDt = bxcy_specimenDataSet.Tables["bxcy_specimen"];
 
-            comboBox_Snop_T1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
-            comboBox_Snop_T2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t2", false);
-            comboBox_Snop_T3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t3", false);
-            comboBox_Snop_M1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
-            comboBox_Snop_M2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m2", false);
-            comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);*/
+                comboBox_Snop_T1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t", false);
+                comboBox_Snop_T2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t2", false);
+                comboBox_Snop_T3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_t3", false);
+                comboBox_Snop_M1.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m", false);
+                comboBox_Snop_M2.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m2", false);
+                comboBox_Snop_M3.DataBindings.Add("SelectedValue", bxcy_specimentDt, "Snopcode_m3", false);
+            }
 
             label_Total_Parts_No.DataBindings.Clear();
             string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
@@ -1372,7 +1458,7 @@ namespace St.Teresa_LIS_2019
             DataTable groupDt = groupDataSet.Tables["bxcy_diag"];
             label_Total_Parts_No.DataBindings.Add("Text", groupDt, "maxGroup", false);
 
-            if (snopT1 != null)
+            /*if (snopT1 != null)
             {
                 comboBox_Snop_T1.SelectedValue = snopT1;
             }
@@ -1395,7 +1481,7 @@ namespace St.Teresa_LIS_2019
             if (snopM3 != null)
             {
                 comboBox_Snop_M3.SelectedValue = snopM3;
-            }
+            }*/
 
             /*if (groupDt != null && groupDt.Rows.Count > 0)
             {
@@ -1582,16 +1668,19 @@ namespace St.Teresa_LIS_2019
             isSameGroupNewRecord = false;
 
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
-            currentEditRow["id"] = -1;
+            //currentEditRow["id"] = -1;
             currentEditRow["case_no"] = caseNo;
 
-            string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
-            DataSet groupDataSet1 = new DataSet();
-            SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
-
-            DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
             int intMaxGroupFromDB = 1;
-            int.TryParse(groupDt.Rows[0]["maxGroup"].ToString(), out intMaxGroupFromDB);
+            if (caseNo.Trim() != "")
+            {
+                string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
+                DataSet groupDataSet1 = new DataSet();
+                SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
+                DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
+
+                int.TryParse(groupDt.Rows[0]["maxGroup"].ToString(), out intMaxGroupFromDB);
+            }
 
             var maxGroupFromProgFromDB = (from p in dt.AsEnumerable()
                                           where p.Field<string>("case_no") == caseNo
@@ -1624,23 +1713,26 @@ namespace St.Teresa_LIS_2019
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(string.Format("Sure to delete this record in group {0}?", textBox_Parts.Text), "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (caseNo.Trim() != "")
             {
-                string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE [group] = '{0}' and case_no = '{1}'", textBox_Parts.Text, caseNo);
-
-                if (DBConn.executeUpdate(deleteSql))
+                if (MessageBox.Show(string.Format("Sure to delete this record in group {0}?", textBox_Parts.Text), "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
-                    rowToDelete.Delete();
-                    reloadDBData(0);
-                    MessageBox.Show("Bxcy Diag deleted");
-                }
-                else
-                {
-                    MessageBox.Show("Bxcy Diag deleted fail, please contact Admin");
-                }
+                    string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE [group] = '{0}' and case_no = '{1}'", textBox_Parts.Text, caseNo);
 
-                setButtonStatus(PageStatus.STATUS_VIEW);
+                    if (DBConn.executeUpdate(deleteSql))
+                    {
+                        DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
+                        rowToDelete.Delete();
+                        reloadDBData(0);
+                        MessageBox.Show("Bxcy Diag deleted");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bxcy Diag deleted fail, please contact Admin");
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
             }
         }
 
@@ -1758,6 +1850,7 @@ namespace St.Teresa_LIS_2019
                 comboBox_MIC_Add2.Enabled = false;
                 buttonremoveCinese.Enabled = false;
                 button_Copy.Enabled = true;
+                comboBox_Report_Status.Enabled = false;
 
                 disedit_modle();
             }
@@ -1874,6 +1967,7 @@ namespace St.Teresa_LIS_2019
                     comboBox_MIC_Add2.Enabled = true;
                     buttonremoveCinese.Enabled = true;
                     button_Copy.Enabled = true;
+                    comboBox_Report_Status.Enabled = true;
                     edit_modle();
                 }
                 else
@@ -1989,6 +2083,7 @@ namespace St.Teresa_LIS_2019
                         comboBox_MIC_Add2.Enabled = true;
                         buttonremoveCinese.Enabled = true;
                         button_Copy.Enabled = false;
+                        comboBox_Report_Status.Enabled = true;
                         edit_modle();
                     }
                 }
@@ -2057,7 +2152,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Undo_Click(object sender, EventArgs e)
         {
-            if (currentStatus == PageStatus.STATUS_NEW)
+            /*if (currentStatus == PageStatus.STATUS_NEW)
             {
                 if (currentEditRow != null)
                 {
@@ -2109,7 +2204,7 @@ namespace St.Teresa_LIS_2019
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
                 }
-            }
+            }*/
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -2971,13 +3066,17 @@ namespace St.Teresa_LIS_2019
 
             int maxDiagnosisFromProg = Convert.ToInt32(maxDiagnosisIdFromProg);
 
-            string groupSql = string.Format("SELECT ISNULL(max([diagnosisId]),0) as maxDiagnosisId FROM [bxcy_diag] WHERE case_no='{0}' and [group] = '{1}'", caseNo, textBox_Parts.Text.Trim());
-            DataSet groupDataSet1 = new DataSet();
-            SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
-
-            DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
             int currentDiagnosisIdInDB = 1;
-            int.TryParse(groupDt.Rows[0]["maxDiagnosisId"].ToString(), out currentDiagnosisIdInDB);
+            if (caseNo.Trim() != "")
+            {
+                string groupSql = string.Format("SELECT ISNULL(max([diagnosisId]),0) as maxDiagnosisId FROM [bxcy_diag] WHERE case_no='{0}' and [group] = '{1}'", caseNo, textBox_Parts.Text.Trim());
+                DataSet groupDataSet1 = new DataSet();
+                SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
+
+                DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
+
+                int.TryParse(groupDt.Rows[0]["maxDiagnosisId"].ToString(), out currentDiagnosisIdInDB);
+            }
 
             if(maxDiagnosisFromProg > currentDiagnosisIdInDB)
             {
@@ -3090,23 +3189,26 @@ namespace St.Teresa_LIS_2019
 
         private void button_Delete2_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (caseNo.Trim() != "")
             {
-                string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE id = '{0}'", textBox_ID.Text);
-
-                if (DBConn.executeUpdate(deleteSql))
+                if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
-                    rowToDelete.Delete();
-                    reloadDBData(0);
-                    MessageBox.Show("Bxcy Diag deleted");
-                }
-                else
-                {
-                    MessageBox.Show("Bxcy Diag deleted fail, please contact Admin");
-                }
+                    string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE id = '{0}'", textBox_ID.Text);
 
-                setButtonStatus(PageStatus.STATUS_VIEW);
+                    if (DBConn.executeUpdate(deleteSql))
+                    {
+                        DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
+                        rowToDelete.Delete();
+                        reloadDBData(0);
+                        MessageBox.Show("Bxcy Diag deleted");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Bxcy Diag deleted fail, please contact Admin");
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_VIEW);
+                }
             }
         }
 
