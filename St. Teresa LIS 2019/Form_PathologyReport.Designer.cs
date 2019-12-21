@@ -47,26 +47,20 @@
             this.checkBox_Print_HOKLAS_ISO_Format = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label_4_Photos = new System.Windows.Forms.Label();
-            this.radioButton_2nd_Page = new System.Windows.Forms.RadioButton();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label_1_Photos = new System.Windows.Forms.Label();
-            this.radioButton_Right = new System.Windows.Forms.RadioButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label_2_Photos = new System.Windows.Forms.Label();
-            this.radioButton_Middle = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonSecondPage = new System.Windows.Forms.RadioButton();
+            this.radioButtonMiddle = new System.Windows.Forms.RadioButton();
+            this.radioButtonRight = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Print_Copies)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Print_Page)).BeginInit();
-            this.panel4.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -302,18 +296,6 @@
             this.label9.TabIndex = 259;
             this.label9.Text = "________________________________";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Palace Script MT", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(157)))), ((int)(((byte)(225)))));
-            this.label12.Location = new System.Drawing.Point(3, 226);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(527, 32);
-            this.label12.TabIndex = 264;
-            this.label12.Text = "________________________________";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -325,115 +307,6 @@
             this.label13.Size = new System.Drawing.Size(527, 32);
             this.label13.TabIndex = 265;
             this.label13.Text = "________________________________";
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.panel1);
-            this.panel4.Controls.Add(this.panel3);
-            this.panel4.Controls.Add(this.panel2);
-            this.panel4.Location = new System.Drawing.Point(220, 86);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(310, 56);
-            this.panel4.TabIndex = 267;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label_4_Photos);
-            this.panel1.Controls.Add(this.radioButton_2nd_Page);
-            this.panel1.Location = new System.Drawing.Point(6, 9);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(95, 41);
-            this.panel1.TabIndex = 233;
-            // 
-            // label_4_Photos
-            // 
-            this.label_4_Photos.AutoSize = true;
-            this.label_4_Photos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_4_Photos.Location = new System.Drawing.Point(21, 22);
-            this.label_4_Photos.Name = "label_4_Photos";
-            this.label_4_Photos.Size = new System.Drawing.Size(55, 15);
-            this.label_4_Photos.TabIndex = 233;
-            this.label_4_Photos.Text = "4 Photos";
-            // 
-            // radioButton_2nd_Page
-            // 
-            this.radioButton_2nd_Page.AutoSize = true;
-            this.radioButton_2nd_Page.Enabled = false;
-            this.radioButton_2nd_Page.Font = new System.Drawing.Font("Arial", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton_2nd_Page.Location = new System.Drawing.Point(3, 3);
-            this.radioButton_2nd_Page.Name = "radioButton_2nd_Page";
-            this.radioButton_2nd_Page.Size = new System.Drawing.Size(78, 19);
-            this.radioButton_2nd_Page.TabIndex = 232;
-            this.radioButton_2nd_Page.TabStop = true;
-            this.radioButton_2nd_Page.Text = "2nd Page";
-            this.radioButton_2nd_Page.UseVisualStyleBackColor = true;
-            // 
-            // panel3
-            // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.label_1_Photos);
-            this.panel3.Controls.Add(this.radioButton_Right);
-            this.panel3.Location = new System.Drawing.Point(196, 9);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(95, 41);
-            this.panel3.TabIndex = 234;
-            // 
-            // label_1_Photos
-            // 
-            this.label_1_Photos.AutoSize = true;
-            this.label_1_Photos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_1_Photos.Location = new System.Drawing.Point(9, 22);
-            this.label_1_Photos.Name = "label_1_Photos";
-            this.label_1_Photos.Size = new System.Drawing.Size(55, 15);
-            this.label_1_Photos.TabIndex = 233;
-            this.label_1_Photos.Text = "1 Photos";
-            // 
-            // radioButton_Right
-            // 
-            this.radioButton_Right.AutoSize = true;
-            this.radioButton_Right.Enabled = false;
-            this.radioButton_Right.Font = new System.Drawing.Font("Arial", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton_Right.Location = new System.Drawing.Point(3, 3);
-            this.radioButton_Right.Name = "radioButton_Right";
-            this.radioButton_Right.Size = new System.Drawing.Size(55, 19);
-            this.radioButton_Right.TabIndex = 232;
-            this.radioButton_Right.TabStop = true;
-            this.radioButton_Right.Text = "Right";
-            this.radioButton_Right.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.label_2_Photos);
-            this.panel2.Controls.Add(this.radioButton_Middle);
-            this.panel2.Location = new System.Drawing.Point(101, 9);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(95, 41);
-            this.panel2.TabIndex = 234;
-            // 
-            // label_2_Photos
-            // 
-            this.label_2_Photos.AutoSize = true;
-            this.label_2_Photos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_2_Photos.Location = new System.Drawing.Point(16, 22);
-            this.label_2_Photos.Name = "label_2_Photos";
-            this.label_2_Photos.Size = new System.Drawing.Size(55, 15);
-            this.label_2_Photos.TabIndex = 233;
-            this.label_2_Photos.Text = "2 Photos";
-            // 
-            // radioButton_Middle
-            // 
-            this.radioButton_Middle.AutoSize = true;
-            this.radioButton_Middle.Enabled = false;
-            this.radioButton_Middle.Font = new System.Drawing.Font("Arial", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton_Middle.Location = new System.Drawing.Point(3, 3);
-            this.radioButton_Middle.Name = "radioButton_Middle";
-            this.radioButton_Middle.Size = new System.Drawing.Size(63, 19);
-            this.radioButton_Middle.TabIndex = 232;
-            this.radioButton_Middle.TabStop = true;
-            this.radioButton_Middle.Text = "Middle";
-            this.radioButton_Middle.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -447,12 +320,110 @@
             this.label8.TabIndex = 257;
             this.label8.Text = "________________________________";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.radioButtonRight);
+            this.groupBox1.Controls.Add(this.radioButtonMiddle);
+            this.groupBox1.Controls.Add(this.radioButtonSecondPage);
+            this.groupBox1.Location = new System.Drawing.Point(236, 77);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(279, 51);
+            this.groupBox1.TabIndex = 268;
+            this.groupBox1.TabStop = false;
+            // 
+            // radioButtonSecondPage
+            // 
+            this.radioButtonSecondPage.AutoSize = true;
+            this.radioButtonSecondPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonSecondPage.Location = new System.Drawing.Point(17, 18);
+            this.radioButtonSecondPage.Name = "radioButtonSecondPage";
+            this.radioButtonSecondPage.Size = new System.Drawing.Size(79, 17);
+            this.radioButtonSecondPage.TabIndex = 0;
+            this.radioButtonSecondPage.TabStop = true;
+            this.radioButtonSecondPage.Text = "2nd Page";
+            this.radioButtonSecondPage.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonMiddle
+            // 
+            this.radioButtonMiddle.AutoSize = true;
+            this.radioButtonMiddle.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonMiddle.Location = new System.Drawing.Point(117, 18);
+            this.radioButtonMiddle.Name = "radioButtonMiddle";
+            this.radioButtonMiddle.Size = new System.Drawing.Size(62, 17);
+            this.radioButtonMiddle.TabIndex = 1;
+            this.radioButtonMiddle.TabStop = true;
+            this.radioButtonMiddle.Text = "Middle";
+            this.radioButtonMiddle.UseVisualStyleBackColor = true;
+            this.radioButtonMiddle.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButtonRight
+            // 
+            this.radioButtonRight.AutoSize = true;
+            this.radioButtonRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonRight.Location = new System.Drawing.Point(209, 18);
+            this.radioButtonRight.Name = "radioButtonRight";
+            this.radioButtonRight.Size = new System.Drawing.Size(55, 17);
+            this.radioButtonRight.TabIndex = 2;
+            this.radioButtonRight.TabStop = true;
+            this.radioButtonRight.Text = "Right";
+            this.radioButtonRight.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(32, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 15);
+            this.label1.TabIndex = 236;
+            this.label1.Text = "4 Photos";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(135, 36);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 15);
+            this.label2.TabIndex = 237;
+            this.label2.Text = "2 Photos";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(225, 36);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(49, 15);
+            this.label3.TabIndex = 238;
+            this.label3.Text = "1 Photo";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Palace Script MT", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(157)))), ((int)(((byte)(225)))));
+            this.label12.Location = new System.Drawing.Point(3, 226);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(527, 32);
+            this.label12.TabIndex = 264;
+            this.label12.Text = "________________________________";
+            // 
             // Form_PathologyReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(214)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(534, 394);
+            this.Controls.Add(this.comboBox_Report_Heading);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.numericUpDown_Print_Copies);
             this.Controls.Add(this.label_Print_Copies);
@@ -461,7 +432,6 @@
             this.Controls.Add(this.radioButton_Chinese);
             this.Controls.Add(this.label_Total_Photo);
             this.Controls.Add(this.label_Report_Heading);
-            this.Controls.Add(this.comboBox_Report_Heading);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.checkBox_Print_Page);
@@ -469,11 +439,9 @@
             this.Controls.Add(this.label_Print_Micros_Big_Photos_At);
             this.Controls.Add(this.button_Exit);
             this.Controls.Add(this.checkBox_Print_HOKLAS_ISO_Format);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.panel4);
             this.Controls.Add(this.label8);
             this.Name = "Form_PathologyReport";
             this.Text = "Pathology Report";
@@ -481,13 +449,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Print_Copies)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Print_Page)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -513,18 +476,15 @@
         private System.Windows.Forms.CheckBox checkBox_Print_HOKLAS_ISO_Format;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label_4_Photos;
-        private System.Windows.Forms.RadioButton radioButton_2nd_Page;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label_1_Photos;
-        private System.Windows.Forms.RadioButton radioButton_Right;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label_2_Photos;
-        private System.Windows.Forms.RadioButton radioButton_Middle;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButtonRight;
+        private System.Windows.Forms.RadioButton radioButtonMiddle;
+        private System.Windows.Forms.RadioButton radioButtonSecondPage;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -14,9 +14,21 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_ReportPreview : Form
     {
+        public const String ONE_PHOTO = "_one_photo";
+        public const String TWO_PHOTO = "_two_photo";
+        public const String MULTIPLE_PHOTO = "_multiple_photo";
+        public const String ST_BX_NO_PHOTO = "01 STH BX";
+        public const String ST_BX_ONE_PHOTO = "01 STH BX" + ONE_PHOTO;
+        public const String ST_BX_TWO_PHOTO = "01 STH BX" + TWO_PHOTO;
+        public const String ST_BX_MULTIPLE_PHOTO = "01 STH BX" + MULTIPLE_PHOTO;
+        public const String PRIVATE_BX = "18 PRIVATE BX";
+        public const String PRIVATE_BX_ONE_PHOTO = PRIVATE_BX + ONE_PHOTO;
+        public const String PRIVATE_BX_TWO_PHOTO = PRIVATE_BX + TWO_PHOTO;
+        public const String PRIVATE_BX_MULTIPLE_PHOTO = PRIVATE_BX + MULTIPLE_PHOTO;
+
         private String reportType;
         private String caseNo;
-        private String reportNo;
+        private String reportNo = "1";
         private String showHKAS = "1";
 
         public Form_ReportPreview()
@@ -24,7 +36,7 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
 
             List<string> reportList = new List<string>();
-            reportList.Add("01 STH BX");
+            reportList.Add(ST_BX_NO_PHOTO);
             //reportList.Add("02 STH BX noHKAS");
             //reportList.Add("03 PBH BX");
             //reportList.Add("04 HKAH BX");
@@ -40,7 +52,11 @@ namespace St.Teresa_LIS_2019
             //reportList.Add("15 ONCO CY");
             reportList.Add("16 BIO-TECH CY");
             //reportList.Add("17 CY Screening");
-            reportList.Add("18 PRIVATE BX");
+            reportList.Add(PRIVATE_BX);
+            reportList.Add(PRIVATE_BX_ONE_PHOTO);
+            reportList.Add(PRIVATE_BX_TWO_PHOTO);
+            reportList.Add(PRIVATE_BX_MULTIPLE_PHOTO);
+
             reportList.Add("19 PRIVATE CY");
             /*
             reportList.Add("58 STH EBV");
@@ -63,6 +79,10 @@ namespace St.Teresa_LIS_2019
             reportList.Add("82 Daily Log Report For Gynaecological Cases");
             reportList.Add("84 Daily Log Report By Cut Off Date Time");
             */
+            reportList.Add(ST_BX_ONE_PHOTO);
+            reportList.Add(ST_BX_TWO_PHOTO);
+            reportList.Add(ST_BX_MULTIPLE_PHOTO);
+
             comboBoxReportType.DataSource = reportList;
         }
 
@@ -122,22 +142,32 @@ namespace St.Teresa_LIS_2019
         private void MySubreportEventHandler(object sender, SubreportProcessingEventArgs e)
         {
             string sqlCon = Properties.Settings.Default.medlabConnectionString;
-
-            DataTable table1 = GetDataTable(sqlCon, "select top 1 *, dbo.reportCaseNo(case_no) as pathNo, dbo.reportAge(pat_age) as pathAge from BXCY_SPECIMEN where case_no = '" + caseNo + "'");
+            string sql = "";
+            string reportPath = e.ReportPath;
+            
+            
+            sql = "select top 1 *, dbo.reportCaseNo(case_no) as pathNo, dbo.reportAge(pat_age) as pathAge from BXCY_SPECIMEN where case_no = '" + caseNo + "'";
+            DataTable table1 = GetDataTable(sqlCon, sql);
             table1.TableName = "BXCY_SPECIMEN";
 
-            DataTable table2 = GetDataTable(sqlCon, "select * from BXCY_DIAG where case_no = '" + caseNo + "' and [GROUP] = '1' ");
+            sql = "select * from BXCY_DIAG where case_no = '" + caseNo + "' and [GROUP] = '" + textBoxReportNo.Text + "' ";
+            DataTable table2 = GetDataTable(sqlCon, sql);
             table2.TableName = "BXCY_DIAG";
 
-            DataTable table3 = GetDataTable(sqlCon, "select top 1 macro_name, macro_desc, micro_name, micro_desc, macro_pic1, macro_pic2, macro_pic3, macro_pic4, "
-                + "macro_cap1, macro_cap2, macro_cap3, macro_cap4 from BXCY_DIAG where isnull(macro_name, '') <> '' and case_no = '" + caseNo + "' AND [GROUP] = '1'");
+            /*
+            String sql = "select top 1 macro_name, macro_desc, micro_name, micro_desc, macro_pic1, macro_pic2, macro_pic3, macro_pic4, "
+                + "macro_cap1, macro_cap2, macro_cap3, macro_cap4 from BXCY_DIAG where isnull(macro_name, '') <> '' and case_no = '" + caseNo + "' AND [GROUP] = '" + textBoxReportNo.Text +  "'";
+            */
+            sql = "select top 1 macro_name, macro_desc, micro_name, micro_desc, macro_pic1, macro_pic2, macro_pic3, macro_pic4, "
+                + "macro_cap1, macro_cap2, macro_cap3, macro_cap4, dbo.fn_reportName([GROUP]) as [GROUP] from BXCY_DIAG where case_no = '" + caseNo + "' AND [GROUP] = '" + textBoxReportNo.Text + "'";
+            DataTable table3 = GetDataTable(sqlCon, sql );
             table3.TableName = "Macro_Micro";
 
             DataTable table4 = GetDataTable(sqlCon, "select top 1 s.case_no , s.sign_dr, d.ename, d.cname, d.title from BXCY_SPECIMEN s left join sign_doctor d on (s.sign_dr = d.DOCTOR) where case_no = '" + caseNo + "'");
             table4.TableName = "signedDoctor";
 
-            String sql = "";
-            if (showHKAS == "0")
+            
+            if (textBoxHKAS.Text == "0")
             {
                 sql = "select record_status, pat_age_str, '0' as hkas, report_number, org_case_no, lastUpdateInitial from v_reportHeader where org_case_no = '" + caseNo + "'";
             } 
@@ -162,6 +192,23 @@ namespace St.Teresa_LIS_2019
 
             Microsoft.Reporting.WinForms.ReportDataSource table5DS = new Microsoft.Reporting.WinForms.ReportDataSource(table5.TableName, table5);
             e.DataSources.Add(table5DS);
+
+            if (e.ReportPath == "STH_common_header")
+            {
+                if (textBoxHKAS.Text == "0")
+                {
+                    sql = "select top 1 dbo.reportCaseNo(case_no) as case_no, patient, cname, pat_hkid, '0' as hkas from v_reportHeader where org_case_no = '" + caseNo + "'";
+                }
+                else
+                {
+                    sql = "select top 1 dbo.reportCaseNo(case_no) as case_no, patient, cname, pat_hkid, '1' as hkas from v_reportHeader where org_case_no = '" + caseNo + "'";
+                }
+                DataTable headerDt = null;
+                headerDt = GetDataTable(sqlCon, sql);
+                headerDt.TableName = "Header";
+                Microsoft.Reporting.WinForms.ReportDataSource headerDS = new Microsoft.Reporting.WinForms.ReportDataSource(headerDt.TableName, headerDt);
+                e.DataSources.Add(headerDS);
+            }
         }
 
         private DataTable LoadHeader(String reportName, String caseNo)
@@ -174,7 +221,7 @@ namespace St.Teresa_LIS_2019
             switch (reportName)
             {
                 case "01 STH BX":
-                    if (showHKAS == "0")
+                    if (textBoxHKAS.Text == "0")
                     {
                         sql = "select top 1 dbo.reportCaseNo(case_no) as case_no, patient, cname, pat_hkid, '0' as hkas from v_reportHeader where org_case_no = '" + caseNo + "'";
                     }
@@ -258,6 +305,8 @@ namespace St.Teresa_LIS_2019
 
             this.reportViewer1.LocalReport.ReportPath = reportPath;
             this.reportViewer1.LocalReport.EnableExternalImages = true;
+            //String subReportPath = Path.Combine(exeFolder, @"Report/" + "BodyENOnePhoto" + ".rdlc");
+            //this.reportViewer1.LocalReport.LoadSubreportDefinition("Subreport1", new StreamReader(subReportPath));
 
             DataTable headerDt = LoadHeader(report, caseNo);
             if (headerDt != null)
