@@ -731,10 +731,7 @@ namespace St.Teresa_LIS_2019
             Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet);
             open.OnBxcyDiagExit += OnStatusReturn;
             //open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
-            if (currentStatus == PageStatus.STATUS_EDIT)
-            {
-                
-            } else
+            if (currentStatus != PageStatus.STATUS_EDIT)
             {
                 open.setReadOnly(readOnly);
             }
@@ -1275,13 +1272,14 @@ namespace St.Teresa_LIS_2019
                                 reloadAndBindingDBData(0, currentCaseNo);
                                 button_End.PerformClick();
 
-                                foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
+                                if (existDiagDataAdapter != null && existDiagDataSet != null)
                                 {
-                                    dr["barcode"] = dr["case_no"].ToString().Trim().Replace("/", "") + dr["group"].ToString().Trim();
-                                    dr["case_no"] = textBox_Case_No.Text.Trim();
-                                }
+                                    foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
+                                    {
+                                        dr["barcode"] = dr["case_no"].ToString().Trim().Replace("/", "") + dr["group"].ToString().Trim();
+                                        dr["case_no"] = textBox_Case_No.Text.Trim();
+                                    }
 
-                                if (existDiagDataAdapter != null && existDiagDataSet != null) { 
                                     if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
                                     {
                                         MessageBox.Show("New case is saved");
@@ -3367,11 +3365,6 @@ namespace St.Teresa_LIS_2019
                     textBox_Age.Text = PatientAgeCalculator.calculate(dob).ToString();
                 }
             }
-        }
-
-        private void comboBox_Snop_T3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox_Paid_Date_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)

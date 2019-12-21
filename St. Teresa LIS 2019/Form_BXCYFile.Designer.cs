@@ -690,6 +690,7 @@
             this.textBox_Paid_Date.Size = new System.Drawing.Size(118, 26);
             this.textBox_Paid_Date.TabIndex = 258;
             this.textBox_Paid_Date.ValidatingType = typeof(System.DateTime);
+            this.textBox_Paid_Date.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.textBox_Paid_Date_MaskInputRejected);
             this.textBox_Paid_Date.TextChanged += new System.EventHandler(this.textBox_Paid_Date_TextChanged);
             this.textBox_Paid_Date.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Paid_Date_Validating);
             // 
@@ -1559,7 +1560,6 @@
             this.comboBox_Snop_T3.TabIndex = 176;
             this.comboBox_Snop_T3.ValueMember = "id";
             this.comboBox_Snop_T3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T3_DrawItem);
-            this.comboBox_Snop_T3.SelectedIndexChanged += new System.EventHandler(this.comboBox_Snop_T3_SelectedIndexChanged);
             // 
             // label_Snop_T3
             // 

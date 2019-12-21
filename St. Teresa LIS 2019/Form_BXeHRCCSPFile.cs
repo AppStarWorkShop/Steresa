@@ -23,6 +23,8 @@ namespace St.Teresa_LIS_2019
         private DataRow currentEditRow;
         private string id;
 
+        private Boolean readOnly = false;
+
         private bool isNewPatient = false;
 
         private DataSet existDiagDataSet = null;
@@ -333,9 +335,15 @@ namespace St.Teresa_LIS_2019
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
             bool isNewRecord = currentStatus == PageStatus.STATUS_NEW ? true : false;
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord, existDiagDataSet);
+            //Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord, existDiagDataSet);
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet);
             open.OnBxcyDiagExit += OnStatusReturn;
-            open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
+            //open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
+            if (currentStatus != PageStatus.STATUS_EDIT)
+            {
+                open.setReadOnly(readOnly);
+            }
+
             open.Show();
         }
 
@@ -353,10 +361,10 @@ namespace St.Teresa_LIS_2019
                 currentStatus = status;
             }
             setButtonStatus(currentStatus);
-            /*if (readOnly)
+            if (readOnly)
             {
                 this.disableEdit();
-            }*/
+            }
 
             if (snopT1 != null)
             {
@@ -478,6 +486,12 @@ namespace St.Teresa_LIS_2019
 
                                 if (existDiagDataAdapter != null && existDiagDataSet != null)
                                 {
+                                    foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
+                                    {
+                                        dr["barcode"] = dr["case_no"].ToString().Trim().Replace("/", "") + dr["group"].ToString().Trim();
+                                        dr["case_no"] = textBox_Case_No.Text.Trim();
+                                    }
+
                                     if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
                                     {
                                         MessageBox.Show("New case is saved");
@@ -1961,7 +1975,7 @@ namespace St.Teresa_LIS_2019
 
                 if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    DataTable newDt = new DataTable();
+                    /*DataTable newDt = new DataTable();
                     newDt.Columns.Add("doctor");
 
                     foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
@@ -1969,9 +1983,18 @@ namespace St.Teresa_LIS_2019
                         newDt.Rows.Add(new object[] { mDr["doctor"] });
                     }
 
-                    ((ComboBox)sender).DataSource = newDt;
+                    ((ComboBox)sender).DataSource = newDt;*/
+
+                    try
+                    {
+                        ((ComboBox)sender).SelectedValue = doctorDataSet2.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                 }
-                else
+                /*else
                 {
                     sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
                     doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
@@ -1988,13 +2011,22 @@ namespace St.Teresa_LIS_2019
                 }
 
                 ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
+                ((ComboBox)sender).SelectionStart = search.Length;*/
             }
         }
 
         private void comboBox_Sign_By_Dr_2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             m_isEntering2 = true;
+        }
+
+        public void disableEdit()
+        {
+            button_Edit.Enabled = false;
+            button_Advance.Enabled = false;
+            button_Delete.Enabled = false;
+            button_New.Enabled = false;
+            readOnly = true;
         }
 
         private void comboBox_Sign_By_Dr_2_TextChanged(object sender, EventArgs e)
@@ -2005,29 +2037,38 @@ namespace St.Teresa_LIS_2019
                 string search = ((ComboBox)sender).Text.Trim();
 
                 string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
-                doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
+                doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
 
-                if (doctorDataSet2.Tables["sign_doctor"].Rows.Count > 0)
+                if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    DataTable newDt = new DataTable();
+                    /*DataTable newDt = new DataTable();
                     newDt.Columns.Add("doctor");
 
-                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
                     {
                         newDt.Rows.Add(new object[] { mDr["doctor"] });
                     }
 
-                    ((ComboBox)sender).DataSource = newDt;
+                    ((ComboBox)sender).DataSource = newDt;*/
+
+                    try
+                    {
+                        ((ComboBox)sender).SelectedValue = doctorDataSet2.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
                 }
-                else
+                /*else
                 {
                     sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
+                    doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
 
                     DataTable newDt = new DataTable();
                     newDt.Columns.Add("doctor");
 
-                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
                     {
                         newDt.Rows.Add(new object[] { mDr["doctor"] });
                     }
@@ -2036,7 +2077,7 @@ namespace St.Teresa_LIS_2019
                 }
 
                 ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
+                ((ComboBox)sender).SelectionStart = search.Length;*/
             }
         }
     }

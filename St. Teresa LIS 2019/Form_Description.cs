@@ -1670,7 +1670,7 @@ namespace St.Teresa_LIS_2019
             //currentEditRow["id"] = -1;
             currentEditRow["case_no"] = caseNo;
 
-            int intMaxGroupFromDB = 1;
+            int intMaxGroupFromDB = 0;
             if (caseNo.Trim() != "")
             {
                 string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
@@ -1685,7 +1685,7 @@ namespace St.Teresa_LIS_2019
                                           where p.Field<string>("case_no") == caseNo
                                           select p.Field<string>("group")).Max();
 
-            int intMaxGroupFromProg = 1;
+            int intMaxGroupFromProg = 0;
             if (maxGroupFromProgFromDB != null)
             {
                 int.TryParse(maxGroupFromProgFromDB, out intMaxGroupFromProg);
@@ -3058,14 +3058,16 @@ namespace St.Teresa_LIS_2019
             currentEditRow["case_no"] = caseNo;
             currentEditRow["group"] = textBox_Parts.Text.Trim();
 
+            int maxDiagnosisFromProg = 0;
+
             var maxDiagnosisIdFromProg = (from p in dt.AsEnumerable()
                                     where p.Field<string>("case_no") == caseNo
                                         && p.Field<string>("group") == textBox_Parts.Text.Trim()
                                         select p.Field<int>("diagnosisId")).Max();
 
-            int maxDiagnosisFromProg = Convert.ToInt32(maxDiagnosisIdFromProg);
+            maxDiagnosisFromProg = Convert.ToInt32(maxDiagnosisIdFromProg);
 
-            int currentDiagnosisIdInDB = 1;
+            int currentDiagnosisIdInDB = 0;
             if (caseNo.Trim() != "")
             {
                 string groupSql = string.Format("SELECT ISNULL(max([diagnosisId]),0) as maxDiagnosisId FROM [bxcy_diag] WHERE case_no='{0}' and [group] = '{1}'", caseNo, textBox_Parts.Text.Trim());
@@ -3083,7 +3085,7 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                currentEditRow["diagnosisId"] = currentDiagnosisIdInDB+1;
+                currentEditRow["diagnosisId"] = currentDiagnosisIdInDB + 1;
             }
 
             setFirstMarcoAndMicroValue(currentEditRow);
