@@ -21,6 +21,7 @@ namespace St.Teresa_LIS_2019
         private string id;
         private string case_no;
         private string report_no = "1";
+        private int noOfPhotos = 0;
 
         private DataSet bxcy_specimenDataSet = new DataSet();
         private DataTable bxcy_specimenDt;
@@ -34,11 +35,13 @@ namespace St.Teresa_LIS_2019
         {
             InitializeComponent();
         }
-
-        public Form_PathologyReport(string id, string case_no)
+        // Updated by eric leung 
+        public Form_PathologyReport(string id, string case_no, string report_No, int noOfPhotos)
         {
             this.id = id;
             this.case_no = case_no;
+            this.report_no = report_No;
+            this.noOfPhotos = noOfPhotos;
             InitializeComponent();
         }
 
@@ -132,7 +135,48 @@ namespace St.Teresa_LIS_2019
 
             string sql = string.Format("SELECT * FROM [BXCY_DIAG] WHERE case_no = '{0}' ORDER BY ID", case_no);
             bxcy_diagDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_diagDataSet, "bxcy_diag");
-            bxcy_diagDt = bxcy_diagDataSet.Tables["bxcy_diag"];            
+            bxcy_diagDt = bxcy_diagDataSet.Tables["bxcy_diag"];  
+            
+            if (noOfPhotos == 0)
+            {
+                radioButtonSecondPage.Enabled = false;
+                radioButtonSecondPage.Checked = false;
+                radioButtonMiddle.Enabled = false;
+                radioButtonMiddle.Checked = false;
+                radioButtonRight.Enabled = false;
+                radioButtonRight.Checked = false;
+            }
+            else if (noOfPhotos == 1)
+            {
+                radioButtonSecondPage.Enabled = true;
+                radioButtonSecondPage.Checked = false;
+                radioButtonMiddle.Enabled = false;
+                radioButtonMiddle.Checked = false;
+                radioButtonRight.Enabled = true;
+                radioButtonRight.Checked = true;
+            }
+            else if (noOfPhotos == 2)
+            {
+                radioButtonSecondPage.Enabled = true;
+                radioButtonSecondPage.Checked = false;
+                radioButtonMiddle.Enabled = true;
+                radioButtonMiddle.Checked = true;
+                radioButtonRight.Enabled = false;
+                radioButtonRight.Checked = false;
+            }
+            else if (noOfPhotos > 2)
+            {
+                radioButtonSecondPage.Enabled = true;
+                radioButtonSecondPage.Checked = true;
+                radioButtonMiddle.Enabled = false;
+                radioButtonMiddle.Checked = false;
+                radioButtonRight.Enabled = false;
+                radioButtonRight.Checked = false;
+            }
+            label_Total_Photo.Text = "( Total Photo : " + noOfPhotos + " )";
+            
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -141,7 +185,22 @@ namespace St.Teresa_LIS_2019
             newForm.Show();
             if (checkBox_Print_HOKLAS_ISO_Format.Checked)
             {
-                newForm.setReportParameter(comboBox_Report_Heading.Text, case_no, report_no, "1");
+                if (radioButtonRight.Checked)
+                {
+                    newForm.setReportParameter(comboBox_Report_Heading.Text + Form_ReportPreview.ONE_PHOTO, case_no, report_no, "1");
+                }
+                else if (radioButtonMiddle.Checked)
+                {
+                    newForm.setReportParameter(comboBox_Report_Heading.Text + Form_ReportPreview.TWO_PHOTO, case_no, report_no, "1");
+                }
+                else if (radioButtonSecondPage.Checked)
+                {
+                    newForm.setReportParameter(comboBox_Report_Heading.Text + Form_ReportPreview.MULTIPLE_PHOTO, case_no, report_no, "1");
+                }
+                else
+                {
+                    newForm.setReportParameter(comboBox_Report_Heading.Text, case_no, report_no, "1");
+                }
             }
             else
             {
@@ -601,6 +660,19 @@ namespace St.Teresa_LIS_2019
             }//end if
         }
 
-        
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

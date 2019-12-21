@@ -1664,3 +1664,6 @@ on (d.id = s.id)
 
 ALTER TABLE BXCY_DIAG ALTER column micro_desc NVARCHAR(MAX) NULL;
 ALTER TABLE BXCY_DIAG ALTER column macro_desc NVARCHAR(MAX) NULL;
+
+-- 2019-12-21
+alter table bxcy_diag add report_status nvarchar(100)
