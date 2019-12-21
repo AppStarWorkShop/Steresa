@@ -339,19 +339,48 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, bool readOnly)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly)
         {
             this.existDiagDataSet = existDiagDataSet;
             this.existDiagDataAdapter = existDiagDataAdapter;
+            //this.bxcy_specimenDataSet = existBxcySpecimentDataSet;
             if (refresh)
             {
                 reloadAndBindingDBData(0, textBox_Case_No.Text.Trim());
             }
-            currentStatus = status;
-            setButtonStatus(currentStatus);
-            if (readOnly)
+            if (currentStatus != PageStatus.STATUS_NEW)
             {
-                
+                currentStatus = status;
+            }
+            setButtonStatus(currentStatus);
+            /*if (readOnly)
+            {
+                this.disableEdit();
+            }*/
+
+            if (snopT1 != null)
+            {
+                comboBox_Snop_T1.SelectedValue = snopT1;
+            }
+            if (snopT2 != null)
+            {
+                comboBox_Snop_T2.SelectedValue = snopT2;
+            }
+            if (snopT3 != null)
+            {
+                comboBox_Snop_T3.SelectedValue = snopT3;
+            }
+            if (snopM1 != null)
+            {
+                comboBox_Snop_M1.SelectedValue = snopM1;
+            }
+            if (snopM2 != null)
+            {
+                comboBox_Snop_M2.SelectedValue = snopM2;
+            }
+            if (snopM3 != null)
+            {
+                comboBox_Snop_M3.SelectedValue = snopM3;
             }
         }
 
