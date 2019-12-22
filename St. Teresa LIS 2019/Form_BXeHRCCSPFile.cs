@@ -791,6 +791,640 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_EDIT);
         }
 
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys)Shortcut.F1 && button_F1.Enabled)
+            {
+                button_F1.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F2 && button_F2_Previous.Enabled)
+            {
+                button_F2_Previous.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F3 && button_F3_Surgical.Enabled)
+            {
+                button_F3_Surgical.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F4 && button_F4_Nature.Enabled)
+            {
+                button_F4_Nature.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F5 && button_F5_Description.Enabled)
+            {
+                button_F5_Description.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F7 && button_F7.Enabled)
+            {
+                button_F7.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F9 && button_F9.Enabled)
+            {
+                button_F9.PerformClick();
+                return true;
+            }
+
+            if (keyData == (Keys)Shortcut.F10 && button_Cytology.Enabled)
+            {
+                button_Cytology.PerformClick();
+                return true;
+            }
+
+            // eric leung -- press enter to jump to next field
+            if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+            {
+                this.jumpReverse();
+
+            }
+            else
+            {
+                if (keyData == Keys.Enter)
+                {
+                    this.jumpNext();
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void jumpReverse()
+        {
+            Boolean notJumped = true;
+
+            if (textBox_Date.Focused)
+            {
+                textBox_Case_No.Focus();
+                notJumped = false;
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Ethnic.Focused)
+                {
+                    textBox_Date.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Date_Collected.Focused)
+                {
+                    comboBox_Ethnic.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Type.Focused)
+                {
+                    textBox_Date_Collected.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Patient.Focused)
+                {
+                    textBox_Type.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Chinese_Name.Focused)
+                {
+                    textBox_Patient.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_HKID.Focused)
+                {
+                    textBox_Chinese_Name.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Ethnic.Focused)
+                {
+                    textBox_HKID.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_DOB.Focused)
+                {
+                    comboBox_Ethnic.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Class.Focused)
+                {
+                    textBox_DOB.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Age.Focused)
+                {
+                    comboBox_Class.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Sex.Focused)
+                {
+                    textBox_Age.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Organization.Focused)
+                {
+                    textBox_Sex.Focus();
+                    notJumped = false;
+                }
+            }
+
+            // second part 
+
+            if (notJumped)
+            {
+                if (textBox_LabHCIName.Focused)
+                {
+                    textBox_Organization.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Ref_No.Focused)
+                {
+                    textBox_LabHCIName.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_LabHCIID.Focused)
+                {
+                    textBox_Ref_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_eHR_No.Focused)
+                {
+                    textBox_LabHCIID.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Doctor_I_C.Focused)
+                {
+                    textBox_eHR_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_STH_Patient_No.Focused)
+                {
+                    textBox_Doctor_I_C.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_LabHCIID_2.Focused)
+                {
+                    textBox_STH_Patient_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Record_Key.Focused)
+                {
+                    textBox_LabHCIID_2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Date_Requested.Focused)
+                {
+                    textBox_Record_Key.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T1.Focused)
+                {
+                    textBox_Date_Requested.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T2.Focused)
+                {
+                    comboBox_Snop_T1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T3.Focused)
+                {
+                    comboBox_Snop_T2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M1.Focused)
+                {
+                    comboBox_Snop_T3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M2.Focused)
+                {
+                    comboBox_Snop_M1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M3.Focused)
+                {
+                    comboBox_Snop_M2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_1.Focused)
+                {
+                    comboBox_Snop_M3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_2.Focused)
+                {
+                    comboBox_Sign_By_Dr_1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Remarks.Focused)
+                {
+                    comboBox_Sign_By_Dr_2.Focus();
+                    notJumped = false;
+                }
+            }
+        }
+
+        private void jumpNext()
+        {
+            Boolean notJumped = true;
+
+            if (textBox_Case_No.Focused)
+            {
+                textBox_Date.Focus();
+                notJumped = false;
+            }
+
+            if (notJumped)
+            {
+
+                if (textBox_Date.Focused)
+                {
+                    comboBox_Ethnic.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Ethnic.Focused)
+                {
+                    textBox_Date_Collected.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Date_Collected.Focused)
+                {
+                    textBox_Type.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Type.Focused)
+                {
+                    textBox_Patient.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Patient.Focused)
+                {
+                    textBox_Chinese_Name.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Chinese_Name.Focused)
+                {
+                    textBox_HKID.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_HKID.Focused)
+                {
+                    comboBox_Ethnic.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Ethnic.Focused)
+                {
+                    textBox_DOB.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_DOB.Focused)
+                {
+                    comboBox_Class.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Class.Focused)
+                {
+                    textBox_Age.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Age.Focused)
+                {
+                    textBox_Sex.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Sex.Focused)
+                {
+                    textBox_Organization.Focus();
+                    notJumped = false;
+                }
+            }
+
+            // second part 
+
+            if (notJumped)
+            {
+                if (textBox_Organization.Focused)
+                {
+                    textBox_LabHCIName.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_LabHCIName.Focused)
+                {
+                    textBox_Ref_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Ref_No.Focused)
+                {
+                    textBox_LabHCIID.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_LabHCIID.Focused)
+                {
+                    textBox_eHR_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_eHR_No.Focused)
+                {
+                    textBox_Doctor_I_C.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Doctor_I_C.Focused)
+                {
+                    textBox_STH_Patient_No.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_STH_Patient_No.Focused)
+                {
+                    textBox_LabHCIID_2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_LabHCIID_2.Focused)
+                {
+                    textBox_Record_Key.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Record_Key.Focused)
+                {
+                    textBox_Date_Requested.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (textBox_Date_Requested.Focused)
+                {
+                    comboBox_Snop_T1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T1.Focused)
+                {
+                    comboBox_Snop_T2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T2.Focused)
+                {
+                    comboBox_Snop_T3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_T3.Focused)
+                {
+                    comboBox_Snop_M1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M1.Focused)
+                {
+                    comboBox_Snop_M2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M2.Focused)
+                {
+                    comboBox_Snop_M3.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Snop_M3.Focused)
+                {
+                    comboBox_Sign_By_Dr_1.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_1.Focused)
+                {
+                    comboBox_Sign_By_Dr_2.Focus();
+                    notJumped = false;
+                }
+            }
+
+            if (notJumped)
+            {
+                if (comboBox_Sign_By_Dr_2.Focused)
+                {
+                    textBox_Remarks.Focus();
+                    notJumped = false;
+                }
+            }
+        }
+
         private void button_Advance_Click(object sender, EventArgs e)
         {
             Form_Authorization open = new Form_Authorization();
@@ -2029,8 +2663,9 @@ namespace St.Teresa_LIS_2019
         {
             if (textBox_DOB.Text != "")
             {
-                DateTime dob = DateTime.Parse(textBox_DOB.Text);
-                if (dob != null)
+                DateTime dob = DateTime.MinValue;
+                DateTime.TryParse(textBox_DOB.Text, out dob);
+                if (dob != DateTime.MinValue)
                 {
                     textBox_Age.Text = PatientAgeCalculator.calculate(dob).ToString();
                 }

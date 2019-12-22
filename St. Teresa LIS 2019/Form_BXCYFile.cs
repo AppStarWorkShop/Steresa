@@ -2831,9 +2831,7 @@ namespace St.Teresa_LIS_2019
                 {
                     this.jumpNext();
                 }
-            }
-
-            
+            }            
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
@@ -3359,8 +3357,9 @@ namespace St.Teresa_LIS_2019
             //MessageBox.Show("textBox_DOB_TypeValidationCompleted - " + textBox_DOB.Text);
             if (textBox_DOB.Text != "")
             {
-                DateTime dob = DateTime.Parse(textBox_DOB.Text);
-                if (dob != null)
+                DateTime dob = DateTime.MinValue;
+                DateTime.TryParse(textBox_DOB.Text, out dob);
+                if (dob != DateTime.MinValue)
                 {
                     textBox_Age.Text = PatientAgeCalculator.calculate(dob).ToString();
                 }
