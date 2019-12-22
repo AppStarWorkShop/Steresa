@@ -1975,43 +1975,15 @@ namespace St.Teresa_LIS_2019
 
                 if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    /*DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;*/
-
                     try
                     {
-                        ((ComboBox)sender).SelectedValue = doctorDataSet2.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
+                        ((ComboBox)sender).SelectedValue = doctorDataSet1.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
                     }
                     catch (Exception ex)
                     {
 
                     }
                 }
-                /*else
-                {
-                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
-
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;
-                }
-
-                ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;*/
             }
         }
 
@@ -2036,21 +2008,11 @@ namespace St.Teresa_LIS_2019
                 m_isEntering2 = false;
                 string search = ((ComboBox)sender).Text.Trim();
 
-                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
-                doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
+                string sqlFull = string.Format("SELECT TOP 1 doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
 
-                if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
+                if (doctorDataSet2.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    /*DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;*/
-
                     try
                     {
                         ((ComboBox)sender).SelectedValue = doctorDataSet2.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
@@ -2060,24 +2022,6 @@ namespace St.Teresa_LIS_2019
 
                     }
                 }
-                /*else
-                {
-                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
-
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
-                    {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
-                    }
-
-                    ((ComboBox)sender).DataSource = newDt;
-                }
-
-                ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;*/
             }
         }
     }

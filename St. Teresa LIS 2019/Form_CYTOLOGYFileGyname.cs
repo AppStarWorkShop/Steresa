@@ -1845,34 +1845,15 @@ namespace St.Teresa_LIS_2019
 
                 if (doctorDataSet1.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+                    try
                     {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                        ((ComboBox)sender).SelectedValue = doctorDataSet1.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
                     }
-
-                    ((ComboBox)sender).DataSource = newDt;
-                }
-                else
-                {
-                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet1, "sign_doctor");
-
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+                    catch (Exception ex)
                     {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+
                     }
-
-                    ((ComboBox)sender).DataSource = newDt;
                 }
-
-                ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
             }
         }
 
@@ -1888,39 +1869,20 @@ namespace St.Teresa_LIS_2019
                 m_isEntering2 = false;
                 string search = ((ComboBox)sender).Text.Trim();
 
-                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                string sqlFull = string.Format("SELECT TOP 1 doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
                 doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
 
                 if (doctorDataSet2.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    try
                     {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                        ((ComboBox)sender).SelectedValue = doctorDataSet2.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
                     }
-
-                    ((ComboBox)sender).DataSource = newDt;
-                }
-                else
-                {
-                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter2 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet2, "sign_doctor");
-
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet2.Tables["sign_doctor"].Rows)
+                    catch (Exception ex)
                     {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+
                     }
-
-                    ((ComboBox)sender).DataSource = newDt;
                 }
-
-                ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
             }
         }
 
@@ -1941,34 +1903,15 @@ namespace St.Teresa_LIS_2019
 
                 if (doctorDataSet3.Tables["sign_doctor"].Rows.Count > 0)
                 {
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet3.Tables["sign_doctor"].Rows)
+                    try
                     {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+                        ((ComboBox)sender).SelectedValue = doctorDataSet3.Tables["sign_doctor"].Rows[0]["doctor"].ToString();
                     }
-
-                    ((ComboBox)sender).DataSource = newDt;
-                }
-                else
-                {
-                    sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doctor like '%{0}%' order by doctor ", search);
-                    doctorDataAdapter3 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet3, "sign_doctor");
-
-                    DataTable newDt = new DataTable();
-                    newDt.Columns.Add("doctor");
-
-                    foreach (DataRow mDr in doctorDataSet3.Tables["sign_doctor"].Rows)
+                    catch (Exception ex)
                     {
-                        newDt.Rows.Add(new object[] { mDr["doctor"] });
+
                     }
-
-                    ((ComboBox)sender).DataSource = newDt;
                 }
-
-                ((ComboBox)sender).Text = search;
-                ((ComboBox)sender).SelectionStart = search.Length;
             }
         }
     }
