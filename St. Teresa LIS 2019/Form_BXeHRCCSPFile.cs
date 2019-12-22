@@ -987,7 +987,7 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Clear();
             textBox_Case_No.DataBindings.Clear();
-            textBox_Date_Received.DataBindings.Clear();
+            textBox_Date.DataBindings.Clear();
             comboBox_Ethnic.DataBindings.Clear();
             //comboBox_cytoType.DataBindings.Clear();
             textBox_Patient.DataBindings.Clear();
@@ -1163,7 +1163,7 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            textBox_Date_Received.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             //comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
@@ -2023,6 +2023,23 @@ namespace St.Teresa_LIS_2019
                     }
                 }
             }
+        }
+
+        private void textBox_DOB_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (textBox_DOB.Text != "")
+            {
+                DateTime dob = DateTime.Parse(textBox_DOB.Text);
+                if (dob != null)
+                {
+                    textBox_Age.Text = PatientAgeCalculator.calculate(dob).ToString();
+                }
+            }
+        }
+
+        private void textBox_Date_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
         }
     }
 }

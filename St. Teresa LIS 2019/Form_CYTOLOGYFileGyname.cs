@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace St.Teresa_LIS_2019
 {
@@ -1911,6 +1912,45 @@ namespace St.Teresa_LIS_2019
                     {
 
                     }
+                }
+            }
+        }
+
+        private void textBox_Date_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void textBox_DOB_TypeValidationCompleted(object sender, TypeValidationEventArgs e)
+        {
+            if (textBox_DOB.Text != "")
+            {
+                DateTime dob = DateTime.Parse(textBox_DOB.Text);
+                if (dob != null)
+                {
+                    textBox_Age.Text = PatientAgeCalculator.calculate(dob).ToString();
+                }
+            }
+        }
+
+        private void textBox_Paid_Date_Validating(object sender, CancelEventArgs e)
+        {
+            if (textBox_Paid_Date.Text == "  /  /")
+            {
+
+            }
+            else
+            {
+                DateTime dDate;
+                CultureInfo ci = new CultureInfo("en-IE");
+                if (textBox_Paid_Date.Text.Length == 10 && DateTime.TryParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", ci, DateTimeStyles.None, out dDate))
+                {
+                    textBox_Paid_Up.Text = PaymentStatus.PAID_YES;
+
+                }
+                else
+                {
+                    e.Cancel = true;
                 }
             }
         }
