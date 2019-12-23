@@ -728,7 +728,7 @@ namespace St.Teresa_LIS_2019
         private void button_F5_Description_Click(object sender, EventArgs e)
         {
             //Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, existDiagDataSet);
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet);
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet, existDiagDataAdapter);
             open.OnBxcyDiagExit += OnStatusReturn;
             //open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
             if (currentStatus != PageStatus.STATUS_EDIT)
@@ -1323,6 +1323,14 @@ namespace St.Teresa_LIS_2019
                         bool diagUpdateResult = false;
                         if (existDiagDataAdapter != null && existDiagDataSet != null)
                         {
+                            foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
+                            {
+                                if (dr["case_no"] == null || dr["case_no"].ToString() == "")
+                                {
+                                    dr["case_no"] = currentCaseNo;
+                                }
+                            }
+
                             if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
                             {
                                 diagUpdateResult = true;
@@ -2820,7 +2828,7 @@ namespace St.Teresa_LIS_2019
             }
 
             // eric leung -- press enter to jump to next field
-            if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+            /*if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
             {
                 this.jumpReverse();
                 
@@ -2831,9 +2839,37 @@ namespace St.Teresa_LIS_2019
                 {
                     this.jumpNext();
                 }
-            }            
+            }   */   
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                foreach (Control c in this.Controls)
+                {
+                    if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                    {
+                        keyData = Keys.Tab;
+                    }
+                }
+            }
+            else
+            {
+                if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+                {
+                    foreach (Control c in this.Controls)
+                    {
+                        if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                        {
+                            keyData = (Keys.LButton | Keys.Shift | Keys.Tab);
+                        }
+                    }
+                }
+            }
+            return base.ProcessDialogKey(keyData);
         }
 
         private void button_Advance_Click(object sender, EventArgs e)
@@ -3369,6 +3405,51 @@ namespace St.Teresa_LIS_2019
         private void textBox_Paid_Date_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
+        }
+
+        private void Form_BXCYFile_Activated(object sender, EventArgs e)
+        {
+            textBox_Case_No.Focus();
+        }
+
+        private void textBox_Rpt_Date_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (existDiagDataAdapter == null)
+            {
+                Console.WriteLine("Null dataAdapter");
+            }
+
+            if (existDiagDataSet == null)
+            {
+                Console.WriteLine("Null existDiagDataSet");
+            }
+
+            if (existDiagDataAdapter != null && existDiagDataSet != null)
+            {
+                var varList = from p in existDiagDataSet.Tables["bxcy_diag"].AsEnumerable()
+                              orderby p.Field<string>("group") ascending, p.Field<int>("diagnosisId") ascending
+                              select p;
+                foreach (DataRow dr in varList)
+                {
+                    string rowMessage = string.Format("Group:{0}, diagnosis:{1}, macroDesc:{2}, microDesc:{3}", dr["group"], dr["diagnosisId"], dr["macro_desc"], dr["micro_desc"]);
+                    Console.WriteLine(rowMessage);
+                }
+            }
+
+            if(bxcy_specimenDataSet != null)
+            {
+                foreach (DataRow dr in bxcy_specimenDataSet.Tables["BXCY_SPECIMEN"].Rows)
+                {
+                    string rowMessage = string.Format("Case No.:{0}", dr["case_no"]);
+                    Console.WriteLine(rowMessage);
+                }
+                
+            }
         }
     }
 }

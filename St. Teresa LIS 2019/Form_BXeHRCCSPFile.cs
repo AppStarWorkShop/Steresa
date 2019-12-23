@@ -842,7 +842,7 @@ namespace St.Teresa_LIS_2019
             }
 
             // eric leung -- press enter to jump to next field
-            if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+            /*if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
             {
                 this.jumpReverse();
 
@@ -853,9 +853,37 @@ namespace St.Teresa_LIS_2019
                 {
                     this.jumpNext();
                 }
-            }
+            }*/
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                foreach (Control c in this.Controls)
+                {
+                    if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                    {
+                        keyData = Keys.Tab;
+                    }
+                }
+            }
+            else
+            {
+                if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+                {
+                    foreach (Control c in this.Controls)
+                    {
+                        if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                        {
+                            keyData = (Keys.LButton | Keys.Shift | Keys.Tab);
+                        }
+                    }
+                }
+            }
+            return base.ProcessDialogKey(keyData);
         }
 
         private void jumpReverse()
@@ -2675,6 +2703,11 @@ namespace St.Teresa_LIS_2019
         private void textBox_Date_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
+        }
+
+        private void Form_BXeHRCCSPFile_Activated(object sender, EventArgs e)
+        {
+            textBox_Case_No.Focus();
         }
     }
 }

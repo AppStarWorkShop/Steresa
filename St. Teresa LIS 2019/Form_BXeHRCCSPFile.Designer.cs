@@ -169,7 +169,7 @@
             // 
             this.textBox_Nature.Enabled = false;
             this.textBox_Nature.Location = new System.Drawing.Point(1092, 142);
-            this.textBox_Nature.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Nature.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Nature.Name = "textBox_Nature";
             this.textBox_Nature.Size = new System.Drawing.Size(0, 25);
             this.textBox_Nature.TabIndex = 281;
@@ -178,7 +178,7 @@
             // 
             this.textBox_Surgical.Enabled = false;
             this.textBox_Surgical.Location = new System.Drawing.Point(961, 145);
-            this.textBox_Surgical.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Surgical.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Surgical.Name = "textBox_Surgical";
             this.textBox_Surgical.Size = new System.Drawing.Size(0, 25);
             this.textBox_Surgical.TabIndex = 280;
@@ -188,10 +188,11 @@
             this.button_Clinical_History.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Clinical_History.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Clinical_History.Location = new System.Drawing.Point(543, 144);
-            this.button_Clinical_History.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Clinical_History.Margin = new System.Windows.Forms.Padding(4);
             this.button_Clinical_History.Name = "button_Clinical_History";
             this.button_Clinical_History.Size = new System.Drawing.Size(39, 31);
             this.button_Clinical_History.TabIndex = 278;
+            this.button_Clinical_History.TabStop = false;
             this.button_Clinical_History.Text = "?";
             this.button_Clinical_History.UseVisualStyleBackColor = true;
             this.button_Clinical_History.Click += new System.EventHandler(this.button_Clinical_History_Click);
@@ -201,12 +202,12 @@
             this.textBox_Patient_s_Clinical_History.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Patient_s_Clinical_History.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Patient_s_Clinical_History.Location = new System.Drawing.Point(361, 176);
-            this.textBox_Patient_s_Clinical_History.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Patient_s_Clinical_History.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Patient_s_Clinical_History.Multiline = true;
             this.textBox_Patient_s_Clinical_History.Name = "textBox_Patient_s_Clinical_History";
             this.textBox_Patient_s_Clinical_History.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Patient_s_Clinical_History.Size = new System.Drawing.Size(965, 132);
-            this.textBox_Patient_s_Clinical_History.TabIndex = 277;
+            this.textBox_Patient_s_Clinical_History.TabIndex = 13;
             // 
             // comboBox_Class
             // 
@@ -219,10 +220,10 @@
             "Sc",
             "Re"});
             this.comboBox_Class.Location = new System.Drawing.Point(693, 141);
-            this.comboBox_Class.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Class.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Class.Name = "comboBox_Class";
             this.comboBox_Class.Size = new System.Drawing.Size(68, 30);
-            this.comboBox_Class.TabIndex = 276;
+            this.comboBox_Class.TabIndex = 9;
             this.comboBox_Class.ValueMember = "classValue";
             // 
             // label_Changed_Name_Marker_2
@@ -269,7 +270,7 @@
             this.pictureBox_Has_Previous.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_Has_Previous.Image")));
             this.pictureBox_Has_Previous.InitialImage = null;
             this.pictureBox_Has_Previous.Location = new System.Drawing.Point(1288, 139);
-            this.pictureBox_Has_Previous.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox_Has_Previous.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox_Has_Previous.Name = "pictureBox_Has_Previous";
             this.pictureBox_Has_Previous.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_Has_Previous.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -289,7 +290,7 @@
             this.panel_Update.Controls.Add(this.textBox_Updated_By_1);
             this.panel_Update.Controls.Add(this.label_Updated_By);
             this.panel_Update.Location = new System.Drawing.Point(1043, 1);
-            this.panel_Update.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_Update.Margin = new System.Windows.Forms.Padding(4);
             this.panel_Update.Name = "panel_Update";
             this.panel_Update.Size = new System.Drawing.Size(305, 71);
             this.panel_Update.TabIndex = 270;
@@ -297,7 +298,7 @@
             // textBox_Issued_At
             // 
             this.textBox_Issued_At.Location = new System.Drawing.Point(211, 48);
-            this.textBox_Issued_At.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Issued_At.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Issued_At.Name = "textBox_Issued_At";
             this.textBox_Issued_At.ReadOnly = true;
             this.textBox_Issued_At.Size = new System.Drawing.Size(87, 25);
@@ -306,7 +307,7 @@
             // textBox_Issued_By
             // 
             this.textBox_Issued_By.Location = new System.Drawing.Point(105, 48);
-            this.textBox_Issued_By.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Issued_By.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Issued_By.Name = "textBox_Issued_By";
             this.textBox_Issued_By.ReadOnly = true;
             this.textBox_Issued_By.Size = new System.Drawing.Size(104, 25);
@@ -326,7 +327,7 @@
             // textBox_Updated_At
             // 
             this.textBox_Updated_At.Location = new System.Drawing.Point(105, 25);
-            this.textBox_Updated_At.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Updated_At.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Updated_At.Name = "textBox_Updated_At";
             this.textBox_Updated_At.ReadOnly = true;
             this.textBox_Updated_At.Size = new System.Drawing.Size(192, 25);
@@ -346,7 +347,7 @@
             // textBox_Updated_By_2
             // 
             this.textBox_Updated_By_2.Location = new System.Drawing.Point(233, 4);
-            this.textBox_Updated_By_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Updated_By_2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Updated_By_2.Name = "textBox_Updated_By_2";
             this.textBox_Updated_By_2.ReadOnly = true;
             this.textBox_Updated_By_2.Size = new System.Drawing.Size(64, 25);
@@ -355,7 +356,7 @@
             // textBox_Updated_By_1
             // 
             this.textBox_Updated_By_1.Location = new System.Drawing.Point(105, 4);
-            this.textBox_Updated_By_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Updated_By_1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Updated_By_1.Name = "textBox_Updated_By_1";
             this.textBox_Updated_By_1.ReadOnly = true;
             this.textBox_Updated_By_1.Size = new System.Drawing.Size(119, 25);
@@ -379,10 +380,11 @@
             this.checkBox_Uploaded.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.checkBox_Uploaded.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Uploaded.Location = new System.Drawing.Point(1065, 145);
-            this.checkBox_Uploaded.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox_Uploaded.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox_Uploaded.Name = "checkBox_Uploaded";
             this.checkBox_Uploaded.Size = new System.Drawing.Size(18, 17);
             this.checkBox_Uploaded.TabIndex = 269;
+            this.checkBox_Uploaded.TabStop = false;
             this.checkBox_Uploaded.UseVisualStyleBackColor = false;
             // 
             // button_F4_Nature
@@ -390,10 +392,11 @@
             this.button_F4_Nature.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F4_Nature.ForeColor = System.Drawing.Color.Black;
             this.button_F4_Nature.Location = new System.Drawing.Point(935, 142);
-            this.button_F4_Nature.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F4_Nature.Margin = new System.Windows.Forms.Padding(4);
             this.button_F4_Nature.Name = "button_F4_Nature";
             this.button_F4_Nature.Size = new System.Drawing.Size(123, 31);
             this.button_F4_Nature.TabIndex = 268;
+            this.button_F4_Nature.TabStop = false;
             this.button_F4_Nature.Text = "F4:  Nature";
             this.button_F4_Nature.UseVisualStyleBackColor = true;
             this.button_F4_Nature.Click += new System.EventHandler(this.button_F4_Nature_Click);
@@ -403,10 +406,11 @@
             this.button_F3_Surgical.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F3_Surgical.ForeColor = System.Drawing.Color.Black;
             this.button_F3_Surgical.Location = new System.Drawing.Point(804, 142);
-            this.button_F3_Surgical.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F3_Surgical.Margin = new System.Windows.Forms.Padding(4);
             this.button_F3_Surgical.Name = "button_F3_Surgical";
             this.button_F3_Surgical.Size = new System.Drawing.Size(123, 31);
             this.button_F3_Surgical.TabIndex = 267;
+            this.button_F3_Surgical.TabStop = false;
             this.button_F3_Surgical.Text = "F3:  Surgical";
             this.button_F3_Surgical.UseVisualStyleBackColor = true;
             this.button_F3_Surgical.Click += new System.EventHandler(this.button_F3_Surgical_Click);
@@ -442,20 +446,21 @@
             this.textBox_HKID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_HKID.ForeColor = System.Drawing.Color.Blue;
             this.textBox_HKID.Location = new System.Drawing.Point(843, 109);
-            this.textBox_HKID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_HKID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_HKID.Name = "textBox_HKID";
             this.textBox_HKID.Size = new System.Drawing.Size(213, 30);
-            this.textBox_HKID.TabIndex = 264;
+            this.textBox_HKID.TabIndex = 6;
             // 
             // button_F2_Previous
             // 
             this.button_F2_Previous.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F2_Previous.ForeColor = System.Drawing.Color.Black;
             this.button_F2_Previous.Location = new System.Drawing.Point(1183, 141);
-            this.button_F2_Previous.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F2_Previous.Margin = new System.Windows.Forms.Padding(4);
             this.button_F2_Previous.Name = "button_F2_Previous";
             this.button_F2_Previous.Size = new System.Drawing.Size(93, 32);
             this.button_F2_Previous.TabIndex = 263;
+            this.button_F2_Previous.TabStop = false;
             this.button_F2_Previous.Text = "F2: Prev.";
             this.button_F2_Previous.UseVisualStyleBackColor = true;
             this.button_F2_Previous.Click += new System.EventHandler(this.button_F2_Previous_Click);
@@ -465,17 +470,17 @@
             this.textBox_Chinese_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Chinese_Name.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Chinese_Name.Location = new System.Drawing.Point(624, 109);
-            this.textBox_Chinese_Name.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Chinese_Name.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Chinese_Name.Name = "textBox_Chinese_Name";
             this.textBox_Chinese_Name.Size = new System.Drawing.Size(137, 30);
-            this.textBox_Chinese_Name.TabIndex = 262;
+            this.textBox_Chinese_Name.TabIndex = 5;
             // 
             // textBox_PatSeq
             // 
             this.textBox_PatSeq.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_PatSeq.ForeColor = System.Drawing.Color.Blue;
             this.textBox_PatSeq.Location = new System.Drawing.Point(547, 109);
-            this.textBox_PatSeq.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_PatSeq.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_PatSeq.Name = "textBox_PatSeq";
             this.textBox_PatSeq.Size = new System.Drawing.Size(55, 30);
             this.textBox_PatSeq.TabIndex = 260;
@@ -489,10 +494,10 @@
             this.comboBox_Ethnic.Items.AddRange(new object[] {
             "Chinese"});
             this.comboBox_Ethnic.Location = new System.Drawing.Point(1149, 109);
-            this.comboBox_Ethnic.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Ethnic.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Ethnic.Name = "comboBox_Ethnic";
             this.comboBox_Ethnic.Size = new System.Drawing.Size(179, 30);
-            this.comboBox_Ethnic.TabIndex = 258;
+            this.comboBox_Ethnic.TabIndex = 7;
             this.comboBox_Ethnic.ValueMember = "PEOPLE";
             // 
             // label_Ethnic
@@ -552,10 +557,11 @@
             this.button_F1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_F1.Location = new System.Drawing.Point(491, 108);
-            this.button_F1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F1.Margin = new System.Windows.Forms.Padding(4);
             this.button_F1.Name = "button_F1";
             this.button_F1.Size = new System.Drawing.Size(39, 31);
             this.button_F1.TabIndex = 251;
+            this.button_F1.TabStop = false;
             this.button_F1.Text = "F1";
             this.button_F1.UseVisualStyleBackColor = true;
             this.button_F1.Click += new System.EventHandler(this.button_F1_Click);
@@ -565,10 +571,10 @@
             this.textBox_Patient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Patient.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Patient.Location = new System.Drawing.Point(193, 109);
-            this.textBox_Patient.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Patient.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Patient.Name = "textBox_Patient";
             this.textBox_Patient.Size = new System.Drawing.Size(295, 30);
-            this.textBox_Patient.TabIndex = 250;
+            this.textBox_Patient.TabIndex = 4;
             // 
             // label_Patient
             // 
@@ -588,10 +594,10 @@
             this.textBox_Case_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Case_No.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Case_No.Location = new System.Drawing.Point(193, 70);
-            this.textBox_Case_No.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Case_No.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Case_No.Name = "textBox_Case_No";
             this.textBox_Case_No.Size = new System.Drawing.Size(252, 34);
-            this.textBox_Case_No.TabIndex = 247;
+            this.textBox_Case_No.TabIndex = 0;
             this.textBox_Case_No.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Case_No_KeyUp);
             // 
             // label_Case_No
@@ -614,7 +620,7 @@
             this.panel_BX_CY_SPECIMEN.Controls.Add(this.label1);
             this.panel_BX_CY_SPECIMEN.Controls.Add(this.label_BX_CY_SPECIMEN);
             this.panel_BX_CY_SPECIMEN.Location = new System.Drawing.Point(23, 9);
-            this.panel_BX_CY_SPECIMEN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel_BX_CY_SPECIMEN.Margin = new System.Windows.Forms.Padding(4);
             this.panel_BX_CY_SPECIMEN.Name = "panel_BX_CY_SPECIMEN";
             this.panel_BX_CY_SPECIMEN.Size = new System.Drawing.Size(397, 44);
             this.panel_BX_CY_SPECIMEN.TabIndex = 245;
@@ -676,12 +682,12 @@
             this.textBox_Remarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Remarks.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Remarks.Location = new System.Drawing.Point(172, 621);
-            this.textBox_Remarks.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Remarks.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Remarks.Multiline = true;
             this.textBox_Remarks.Name = "textBox_Remarks";
             this.textBox_Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Remarks.Size = new System.Drawing.Size(805, 143);
-            this.textBox_Remarks.TabIndex = 301;
+            this.textBox_Remarks.TabIndex = 24;
             // 
             // button_Advance
             // 
@@ -690,10 +696,11 @@
             this.button_Advance.Image = ((System.Drawing.Image)(resources.GetObject("button_Advance.Image")));
             this.button_Advance.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Advance.Location = new System.Drawing.Point(916, 782);
-            this.button_Advance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Advance.Margin = new System.Windows.Forms.Padding(4);
             this.button_Advance.Name = "button_Advance";
             this.button_Advance.Size = new System.Drawing.Size(91, 50);
             this.button_Advance.TabIndex = 300;
+            this.button_Advance.TabStop = false;
             this.button_Advance.Text = "Advance";
             this.button_Advance.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Advance.UseVisualStyleBackColor = true;
@@ -704,20 +711,22 @@
             this.textBox_Cytology.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Cytology.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Cytology.Location = new System.Drawing.Point(989, 738);
-            this.textBox_Cytology.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Cytology.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Cytology.Name = "textBox_Cytology";
             this.textBox_Cytology.Size = new System.Drawing.Size(112, 24);
             this.textBox_Cytology.TabIndex = 299;
+            this.textBox_Cytology.TabStop = false;
             // 
             // button_Cytology
             // 
             this.button_Cytology.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Cytology.ForeColor = System.Drawing.Color.Black;
             this.button_Cytology.Location = new System.Drawing.Point(987, 642);
-            this.button_Cytology.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Cytology.Margin = new System.Windows.Forms.Padding(4);
             this.button_Cytology.Name = "button_Cytology";
             this.button_Cytology.Size = new System.Drawing.Size(116, 71);
             this.button_Cytology.TabIndex = 298;
+            this.button_Cytology.TabStop = false;
             this.button_Cytology.Text = "F10 Cytology  HPV";
             this.button_Cytology.UseVisualStyleBackColor = true;
             this.button_Cytology.Click += new System.EventHandler(this.button_Cytology_Click);
@@ -727,10 +736,11 @@
             this.button_F5_Description.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_F5_Description.ForeColor = System.Drawing.Color.Green;
             this.button_F5_Description.Location = new System.Drawing.Point(1116, 642);
-            this.button_F5_Description.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F5_Description.Margin = new System.Windows.Forms.Padding(4);
             this.button_F5_Description.Name = "button_F5_Description";
             this.button_F5_Description.Size = new System.Drawing.Size(213, 120);
             this.button_F5_Description.TabIndex = 297;
+            this.button_F5_Description.TabStop = false;
             this.button_F5_Description.Text = "F5: Macro / Micro / Diagnosis";
             this.button_F5_Description.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_F5_Description.UseVisualStyleBackColor = true;
@@ -742,7 +752,7 @@
             this.button_Printed.ForeColor = System.Drawing.Color.Purple;
             this.button_Printed.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Printed.Location = new System.Drawing.Point(23, 676);
-            this.button_Printed.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Printed.Margin = new System.Windows.Forms.Padding(4);
             this.button_Printed.Name = "button_Printed";
             this.button_Printed.Size = new System.Drawing.Size(131, 26);
             this.button_Printed.TabIndex = 296;
@@ -771,10 +781,11 @@
             this.button_Delete.Image = ((System.Drawing.Image)(resources.GetObject("button_Delete.Image")));
             this.button_Delete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Delete.Location = new System.Drawing.Point(1007, 782);
-            this.button_Delete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Delete.Margin = new System.Windows.Forms.Padding(4);
             this.button_Delete.Name = "button_Delete";
             this.button_Delete.Size = new System.Drawing.Size(85, 50);
             this.button_Delete.TabIndex = 294;
+            this.button_Delete.TabStop = false;
             this.button_Delete.Text = "Delete";
             this.button_Delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Delete.UseVisualStyleBackColor = true;
@@ -787,10 +798,11 @@
             this.button_End.Image = ((System.Drawing.Image)(resources.GetObject("button_End.Image")));
             this.button_End.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_End.Location = new System.Drawing.Point(273, 780);
-            this.button_End.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_End.Margin = new System.Windows.Forms.Padding(4);
             this.button_End.Name = "button_End";
             this.button_End.Size = new System.Drawing.Size(77, 52);
             this.button_End.TabIndex = 293;
+            this.button_End.TabStop = false;
             this.button_End.Text = "End";
             this.button_End.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_End.UseVisualStyleBackColor = true;
@@ -803,10 +815,11 @@
             this.button_Next.Image = ((System.Drawing.Image)(resources.GetObject("button_Next.Image")));
             this.button_Next.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Next.Location = new System.Drawing.Point(188, 780);
-            this.button_Next.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Next.Margin = new System.Windows.Forms.Padding(4);
             this.button_Next.Name = "button_Next";
             this.button_Next.Size = new System.Drawing.Size(77, 52);
             this.button_Next.TabIndex = 292;
+            this.button_Next.TabStop = false;
             this.button_Next.Text = "Next";
             this.button_Next.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Next.UseVisualStyleBackColor = true;
@@ -819,10 +832,11 @@
             this.button_Back.Image = ((System.Drawing.Image)(resources.GetObject("button_Back.Image")));
             this.button_Back.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Back.Location = new System.Drawing.Point(103, 780);
-            this.button_Back.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Back.Margin = new System.Windows.Forms.Padding(4);
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(77, 52);
             this.button_Back.TabIndex = 291;
+            this.button_Back.TabStop = false;
             this.button_Back.Text = "Back";
             this.button_Back.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Back.UseVisualStyleBackColor = true;
@@ -835,10 +849,11 @@
             this.button_Save.Image = ((System.Drawing.Image)(resources.GetObject("button_Save.Image")));
             this.button_Save.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Save.Location = new System.Drawing.Point(669, 782);
-            this.button_Save.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Save.Margin = new System.Windows.Forms.Padding(4);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(73, 50);
             this.button_Save.TabIndex = 290;
+            this.button_Save.TabStop = false;
             this.button_Save.Text = "Save";
             this.button_Save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Save.UseVisualStyleBackColor = true;
@@ -851,10 +866,11 @@
             this.button_New.Image = ((System.Drawing.Image)(resources.GetObject("button_New.Image")));
             this.button_New.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_New.Location = new System.Drawing.Point(743, 782);
-            this.button_New.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_New.Margin = new System.Windows.Forms.Padding(4);
             this.button_New.Name = "button_New";
             this.button_New.Size = new System.Drawing.Size(73, 50);
             this.button_New.TabIndex = 289;
+            this.button_New.TabStop = false;
             this.button_New.Text = "Copy";
             this.button_New.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_New.UseVisualStyleBackColor = true;
@@ -867,10 +883,11 @@
             this.button_Edit.Image = ((System.Drawing.Image)(resources.GetObject("button_Edit.Image")));
             this.button_Edit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Edit.Location = new System.Drawing.Point(820, 782);
-            this.button_Edit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Edit.Margin = new System.Windows.Forms.Padding(4);
             this.button_Edit.Name = "button_Edit";
             this.button_Edit.Size = new System.Drawing.Size(96, 50);
             this.button_Edit.TabIndex = 288;
+            this.button_Edit.TabStop = false;
             this.button_Edit.Text = "F6 Edit";
             this.button_Edit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Edit.UseVisualStyleBackColor = true;
@@ -883,10 +900,11 @@
             this.button_Undo.Image = ((System.Drawing.Image)(resources.GetObject("button_Undo.Image")));
             this.button_Undo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Undo.Location = new System.Drawing.Point(1092, 782);
-            this.button_Undo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Undo.Margin = new System.Windows.Forms.Padding(4);
             this.button_Undo.Name = "button_Undo";
             this.button_Undo.Size = new System.Drawing.Size(80, 50);
             this.button_Undo.TabIndex = 287;
+            this.button_Undo.TabStop = false;
             this.button_Undo.Text = "Undo";
             this.button_Undo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Undo.UseVisualStyleBackColor = true;
@@ -899,10 +917,11 @@
             this.button_Label.Image = ((System.Drawing.Image)(resources.GetObject("button_Label.Image")));
             this.button_Label.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Label.Location = new System.Drawing.Point(1172, 782);
-            this.button_Label.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Label.Margin = new System.Windows.Forms.Padding(4);
             this.button_Label.Name = "button_Label";
             this.button_Label.Size = new System.Drawing.Size(80, 50);
             this.button_Label.TabIndex = 286;
+            this.button_Label.TabStop = false;
             this.button_Label.Text = "Label";
             this.button_Label.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Label.UseVisualStyleBackColor = true;
@@ -915,10 +934,11 @@
             this.button_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_Exit.Image")));
             this.button_Exit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Exit.Location = new System.Drawing.Point(1252, 782);
-            this.button_Exit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Exit.Margin = new System.Windows.Forms.Padding(4);
             this.button_Exit.Name = "button_Exit";
             this.button_Exit.Size = new System.Drawing.Size(73, 50);
             this.button_Exit.TabIndex = 285;
+            this.button_Exit.TabStop = false;
             this.button_Exit.Text = "Exit";
             this.button_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Exit.UseVisualStyleBackColor = true;
@@ -931,10 +951,11 @@
             this.button_Top.Image = ((System.Drawing.Image)(resources.GetObject("button_Top.Image")));
             this.button_Top.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Top.Location = new System.Drawing.Point(17, 780);
-            this.button_Top.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Top.Margin = new System.Windows.Forms.Padding(4);
             this.button_Top.Name = "button_Top";
             this.button_Top.Size = new System.Drawing.Size(77, 52);
             this.button_Top.TabIndex = 284;
+            this.button_Top.TabStop = false;
             this.button_Top.Text = "Top";
             this.button_Top.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Top.UseVisualStyleBackColor = true;
@@ -986,10 +1007,10 @@
             "CARCINOMA DUCTAL INFILTRATIVE ",
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M2.Location = new System.Drawing.Point(755, 532);
-            this.comboBox_Snop_M2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_M2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M2.Name = "comboBox_Snop_M2";
             this.comboBox_Snop_M2.Size = new System.Drawing.Size(251, 29);
-            this.comboBox_Snop_M2.TabIndex = 325;
+            this.comboBox_Snop_M2.TabIndex = 19;
             this.comboBox_Snop_M2.ValueMember = "id";
             this.comboBox_Snop_M2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M2_DrawItem);
             // 
@@ -1026,10 +1047,10 @@
             "CARCINOMA DUCTAL INFILTRATIVE ",
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M3.Location = new System.Drawing.Point(1060, 534);
-            this.comboBox_Snop_M3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_M3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M3.Name = "comboBox_Snop_M3";
             this.comboBox_Snop_M3.Size = new System.Drawing.Size(252, 29);
-            this.comboBox_Snop_M3.TabIndex = 323;
+            this.comboBox_Snop_M3.TabIndex = 20;
             this.comboBox_Snop_M3.ValueMember = "id";
             this.comboBox_Snop_M3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M3_DrawItem);
             // 
@@ -1064,10 +1085,10 @@
             "BONE                          ",
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T2.Location = new System.Drawing.Point(755, 502);
-            this.comboBox_Snop_T2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_T2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T2.Name = "comboBox_Snop_T2";
             this.comboBox_Snop_T2.Size = new System.Drawing.Size(251, 29);
-            this.comboBox_Snop_T2.TabIndex = 321;
+            this.comboBox_Snop_T2.TabIndex = 16;
             this.comboBox_Snop_T2.ValueMember = "id";
             this.comboBox_Snop_T2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T2_DrawItem);
             // 
@@ -1102,10 +1123,10 @@
             "BONE                          ",
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T3.Location = new System.Drawing.Point(1060, 504);
-            this.comboBox_Snop_T3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_T3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T3.Name = "comboBox_Snop_T3";
             this.comboBox_Snop_T3.Size = new System.Drawing.Size(252, 29);
-            this.comboBox_Snop_T3.TabIndex = 319;
+            this.comboBox_Snop_T3.TabIndex = 17;
             this.comboBox_Snop_T3.ValueMember = "id";
             this.comboBox_Snop_T3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T3_DrawItem);
             // 
@@ -1142,10 +1163,10 @@
             "CARCINOMA DUCTAL INFILTRATIVE ",
             "CARCINOMA DUCTAL IN-SITU      "});
             this.comboBox_Snop_M1.Location = new System.Drawing.Point(443, 531);
-            this.comboBox_Snop_M1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_M1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M1.Name = "comboBox_Snop_M1";
             this.comboBox_Snop_M1.Size = new System.Drawing.Size(255, 29);
-            this.comboBox_Snop_M1.TabIndex = 317;
+            this.comboBox_Snop_M1.TabIndex = 18;
             this.comboBox_Snop_M1.ValueMember = "id";
             this.comboBox_Snop_M1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M1_DrawItem);
             // 
@@ -1167,10 +1188,10 @@
             "BONE                          ",
             "JOINT & SYNOVIUM              "});
             this.comboBox_Snop_T1.Location = new System.Drawing.Point(443, 501);
-            this.comboBox_Snop_T1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Snop_T1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T1.Name = "comboBox_Snop_T1";
             this.comboBox_Snop_T1.Size = new System.Drawing.Size(255, 29);
-            this.comboBox_Snop_T1.TabIndex = 316;
+            this.comboBox_Snop_T1.TabIndex = 15;
             this.comboBox_Snop_T1.ValueMember = "id";
             this.comboBox_Snop_T1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T1_DrawItem);
             // 
@@ -1218,10 +1239,11 @@
             this.button_Sign_By_Dr_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Sign_By_Dr_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Sign_By_Dr_2.Location = new System.Drawing.Point(344, 560);
-            this.button_Sign_By_Dr_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Sign_By_Dr_2.Margin = new System.Windows.Forms.Padding(4);
             this.button_Sign_By_Dr_2.Name = "button_Sign_By_Dr_2";
             this.button_Sign_By_Dr_2.Size = new System.Drawing.Size(44, 31);
             this.button_Sign_By_Dr_2.TabIndex = 312;
+            this.button_Sign_By_Dr_2.TabStop = false;
             this.button_Sign_By_Dr_2.Text = "Dr.";
             this.button_Sign_By_Dr_2.UseVisualStyleBackColor = true;
             this.button_Sign_By_Dr_2.Click += new System.EventHandler(this.button_Sign_By_Dr_2_Click);
@@ -1231,10 +1253,11 @@
             this.button_Sign_By_Dr_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Sign_By_Dr_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Sign_By_Dr_1.Location = new System.Drawing.Point(344, 531);
-            this.button_Sign_By_Dr_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Sign_By_Dr_1.Margin = new System.Windows.Forms.Padding(4);
             this.button_Sign_By_Dr_1.Name = "button_Sign_By_Dr_1";
             this.button_Sign_By_Dr_1.Size = new System.Drawing.Size(44, 31);
             this.button_Sign_By_Dr_1.TabIndex = 309;
+            this.button_Sign_By_Dr_1.TabStop = false;
             this.button_Sign_By_Dr_1.Text = "Dr.";
             this.button_Sign_By_Dr_1.UseVisualStyleBackColor = true;
             this.button_Sign_By_Dr_1.Click += new System.EventHandler(this.button_Sign_By_Dr_1_Click);
@@ -1246,10 +1269,10 @@
             this.comboBox_Sign_By_Dr_2.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Sign_By_Dr_2.FormattingEnabled = true;
             this.comboBox_Sign_By_Dr_2.Location = new System.Drawing.Point(171, 561);
-            this.comboBox_Sign_By_Dr_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Sign_By_Dr_2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Sign_By_Dr_2.Name = "comboBox_Sign_By_Dr_2";
             this.comboBox_Sign_By_Dr_2.Size = new System.Drawing.Size(179, 30);
-            this.comboBox_Sign_By_Dr_2.TabIndex = 311;
+            this.comboBox_Sign_By_Dr_2.TabIndex = 22;
             this.comboBox_Sign_By_Dr_2.ValueMember = "doctor";
             this.comboBox_Sign_By_Dr_2.TextChanged += new System.EventHandler(this.comboBox_Sign_By_Dr_2_TextChanged);
             this.comboBox_Sign_By_Dr_2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_Sign_By_Dr_2_PreviewKeyDown);
@@ -1261,10 +1284,10 @@
             this.comboBox_Sign_By_Dr_1.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Sign_By_Dr_1.FormattingEnabled = true;
             this.comboBox_Sign_By_Dr_1.Location = new System.Drawing.Point(171, 531);
-            this.comboBox_Sign_By_Dr_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox_Sign_By_Dr_1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Sign_By_Dr_1.Name = "comboBox_Sign_By_Dr_1";
             this.comboBox_Sign_By_Dr_1.Size = new System.Drawing.Size(179, 30);
-            this.comboBox_Sign_By_Dr_1.TabIndex = 310;
+            this.comboBox_Sign_By_Dr_1.TabIndex = 21;
             this.comboBox_Sign_By_Dr_1.ValueMember = "doctor";
             this.comboBox_Sign_By_Dr_1.TextChanged += new System.EventHandler(this.comboBox_Sign_By_Dr_1_TextChanged);
             this.comboBox_Sign_By_Dr_1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_Sign_By_Dr_1_PreviewKeyDown);
@@ -1275,10 +1298,11 @@
             this.button_Rpt_Date_Tick.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Rpt_Date_Tick.Image = ((System.Drawing.Image)(resources.GetObject("button_Rpt_Date_Tick.Image")));
             this.button_Rpt_Date_Tick.Location = new System.Drawing.Point(302, 499);
-            this.button_Rpt_Date_Tick.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Rpt_Date_Tick.Margin = new System.Windows.Forms.Padding(4);
             this.button_Rpt_Date_Tick.Name = "button_Rpt_Date_Tick";
             this.button_Rpt_Date_Tick.Size = new System.Drawing.Size(39, 31);
             this.button_Rpt_Date_Tick.TabIndex = 308;
+            this.button_Rpt_Date_Tick.TabStop = false;
             this.button_Rpt_Date_Tick.UseVisualStyleBackColor = true;
             this.button_Rpt_Date_Tick.Click += new System.EventHandler(this.button_Rpt_Date_Tick_Click);
             // 
@@ -1348,10 +1372,10 @@
             this.panel2.Controls.Add(this.textBox_LabHCIName);
             this.panel2.Controls.Add(this.textBox_LabHCIID);
             this.panel2.Location = new System.Drawing.Point(11, 309);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1314, 182);
-            this.panel2.TabIndex = 302;
+            this.panel2.TabIndex = 14;
             // 
             // label_Record_Key
             // 
@@ -1371,20 +1395,20 @@
             this.textBox_Record_Key.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Record_Key.ForeColor = System.Drawing.Color.DarkRed;
             this.textBox_Record_Key.Location = new System.Drawing.Point(596, 100);
-            this.textBox_Record_Key.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Record_Key.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Record_Key.Name = "textBox_Record_Key";
             this.textBox_Record_Key.Size = new System.Drawing.Size(228, 28);
-            this.textBox_Record_Key.TabIndex = 162;
+            this.textBox_Record_Key.TabIndex = 7;
             // 
             // textBox_Date_Requested
             // 
             this.textBox_Date_Requested.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Date_Requested.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Date_Requested.Location = new System.Drawing.Point(1021, 102);
-            this.textBox_Date_Requested.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Date_Requested.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Date_Requested.Name = "textBox_Date_Requested";
             this.textBox_Date_Requested.Size = new System.Drawing.Size(279, 28);
-            this.textBox_Date_Requested.TabIndex = 161;
+            this.textBox_Date_Requested.TabIndex = 8;
             // 
             // label_Date_Requested
             // 
@@ -1404,10 +1428,10 @@
             this.textBox_STH_Patient_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_STH_Patient_No.ForeColor = System.Drawing.Color.Blue;
             this.textBox_STH_Patient_No.Location = new System.Drawing.Point(1021, 68);
-            this.textBox_STH_Patient_No.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_STH_Patient_No.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_STH_Patient_No.Name = "textBox_STH_Patient_No";
             this.textBox_STH_Patient_No.Size = new System.Drawing.Size(279, 28);
-            this.textBox_STH_Patient_No.TabIndex = 159;
+            this.textBox_STH_Patient_No.TabIndex = 5;
             // 
             // label_STH_Patient_No
             // 
@@ -1427,10 +1451,10 @@
             this.textBox_eHR_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_eHR_No.ForeColor = System.Drawing.Color.Blue;
             this.textBox_eHR_No.Location = new System.Drawing.Point(935, 35);
-            this.textBox_eHR_No.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_eHR_No.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_eHR_No.Name = "textBox_eHR_No";
             this.textBox_eHR_No.Size = new System.Drawing.Size(365, 28);
-            this.textBox_eHR_No.TabIndex = 157;
+            this.textBox_eHR_No.TabIndex = 3;
             // 
             // label_eHR_No
             // 
@@ -1463,10 +1487,10 @@
             this.textBox_LabHCIID_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_LabHCIID_2.ForeColor = System.Drawing.Color.Blue;
             this.textBox_LabHCIID_2.Location = new System.Drawing.Point(195, 100);
-            this.textBox_LabHCIID_2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_LabHCIID_2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_LabHCIID_2.Name = "textBox_LabHCIID_2";
             this.textBox_LabHCIID_2.Size = new System.Drawing.Size(237, 28);
-            this.textBox_LabHCIID_2.TabIndex = 154;
+            this.textBox_LabHCIID_2.TabIndex = 6;
             // 
             // button_Shif
             // 
@@ -1474,10 +1498,11 @@
             this.button_Shif.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Shif.Image = ((System.Drawing.Image)(resources.GetObject("button_Shif.Image")));
             this.button_Shif.Location = new System.Drawing.Point(776, 66);
-            this.button_Shif.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_Shif.Margin = new System.Windows.Forms.Padding(4);
             this.button_Shif.Name = "button_Shif";
             this.button_Shif.Size = new System.Drawing.Size(39, 30);
             this.button_Shif.TabIndex = 153;
+            this.button_Shif.TabStop = false;
             this.button_Shif.UseVisualStyleBackColor = true;
             // 
             // textBox_Doctor_I_C_ID_1
@@ -1486,20 +1511,22 @@
             this.textBox_Doctor_I_C_ID_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Doctor_I_C_ID_1.ForeColor = System.Drawing.Color.Black;
             this.textBox_Doctor_I_C_ID_1.Location = new System.Drawing.Point(700, 66);
-            this.textBox_Doctor_I_C_ID_1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Doctor_I_C_ID_1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Doctor_I_C_ID_1.Name = "textBox_Doctor_I_C_ID_1";
             this.textBox_Doctor_I_C_ID_1.Size = new System.Drawing.Size(72, 28);
             this.textBox_Doctor_I_C_ID_1.TabIndex = 152;
+            this.textBox_Doctor_I_C_ID_1.TabStop = false;
             // 
             // button_F9
             // 
             this.button_F9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_F9.Location = new System.Drawing.Point(659, 66);
-            this.button_F9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F9.Margin = new System.Windows.Forms.Padding(4);
             this.button_F9.Name = "button_F9";
             this.button_F9.Size = new System.Drawing.Size(39, 30);
             this.button_F9.TabIndex = 151;
+            this.button_F9.TabStop = false;
             this.button_F9.Text = "F9";
             this.button_F9.UseVisualStyleBackColor = true;
             this.button_F9.Click += new System.EventHandler(this.button_F9_Click);
@@ -1509,10 +1536,10 @@
             this.textBox_Ref_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Ref_No.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Ref_No.Location = new System.Drawing.Point(935, 6);
-            this.textBox_Ref_No.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Ref_No.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Ref_No.Name = "textBox_Ref_No";
             this.textBox_Ref_No.Size = new System.Drawing.Size(365, 28);
-            this.textBox_Ref_No.TabIndex = 149;
+            this.textBox_Ref_No.TabIndex = 1;
             // 
             // label_Ref_No
             // 
@@ -1532,10 +1559,11 @@
             this.button_F7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_F7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_F7.Location = new System.Drawing.Point(777, 6);
-            this.button_F7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_F7.Margin = new System.Windows.Forms.Padding(4);
             this.button_F7.Name = "button_F7";
             this.button_F7.Size = new System.Drawing.Size(39, 28);
             this.button_F7.TabIndex = 145;
+            this.button_F7.TabStop = false;
             this.button_F7.Text = "F7";
             this.button_F7.UseVisualStyleBackColor = true;
             this.button_F7.Click += new System.EventHandler(this.button_F7_Click);
@@ -1584,30 +1612,30 @@
             this.textBox_Doctor_I_C.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Doctor_I_C.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Doctor_I_C.Location = new System.Drawing.Point(195, 68);
-            this.textBox_Doctor_I_C.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Doctor_I_C.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Doctor_I_C.Name = "textBox_Doctor_I_C";
             this.textBox_Doctor_I_C.Size = new System.Drawing.Size(455, 28);
-            this.textBox_Doctor_I_C.TabIndex = 73;
+            this.textBox_Doctor_I_C.TabIndex = 4;
             // 
             // textBox_LabHCIName
             // 
             this.textBox_LabHCIName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_LabHCIName.ForeColor = System.Drawing.Color.Blue;
             this.textBox_LabHCIName.Location = new System.Drawing.Point(195, 6);
-            this.textBox_LabHCIName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_LabHCIName.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_LabHCIName.Name = "textBox_LabHCIName";
             this.textBox_LabHCIName.Size = new System.Drawing.Size(577, 28);
-            this.textBox_LabHCIName.TabIndex = 71;
+            this.textBox_LabHCIName.TabIndex = 0;
             // 
             // textBox_LabHCIID
             // 
             this.textBox_LabHCIID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_LabHCIID.ForeColor = System.Drawing.Color.Blue;
             this.textBox_LabHCIID.Location = new System.Drawing.Point(195, 36);
-            this.textBox_LabHCIID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_LabHCIID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_LabHCIID.Name = "textBox_LabHCIID";
             this.textBox_LabHCIID.Size = new System.Drawing.Size(577, 28);
-            this.textBox_LabHCIID.TabIndex = 72;
+            this.textBox_LabHCIID.TabIndex = 2;
             // 
             // label_M_F
             // 
@@ -1627,20 +1655,20 @@
             this.textBox_Sex.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Sex.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Sex.Location = new System.Drawing.Point(193, 206);
-            this.textBox_Sex.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Sex.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Sex.Name = "textBox_Sex";
             this.textBox_Sex.Size = new System.Drawing.Size(32, 30);
-            this.textBox_Sex.TabIndex = 330;
+            this.textBox_Sex.TabIndex = 11;
             // 
             // textBox_Age
             // 
             this.textBox_Age.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Age.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Age.Location = new System.Drawing.Point(193, 175);
-            this.textBox_Age.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Age.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Age.Name = "textBox_Age";
             this.textBox_Age.Size = new System.Drawing.Size(83, 30);
-            this.textBox_Age.TabIndex = 329;
+            this.textBox_Age.TabIndex = 10;
             this.textBox_Age.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label_Age
@@ -1674,10 +1702,10 @@
             this.textBox_Organization.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Organization.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Organization.Location = new System.Drawing.Point(193, 244);
-            this.textBox_Organization.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Organization.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Organization.Name = "textBox_Organization";
             this.textBox_Organization.Size = new System.Drawing.Size(125, 28);
-            this.textBox_Organization.TabIndex = 326;
+            this.textBox_Organization.TabIndex = 12;
             // 
             // label_Sex
             // 
@@ -1697,10 +1725,10 @@
             this.textBox_Date_Collected.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Date_Collected.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Date_Collected.Location = new System.Drawing.Point(1007, 74);
-            this.textBox_Date_Collected.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Date_Collected.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Date_Collected.Name = "textBox_Date_Collected";
             this.textBox_Date_Collected.Size = new System.Drawing.Size(156, 30);
-            this.textBox_Date_Collected.TabIndex = 334;
+            this.textBox_Date_Collected.TabIndex = 2;
             // 
             // label_Date_Collected
             // 
@@ -1720,10 +1748,10 @@
             this.textBox_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Type.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Type.Location = new System.Drawing.Point(1272, 74);
-            this.textBox_Type.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Type.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Type.Name = "textBox_Type";
             this.textBox_Type.Size = new System.Drawing.Size(55, 30);
-            this.textBox_Type.TabIndex = 335;
+            this.textBox_Type.TabIndex = 3;
             // 
             // label_Type
             // 
@@ -1743,11 +1771,11 @@
             this.textBox_Uploaded_Date_Time.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Uploaded_Date_Time.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Uploaded_Date_Time.Location = new System.Drawing.Point(1015, 578);
-            this.textBox_Uploaded_Date_Time.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_Uploaded_Date_Time.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Uploaded_Date_Time.Name = "textBox_Uploaded_Date_Time";
             this.textBox_Uploaded_Date_Time.ReadOnly = true;
             this.textBox_Uploaded_Date_Time.Size = new System.Drawing.Size(297, 28);
-            this.textBox_Uploaded_Date_Time.TabIndex = 165;
+            this.textBox_Uploaded_Date_Time.TabIndex = 23;
             // 
             // label_Uploaded_Date_Time
             // 
@@ -1765,7 +1793,7 @@
             // textBox_ID
             // 
             this.textBox_ID.Location = new System.Drawing.Point(1435, 16);
-            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ID.Name = "textBox_ID";
             this.textBox_ID.Size = new System.Drawing.Size(24, 25);
             this.textBox_ID.TabIndex = 337;
@@ -1839,7 +1867,7 @@
             this.textBox_DOB.Mask = "00/00/0000";
             this.textBox_DOB.Name = "textBox_DOB";
             this.textBox_DOB.Size = new System.Drawing.Size(156, 30);
-            this.textBox_DOB.TabIndex = 345;
+            this.textBox_DOB.TabIndex = 8;
             this.textBox_DOB.ValidatingType = typeof(System.DateTime);
             this.textBox_DOB.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.textBox_DOB_TypeValidationCompleted);
             // 
@@ -1851,7 +1879,7 @@
             this.textBox_Date.Mask = "00/00/0000";
             this.textBox_Date.Name = "textBox_Date";
             this.textBox_Date.Size = new System.Drawing.Size(156, 30);
-            this.textBox_Date.TabIndex = 304;
+            this.textBox_Date.TabIndex = 1;
             this.textBox_Date.ValidatingType = typeof(System.DateTime);
             this.textBox_Date.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.textBox_Date_MaskInputRejected);
             // 
@@ -1864,6 +1892,7 @@
             this.textBox_Rpt_Date.Name = "textBox_Rpt_Date";
             this.textBox_Rpt_Date.Size = new System.Drawing.Size(131, 30);
             this.textBox_Rpt_Date.TabIndex = 346;
+            this.textBox_Rpt_Date.TabStop = false;
             this.textBox_Rpt_Date.ValidatingType = typeof(System.DateTime);
             // 
             // Form_BXeHRCCSPFile
@@ -1970,9 +1999,10 @@
             this.Controls.Add(this.panel_BX_CY_SPECIMEN);
             this.Controls.Add(this.label_Line_1);
             this.Controls.Add(this.label_);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form_BXeHRCCSPFile";
             this.Text = "Form_BXeHRCCSPFile";
+            this.Activated += new System.EventHandler(this.Form_BXeHRCCSPFile_Activated);
             this.Load += new System.EventHandler(this.Form_BXeHRCCSPFile_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Has_Previous)).EndInit();
             this.panel_Update.ResumeLayout(false);

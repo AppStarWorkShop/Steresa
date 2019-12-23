@@ -96,6 +96,8 @@
             this.button_Exit = new System.Windows.Forms.Button();
             this.button_Top = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.textBox_Paid_Date = new System.Windows.Forms.MaskedTextBox();
+            this.textBox_Invoice_Date = new System.Windows.Forms.MaskedTextBox();
             this.label_Paid_Date = new System.Windows.Forms.Label();
             this.label_Invoice_Date = new System.Windows.Forms.Label();
             this.label_Paid_Up = new System.Windows.Forms.Label();
@@ -159,8 +161,6 @@
             this.textBox_Date = new System.Windows.Forms.MaskedTextBox();
             this.textBox_DOB = new System.Windows.Forms.MaskedTextBox();
             this.textBox_Rpt_Date = new System.Windows.Forms.MaskedTextBox();
-            this.textBox_Paid_Date = new System.Windows.Forms.MaskedTextBox();
-            this.textBox_Invoice_Date = new System.Windows.Forms.MaskedTextBox();
             this.panel_Update.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -184,7 +184,7 @@
             this.comboBox_cytoType.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_cytoType.Name = "comboBox_cytoType";
             this.comboBox_cytoType.Size = new System.Drawing.Size(151, 30);
-            this.comboBox_cytoType.TabIndex = 284;
+            this.comboBox_cytoType.TabIndex = 3;
             this.comboBox_cytoType.ValueMember = "cytoType";
             // 
             // button_Advance
@@ -198,6 +198,7 @@
             this.button_Advance.Name = "button_Advance";
             this.button_Advance.Size = new System.Drawing.Size(91, 50);
             this.button_Advance.TabIndex = 283;
+            this.button_Advance.TabStop = false;
             this.button_Advance.Text = "Advance";
             this.button_Advance.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Advance.UseVisualStyleBackColor = true;
@@ -226,7 +227,7 @@
             this.comboBox_Snop_M2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M2.Name = "comboBox_Snop_M2";
             this.comboBox_Snop_M2.Size = new System.Drawing.Size(251, 29);
-            this.comboBox_Snop_M2.TabIndex = 282;
+            this.comboBox_Snop_M2.TabIndex = 19;
             this.comboBox_Snop_M2.ValueMember = "id";
             this.comboBox_Snop_M2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M2_DrawItem);
             // 
@@ -266,7 +267,7 @@
             this.comboBox_Snop_M3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M3.Name = "comboBox_Snop_M3";
             this.comboBox_Snop_M3.Size = new System.Drawing.Size(252, 29);
-            this.comboBox_Snop_M3.TabIndex = 280;
+            this.comboBox_Snop_M3.TabIndex = 20;
             this.comboBox_Snop_M3.ValueMember = "id";
             this.comboBox_Snop_M3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M3_DrawItem);
             // 
@@ -395,7 +396,7 @@
             this.textBox_Cytology.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Cytology.Name = "textBox_Cytology";
             this.textBox_Cytology.Size = new System.Drawing.Size(89, 24);
-            this.textBox_Cytology.TabIndex = 277;
+            this.textBox_Cytology.TabIndex = 24;
             // 
             // button_F10_Findings_and_Comments
             // 
@@ -406,6 +407,7 @@
             this.button_F10_Findings_and_Comments.Name = "button_F10_Findings_and_Comments";
             this.button_F10_Findings_and_Comments.Size = new System.Drawing.Size(353, 41);
             this.button_F10_Findings_and_Comments.TabIndex = 275;
+            this.button_F10_Findings_and_Comments.TabStop = false;
             this.button_F10_Findings_and_Comments.Text = "F10: Findings and Comments";
             this.button_F10_Findings_and_Comments.UseVisualStyleBackColor = true;
             this.button_F10_Findings_and_Comments.Click += new System.EventHandler(this.button_F10_Findings_and_Comments_Click);
@@ -431,7 +433,7 @@
             this.comboBox_Snop_T2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T2.Name = "comboBox_Snop_T2";
             this.comboBox_Snop_T2.Size = new System.Drawing.Size(251, 29);
-            this.comboBox_Snop_T2.TabIndex = 274;
+            this.comboBox_Snop_T2.TabIndex = 16;
             this.comboBox_Snop_T2.ValueMember = "id";
             this.comboBox_Snop_T2.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T2_DrawItem);
             // 
@@ -469,7 +471,7 @@
             this.comboBox_Snop_T3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T3.Name = "comboBox_Snop_T3";
             this.comboBox_Snop_T3.Size = new System.Drawing.Size(252, 29);
-            this.comboBox_Snop_T3.TabIndex = 272;
+            this.comboBox_Snop_T3.TabIndex = 17;
             this.comboBox_Snop_T3.ValueMember = "id";
             this.comboBox_Snop_T3.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T3_DrawItem);
             // 
@@ -509,7 +511,7 @@
             this.comboBox_Snop_M1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_M1.Name = "comboBox_Snop_M1";
             this.comboBox_Snop_M1.Size = new System.Drawing.Size(255, 29);
-            this.comboBox_Snop_M1.TabIndex = 259;
+            this.comboBox_Snop_M1.TabIndex = 18;
             this.comboBox_Snop_M1.ValueMember = "id";
             this.comboBox_Snop_M1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_M1_DrawItem);
             // 
@@ -534,7 +536,7 @@
             this.comboBox_Snop_T1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Snop_T1.Name = "comboBox_Snop_T1";
             this.comboBox_Snop_T1.Size = new System.Drawing.Size(255, 29);
-            this.comboBox_Snop_T1.TabIndex = 258;
+            this.comboBox_Snop_T1.TabIndex = 15;
             this.comboBox_Snop_T1.ValueMember = "id";
             this.comboBox_Snop_T1.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.comboBox_Snop_T1_DrawItem);
             // 
@@ -586,6 +588,7 @@
             this.button_Sign_By_Dr_2.Name = "button_Sign_By_Dr_2";
             this.button_Sign_By_Dr_2.Size = new System.Drawing.Size(44, 31);
             this.button_Sign_By_Dr_2.TabIndex = 253;
+            this.button_Sign_By_Dr_2.TabStop = false;
             this.button_Sign_By_Dr_2.Text = "Dr.";
             this.button_Sign_By_Dr_2.UseVisualStyleBackColor = true;
             this.button_Sign_By_Dr_2.Click += new System.EventHandler(this.button_Sign_By_Dr_2_Click);
@@ -599,6 +602,7 @@
             this.button_Sign_By_Dr_1.Name = "button_Sign_By_Dr_1";
             this.button_Sign_By_Dr_1.Size = new System.Drawing.Size(44, 31);
             this.button_Sign_By_Dr_1.TabIndex = 249;
+            this.button_Sign_By_Dr_1.TabStop = false;
             this.button_Sign_By_Dr_1.Text = "Dr.";
             this.button_Sign_By_Dr_1.UseVisualStyleBackColor = true;
             this.button_Sign_By_Dr_1.Click += new System.EventHandler(this.button_Sign_By_Dr_1_Click);
@@ -613,7 +617,7 @@
             this.comboBox_Sign_By_Dr_2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Sign_By_Dr_2.Name = "comboBox_Sign_By_Dr_2";
             this.comboBox_Sign_By_Dr_2.Size = new System.Drawing.Size(179, 30);
-            this.comboBox_Sign_By_Dr_2.TabIndex = 252;
+            this.comboBox_Sign_By_Dr_2.TabIndex = 22;
             this.comboBox_Sign_By_Dr_2.ValueMember = "doctor";
             this.comboBox_Sign_By_Dr_2.TextChanged += new System.EventHandler(this.comboBox_Sign_By_Dr_2_TextChanged);
             this.comboBox_Sign_By_Dr_2.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_Sign_By_Dr_2_PreviewKeyDown);
@@ -628,7 +632,7 @@
             this.comboBox_Sign_By_Dr_1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Sign_By_Dr_1.Name = "comboBox_Sign_By_Dr_1";
             this.comboBox_Sign_By_Dr_1.Size = new System.Drawing.Size(179, 30);
-            this.comboBox_Sign_By_Dr_1.TabIndex = 251;
+            this.comboBox_Sign_By_Dr_1.TabIndex = 21;
             this.comboBox_Sign_By_Dr_1.ValueMember = "doctor";
             this.comboBox_Sign_By_Dr_1.TextChanged += new System.EventHandler(this.comboBox_Sign_By_Dr_1_TextChanged);
             this.comboBox_Sign_By_Dr_1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_Sign_By_Dr_1_PreviewKeyDown);
@@ -643,6 +647,7 @@
             this.button_Rpt_Date_Tick.Name = "button_Rpt_Date_Tick";
             this.button_Rpt_Date_Tick.Size = new System.Drawing.Size(39, 31);
             this.button_Rpt_Date_Tick.TabIndex = 250;
+            this.button_Rpt_Date_Tick.TabStop = false;
             this.button_Rpt_Date_Tick.UseVisualStyleBackColor = true;
             this.button_Rpt_Date_Tick.Click += new System.EventHandler(this.button_Rpt_Date_Tick_Click);
             // 
@@ -658,6 +663,7 @@
             this.checkBox_Uploaded.Name = "checkBox_Uploaded";
             this.checkBox_Uploaded.Size = new System.Drawing.Size(18, 17);
             this.checkBox_Uploaded.TabIndex = 248;
+            this.checkBox_Uploaded.TabStop = false;
             this.checkBox_Uploaded.UseVisualStyleBackColor = false;
             // 
             // checkBox_P_C
@@ -671,6 +677,7 @@
             this.checkBox_P_C.Name = "checkBox_P_C";
             this.checkBox_P_C.Size = new System.Drawing.Size(55, 22);
             this.checkBox_P_C.TabIndex = 247;
+            this.checkBox_P_C.TabStop = false;
             this.checkBox_P_C.Text = "P C";
             this.checkBox_P_C.UseVisualStyleBackColor = false;
             // 
@@ -683,6 +690,7 @@
             this.button_F4_Nature.Name = "button_F4_Nature";
             this.button_F4_Nature.Size = new System.Drawing.Size(123, 25);
             this.button_F4_Nature.TabIndex = 245;
+            this.button_F4_Nature.TabStop = false;
             this.button_F4_Nature.Text = "F4:  Nature";
             this.button_F4_Nature.UseVisualStyleBackColor = true;
             this.button_F4_Nature.Click += new System.EventHandler(this.button_F4_Nature_Click);
@@ -721,7 +729,7 @@
             this.textBox_HKID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_HKID.Name = "textBox_HKID";
             this.textBox_HKID.Size = new System.Drawing.Size(239, 30);
-            this.textBox_HKID.TabIndex = 241;
+            this.textBox_HKID.TabIndex = 6;
             // 
             // label_M_F
             // 
@@ -744,7 +752,7 @@
             this.textBox_Sex.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Sex.Name = "textBox_Sex";
             this.textBox_Sex.Size = new System.Drawing.Size(32, 30);
-            this.textBox_Sex.TabIndex = 238;
+            this.textBox_Sex.TabIndex = 9;
             // 
             // textBox_Age
             // 
@@ -754,7 +762,7 @@
             this.textBox_Age.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Age.Name = "textBox_Age";
             this.textBox_Age.Size = new System.Drawing.Size(83, 30);
-            this.textBox_Age.TabIndex = 237;
+            this.textBox_Age.TabIndex = 8;
             this.textBox_Age.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label_Age
@@ -778,7 +786,7 @@
             this.textBox_Chinese_Name.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Chinese_Name.Name = "textBox_Chinese_Name";
             this.textBox_Chinese_Name.Size = new System.Drawing.Size(137, 30);
-            this.textBox_Chinese_Name.TabIndex = 234;
+            this.textBox_Chinese_Name.TabIndex = 5;
             // 
             // textBox_PatSeq
             // 
@@ -789,6 +797,7 @@
             this.textBox_PatSeq.Name = "textBox_PatSeq";
             this.textBox_PatSeq.Size = new System.Drawing.Size(55, 30);
             this.textBox_PatSeq.TabIndex = 232;
+            this.textBox_PatSeq.TabStop = false;
             // 
             // comboBox_Ethnic
             // 
@@ -802,7 +811,7 @@
             this.comboBox_Ethnic.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Ethnic.Name = "comboBox_Ethnic";
             this.comboBox_Ethnic.Size = new System.Drawing.Size(179, 30);
-            this.comboBox_Ethnic.TabIndex = 230;
+            this.comboBox_Ethnic.TabIndex = 2;
             this.comboBox_Ethnic.ValueMember = "PEOPLE";
             // 
             // label_Ethnic
@@ -854,6 +863,7 @@
             this.button_Printed.Name = "button_Printed";
             this.button_Printed.Size = new System.Drawing.Size(131, 26);
             this.button_Printed.TabIndex = 225;
+            this.button_Printed.TabStop = false;
             this.button_Printed.Text = "Printed : 0";
             this.button_Printed.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.button_Printed.UseVisualStyleBackColor = true;
@@ -948,6 +958,7 @@
             this.button_Delete.Name = "button_Delete";
             this.button_Delete.Size = new System.Drawing.Size(85, 50);
             this.button_Delete.TabIndex = 218;
+            this.button_Delete.TabStop = false;
             this.button_Delete.Text = "Delete";
             this.button_Delete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Delete.UseVisualStyleBackColor = true;
@@ -964,6 +975,7 @@
             this.button_End.Name = "button_End";
             this.button_End.Size = new System.Drawing.Size(77, 52);
             this.button_End.TabIndex = 217;
+            this.button_End.TabStop = false;
             this.button_End.Text = "End";
             this.button_End.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_End.UseVisualStyleBackColor = true;
@@ -980,6 +992,7 @@
             this.button_Next.Name = "button_Next";
             this.button_Next.Size = new System.Drawing.Size(77, 52);
             this.button_Next.TabIndex = 216;
+            this.button_Next.TabStop = false;
             this.button_Next.Text = "Next";
             this.button_Next.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Next.UseVisualStyleBackColor = true;
@@ -996,6 +1009,7 @@
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(77, 52);
             this.button_Back.TabIndex = 215;
+            this.button_Back.TabStop = false;
             this.button_Back.Text = "Back";
             this.button_Back.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Back.UseVisualStyleBackColor = true;
@@ -1012,6 +1026,7 @@
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(73, 50);
             this.button_Save.TabIndex = 214;
+            this.button_Save.TabStop = false;
             this.button_Save.Text = "Save";
             this.button_Save.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Save.UseVisualStyleBackColor = true;
@@ -1028,6 +1043,7 @@
             this.button_New.Name = "button_New";
             this.button_New.Size = new System.Drawing.Size(73, 50);
             this.button_New.TabIndex = 213;
+            this.button_New.TabStop = false;
             this.button_New.Text = "New";
             this.button_New.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_New.UseVisualStyleBackColor = true;
@@ -1044,6 +1060,7 @@
             this.button_Edit.Name = "button_Edit";
             this.button_Edit.Size = new System.Drawing.Size(73, 50);
             this.button_Edit.TabIndex = 212;
+            this.button_Edit.TabStop = false;
             this.button_Edit.Text = "Edit";
             this.button_Edit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Edit.UseVisualStyleBackColor = true;
@@ -1060,6 +1077,7 @@
             this.button_Undo.Name = "button_Undo";
             this.button_Undo.Size = new System.Drawing.Size(80, 50);
             this.button_Undo.TabIndex = 211;
+            this.button_Undo.TabStop = false;
             this.button_Undo.Text = "Undo";
             this.button_Undo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Undo.UseVisualStyleBackColor = true;
@@ -1076,6 +1094,7 @@
             this.button_Label.Name = "button_Label";
             this.button_Label.Size = new System.Drawing.Size(80, 50);
             this.button_Label.TabIndex = 210;
+            this.button_Label.TabStop = false;
             this.button_Label.Text = "Label";
             this.button_Label.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Label.UseVisualStyleBackColor = true;
@@ -1092,6 +1111,7 @@
             this.button_Exit.Name = "button_Exit";
             this.button_Exit.Size = new System.Drawing.Size(73, 50);
             this.button_Exit.TabIndex = 209;
+            this.button_Exit.TabStop = false;
             this.button_Exit.Text = "Exit";
             this.button_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Exit.UseVisualStyleBackColor = true;
@@ -1108,6 +1128,7 @@
             this.button_Top.Name = "button_Top";
             this.button_Top.Size = new System.Drawing.Size(77, 52);
             this.button_Top.TabIndex = 208;
+            this.button_Top.TabStop = false;
             this.button_Top.Text = "Top";
             this.button_Top.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Top.UseVisualStyleBackColor = true;
@@ -1133,7 +1154,30 @@
             this.panel3.Margin = new System.Windows.Forms.Padding(4);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1299, 76);
-            this.panel3.TabIndex = 204;
+            this.panel3.TabIndex = 14;
+            // 
+            // textBox_Paid_Date
+            // 
+            this.textBox_Paid_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Paid_Date.Location = new System.Drawing.Point(1065, 38);
+            this.textBox_Paid_Date.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_Paid_Date.Mask = "00/00/0000";
+            this.textBox_Paid_Date.Name = "textBox_Paid_Date";
+            this.textBox_Paid_Date.Size = new System.Drawing.Size(156, 30);
+            this.textBox_Paid_Date.TabIndex = 5;
+            this.textBox_Paid_Date.ValidatingType = typeof(System.DateTime);
+            this.textBox_Paid_Date.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Paid_Date_Validating);
+            // 
+            // textBox_Invoice_Date
+            // 
+            this.textBox_Invoice_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Invoice_Date.Location = new System.Drawing.Point(1065, 6);
+            this.textBox_Invoice_Date.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_Invoice_Date.Mask = "00/00/0000";
+            this.textBox_Invoice_Date.Name = "textBox_Invoice_Date";
+            this.textBox_Invoice_Date.Size = new System.Drawing.Size(156, 30);
+            this.textBox_Invoice_Date.TabIndex = 2;
+            this.textBox_Invoice_Date.ValidatingType = typeof(System.DateTime);
             // 
             // label_Paid_Date
             // 
@@ -1182,7 +1226,7 @@
             this.textBox_Paid_Up.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Paid_Up.Name = "textBox_Paid_Up";
             this.textBox_Paid_Up.Size = new System.Drawing.Size(164, 28);
-            this.textBox_Paid_Up.TabIndex = 157;
+            this.textBox_Paid_Up.TabIndex = 4;
             // 
             // textBox_Ref_No_2
             // 
@@ -1192,7 +1236,7 @@
             this.textBox_Ref_No_2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Ref_No_2.Name = "textBox_Ref_No_2";
             this.textBox_Ref_No_2.Size = new System.Drawing.Size(287, 28);
-            this.textBox_Ref_No_2.TabIndex = 156;
+            this.textBox_Ref_No_2.TabIndex = 1;
             // 
             // label_Ref_No_2
             // 
@@ -1241,7 +1285,7 @@
             this.textBox_Involce_No.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Involce_No.Name = "textBox_Involce_No";
             this.textBox_Involce_No.Size = new System.Drawing.Size(323, 28);
-            this.textBox_Involce_No.TabIndex = 71;
+            this.textBox_Involce_No.TabIndex = 0;
             // 
             // textBox_Amount_HK
             // 
@@ -1251,7 +1295,7 @@
             this.textBox_Amount_HK.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Amount_HK.Name = "textBox_Amount_HK";
             this.textBox_Amount_HK.Size = new System.Drawing.Size(323, 28);
-            this.textBox_Amount_HK.TabIndex = 72;
+            this.textBox_Amount_HK.TabIndex = 3;
             // 
             // panel2
             // 
@@ -1277,7 +1321,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1299, 106);
-            this.panel2.TabIndex = 192;
+            this.panel2.TabIndex = 13;
             // 
             // textBox_Doctor_I_C_2
             // 
@@ -1287,7 +1331,7 @@
             this.textBox_Doctor_I_C_2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Doctor_I_C_2.Name = "textBox_Doctor_I_C_2";
             this.textBox_Doctor_I_C_2.Size = new System.Drawing.Size(347, 28);
-            this.textBox_Doctor_I_C_2.TabIndex = 154;
+            this.textBox_Doctor_I_C_2.TabIndex = 5;
             // 
             // button_Play
             // 
@@ -1299,6 +1343,7 @@
             this.button_Play.Name = "button_Play";
             this.button_Play.Size = new System.Drawing.Size(39, 30);
             this.button_Play.TabIndex = 153;
+            this.button_Play.TabStop = false;
             this.button_Play.UseVisualStyleBackColor = true;
             this.button_Play.Click += new System.EventHandler(this.button_Play_Click);
             // 
@@ -1312,6 +1357,7 @@
             this.textBox_Doctor_I_C_ID_1.ReadOnly = true;
             this.textBox_Doctor_I_C_ID_1.Size = new System.Drawing.Size(109, 28);
             this.textBox_Doctor_I_C_ID_1.TabIndex = 152;
+            this.textBox_Doctor_I_C_ID_1.TabStop = false;
             // 
             // button_F9
             // 
@@ -1322,6 +1368,7 @@
             this.button_F9.Name = "button_F9";
             this.button_F9.Size = new System.Drawing.Size(39, 30);
             this.button_F9.TabIndex = 151;
+            this.button_F9.TabStop = false;
             this.button_F9.Text = "F9";
             this.button_F9.UseVisualStyleBackColor = true;
             this.button_F9.Click += new System.EventHandler(this.button_F9_Click);
@@ -1334,7 +1381,7 @@
             this.textBox_Remind.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Remind.Name = "textBox_Remind";
             this.textBox_Remind.Size = new System.Drawing.Size(249, 28);
-            this.textBox_Remind.TabIndex = 150;
+            this.textBox_Remind.TabIndex = 3;
             // 
             // textBox_Ref_No
             // 
@@ -1344,7 +1391,7 @@
             this.textBox_Ref_No.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Ref_No.Name = "textBox_Ref_No";
             this.textBox_Ref_No.Size = new System.Drawing.Size(249, 28);
-            this.textBox_Ref_No.TabIndex = 149;
+            this.textBox_Ref_No.TabIndex = 1;
             // 
             // label_Remind
             // 
@@ -1381,6 +1428,7 @@
             this.button_F8.Name = "button_F8";
             this.button_F8.Size = new System.Drawing.Size(39, 28);
             this.button_F8.TabIndex = 146;
+            this.button_F8.TabStop = false;
             this.button_F8.Text = "F8";
             this.button_F8.UseVisualStyleBackColor = true;
             this.button_F8.Click += new System.EventHandler(this.button_F8_Click);
@@ -1394,6 +1442,7 @@
             this.button_F7.Name = "button_F7";
             this.button_F7.Size = new System.Drawing.Size(39, 28);
             this.button_F7.TabIndex = 145;
+            this.button_F7.TabStop = false;
             this.button_F7.Text = "F7";
             this.button_F7.UseVisualStyleBackColor = true;
             this.button_F7.Click += new System.EventHandler(this.button_F7_Click);
@@ -1445,7 +1494,7 @@
             this.textBox_Doctor_I_C.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Doctor_I_C.Name = "textBox_Doctor_I_C";
             this.textBox_Doctor_I_C.Size = new System.Drawing.Size(565, 28);
-            this.textBox_Doctor_I_C.TabIndex = 73;
+            this.textBox_Doctor_I_C.TabIndex = 4;
             // 
             // textBox_Client
             // 
@@ -1455,7 +1504,7 @@
             this.textBox_Client.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Client.Name = "textBox_Client";
             this.textBox_Client.Size = new System.Drawing.Size(724, 28);
-            this.textBox_Client.TabIndex = 71;
+            this.textBox_Client.TabIndex = 0;
             // 
             // textBox_Institute
             // 
@@ -1465,7 +1514,7 @@
             this.textBox_Institute.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Institute.Name = "textBox_Institute";
             this.textBox_Institute.Size = new System.Drawing.Size(724, 28);
-            this.textBox_Institute.TabIndex = 72;
+            this.textBox_Institute.TabIndex = 2;
             // 
             // textBox_Bed
             // 
@@ -1475,7 +1524,7 @@
             this.textBox_Bed.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Bed.Name = "textBox_Bed";
             this.textBox_Bed.Size = new System.Drawing.Size(125, 28);
-            this.textBox_Bed.TabIndex = 202;
+            this.textBox_Bed.TabIndex = 11;
             // 
             // textBox_Room
             // 
@@ -1485,7 +1534,7 @@
             this.textBox_Room.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Room.Name = "textBox_Room";
             this.textBox_Room.Size = new System.Drawing.Size(125, 28);
-            this.textBox_Room.TabIndex = 201;
+            this.textBox_Room.TabIndex = 10;
             // 
             // label_DOB
             // 
@@ -1509,6 +1558,7 @@
             this.button_F1.Name = "button_F1";
             this.button_F1.Size = new System.Drawing.Size(39, 31);
             this.button_F1.TabIndex = 198;
+            this.button_F1.TabStop = false;
             this.button_F1.Text = "F1";
             this.button_F1.UseVisualStyleBackColor = true;
             this.button_F1.Click += new System.EventHandler(this.button_F1_Click);
@@ -1521,7 +1571,7 @@
             this.textBox_Patient.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Patient.Name = "textBox_Patient";
             this.textBox_Patient.Size = new System.Drawing.Size(320, 30);
-            this.textBox_Patient.TabIndex = 197;
+            this.textBox_Patient.TabIndex = 4;
             // 
             // label_Patient
             // 
@@ -1544,7 +1594,7 @@
             this.textBox_Case_No.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Case_No.Name = "textBox_Case_No";
             this.textBox_Case_No.Size = new System.Drawing.Size(252, 34);
-            this.textBox_Case_No.TabIndex = 194;
+            this.textBox_Case_No.TabIndex = 0;
             this.textBox_Case_No.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Case_No_KeyUp);
             // 
             // label_Case_No
@@ -1671,6 +1721,7 @@
             this.button_F6_Gynaecologl_Histoy.Name = "button_F6_Gynaecologl_Histoy";
             this.button_F6_Gynaecologl_Histoy.Size = new System.Drawing.Size(353, 41);
             this.button_F6_Gynaecologl_Histoy.TabIndex = 287;
+            this.button_F6_Gynaecologl_Histoy.TabStop = false;
             this.button_F6_Gynaecologl_Histoy.Text = "F6: Gynaecologl Histoy";
             this.button_F6_Gynaecologl_Histoy.UseVisualStyleBackColor = true;
             this.button_F6_Gynaecologl_Histoy.Click += new System.EventHandler(this.button_F6_Gynaecologl_Histoy_Click);
@@ -1684,6 +1735,7 @@
             this.button_F5_CY_Diagnosis.Name = "button_F5_CY_Diagnosis";
             this.button_F5_CY_Diagnosis.Size = new System.Drawing.Size(353, 41);
             this.button_F5_CY_Diagnosis.TabIndex = 288;
+            this.button_F5_CY_Diagnosis.TabStop = false;
             this.button_F5_CY_Diagnosis.Text = "F5: CY-Diagnosis  -  NEW";
             this.button_F5_CY_Diagnosis.UseVisualStyleBackColor = true;
             this.button_F5_CY_Diagnosis.Click += new System.EventHandler(this.button_F5_CY_Diagnosis_Click);
@@ -1697,6 +1749,7 @@
             this.button_Sign_By_Dr_3.Name = "button_Sign_By_Dr_3";
             this.button_Sign_By_Dr_3.Size = new System.Drawing.Size(44, 31);
             this.button_Sign_By_Dr_3.TabIndex = 291;
+            this.button_Sign_By_Dr_3.TabStop = false;
             this.button_Sign_By_Dr_3.Text = "Dr.";
             this.button_Sign_By_Dr_3.UseVisualStyleBackColor = true;
             this.button_Sign_By_Dr_3.Click += new System.EventHandler(this.button_Sign_By_Dr_3_Click);
@@ -1711,7 +1764,7 @@
             this.comboBox_Sign_By_Dr_3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Sign_By_Dr_3.Name = "comboBox_Sign_By_Dr_3";
             this.comboBox_Sign_By_Dr_3.Size = new System.Drawing.Size(179, 30);
-            this.comboBox_Sign_By_Dr_3.TabIndex = 290;
+            this.comboBox_Sign_By_Dr_3.TabIndex = 23;
             this.comboBox_Sign_By_Dr_3.ValueMember = "doctor";
             this.comboBox_Sign_By_Dr_3.TextChanged += new System.EventHandler(this.comboBox_Sign_By_Dr_3_TextChanged);
             this.comboBox_Sign_By_Dr_3.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.comboBox_Sign_By_Dr_3_PreviewKeyDown);
@@ -1750,6 +1803,7 @@
             this.button_F2_Previous.Name = "button_F2_Previous";
             this.button_F2_Previous.Size = new System.Drawing.Size(93, 32);
             this.button_F2_Previous.TabIndex = 292;
+            this.button_F2_Previous.TabStop = false;
             this.button_F2_Previous.Text = "F2: Prev.";
             this.button_F2_Previous.UseVisualStyleBackColor = true;
             this.button_F2_Previous.Click += new System.EventHandler(this.button_F2_Previous_Click);
@@ -1764,7 +1818,7 @@
             this.textBox_Patient_s_Clinical_History.Name = "textBox_Patient_s_Clinical_History";
             this.textBox_Patient_s_Clinical_History.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Patient_s_Clinical_History.Size = new System.Drawing.Size(967, 129);
-            this.textBox_Patient_s_Clinical_History.TabIndex = 294;
+            this.textBox_Patient_s_Clinical_History.TabIndex = 12;
             // 
             // textBox_Remarks
             // 
@@ -1776,7 +1830,7 @@
             this.textBox_Remarks.Name = "textBox_Remarks";
             this.textBox_Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Remarks.Size = new System.Drawing.Size(804, 119);
-            this.textBox_Remarks.TabIndex = 295;
+            this.textBox_Remarks.TabIndex = 25;
             // 
             // textBox_Nature
             // 
@@ -1855,7 +1909,7 @@
             this.textBox_Date.Mask = "00/00/0000";
             this.textBox_Date.Name = "textBox_Date";
             this.textBox_Date.Size = new System.Drawing.Size(156, 30);
-            this.textBox_Date.TabIndex = 257;
+            this.textBox_Date.TabIndex = 1;
             this.textBox_Date.ValidatingType = typeof(System.DateTime);
             this.textBox_Date.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.textBox_Date_MaskInputRejected);
             // 
@@ -1867,7 +1921,7 @@
             this.textBox_DOB.Mask = "00/00/0000";
             this.textBox_DOB.Name = "textBox_DOB";
             this.textBox_DOB.Size = new System.Drawing.Size(156, 30);
-            this.textBox_DOB.TabIndex = 341;
+            this.textBox_DOB.TabIndex = 7;
             this.textBox_DOB.ValidatingType = typeof(System.DateTime);
             this.textBox_DOB.TypeValidationCompleted += new System.Windows.Forms.TypeValidationEventHandler(this.textBox_DOB_TypeValidationCompleted);
             // 
@@ -1880,30 +1934,8 @@
             this.textBox_Rpt_Date.Name = "textBox_Rpt_Date";
             this.textBox_Rpt_Date.Size = new System.Drawing.Size(131, 30);
             this.textBox_Rpt_Date.TabIndex = 342;
+            this.textBox_Rpt_Date.TabStop = false;
             this.textBox_Rpt_Date.ValidatingType = typeof(System.DateTime);
-            // 
-            // textBox_Paid_Date
-            // 
-            this.textBox_Paid_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Paid_Date.Location = new System.Drawing.Point(1065, 38);
-            this.textBox_Paid_Date.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox_Paid_Date.Mask = "00/00/0000";
-            this.textBox_Paid_Date.Name = "textBox_Paid_Date";
-            this.textBox_Paid_Date.Size = new System.Drawing.Size(156, 30);
-            this.textBox_Paid_Date.TabIndex = 344;
-            this.textBox_Paid_Date.ValidatingType = typeof(System.DateTime);
-            this.textBox_Paid_Date.Validating += new System.ComponentModel.CancelEventHandler(this.textBox_Paid_Date_Validating);
-            // 
-            // textBox_Invoice_Date
-            // 
-            this.textBox_Invoice_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Invoice_Date.Location = new System.Drawing.Point(1065, 6);
-            this.textBox_Invoice_Date.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox_Invoice_Date.Mask = "00/00/0000";
-            this.textBox_Invoice_Date.Name = "textBox_Invoice_Date";
-            this.textBox_Invoice_Date.Size = new System.Drawing.Size(156, 30);
-            this.textBox_Invoice_Date.TabIndex = 343;
-            this.textBox_Invoice_Date.ValidatingType = typeof(System.DateTime);
             // 
             // Form_CYTOLOGYFileGyname
             // 

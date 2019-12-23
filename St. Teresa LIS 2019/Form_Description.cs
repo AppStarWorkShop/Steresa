@@ -47,6 +47,9 @@ namespace St.Teresa_LIS_2019
         private Boolean readOnly = false;
         private int currentNevigateMode = NevigateMode.MODE_GROUP;
 
+        private bool isMacroDescChange = false;
+        private bool isMircoDescChange = false;
+
         public static class NevigateMode
         {
             public const int MODE_GROUP = 1;
@@ -189,7 +192,7 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
-        public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewRecord, DataSet existDataSet = null)
+        /*public Form_Description(string caseNo, string bxcy_id, int status, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, string patientName, string patientHKID, bool isNewRecord, DataSet existDataSet = null)
         {
             this.caseNo = caseNo;
             this.bxcy_id = bxcy_id;
@@ -232,13 +235,6 @@ namespace St.Teresa_LIS_2019
 
                     currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
                     currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
-
-                    /*string groupSql = string.Format("SELECT ISNULL(max([group]),0) as maxGroup FROM [bxcy_diag] WHERE case_no='{0}'", caseNo);
-                    DataSet groupDataSet1 = new DataSet();
-                    SqlDataAdapter groupDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(groupSql, groupDataSet1, "bxcy_diag");
-
-                    DataTable groupDt = groupDataSet1.Tables["bxcy_diag"];
-                    string strMaxGroup = groupDt.Rows[0]["maxGroup"].ToString();*/
                     //currentEditRow["group"] = (Convert.ToInt32(strMaxGroup) + 1).ToString();
                     currentEditRow["group"] = "1";
 
@@ -248,9 +244,9 @@ namespace St.Teresa_LIS_2019
                     bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
                 }
             }
-        }
+        }*/
 
-        public Form_Description(string caseNo, string bxcy_id, int status, string patientName, string patientHKID, bool isNewRecord, DataSet bxcySpecimentDataSet, DataSet existDataSet = null)
+        public Form_Description(string caseNo, string bxcy_id, int status, string patientName, string patientHKID, bool isNewRecord, DataSet bxcySpecimentDataSet, DataSet existDataSet = null, SqlDataAdapter existDiagDataAdapter = null)
         {
             this.caseNo = caseNo;
             this.bxcy_id = bxcy_id;
@@ -269,16 +265,16 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (existDataSet != null)
+                if (existDataSet != null && existDiagDataAdapter != null)
                 {
-                    reloadAndBindingDBDataWithExistDataSet(existDataSet);
+                    reloadAndBindingDBDataWithExistDataSet(existDataSet, existDiagDataAdapter);
                 }
                 else
                 {
                     reloadAndBindingDBData();
                 }
 
-                if (currentStatus == PageStatus.STATUS_NEW && existDataSet == null)
+                if (currentStatus == PageStatus.STATUS_NEW && existDataSet == null && existDiagDataAdapter == null)
                 {
                     isSameGroupNewRecord = false;
 
@@ -645,10 +641,11 @@ namespace St.Teresa_LIS_2019
             reloadAndBindingDBData();*/
         }
 
-        private void reloadAndBindingDBDataWithExistDataSet(DataSet existBxcy_diagDataSet)
+        private void reloadAndBindingDBDataWithExistDataSet(DataSet existBxcy_diagDataSet, SqlDataAdapter existBxcy_diagDataAdapter)
         {
             currentNevigateMode = NevigateMode.MODE_GROUP;
             bxcy_diagDataSet = existBxcy_diagDataSet;
+            dataAdapter = existBxcy_diagDataAdapter;
 
             dt = bxcy_diagDataSet.Tables["bxcy_diag"];
             dt.PrimaryKey = new DataColumn[] { dt.Columns["id"] };
@@ -1681,7 +1678,7 @@ namespace St.Teresa_LIS_2019
             }
 
             var maxGroupFromProgFromDB = (from p in dt.AsEnumerable()
-                                          where p.Field<string>("case_no") == caseNo
+                                          //where p.Field<string>("case_no") == caseNo
                                           select p.Field<string>("group")).Max();
 
             int intMaxGroupFromProg = 0;
@@ -2391,7 +2388,7 @@ namespace St.Teresa_LIS_2019
             {
                 var countList = from p in dt.AsEnumerable()
                                  where p.Field<string>("group") == textBox_Parts.Text.Trim()
-                                 && p.Field<string>("case_no") == caseNo
+                                 //&& p.Field<string>("case_no") == caseNo
                                  select p;
                 if (countList.Count() == 1)
                 {
@@ -2473,8 +2470,8 @@ namespace St.Teresa_LIS_2019
                 currentEditRow["group"] = textBox_Parts.Text.Trim();
 
                 var maxDiagnosisIdFromProg = (from p in dt.AsEnumerable()
-                                              where p.Field<string>("case_no") == caseNo
-                                                  && p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                              //where p.Field<string>("case_no") == caseNo
+                                              where p.Field<string>("group") == textBox_Parts.Text.Trim()
                                               select p.Field<int>("diagnosisId")).Max();
 
                 int maxDiagnosisFromProg = Convert.ToInt32(maxDiagnosisIdFromProg);
@@ -3060,8 +3057,8 @@ namespace St.Teresa_LIS_2019
             int maxDiagnosisFromProg = 0;
 
             var maxDiagnosisIdFromProg = (from p in dt.AsEnumerable()
-                                    where p.Field<string>("case_no") == caseNo
-                                        && p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                              //where p.Field<string>("case_no") == caseNo
+                                        where p.Field<string>("group") == textBox_Parts.Text.Trim()
                                         select p.Field<int>("diagnosisId")).Max();
 
             maxDiagnosisFromProg = Convert.ToInt32(maxDiagnosisIdFromProg);
@@ -3099,7 +3096,7 @@ namespace St.Teresa_LIS_2019
         {
             var changeList = from p in dt.AsEnumerable()
                              where p.Field<string>("group") == textBox_Parts.Text.Trim()
-                             && p.Field<string>("case_no") == caseNo
+                             //&& p.Field<string>("case_no") == caseNo
                              select p;
             if (changeList.Any())
             {
@@ -3133,29 +3130,39 @@ namespace St.Teresa_LIS_2019
 
         private void textBox_Remarks_TextChanged(object sender, EventArgs e)
         {
-            var changeList = from p in dt.AsEnumerable()
-                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
-                             && p.Field<string>("case_no") == caseNo
-                             && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
-                             select p;
-
-            foreach (DataRow dr in changeList)
+            if (isMacroDescChange)
             {
-                dr["macro_desc"] = textBox_Remarks.Text.Trim();
+                isMacroDescChange = false;
+                Console.WriteLine("Sync the macro desc");
+                var changeList = from p in dt.AsEnumerable()
+                                 where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                 //&& p.Field<string>("case_no") == caseNo
+                                 && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
+                                 select p;
+
+                foreach (DataRow dr in changeList)
+                {
+                    dr["macro_desc"] = textBox_Remarks.Text.Trim();
+                }
             }
         }
 
         private void textBox_Remarks_CY_TextChanged(object sender, EventArgs e)
         {
-            var changeList = from p in dt.AsEnumerable()
-                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
-                             && p.Field<string>("case_no") == caseNo
-                             && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
-                             select p;
-
-            foreach (DataRow dr in changeList)
+            if (isMircoDescChange)
             {
-                dr["micro_desc"] = textBox_Remarks_CY.Text.Trim();
+                isMircoDescChange = false;
+                Console.WriteLine("Sync the mirco desc");
+                var changeList = from p in dt.AsEnumerable()
+                                 where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                 //&& p.Field<string>("case_no") == caseNo
+                                 && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
+                                 select p;
+
+                foreach (DataRow dr in changeList)
+                {
+                    dr["micro_desc"] = textBox_Remarks_CY.Text.Trim();
+                }
             }
         }
 
@@ -3163,7 +3170,7 @@ namespace St.Teresa_LIS_2019
         {
             var changeList = from p in dt.AsEnumerable()
                              where p.Field<string>("group") == textBox_Parts.Text.Trim()
-                             && p.Field<string>("case_no") == caseNo
+                             //&& p.Field<string>("case_no") == caseNo
                              && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
                              select p;
 
@@ -3177,7 +3184,7 @@ namespace St.Teresa_LIS_2019
         {
             var changeList = from p in dt.AsEnumerable()
                              where p.Field<string>("group") == textBox_Parts.Text.Trim()
-                             && p.Field<string>("case_no") == caseNo
+                             //&& p.Field<string>("case_no") == caseNo
                              && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
                              select p;
 
@@ -3219,7 +3226,7 @@ namespace St.Teresa_LIS_2019
             string newGroup;
 
             var maxGroupFromProg = (from p in dt.AsEnumerable()
-                             where p.Field<string>("case_no") == caseNo
+                             //where p.Field<string>("case_no") == caseNo
                              select p.Field<string>("group")).Max();
 
             int intMaxGroupFromProg = Convert.ToInt32(maxGroupFromProg);
@@ -3243,7 +3250,7 @@ namespace St.Teresa_LIS_2019
 
             var varGroupList = from p in dt.AsEnumerable()
                              where p.Field<string>("group") == textBox_Parts.Text.Trim()
-                             && p.Field<string>("case_no") == caseNo
+                             //&& p.Field<string>("case_no") == caseNo
                              select p;
 
             List<DataRow> groupList = varGroupList.ToList();
@@ -3408,6 +3415,16 @@ namespace St.Teresa_LIS_2019
             r2.X = r1.Width + 1;
             r2.Width = r2.Width / 2;
             e.Graphics.DrawString(desc, e.Font, sb, r2);
+        }
+
+        private void textBox_Remarks_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            isMacroDescChange = true;
+        }
+
+        private void textBox_Remarks_CY_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            isMircoDescChange = true;
         }
 
         private void comboBox_Diagnosis_1_DrawItem(object sender, DrawItemEventArgs e)
