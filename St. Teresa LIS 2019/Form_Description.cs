@@ -1564,8 +1564,8 @@ namespace St.Teresa_LIS_2019
             }*/
 
             var minGroupFromProg = (from p in dt.AsEnumerable()
-                                    select p.Field<string>("group")).Min();
-
+                                    where p.Field<string>("group").CompareTo(textBox_Parts.Text.Trim()) == -1
+                                    select p.Field<string>("group")).Max();
             if (minGroupFromProg != null)
             {
                 string strMinGroupFromProg = Convert.ToString(minGroupFromProg);
@@ -1573,7 +1573,6 @@ namespace St.Teresa_LIS_2019
                 DataRow dr = dt.Select("group=" + strMinGroupFromProg)[0];
                 currencyManager.Position = dt.Rows.IndexOf(dr);
             }
-
         }
 
         private void button_Top_Click(object sender, EventArgs e)

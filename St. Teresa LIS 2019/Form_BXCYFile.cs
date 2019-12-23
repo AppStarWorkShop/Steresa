@@ -1277,7 +1277,7 @@ namespace St.Teresa_LIS_2019
                                     foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
                                     {
                                         dr["barcode"] = dr["case_no"].ToString().Trim().Replace("/", "") + dr["group"].ToString().Trim();
-                                        dr["case_no"] = textBox_Case_No.Text.Trim();
+                                        dr["case_no"] = currentCaseNo;
                                     }
 
                                     if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
