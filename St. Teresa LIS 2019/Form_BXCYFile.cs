@@ -3436,7 +3436,7 @@ namespace St.Teresa_LIS_2019
                               select p;
                 foreach (DataRow dr in varList)
                 {
-                    string rowMessage = string.Format("Group:{0}, diagnosis:{1}, macroDesc:{2}, microDesc:{3}", dr["group"], dr["diagnosisId"], dr["macro_desc"], dr["micro_desc"]);
+                    string rowMessage = string.Format("Group:{0}, diagnosis:{1}, macroDesc:{2}, microDesc:{3}, report_status{4}", dr["group"], dr["diagnosisId"], dr["macro_desc"], dr["micro_desc"], dr["report_status"]);
                     Console.WriteLine(rowMessage);
                 }
             }

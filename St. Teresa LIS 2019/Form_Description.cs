@@ -284,6 +284,7 @@ namespace St.Teresa_LIS_2019
 
                     currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
                     currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
+                    currentEditRow["report_status"] = "final F";
 
                     currentEditRow["group"] = "1";
 
@@ -1700,6 +1701,7 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
             currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
+            currentEditRow["report_status"] = "final F";
 
             //bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
@@ -3106,6 +3108,7 @@ namespace St.Teresa_LIS_2019
                 currentEditRow["macro_desc"] = dr["macro_desc"].ToString().Trim();
                 currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
                 currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
+                currentEditRow["report_status"] = dr["report_status"].ToString().Trim();
             }
             else
             {
@@ -3123,6 +3126,7 @@ namespace St.Teresa_LIS_2019
                         currentEditRow["macro_desc"] = mDr["macro_desc"].ToString().Trim();
                         currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
                         currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
+                        currentEditRow["report_status"] = mDr["report_status"].ToString().Trim();
                     }
                 }
             }
@@ -3425,6 +3429,19 @@ namespace St.Teresa_LIS_2019
         private void textBox_Remarks_CY_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             isMircoDescChange = true;
+        }
+
+        private void comboBox_Report_Status_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var changeList = from p in dt.AsEnumerable()
+                             where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                             && p.Field<int>("diagnosisId") != int.Parse(textBox_DiagnosisNo.Text.Trim())
+                             select p;
+
+            foreach (DataRow dr in changeList)
+            {
+                dr["report_status"] = comboBox_Report_Status.SelectedValue.ToString().Trim();
+            }
         }
 
         private void comboBox_Diagnosis_1_DrawItem(object sender, DrawItemEventArgs e)

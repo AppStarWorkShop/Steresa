@@ -336,7 +336,7 @@ namespace St.Teresa_LIS_2019
         {
             bool isNewRecord = currentStatus == PageStatus.STATUS_NEW ? true : false;
             //Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord, existDiagDataSet);
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet);
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet, existDiagDataAdapter);
             open.OnBxcyDiagExit += OnStatusReturn;
             //open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
             if (currentStatus != PageStatus.STATUS_EDIT)
@@ -489,7 +489,7 @@ namespace St.Teresa_LIS_2019
                                     foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
                                     {
                                         dr["barcode"] = dr["case_no"].ToString().Trim().Replace("/", "") + dr["group"].ToString().Trim();
-                                        dr["case_no"] = textBox_Case_No.Text.Trim();
+                                        dr["case_no"] = currentCaseNo;
                                     }
 
                                     if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
@@ -517,8 +517,9 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (currentStatus == PageStatus.STATUS_EDIT)
+                if (currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT)
                 {
+                    string currentCaseNo = textBox_Case_No.Text.Trim();
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
@@ -530,6 +531,14 @@ namespace St.Teresa_LIS_2019
                         bool diagUpdateResult = false;
                         if (existDiagDataAdapter != null && existDiagDataSet != null)
                         {
+                            foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
+                            {
+                                if (dr["case_no"] == null || dr["case_no"].ToString() == "")
+                                {
+                                    dr["case_no"] = currentCaseNo;
+                                }
+                            }
+
                             if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
                             {
                                 diagUpdateResult = true;

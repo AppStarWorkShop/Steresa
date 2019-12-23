@@ -355,7 +355,7 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (currentStatus == PageStatus.STATUS_EDIT)
+                if (currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT)
                 {
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
