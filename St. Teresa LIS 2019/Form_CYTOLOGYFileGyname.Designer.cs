@@ -297,6 +297,7 @@
             this.panel_Update.Controls.Add(this.textBox_Updated_By_2);
             this.panel_Update.Controls.Add(this.textBox_Updated_By_1);
             this.panel_Update.Controls.Add(this.label_Updated_By);
+            this.panel_Update.Controls.Add(this.textBox_Nature);
             this.panel_Update.Location = new System.Drawing.Point(1041, 0);
             this.panel_Update.Margin = new System.Windows.Forms.Padding(4);
             this.panel_Update.Name = "panel_Update";
@@ -1834,7 +1835,7 @@
             // 
             // textBox_Nature
             // 
-            this.textBox_Nature.Location = new System.Drawing.Point(1364, 148);
+            this.textBox_Nature.Location = new System.Drawing.Point(276, 39);
             this.textBox_Nature.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_Nature.Name = "textBox_Nature";
             this.textBox_Nature.Size = new System.Drawing.Size(21, 25);
@@ -1942,7 +1943,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(204)))), ((int)(((byte)(171)))));
-            this.ClientSize = new System.Drawing.Size(1347, 838);
+            this.ClientSize = new System.Drawing.Size(1357, 838);
             this.Controls.Add(this.textBox_Rpt_Date);
             this.Controls.Add(this.textBox_DOB);
             this.Controls.Add(this.textBox_Date);
@@ -1955,7 +1956,6 @@
             this.Controls.Add(this.label_Uploaded_At);
             this.Controls.Add(this.button_Printed);
             this.Controls.Add(this.label_Printed);
-            this.Controls.Add(this.textBox_Nature);
             this.Controls.Add(this.textBox_Remarks);
             this.Controls.Add(this.textBox_Patient_s_Clinical_History);
             this.Controls.Add(this.pictureBox_Has_Previous);

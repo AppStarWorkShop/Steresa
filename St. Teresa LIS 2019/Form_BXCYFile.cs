@@ -2238,7 +2238,7 @@ namespace St.Teresa_LIS_2019
             button_Exit.Image = Image.FromFile("Resources/exit.png");
             button_Exit.ForeColor = Color.Black;
         }
-
+        /*
         private void jumpReverse()
         {
             Boolean notJumped = true;
@@ -2356,8 +2356,6 @@ namespace St.Teresa_LIS_2019
                     notJumped = false;
                 }
             }
-
-            // second part 
 
             if (notJumped)
             {
@@ -2624,8 +2622,6 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part 
-
             if (notJumped)
             {
                 if (textBox_Ref_No.Focused)
@@ -2769,7 +2765,7 @@ namespace St.Teresa_LIS_2019
                     notJumped = false;
                 }
             }
-        }
+        }*/
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -3449,6 +3445,41 @@ namespace St.Teresa_LIS_2019
                     Console.WriteLine(rowMessage);
                 }
                 
+            }
+        }
+
+        private void label_New_Record_Click(object sender, EventArgs e)
+        {
+            if (existDiagDataAdapter == null)
+            {
+                Console.WriteLine("Null dataAdapter");
+            }
+
+            if (existDiagDataSet == null)
+            {
+                Console.WriteLine("Null existDiagDataSet");
+            }
+
+            if (existDiagDataAdapter != null && existDiagDataSet != null)
+            {
+                var varList = from p in existDiagDataSet.Tables["bxcy_diag"].AsEnumerable()
+                              orderby p.Field<string>("group") ascending, p.Field<int>("diagnosisId") ascending
+                              select p;
+                foreach (DataRow dr in varList)
+                {
+                    string rowMessage = string.Format("Group:{0}, diagnosis:{1}, macroDesc:{2}, microDesc:{3}, report_status{4}", dr["group"], dr["diagnosisId"], dr["macro_desc"], dr["micro_desc"], dr["report_status"]);
+                    Console.WriteLine(rowMessage);
+                }
+            }
+
+            if (bxcy_specimenDataSet != null)
+            {
+                foreach (DataRow dr in bxcy_specimenDataSet.Tables["BXCY_SPECIMEN"].Rows)
+                {
+                    string rowMessage = string.Format("Case No.:{0}", dr["case_no"]);
+                    Console.WriteLine(rowMessage);
+                }
+
             }
         }
     }

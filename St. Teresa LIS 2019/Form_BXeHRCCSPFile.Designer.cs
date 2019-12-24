@@ -289,6 +289,7 @@
             this.panel_Update.Controls.Add(this.textBox_Updated_By_2);
             this.panel_Update.Controls.Add(this.textBox_Updated_By_1);
             this.panel_Update.Controls.Add(this.label_Updated_By);
+            this.panel_Update.Controls.Add(this.textBox_ID);
             this.panel_Update.Location = new System.Drawing.Point(1043, 1);
             this.panel_Update.Margin = new System.Windows.Forms.Padding(4);
             this.panel_Update.Name = "panel_Update";
@@ -1792,10 +1793,10 @@
             // 
             // textBox_ID
             // 
-            this.textBox_ID.Location = new System.Drawing.Point(1435, 16);
+            this.textBox_ID.Location = new System.Drawing.Point(269, 34);
             this.textBox_ID.Margin = new System.Windows.Forms.Padding(4);
             this.textBox_ID.Name = "textBox_ID";
-            this.textBox_ID.Size = new System.Drawing.Size(24, 25);
+            this.textBox_ID.Size = new System.Drawing.Size(16, 25);
             this.textBox_ID.TabIndex = 337;
             // 
             // label_Printed
@@ -1900,7 +1901,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(210)))), ((int)(((byte)(232)))));
-            this.ClientSize = new System.Drawing.Size(1345, 838);
+            this.ClientSize = new System.Drawing.Size(1356, 838);
             this.Controls.Add(this.textBox_Rpt_Date);
             this.Controls.Add(this.textBox_Date);
             this.Controls.Add(this.textBox_DOB);
@@ -1913,7 +1914,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button_Printed);
             this.Controls.Add(this.label_Printed);
-            this.Controls.Add(this.textBox_ID);
             this.Controls.Add(this.textBox_Uploaded_Date_Time);
             this.Controls.Add(this.label_Uploaded_Date_Time);
             this.Controls.Add(this.label_Type);

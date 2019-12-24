@@ -702,7 +702,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
-            textBox_specimenID.DataBindings.Clear();
+            //textBox_specimenID.DataBindings.Clear();
 
             comboBox_Report_Status.DataBindings.Clear();
 
@@ -1125,7 +1125,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
-            textBox_specimenID.DataBindings.Clear();
+            //textBox_specimenID.DataBindings.Clear();
 
             comboBox_Report_Status.DataBindings.Clear();
 

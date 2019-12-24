@@ -895,7 +895,7 @@ namespace St.Teresa_LIS_2019
             return base.ProcessDialogKey(keyData);
         }
 
-        private void jumpReverse()
+        /*private void jumpReverse()
         {
             Boolean notJumped = true;
 
@@ -1460,7 +1460,7 @@ namespace St.Teresa_LIS_2019
                     notJumped = false;
                 }
             }
-        }
+        }*/
 
         private void button_Advance_Click(object sender, EventArgs e)
         {
