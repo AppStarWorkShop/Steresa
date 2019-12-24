@@ -266,4 +266,25 @@ namespace St.Teresa_LIS_2019
             return str.Replace("'", "''");
         }
     }
+
+    public static class ReportStatus
+    {
+        public const String STATUS_FINAL = "Final";
+        public const String STATUS_SUPPLEMENTARY = "Supplementary";
+        public const String STATUS_AMENDMENT = "Amendment";
+        public const String STATUS_PROVISIONAL = "Provisional";
+        public const String STATUS_UNSPECIFIED = "Unspecified";
+
+        public static String[] getAllStatus()
+        {
+            List<String> list = new List<String>();
+            list.Add(STATUS_FINAL);
+            list.Add(STATUS_SUPPLEMENTARY);
+            list.Add(STATUS_AMENDMENT);
+            list.Add(STATUS_PROVISIONAL);
+            list.Add(STATUS_UNSPECIFIED);
+            return list.ToArray();
+
+        }
+    }
 }

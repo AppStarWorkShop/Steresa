@@ -315,7 +315,7 @@ namespace St.Teresa_LIS_2019
                     backStatus = PageStatus.STATUS_EDIT;
                 }
                 OnBxcyDiagExit(backStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, readOnly);
-                
+
             }
             this.Close();
         }
@@ -441,7 +441,7 @@ namespace St.Teresa_LIS_2019
                     // do nothing
                     break;
             }
-            
+
 
         }
 
@@ -702,17 +702,17 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
-            //textBox_specimenID.DataBindings.Clear();
+            textBox_specimenID.DataBindings.Clear();
 
             comboBox_Report_Status.DataBindings.Clear();
 
             DataTable reportStatusDt = new DataTable();
             reportStatusDt.Columns.Add("reportStatus");
-            reportStatusDt.Rows.Add(new object[] { "final F" });
-            reportStatusDt.Rows.Add(new object[] { "supplementary S" });
-            reportStatusDt.Rows.Add(new object[] { "amendment A" });
-            reportStatusDt.Rows.Add(new object[] { "provisional P" });
-            reportStatusDt.Rows.Add(new object[] { "unspecified U" });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_FINAL });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_SUPPLEMENTARY });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_AMENDMENT });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_PROVISIONAL });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_UNSPECIFIED });
 
             string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
             DataSet siteDataSet = new DataSet();
@@ -1125,17 +1125,17 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
-            //textBox_specimenID.DataBindings.Clear();
+            textBox_specimenID.DataBindings.Clear();
 
             comboBox_Report_Status.DataBindings.Clear();
 
             DataTable reportStatusDt = new DataTable();
             reportStatusDt.Columns.Add("reportStatus");
-            reportStatusDt.Rows.Add(new object[] { "final F" });
-            reportStatusDt.Rows.Add(new object[] { "supplementary S" });
-            reportStatusDt.Rows.Add(new object[] { "amendment A" });
-            reportStatusDt.Rows.Add(new object[] { "provisional P" });
-            reportStatusDt.Rows.Add(new object[] { "unspecified U" });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_FINAL });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_SUPPLEMENTARY });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_AMENDMENT });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_PROVISIONAL });
+            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_UNSPECIFIED });
 
             comboBox_Report_Status.DataSource = reportStatusDt;
 
@@ -1526,7 +1526,7 @@ namespace St.Teresa_LIS_2019
                                     where p.Field<string>("group").CompareTo(textBox_Parts.Text.Trim()) == 1
                                     select p.Field<string>("group")).Min();
             if (minGroupFromProg != null)
-            { 
+            {
                 string strMinGroupFromProg = Convert.ToString(minGroupFromProg);
 
                 DataRow dr = dt.Select("group=" + strMinGroupFromProg)[0];
@@ -1592,10 +1592,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            
+
             /*string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT max([group]) FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY id", caseNo);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");*/
-            
+
 
             /*if (currentNevigateMode == NevigateMode.MODE_DIAGNOSIS)
             {
@@ -1701,7 +1701,7 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
             currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
-            currentEditRow["report_status"] = "final F";
+            currentEditRow["report_status"] = ReportStatus.STATUS_FINAL;
 
             //bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Clear();
             bxcy_diagDataSet.Tables["bxcy_diag"].Rows.Add(currentEditRow);
@@ -1953,7 +1953,7 @@ namespace St.Teresa_LIS_2019
                     button_New2.Enabled = true;
 
                     button_Save.Enabled = true;
-                    
+
                     button_F6_Edit.Enabled = false;
                     button_Delete.Enabled = true;
                     button_Label.Enabled = false;
@@ -2069,7 +2069,7 @@ namespace St.Teresa_LIS_2019
                         button_New2.Enabled = true;
 
                         button_Save.Enabled = true;
-                        
+
                         button_F6_Edit.Enabled = false;
                         button_Delete.Enabled = false;
                         button_Label.Enabled = false;
@@ -2288,12 +2288,12 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void comboBox_MIC_Add2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void comboBox_Doctor_SelectedIndexChanged(object sender, EventArgs e)
@@ -2395,7 +2395,7 @@ namespace St.Teresa_LIS_2019
                 if (countList.Count() == 1)
                 {
                     currentEditRow = countList.FirstOrDefault();
-                    /*if (currentEditRow["micro_desc"].ToString() == "" 
+                    /*if (currentEditRow["micro_desc"].ToString() == ""
                         && currentEditRow["site"].ToString() == ""
                         && currentEditRow["site2"].ToString() == ""
                         && currentEditRow["operation"].ToString() == ""
@@ -2716,7 +2716,7 @@ namespace St.Teresa_LIS_2019
             {
                 textBox_Remarks.Text = textBox_Remarks.Text + Environment.NewLine + comboBox_MAC_Add.SelectedValue.ToString();
             }
-            
+
         }
 
         private void comboBox_MIC_Add2_SelectionChangeCommitted(object sender, EventArgs e)
@@ -2729,7 +2729,7 @@ namespace St.Teresa_LIS_2019
             {
                 textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + Environment.NewLine + comboBox_MIC_Add2.SelectedValue.ToString();
             }
-            
+
         }
 
         private void comboBox_Site_SelectionChangeCommitted(object sender, EventArgs e)
@@ -3314,7 +3314,7 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_Diagnosis_1_Validated(object sender, EventArgs e)
         {
-            // added by eric 
+            // added by eric
             string test = comboBox_Diagnosis_1.Text;
             if (test != string.Empty && test != "")
             {
@@ -3540,5 +3540,5 @@ namespace St.Teresa_LIS_2019
         }
     }
 
-    
+
 }
