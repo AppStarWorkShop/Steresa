@@ -1266,6 +1266,12 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
+            if(textBox_Case_No.Text == "")
+            {
+                MessageBox.Show("Please input case no.");
+                return;
+            }
+
             if (textBox_Case_No.Text != "" && textBox_Case_No.Text.Length > 1)
             {
                 if ("CY".Equals(textBox_Case_No.Text.Substring(0, 2), StringComparison.InvariantCultureIgnoreCase))
@@ -1517,6 +1523,9 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existDiagDataSet = null;
+            existDiagDataAdapter = null;
         }
 
         public void patientNameCopy(string patientName)
@@ -1539,6 +1548,9 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existDiagDataSet = null;
+            existDiagDataAdapter = null;
         }
 
         public void hisPatientCopy(HisPatient hp)
@@ -1591,6 +1603,9 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existDiagDataSet = null;
+            existDiagDataAdapter = null;
         }
 
         public void patientCopy(string caseNo)
@@ -1640,6 +1655,9 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existDiagDataSet = null;
+            existDiagDataAdapter = null;
         }
 
         private void button_New_Click(object sender, EventArgs e)

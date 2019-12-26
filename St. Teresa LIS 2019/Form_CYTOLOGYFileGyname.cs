@@ -322,6 +322,12 @@ namespace St.Teresa_LIS_2019
 
         private void button_Save_Click(object sender, EventArgs e)
         {
+            if (textBox_Case_No.Text == "")
+            {
+                MessageBox.Show("Please input case no.");
+                return;
+            }
+
             if (currentStatus == PageStatus.STATUS_NEW)
             {
                 if (currentEditRow != null)
