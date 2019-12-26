@@ -45,6 +45,7 @@
             this.textBox_Updated_By_2 = new System.Windows.Forms.TextBox();
             this.textBox_Updated_By_1 = new System.Windows.Forms.TextBox();
             this.label_Updated_By = new System.Windows.Forms.Label();
+            this.textBox_Nature = new System.Windows.Forms.TextBox();
             this.textBox_Cytology = new System.Windows.Forms.TextBox();
             this.button_F10_Findings_and_Comments = new System.Windows.Forms.Button();
             this.comboBox_Snop_T2 = new System.Windows.Forms.ComboBox();
@@ -150,7 +151,6 @@
             this.button_F2_Previous = new System.Windows.Forms.Button();
             this.textBox_Patient_s_Clinical_History = new System.Windows.Forms.TextBox();
             this.textBox_Remarks = new System.Windows.Forms.TextBox();
-            this.textBox_Nature = new System.Windows.Forms.TextBox();
             this.label_Printed = new System.Windows.Forms.Label();
             this.label_Print_At = new System.Windows.Forms.Label();
             this.label_Print_By = new System.Windows.Forms.Label();
@@ -388,6 +388,14 @@
             this.label_Updated_By.Size = new System.Drawing.Size(95, 15);
             this.label_Updated_By.TabIndex = 0;
             this.label_Updated_By.Text = "Updated By:";
+            // 
+            // textBox_Nature
+            // 
+            this.textBox_Nature.Location = new System.Drawing.Point(276, 39);
+            this.textBox_Nature.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_Nature.Name = "textBox_Nature";
+            this.textBox_Nature.Size = new System.Drawing.Size(21, 25);
+            this.textBox_Nature.TabIndex = 297;
             // 
             // textBox_Cytology
             // 
@@ -1832,14 +1840,6 @@
             this.textBox_Remarks.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox_Remarks.Size = new System.Drawing.Size(804, 119);
             this.textBox_Remarks.TabIndex = 25;
-            // 
-            // textBox_Nature
-            // 
-            this.textBox_Nature.Location = new System.Drawing.Point(276, 39);
-            this.textBox_Nature.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox_Nature.Name = "textBox_Nature";
-            this.textBox_Nature.Size = new System.Drawing.Size(21, 25);
-            this.textBox_Nature.TabIndex = 297;
             // 
             // label_Printed
             // 

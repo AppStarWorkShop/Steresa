@@ -330,6 +330,7 @@ namespace St.Teresa_LIS_2019
                     {
                         if (!checkDuplicateCaseNo())
                         {
+                            string currentCaseNo = textBox_Case_No.Text.Trim();
                             currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
                             currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
                             currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
@@ -337,8 +338,7 @@ namespace St.Teresa_LIS_2019
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                             {
-                                //reloadDBData(currencyManager.Count - 1);
-                                reloadAndBindingDBData();
+                                reloadAndBindingDBData(0, currentCaseNo);
                                 button_End.PerformClick();
                                 //reloadAndBindingDBData(currencyManager.Count - 1);
                                 MessageBox.Show("New ebv_specimen saved");
@@ -357,26 +357,30 @@ namespace St.Teresa_LIS_2019
             {
                 if (currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT)
                 {
+                    string currentCaseNo = textBox_Case_No.Text.Trim();
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        //drow["UPDATE_BY"] = CurrentUser.currentUserId;
-                        drow["UPDATE_BY"] = CurrentUser.currentUserId;
-                        drow["UPDATE_AT"] = DateTime.Now.ToString("");
-                        textBox_ID.BindingContext[dt].Position++;
+                        if (currentStatus == PageStatus.STATUS_EDIT || !checkDuplicateCaseNoWithUpdate())
+                        {
+                            //drow["UPDATE_BY"] = CurrentUser.currentUserId;
+                            drow["UPDATE_BY"] = CurrentUser.currentUserId;
+                            drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                            textBox_ID.BindingContext[dt].Position++;
 
-                        if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
-                        {
-                            MessageBox.Show("Bxcy_specimen updated");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Bxcy_specimen updated fail, please contact Admin");
+                            if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                            {
+                                MessageBox.Show("Bxcy_specimen updated");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Bxcy_specimen updated fail, please contact Admin");
+                            }
+
+                            setButtonStatus(PageStatus.STATUS_VIEW);
+                            reloadAndBindingDBData(0, currentCaseNo);
                         }
                     }
-
-                    setButtonStatus(PageStatus.STATUS_VIEW);
-                    reloadAndBindingDBData();
                 }
             }
         }
@@ -388,6 +392,24 @@ namespace St.Teresa_LIS_2019
             DataSet checkBxcy_specimenDataSet = new DataSet();
             SqlDataAdapter checkdataAdapter;
             string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE case_no = '{0}'", textBox_Case_No.Text.Trim());
+            checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
+
+            if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+            {
+                result = true;
+                MessageBox.Show("Duplicate case no., unable to save");
+            }
+
+            return result;
+        }
+
+        public bool checkDuplicateCaseNoWithUpdate()
+        {
+            bool result = false;
+
+            DataSet checkBxcy_specimenDataSet = new DataSet();
+            SqlDataAdapter checkdataAdapter;
+            string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE case_no = '{0}' AND id <> {1}", textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim());
             checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
 
             if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
@@ -1482,13 +1504,20 @@ namespace St.Teresa_LIS_2019
             setButtonStatus(PageStatus.STATUS_VIEW);
         }
 
-        private void reloadAndBindingDBData(int position = 0)
+        private void reloadAndBindingDBData(int position = 0, string caseNo = null)
         {
             string sql = "SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no LIKE '%G' ORDER BY case_no,id";
             if (this.id != null)
             {
                 sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE id={0} AND case_no LIKE '%G' ORDER BY  case_no,id", this.id);
                 id = null;
+            }
+            else
+            {
+                if (caseNo != null)
+                {
+                    sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no='{0}' AND case_no LIKE '%G' ORDER BY  case_no,id", caseNo);
+                }
             }
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
 
@@ -1972,7 +2001,7 @@ namespace St.Teresa_LIS_2019
                         //button_F3_Surgical.Enabled = true;
                         button_F4_Nature.Enabled = true;
 
-                        textBox_Case_No.Enabled = true;
+                        textBox_Case_No.Enabled = false;
                         textBox_Date.Enabled = true;
                         comboBox_Ethnic.Enabled = true;
                         comboBox_cytoType.Enabled = true;
@@ -2030,7 +2059,7 @@ namespace St.Teresa_LIS_2019
                         button_Shif_3.Enabled = true;
                         button3.Enabled = true;
                         button_F9_3.Enabled = true;*/
-                        button_Advance.Enabled = false;
+                        button_Advance.Enabled = true;
 
                         button_Rpt_Date_Tick.Enabled = true;
                         //checkBox_Uploaded.Enabled = true;
@@ -2374,13 +2403,20 @@ namespace St.Teresa_LIS_2019
 
         private void setPreviousRecordMark()
         {
-            DataSet bxcyDataSet = new DataSet();
-            string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and id <> {1}", textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
-            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcyDataSet, "BXCY_SPECIMEN");
-
-            if (bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
+            if (textBox_ID.Text.Trim() != "")
             {
-                pictureBox_Has_Previous.Visible = true;
+                DataSet bxcyDataSet = new DataSet();
+                string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and id <> {1}", textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
+                DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcyDataSet, "BXCY_SPECIMEN");
+
+                if (bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
+                {
+                    pictureBox_Has_Previous.Visible = true;
+                }
+                else
+                {
+                    pictureBox_Has_Previous.Visible = false;
+                }
             }
             else
             {

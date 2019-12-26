@@ -47,6 +47,7 @@
             this.textBox_Updated_By_2 = new System.Windows.Forms.TextBox();
             this.textBox_Updated_By_1 = new System.Windows.Forms.TextBox();
             this.label_Updated_By = new System.Windows.Forms.Label();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.checkBox_Uploaded = new System.Windows.Forms.CheckBox();
             this.button_F4_Nature = new System.Windows.Forms.Button();
             this.button_F3_Surgical = new System.Windows.Forms.Button();
@@ -148,7 +149,6 @@
             this.label_Type = new System.Windows.Forms.Label();
             this.textBox_Uploaded_Date_Time = new System.Windows.Forms.TextBox();
             this.label_Uploaded_Date_Time = new System.Windows.Forms.Label();
-            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.label_Printed = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label_Print_At = new System.Windows.Forms.Label();
@@ -372,6 +372,14 @@
             this.label_Updated_By.Size = new System.Drawing.Size(95, 15);
             this.label_Updated_By.TabIndex = 0;
             this.label_Updated_By.Text = "Updated By:";
+            // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Location = new System.Drawing.Point(269, 34);
+            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(16, 25);
+            this.textBox_ID.TabIndex = 337;
             // 
             // checkBox_Uploaded
             // 
@@ -651,6 +659,7 @@
             this.label_BX_CY_SPECIMEN.Size = new System.Drawing.Size(318, 31);
             this.label_BX_CY_SPECIMEN.TabIndex = 6;
             this.label_BX_CY_SPECIMEN.Text = "eHR CCSP SPECIMEN";
+            this.label_BX_CY_SPECIMEN.Click += new System.EventHandler(this.label_BX_CY_SPECIMEN_Click);
             // 
             // label_Line_1
             // 
@@ -1790,14 +1799,6 @@
             this.label_Uploaded_Date_Time.Size = new System.Drawing.Size(518, 24);
             this.label_Uploaded_Date_Time.TabIndex = 164;
             this.label_Uploaded_Date_Time.Text = "Report Authorization Date Time (Uploaded Date Time):";
-            // 
-            // textBox_ID
-            // 
-            this.textBox_ID.Location = new System.Drawing.Point(269, 34);
-            this.textBox_ID.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox_ID.Name = "textBox_ID";
-            this.textBox_ID.Size = new System.Drawing.Size(16, 25);
-            this.textBox_ID.TabIndex = 337;
             // 
             // label_Printed
             // 

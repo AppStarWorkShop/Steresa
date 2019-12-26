@@ -39,6 +39,8 @@ namespace St.Teresa_LIS_2019
         DataSet doctorDataSet2 = new DataSet();
         SqlDataAdapter doctorDataAdapter2;
 
+        private DataTable dtToDelete;
+
         public class Bxcy_specimen
         {
             public int id { get; set; }
@@ -336,7 +338,7 @@ namespace St.Teresa_LIS_2019
         {
             bool isNewRecord = currentStatus == PageStatus.STATUS_NEW ? true : false;
             //Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewRecord, existDiagDataSet);
-            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet, existDiagDataAdapter);
+            Form_Description open = new Form_Description(textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim(), currentStatus, textBox_Patient.Text.Trim(), textBox_HKID.Text.Trim(), isNewPatient, bxcy_specimenDataSet, existDiagDataSet, existDiagDataAdapter, dtToDelete);
             open.OnBxcyDiagExit += OnStatusReturn;
             //open.OnBxcyDiagSaveBoth += onBxcyDiagSaveBoth;
             if (currentStatus != PageStatus.STATUS_EDIT)
@@ -347,10 +349,11 @@ namespace St.Teresa_LIS_2019
             open.Show();
         }
 
-        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly)
+        private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, DataTable dtToDelete, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly)
         {
             this.existDiagDataSet = existDiagDataSet;
             this.existDiagDataAdapter = existDiagDataAdapter;
+            this.dtToDelete = dtToDelete;
             //this.bxcy_specimenDataSet = existBxcySpecimentDataSet;
             if (refresh)
             {
@@ -415,7 +418,9 @@ namespace St.Teresa_LIS_2019
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
 
-            this.existDiagDataSet = null;
+            //this.existDiagDataSet = null;
+
+            reloadDiagData();
         }
 
         private void button_Back_Click(object sender, EventArgs e)
@@ -436,7 +441,9 @@ namespace St.Teresa_LIS_2019
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
 
-            this.existDiagDataSet = null;
+            //this.existDiagDataSet = null;
+
+            reloadDiagData();
         }
 
         private void button_Top_Click(object sender, EventArgs e)
@@ -448,7 +455,9 @@ namespace St.Teresa_LIS_2019
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
 
-            this.existDiagDataSet = null;
+            //this.existDiagDataSet = null;
+
+            reloadDiagData();
         }
 
         private void button_End_Click(object sender, EventArgs e)
@@ -460,7 +469,9 @@ namespace St.Teresa_LIS_2019
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
             setPreviousRecordMark();
 
-            this.existDiagDataSet = null;
+            //this.existDiagDataSet = null;
+
+            reloadDiagData();
         }
 
         private void button_Save_Click(object sender, EventArgs e)
@@ -505,6 +516,10 @@ namespace St.Teresa_LIS_2019
                                 {
                                     MessageBox.Show("New case is saved");
                                 }
+
+                                this.existDiagDataAdapter = null;
+                                this.existDiagDataSet = null;
+                                this.dtToDelete = null;
                             }
                             else
                             {
@@ -523,40 +538,69 @@ namespace St.Teresa_LIS_2019
                     DataRow drow = bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Find(textBox_ID.Text);
                     if (drow != null)
                     {
-                        drow["UPDATE_BY"] = CurrentUser.currentUserId;
-                        drow["UPDATE_AT"] = DateTime.Now.ToString("");
-                        textBox_ID.BindingContext[dt].Position++;
-
-                        bool bxcyUpdateResult = DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen");
-                        bool diagUpdateResult = false;
-                        if (existDiagDataAdapter != null && existDiagDataSet != null)
+                        if (currentStatus == PageStatus.STATUS_EDIT || !checkDuplicateCaseNoWithUpdate())
                         {
-                            foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
+                            drow["UPDATE_BY"] = CurrentUser.currentUserId;
+                            drow["UPDATE_AT"] = DateTime.Now.ToString("");
+                            textBox_ID.BindingContext[dt].Position++;
+
+                            bool bxcyUpdateResult = DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen");
+                            bool diagUpdateResult = false;
+                            if (existDiagDataAdapter != null && existDiagDataSet != null)
                             {
-                                if (dr["case_no"] == null || dr["case_no"].ToString() == "")
+                                foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
                                 {
                                     dr["case_no"] = currentCaseNo;
                                 }
+
+                                if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
+                                {
+                                    diagUpdateResult = true;
+                                }
+
+                                if (dtToDelete != null)
+                                {
+                                    string idToDelete = "";
+                                    foreach (DataRow drToDelete in dtToDelete.Rows)
+                                    {
+                                        if (drToDelete["case_no"].ToString() != "")
+                                        {
+                                            if (idToDelete == "")
+                                            {
+                                                idToDelete = drToDelete["id"].ToString();
+                                            }
+                                            else
+                                            {
+                                                idToDelete = idToDelete + "," + drToDelete["id"].ToString();
+                                            }
+                                        }
+                                    }
+
+                                    if (idToDelete != "")
+                                    {
+                                        string deleteSql = string.Format("DELETE FROM BXCY_DIAG WHERE id in ({0})", idToDelete);
+                                        DBConn.executeUpdate(deleteSql);
+                                    }
+                                }
                             }
 
-                            if (DBConn.updateObject(existDiagDataAdapter, existDiagDataSet, "bxcy_diag"))
+                            if (!bxcyUpdateResult && !diagUpdateResult)
                             {
-                                diagUpdateResult = true;
+                                MessageBox.Show("Case record updated fail or no record to update");
                             }
-                        }
+                            else
+                            {
+                                MessageBox.Show("Case record updated");
+                            }
 
-                        if (!bxcyUpdateResult && !diagUpdateResult)
-                        {
-                            MessageBox.Show("Case record updated fail or no record to update");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Case record updated");
+                            this.existDiagDataAdapter = null;
+                            this.existDiagDataSet = null;
+                            this.dtToDelete = null;
+
+                            setButtonStatus(PageStatus.STATUS_VIEW);
+                            reloadAndBindingDBData(0, currentCaseNo);
                         }
                     }
-
-                    setButtonStatus(PageStatus.STATUS_VIEW);
-                    reloadAndBindingDBData();
                 }
             }
         }
@@ -568,6 +612,24 @@ namespace St.Teresa_LIS_2019
             DataSet checkBxcy_specimenDataSet = new DataSet();
             SqlDataAdapter checkdataAdapter;
             string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE case_no = '{0}'", textBox_Case_No.Text.Trim());
+            checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
+
+            if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+            {
+                result = true;
+                MessageBox.Show("Duplicate case no., unable to save");
+            }
+
+            return result;
+        }
+
+        public bool checkDuplicateCaseNoWithUpdate()
+        {
+            bool result = false;
+
+            DataSet checkBxcy_specimenDataSet = new DataSet();
+            SqlDataAdapter checkdataAdapter;
+            string checkSql = string.Format("SELECT * FROM [bxcy_specimen] WHERE case_no = '{0}' AND id <> {1}", textBox_Case_No.Text.Trim(), textBox_ID.Text.Trim());
             checkdataAdapter = DBConn.fetchDataIntoDataSet(checkSql, checkBxcy_specimenDataSet, "bxcy_specimen");
 
             if (checkBxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
@@ -682,7 +744,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_New_Click(object sender, EventArgs e)
         {
-            this.existDiagDataSet = null;
+            //this.existDiagDataSet = null;
             setButtonStatus(PageStatus.STATUS_NEW);
 
             currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
@@ -743,11 +805,14 @@ namespace St.Teresa_LIS_2019
             currentEditRow["uploaded"] = checkBox_Uploaded.Checked;
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existDiagDataSet = null;
+            existDiagDataAdapter = null;
         }
 
         private void button_Edit_Click(object sender, EventArgs e)
         {
-            this.existDiagDataSet = null;
+            //this.existDiagDataSet = null;
             copybxcy_specimen = new Bxcy_specimenStr();
             copybxcy_specimen.case_no = textBox_Case_No.Text;
             //copybxcy_specimen.date = textBox_Date.Text;
@@ -1524,7 +1589,7 @@ namespace St.Teresa_LIS_2019
 
                 setButtonStatus(PageStatus.STATUS_ADVANCE_EDIT);
 
-                this.existDiagDataSet = null;
+                //this.existDiagDataSet = null;
             }
         }
 
@@ -1625,7 +1690,8 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            this.existDiagDataSet = null;
+            reloadDiagData();
+            this.dtToDelete = null;
         }
 
         private void button_Label_Click(object sender, EventArgs e)
@@ -1899,6 +1965,8 @@ namespace St.Teresa_LIS_2019
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
 
             setPreviousRecordMark();
+
+            reloadDiagData();
         }
 
         private void reloadDBData(int position = 0)
@@ -2110,7 +2178,7 @@ namespace St.Teresa_LIS_2019
                         //button_F3_Surgical.Enabled = true;
                         button_F4_Nature.Enabled = true;
 
-                        textBox_Case_No.Enabled = true;
+                        textBox_Case_No.Enabled = false;
                         //textBox_Date.Enabled = true;
                         comboBox_Ethnic.Enabled = true;
                         //comboBox_cytoType.Enabled = true;
@@ -2167,7 +2235,7 @@ namespace St.Teresa_LIS_2019
                         button_Shif_3.Enabled = true;
                         button3.Enabled = true;
                         button_F9_3.Enabled = true;*/
-                        button_Advance.Enabled = false;
+                        button_Advance.Enabled = true;
 
                         button_Rpt_Date_Tick.Enabled = true;
                         //checkBox_Uploaded.Enabled = true;
@@ -2476,13 +2544,19 @@ namespace St.Teresa_LIS_2019
 
         private void setPreviousRecordMark()
         {
-            DataSet bxcyDataSet = new DataSet();
-            string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and id <> {1}", textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
-            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcyDataSet, "BXCY_SPECIMEN");
+            if(textBox_ID.Text.Trim() != ""){
+                DataSet bxcyDataSet = new DataSet();
+                string sql = string.Format("select * From [BXCY_SPECIMEN] bs Where bs.pat_hkid = '{0}' and id <> {1}", textBox_HKID.Text.Trim(), textBox_ID.Text.Trim());
+                DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcyDataSet, "BXCY_SPECIMEN");
 
-            if (bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
-            {
-                pictureBox_Has_Previous.Visible = true;
+                if (bxcyDataSet.Tables["BXCY_SPECIMEN"].Rows.Count > 0)
+                {
+                    pictureBox_Has_Previous.Visible = true;
+                }
+                else
+                {
+                    pictureBox_Has_Previous.Visible = false;
+                }
             }
             else
             {
@@ -2717,6 +2791,53 @@ namespace St.Teresa_LIS_2019
         private void Form_BXeHRCCSPFile_Activated(object sender, EventArgs e)
         {
             textBox_Case_No.Focus();
+        }
+
+        private void reloadDiagData()
+        {
+            existDiagDataSet = null;
+            existDiagDataAdapter = null;
+            if (textBox_Case_No.Text.Trim() != "")
+            {
+                existDiagDataSet = new DataSet();
+                string diagSql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY [group] , diagnosisid", textBox_Case_No.Text.Trim());
+                existDiagDataAdapter = DBConn.fetchDataIntoDataSet(diagSql, existDiagDataSet, "bxcy_diag");
+            }
+        }
+
+        private void label_BX_CY_SPECIMEN_Click(object sender, EventArgs e)
+        {
+            if (existDiagDataAdapter == null)
+            {
+                Console.WriteLine("Null dataAdapter");
+            }
+
+            if (existDiagDataSet == null)
+            {
+                Console.WriteLine("Null existDiagDataSet");
+            }
+
+            if (existDiagDataAdapter != null && existDiagDataSet != null)
+            {
+                var varList = from p in existDiagDataSet.Tables["bxcy_diag"].AsEnumerable()
+                              orderby p.Field<string>("group") ascending, p.Field<int>("diagnosisId") ascending
+                              select p;
+                foreach (DataRow dr in varList)
+                {
+                    string rowMessage = string.Format("Group:{0}, diagnosis:{1}, macroDesc:{2}, microDesc:{3}, report status{4}, id:{5}, case no.:{6}", dr["group"], dr["diagnosisId"], dr["macro_desc"], dr["micro_desc"], dr["report_status"], dr["id"], dr["case_no"]);
+                    Console.WriteLine(rowMessage);
+                }
+            }
+
+            if (bxcy_specimenDataSet != null)
+            {
+                foreach (DataRow dr in bxcy_specimenDataSet.Tables["BXCY_SPECIMEN"].Rows)
+                {
+                    string rowMessage = string.Format("Case No.:{0}", dr["case_no"]);
+                    Console.WriteLine(rowMessage);
+                }
+
+            }
         }
     }
 }

@@ -25,7 +25,7 @@ namespace St.Teresa_LIS_2019
         private DataTable bxcy_specimentDt;
         private SqlDataAdapter bxcy_specimentDataAdapter;
 
-        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly);
+        public delegate void BxcyDiagExit(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, DataTable dtToDelete, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly);
         public BxcyDiagExit OnBxcyDiagExit;
 
         public delegate int BxcyDiagSaveBoth(Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3);
@@ -49,6 +49,8 @@ namespace St.Teresa_LIS_2019
 
         private bool isMacroDescChange = false;
         private bool isMircoDescChange = false;
+
+        private DataTable dtToDelete;
 
         public static class NevigateMode
         {
@@ -246,7 +248,7 @@ namespace St.Teresa_LIS_2019
             }
         }*/
 
-        public Form_Description(string caseNo, string bxcy_id, int status, string patientName, string patientHKID, bool isNewRecord, DataSet bxcySpecimentDataSet, DataSet existDataSet = null, SqlDataAdapter existDiagDataAdapter = null)
+        public Form_Description(string caseNo, string bxcy_id, int status, string patientName, string patientHKID, bool isNewRecord, DataSet bxcySpecimentDataSet, DataSet existDataSet = null, SqlDataAdapter existDiagDataAdapter = null, DataTable dtToDelete = null)
         {
             this.caseNo = caseNo;
             this.bxcy_id = bxcy_id;
@@ -258,6 +260,8 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
 
             setButtonStatus(currentStatus);
+
+            this.dtToDelete = dtToDelete;
 
             if (currentStatus == PageStatus.STATUS_VIEW)
             {
@@ -279,8 +283,8 @@ namespace St.Teresa_LIS_2019
                     isSameGroupNewRecord = false;
 
                     currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
-                    currentEditRow["id"] = -1;
-                    currentEditRow["case_no"] = caseNo;
+                    //currentEditRow["id"] = -1;
+                    //currentEditRow["case_no"] = caseNo;
 
                     currentEditRow["micro_name"] = "MICROSCOPIC EXAMINATION:";
                     currentEditRow["macro_name"] = "MACROSCOPIC EXAMINATION:";
@@ -314,8 +318,8 @@ namespace St.Teresa_LIS_2019
                 {
                     backStatus = PageStatus.STATUS_EDIT;
                 }
-                OnBxcyDiagExit(backStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, readOnly);
-
+                OnBxcyDiagExit(backStatus, isNeedRefreshMainPage, bxcy_diagDataSet, dataAdapter, dtToDelete, comboBox_Snop_T1.SelectedValue, comboBox_Snop_T2.SelectedValue, comboBox_Snop_T3.SelectedValue, comboBox_Snop_M1.SelectedValue, comboBox_Snop_M2.SelectedValue, comboBox_Snop_M3.SelectedValue, readOnly);
+                
             }
             this.Close();
         }
@@ -441,7 +445,7 @@ namespace St.Teresa_LIS_2019
                     // do nothing
                     break;
             }
-
+            
 
         }
 
@@ -702,7 +706,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
-            textBox_specimenID.DataBindings.Clear();
+            //textBox_specimenID.DataBindings.Clear();
 
             comboBox_Report_Status.DataBindings.Clear();
 
@@ -1125,7 +1129,7 @@ namespace St.Teresa_LIS_2019
             comboBox_Snop_M2.DataBindings.Clear();
             comboBox_Snop_M3.DataBindings.Clear();
 
-            textBox_specimenID.DataBindings.Clear();
+            //textBox_specimenID.DataBindings.Clear();
 
             comboBox_Report_Status.DataBindings.Clear();
 
@@ -1526,7 +1530,7 @@ namespace St.Teresa_LIS_2019
                                     where p.Field<string>("group").CompareTo(textBox_Parts.Text.Trim()) == 1
                                     select p.Field<string>("group")).Min();
             if (minGroupFromProg != null)
-            {
+            { 
                 string strMinGroupFromProg = Convert.ToString(minGroupFromProg);
 
                 DataRow dr = dt.Select("group=" + strMinGroupFromProg)[0];
@@ -1563,6 +1567,7 @@ namespace St.Teresa_LIS_2019
 
             var minGroupFromProg = (from p in dt.AsEnumerable()
                                     where p.Field<string>("group").CompareTo(textBox_Parts.Text.Trim()) == -1
+                                    //&& p.RowState != DataRowState.Deleted
                                     select p.Field<string>("group")).Max();
             if (minGroupFromProg != null)
             {
@@ -1592,10 +1597,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_End_Click(object sender, EventArgs e)
         {
-
+            
             /*string sql = string.Format("SELECT * FROM [bxcy_diag] WHERE case_no = '{0}' AND [group] in (SELECT max([group]) FROM [bxcy_diag] WHERE case_no = '{0}' ORDER BY id", caseNo);
             dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_diagDataSet, "bxcy_diag");*/
-
+            
 
             /*if (currentNevigateMode == NevigateMode.MODE_DIAGNOSIS)
             {
@@ -1665,7 +1670,7 @@ namespace St.Teresa_LIS_2019
 
             currentEditRow = bxcy_diagDataSet.Tables["bxcy_diag"].NewRow();
             //currentEditRow["id"] = -1;
-            currentEditRow["case_no"] = caseNo;
+            //currentEditRow["case_no"] = caseNo;
 
             int intMaxGroupFromDB = 0;
             if (caseNo.Trim() != "")
@@ -1710,7 +1715,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Delete_Click(object sender, EventArgs e)
         {
-            if (caseNo.Trim() != "")
+            /*if (caseNo.Trim() != "")
             {
                 if (MessageBox.Show(string.Format("Sure to delete this record in group {0}?", textBox_Parts.Text), "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -1729,6 +1734,66 @@ namespace St.Teresa_LIS_2019
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+            }*/
+
+            if (textBox_Parts.Text.Trim() == "")
+            {
+                return;
+            }
+
+            if (MessageBox.Show(string.Format("Sure to delete this record in group {0}?", textBox_Parts.Text), "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var countDiagnosisRecordFromProg = from p in dt.AsEnumerable()
+                                                   group p by p.Field<string>("group") into pGroup
+                                                   select pGroup;
+
+                /*var countDiagnosisRecordFromProg = (from p in dt.AsEnumerable()
+                                                   select p).Distinct();*/
+
+                if (countDiagnosisRecordFromProg.Count() == 1)
+                {
+                    MessageBox.Show("You cannot delete the last report of this case.");
+                }
+                else
+                {
+                    var currentDiagnosisRecordFromProg = from p in dt.AsEnumerable()
+                                                         where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                                         select p;
+                    if (currentDiagnosisRecordFromProg.Any())
+                    {
+                        List<DataRow> currentDiagnosisRecordFromProgList = currentDiagnosisRecordFromProg.ToList();
+
+                        if (dtToDelete == null)
+                        {
+                            dtToDelete = new DataTable();
+                            dtToDelete.Columns.Add("case_no");
+                            dtToDelete.Columns.Add("id");
+                        }
+
+                        foreach (DataRow dr in currentDiagnosisRecordFromProgList)
+                        {
+                            //int rowIndex = dt.Rows.IndexOf(dr);
+                            //dt.Rows[rowIndex].Delete();
+                            //dtToDelete.Rows.Add(dr);
+                            dtToDelete.Rows.Add(new object[] { dr["case_no"], dr["id"]});
+                            dt.Rows.Remove(dr);
+                        }
+
+                        //dt.AcceptChanges();
+
+                        var groupFromProg = from p in dt.AsEnumerable()
+                                            orderby p.Field<string>("group") ascending, p.Field<int>("diagnosisId") ascending
+                                            select p;
+
+                        if (groupFromProg.Any())
+                        {
+                            DataRow dr = groupFromProg.FirstOrDefault();
+                            currencyManager.Position = dt.Rows.IndexOf(dr);
+                        }
+
+                        setButtonStatus(PageStatus.STATUS_EDIT);
+                    }
                 }
             }
         }
@@ -1953,7 +2018,7 @@ namespace St.Teresa_LIS_2019
                     button_New2.Enabled = true;
 
                     button_Save.Enabled = true;
-
+                    
                     button_F6_Edit.Enabled = false;
                     button_Delete.Enabled = true;
                     button_Label.Enabled = false;
@@ -2069,7 +2134,7 @@ namespace St.Teresa_LIS_2019
                         button_New2.Enabled = true;
 
                         button_Save.Enabled = true;
-
+                        
                         button_F6_Edit.Enabled = false;
                         button_Delete.Enabled = false;
                         button_Label.Enabled = false;
@@ -2288,12 +2353,12 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_MAC_Add_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void comboBox_MIC_Add2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
         private void comboBox_Doctor_SelectedIndexChanged(object sender, EventArgs e)
@@ -2395,7 +2460,7 @@ namespace St.Teresa_LIS_2019
                 if (countList.Count() == 1)
                 {
                     currentEditRow = countList.FirstOrDefault();
-                    /*if (currentEditRow["micro_desc"].ToString() == ""
+                    /*if (currentEditRow["micro_desc"].ToString() == "" 
                         && currentEditRow["site"].ToString() == ""
                         && currentEditRow["site2"].ToString() == ""
                         && currentEditRow["operation"].ToString() == ""
@@ -2716,7 +2781,7 @@ namespace St.Teresa_LIS_2019
             {
                 textBox_Remarks.Text = textBox_Remarks.Text + Environment.NewLine + comboBox_MAC_Add.SelectedValue.ToString();
             }
-
+            
         }
 
         private void comboBox_MIC_Add2_SelectionChangeCommitted(object sender, EventArgs e)
@@ -2729,7 +2794,7 @@ namespace St.Teresa_LIS_2019
             {
                 textBox_Remarks_CY.Text = textBox_Remarks_CY.Text + Environment.NewLine + comboBox_MIC_Add2.SelectedValue.ToString();
             }
-
+            
         }
 
         private void comboBox_Site_SelectionChangeCommitted(object sender, EventArgs e)
@@ -3053,7 +3118,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["Diag_desc2"] = "";
             currentEditRow["seq"] = "";
 
-            currentEditRow["case_no"] = caseNo;
+            //currentEditRow["case_no"] = caseNo;
             currentEditRow["group"] = textBox_Parts.Text.Trim();
 
             int maxDiagnosisFromProg = 0;
@@ -3200,7 +3265,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Delete2_Click(object sender, EventArgs e)
         {
-            if (caseNo.Trim() != "")
+            /*if (caseNo.Trim() != "")
             {
                 if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -3219,6 +3284,57 @@ namespace St.Teresa_LIS_2019
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);
+                }
+            }*/
+
+            if (textBox_DiagnosisNo.Text.Trim() == "")
+            {
+                return;
+            }
+
+            if (MessageBox.Show("Sure to delete this record?", "Confirm deleting", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+
+                var countDiagnosisRecordFromProg = from p in dt.AsEnumerable()
+                                                   where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                                   select p;
+
+                if (countDiagnosisRecordFromProg.Count() == 1)
+                {
+                    MessageBox.Show("Only one diagnosis exist in current report. You cannot delete it.");
+                }
+                else
+                {
+                    var currentDiagnosisRecordFromProg = from p in dt.AsEnumerable()
+                                                         where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                                         && p.Field<int>("diagnosisId") == int.Parse(textBox_DiagnosisNo.Text.Trim())
+                                                         select p;
+                    DataRow dr = currentDiagnosisRecordFromProg.FirstOrDefault();
+                    /*int rowIndex = dt.Rows.IndexOf(dr);
+                    dt.Rows[rowIndex].Delete();*/
+                    if (dtToDelete == null)
+                    {
+                        dtToDelete = new DataTable();
+                        dtToDelete.Columns.Add("case_no");
+                        dtToDelete.Columns.Add("id");
+                    }
+
+                    dtToDelete.Rows.Add(new object[] { dr["case_no"], dr["id"] });
+
+                    dt.Rows.Remove(dr);
+                    //dt.AcceptChanges();
+
+                    var diagnosisFromProg = from p in dt.AsEnumerable()
+                                       where p.Field<string>("group") == textBox_Parts.Text.Trim()
+                                       orderby p.Field<int>("diagnosisId") ascending
+                                       select p;
+
+                    if (diagnosisFromProg.Any())
+                    {
+                        currencyManager.Position = dt.Rows.IndexOf(diagnosisFromProg.FirstOrDefault());
+                    }
+
+                    setButtonStatus(PageStatus.STATUS_EDIT);
                 }
             }
         }
@@ -3314,7 +3430,7 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_Diagnosis_1_Validated(object sender, EventArgs e)
         {
-            // added by eric
+            // added by eric 
             string test = comboBox_Diagnosis_1.Text;
             if (test != string.Empty && test != "")
             {
@@ -3540,5 +3656,5 @@ namespace St.Teresa_LIS_2019
         }
     }
 
-
+    
 }
