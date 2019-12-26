@@ -249,16 +249,51 @@ namespace St.Teresa_LIS_2019
             {
                 return;
             }
-            //currencyManager.Position++;
-            string countSql = string.Format(" [bxcy_specimen] WHERE ((case_no = '{0}' and id > {1}) or case_no > '{0}') AND case_no LIKE '%G'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+
+            string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id > {1}) or case_no > '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id > {1}) or case_no > '{0}') AND case_no LIKE '%G' ORDER BY  case_no,id", textBox_Case_No.Text.Trim(), textBox_ID.Text);
-                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
-            }
+                string selectOneSql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id > {1}) or case_no > '{0}') ORDER BY  case_no,id", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+                DataSet selectOneDataSet = new DataSet();
+                SqlDataAdapter selectOneDataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, selectOneDataSet, "bxcy_specimen");
+                if (selectOneDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+                {
+                    string selectOneCaseNo = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["case_no"].ToString();
+                    string selectOnId = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["id"].ToString();
 
-            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
-            setPreviousRecordMark();
+                    if (selectOneCaseNo == null || selectOneCaseNo.Trim() == "" || selectOneCaseNo.Trim().Length == 0)
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                        open.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        if (selectOneCaseNo.Substring(selectOneCaseNo.Length - 1, 1).ToLower() == "g")
+                        {
+                            dataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, bxcy_specimenDataSet, "bxcy_specimen");
+
+                            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+                            setPreviousRecordMark();
+                        }
+                        else
+                        {
+                            if (selectOneCaseNo.Substring(0, 1).ToLower() == "d")
+                            {
+                                Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void button_Back_Click(object sender, EventArgs e)
@@ -267,36 +302,157 @@ namespace St.Teresa_LIS_2019
             {
                 return;
             }
-            //currencyManager.Position--;
-            string countSql = string.Format(" [bxcy_specimen] WHERE ((case_no = '{0}' and id < {1}) or case_no < '{0}') AND case_no LIKE '%G'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+
+            string countSql = string.Format(" [bxcy_specimen] WHERE (case_no = '{0}' and id < {1}) or case_no < '{0}'", textBox_Case_No.Text.Trim(), textBox_ID.Text);
             if (DBConn.getSqlRecordCount(countSql) > 0)
             {
-                string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id < {1}) or case_no < '{0}') AND case_no LIKE '%G' ORDER BY case_no DESC,id DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
-                dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
-            }
+                string selectOneSql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE ((case_no = '{0}' and id < {1}) or case_no < '{0}') ORDER BY case_no DESC,id DESC", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+                DataSet selectOneDataSet = new DataSet();
+                SqlDataAdapter selectOneDataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, selectOneDataSet, "bxcy_specimen");
+                if (selectOneDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+                {
+                    string selectOneCaseNo = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["case_no"].ToString();
+                    string selectOnId = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["id"].ToString();
 
-            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
-            setPreviousRecordMark();
+                    if (selectOneCaseNo == null || selectOneCaseNo.Trim() == "" || selectOneCaseNo.Trim().Length == 0)
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                        open.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        if (selectOneCaseNo.Substring(selectOneCaseNo.Length - 1, 1).ToLower() == "g")
+                        {
+                            dataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, bxcy_specimenDataSet, "bxcy_specimen");
+
+                            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+                            setPreviousRecordMark();
+                        }
+                        else
+                        {
+                            if (selectOneCaseNo.Substring(0, 1).ToLower() == "d")
+                            {
+                                Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void button_Top_Click(object sender, EventArgs e)
         {
-            //currencyManager.Position = 0;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no LIKE '%G' ORDER BY case_no,id");
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
 
-            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
-            setPreviousRecordMark();
+            string countSql = string.Format(" (SELECT top 1 case_no,id FROM [medlab].[dbo].[BXCY_SPECIMEN] order by case_no,id ) t1 WHERE t1.case_no <> '{0}' and t1.id <> {1}", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string selectOneSql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] ORDER BY case_no,id");
+                DataSet selectOneDataSet = new DataSet();
+                SqlDataAdapter selectOneDataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, selectOneDataSet, "bxcy_specimen");
+                if (selectOneDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+                {
+                    string selectOneCaseNo = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["case_no"].ToString();
+                    string selectOnId = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["id"].ToString();
+
+                    if (selectOneCaseNo == null || selectOneCaseNo.Trim() == "" || selectOneCaseNo.Trim().Length == 0)
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                        open.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        if (selectOneCaseNo.Substring(selectOneCaseNo.Length - 1, 1).ToLower() == "g")
+                        {
+                            dataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, bxcy_specimenDataSet, "bxcy_specimen");
+
+                            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+                            setPreviousRecordMark();
+                        }
+                        else
+                        {
+                            if (selectOneCaseNo.Substring(0, 1).ToLower() == "d")
+                            {
+                                Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private void button_End_Click(object sender, EventArgs e)
         {
-            //currencyManager.Position = currencyManager.Count - 1;
-            string sql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen] WHERE case_no LIKE '%G' ORDER BY case_no DESC,id DESC");
-            dataAdapter = DBConn.fetchDataIntoDataSet(sql, bxcy_specimenDataSet, "bxcy_specimen");
+            if (textBox_ID.Text.Trim() == "")
+            {
+                return;
+            }
 
-            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
-            setPreviousRecordMark();
+            string countSql = string.Format(" (SELECT top 1 case_no,id FROM [medlab].[dbo].[BXCY_SPECIMEN] order by case_no desc,id desc ) t1 WHERE t1.case_no <> '{0}' and t1.id <> {1}", textBox_Case_No.Text.Trim(), textBox_ID.Text);
+            if (DBConn.getSqlRecordCount(countSql) > 0)
+            {
+                string selectOneSql = string.Format("SELECT TOP 1 *,(CASE WHEN PAY_DATE IS NULL THEN 'No' ELSE 'Yes' END) AS PAY_UP FROM [bxcy_specimen]  ORDER BY case_no DESC,id DESC");
+                DataSet selectOneDataSet = new DataSet();
+                SqlDataAdapter selectOneDataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, selectOneDataSet, "bxcy_specimen");
+                if (selectOneDataSet.Tables["bxcy_specimen"].Rows.Count > 0)
+                {
+                    string selectOneCaseNo = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["case_no"].ToString();
+                    string selectOnId = selectOneDataSet.Tables["bxcy_specimen"].Rows[0]["id"].ToString();
+
+                    if (selectOneCaseNo == null || selectOneCaseNo.Trim() == "" || selectOneCaseNo.Trim().Length == 0)
+                    {
+                        Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                        open.Show();
+                        this.Close();
+                    }
+                    else
+                    {
+                        if (selectOneCaseNo.Substring(selectOneCaseNo.Length - 1, 1).ToLower() == "g")
+                        {
+                            dataAdapter = DBConn.fetchDataIntoDataSet(selectOneSql, bxcy_specimenDataSet, "bxcy_specimen");
+
+                            button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+                            setPreviousRecordMark();
+                        }
+                        else
+                        {
+                            if (selectOneCaseNo.Substring(0, 1).ToLower() == "d")
+                            {
+                                Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                            else
+                            {
+                                Form_BXCYFile open = new Form_BXCYFile(selectOnId);
+                                open.Show();
+                                this.Close();
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         private bool checkDuplicateHKID()

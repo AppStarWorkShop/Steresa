@@ -388,12 +388,12 @@ BEGIN
 	BEGIN
 		set @orderBy = ' case_no'
 		if @whereStr <> ''
-			BEGIN
-				if 'PATIENT' = UPPER(@whereStr) 
-					BEGIN
-						set @orderBy = ' patient, case_no'
-					END
-			END
+		BEGIN
+			if 'PATIENT' = UPPER(@whereStr) 
+				BEGIN
+					set @orderBy = ' patient, case_no'
+				END
+		END
 		
 		if 'DOCTOR_ID' = UPPER(@whereStr)
 		begin
