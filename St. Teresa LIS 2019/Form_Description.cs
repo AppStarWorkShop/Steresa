@@ -1771,6 +1771,8 @@ namespace St.Teresa_LIS_2019
                             dtToDelete.Columns.Add("id");
                         }
 
+                        string groupToDelete = textBox_Parts.Text.Trim();
+
                         foreach (DataRow dr in currentDiagnosisRecordFromProgList)
                         {
                             //int rowIndex = dt.Rows.IndexOf(dr);
@@ -1778,6 +1780,27 @@ namespace St.Teresa_LIS_2019
                             //dtToDelete.Rows.Add(dr);
                             dtToDelete.Rows.Add(new object[] { dr["case_no"], dr["id"]});
                             dt.Rows.Remove(dr);
+                        }
+
+                        if(groupToDelete != "")
+                        {
+                            var largerGroupDiagnosisRecordFromProg = from p in dt.AsEnumerable()
+                                                                 where p.Field<string>("group").CompareTo(groupToDelete) > 0
+                                                                 select p;
+
+                            if (largerGroupDiagnosisRecordFromProg.Any())
+                            {
+                                foreach (DataRow dr in largerGroupDiagnosisRecordFromProg)
+                                {
+                                    try
+                                    {
+                                        dr["group"] = Convert.ToString(Convert.ToInt32(dr["group"].ToString()) - 1);
+                                    }catch(Exception ex)
+                                    {
+
+                                    }
+                                }
+                            }
                         }
 
                         //dt.AcceptChanges();
@@ -3312,6 +3335,9 @@ namespace St.Teresa_LIS_2019
                     DataRow dr = currentDiagnosisRecordFromProg.FirstOrDefault();
                     /*int rowIndex = dt.Rows.IndexOf(dr);
                     dt.Rows[rowIndex].Delete();*/
+                    string groupToDelete = textBox_Parts.Text.Trim();
+                    string diagnosisIdToDelete = textBox_DiagnosisNo.Text.Trim();
+
                     if (dtToDelete == null)
                     {
                         dtToDelete = new DataTable();
@@ -3322,6 +3348,29 @@ namespace St.Teresa_LIS_2019
                     dtToDelete.Rows.Add(new object[] { dr["case_no"], dr["id"] });
 
                     dt.Rows.Remove(dr);
+
+                    if (groupToDelete != "" && diagnosisIdToDelete != "")
+                    {
+                        var largerDiagnosisRecordFromProg = from p in dt.AsEnumerable()
+                                                                 where p.Field<string>("group").ToString() == groupToDelete
+                                                                 && p.Field<int>("diagnosisId") > Convert.ToInt32(diagnosisIdToDelete)
+                                                                 select p;
+
+                        if (largerDiagnosisRecordFromProg.Any())
+                        {
+                            foreach (DataRow dr1 in largerDiagnosisRecordFromProg)
+                            {
+                                try
+                                {
+                                    dr1["diagnosisId"] = Convert.ToInt32(dr1["diagnosisId"].ToString()) - 1;
+                                }
+                                catch (Exception ex)
+                                {
+
+                                }
+                            }
+                        }
+                    }
                     //dt.AcceptChanges();
 
                     var diagnosisFromProg = from p in dt.AsEnumerable()

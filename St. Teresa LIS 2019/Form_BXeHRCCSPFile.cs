@@ -633,6 +633,14 @@ namespace St.Teresa_LIS_2019
             if (textBox_Case_No.Text == "")
             {
                 MessageBox.Show("Please input case no.");
+                textBox_Case_No.Focus();
+                return;
+            }
+
+            if (textBox_Case_No.Text.Trim().Substring(0, 1).ToLower() != "d")
+            {
+                MessageBox.Show("Please input D case no. here");
+                textBox_Case_No.Focus();
                 return;
             }
 

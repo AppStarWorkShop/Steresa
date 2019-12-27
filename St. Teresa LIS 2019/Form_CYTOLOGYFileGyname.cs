@@ -481,6 +481,14 @@ namespace St.Teresa_LIS_2019
             if (textBox_Case_No.Text == "")
             {
                 MessageBox.Show("Please input case no.");
+                textBox_Case_No.Focus();
+                return;
+            }
+
+            if (textBox_Case_No.Text.Trim().Substring(textBox_Case_No.Text.Trim().Length - 1, 1).ToLower() != "g")
+            {
+                MessageBox.Show("Please input Cy-g case no. here");
+                textBox_Case_No.Focus();
                 return;
             }
 
