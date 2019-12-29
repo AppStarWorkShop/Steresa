@@ -76,6 +76,8 @@ namespace St.Teresa_LIS_2019
             button_Delete.Enabled = false;
             button_Undo.Enabled = false;
             button_Path.Enabled = false;
+            button_Copy.Enabled = false;
+            button_Delete2.Enabled = false;
         }
 
         public void enableEditbuttons()
@@ -87,6 +89,8 @@ namespace St.Teresa_LIS_2019
             button_Delete.Enabled = true;
             button_Undo.Enabled = true;
             button_Path.Enabled = true;
+            button_Copy.Enabled = true;
+            button_Delete2.Enabled = true;
         }
 
         public class Bxcy_diag
@@ -433,13 +437,25 @@ namespace St.Teresa_LIS_2019
             {
                 case Keys.F1:
                     tabControl1.SelectedIndex = 0;
+                    textBox_Remarks.Focus();
+                    textBox_Remarks.SelectionStart = textBox_Remarks.Text.Length;
+                    textBox_Remarks.SelectionLength = 0;
                     break;
+
                 case Keys.F2:
                     tabControl1.SelectedIndex = 1;
+                    textBox_Remarks_CY.Focus();
+                    textBox_Remarks_CY.SelectionStart = textBox_Remarks_CY.Text.Length;
+                    textBox_Remarks_CY.SelectionLength = 0;
                     break;
+
                 case Keys.F3:
                     tabControl1.SelectedIndex = 2;
+                    textBox_Site_frort.Focus();
+                    textBox_Site_frort.SelectionStart = textBox_Site_frort.Text.Length;
+                    textBox_Site_frort.SelectionLength = 0;
                     break;
+
                 //// etc
                 default:
                     // do nothing
@@ -515,7 +531,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Label_Click(object sender, EventArgs e)
         {
-            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, 0);
+            Form_PathologyReport open = new Form_PathologyReport(bxcy_id, caseNo, textBox_Parts.Text, getNoOfPhotos());
             open.Show();
         }
 
@@ -712,11 +728,15 @@ namespace St.Teresa_LIS_2019
 
             DataTable reportStatusDt = new DataTable();
             reportStatusDt.Columns.Add("reportStatus");
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_FINAL });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_SUPPLEMENTARY });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_AMENDMENT });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_PROVISIONAL });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_UNSPECIFIED });
+            foreach(String s in ReportStatus.getAllStatus())
+            {
+                reportStatusDt.Rows.Add(new object[] { s });
+            }
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_FINAL });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_SUPPLEMENTARY });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_AMENDMENT });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_PROVISIONAL });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_UNSPECIFIED });
 
             string siteSql = "SELECT [site],[desc] FROM [site] WHERE site is not null ORDER BY site";
             DataSet siteDataSet = new DataSet();
@@ -1135,11 +1155,15 @@ namespace St.Teresa_LIS_2019
 
             DataTable reportStatusDt = new DataTable();
             reportStatusDt.Columns.Add("reportStatus");
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_FINAL });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_SUPPLEMENTARY });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_AMENDMENT });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_PROVISIONAL });
-            reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_UNSPECIFIED });
+            foreach (String s in ReportStatus.getAllStatus())
+            {
+                reportStatusDt.Rows.Add(new object[] { s });
+            }
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_FINAL });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_SUPPLEMENTARY });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_AMENDMENT });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_PROVISIONAL });
+            //reportStatusDt.Rows.Add(new object[] { ReportStatus.STATUS_UNSPECIFIED });
 
             comboBox_Report_Status.DataSource = reportStatusDt;
 
@@ -3609,6 +3633,28 @@ namespace St.Teresa_LIS_2019
             }
         }
 
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage_MACROSCOPIC"])
+            {
+                textBox_Remarks.Focus();
+                textBox_Remarks.SelectionStart = textBox_Remarks.Text.Length;
+                textBox_Remarks.SelectionLength = 0;
+            }
+            else if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage_MICROSCOPIC_CY"])
+            {
+                textBox_Remarks_CY.Focus();
+                textBox_Remarks_CY.SelectionStart = textBox_Remarks_CY.Text.Length;
+                textBox_Remarks_CY.SelectionLength = 0;
+            }
+            else if (tabControl1.SelectedTab == tabControl1.TabPages["tabPage_DIAGNOSIS"])
+            {
+                textBox_Site_frort.Focus();
+                textBox_Site_frort.SelectionStart = textBox_Site_frort.Text.Length;
+                textBox_Site_frort.SelectionLength = 0;
+            }
+        }
+
         private void comboBox_Diagnosis_1_DrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();
@@ -3702,6 +3748,13 @@ namespace St.Teresa_LIS_2019
             }
 
             return noOfPhotos;
+        }
+
+        public void shiftFocusToMarco()
+        {
+            textBox_Remarks.Focus();
+            textBox_Remarks.SelectionStart = textBox_Remarks.Text.Length;
+            textBox_Remarks.SelectionLength = 0;
         }
     }
 

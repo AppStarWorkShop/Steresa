@@ -25,6 +25,8 @@ namespace St.Teresa_LIS_2019
         public const String PRIVATE_BX_ONE_PHOTO = PRIVATE_BX + ONE_PHOTO;
         public const String PRIVATE_BX_TWO_PHOTO = PRIVATE_BX + TWO_PHOTO;
         public const String PRIVATE_BX_MULTIPLE_PHOTO = PRIVATE_BX + MULTIPLE_PHOTO;
+        public const String ST_CY_NO_PHOTO = "08 STH CY";
+        public const String PRIVATE_CY = "19 PRIVATE CY";
 
         private String reportType;
         private String caseNo;
@@ -43,7 +45,7 @@ namespace St.Teresa_LIS_2019
             //reportList.Add("05 TWAH BX");
             reportList.Add("06 PATHLAB BX");
             //reportList.Add("07 EVANGEL BX");
-            reportList.Add("08 STH CY");
+            reportList.Add(ST_CY_NO_PHOTO);
             //reportList.Add("10 PBH CY");
             //reportList.Add("11 HKAH CY");
             //reportList.Add("12 TWAH CY");
@@ -57,7 +59,7 @@ namespace St.Teresa_LIS_2019
             reportList.Add(PRIVATE_BX_TWO_PHOTO);
             reportList.Add(PRIVATE_BX_MULTIPLE_PHOTO);
 
-            reportList.Add("19 PRIVATE CY");
+            reportList.Add(PRIVATE_CY);
             /*
             reportList.Add("58 STH EBV");
             reportList.Add("59 PBH EBV");
@@ -220,7 +222,9 @@ namespace St.Teresa_LIS_2019
             string[] args = null;
             switch (reportName)
             {
-                case "01 STH BX":
+                case ST_BX_NO_PHOTO:
+                case ST_CY_NO_PHOTO:
+                case PRIVATE_CY:
                     if (textBoxHKAS.Text == "0")
                     {
                         sql = "select top 1 dbo.reportCaseNo(case_no) as case_no, patient, cname, pat_hkid, '0' as hkas from v_reportHeader where org_case_no = '" + caseNo + "'";
@@ -250,7 +254,7 @@ namespace St.Teresa_LIS_2019
                     headerDt = GetDataTable(sqlCon, "select '" + args[0] + "' start_date, '" + args[1] + "' end_date, '" + args[2] + "' inv_date");
                     break;
                 default:
-                    if (showHKAS == "0")
+                    if (textBoxHKAS.Text == "0")
                     {
                         sql = "select top 1 dbo.reportCaseNo(case_no) as case_no, patient, cname, pat_hkid, '0' as hkas from v_reportHeader where org_case_no = '" + caseNo + "'";
                     }

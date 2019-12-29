@@ -290,6 +290,7 @@ namespace St.Teresa_LIS_2019
                     {
                         bxcyDetailFileForm.Close();
                     }
+                    this.Close();
                 }
             }
 

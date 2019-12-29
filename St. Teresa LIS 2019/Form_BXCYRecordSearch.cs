@@ -989,7 +989,7 @@ namespace St.Teresa_LIS_2019
             contentSearching = SEARCH_TYPE_CASE_NO;
             labelSearching = "Case No:";
             label_Search_Type.Text = labelSearching;
-            textBox_Search_Type.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Text = string.Format("MP{0}/", DateTime.Now.ToString("yyyy").Substring(2));
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;
@@ -1048,7 +1048,7 @@ namespace St.Teresa_LIS_2019
             contentSearching = SEARCH_TYPE_CASE_NO;
             labelSearching = "Case No:";
             label_Search_Type.Text = labelSearching;
-            textBox_Search_Type.Text = string.Format("D{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            textBox_Search_Type.Text = string.Format("D{0}/", DateTime.Now.ToString("yyyy").Substring(2));
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;

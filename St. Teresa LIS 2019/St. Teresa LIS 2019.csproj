@@ -834,13 +834,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="Report\BodyPrivateEN.rdlc" />
     <None Include="Report\08 STH CY.rdlc" />
-    <None Include="Report\BodyCyEN.rdlc" />
-    <None Include="Report\BodyCyPrivateEN.rdlc" />
-    <None Include="Report\19 PRIVATE CY.rdlc" />
     <None Include="Report\BodyEN.rdlc" />
     <None Include="Report\BodyENImage.rdlc" />
+    <None Include="Report\BodyENOnePhoto.rdlc" />
+    <None Include="Report\BodyENTwoPhoto.rdlc" />
+    <None Include="Report\01 STH BX_one_photo.rdlc" />
+    <None Include="Report\STH_common_header.rdlc" />
+    <None Include="Report\01 STH BX_two_photo.rdlc" />
+    <None Include="Report\01 STH BX_multiple_photo.rdlc" />
+    <None Include="Report\BodyPrivateEN.rdlc" />
+    <None Include="Report\BodyPrivateENOnePhoto.rdlc" />
+    <None Include="Report\BodyPrivateENTwoPhoto.rdlc" />
+    <None Include="Report\BodyPrivateENImage.rdlc" />
+    <None Include="Report\18 PRIVATE BX_multiple_photo.rdlc" />
+    <None Include="Report\18 PRIVATE BX_one_photo.rdlc" />
+    <None Include="Report\18 PRIVATE BX_two_photo.rdlc" />
+    <None Include="Report\BodyCyEN - Copy.rdlc" />
+    <None Include="Report\BodyCyEN.rdlc" />
+    <None Include="Report\19 PRIVATE CY - Copy.rdlc" />
+    <None Include="Report\19 PRIVATE CY.rdlc" />
+    <None Include="Report\BodyCyPrivateEN - Copy.rdlc" />
+    <None Include="Report\BodyCyPrivateEN.rdlc" />
     <EmbeddedResource Include="ShowPicture.resx">
       <DependentUpon>ShowPicture.cs</DependentUpon>
     </EmbeddedResource>

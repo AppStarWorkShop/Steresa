@@ -1667,3 +1667,44 @@ ALTER TABLE BXCY_DIAG ALTER column macro_desc NVARCHAR(MAX) NULL;
 
 -- 2019-12-21
 alter table bxcy_diag add report_status nvarchar(100)
+
+--2019-12-24
+alter table snopcode alter column snoptype nvarchar(5);
+
+--2019-12-27 Eric leung
+create table sth_pay_code (
+	code_id int identity(1, 1) primary key,
+	code nvarchar(10) not null unique,
+	eng_desc nvarchar(1000) ,
+	active bit default 1,
+	create_at datetime2 default SYSDATETIME(),
+	create_by nvarchar(100),
+	update_at datetime2,
+	update_by nvarchar(100)
+	
+)
+
+create table sth_charge_classes
+(
+	class_id int identity(1, 1) primary key,
+	class_code nvarchar(10) not null unique,
+	class_name nvarchar(1000),
+	active bit default 1,
+	create_at datetime2 default SYSDATETIME(),
+	create_by nvarchar(100),
+	update_at datetime2,
+	update_by nvarchar(100)
+)
+
+
+create table sth_charging_table
+(
+	charging_id int identity(1, 1) primary key,
+	class_id int foreign key references sth_charge_classes(class_id),
+	code_id int foreign key references sth_pay_code(code_id),
+	charge float not null,
+	create_at datetime2 default SYSDATETIME(),
+	create_by nvarchar(100),
+	update_at datetime2,
+	update_by nvarchar(100)
+)

@@ -741,6 +741,7 @@ namespace St.Teresa_LIS_2019
             }
             
             open.Show();
+            open.shiftFocusToMarco();
         }
 
         private void OnStatusReturn(int status, bool refresh, DataSet existDiagDataSet, SqlDataAdapter existDiagDataAdapter, DataTable dtToDelete, Object snopT1, Object snopT2, Object snopT3, Object snopM1, Object snopM2, Object snopM3, bool readOnly)
@@ -1869,7 +1870,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["patient"] = textBox_Patient.Text;
             currentEditRow["cname"] = textBox_Chinese_Name.Text;
             currentEditRow["pat_hkid"] = textBox_HKID.Text;
-            CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text, "ddMMyyyy");
+            CommonFunction.setDateWithStr(currentEditRow, "pat_birth", textBox_DOB.Text, "dd/MM/yyyy");
             currentEditRow["class"] = comboBox_Class.Text;
             currentEditRow["pat_age"] = textBox_Age.Text;
             currentEditRow["pat_sex"] = textBox_Sex.Text;

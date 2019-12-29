@@ -18,6 +18,23 @@ namespace St.Teresa_LIS_2019
             hisPassword = Properties.Settings.Default.HisPassword;
         }
 
+        public String readPatient(String hnNo)
+        {
+            String responseXml = null;
+
+            try
+            {
+                HistologyWebserviceDev.HistologyWebserviceSoapClient client = new HistologyWebserviceDev.HistologyWebserviceSoapClient();
+                responseXml = client.getPatient(hisLoginName, hisPassword, hnNo.Trim().ToUpper());
+            }
+            catch (Exception ex)
+            {
+                responseXml = ex.ToString();
+            }
+
+            return responseXml;
+        }
+
         public String sentReportToHis(String caseNo, String reportNo, String reportContent, String sentBy)
         {
             String responseXml = null;
@@ -27,6 +44,7 @@ namespace St.Teresa_LIS_2019
                 {
                     HistologyWebserviceDev.HistologyWebserviceSoapClient client = new HistologyWebserviceDev.HistologyWebserviceSoapClient();
                     responseXml = client.updateResult(hisLoginName, hisPassword, reportContent);
+
 
                     
 

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Data;
 using BarcodeLib;
 using System.Drawing;
+using System.IO;
 
 namespace St.Teresa_LIS_2019
 {
@@ -287,4 +288,26 @@ namespace St.Teresa_LIS_2019
 
         }
     }
+
+    public class Utf8StringWriter : StringWriter
+    {
+        public override Encoding Encoding
+        {
+            get { return Encoding.UTF8; }
+        }
+    }
+
+    public class CaseBarCodeNumberOperator
+    {
+        public static String generate(String caseNo)
+        {
+            if (caseNo == null)
+            {
+                return null;
+            }
+            
+            return caseNo.Replace("/", "").Replace("-", "");
+        }
+    }
+
 }

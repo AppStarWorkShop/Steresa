@@ -9,6 +9,7 @@ namespace St.Teresa_LIS_2019
     {
         public string caseNo { get; set; }
         public string pathNo { get; set; }
+        public int partNo { get; set; }
         public string visitNo { get; set; }
         public int versionNo { get; set; }
         public string reportTypeCode { get; set; }
