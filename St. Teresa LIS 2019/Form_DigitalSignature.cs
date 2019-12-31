@@ -26,16 +26,8 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
-        private void loadDataGridViewDate(string searchCaseNo = "")
+        private void initDataGridView()
         {
-            string sql = string.Format("select * from BXCY_SPECIMEN where sign_dr = '{0}'", currentDoctorName);
-            if (searchCaseNo != "")
-            {
-                sql = string.Format("select * from BXCY_SPECIMEN where (sign_dr = '{0}' or sign_dr2 = '{0}') and case_no = '{1}'", currentDoctorName, searchCaseNo);
-            }
-            
-            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_specimenDataSet, "BXCY_SPECIMEN");
-
             dt = new DataTable();
             dt.Columns.Add(" ", typeof(Boolean));
             dt.Columns.Add("Case No.");
@@ -45,17 +37,44 @@ namespace St.Teresa_LIS_2019
             dt.Columns.Add("HKID No.");
             dt.Columns.Add("id");
 
+            dataGridView1.DataSource = dt;
+        }
+
+        private void loadDataGridViewDate(string searchCaseNo = "")
+        {
+            string sql = string.Format("select * from BXCY_SPECIMEN where sign_dr = '{0}'", currentDoctorName);
+            if (searchCaseNo != "")
+            {
+                sql = string.Format("select * from BXCY_SPECIMEN where case_no = '{0}'", searchCaseNo);
+            }
+            
+            DBConn.fetchDataIntoDataSetSelectOnly(sql, bxcy_specimenDataSet, "BXCY_SPECIMEN");
+
+            if (dt == null)
+            {
+                dt = new DataTable();
+                dt.Columns.Add(" ", typeof(Boolean));
+                dt.Columns.Add("Case No.");
+                dt.Columns.Add("Report No.");
+                dt.Columns.Add("Report Date");
+                dt.Columns.Add("Name");
+                dt.Columns.Add("HKID No.");
+                dt.Columns.Add("id");
+            }
+             
             foreach (DataRow mDr in bxcy_specimenDataSet.Tables["BXCY_SPECIMEN"].Rows)
             {
                 dt.Rows.Add(new object[] { false, mDr["case_no"], mDr["institute"], mDr["rpt_date"], mDr["cname"], mDr["pat_hkid"], mDr["id"] });
             }
 
             dataGridView1.DataSource = dt;
+            
         }
 
         private void Form_DigitalSignature_Load(object sender, EventArgs e)
         {
-            loadDataGridViewDate();
+            //loadDataGridViewDate();
+            initDataGridView();
             dataGridViewFormat();
         }
 
@@ -181,6 +200,12 @@ namespace St.Teresa_LIS_2019
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+
+        private void CheckEnter(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+
         }
     }
 }

@@ -35,7 +35,11 @@
             this.button_Login = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.comboBox_Dr = new System.Windows.Forms.ComboBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox_Password
@@ -45,7 +49,7 @@
             this.textBox_Password.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Password.Location = new System.Drawing.Point(101, 70);
             this.textBox_Password.Name = "textBox_Password";
-            this.textBox_Password.Size = new System.Drawing.Size(145, 24);
+            this.textBox_Password.Size = new System.Drawing.Size(224, 24);
             this.textBox_Password.TabIndex = 69;
             // 
             // label_Password
@@ -78,7 +82,7 @@
             this.button_Login.ForeColor = System.Drawing.Color.DarkGoldenrod;
             this.button_Login.Image = ((System.Drawing.Image)(resources.GetObject("button_Login.Image")));
             this.button_Login.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Login.Location = new System.Drawing.Point(264, 82);
+            this.button_Login.Location = new System.Drawing.Point(331, 70);
             this.button_Login.Name = "button_Login";
             this.button_Login.Size = new System.Drawing.Size(84, 44);
             this.button_Login.TabIndex = 240;
@@ -90,13 +94,14 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(91)))), ((int)(((byte)(203)))), ((int)(((byte)(227)))));
-            this.panel1.Controls.Add(this.comboBox_Dr);
+            this.panel1.Controls.Add(this.button_Login);
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.textBox_Password);
             this.panel1.Controls.Add(this.label_Log_in_Digital_Signature);
             this.panel1.Controls.Add(this.label_Password);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(358, 209);
+            this.panel1.Size = new System.Drawing.Size(430, 209);
             this.panel1.TabIndex = 243;
             // 
             // comboBox_Dr
@@ -107,26 +112,62 @@
             this.comboBox_Dr.FormattingEnabled = true;
             this.comboBox_Dr.Items.AddRange(new object[] {
             "Please select a doctor"});
-            this.comboBox_Dr.Location = new System.Drawing.Point(15, 121);
+            this.comboBox_Dr.Location = new System.Drawing.Point(157, 43);
             this.comboBox_Dr.Name = "comboBox_Dr";
             this.comboBox_Dr.Size = new System.Drawing.Size(231, 26);
             this.comboBox_Dr.TabIndex = 244;
             this.comboBox_Dr.Text = "Please select a doctor";
             this.comboBox_Dr.ValueMember = "DOCTOR";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.comboBox_Dr);
+            this.groupBox1.Location = new System.Drawing.Point(15, 120);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(400, 80);
+            this.groupBox1.TabIndex = 245;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Doctor";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Location = new System.Drawing.Point(7, 20);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(140, 17);
+            this.radioButton1.TabIndex = 245;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Sign for the same doctor";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(7, 48);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(133, 17);
+            this.radioButton2.TabIndex = 246;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Sign for another doctor";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
             // Form_LoginDigitalSignature
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(141)))), ((int)(((byte)(209)))));
-            this.ClientSize = new System.Drawing.Size(385, 238);
+            this.ClientSize = new System.Drawing.Size(459, 238);
             this.ControlBox = false;
-            this.Controls.Add(this.button_Login);
             this.Controls.Add(this.panel1);
             this.Name = "Form_LoginDigitalSignature";
             this.Text = "Log in Digital Signature";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -139,5 +180,8 @@
         private System.Windows.Forms.Button button_Login;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ComboBox comboBox_Dr;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
     }
 }

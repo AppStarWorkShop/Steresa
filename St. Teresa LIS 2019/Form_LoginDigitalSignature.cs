@@ -62,7 +62,7 @@ namespace St.Teresa_LIS_2019
 
         private void loadDataGridViewDate()
         {
-            string sql = "SELECT DOCTOR FROM [sign_doctor]";
+            string sql = "SELECT DOCTOR FROM [sign_doctor] where disabled = 0 order by doctor";
             DataSet sign_doctorDataSet = new DataSet();
             SqlDataAdapter sign_doctorDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(sql, sign_doctorDataSet, "sign_doctor");
 
