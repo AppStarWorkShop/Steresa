@@ -1972,13 +1972,19 @@ namespace St.Teresa_LIS_2019
 
             //comboBox_cytoType.DataSource = cytoTypeDt;
 
-            /*DataTable classDt = new DataTable();
-            classDt.Columns.Add("classValue");
-            classDt.Rows.Add(new object[] { "classValue1" });
-            classDt.Rows.Add(new object[] { "classValue2" });
-            classDt.Rows.Add(new object[] { "classValue3" });
+            string classSql = "SELECT [class_code],[class_name] FROM [sth_charge_classes] ORDER BY class_id";
+            DataSet classDataSet = new DataSet();
+            SqlDataAdapter classDataAdapter = DBConn.fetchDataIntoDataSetSelectOnly(classSql, classDataSet, "sth_charge_classes");
 
-            comboBox_Class.DataSource = classDt;*/
+            DataTable classDt = new DataTable();
+            classDt.Columns.Add("classCode");
+            classDt.Columns.Add("className");
+            foreach (DataRow mDr in classDataSet.Tables["sth_charge_classes"].Rows)
+            {
+                classDt.Rows.Add(new object[] { mDr["class_code"].ToString().Trim(), mDr["class_name"].ToString().Trim() });
+            }
+
+            comboBox_Class.DataSource = classDt;
 
             string snopcodeTSql = "SELECT [desc],snopcode,id FROM [snopcode] WHERE SNOPTYPE = 'T' ORDER BY [desc]";
             DataSet snopcodeTDataSet = new DataSet();

@@ -1955,11 +1955,11 @@
             //
             // textBox_specimenID
             //
-            this.textBox_specimenID.Location = new System.Drawing.Point(1341, 36);
+            /*this.textBox_specimenID.Location = new System.Drawing.Point(1341, 36);
             this.textBox_specimenID.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_specimenID.Name = "textBox_specimenID";
             this.textBox_specimenID.Size = new System.Drawing.Size(12, 20);
-            this.textBox_specimenID.TabIndex = 234;
+            this.textBox_specimenID.TabIndex = 234;*/
             //
             // textBox_ID
             //

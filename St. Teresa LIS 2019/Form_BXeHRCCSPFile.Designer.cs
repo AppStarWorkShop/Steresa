@@ -211,20 +211,17 @@
             // 
             // comboBox_Class
             // 
-            this.comboBox_Class.DisplayMember = "classValue";
+            this.comboBox_Class.DisplayMember = "className";
+            this.comboBox_Class.DropDownWidth = 106;
             this.comboBox_Class.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Class.ForeColor = System.Drawing.Color.Blue;
             this.comboBox_Class.FormattingEnabled = true;
-            this.comboBox_Class.Items.AddRange(new object[] {
-            "Bx",
-            "Sc",
-            "Re"});
             this.comboBox_Class.Location = new System.Drawing.Point(693, 141);
             this.comboBox_Class.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox_Class.Name = "comboBox_Class";
             this.comboBox_Class.Size = new System.Drawing.Size(68, 30);
             this.comboBox_Class.TabIndex = 9;
-            this.comboBox_Class.ValueMember = "classValue";
+            this.comboBox_Class.ValueMember = "classCode";
             // 
             // label_Changed_Name_Marker_2
             // 

@@ -1708,3 +1708,374 @@ create table sth_charging_table
 	update_at datetime2,
 	update_by nvarchar(100)
 )
+
+
+
+insert into sth_pay_code (code, eng_desc, create_by) values ('H064', ' Routine Examination  (GI Endoscopy DC Case only, 1-3 specimens)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H065 ', ' Routine Examination  (GI Endoscopy DC Case only, 1-4 specimens)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H066 ', ' Routine Examination  (GI Endoscopy DC Case only, 1-5 specimens)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H067 ', ' Routine Examination  (GI Endoscopy DC Case only, 1-6 specimens)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H068', ' Routine Examination  (GI Endoscopy DC Case only, 1-7 specimens)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H063 ', ' Routine Examination  (Small, incisional/endoscopic 1-3 specimens)**', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H041 ', ' Routine Examination  (Small, incisional/endoscopic 1-4 specimens)**', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H042', ' Routine Examination  (Small, incisional/endoscopic 1-5 specimens)**', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H043 ', ' Routine Examination  (Small, incisional/endoscopic 1-6 specimens)**', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H062 ', ' Routine Examination  (Small, incisional/endoscopic 1-7 or more specimens)**', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H044 ', ' Routine Examination  (Core Biopsy)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H023 ', ' Routine Examination  (Small, excisional)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H011', ' Routine Examination  (Small, excisional)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H060', ' Routine Examination  (Small, excisional, 2 specimens)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H061', ' Routine Examination  (Small, excisional, 3 or more specimens)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H010', ' Routine Examination  (Large specimen, standard operations)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H045', ' Routine Examination  (Large, including 1-4 additional small biopsies)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H046 ', ' Routine Examination  (Large, including 5-9 additional small biopsies)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H047', ' Routine Examination  (Large, including 10 or more additional small biopsies)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H048 ', ' Routine Examination  (Prostatic biopsies > 12 sites)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H006', ' Frozen Section Professional Charge (1 F/S), before 6pm', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H049', ' Frozen Section Professional Charge (2 F/S), before 6pm', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H050', ' Frozen Section Professional Charge (3 F/S), before 6pm', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H051', ' Frozen Section Professional Charge (4 F/S), before 6pm', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H025 ', ' Frozen Section Surcharge, 6-9pm', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H026', ' Frozen Section Surcharge, after 9pm*', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H052', ' Special Breast F/S Package + 3 SLNs', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H053 ', ' Special Breast F/S Package + 4 SLNs', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H054', ' Special Breast F/S Package + 5 SLNs', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H055', ' Special Breast F/S Package + 6 SLNs or more SLNs', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H056', ' Special SLN F/S Package (SLNs x 3)бу ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H057', ' Special SLN F/S Package (SLNs x 4)бу ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H058', ' Special SLN F/S Package (SLNs x 5)бу ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H059', ' Special SLN F/S Package (SLNs x 6 or more SLNs)бу ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H007', ' Breast Cancer Markers: ER, PR, Ki-67 & Oncogene', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H005', ' Blood for EBV', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H001', ' Bone Marrow', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H027', ' Bone Marrow & Trephine Biopsy  ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H008', ' Immunofluorescence (Renal / Skin)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H009 ', ' Electron Microscopy (EM) ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H020', ' Foetal Examination', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H022', ' FNA Urgent Reporting', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H012', ' FNA Cytology ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H004', ' FNA By Pathologist', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H014', ' Thinprep PAP Test (Cytology)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H017', ' PreservCyt Solution for HPV', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H018', ' PreservCyt Solution for Cytology & HPV', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H003', ' Non-gynae Cytology (body fluid, etc)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H028', ' CISH/SISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H029', ' Immunohistochemical staining', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H097 ', ' PCR - TB (QEH)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H137', ' PD-L1 IHC (22C3) In-house Test', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H138', ' 40 or Over 40 Unstained Slides Preparation Fee', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H139', ' Hamematolymphoid immunoprofile', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H140', ' HPV Surcharge (QMH) ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H145 ', ' Muscle Biopsy (QMH) Revised frm 1/10/18', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H086', 'Brain Cancer Panel (MGMT Methylation PCR and 1p/19q FISH)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H085', '1p/19q Deletion by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H099', 'IDH1 & IDH2 Hotspot Mutation Detection', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H083', 'MGMT Promoter Methylation PCR', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H076', 'Colorectal Cancer Panel I (KRAS, BRAF, MSI)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H092', 'Colorectal Cancer Panel II (KRAS, NRAS, BRAF, MSI)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H080', 'KRAS and NRAS Gene Hotspot Mutation Detection (Exons 2, 3 and 4)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H070', 'BRAF Gene V600 Mutation Detection', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H073', 'Microsatellite Instability Test', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H122', 'Microsatellite Instability and MMR IHC', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H069', 'ALK Gene Rearrangement Detection by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H104', 'ALK Immunohistochemistry / ALK-IHC (In-house)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H141', 'Cancer Hotspot Mutations Lung NGS Panel (30 plus genes incl ALK,ROS1, RET)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H109', 'EGFR Gene Amplificatioin Detection by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H071', 'EGFR Gene Hotspot Mutation Detection (Exons 18, 19, 20 and 21), FFPE', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H110', 'EGFR Gene Hotspot Mutation Detection (Exons 18, 19, 20 and 21), BLOOD', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H074', 'EGFR and KRAS Gene Hotspot Mutations', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H075', 'Lung Cancer Panel I (EGFR, KRAS and ALK FISH)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H089', 'Lung Cancer Panel II (ROS1 FISH, RET, HER2 Mutation)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H116', 'Lung Cancer Panel III (EGFR, KRAS, ALK IHC)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H142', 'Lung Cancer Panel IV (EGFR, ALK & ROS1 FISH)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H143', 'Lung Cancer Panel VI (BRAF V600,HER2 Exon 20 & MET Exon 14 Skipping Mutation)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H144', 'Lung Cancer Panel  V (EGFR+ ALK-IHC + ROS1 FISH)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H093', 'MET (C-MET) Amplification Detection by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H079', 'ROS1 Gene Rearrangement Detection by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H112', 'FoundationOne Heme  out of HK', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H113', 'FoundationOne Solid  out of HK', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H135', 'FoundationOne ACT (Blood)  out of HK', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H091', 'ERBB2 (HER2) Exon 20 Mutation ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H100', 'ERBB2 (HER2) Gene Amplification Detection by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H081', 'KIT and PDGFRA Hotspot Mutations', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H077', 'KIT Gene Hotspot Mutation Detection (Exons 9, 11, 13, 14 and 17)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H115', 'HRAS Gene Hotspot Mutation Detection (Exons 2, 3 and 4)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H072', 'KRAS Gene Hotspot Mutation Detection (Exons 2, 3 and 4)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H088', 'NRAS Gene Hotspot Mutation Detection (Exons 2, 3 and 4)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H118', 'MMR Gene Deletion/ Duplication by MLPA', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H119', 'MMR Genes Promoter Methylation Detection by MLPA', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H117', 'MLH1 Gene Comprehensive Screening for Hereditary Non-polyposis Colorectal Cancer', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H120', 'MSH2 Gene Comprehensive Screening for Hereditary Non-polyposis Colorectal Cancer', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H121', 'MSH6 Gene Comprehensive Screening for Hereditary Non-polyposis Colorectal Cancer', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H098', 'RET Gene Hotspot Mutation Detection (Exons 5,8,10,11, 13-16)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H090', 'RET Gene Rearrangement Detection by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H095', 'AKT1 E17K Hotspot Mutation ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H105', 'APC Gene Comprehensive Screening for Familial Adenomatous Polyposis', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H106', 'BRCA1 and BRCA2 Genes Comprehensive Screening for Breast and Ovarian Cancer', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H107', 'CDH1 Gene Sequencing Analysis for Gastric Cancer', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H108', 'Comprehensive Hereditary Cancers Screening', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H111', 'EPCAM Gene Deletion by MLPA', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H114', 'Hereditary Cancer Syndromes (79 Genes Panel)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H123', 'MUTYH Gene Sequencing Analysis for MUTYH Associated Polyposis', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H124', 'N-MYC Gene Amplication by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H125', 'PDGFRA Gene Hotspot Mutation Detection (Exons 12 and 18)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H094', 'PIK3CA Gene Hotspot Mutation Dectection (Exons 9 and 20)    ', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H126', 'PMS2 Gene Comprehensive Screening for Hereditary Non-polypois Colorectal Cancer', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H127', 'PTEN Gene Comprehensive Screening for PTEN Related Disorders', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H128', 'Specific Gene Known Mutation Screening (Point Mutation, Small Deletion and Insertion)', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H129', 'STK11 Gene Mutation Screening', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H130', 'TERT Promoter Mutation', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H131', 'TOP2A Gene Amplification Detection by FISH', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H132', 'TP53 Gene Comprehensive Screening for Li-Fraumeni Syndrome', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H133', 'UGT1A1 Genotyping for Irinotecan Toxicity', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H134', 'VHL Gene Comprehensive Screening for Von Hippel-Lindau Syndrome', 'sys');
+insert into sth_pay_code (code, eng_desc, create_by) values ('H136', 'PD-L1 Immunohistochemistry (UPS, CHUHK) INACTIVE', 'sys');
+
+update sth_pay_code set update_at = getdate(), update_by = getdate();
+
+
+insert into sth_charge_classes (class_code, class_name, create_by) values ('OPD/SW', 'OPD/SW',  'sys');
+insert into sth_charge_classes (class_code, class_name, create_by) values ('H', 'H',  'sys');
+insert into sth_charge_classes (class_code, class_name, create_by) values ('SP', 'SP',  'sys');
+insert into sth_charge_classes (class_code, class_name, create_by) values ('PR', 'PR',  'sys');
+insert into sth_charge_classes (class_code, class_name, create_by) values ('PP', 'PP',  'sys');
+
+update sth_charge_classes set update_at = getdate(), update_by = getdate();
+
+
+insert into sth_charging_table (class_id, code_id, charge) values (1, 37, 1420);	insert into sth_charging_table (class_id, code_id, charge) values (2, 37, 995);	insert into sth_charging_table (class_id, code_id, charge) values (3, 37, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (4, 37, 2200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 37, 2420);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 48, 310);	insert into sth_charging_table (class_id, code_id, charge) values (2, 48, 220);	insert into sth_charging_table (class_id, code_id, charge) values (3, 48, 440);	insert into sth_charging_table (class_id, code_id, charge) values (4, 48, 480);	insert into sth_charging_table (class_id, code_id, charge) values (5, 48, 530);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 44, 1420);	insert into sth_charging_table (class_id, code_id, charge) values (2, 44, 995);	insert into sth_charging_table (class_id, code_id, charge) values (3, 44, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (4, 44, 2200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 44, 2420);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 36, 440);	insert into sth_charging_table (class_id, code_id, charge) values (2, 36, 310);	insert into sth_charging_table (class_id, code_id, charge) values (3, 36, 620);	insert into sth_charging_table (class_id, code_id, charge) values (4, 36, 690);	insert into sth_charging_table (class_id, code_id, charge) values (5, 36, 750);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 21, 1000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 21, 700);	insert into sth_charging_table (class_id, code_id, charge) values (3, 21, 1400);	insert into sth_charging_table (class_id, code_id, charge) values (4, 21, 1550);	insert into sth_charging_table (class_id, code_id, charge) values (5, 21, 1700);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 35, 2230);	insert into sth_charging_table (class_id, code_id, charge) values (2, 35, 1565);	insert into sth_charging_table (class_id, code_id, charge) values (3, 35, 3130);	insert into sth_charging_table (class_id, code_id, charge) values (4, 35, 3460);	insert into sth_charging_table (class_id, code_id, charge) values (5, 35, 3790);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 39, 4260);	insert into sth_charging_table (class_id, code_id, charge) values (2, 39, 2980);	insert into sth_charging_table (class_id, code_id, charge) values (3, 39, 5960);	insert into sth_charging_table (class_id, code_id, charge) values (4, 39, 6600);	insert into sth_charging_table (class_id, code_id, charge) values (5, 39, 7240);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 40, 4720);	insert into sth_charging_table (class_id, code_id, charge) values (2, 40, 4419);	insert into sth_charging_table (class_id, code_id, charge) values (3, 40, 6610);	insert into sth_charging_table (class_id, code_id, charge) values (4, 40, 7320);	insert into sth_charging_table (class_id, code_id, charge) values (5, 40, 8020);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 16, 3200);	insert into sth_charging_table (class_id, code_id, charge) values (2, 16, 2240);	insert into sth_charging_table (class_id, code_id, charge) values (3, 16, 4480);	insert into sth_charging_table (class_id, code_id, charge) values (4, 16, 4960);	insert into sth_charging_table (class_id, code_id, charge) values (5, 16, 5440);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 13, 1600);	insert into sth_charging_table (class_id, code_id, charge) values (2, 13, 1120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 13, 2240);	insert into sth_charging_table (class_id, code_id, charge) values (4, 13, 2480);	insert into sth_charging_table (class_id, code_id, charge) values (5, 13, 2720);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 43, 440);	insert into sth_charging_table (class_id, code_id, charge) values (2, 43, 310);	insert into sth_charging_table (class_id, code_id, charge) values (3, 43, 620);	insert into sth_charging_table (class_id, code_id, charge) values (4, 43, 690);	insert into sth_charging_table (class_id, code_id, charge) values (5, 43, 750);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 45, 360);	insert into sth_charging_table (class_id, code_id, charge) values (2, 45, 255);	insert into sth_charging_table (class_id, code_id, charge) values (3, 45, 510);	insert into sth_charging_table (class_id, code_id, charge) values (4, 45, 560);	insert into sth_charging_table (class_id, code_id, charge) values (5, 45, 620);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 46, 440);	insert into sth_charging_table (class_id, code_id, charge) values (2, 46, 310);	insert into sth_charging_table (class_id, code_id, charge) values (3, 46, 620);	insert into sth_charging_table (class_id, code_id, charge) values (4, 46, 690);	insert into sth_charging_table (class_id, code_id, charge) values (5, 46, 750);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 47, 760);	insert into sth_charging_table (class_id, code_id, charge) values (2, 47, 535);	insert into sth_charging_table (class_id, code_id, charge) values (3, 47, 1070);	insert into sth_charging_table (class_id, code_id, charge) values (4, 47, 1190);	insert into sth_charging_table (class_id, code_id, charge) values (5, 47, 1300);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 41, 8480);	insert into sth_charging_table (class_id, code_id, charge) values (2, 41, 5940);	insert into sth_charging_table (class_id, code_id, charge) values (3, 41, 11880);	insert into sth_charging_table (class_id, code_id, charge) values (4, 41, 13150);	insert into sth_charging_table (class_id, code_id, charge) values (5, 41, 14420);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 42, 2340);	insert into sth_charging_table (class_id, code_id, charge) values (2, 42, 1640);	insert into sth_charging_table (class_id, code_id, charge) values (3, 42, 3280);	insert into sth_charging_table (class_id, code_id, charge) values (4, 42, 3630);	insert into sth_charging_table (class_id, code_id, charge) values (5, 42, 3980);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 12, 1600);	insert into sth_charging_table (class_id, code_id, charge) values (2, 12, 1120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 12, 2240);	insert into sth_charging_table (class_id, code_id, charge) values (4, 12, 2480);	insert into sth_charging_table (class_id, code_id, charge) values (5, 12, 2720);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 25, 500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 25, 350);	insert into sth_charging_table (class_id, code_id, charge) values (3, 25, 700);	insert into sth_charging_table (class_id, code_id, charge) values (4, 25, 780);	insert into sth_charging_table (class_id, code_id, charge) values (5, 25, 850);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 26, 1000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 26, 700);	insert into sth_charging_table (class_id, code_id, charge) values (3, 26, 1400);	insert into sth_charging_table (class_id, code_id, charge) values (4, 26, 1550);	insert into sth_charging_table (class_id, code_id, charge) values (5, 26, 1700);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 38, 2840);	insert into sth_charging_table (class_id, code_id, charge) values (2, 38, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (3, 38, 3980);	insert into sth_charging_table (class_id, code_id, charge) values (4, 38, 4400);	insert into sth_charging_table (class_id, code_id, charge) values (5, 38, 4840);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 49, 2840);	insert into sth_charging_table (class_id, code_id, charge) values (2, 49, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (3, 49, 3980);	insert into sth_charging_table (class_id, code_id, charge) values (4, 49, 4400);	insert into sth_charging_table (class_id, code_id, charge) values (5, 49, 4840);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 50, 1420);	insert into sth_charging_table (class_id, code_id, charge) values (2, 50, 995);	insert into sth_charging_table (class_id, code_id, charge) values (3, 50, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (4, 50, 2200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 50, 2420);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 7, 2100);	insert into sth_charging_table (class_id, code_id, charge) values (2, 7, 1470);	insert into sth_charging_table (class_id, code_id, charge) values (3, 7, 2940);	insert into sth_charging_table (class_id, code_id, charge) values (4, 7, 3260);	insert into sth_charging_table (class_id, code_id, charge) values (5, 7, 3570);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 8, 2600);	insert into sth_charging_table (class_id, code_id, charge) values (2, 8, 1820);	insert into sth_charging_table (class_id, code_id, charge) values (3, 8, 3640);	insert into sth_charging_table (class_id, code_id, charge) values (4, 8, 4030);	insert into sth_charging_table (class_id, code_id, charge) values (5, 8, 4420);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 9, 3100);	insert into sth_charging_table (class_id, code_id, charge) values (2, 9, 2170);	insert into sth_charging_table (class_id, code_id, charge) values (3, 9, 4340);	insert into sth_charging_table (class_id, code_id, charge) values (4, 9, 4810);	insert into sth_charging_table (class_id, code_id, charge) values (5, 9, 5270);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 11, 2400);	insert into sth_charging_table (class_id, code_id, charge) values (2, 11, 1680);	insert into sth_charging_table (class_id, code_id, charge) values (3, 11, 3360);	insert into sth_charging_table (class_id, code_id, charge) values (4, 11, 3720);	insert into sth_charging_table (class_id, code_id, charge) values (5, 11, 4080);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 17, 4200);	insert into sth_charging_table (class_id, code_id, charge) values (2, 17, 2940);	insert into sth_charging_table (class_id, code_id, charge) values (3, 17, 5880);	insert into sth_charging_table (class_id, code_id, charge) values (4, 17, 6510);	insert into sth_charging_table (class_id, code_id, charge) values (5, 17, 7140);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 18, 5200);	insert into sth_charging_table (class_id, code_id, charge) values (2, 18, 3640);	insert into sth_charging_table (class_id, code_id, charge) values (3, 18, 7280);	insert into sth_charging_table (class_id, code_id, charge) values (4, 18, 8060);	insert into sth_charging_table (class_id, code_id, charge) values (5, 18, 8840);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 19, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (2, 19, 4340);	insert into sth_charging_table (class_id, code_id, charge) values (3, 19, 8680);	insert into sth_charging_table (class_id, code_id, charge) values (4, 19, 9610);	insert into sth_charging_table (class_id, code_id, charge) values (5, 19, 10540);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 20, 4500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 20, 3150);	insert into sth_charging_table (class_id, code_id, charge) values (3, 20, 6300);	insert into sth_charging_table (class_id, code_id, charge) values (4, 20, 6980);	insert into sth_charging_table (class_id, code_id, charge) values (5, 20, 7650);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 22, 1500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 22, 1050);	insert into sth_charging_table (class_id, code_id, charge) values (3, 22, 2100);	insert into sth_charging_table (class_id, code_id, charge) values (4, 22, 2330);	insert into sth_charging_table (class_id, code_id, charge) values (5, 22, 2550);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 23, 2000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 23, 1400);	insert into sth_charging_table (class_id, code_id, charge) values (3, 23, 2800);	insert into sth_charging_table (class_id, code_id, charge) values (4, 23, 3100);	insert into sth_charging_table (class_id, code_id, charge) values (5, 23, 3400);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 24, 2500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 24, 1750);	insert into sth_charging_table (class_id, code_id, charge) values (3, 24, 3500);	insert into sth_charging_table (class_id, code_id, charge) values (4, 24, 3880);	insert into sth_charging_table (class_id, code_id, charge) values (5, 24, 4250);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 27, 9950);	insert into sth_charging_table (class_id, code_id, charge) values (2, 27, 6965);	insert into sth_charging_table (class_id, code_id, charge) values (3, 27, 13930);	insert into sth_charging_table (class_id, code_id, charge) values (4, 27, 15420);	insert into sth_charging_table (class_id, code_id, charge) values (5, 27, 16920);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 28, 10750);	insert into sth_charging_table (class_id, code_id, charge) values (2, 28, 7525);	insert into sth_charging_table (class_id, code_id, charge) values (3, 28, 15050);	insert into sth_charging_table (class_id, code_id, charge) values (4, 28, 16660);	insert into sth_charging_table (class_id, code_id, charge) values (5, 28, 18280);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 29, 11550);	insert into sth_charging_table (class_id, code_id, charge) values (2, 29, 8085);	insert into sth_charging_table (class_id, code_id, charge) values (3, 29, 16170);	insert into sth_charging_table (class_id, code_id, charge) values (4, 29, 17900);	insert into sth_charging_table (class_id, code_id, charge) values (5, 29, 19640);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 30, 12350);	insert into sth_charging_table (class_id, code_id, charge) values (2, 30, 8645);	insert into sth_charging_table (class_id, code_id, charge) values (3, 30, 17290);	insert into sth_charging_table (class_id, code_id, charge) values (4, 30, 19140);	insert into sth_charging_table (class_id, code_id, charge) values (5, 30, 21000);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 31, 1000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 31, 700);	insert into sth_charging_table (class_id, code_id, charge) values (3, 31, 1400);	insert into sth_charging_table (class_id, code_id, charge) values (4, 31, 1550);	insert into sth_charging_table (class_id, code_id, charge) values (5, 31, 1700);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 32, 1500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 32, 1050);	insert into sth_charging_table (class_id, code_id, charge) values (3, 32, 2100);	insert into sth_charging_table (class_id, code_id, charge) values (4, 32, 2330);	insert into sth_charging_table (class_id, code_id, charge) values (5, 32, 2550);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 33, 2000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 33, 1400);	insert into sth_charging_table (class_id, code_id, charge) values (3, 33, 2800);	insert into sth_charging_table (class_id, code_id, charge) values (4, 33, 3100);	insert into sth_charging_table (class_id, code_id, charge) values (5, 33, 3400);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 34, 2500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 34, 1750);	insert into sth_charging_table (class_id, code_id, charge) values (3, 34, 3500);	insert into sth_charging_table (class_id, code_id, charge) values (4, 34, 3880);	insert into sth_charging_table (class_id, code_id, charge) values (5, 34, 4250);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 14, 2400);	insert into sth_charging_table (class_id, code_id, charge) values (2, 14, 1680);	insert into sth_charging_table (class_id, code_id, charge) values (3, 14, 3360);	insert into sth_charging_table (class_id, code_id, charge) values (4, 14, 3720);	insert into sth_charging_table (class_id, code_id, charge) values (5, 14, 4080);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 15, 3200);	insert into sth_charging_table (class_id, code_id, charge) values (2, 15, 2240);	insert into sth_charging_table (class_id, code_id, charge) values (3, 15, 4480);	insert into sth_charging_table (class_id, code_id, charge) values (4, 15, 4960);	insert into sth_charging_table (class_id, code_id, charge) values (5, 15, 5440);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 10, 3600);	insert into sth_charging_table (class_id, code_id, charge) values (2, 10, 2520);	insert into sth_charging_table (class_id, code_id, charge) values (3, 10, 5040);	insert into sth_charging_table (class_id, code_id, charge) values (4, 10, 5580);	insert into sth_charging_table (class_id, code_id, charge) values (5, 10, 6120);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 6, 1600);	insert into sth_charging_table (class_id, code_id, charge) values (2, 6, 1120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 6, 2240);	insert into sth_charging_table (class_id, code_id, charge) values (4, 6, 2480);	insert into sth_charging_table (class_id, code_id, charge) values (5, 6, 2720);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 1, 1500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 1, 1050);	insert into sth_charging_table (class_id, code_id, charge) values (3, 1, 2100);	insert into sth_charging_table (class_id, code_id, charge) values (4, 1, 2330);	insert into sth_charging_table (class_id, code_id, charge) values (5, 1, 2550);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 2, 2000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 2, 1400);	insert into sth_charging_table (class_id, code_id, charge) values (3, 2, 2800);	insert into sth_charging_table (class_id, code_id, charge) values (4, 2, 3100);	insert into sth_charging_table (class_id, code_id, charge) values (5, 2, 3400);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 3, 2500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 3, 1750);	insert into sth_charging_table (class_id, code_id, charge) values (3, 3, 3500);	insert into sth_charging_table (class_id, code_id, charge) values (4, 3, 3880);	insert into sth_charging_table (class_id, code_id, charge) values (5, 3, 4250);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 4, 3000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 4, 2100);	insert into sth_charging_table (class_id, code_id, charge) values (3, 4, 4200);	insert into sth_charging_table (class_id, code_id, charge) values (4, 4, 4650);	insert into sth_charging_table (class_id, code_id, charge) values (5, 4, 5100);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 5, 3500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 5, 2450);	insert into sth_charging_table (class_id, code_id, charge) values (3, 5, 4900);	insert into sth_charging_table (class_id, code_id, charge) values (4, 5, 5430);	insert into sth_charging_table (class_id, code_id, charge) values (5, 5, 5950);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 67, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 67, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 67, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 67, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 67, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 64, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (2, 64, 2801.6);	insert into sth_charging_table (class_id, code_id, charge) values (3, 64, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (4, 64, 4220);	insert into sth_charging_table (class_id, code_id, charge) values (5, 64, 4630);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 71, 3660);	insert into sth_charging_table (class_id, code_id, charge) values (2, 71, 3605);	insert into sth_charging_table (class_id, code_id, charge) values (3, 71, 3660);	insert into sth_charging_table (class_id, code_id, charge) values (4, 71, 5430);	insert into sth_charging_table (class_id, code_id, charge) values (5, 71, 5950);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 90, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (2, 90, 3296);	insert into sth_charging_table (class_id, code_id, charge) values (3, 90, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (4, 90, 4960);	insert into sth_charging_table (class_id, code_id, charge) values (5, 90, 5440);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 65, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (2, 65, 3296);	insert into sth_charging_table (class_id, code_id, charge) values (3, 65, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (4, 65, 4960);	insert into sth_charging_table (class_id, code_id, charge) values (5, 65, 5440);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 73, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 73, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 73, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 73, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 73, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 74, 8160);	insert into sth_charging_table (class_id, code_id, charge) values (2, 74, 8034);	insert into sth_charging_table (class_id, code_id, charge) values (3, 74, 8160);	insert into sth_charging_table (class_id, code_id, charge) values (4, 74, 12090);	insert into sth_charging_table (class_id, code_id, charge) values (5, 74, 13260);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 61, 7840);	insert into sth_charging_table (class_id, code_id, charge) values (2, 61, 7725);	insert into sth_charging_table (class_id, code_id, charge) values (3, 61, 7840);	insert into sth_charging_table (class_id, code_id, charge) values (4, 61, 11630);	insert into sth_charging_table (class_id, code_id, charge) values (5, 61, 12750);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 88, 3660);	insert into sth_charging_table (class_id, code_id, charge) values (2, 88, 3605);	insert into sth_charging_table (class_id, code_id, charge) values (3, 88, 3660);	insert into sth_charging_table (class_id, code_id, charge) values (4, 88, 5430);	insert into sth_charging_table (class_id, code_id, charge) values (5, 88, 5950);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 81, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 81, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 81, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 81, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 81, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 63, 4600);	insert into sth_charging_table (class_id, code_id, charge) values (2, 63, 4532);	insert into sth_charging_table (class_id, code_id, charge) values (3, 63, 4600);	insert into sth_charging_table (class_id, code_id, charge) values (4, 63, 6820);	insert into sth_charging_table (class_id, code_id, charge) values (5, 63, 7480);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 87, 4500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 87, 4429);	insert into sth_charging_table (class_id, code_id, charge) values (3, 87, 4500);	insert into sth_charging_table (class_id, code_id, charge) values (4, 87, 6670);	insert into sth_charging_table (class_id, code_id, charge) values (5, 87, 7310);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 60, 2100);	insert into sth_charging_table (class_id, code_id, charge) values (2, 60, 2060);	insert into sth_charging_table (class_id, code_id, charge) values (3, 60, 2100);	insert into sth_charging_table (class_id, code_id, charge) values (4, 60, 3240);	insert into sth_charging_table (class_id, code_id, charge) values (5, 60, 3560);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 58, 5230);	insert into sth_charging_table (class_id, code_id, charge) values (2, 58, 5150);	insert into sth_charging_table (class_id, code_id, charge) values (3, 58, 5230);	insert into sth_charging_table (class_id, code_id, charge) values (4, 58, 7750);	insert into sth_charging_table (class_id, code_id, charge) values (5, 58, 8500);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 57, 7220);	insert into sth_charging_table (class_id, code_id, charge) values (2, 57, 7107);	insert into sth_charging_table (class_id, code_id, charge) values (3, 57, 7220);	insert into sth_charging_table (class_id, code_id, charge) values (4, 57, 10700);	insert into sth_charging_table (class_id, code_id, charge) values (5, 57, 11730);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 91, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (2, 91, 3296);	insert into sth_charging_table (class_id, code_id, charge) values (3, 91, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (4, 91, 4960);	insert into sth_charging_table (class_id, code_id, charge) values (5, 91, 5440);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 75, 8160);	insert into sth_charging_table (class_id, code_id, charge) values (2, 75, 8034);	insert into sth_charging_table (class_id, code_id, charge) values (3, 75, 8160);	insert into sth_charging_table (class_id, code_id, charge) values (4, 75, 12090);	insert into sth_charging_table (class_id, code_id, charge) values (5, 75, 13260);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 98, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 98, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 98, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 98, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 98, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 85, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (2, 85, 2801.6);	insert into sth_charging_table (class_id, code_id, charge) values (3, 85, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (4, 85, 4220);	insert into sth_charging_table (class_id, code_id, charge) values (5, 85, 4630);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 62, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (2, 62, 9270);	insert into sth_charging_table (class_id, code_id, charge) values (3, 62, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (4, 62, 13950);	insert into sth_charging_table (class_id, code_id, charge) values (5, 62, 15300);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 80, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 80, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 80, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 80, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 80, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 109, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (2, 109, 3296);	insert into sth_charging_table (class_id, code_id, charge) values (3, 109, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (4, 109, 4960);	insert into sth_charging_table (class_id, code_id, charge) values (5, 109, 5440);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 99, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (2, 99, 2801.6);	insert into sth_charging_table (class_id, code_id, charge) values (3, 99, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (4, 99, 4220);	insert into sth_charging_table (class_id, code_id, charge) values (5, 99, 4630);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 51, 1650);	insert into sth_charging_table (class_id, code_id, charge) values (2, 51, 1545);	insert into sth_charging_table (class_id, code_id, charge) values (3, 51, 2310);	insert into sth_charging_table (class_id, code_id, charge) values (4, 51, 2560);	insert into sth_charging_table (class_id, code_id, charge) values (5, 51, 2805);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 97, 5440);	insert into sth_charging_table (class_id, code_id, charge) values (2, 97, 5356);	insert into sth_charging_table (class_id, code_id, charge) values (3, 97, 5440);	insert into sth_charging_table (class_id, code_id, charge) values (4, 97, 8060);	insert into sth_charging_table (class_id, code_id, charge) values (5, 97, 8840);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 59, 3140);	insert into sth_charging_table (class_id, code_id, charge) values (2, 59, 3090);	insert into sth_charging_table (class_id, code_id, charge) values (3, 59, 3140);	insert into sth_charging_table (class_id, code_id, charge) values (4, 59, 4650);	insert into sth_charging_table (class_id, code_id, charge) values (5, 59, 5100);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 86, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 86, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 86, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 86, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 86, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 68, 1260);	insert into sth_charging_table (class_id, code_id, charge) values (2, 68, 1236);	insert into sth_charging_table (class_id, code_id, charge) values (3, 68, 1260);	insert into sth_charging_table (class_id, code_id, charge) values (4, 68, 1860);	insert into sth_charging_table (class_id, code_id, charge) values (5, 68, 2040);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 100, 19860);	insert into sth_charging_table (class_id, code_id, charge) values (2, 100, 19570);	insert into sth_charging_table (class_id, code_id, charge) values (3, 100, 19860);	insert into sth_charging_table (class_id, code_id, charge) values (4, 100, 29450);	insert into sth_charging_table (class_id, code_id, charge) values (5, 100, 32300);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 101, 18400);	insert into sth_charging_table (class_id, code_id, charge) values (2, 101, 18128);	insert into sth_charging_table (class_id, code_id, charge) values (3, 101, 18400);	insert into sth_charging_table (class_id, code_id, charge) values (4, 101, 27280);	insert into sth_charging_table (class_id, code_id, charge) values (5, 101, 29920);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 102, 5860);	insert into sth_charging_table (class_id, code_id, charge) values (2, 102, 5768);	insert into sth_charging_table (class_id, code_id, charge) values (3, 102, 5860);	insert into sth_charging_table (class_id, code_id, charge) values (4, 102, 8680);	insert into sth_charging_table (class_id, code_id, charge) values (5, 102, 9520);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 103, 20900);	insert into sth_charging_table (class_id, code_id, charge) values (2, 103, 20600);	insert into sth_charging_table (class_id, code_id, charge) values (3, 103, 20900);	insert into sth_charging_table (class_id, code_id, charge) values (4, 103, 31000);	insert into sth_charging_table (class_id, code_id, charge) values (5, 103, 34000);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 70, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 70, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 70, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 70, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 70, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 72, 5750);	insert into sth_charging_table (class_id, code_id, charge) values (2, 72, 5665);	insert into sth_charging_table (class_id, code_id, charge) values (3, 72, 5750);	insert into sth_charging_table (class_id, code_id, charge) values (4, 72, 8530);	insert into sth_charging_table (class_id, code_id, charge) values (5, 72, 9350);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 104, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 104, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 104, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 104, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 104, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 82, 52850);	insert into sth_charging_table (class_id, code_id, charge) values (2, 82, 44805);	insert into sth_charging_table (class_id, code_id, charge) values (3, 82, 52850);	insert into sth_charging_table (class_id, code_id, charge) values (4, 82, 72425);	insert into sth_charging_table (class_id, code_id, charge) values (5, 82, 78950);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 83, 44380);	insert into sth_charging_table (class_id, code_id, charge) values (2, 83, 36874);	insert into sth_charging_table (class_id, code_id, charge) values (3, 83, 44380);	insert into sth_charging_table (class_id, code_id, charge) values (4, 83, 60490);	insert into sth_charging_table (class_id, code_id, charge) values (5, 83, 65860);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 105, 18290);	insert into sth_charging_table (class_id, code_id, charge) values (2, 105, 18025);	insert into sth_charging_table (class_id, code_id, charge) values (3, 105, 18290);	insert into sth_charging_table (class_id, code_id, charge) values (4, 105, 27130);	insert into sth_charging_table (class_id, code_id, charge) values (5, 105, 29750);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 89, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (2, 89, 3296);	insert into sth_charging_table (class_id, code_id, charge) values (3, 89, 3350);	insert into sth_charging_table (class_id, code_id, charge) values (4, 89, 4960);	insert into sth_charging_table (class_id, code_id, charge) values (5, 89, 5440);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 76, 7110);	insert into sth_charging_table (class_id, code_id, charge) values (2, 76, 7004);	insert into sth_charging_table (class_id, code_id, charge) values (3, 76, 7110);	insert into sth_charging_table (class_id, code_id, charge) values (4, 76, 10540);	insert into sth_charging_table (class_id, code_id, charge) values (5, 76, 11560);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 94, 9930);	insert into sth_charging_table (class_id, code_id, charge) values (2, 94, 9785);	insert into sth_charging_table (class_id, code_id, charge) values (3, 94, 9930);	insert into sth_charging_table (class_id, code_id, charge) values (4, 94, 14730);	insert into sth_charging_table (class_id, code_id, charge) values (5, 94, 16150);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 92, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 92, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 92, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 92, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 92, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 93, 3140);	insert into sth_charging_table (class_id, code_id, charge) values (2, 93, 3090);	insert into sth_charging_table (class_id, code_id, charge) values (3, 93, 3140);	insert into sth_charging_table (class_id, code_id, charge) values (4, 93, 4650);	insert into sth_charging_table (class_id, code_id, charge) values (5, 93, 5100);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 95, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (2, 95, 9270);	insert into sth_charging_table (class_id, code_id, charge) values (3, 95, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (4, 95, 13950);	insert into sth_charging_table (class_id, code_id, charge) values (5, 95, 15300);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 96, 6270);	insert into sth_charging_table (class_id, code_id, charge) values (2, 96, 6180);	insert into sth_charging_table (class_id, code_id, charge) values (3, 96, 6270);	insert into sth_charging_table (class_id, code_id, charge) values (4, 96, 9300);	insert into sth_charging_table (class_id, code_id, charge) values (5, 96, 10200);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 66, 5750);	insert into sth_charging_table (class_id, code_id, charge) values (2, 66, 5665);	insert into sth_charging_table (class_id, code_id, charge) values (3, 66, 5750);	insert into sth_charging_table (class_id, code_id, charge) values (4, 66, 8530);	insert into sth_charging_table (class_id, code_id, charge) values (5, 66, 9350);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 106, 10040);	insert into sth_charging_table (class_id, code_id, charge) values (2, 106, 9888);	insert into sth_charging_table (class_id, code_id, charge) values (3, 106, 10040);	insert into sth_charging_table (class_id, code_id, charge) values (4, 106, 14880);	insert into sth_charging_table (class_id, code_id, charge) values (5, 106, 16320);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 107, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 107, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 107, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 107, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 107, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 108, 2410);	insert into sth_charging_table (class_id, code_id, charge) values (2, 108, 2369);	insert into sth_charging_table (class_id, code_id, charge) values (3, 108, 2410);	insert into sth_charging_table (class_id, code_id, charge) values (4, 108, 3570);	insert into sth_charging_table (class_id, code_id, charge) values (5, 108, 3910);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 110, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (2, 110, 9270);	insert into sth_charging_table (class_id, code_id, charge) values (3, 110, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (4, 110, 13950);	insert into sth_charging_table (class_id, code_id, charge) values (5, 110, 15300);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 111, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (2, 111, 9270);	insert into sth_charging_table (class_id, code_id, charge) values (3, 111, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (4, 111, 13950);	insert into sth_charging_table (class_id, code_id, charge) values (5, 111, 15300);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 112, 1470);	insert into sth_charging_table (class_id, code_id, charge) values (2, 112, 1442);	insert into sth_charging_table (class_id, code_id, charge) values (3, 112, 1470);	insert into sth_charging_table (class_id, code_id, charge) values (4, 112, 2170);	insert into sth_charging_table (class_id, code_id, charge) values (5, 112, 2380);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 113, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (2, 113, 9270);	insert into sth_charging_table (class_id, code_id, charge) values (3, 113, 9410);	insert into sth_charging_table (class_id, code_id, charge) values (4, 113, 13950);	insert into sth_charging_table (class_id, code_id, charge) values (5, 113, 15300);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 114, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (2, 114, 2801.6);	insert into sth_charging_table (class_id, code_id, charge) values (3, 114, 2850);	insert into sth_charging_table (class_id, code_id, charge) values (4, 114, 4220);	insert into sth_charging_table (class_id, code_id, charge) values (5, 114, 4630);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 115, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (2, 115, 4120);	insert into sth_charging_table (class_id, code_id, charge) values (3, 115, 4180);	insert into sth_charging_table (class_id, code_id, charge) values (4, 115, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 115, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 116, 10450);	insert into sth_charging_table (class_id, code_id, charge) values (2, 116, 10300);	insert into sth_charging_table (class_id, code_id, charge) values (3, 116, 10450);	insert into sth_charging_table (class_id, code_id, charge) values (4, 116, 15500);	insert into sth_charging_table (class_id, code_id, charge) values (5, 116, 17000);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 117, 2620);	insert into sth_charging_table (class_id, code_id, charge) values (2, 117, 2575);	insert into sth_charging_table (class_id, code_id, charge) values (3, 117, 2620);	insert into sth_charging_table (class_id, code_id, charge) values (4, 117, 3880);	insert into sth_charging_table (class_id, code_id, charge) values (5, 117, 4250);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 118, 7320);	insert into sth_charging_table (class_id, code_id, charge) values (2, 118, 7210);	insert into sth_charging_table (class_id, code_id, charge) values (3, 118, 7320);	insert into sth_charging_table (class_id, code_id, charge) values (4, 118, 10850);	insert into sth_charging_table (class_id, code_id, charge) values (5, 118, 11900);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 84, 45700);	insert into sth_charging_table (class_id, code_id, charge) values (2, 84, 38110);	insert into sth_charging_table (class_id, code_id, charge) values (3, 84, 45700);	insert into sth_charging_table (class_id, code_id, charge) values (4, 84, 62350);	insert into sth_charging_table (class_id, code_id, charge) values (5, 84, 67900);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 119, 1830);	insert into sth_charging_table (class_id, code_id, charge) values (2, 119, 1539);	insert into sth_charging_table (class_id, code_id, charge) values (3, 119, 1830);	insert into sth_charging_table (class_id, code_id, charge) values (4, 119, 2415);	insert into sth_charging_table (class_id, code_id, charge) values (5, 119, 2610);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 52, 2000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 52, 1400);	insert into sth_charging_table (class_id, code_id, charge) values (3, 52, 2800);	insert into sth_charging_table (class_id, code_id, charge) values (4, 52, 3100);	insert into sth_charging_table (class_id, code_id, charge) values (5, 52, 3400);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 53, 4000);	insert into sth_charging_table (class_id, code_id, charge) values (2, 53, 2800);	insert into sth_charging_table (class_id, code_id, charge) values (3, 53, 5600);	insert into sth_charging_table (class_id, code_id, charge) values (4, 53, 6200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 53, 6800);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 54, 2840);	insert into sth_charging_table (class_id, code_id, charge) values (2, 54, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (3, 54, 3980);	insert into sth_charging_table (class_id, code_id, charge) values (4, 54, 4400);	insert into sth_charging_table (class_id, code_id, charge) values (5, 54, 4840);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 55, 440);	insert into sth_charging_table (class_id, code_id, charge) values (2, 55, 412);	insert into sth_charging_table (class_id, code_id, charge) values (3, 55, 620);	insert into sth_charging_table (class_id, code_id, charge) values (4, 55, 680);	insert into sth_charging_table (class_id, code_id, charge) values (5, 55, 750);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 69, 16500);	insert into sth_charging_table (class_id, code_id, charge) values (2, 69, 15450);	insert into sth_charging_table (class_id, code_id, charge) values (3, 69, 23100);	insert into sth_charging_table (class_id, code_id, charge) values (4, 69, 25580);	insert into sth_charging_table (class_id, code_id, charge) values (5, 69, 28050);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 77, 11880);	insert into sth_charging_table (class_id, code_id, charge) values (2, 77, 11124);	insert into sth_charging_table (class_id, code_id, charge) values (3, 77, 16640);	insert into sth_charging_table (class_id, code_id, charge) values (4, 77, 18420);	insert into sth_charging_table (class_id, code_id, charge) values (5, 77, 20200);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 78, 8890);	insert into sth_charging_table (class_id, code_id, charge) values (2, 78, 8317);	insert into sth_charging_table (class_id, code_id, charge) values (3, 78, 12450);	insert into sth_charging_table (class_id, code_id, charge) values (4, 78, 13780);	insert into sth_charging_table (class_id, code_id, charge) values (5, 78, 15120);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 79, 8890);	insert into sth_charging_table (class_id, code_id, charge) values (2, 79, 8317);	insert into sth_charging_table (class_id, code_id, charge) values (3, 79, 12450);	insert into sth_charging_table (class_id, code_id, charge) values (4, 79, 13780);	insert into sth_charging_table (class_id, code_id, charge) values (5, 79, 15120);
+insert into sth_charging_table (class_id, code_id, charge) values (1, 56, 9020);	insert into sth_charging_table (class_id, code_id, charge) values (2, 56, 8446);	insert into sth_charging_table (class_id, code_id, charge) values (3, 56, 12630);	insert into sth_charging_table (class_id, code_id, charge) values (4, 56, 13980);	insert into sth_charging_table (class_id, code_id, charge) values (5, 56, 15330);
+
+update sth_charging_table set update_at = getdate(), update_by = getdate(), create_by = 'sys';
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'classId' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD classId int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId1' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId1 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge1' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge1 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId2' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId2 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge2' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge2 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId3' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId3 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge3' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge3 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId4' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId4 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge4' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge4 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId5' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId5 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge5' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge5 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId6' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId6 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge6' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge6 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId7' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId7 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge7' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge7 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId8' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId8 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge8' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge8 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId9' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId9 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge9' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge9 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'codeId10' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD codeId10 int NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'charge10' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD charge10 numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'chargeOther' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD chargeOther numeric(18,2) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'chargeTotal' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+ALTER TABLE BXCY_SPECIMEN ADD chargeTotal numeric(18,2) NULL;
+END
