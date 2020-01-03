@@ -47,9 +47,10 @@ namespace St.Teresa_LIS_2019
             public decimal UPDATE_CTR { get; set; }
             public string UPDATED { get; set; }
             public decimal PRICE_BX { get; set; }
-            public decimal PRICE_BB { get; set; }
+            public decimal PRICE_CORE_BX { get; set; }
             public decimal PRICE_CY { get; set; }
-            public decimal PRICE_CC { get; set; }
+            public decimal PRICE_CY_NONGAME { get; set; }
+            public decimal PRICE_CY_FNA { get; set; }
             public decimal PRICE_EBV { get; set; }
             public decimal PRICE_CYG { get; set; }
             public int id { get; set; }
@@ -73,9 +74,10 @@ namespace St.Teresa_LIS_2019
             public string UPDATE_CTR { get; set; }
             public string UPDATED { get; set; }
             public string PRICE_BX { get; set; }
-            public string PRICE_BB { get; set; }
+            public string PRICE_CORE_BX { get; set; }
             public string PRICE_CY { get; set; }
-            public string PRICE_CC { get; set; }
+            public string PRICE_CY_NONGAME { get; set; }
+            public string PRICE_CY_FNA { get; set; }
             public string PRICE_EBV { get; set; }
             public string PRICE_CYG { get; set; }
             public string id { get; set; }
@@ -116,12 +118,16 @@ namespace St.Teresa_LIS_2019
                 textBox_Fax_No.Enabled = false;
                 textBox_Contact_Info.Enabled = false;
                 textBox_Remark.Enabled = false;
+
                 textBox_BX.Enabled = false;
-                textBox_BB.Enabled = false;
-                textBox_CY.Enabled = false;
-                textBox_CC.Enabled = false;
-                textBox_CYG.Enabled = false;
+                textBox_CORE_BX.Enabled = false;
+
+                textBox_CY_HPV.Enabled = false;
+                textBox_CY_NONGYNAE.Enabled = false;
+                textBox_CY_FNA.Enabled = false;
+
                 textBox_EBV.Enabled = false;
+                textBox_CYG.Enabled = false;
 
                 disedit_modle();
             }
@@ -152,12 +158,16 @@ namespace St.Teresa_LIS_2019
                     textBox_Fax_No.Enabled = true;
                     textBox_Contact_Info.Enabled = true;
                     textBox_Remark.Enabled = true;
+
                     textBox_BX.Enabled = true;
-                    textBox_BB.Enabled = true;
-                    textBox_CY.Enabled = true;
-                    textBox_CC.Enabled = true;
-                    textBox_CYG.Enabled = true;
+                    textBox_CORE_BX.Enabled = true;
+
+                    textBox_CY_HPV.Enabled = true;
+                    textBox_CY_NONGYNAE.Enabled = true;
+                    textBox_CY_FNA.Enabled = true;
+
                     textBox_EBV.Enabled = true;
+                    textBox_CYG.Enabled = true;
 
                     edit_modle();
                 }
@@ -188,12 +198,16 @@ namespace St.Teresa_LIS_2019
                         textBox_Fax_No.Enabled = true;
                         textBox_Contact_Info.Enabled = true;
                         textBox_Remark.Enabled = true;
+
                         textBox_BX.Enabled = true;
-                        textBox_BB.Enabled = true;
-                        textBox_CY.Enabled = true;
-                        textBox_CC.Enabled = true;
-                        textBox_CYG.Enabled = true;
+                        textBox_CORE_BX.Enabled = true;
+
+                        textBox_CY_HPV.Enabled = true;
+                        textBox_CY_NONGYNAE.Enabled = true;
+                        textBox_CY_FNA.Enabled = true;
+
                         textBox_EBV.Enabled = true;
+                        textBox_CYG.Enabled = true;
 
                         edit_modle();
                     }
@@ -225,12 +239,17 @@ namespace St.Teresa_LIS_2019
             textBox_Fax_No.DataBindings.Clear();
             textBox_Contact_Info.DataBindings.Clear();
             textBox_Remark.DataBindings.Clear();
+
             textBox_BX.DataBindings.Clear();
-            textBox_BB.DataBindings.Clear();
-            textBox_CY.DataBindings.Clear();
-            textBox_CC.DataBindings.Clear();
-            textBox_CYG.DataBindings.Clear();
+            textBox_CORE_BX.DataBindings.Clear();
+
+            textBox_CY_HPV.DataBindings.Clear();
+            textBox_CY_NONGYNAE.DataBindings.Clear();
+            textBox_CY_FNA.DataBindings.Clear();
+
             textBox_EBV.DataBindings.Clear();
+            textBox_CYG.DataBindings.Clear();
+
             textBox_Last_Updated_By.DataBindings.Clear();
             textBox_Update_At.DataBindings.Clear();
             textBox_Last_Updated_By_No.DataBindings.Clear();
@@ -253,11 +272,15 @@ namespace St.Teresa_LIS_2019
             textBox_Contact_Info.DataBindings.Add("Text", dt, "CONTACT", false);
             textBox_Remark.DataBindings.Add("Text", dt, "REMARK", false);
             textBox_BX.DataBindings.Add("Text", dt, "PRICE_BX", false);
-            textBox_BB.DataBindings.Add("Text", dt, "PRICE_BB", false);
-            textBox_CY.DataBindings.Add("Text", dt, "PRICE_CY", false);
-            textBox_CC.DataBindings.Add("Text", dt, "PRICE_CC", false);
-            textBox_CYG.DataBindings.Add("Text", dt, "PRICE_CYG", false);
+            textBox_CORE_BX.DataBindings.Add("Text", dt, "PRICE_CORE_BX", false);
+
+            textBox_CY_HPV.DataBindings.Add("Text", dt, "PRICE_CY", false);
+            textBox_CY_NONGYNAE.DataBindings.Add("Text", dt, "PRICE_CY_NONGYNAE", false);
+            textBox_CY_FNA.DataBindings.Add("Text", dt, "PRICE_CY_FNA", false);
+
             textBox_EBV.DataBindings.Add("Text", dt, "PRICE_EBV", false);
+            textBox_CYG.DataBindings.Add("Text", dt, "PRICE_CYG", false);
+
             textBox_Last_Updated_By.DataBindings.Add("Text", dt, "UPDATE_BY", false);
             textBox_Update_At.DataBindings.Add("Text", dt, "UPDATE_AT", false);
             textBox_Last_Updated_By_No.DataBindings.Add("Text", dt, "UPDATE_CTR", false);
@@ -313,10 +336,10 @@ namespace St.Teresa_LIS_2019
             copyClient.CONTACT = textBox_Contact_Info.Text;
             copyClient.REMARK = textBox_Remark.Text;
             copyClient.PRICE_BX = textBox_BX.Text;
-            copyClient.PRICE_BB = textBox_BB.Text;
-            copyClient.PRICE_CY = textBox_CY.Text;
-            copyClient.PRICE_CC = textBox_CC.Text;
-            copyClient.PRICE_EBV = textBox_CYG.Text;
+            //copyClient.PRICE_BB = textBox_BB.Text;
+            copyClient.PRICE_CY = textBox_CY_HPV.Text;
+            //copyClient.PRICE_CC = textBox_CC.Text;
+            copyClient.PRICE_EBV = textBox_CY_FNA.Text;
             copyClient.PRICE_CYG = textBox_EBV.Text;
 
             setButtonStatus(PageStatus.STATUS_EDIT);
@@ -567,12 +590,12 @@ namespace St.Teresa_LIS_2019
                         textBox_Contact_Info.Text = copyClient.CONTACT;
                         textBox_Remark.Text = copyClient.REMARK;
                         textBox_BX.Text = copyClient.PRICE_BX;
-                        textBox_BB.Text = copyClient.PRICE_BB;
-                        textBox_CY.Text = copyClient.PRICE_CY;
-                        textBox_CC.Text = copyClient.PRICE_CC;
-                        textBox_CYG.Text = copyClient.PRICE_EBV;
-                        textBox_EBV.Text = copyClient.PRICE_CYG;
-
+                        textBox_CORE_BX.Text = copyClient.PRICE_CORE_BX;
+                        textBox_CY_HPV.Text = copyClient.PRICE_CY;
+                        textBox_CY_NONGYNAE.Text = copyClient.PRICE_CY_NONGAME;
+                        textBox_CY_FNA.Text = copyClient.PRICE_CY_FNA;
+                        textBox_EBV.Text = copyClient.PRICE_EBV;
+                        textBox_CYG.Text = copyClient.PRICE_CYG;
                     }
 
                     setButtonStatus(PageStatus.STATUS_VIEW);

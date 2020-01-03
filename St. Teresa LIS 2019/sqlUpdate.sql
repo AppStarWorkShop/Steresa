@@ -1710,7 +1710,7 @@ create table sth_charging_table
 )
 
 
-
+--sth_pay_code table
 insert into sth_pay_code (code, eng_desc, create_by) values ('H064', ' Routine Examination  (GI Endoscopy DC Case only, 1-3 specimens)', 'sys');
 insert into sth_pay_code (code, eng_desc, create_by) values ('H065 ', ' Routine Examination  (GI Endoscopy DC Case only, 1-4 specimens)', 'sys');
 insert into sth_pay_code (code, eng_desc, create_by) values ('H066 ', ' Routine Examination  (GI Endoscopy DC Case only, 1-5 specimens)', 'sys');
@@ -1833,7 +1833,7 @@ insert into sth_pay_code (code, eng_desc, create_by) values ('H136', 'PD-L1 Immu
 
 update sth_pay_code set update_at = getdate(), update_by = getdate();
 
-
+--sth_charge_classes talbe
 insert into sth_charge_classes (class_code, class_name, create_by) values ('OPD/SW', 'OPD/SW',  'sys');
 insert into sth_charge_classes (class_code, class_name, create_by) values ('H', 'H',  'sys');
 insert into sth_charge_classes (class_code, class_name, create_by) values ('SP', 'SP',  'sys');
@@ -1842,7 +1842,7 @@ insert into sth_charge_classes (class_code, class_name, create_by) values ('PP',
 
 update sth_charge_classes set update_at = getdate(), update_by = getdate();
 
-
+--sth_charging_table table
 insert into sth_charging_table (class_id, code_id, charge) values (1, 37, 1420);	insert into sth_charging_table (class_id, code_id, charge) values (2, 37, 995);	insert into sth_charging_table (class_id, code_id, charge) values (3, 37, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (4, 37, 2200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 37, 2420);
 insert into sth_charging_table (class_id, code_id, charge) values (1, 48, 310);	insert into sth_charging_table (class_id, code_id, charge) values (2, 48, 220);	insert into sth_charging_table (class_id, code_id, charge) values (3, 48, 440);	insert into sth_charging_table (class_id, code_id, charge) values (4, 48, 480);	insert into sth_charging_table (class_id, code_id, charge) values (5, 48, 530);
 insert into sth_charging_table (class_id, code_id, charge) values (1, 44, 1420);	insert into sth_charging_table (class_id, code_id, charge) values (2, 44, 995);	insert into sth_charging_table (class_id, code_id, charge) values (3, 44, 1990);	insert into sth_charging_table (class_id, code_id, charge) values (4, 44, 2200);	insert into sth_charging_table (class_id, code_id, charge) values (5, 44, 2420);
@@ -1965,6 +1965,7 @@ insert into sth_charging_table (class_id, code_id, charge) values (1, 56, 9020);
 
 update sth_charging_table set update_at = getdate(), update_by = getdate(), create_by = 'sys';
 
+--BXCY_SPECIMEN table
 IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'classId' AND LTRIM(b.name)='BXCY_SPECIMEN')
 BEGIN
 ALTER TABLE BXCY_SPECIMEN ADD classId int NULL;
@@ -2079,3 +2080,92 @@ IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND L
 BEGIN
 ALTER TABLE BXCY_SPECIMEN ADD chargeTotal numeric(18,2) NULL;
 END
+
+--client table
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CORE_BX' AND LTRIM(b.name)='client')
+BEGIN
+ALTER TABLE client ADD PRICE_CORE_BX float NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY_NONGYNAE' AND LTRIM(b.name)='client')
+BEGIN
+ALTER TABLE client ADD PRICE_CY_NONGYNAE float NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY_FNA' AND LTRIM(b.name)='client')
+BEGIN
+ALTER TABLE client ADD PRICE_CY_FNA float NULL;
+END
+
+--BXCY_SPECIMEN table
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_BX' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_BX] [float] NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CORE_BX' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CORE_BX] [float] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CY] [float] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY_NONGYNAE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CY_NONGYNAE] [float] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY_FNA' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CY_FNA] [float] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_EBV' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_EBV] [float] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CYG' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CYG] [float] NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_BX_GRADE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_BX_GRADE] [int] NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CORE_BX_GRADE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CORE_BX_GRADE] [int] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY_GRADE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CY_GRADE] [int] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY_NONGYNAE_GRADE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CY_NONGYNAE_GRADE] [int] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CY_FNA_GRADE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CY_FNA_GRADE] [int] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_EBV_GRADE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_EBV_GRADE] [int] NULL;
+END
+	
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'PRICE_CYG_GRADE' AND LTRIM(b.name)='BXCY_SPECIMEN')
+BEGIN
+	ALTER TABLE BXCY_SPECIMEN ADD [PRICE_CYG_GRADE] [int] NULL;
+END
+
+

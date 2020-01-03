@@ -62,14 +62,10 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox_EBV = new System.Windows.Forms.TextBox();
             this.label_EBV = new System.Windows.Forms.Label();
-            this.textBox_CYG = new System.Windows.Forms.TextBox();
-            this.label_CYG = new System.Windows.Forms.Label();
-            this.textBox_CC = new System.Windows.Forms.TextBox();
-            this.label_CC = new System.Windows.Forms.Label();
-            this.textBox_CY = new System.Windows.Forms.TextBox();
-            this.label_CY = new System.Windows.Forms.Label();
-            this.textBox_BB = new System.Windows.Forms.TextBox();
-            this.label_BB = new System.Windows.Forms.Label();
+            this.textBox_CY_FNA = new System.Windows.Forms.TextBox();
+            this.label_CY_FNA = new System.Windows.Forms.Label();
+            this.textBox_CY_HPV = new System.Windows.Forms.TextBox();
+            this.label_CY_HPV = new System.Windows.Forms.Label();
             this.textBox_BX = new System.Windows.Forms.TextBox();
             this.label_BX = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -83,6 +79,12 @@
             this.button_Delete = new System.Windows.Forms.Button();
             this.textBox_ID = new System.Windows.Forms.TextBox();
             this.textBox_Remark = new System.Windows.Forms.TextBox();
+            this.textBox_CORE_BX = new System.Windows.Forms.TextBox();
+            this.label_CORE_BX = new System.Windows.Forms.Label();
+            this.textBox_CYG = new System.Windows.Forms.TextBox();
+            this.label_CYG = new System.Windows.Forms.Label();
+            this.textBox_CY_NONGYNAE = new System.Windows.Forms.TextBox();
+            this.label_CY_NONGYNAE = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -147,7 +149,7 @@
             this.textBox_Addess1.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Addess1.Location = new System.Drawing.Point(187, 80);
             this.textBox_Addess1.Name = "textBox_Addess1";
-            this.textBox_Addess1.Size = new System.Drawing.Size(510, 27);
+            this.textBox_Addess1.Size = new System.Drawing.Size(565, 27);
             this.textBox_Addess1.TabIndex = 23;
             // 
             // label_Addess
@@ -168,7 +170,7 @@
             this.textBox_Addess2.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Addess2.Location = new System.Drawing.Point(187, 105);
             this.textBox_Addess2.Name = "textBox_Addess2";
-            this.textBox_Addess2.Size = new System.Drawing.Size(510, 27);
+            this.textBox_Addess2.Size = new System.Drawing.Size(565, 27);
             this.textBox_Addess2.TabIndex = 24;
             // 
             // textBox_Addess3
@@ -177,7 +179,7 @@
             this.textBox_Addess3.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Addess3.Location = new System.Drawing.Point(187, 130);
             this.textBox_Addess3.Name = "textBox_Addess3";
-            this.textBox_Addess3.Size = new System.Drawing.Size(510, 27);
+            this.textBox_Addess3.Size = new System.Drawing.Size(565, 27);
             this.textBox_Addess3.TabIndex = 25;
             // 
             // textBox_Addess4
@@ -186,7 +188,7 @@
             this.textBox_Addess4.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Addess4.Location = new System.Drawing.Point(187, 155);
             this.textBox_Addess4.Name = "textBox_Addess4";
-            this.textBox_Addess4.Size = new System.Drawing.Size(510, 27);
+            this.textBox_Addess4.Size = new System.Drawing.Size(565, 27);
             this.textBox_Addess4.TabIndex = 26;
             // 
             // textBox_Tel_No1
@@ -244,7 +246,7 @@
             // 
             this.textBox_Contact_Info.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBox_Contact_Info.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(43)))), ((int)(((byte)(243)))));
-            this.textBox_Contact_Info.Location = new System.Drawing.Point(187, 340);
+            this.textBox_Contact_Info.Location = new System.Drawing.Point(187, 361);
             this.textBox_Contact_Info.Name = "textBox_Contact_Info";
             this.textBox_Contact_Info.Size = new System.Drawing.Size(510, 29);
             this.textBox_Contact_Info.TabIndex = 33;
@@ -255,7 +257,7 @@
             this.label_Contact_Info.BackColor = System.Drawing.Color.Transparent;
             this.label_Contact_Info.Font = new System.Drawing.Font("Palatino Linotype", 13F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_Contact_Info.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(43)))), ((int)(((byte)(243)))));
-            this.label_Contact_Info.Location = new System.Drawing.Point(48, 342);
+            this.label_Contact_Info.Location = new System.Drawing.Point(48, 363);
             this.label_Contact_Info.Name = "label_Contact_Info";
             this.label_Contact_Info.Size = new System.Drawing.Size(126, 24);
             this.label_Contact_Info.TabIndex = 32;
@@ -267,7 +269,7 @@
             this.label_Remark.BackColor = System.Drawing.Color.Transparent;
             this.label_Remark.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Remark.ForeColor = System.Drawing.Color.Black;
-            this.label_Remark.Location = new System.Drawing.Point(48, 370);
+            this.label_Remark.Location = new System.Drawing.Point(48, 391);
             this.label_Remark.Name = "label_Remark";
             this.label_Remark.Size = new System.Drawing.Size(90, 22);
             this.label_Remark.TabIndex = 34;
@@ -279,10 +281,10 @@
             this.listBox_Remark.ForeColor = System.Drawing.Color.Blue;
             this.listBox_Remark.FormattingEnabled = true;
             this.listBox_Remark.ItemHeight = 20;
-            this.listBox_Remark.Location = new System.Drawing.Point(187, 370);
+            this.listBox_Remark.Location = new System.Drawing.Point(187, 391);
             this.listBox_Remark.Name = "listBox_Remark";
             this.listBox_Remark.ScrollAlwaysVisible = true;
-            this.listBox_Remark.Size = new System.Drawing.Size(510, 4);
+            this.listBox_Remark.Size = new System.Drawing.Size(510, 20);
             this.listBox_Remark.TabIndex = 35;
             // 
             // label_Line
@@ -291,7 +293,7 @@
             this.label_Line.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(218)))), ((int)(((byte)(213)))));
             this.label_Line.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_Line.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label_Line.Location = new System.Drawing.Point(12, 409);
+            this.label_Line.Location = new System.Drawing.Point(12, 430);
             this.label_Line.Name = "label_Line";
             this.label_Line.Size = new System.Drawing.Size(887, 54);
             this.label_Line.TabIndex = 36;
@@ -303,7 +305,7 @@
             this.button_Top.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Top.Image = ((System.Drawing.Image)(resources.GetObject("button_Top.Image")));
             this.button_Top.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Top.Location = new System.Drawing.Point(12, 466);
+            this.button_Top.Location = new System.Drawing.Point(12, 487);
             this.button_Top.Name = "button_Top";
             this.button_Top.Size = new System.Drawing.Size(58, 42);
             this.button_Top.TabIndex = 37;
@@ -318,7 +320,7 @@
             this.button_Exit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_Exit.Image")));
             this.button_Exit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Exit.Location = new System.Drawing.Point(717, 463);
+            this.button_Exit.Location = new System.Drawing.Point(717, 484);
             this.button_Exit.Name = "button_Exit";
             this.button_Exit.Size = new System.Drawing.Size(55, 43);
             this.button_Exit.TabIndex = 38;
@@ -333,7 +335,7 @@
             this.button_Label.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Label.Image = ((System.Drawing.Image)(resources.GetObject("button_Label.Image")));
             this.button_Label.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Label.Location = new System.Drawing.Point(651, 463);
+            this.button_Label.Location = new System.Drawing.Point(651, 484);
             this.button_Label.Name = "button_Label";
             this.button_Label.Size = new System.Drawing.Size(60, 43);
             this.button_Label.TabIndex = 39;
@@ -348,7 +350,7 @@
             this.button_Undo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.button_Undo.Image = ((System.Drawing.Image)(resources.GetObject("button_Undo.Image")));
             this.button_Undo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Undo.Location = new System.Drawing.Point(585, 463);
+            this.button_Undo.Location = new System.Drawing.Point(585, 484);
             this.button_Undo.Name = "button_Undo";
             this.button_Undo.Size = new System.Drawing.Size(60, 43);
             this.button_Undo.TabIndex = 40;
@@ -363,7 +365,7 @@
             this.button_Edit.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Edit.Image = ((System.Drawing.Image)(resources.GetObject("button_Edit.Image")));
             this.button_Edit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Edit.Location = new System.Drawing.Point(454, 463);
+            this.button_Edit.Location = new System.Drawing.Point(454, 484);
             this.button_Edit.Name = "button_Edit";
             this.button_Edit.Size = new System.Drawing.Size(55, 43);
             this.button_Edit.TabIndex = 41;
@@ -378,7 +380,7 @@
             this.button_New.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_New.Image = ((System.Drawing.Image)(resources.GetObject("button_New.Image")));
             this.button_New.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_New.Location = new System.Drawing.Point(393, 463);
+            this.button_New.Location = new System.Drawing.Point(393, 484);
             this.button_New.Name = "button_New";
             this.button_New.Size = new System.Drawing.Size(55, 43);
             this.button_New.TabIndex = 42;
@@ -393,7 +395,7 @@
             this.button_Save.ForeColor = System.Drawing.Color.Gray;
             this.button_Save.Image = ((System.Drawing.Image)(resources.GetObject("button_Save.Image")));
             this.button_Save.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Save.Location = new System.Drawing.Point(332, 463);
+            this.button_Save.Location = new System.Drawing.Point(332, 484);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(55, 43);
             this.button_Save.TabIndex = 43;
@@ -408,7 +410,7 @@
             this.button_Back.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Back.Image = ((System.Drawing.Image)(resources.GetObject("button_Back.Image")));
             this.button_Back.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Back.Location = new System.Drawing.Point(76, 466);
+            this.button_Back.Location = new System.Drawing.Point(76, 487);
             this.button_Back.Name = "button_Back";
             this.button_Back.Size = new System.Drawing.Size(58, 42);
             this.button_Back.TabIndex = 44;
@@ -423,7 +425,7 @@
             this.button_Next.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Next.Image = ((System.Drawing.Image)(resources.GetObject("button_Next.Image")));
             this.button_Next.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Next.Location = new System.Drawing.Point(140, 467);
+            this.button_Next.Location = new System.Drawing.Point(140, 488);
             this.button_Next.Name = "button_Next";
             this.button_Next.Size = new System.Drawing.Size(58, 42);
             this.button_Next.TabIndex = 45;
@@ -438,7 +440,7 @@
             this.button_End.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_End.Image = ((System.Drawing.Image)(resources.GetObject("button_End.Image")));
             this.button_End.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_End.Location = new System.Drawing.Point(204, 467);
+            this.button_End.Location = new System.Drawing.Point(204, 488);
             this.button_End.Name = "button_End";
             this.button_End.Size = new System.Drawing.Size(58, 42);
             this.button_End.TabIndex = 46;
@@ -450,28 +452,30 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(232)))), ((int)(((byte)(180)))));
-            this.panel1.Controls.Add(this.textBox_EBV);
-            this.panel1.Controls.Add(this.label_EBV);
+            this.panel1.Controls.Add(this.textBox_CY_NONGYNAE);
+            this.panel1.Controls.Add(this.label_CY_NONGYNAE);
             this.panel1.Controls.Add(this.textBox_CYG);
             this.panel1.Controls.Add(this.label_CYG);
-            this.panel1.Controls.Add(this.textBox_CC);
-            this.panel1.Controls.Add(this.label_CC);
-            this.panel1.Controls.Add(this.textBox_CY);
-            this.panel1.Controls.Add(this.label_CY);
-            this.panel1.Controls.Add(this.textBox_BB);
-            this.panel1.Controls.Add(this.label_BB);
+            this.panel1.Controls.Add(this.textBox_CORE_BX);
+            this.panel1.Controls.Add(this.label_CORE_BX);
+            this.panel1.Controls.Add(this.textBox_EBV);
+            this.panel1.Controls.Add(this.label_EBV);
+            this.panel1.Controls.Add(this.textBox_CY_FNA);
+            this.panel1.Controls.Add(this.label_CY_FNA);
+            this.panel1.Controls.Add(this.textBox_CY_HPV);
+            this.panel1.Controls.Add(this.label_CY_HPV);
             this.panel1.Controls.Add(this.textBox_BX);
             this.panel1.Controls.Add(this.label_BX);
-            this.panel1.Location = new System.Drawing.Point(553, 186);
+            this.panel1.Location = new System.Drawing.Point(533, 182);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(144, 149);
+            this.panel1.Size = new System.Drawing.Size(219, 179);
             this.panel1.TabIndex = 47;
             // 
             // textBox_EBV
             // 
             this.textBox_EBV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_EBV.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_EBV.Location = new System.Drawing.Point(71, 116);
+            this.textBox_EBV.Location = new System.Drawing.Point(150, 124);
             this.textBox_EBV.Name = "textBox_EBV";
             this.textBox_EBV.Size = new System.Drawing.Size(60, 24);
             this.textBox_EBV.TabIndex = 58;
@@ -482,101 +486,59 @@
             this.label_EBV.BackColor = System.Drawing.Color.Transparent;
             this.label_EBV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_EBV.ForeColor = System.Drawing.Color.Black;
-            this.label_EBV.Location = new System.Drawing.Point(8, 119);
+            this.label_EBV.Location = new System.Drawing.Point(4, 128);
             this.label_EBV.Name = "label_EBV";
             this.label_EBV.Size = new System.Drawing.Size(54, 18);
             this.label_EBV.TabIndex = 59;
             this.label_EBV.Text = "EBV $";
             // 
-            // textBox_CYG
+            // textBox_CY_FNA
             // 
-            this.textBox_CYG.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_CYG.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_CYG.Location = new System.Drawing.Point(71, 94);
-            this.textBox_CYG.Name = "textBox_CYG";
-            this.textBox_CYG.Size = new System.Drawing.Size(60, 24);
-            this.textBox_CYG.TabIndex = 56;
+            this.textBox_CY_FNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_CY_FNA.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_CY_FNA.Location = new System.Drawing.Point(150, 99);
+            this.textBox_CY_FNA.Name = "textBox_CY_FNA";
+            this.textBox_CY_FNA.Size = new System.Drawing.Size(60, 24);
+            this.textBox_CY_FNA.TabIndex = 56;
             // 
-            // label_CYG
+            // label_CY_FNA
             // 
-            this.label_CYG.AutoSize = true;
-            this.label_CYG.BackColor = System.Drawing.Color.Transparent;
-            this.label_CYG.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_CYG.ForeColor = System.Drawing.Color.Black;
-            this.label_CYG.Location = new System.Drawing.Point(8, 97);
-            this.label_CYG.Name = "label_CYG";
-            this.label_CYG.Size = new System.Drawing.Size(57, 18);
-            this.label_CYG.TabIndex = 57;
-            this.label_CYG.Text = "CYG $";
+            this.label_CY_FNA.AutoSize = true;
+            this.label_CY_FNA.BackColor = System.Drawing.Color.Transparent;
+            this.label_CY_FNA.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_CY_FNA.ForeColor = System.Drawing.Color.Black;
+            this.label_CY_FNA.Location = new System.Drawing.Point(4, 103);
+            this.label_CY_FNA.Name = "label_CY_FNA";
+            this.label_CY_FNA.Size = new System.Drawing.Size(76, 18);
+            this.label_CY_FNA.TabIndex = 57;
+            this.label_CY_FNA.Text = "CY FNA$";
             // 
-            // textBox_CC
+            // textBox_CY_HPV
             // 
-            this.textBox_CC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_CC.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_CC.Location = new System.Drawing.Point(71, 72);
-            this.textBox_CC.Name = "textBox_CC";
-            this.textBox_CC.Size = new System.Drawing.Size(60, 24);
-            this.textBox_CC.TabIndex = 54;
+            this.textBox_CY_HPV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_CY_HPV.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_CY_HPV.Location = new System.Drawing.Point(150, 51);
+            this.textBox_CY_HPV.Name = "textBox_CY_HPV";
+            this.textBox_CY_HPV.Size = new System.Drawing.Size(60, 24);
+            this.textBox_CY_HPV.TabIndex = 52;
             // 
-            // label_CC
+            // label_CY_HPV
             // 
-            this.label_CC.AutoSize = true;
-            this.label_CC.BackColor = System.Drawing.Color.Transparent;
-            this.label_CC.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_CC.ForeColor = System.Drawing.Color.Black;
-            this.label_CC.Location = new System.Drawing.Point(8, 75);
-            this.label_CC.Name = "label_CC";
-            this.label_CC.Size = new System.Drawing.Size(46, 18);
-            this.label_CC.TabIndex = 55;
-            this.label_CC.Text = "CC $";
-            // 
-            // textBox_CY
-            // 
-            this.textBox_CY.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_CY.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_CY.Location = new System.Drawing.Point(71, 50);
-            this.textBox_CY.Name = "textBox_CY";
-            this.textBox_CY.Size = new System.Drawing.Size(60, 24);
-            this.textBox_CY.TabIndex = 52;
-            // 
-            // label_CY
-            // 
-            this.label_CY.AutoSize = true;
-            this.label_CY.BackColor = System.Drawing.Color.Transparent;
-            this.label_CY.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_CY.ForeColor = System.Drawing.Color.Black;
-            this.label_CY.Location = new System.Drawing.Point(8, 53);
-            this.label_CY.Name = "label_CY";
-            this.label_CY.Size = new System.Drawing.Size(44, 18);
-            this.label_CY.TabIndex = 53;
-            this.label_CY.Text = "CY $";
-            // 
-            // textBox_BB
-            // 
-            this.textBox_BB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textBox_BB.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_BB.Location = new System.Drawing.Point(71, 28);
-            this.textBox_BB.Name = "textBox_BB";
-            this.textBox_BB.Size = new System.Drawing.Size(60, 24);
-            this.textBox_BB.TabIndex = 50;
-            // 
-            // label_BB
-            // 
-            this.label_BB.AutoSize = true;
-            this.label_BB.BackColor = System.Drawing.Color.Transparent;
-            this.label_BB.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label_BB.ForeColor = System.Drawing.Color.Black;
-            this.label_BB.Location = new System.Drawing.Point(8, 30);
-            this.label_BB.Name = "label_BB";
-            this.label_BB.Size = new System.Drawing.Size(44, 18);
-            this.label_BB.TabIndex = 51;
-            this.label_BB.Text = "BB $";
+            this.label_CY_HPV.AutoSize = true;
+            this.label_CY_HPV.BackColor = System.Drawing.Color.Transparent;
+            this.label_CY_HPV.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_CY_HPV.ForeColor = System.Drawing.Color.Black;
+            this.label_CY_HPV.Location = new System.Drawing.Point(4, 55);
+            this.label_CY_HPV.Name = "label_CY_HPV";
+            this.label_CY_HPV.Size = new System.Drawing.Size(77, 18);
+            this.label_CY_HPV.TabIndex = 53;
+            this.label_CY_HPV.Text = "CY HPV$";
             // 
             // textBox_BX
             // 
             this.textBox_BX.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_BX.ForeColor = System.Drawing.Color.Blue;
-            this.textBox_BX.Location = new System.Drawing.Point(71, 6);
+            this.textBox_BX.Location = new System.Drawing.Point(150, 3);
             this.textBox_BX.Name = "textBox_BX";
             this.textBox_BX.Size = new System.Drawing.Size(60, 24);
             this.textBox_BX.TabIndex = 49;
@@ -587,7 +549,7 @@
             this.label_BX.BackColor = System.Drawing.Color.Transparent;
             this.label_BX.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.label_BX.ForeColor = System.Drawing.Color.Black;
-            this.label_BX.Location = new System.Drawing.Point(8, 8);
+            this.label_BX.Location = new System.Drawing.Point(4, 6);
             this.label_BX.Name = "label_BX";
             this.label_BX.Size = new System.Drawing.Size(44, 18);
             this.label_BX.TabIndex = 49;
@@ -598,7 +560,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(232)))), ((int)(((byte)(180)))));
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label8.Location = new System.Drawing.Point(164, 318);
+            this.label8.Location = new System.Drawing.Point(140, 341);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(389, 17);
             this.label8.TabIndex = 48;
@@ -612,7 +574,7 @@
             this.panel2.Controls.Add(this.textBox_Last_Updated_By_No);
             this.panel2.Controls.Add(this.textBox_Last_Updated_By);
             this.panel2.Controls.Add(this.label_Last_Updated_By);
-            this.panel2.Location = new System.Drawing.Point(52, 423);
+            this.panel2.Location = new System.Drawing.Point(52, 444);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(645, 27);
             this.panel2.TabIndex = 60;
@@ -679,7 +641,7 @@
             this.button_Excel.ForeColor = System.Drawing.Color.Blue;
             this.button_Excel.Image = ((System.Drawing.Image)(resources.GetObject("button_Excel.Image")));
             this.button_Excel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Excel.Location = new System.Drawing.Point(703, 388);
+            this.button_Excel.Location = new System.Drawing.Point(703, 409);
             this.button_Excel.Name = "button_Excel";
             this.button_Excel.Size = new System.Drawing.Size(69, 55);
             this.button_Excel.TabIndex = 61;
@@ -694,7 +656,7 @@
             this.button_Delete.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Delete.Image = ((System.Drawing.Image)(resources.GetObject("button_Delete.Image")));
             this.button_Delete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.button_Delete.Location = new System.Drawing.Point(515, 463);
+            this.button_Delete.Location = new System.Drawing.Point(515, 484);
             this.button_Delete.Name = "button_Delete";
             this.button_Delete.Size = new System.Drawing.Size(64, 43);
             this.button_Delete.TabIndex = 62;
@@ -717,18 +679,81 @@
             // 
             this.textBox_Remark.Font = new System.Drawing.Font("Palatino Linotype", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.textBox_Remark.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(135)))), ((int)(((byte)(43)))), ((int)(((byte)(243)))));
-            this.textBox_Remark.Location = new System.Drawing.Point(188, 370);
+            this.textBox_Remark.Location = new System.Drawing.Point(188, 391);
             this.textBox_Remark.Multiline = true;
             this.textBox_Remark.Name = "textBox_Remark";
             this.textBox_Remark.Size = new System.Drawing.Size(510, 47);
             this.textBox_Remark.TabIndex = 64;
+            // 
+            // textBox_CORE_BX
+            // 
+            this.textBox_CORE_BX.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_CORE_BX.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_CORE_BX.Location = new System.Drawing.Point(150, 27);
+            this.textBox_CORE_BX.Name = "textBox_CORE_BX";
+            this.textBox_CORE_BX.Size = new System.Drawing.Size(60, 24);
+            this.textBox_CORE_BX.TabIndex = 60;
+            // 
+            // label_CORE_BX
+            // 
+            this.label_CORE_BX.AutoSize = true;
+            this.label_CORE_BX.BackColor = System.Drawing.Color.Transparent;
+            this.label_CORE_BX.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_CORE_BX.ForeColor = System.Drawing.Color.Black;
+            this.label_CORE_BX.Location = new System.Drawing.Point(4, 30);
+            this.label_CORE_BX.Name = "label_CORE_BX";
+            this.label_CORE_BX.Size = new System.Drawing.Size(97, 18);
+            this.label_CORE_BX.TabIndex = 61;
+            this.label_CORE_BX.Text = "CORE BX $";
+            // 
+            // textBox_CYG
+            // 
+            this.textBox_CYG.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_CYG.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_CYG.Location = new System.Drawing.Point(150, 149);
+            this.textBox_CYG.Name = "textBox_CYG";
+            this.textBox_CYG.Size = new System.Drawing.Size(60, 24);
+            this.textBox_CYG.TabIndex = 62;
+            // 
+            // label_CYG
+            // 
+            this.label_CYG.AutoSize = true;
+            this.label_CYG.BackColor = System.Drawing.Color.Transparent;
+            this.label_CYG.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_CYG.ForeColor = System.Drawing.Color.Black;
+            this.label_CYG.Location = new System.Drawing.Point(4, 153);
+            this.label_CYG.Name = "label_CYG";
+            this.label_CYG.Size = new System.Drawing.Size(57, 18);
+            this.label_CYG.TabIndex = 63;
+            this.label_CYG.Text = "CYG $";
+            // 
+            // textBox_CY_NONGYNAE
+            // 
+            this.textBox_CY_NONGYNAE.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.textBox_CY_NONGYNAE.ForeColor = System.Drawing.Color.Blue;
+            this.textBox_CY_NONGYNAE.Location = new System.Drawing.Point(150, 75);
+            this.textBox_CY_NONGYNAE.Name = "textBox_CY_NONGYNAE";
+            this.textBox_CY_NONGYNAE.Size = new System.Drawing.Size(60, 24);
+            this.textBox_CY_NONGYNAE.TabIndex = 64;
+            // 
+            // label_CY_NONGYNAE
+            // 
+            this.label_CY_NONGYNAE.AutoSize = true;
+            this.label_CY_NONGYNAE.BackColor = System.Drawing.Color.Transparent;
+            this.label_CY_NONGYNAE.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label_CY_NONGYNAE.ForeColor = System.Drawing.Color.Black;
+            this.label_CY_NONGYNAE.Location = new System.Drawing.Point(4, 79);
+            this.label_CY_NONGYNAE.Name = "label_CY_NONGYNAE";
+            this.label_CY_NONGYNAE.Size = new System.Drawing.Size(143, 18);
+            this.label_CY_NONGYNAE.TabIndex = 65;
+            this.label_CY_NONGYNAE.Text = "CY NON-GYNAE$";
             // 
             // Form_ClientFileMaintenance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(218)))), ((int)(((byte)(213)))));
-            this.ClientSize = new System.Drawing.Size(784, 519);
+            this.ClientSize = new System.Drawing.Size(784, 544);
             this.ControlBox = false;
             this.Controls.Add(this.textBox_Remark);
             this.Controls.Add(this.textBox_ID);
@@ -817,14 +842,10 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox_EBV;
         private System.Windows.Forms.Label label_EBV;
-        private System.Windows.Forms.TextBox textBox_CYG;
-        private System.Windows.Forms.Label label_CYG;
-        private System.Windows.Forms.TextBox textBox_CC;
-        private System.Windows.Forms.Label label_CC;
-        private System.Windows.Forms.TextBox textBox_CY;
-        private System.Windows.Forms.Label label_CY;
-        private System.Windows.Forms.TextBox textBox_BB;
-        private System.Windows.Forms.Label label_BB;
+        private System.Windows.Forms.TextBox textBox_CY_FNA;
+        private System.Windows.Forms.Label label_CY_FNA;
+        private System.Windows.Forms.TextBox textBox_CY_HPV;
+        private System.Windows.Forms.Label label_CY_HPV;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TextBox textBox_Update_At;
         private System.Windows.Forms.Label label_Update_At;
@@ -835,5 +856,11 @@
         private System.Windows.Forms.Button button_Delete;
         private System.Windows.Forms.TextBox textBox_ID;
         private System.Windows.Forms.TextBox textBox_Remark;
+        private System.Windows.Forms.TextBox textBox_CORE_BX;
+        private System.Windows.Forms.Label label_CORE_BX;
+        private System.Windows.Forms.TextBox textBox_CYG;
+        private System.Windows.Forms.Label label_CYG;
+        private System.Windows.Forms.TextBox textBox_CY_NONGYNAE;
+        private System.Windows.Forms.Label label_CY_NONGYNAE;
     }
 }

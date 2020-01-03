@@ -804,15 +804,97 @@ namespace St.Teresa_LIS_2019
         private void button_F7_Click(object sender, EventArgs e)
         {
             Form_SelectClient open = new Form_SelectClient();
-            open.OnClientSelectedSingle += OnClientSelected;
+            open.OnClientSelected += OnClientSelected;
             open.Show();
         }
 
-        private void OnClientSelected(string str)
+        private void OnClientSelected(string str, string idStr)
         {
             if (str != null)
             {
-                textBox_Client.Text = str;
+                if(textBox_Client.Text.Trim() != str)
+                {
+                    textBox_Client.Text = str;
+                    if (str == DEFAULT_CLIENT)
+                    {
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            dt.Rows[0]["PRICE_BX"] = DBNull.Value;
+                            dt.Rows[0]["PRICE_CORE_BX"] = DBNull.Value;
+                            dt.Rows[0]["PRICE_CY"] = DBNull.Value;
+                            dt.Rows[0]["PRICE_CY_NONGYNAE"] = DBNull.Value;
+                            dt.Rows[0]["PRICE_CY_FNA"] = DBNull.Value;
+                            dt.Rows[0]["PRICE_EBV"] = DBNull.Value;
+                            dt.Rows[0]["PRICE_CYG"] = DBNull.Value;
+
+                            dt.Rows[0]["chargeOther"] = DBNull.Value;
+                            dt.Rows[0]["chargeTotal"] = DBNull.Value;
+                        }
+                    }
+                    else
+                    {
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            dt.Rows[0]["classId"] = DBNull.Value;
+
+                            dt.Rows[0]["codeId1"] = DBNull.Value;
+                            dt.Rows[0]["codeId2"] = DBNull.Value;
+                            dt.Rows[0]["codeId3"] = DBNull.Value;
+                            dt.Rows[0]["codeId4"] = DBNull.Value;
+                            dt.Rows[0]["codeId5"] = DBNull.Value;
+                            dt.Rows[0]["codeId6"] = DBNull.Value;
+                            dt.Rows[0]["codeId7"] = DBNull.Value;
+                            dt.Rows[0]["codeId8"] = DBNull.Value;
+                            dt.Rows[0]["codeId9"] = DBNull.Value;
+                            dt.Rows[0]["codeId10"] = DBNull.Value;
+
+                            dt.Rows[0]["charge1"] = DBNull.Value;
+                            dt.Rows[0]["charge2"] = DBNull.Value;
+                            dt.Rows[0]["charge3"] = DBNull.Value;
+                            dt.Rows[0]["charge4"] = DBNull.Value;
+                            dt.Rows[0]["charge5"] = DBNull.Value;
+                            dt.Rows[0]["charge6"] = DBNull.Value;
+                            dt.Rows[0]["charge7"] = DBNull.Value;
+                            dt.Rows[0]["charge8"] = DBNull.Value;
+                            dt.Rows[0]["charge9"] = DBNull.Value;
+                            dt.Rows[0]["charge10"] = DBNull.Value;
+
+                            dt.Rows[0]["chargeOther"] = DBNull.Value;
+                            dt.Rows[0]["chargeTotal"] = DBNull.Value;
+
+                            string clientSql = string.Format("SELECT * FROM [client] WHERE [id] = {0}", idStr);
+                            DataSet clientDataSet = new DataSet();
+                            SqlDataAdapter clientDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(clientSql, clientDataSet, "client");
+
+                            if(clientDataSet != null)
+                            {
+                                DataTable clientDt = clientDataSet.Tables["client"];
+                                if(clientDt != null && clientDt.Rows.Count > 0)
+                                {
+                                    if (clientDt.Rows[0]["PRICE_BX"] != null) dt.Rows[0]["PRICE_BX"] = clientDt.Rows[0]["PRICE_BX"];
+                                    if (clientDt.Rows[0]["PRICE_CORE_BX"] != null) dt.Rows[0]["PRICE_CORE_BX"] = clientDt.Rows[0]["PRICE_CORE_BX"];
+                                    if (clientDt.Rows[0]["PRICE_CY"] != null) dt.Rows[0]["PRICE_CY"] = clientDt.Rows[0]["PRICE_CY"];
+                                    if (clientDt.Rows[0]["PRICE_CY_NONGYNAE"] != null) dt.Rows[0]["PRICE_CY_NONGYNAE"] = clientDt.Rows[0]["PRICE_CY_NONGYNAE"];
+                                    if (clientDt.Rows[0]["PRICE_CY_FNA"] != null) dt.Rows[0]["PRICE_CY_FNA"] = clientDt.Rows[0]["PRICE_CY_FNA"];
+                                    if (clientDt.Rows[0]["PRICE_EBV"] != null) dt.Rows[0]["PRICE_EBV"] = clientDt.Rows[0]["PRICE_EBV"];
+                                    if (clientDt.Rows[0]["PRICE_CYG"] != null) dt.Rows[0]["PRICE_CYG"] = clientDt.Rows[0]["PRICE_CYG"];
+
+                                    dt.Rows[0]["PRICE_BX_GRADE"] = DBNull.Value;
+                                    dt.Rows[0]["PRICE_CORE_BX_GRADE"] = DBNull.Value;
+                                    dt.Rows[0]["PRICE_CY_GRADE"] = DBNull.Value;
+                                    dt.Rows[0]["PRICE_CY_NONGYNAE_GRADE"] = DBNull.Value;
+                                    dt.Rows[0]["PRICE_CY_FNA_GRADE"] = DBNull.Value;
+                                    dt.Rows[0]["PRICE_EBV_GRADE"] = DBNull.Value;
+                                    dt.Rows[0]["PRICE_CYG_GRADE"] = DBNull.Value;
+
+                                    dt.Rows[0]["chargeOther"] = DBNull.Value;
+                                    dt.Rows[0]["chargeTotal"] = DBNull.Value;
+                                }
+                            } 
+                        }
+                    }
+                }
+                
                 textBox_Institute.Text = str;
 
                 textBox_Client.Focus();
@@ -1002,19 +1084,19 @@ namespace St.Teresa_LIS_2019
                     codeId9 = dt.Rows[0]["codeId9"] == null ? "" : dt.Rows[0]["codeId9"].ToString();
                     codeId10 = dt.Rows[0]["codeId10"] == null ? "" : dt.Rows[0]["codeId10"].ToString();
 
-                    charge1 = dt.Rows[0]["charge1"] == null ? "" : dt.Rows[0]["charge1"].ToString();
-                    charge2 = dt.Rows[0]["charge2"] == null ? "" : dt.Rows[0]["charge2"].ToString();
-                    charge3 = dt.Rows[0]["charge3"] == null ? "" : dt.Rows[0]["charge3"].ToString();
-                    charge4 = dt.Rows[0]["charge4"] == null ? "" : dt.Rows[0]["charge4"].ToString();
-                    charge5 = dt.Rows[0]["charge5"] == null ? "" : dt.Rows[0]["charge5"].ToString();
-                    charge6 = dt.Rows[0]["charge6"] == null ? "" : dt.Rows[0]["charge6"].ToString();
-                    charge7 = dt.Rows[0]["charge7"] == null ? "" : dt.Rows[0]["charge7"].ToString();
-                    charge8 = dt.Rows[0]["charge8"] == null ? "" : dt.Rows[0]["charge8"].ToString();
-                    charge9 = dt.Rows[0]["charge9"] == null ? "" : dt.Rows[0]["charge9"].ToString();
-                    charge10 = dt.Rows[0]["charge10"] == null ? "" : dt.Rows[0]["charge10"].ToString();
+                    charge1 = dt.Rows[0]["charge1"] == null ? null : dt.Rows[0]["charge1"].ToString();
+                    charge2 = dt.Rows[0]["charge2"] == null ? null : dt.Rows[0]["charge2"].ToString();
+                    charge3 = dt.Rows[0]["charge3"] == null ? null : dt.Rows[0]["charge3"].ToString();
+                    charge4 = dt.Rows[0]["charge4"] == null ? null : dt.Rows[0]["charge4"].ToString();
+                    charge5 = dt.Rows[0]["charge5"] == null ? null : dt.Rows[0]["charge5"].ToString();
+                    charge6 = dt.Rows[0]["charge6"] == null ? null : dt.Rows[0]["charge6"].ToString();
+                    charge7 = dt.Rows[0]["charge7"] == null ? null : dt.Rows[0]["charge7"].ToString();
+                    charge8 = dt.Rows[0]["charge8"] == null ? null : dt.Rows[0]["charge8"].ToString();
+                    charge9 = dt.Rows[0]["charge9"] == null ? null : dt.Rows[0]["charge9"].ToString();
+                    charge10 = dt.Rows[0]["charge10"] == null ? null : dt.Rows[0]["charge10"].ToString();
 
-                    chargeOther = dt.Rows[0]["chargeOther"] == null ? "" : dt.Rows[0]["chargeOther"].ToString();
-                    chargeTotal = dt.Rows[0]["chargeTotal"] == null ? "" : dt.Rows[0]["chargeTotal"].ToString();
+                    chargeOther = dt.Rows[0]["chargeOther"] == null ? null : dt.Rows[0]["chargeOther"].ToString();
+                    chargeTotal = dt.Rows[0]["chargeTotal"] == null ? null : dt.Rows[0]["chargeTotal"].ToString();
                 }
                 //classId = dt
                 Form_FeeCalculationSTH open = new Form_FeeCalculationSTH(classId, codeId1, codeId2, codeId3, codeId4, codeId5, codeId6, codeId7, codeId8, codeId9, codeId10,
@@ -1025,7 +1107,36 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                Form_FeeCalculationPrivate open = new Form_FeeCalculationPrivate();
+                string priceBXGrade = "", priceCoreBXGrade = "", priceCYGrade = "", priceCYNongynaeGrade = "", priceCYFNAGrade = "", priceEBVGrade = "", priceCYGGrade = "";
+                string priceBX = "", priceCoreBX = "", priceCY = "", priceCYNongynae = "", priceCYFNA = "", priceEBV = "", priceCYG = "";
+                string chargeOther = "", chargeTotal = "";
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    priceBXGrade = dt.Rows[0]["PRICE_BX_GRADE"] == null ? "" : dt.Rows[0]["PRICE_BX_GRADE"].ToString();
+                    priceCoreBXGrade = dt.Rows[0]["PRICE_CORE_BX_GRADE"] == null ? "" : dt.Rows[0]["PRICE_CORE_BX_GRADE"].ToString();
+                    priceCYGrade = dt.Rows[0]["PRICE_CY_GRADE"] == null ? "" : dt.Rows[0]["PRICE_CY_GRADE"].ToString();
+                    priceCYNongynaeGrade = dt.Rows[0]["PRICE_CY_NONGYNAE_GRADE"] == null ? "" : dt.Rows[0]["PRICE_CY_NONGYNAE_GRADE"].ToString();
+                    priceCYFNAGrade = dt.Rows[0]["PRICE_CY_FNA_GRADE"] == null ? "" : dt.Rows[0]["PRICE_CY_FNA_GRADE"].ToString();
+                    priceEBVGrade = dt.Rows[0]["PRICE_EBV_GRADE"] == null ? "" : dt.Rows[0]["PRICE_EBV_GRADE"].ToString();
+                    priceCYGGrade = dt.Rows[0]["PRICE_CYG_GRADE"] == null ? "" : dt.Rows[0]["PRICE_CYG_GRADE"].ToString();
+
+                    priceBX = dt.Rows[0]["PRICE_BX"] == null ? "" : dt.Rows[0]["PRICE_BX"].ToString();
+                    priceCoreBX = dt.Rows[0]["PRICE_CORE_BX"] == null ? "" : dt.Rows[0]["PRICE_CORE_BX"].ToString();
+                    priceCY = dt.Rows[0]["PRICE_CY"] == null ? "" : dt.Rows[0]["PRICE_CY"].ToString();
+                    priceCYNongynae = dt.Rows[0]["PRICE_CY_NONGYNAE"] == null ? "" : dt.Rows[0]["PRICE_CY_NONGYNAE"].ToString();
+                    priceCYFNA = dt.Rows[0]["PRICE_CY_FNA"] == null ? "" : dt.Rows[0]["PRICE_CY_FNA"].ToString();
+                    priceEBV = dt.Rows[0]["PRICE_EBV"] == null ? "" : dt.Rows[0]["PRICE_EBV"].ToString();
+                    priceCYG = dt.Rows[0]["PRICE_CYG"] == null ? "" : dt.Rows[0]["PRICE_CYG"].ToString();
+
+                    chargeOther = dt.Rows[0]["chargeOther"] == null ? null : dt.Rows[0]["chargeOther"].ToString();
+                    chargeTotal = dt.Rows[0]["chargeTotal"] == null ? null : dt.Rows[0]["chargeTotal"].ToString();
+                }
+                //classId = dt
+                Form_FeeCalculationPrivate open = new Form_FeeCalculationPrivate(priceBXGrade, priceCoreBXGrade, priceCYGrade, priceCYNongynaeGrade, priceCYFNAGrade, priceEBVGrade, priceCYGGrade,
+                    priceBX, priceCoreBX, priceCY, priceCYNongynae, priceCYFNA, priceEBV, priceCYG,
+                    chargeOther, chargeTotal);
+                open.OnFeeCalculationPrivateConfirm += FeePrivateReturn;
                 open.Show();
             }
 
@@ -1035,33 +1146,91 @@ namespace St.Teresa_LIS_2019
             string charge1, string charge2, string charge3, string charge4, string charge5, string charge6, string charge7, string charge8, string charge9, string charge10,
             string chargeOther, string chargeTotal)
         {
-            decimal price1 = 0;
-            decimal price2 = 0;
-            decimal price3 = 0;
-            decimal price4 = 0;
-            decimal price5 = 0;
-            decimal price6 = 0;
-            decimal price7 = 0;
-            decimal price8 = 0;
-            decimal price9 = 0;
-            decimal price10 = 0;
+            decimal? price1 = null;
+            decimal? price2 = null;
+            decimal? price3 = null;
+            decimal? price4 = null;
+            decimal? price5 = null;
+            decimal? price6 = null;
+            decimal? price7 = null;
+            decimal? price8 = null;
+            decimal? price9 = null;
+            decimal? price10 = null;
 
-            decimal priceOther = 0;
-            decimal totalPrice = 0;
+            decimal? priceOther = null;
+            decimal? totalPrice = null;
 
-            decimal.TryParse(charge1, out price1);
-            decimal.TryParse(charge2, out price2);
-            decimal.TryParse(charge3, out price3);
-            decimal.TryParse(charge4, out price4);
-            decimal.TryParse(charge5, out price5);
-            decimal.TryParse(charge6, out price6);
-            decimal.TryParse(charge7, out price7);
-            decimal.TryParse(charge8, out price8);
-            decimal.TryParse(charge9, out price9);
-            decimal.TryParse(charge10, out price10);
+            decimal price = 0;
+            if(decimal.TryParse(charge1, out price))
+            {
+                price1 = price;
+            }
 
-            decimal.TryParse(chargeOther, out priceOther);
-            decimal.TryParse(chargeTotal, out totalPrice);
+            price = 0;
+            if (decimal.TryParse(charge2, out price))
+            {
+                price2 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge3, out price))
+            {
+                price3 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge4, out price))
+            {
+                price4 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge5, out price))
+            {
+                price5 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge6, out price))
+            {
+                price6 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge7, out price))
+            {
+                price7 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge8, out price))
+            {
+                price8 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge9, out price))
+            {
+                price9 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(charge10, out price))
+            {
+                price10 = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(chargeOther, out price))
+            {
+                priceOther = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(chargeTotal, out price))
+            {
+                totalPrice = price;
+            }
 
             int intCodeId1 = 0;
             int intCodeId2 = 0;
@@ -1091,32 +1260,156 @@ namespace St.Teresa_LIS_2019
 
             if (dt != null && dt.Rows.Count > 0)
             {
-                dt.Rows[0]["classId"] = intClassId;
+                if(intClassId != 0) dt.Rows[0]["classId"] = intClassId;
 
-                dt.Rows[0]["codeId1"] = intCodeId1;
-                dt.Rows[0]["codeId2"] = intCodeId2;
-                dt.Rows[0]["codeId3"] = intCodeId3;
-                dt.Rows[0]["codeId4"] = intCodeId4;
-                dt.Rows[0]["codeId5"] = intCodeId5;
-                dt.Rows[0]["codeId6"] = intCodeId6;
-                dt.Rows[0]["codeId7"] = intCodeId7;
-                dt.Rows[0]["codeId8"] = intCodeId8;
-                dt.Rows[0]["codeId9"] = intCodeId9;
-                dt.Rows[0]["codeId10"] = intCodeId10;
+                if (intCodeId1 != 0) dt.Rows[0]["codeId1"] = intCodeId1;
+                if (intCodeId2 != 0) dt.Rows[0]["codeId2"] = intCodeId2;
+                if (intCodeId3 != 0) dt.Rows[0]["codeId3"] = intCodeId3;
+                if (intCodeId4 != 0) dt.Rows[0]["codeId4"] = intCodeId4;
+                if (intCodeId5 != 0) dt.Rows[0]["codeId5"] = intCodeId5;
+                if (intCodeId6 != 0) dt.Rows[0]["codeId6"] = intCodeId6;
+                if (intCodeId7 != 0) dt.Rows[0]["codeId7"] = intCodeId7;
+                if (intCodeId8 != 0) dt.Rows[0]["codeId8"] = intCodeId8;
+                if (intCodeId9 != 0) dt.Rows[0]["codeId9"] = intCodeId9;
+                if (intCodeId10 != 0) dt.Rows[0]["codeId10"] = intCodeId10;
 
-                dt.Rows[0]["charge1"] = price1;
-                dt.Rows[0]["charge2"] = price2;
-                dt.Rows[0]["charge3"] = price3;
-                dt.Rows[0]["charge4"] = price4;
-                dt.Rows[0]["charge5"] = price5;
-                dt.Rows[0]["charge6"] = price6;
-                dt.Rows[0]["charge7"] = price7;
-                dt.Rows[0]["charge8"] = price8;
-                dt.Rows[0]["charge9"] = price9;
-                dt.Rows[0]["charge10"] = price10;
+                if (price1 != null) dt.Rows[0]["charge1"] = price1;
+                if (price2 != null) dt.Rows[0]["charge2"] = price2;
+                if (price3 != null) dt.Rows[0]["charge3"] = price3;
+                if (price4 != null) dt.Rows[0]["charge4"] = price4;
+                if (price5 != null) dt.Rows[0]["charge5"] = price5;
+                if (price6 != null) dt.Rows[0]["charge6"] = price6;
+                if (price7 != null) dt.Rows[0]["charge7"] = price7;
+                if (price8 != null) dt.Rows[0]["charge8"] = price8;
+                if (price9 != null) dt.Rows[0]["charge9"] = price9;
+                if (price10 != null) dt.Rows[0]["charge10"] = price10;
 
-                dt.Rows[0]["chargeOther"] = priceOther;
-                dt.Rows[0]["chargeTotal"] = totalPrice;
+                if (priceOther != null) dt.Rows[0]["chargeOther"] = priceOther;
+                if (totalPrice != null)
+                {
+                    dt.Rows[0]["chargeTotal"] = totalPrice;
+                    textBox_Amount_HK.Text = totalPrice.ToString();
+                }
+                else
+                {
+                    textBox_Amount_HK.Text = "";
+                }
+            }
+        }
+
+        private void FeePrivateReturn(string priceBXGrade, string priceCoreBXGrade, string priceCYGrade, string priceCYNongynaeGrade, string priceCYFNAGrade, string priceEBVGrade, string priceCYGGrade,
+            string priceBX, string priceCoreBX, string priceCY, string priceCYNongynae, string priceCYFNA, string priceEBV, string priceCYG,
+            string chargeOther, string chargeTotal)
+        {
+            decimal? priceBXDec = null;
+            decimal? priceCoreBXDec = null;
+            decimal? priceCYDec = null;
+            decimal? priceCYNongynaeDec = null;
+            decimal? priceCYFNADec = null;
+            decimal? priceEBVDec = null;
+            decimal? priceCYGDec = null;
+
+            decimal? priceOther = null;
+            decimal? totalPrice = null;
+
+            decimal price = 0;
+            if (decimal.TryParse(priceBX, out price))
+            {
+                priceBXDec = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(priceCoreBX, out price))
+            {
+                priceCoreBXDec = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(priceCY, out price))
+            {
+                priceCYDec = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(priceCYNongynae, out price))
+            {
+                priceCYNongynaeDec = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(priceCYFNA, out price))
+            {
+                priceCYFNADec = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(priceEBV, out price))
+            {
+                priceEBVDec = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(priceCYG, out price))
+            {
+                priceCYGDec = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(chargeOther, out price))
+            {
+                priceOther = price;
+            }
+
+            price = 0;
+            if (decimal.TryParse(chargeTotal, out price))
+            {
+                totalPrice = price;
+            }
+
+            int priceBXGradeInt = -1;
+            int priceCoreBXGradeInt = -1;
+            int priceCYGradeInt = -1;
+            int priceCYNongynaeGradeInt = -1;
+            int priceCYFNAGradeInt = -1;
+            int priceEBVGradeInt = -1;
+            int priceCYGGradeInt = -1;
+
+            int.TryParse(priceBXGrade, out priceBXGradeInt);
+            int.TryParse(priceCoreBXGrade, out priceCoreBXGradeInt);
+            int.TryParse(priceCYGrade, out priceCYGradeInt);
+            int.TryParse(priceCYNongynaeGrade, out priceCYNongynaeGradeInt);
+            int.TryParse(priceCYFNAGrade, out priceCYFNAGradeInt);
+            int.TryParse(priceEBVGrade, out priceEBVGradeInt);
+            int.TryParse(priceCYGGrade, out priceCYGGradeInt);
+
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                if(priceBXGradeInt != -1) dt.Rows[0]["PRICE_BX_GRADE"] = priceBXGradeInt;
+                if (priceCoreBXGradeInt != -1) dt.Rows[0]["PRICE_CORE_BX_GRADE"] = priceCoreBXGradeInt;
+                if (priceCYGradeInt != -1) dt.Rows[0]["PRICE_CY_GRADE"] = priceCYGradeInt;
+                if (priceCYNongynaeGradeInt != -1) dt.Rows[0]["PRICE_CY_NONGYNAE_GRADE"] = priceCYNongynaeGradeInt;
+                if (priceCYFNAGradeInt != -1) dt.Rows[0]["PRICE_CY_FNA_GRADE"] = priceCYFNAGradeInt;
+                if (priceCYGGradeInt != -1) dt.Rows[0]["PRICE_EBV_GRADE"] = priceEBVGradeInt;
+                if (priceCYGGradeInt != -1) dt.Rows[0]["PRICE_CYG_GRADE"] = priceCYGGradeInt;
+
+                if (priceBXDec != null) dt.Rows[0]["PRICE_BX"] = priceBXDec;
+                if (priceCoreBXDec != null) dt.Rows[0]["PRICE_CORE_BX"] = priceCoreBXDec;
+                if (priceCYDec != null) dt.Rows[0]["PRICE_CY"] = priceCYDec;
+                if (priceCYNongynaeDec != null) dt.Rows[0]["PRICE_CY_NONGYNAE"] = priceCYNongynaeDec;
+                if (priceCYFNADec != null) dt.Rows[0]["PRICE_CY_FNA"] = priceCYFNADec;
+                if (priceEBVDec != null) dt.Rows[0]["PRICE_EBV"] = priceEBVDec;
+                if (priceCYGDec != null) dt.Rows[0]["PRICE_CYG"] = priceCYGDec;
+
+                if (priceOther != null) dt.Rows[0]["chargeOther"] = priceOther;
+                if (totalPrice != null)
+                {
+                    dt.Rows[0]["chargeTotal"] = totalPrice;
+                    textBox_Amount_HK.Text = totalPrice.ToString();
+                }
+                else
+                {
+                    textBox_Amount_HK.Text = "";
+                }
             }
         }
 
@@ -2324,6 +2617,7 @@ namespace St.Teresa_LIS_2019
                 checkBox_Supp.Enabled = false;
                 checkBox_F_S.Enabled = false;
                 //checkBox_Uploaded.Enabled = false;
+                button_Fee.Enabled = false;
 
                 disedit_modle();
             }
@@ -2412,6 +2706,7 @@ namespace St.Teresa_LIS_2019
                     checkBox_Supp.Enabled = true;
                     checkBox_F_S.Enabled = true;
                     //checkBox_Uploaded.Enabled = true;
+                    button_Fee.Enabled = true;
 
                     edit_modle();
                 }
@@ -2500,6 +2795,7 @@ namespace St.Teresa_LIS_2019
                         checkBox_Supp.Enabled = true;
                         checkBox_F_S.Enabled = true;
                         //checkBox_Uploaded.Enabled = true;
+                        button_Fee.Enabled = true;
 
                         edit_modle();
                     }
@@ -2588,6 +2884,7 @@ namespace St.Teresa_LIS_2019
                             checkBox_Supp.Enabled = true;
                             checkBox_F_S.Enabled = true;
                             //checkBox_Uploaded.Enabled = true;
+                            button_Fee.Enabled = true;
 
                             edit_modle();
                         }
