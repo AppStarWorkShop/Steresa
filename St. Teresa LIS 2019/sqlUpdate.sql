@@ -2169,3 +2169,790 @@ BEGIN
 END
 
 
+--cy_diag1 table
+UPDATE cy_diag1 SET SITE1='1' where SITE1='Y';
+UPDATE cy_diag1 SET SITE1='0' where SITE1<>'1';
+alter table cy_diag1 alter column SITE1 bit null;
+UPDATE cy_diag1 SET SITE1=0 where SITE1 IS NULL;
+
+UPDATE cy_diag1 SET SITE2='1' where SITE2='Y';
+UPDATE cy_diag1 SET SITE2='0' where SITE2<>'1';
+alter table cy_diag1 alter column SITE2 bit null;
+UPDATE cy_diag1 SET SITE2=0 where SITE2 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENA1='1' where SPECIMENA1='Y';
+UPDATE cy_diag1 SET SPECIMENA1='0' where SPECIMENA1<>'1';
+alter table cy_diag1 alter column SPECIMENA1 bit null;
+UPDATE cy_diag1 SET SPECIMENA1=0 where SPECIMENA1 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENA2='1' where SPECIMENA2='Y';
+UPDATE cy_diag1 SET SPECIMENA2='0' where SPECIMENA2<>'1';
+alter table cy_diag1 alter column SPECIMENA2 bit null;
+UPDATE cy_diag1 SET SPECIMENA2=0 where SPECIMENA2 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENA3='1' where SPECIMENA3='Y';
+UPDATE cy_diag1 SET SPECIMENA3='0' where SPECIMENA3<>'1';
+alter table cy_diag1 alter column SPECIMENA3 bit null;
+UPDATE cy_diag1 SET SPECIMENA3=0 where SPECIMENA3 IS NULL;
+
+UPDATE cy_diag1 SET CELLULARC1='1' where CELLULARC1='Y';
+UPDATE cy_diag1 SET CELLULARC1='0' where CELLULARC1<>'1';
+alter table cy_diag1 alter column CELLULARC1 bit null;
+UPDATE cy_diag1 SET CELLULARC1=0 where CELLULARC1 IS NULL;
+
+UPDATE cy_diag1 SET CELLULARC2='1' where CELLULARC2='Y';
+UPDATE cy_diag1 SET CELLULARC2='0' where CELLULARC2<>'1';
+alter table cy_diag1 alter column CELLULARC2 bit null;
+UPDATE cy_diag1 SET CELLULARC2=0 where CELLULARC2 IS NULL;
+
+UPDATE cy_diag1 SET CELLULARC3='1' where CELLULARC3='Y';
+UPDATE cy_diag1 SET CELLULARC3='0' where CELLULARC3<>'1';
+alter table cy_diag1 alter column CELLULARC3 bit null;
+UPDATE cy_diag1 SET CELLULARC3=0 where CELLULARC3 IS NULL;
+
+UPDATE cy_diag1 SET CELLULARC4='1' where CELLULARC4='Y';
+UPDATE cy_diag1 SET CELLULARC4='0' where CELLULARC4<>'1';
+alter table cy_diag1 alter column CELLULARC4 bit null;
+UPDATE cy_diag1 SET CELLULARC4=0 where CELLULARC4 IS NULL;
+
+UPDATE cy_diag1 SET CELLULARC5='1' where CELLULARC5='Y';
+UPDATE cy_diag1 SET CELLULARC5='0' where CELLULARC5<>'1';
+alter table cy_diag1 alter column CELLULARC5 bit null;
+UPDATE cy_diag1 SET CELLULARC5=0 where CELLULARC5 IS NULL;
+
+UPDATE cy_diag1 SET PREPAIR1='1' where PREPAIR1='Y';
+UPDATE cy_diag1 SET PREPAIR1='0' where PREPAIR1<>'1';
+alter table cy_diag1 alter column PREPAIR1 bit null;
+UPDATE cy_diag1 SET PREPAIR1=0 where PREPAIR1 IS NULL;
+
+UPDATE cy_diag1 SET PREPAIR2='1' where PREPAIR2='Y';
+UPDATE cy_diag1 SET PREPAIR2='0' where PREPAIR2<>'1';
+alter table cy_diag1 alter column PREPAIR2 bit null;
+UPDATE cy_diag1 SET PREPAIR2=0 where PREPAIR2 IS NULL;
+
+UPDATE cy_diag1 SET PREPAIR3='1' where PREPAIR3='Y';
+UPDATE cy_diag1 SET PREPAIR3='0' where PREPAIR3<>'1';
+alter table cy_diag1 alter column PREPAIR3 bit null;
+UPDATE cy_diag1 SET PREPAIR3=0 where PREPAIR3 IS NULL;
+
+UPDATE cy_diag1 SET PREPAIR4='1' where PREPAIR4='Y';
+UPDATE cy_diag1 SET PREPAIR4='0' where PREPAIR4<>'1';
+alter table cy_diag1 alter column PREPAIR4 bit null;
+UPDATE cy_diag1 SET PREPAIR4=0 where PREPAIR4 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENQ1='1' where SPECIMENQ1='Y';
+UPDATE cy_diag1 SET SPECIMENQ1='0' where SPECIMENQ1<>'1';
+alter table cy_diag1 alter column SPECIMENQ1 bit null;
+UPDATE cy_diag1 SET SPECIMENQ1=0 where SPECIMENQ1 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENQ2='1' where SPECIMENQ2='Y';
+UPDATE cy_diag1 SET SPECIMENQ2='0' where SPECIMENQ2<>'1';
+alter table cy_diag1 alter column SPECIMENQ2 bit null;
+UPDATE cy_diag1 SET SPECIMENQ2=0 where SPECIMENQ2 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENQ3='1' where SPECIMENQ3='Y';
+UPDATE cy_diag1 SET SPECIMENQ3='0' where SPECIMENQ3<>'1';
+alter table cy_diag1 alter column SPECIMENQ3 bit null;
+UPDATE cy_diag1 SET SPECIMENQ3=0 where SPECIMENQ3 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENQ4='1' where SPECIMENQ4='Y';
+UPDATE cy_diag1 SET SPECIMENQ4='0' where SPECIMENQ4<>'1';
+alter table cy_diag1 alter column SPECIMENQ4 bit null;
+UPDATE cy_diag1 SET SPECIMENQ4=0 where SPECIMENQ4 IS NULL;
+
+UPDATE cy_diag1 SET SPECIMENQ5='1' where SPECIMENQ5='Y';
+UPDATE cy_diag1 SET SPECIMENQ5='0' where SPECIMENQ5<>'1';
+alter table cy_diag1 alter column SPECIMENQ5 bit null;
+UPDATE cy_diag1 SET SPECIMENQ5=0 where SPECIMENQ5 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG='1' where INTERNEG='Y';
+UPDATE cy_diag1 SET INTERNEG='0' where INTERNEG<>'1';
+alter table cy_diag1 alter column INTERNEG bit null;
+UPDATE cy_diag1 SET INTERNEG=0 where INTERNEG IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG1='1' where INTERNEG1='Y';
+UPDATE cy_diag1 SET INTERNEG1='0' where INTERNEG1<>'1';
+alter table cy_diag1 alter column INTERNEG1 bit null;
+UPDATE cy_diag1 SET INTERNEG1=0 where INTERNEG1 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG2='1' where INTERNEG2='Y';
+UPDATE cy_diag1 SET INTERNEG2='0' where INTERNEG2<>'1';
+alter table cy_diag1 alter column INTERNEG2 bit null;
+UPDATE cy_diag1 SET INTERNEG2=0 where INTERNEG2 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG3='1' where INTERNEG3='Y';
+UPDATE cy_diag1 SET INTERNEG3='0' where INTERNEG3<>'1';
+alter table cy_diag1 alter column INTERNEG3 bit null;
+UPDATE cy_diag1 SET INTERNEG3=0 where INTERNEG3 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG4='1' where INTERNEG4='Y';
+UPDATE cy_diag1 SET INTERNEG4='0' where INTERNEG4<>'1';
+alter table cy_diag1 alter column INTERNEG4 bit null;
+UPDATE cy_diag1 SET INTERNEG4=0 where INTERNEG4 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG5='1' where INTERNEG5='Y';
+UPDATE cy_diag1 SET INTERNEG5='0' where INTERNEG5<>'1';
+alter table cy_diag1 alter column INTERNEG5 bit null;
+UPDATE cy_diag1 SET INTERNEG5=0 where INTERNEG5 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG6='1' where INTERNEG6='Y';
+UPDATE cy_diag1 SET INTERNEG6='0' where INTERNEG6<>'1';
+alter table cy_diag1 alter column INTERNEG6 bit null;
+UPDATE cy_diag1 SET INTERNEG6=0 where INTERNEG6 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG7='1' where INTERNEG7='Y';
+UPDATE cy_diag1 SET INTERNEG7='0' where INTERNEG7<>'1';
+alter table cy_diag1 alter column INTERNEG7 bit null;
+UPDATE cy_diag1 SET INTERNEG7=0 where INTERNEG7 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG8='1' where INTERNEG8='Y';
+UPDATE cy_diag1 SET INTERNEG8='0' where INTERNEG8<>'1';
+alter table cy_diag1 alter column INTERNEG8 bit null;
+UPDATE cy_diag1 SET INTERNEG8=0 where INTERNEG8 IS NULL;
+
+UPDATE cy_diag1 SET INTERNEG9='1' where INTERNEG9='Y';
+UPDATE cy_diag1 SET INTERNEG9='0' where INTERNEG9<>'1';
+alter table cy_diag1 alter column INTERNEG9 bit null;
+UPDATE cy_diag1 SET INTERNEG9=0 where INTERNEG9 IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI='1' where INTEREPI='Y';
+UPDATE cy_diag1 SET INTEREPI='0' where INTEREPI<>'1';
+alter table cy_diag1 alter column INTEREPI bit null;
+UPDATE cy_diag1 SET INTEREPI=0 where INTEREPI IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI1='1' where INTEREPI1='Y';
+UPDATE cy_diag1 SET INTEREPI1='0' where INTEREPI1<>'1';
+alter table cy_diag1 alter column INTEREPI1 bit null;
+UPDATE cy_diag1 SET INTEREPI1=0 where INTEREPI1 IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI1A='1' where INTEREPI1A='Y';
+UPDATE cy_diag1 SET INTEREPI1A='0' where INTEREPI1A<>'1';
+alter table cy_diag1 alter column INTEREPI1A bit null;
+UPDATE cy_diag1 SET INTEREPI1A=0 where INTEREPI1A IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI1B='1' where INTEREPI1B='Y';
+UPDATE cy_diag1 SET INTEREPI1B='0' where INTEREPI1B<>'1';
+alter table cy_diag1 alter column INTEREPI1B bit null;
+UPDATE cy_diag1 SET INTEREPI1B=0 where INTEREPI1B IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI2='1' where INTEREPI2='Y';
+UPDATE cy_diag1 SET INTEREPI2='0' where INTEREPI2<>'1';
+alter table cy_diag1 alter column INTEREPI2 bit null;
+UPDATE cy_diag1 SET INTEREPI2=0 where INTEREPI2 IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI2A='1' where INTEREPI2A='Y';
+UPDATE cy_diag1 SET INTEREPI2A='0' where INTEREPI2A<>'1';
+alter table cy_diag1 alter column INTEREPI2A bit null;
+UPDATE cy_diag1 SET INTEREPI2A=0 where INTEREPI2A IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI2B='1' where INTEREPI2B='Y';
+UPDATE cy_diag1 SET INTEREPI2B='0' where INTEREPI2B<>'1';
+alter table cy_diag1 alter column INTEREPI2B bit null;
+UPDATE cy_diag1 SET INTEREPI2B=0 where INTEREPI2B IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI2C='1' where INTEREPI2C='Y';
+UPDATE cy_diag1 SET INTEREPI2C='0' where INTEREPI2C<>'1';
+alter table cy_diag1 alter column INTEREPI2C bit null;
+UPDATE cy_diag1 SET INTEREPI2C=0 where INTEREPI2C IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI3='1' where INTEREPI3='Y';
+UPDATE cy_diag1 SET INTEREPI3='0' where INTEREPI3<>'1';
+alter table cy_diag1 alter column INTEREPI3 bit null;
+UPDATE cy_diag1 SET INTEREPI3=0 where INTEREPI3 IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI4='1' where INTEREPI4='Y';
+UPDATE cy_diag1 SET INTEREPI4='0' where INTEREPI4<>'1';
+alter table cy_diag1 alter column INTEREPI4 bit null;
+UPDATE cy_diag1 SET INTEREPI4=0 where INTEREPI4 IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI4A='1' where INTEREPI4A='Y';
+UPDATE cy_diag1 SET INTEREPI4A='0' where INTEREPI4A<>'1';
+alter table cy_diag1 alter column INTEREPI4A bit null;
+UPDATE cy_diag1 SET INTEREPI4A=0 where INTEREPI4A IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI4B='1' where INTEREPI4B='Y';
+UPDATE cy_diag1 SET INTEREPI4B='0' where INTEREPI4B<>'1';
+alter table cy_diag1 alter column INTEREPI4B bit null;
+UPDATE cy_diag1 SET INTEREPI4B=0 where INTEREPI4B IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI4C='1' where INTEREPI4C='Y';
+UPDATE cy_diag1 SET INTEREPI4C='0' where INTEREPI4C<>'1';
+alter table cy_diag1 alter column INTEREPI4C bit null;
+UPDATE cy_diag1 SET INTEREPI4C=0 where INTEREPI4C IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI5='1' where INTEREPI5='Y';
+UPDATE cy_diag1 SET INTEREPI5='0' where INTEREPI5<>'1';
+alter table cy_diag1 alter column INTEREPI5 bit null;
+UPDATE cy_diag1 SET INTEREPI5=0 where INTEREPI5 IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI5A='1' where INTEREPI5A='Y';
+UPDATE cy_diag1 SET INTEREPI5A='0' where INTEREPI5A<>'1';
+alter table cy_diag1 alter column INTEREPI5A bit null;
+UPDATE cy_diag1 SET INTEREPI5A=0 where INTEREPI5A IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI5B='1' where INTEREPI5B='Y';
+UPDATE cy_diag1 SET INTEREPI5B='0' where INTEREPI5B<>'1';
+alter table cy_diag1 alter column INTEREPI5B bit null;
+UPDATE cy_diag1 SET INTEREPI5B=0 where INTEREPI5B IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI5C='1' where INTEREPI5C='Y';
+UPDATE cy_diag1 SET INTEREPI5C='0' where INTEREPI5C<>'1';
+alter table cy_diag1 alter column INTEREPI5C bit null;
+UPDATE cy_diag1 SET INTEREPI5C=0 where INTEREPI5C IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI5D='1' where INTEREPI5D='Y';
+UPDATE cy_diag1 SET INTEREPI5D='0' where INTEREPI5D<>'1';
+alter table cy_diag1 alter column INTEREPI5D bit null;
+UPDATE cy_diag1 SET INTEREPI5D=0 where INTEREPI5D IS NULL;
+
+UPDATE cy_diag1 SET INTEREPI6='1' where INTEREPI6='Y';
+UPDATE cy_diag1 SET INTEREPI6='0' where INTEREPI6<>'1';
+alter table cy_diag1 alter column INTEREPI6 bit null;
+UPDATE cy_diag1 SET INTEREPI6=0 where INTEREPI6 IS NULL;
+
+UPDATE cy_diag1 SET HPV_DNA='1' where HPV_DNA='Y';
+UPDATE cy_diag1 SET HPV_DNA='0' where HPV_DNA<>'1';
+alter table cy_diag1 alter column HPV_DNA bit null;
+UPDATE cy_diag1 SET HPV_DNA=0 where HPV_DNA IS NULL;
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='cy_diag1')
+BEGIN
+ALTER TABLE cy_diag1 ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE cy_diag1 ADD CONSTRAINT [PK_cy_diag1] primary key (ID);
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAG3')
+BEGIN
+ALTER TABLE cy_diag1 ADD [DIAG3] [nvarchar](255) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAG3_DESC')
+BEGIN
+ALTER TABLE cy_diag1 ADD [DIAG3_DESC] [nvarchar](255) NULL;
+END
+
+
+--cy_diag2 table
+UPDATE cy_diag2 SET SITE1='1' where SITE1='Y';
+UPDATE cy_diag2 SET SITE1='0' where SITE1<>'1';
+alter table cy_diag2 alter column SITE1 bit null;
+UPDATE cy_diag2 SET SITE1=0 where SITE1 IS NULL;
+
+UPDATE cy_diag2 SET SITE2='1' where SITE2='Y';
+UPDATE cy_diag2 SET SITE2='0' where SITE2<>'1';
+alter table cy_diag2 alter column SITE2 bit null;
+UPDATE cy_diag2 SET SITE2=0 where SITE2 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENA1='1' where SPECIMENA1='Y';
+UPDATE cy_diag2 SET SPECIMENA1='0' where SPECIMENA1<>'1';
+alter table cy_diag2 alter column SPECIMENA1 bit null;
+UPDATE cy_diag2 SET SPECIMENA1=0 where SPECIMENA1 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENA2='1' where SPECIMENA2='Y';
+UPDATE cy_diag2 SET SPECIMENA2='0' where SPECIMENA2<>'1';
+alter table cy_diag2 alter column SPECIMENA2 bit null;
+UPDATE cy_diag2 SET SPECIMENA2=0 where SPECIMENA2 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENA3='1' where SPECIMENA3='Y';
+UPDATE cy_diag2 SET SPECIMENA3='0' where SPECIMENA3<>'1';
+alter table cy_diag2 alter column SPECIMENA3 bit null;
+UPDATE cy_diag2 SET SPECIMENA3=0 where SPECIMENA3 IS NULL;
+
+UPDATE cy_diag2 SET CELLULARC1='1' where CELLULARC1='Y';
+UPDATE cy_diag2 SET CELLULARC1='0' where CELLULARC1<>'1';
+alter table cy_diag2 alter column CELLULARC1 bit null;
+UPDATE cy_diag2 SET CELLULARC1=0 where CELLULARC1 IS NULL;
+
+UPDATE cy_diag2 SET CELLULARC2='1' where CELLULARC2='Y';
+UPDATE cy_diag2 SET CELLULARC2='0' where CELLULARC2<>'1';
+alter table cy_diag2 alter column CELLULARC2 bit null;
+UPDATE cy_diag2 SET CELLULARC2=0 where CELLULARC2 IS NULL;
+
+UPDATE cy_diag2 SET CELLULARC3='1' where CELLULARC3='Y';
+UPDATE cy_diag2 SET CELLULARC3='0' where CELLULARC3<>'1';
+alter table cy_diag2 alter column CELLULARC3 bit null;
+UPDATE cy_diag2 SET CELLULARC3=0 where CELLULARC3 IS NULL;
+
+UPDATE cy_diag2 SET CELLULARC4='1' where CELLULARC4='Y';
+UPDATE cy_diag2 SET CELLULARC4='0' where CELLULARC4<>'1';
+alter table cy_diag2 alter column CELLULARC4 bit null;
+UPDATE cy_diag2 SET CELLULARC4=0 where CELLULARC4 IS NULL;
+
+UPDATE cy_diag2 SET CELLULARC5='1' where CELLULARC5='Y';
+UPDATE cy_diag2 SET CELLULARC5='0' where CELLULARC5<>'1';
+alter table cy_diag2 alter column CELLULARC5 bit null;
+UPDATE cy_diag2 SET CELLULARC5=0 where CELLULARC5 IS NULL;
+
+UPDATE cy_diag2 SET PREPAIR1='1' where PREPAIR1='Y';
+UPDATE cy_diag2 SET PREPAIR1='0' where PREPAIR1<>'1';
+alter table cy_diag2 alter column PREPAIR1 bit null;
+UPDATE cy_diag2 SET PREPAIR1=0 where PREPAIR1 IS NULL;
+
+UPDATE cy_diag2 SET PREPAIR2='1' where PREPAIR2='Y';
+UPDATE cy_diag2 SET PREPAIR2='0' where PREPAIR2<>'1';
+alter table cy_diag2 alter column PREPAIR2 bit null;
+UPDATE cy_diag2 SET PREPAIR2=0 where PREPAIR2 IS NULL;
+
+UPDATE cy_diag2 SET PREPAIR3='1' where PREPAIR3='Y';
+UPDATE cy_diag2 SET PREPAIR3='0' where PREPAIR3<>'1';
+alter table cy_diag2 alter column PREPAIR3 bit null;
+UPDATE cy_diag2 SET PREPAIR3=0 where PREPAIR3 IS NULL;
+
+UPDATE cy_diag2 SET PREPAIR4='1' where PREPAIR4='Y';
+UPDATE cy_diag2 SET PREPAIR4='0' where PREPAIR4<>'1';
+alter table cy_diag2 alter column PREPAIR4 bit null;
+UPDATE cy_diag2 SET PREPAIR4=0 where PREPAIR4 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENQ1='1' where SPECIMENQ1='Y';
+UPDATE cy_diag2 SET SPECIMENQ1='0' where SPECIMENQ1<>'1';
+alter table cy_diag2 alter column SPECIMENQ1 bit null;
+UPDATE cy_diag2 SET SPECIMENQ1=0 where SPECIMENQ1 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENQ2='1' where SPECIMENQ2='Y';
+UPDATE cy_diag2 SET SPECIMENQ2='0' where SPECIMENQ2<>'1';
+alter table cy_diag2 alter column SPECIMENQ2 bit null;
+UPDATE cy_diag2 SET SPECIMENQ2=0 where SPECIMENQ2 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENQ3='1' where SPECIMENQ3='Y';
+UPDATE cy_diag2 SET SPECIMENQ3='0' where SPECIMENQ3<>'1';
+alter table cy_diag2 alter column SPECIMENQ3 bit null;
+UPDATE cy_diag2 SET SPECIMENQ3=0 where SPECIMENQ3 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENQ4='1' where SPECIMENQ4='Y';
+UPDATE cy_diag2 SET SPECIMENQ4='0' where SPECIMENQ4<>'1';
+alter table cy_diag2 alter column SPECIMENQ4 bit null;
+UPDATE cy_diag2 SET SPECIMENQ4=0 where SPECIMENQ4 IS NULL;
+
+UPDATE cy_diag2 SET SPECIMENQ5='1' where SPECIMENQ5='Y';
+UPDATE cy_diag2 SET SPECIMENQ5='0' where SPECIMENQ5<>'1';
+alter table cy_diag2 alter column SPECIMENQ5 bit null;
+UPDATE cy_diag2 SET SPECIMENQ5=0 where SPECIMENQ5 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG='1' where INTERNEG='Y';
+UPDATE cy_diag2 SET INTERNEG='0' where INTERNEG<>'1';
+alter table cy_diag2 alter column INTERNEG bit null;
+UPDATE cy_diag2 SET INTERNEG=0 where INTERNEG IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG1='1' where INTERNEG1='Y';
+UPDATE cy_diag2 SET INTERNEG1='0' where INTERNEG1<>'1';
+alter table cy_diag2 alter column INTERNEG1 bit null;
+UPDATE cy_diag2 SET INTERNEG1=0 where INTERNEG1 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG2='1' where INTERNEG2='Y';
+UPDATE cy_diag2 SET INTERNEG2='0' where INTERNEG2<>'1';
+alter table cy_diag2 alter column INTERNEG2 bit null;
+UPDATE cy_diag2 SET INTERNEG2=0 where INTERNEG2 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG3='1' where INTERNEG3='Y';
+UPDATE cy_diag2 SET INTERNEG3='0' where INTERNEG3<>'1';
+alter table cy_diag2 alter column INTERNEG3 bit null;
+UPDATE cy_diag2 SET INTERNEG3=0 where INTERNEG3 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG4='1' where INTERNEG4='Y';
+UPDATE cy_diag2 SET INTERNEG4='0' where INTERNEG4<>'1';
+alter table cy_diag2 alter column INTERNEG4 bit null;
+UPDATE cy_diag2 SET INTERNEG4=0 where INTERNEG4 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG5='1' where INTERNEG5='Y';
+UPDATE cy_diag2 SET INTERNEG5='0' where INTERNEG5<>'1';
+alter table cy_diag2 alter column INTERNEG5 bit null;
+UPDATE cy_diag2 SET INTERNEG5=0 where INTERNEG5 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG6='1' where INTERNEG6='Y';
+UPDATE cy_diag2 SET INTERNEG6='0' where INTERNEG6<>'1';
+alter table cy_diag2 alter column INTERNEG6 bit null;
+UPDATE cy_diag2 SET INTERNEG6=0 where INTERNEG6 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG7='1' where INTERNEG7='Y';
+UPDATE cy_diag2 SET INTERNEG7='0' where INTERNEG7<>'1';
+alter table cy_diag2 alter column INTERNEG7 bit null;
+UPDATE cy_diag2 SET INTERNEG7=0 where INTERNEG7 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG8='1' where INTERNEG8='Y';
+UPDATE cy_diag2 SET INTERNEG8='0' where INTERNEG8<>'1';
+alter table cy_diag2 alter column INTERNEG8 bit null;
+UPDATE cy_diag2 SET INTERNEG8=0 where INTERNEG8 IS NULL;
+
+UPDATE cy_diag2 SET INTERNEG9='1' where INTERNEG9='Y';
+UPDATE cy_diag2 SET INTERNEG9='0' where INTERNEG9<>'1';
+alter table cy_diag2 alter column INTERNEG9 bit null;
+UPDATE cy_diag2 SET INTERNEG9=0 where INTERNEG9 IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI='1' where INTEREPI='Y';
+UPDATE cy_diag2 SET INTEREPI='0' where INTEREPI<>'1';
+alter table cy_diag2 alter column INTEREPI bit null;
+UPDATE cy_diag2 SET INTEREPI=0 where INTEREPI IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI1='1' where INTEREPI1='Y';
+UPDATE cy_diag2 SET INTEREPI1='0' where INTEREPI1<>'1';
+alter table cy_diag2 alter column INTEREPI1 bit null;
+UPDATE cy_diag2 SET INTEREPI1=0 where INTEREPI1 IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI1A='1' where INTEREPI1A='Y';
+UPDATE cy_diag2 SET INTEREPI1A='0' where INTEREPI1A<>'1';
+alter table cy_diag2 alter column INTEREPI1A bit null;
+UPDATE cy_diag2 SET INTEREPI1A=0 where INTEREPI1A IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI1B='1' where INTEREPI1B='Y';
+UPDATE cy_diag2 SET INTEREPI1B='0' where INTEREPI1B<>'1';
+alter table cy_diag2 alter column INTEREPI1B bit null;
+UPDATE cy_diag2 SET INTEREPI1B=0 where INTEREPI1B IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI2='1' where INTEREPI2='Y';
+UPDATE cy_diag2 SET INTEREPI2='0' where INTEREPI2<>'1';
+alter table cy_diag2 alter column INTEREPI2 bit null;
+UPDATE cy_diag2 SET INTEREPI2=0 where INTEREPI2 IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI2A='1' where INTEREPI2A='Y';
+UPDATE cy_diag2 SET INTEREPI2A='0' where INTEREPI2A<>'1';
+alter table cy_diag2 alter column INTEREPI2A bit null;
+UPDATE cy_diag2 SET INTEREPI2A=0 where INTEREPI2A IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI2B='1' where INTEREPI2B='Y';
+UPDATE cy_diag2 SET INTEREPI2B='0' where INTEREPI2B<>'1';
+alter table cy_diag2 alter column INTEREPI2B bit null;
+UPDATE cy_diag2 SET INTEREPI2B=0 where INTEREPI2B IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI2C='1' where INTEREPI2C='Y';
+UPDATE cy_diag2 SET INTEREPI2C='0' where INTEREPI2C<>'1';
+alter table cy_diag2 alter column INTEREPI2C bit null;
+UPDATE cy_diag2 SET INTEREPI2C=0 where INTEREPI2C IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI3='1' where INTEREPI3='Y';
+UPDATE cy_diag2 SET INTEREPI3='0' where INTEREPI3<>'1';
+alter table cy_diag2 alter column INTEREPI3 bit null;
+UPDATE cy_diag2 SET INTEREPI3=0 where INTEREPI3 IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI4='1' where INTEREPI4='Y';
+UPDATE cy_diag2 SET INTEREPI4='0' where INTEREPI4<>'1';
+alter table cy_diag2 alter column INTEREPI4 bit null;
+UPDATE cy_diag2 SET INTEREPI4=0 where INTEREPI4 IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI4A='1' where INTEREPI4A='Y';
+UPDATE cy_diag2 SET INTEREPI4A='0' where INTEREPI4A<>'1';
+alter table cy_diag2 alter column INTEREPI4A bit null;
+UPDATE cy_diag2 SET INTEREPI4A=0 where INTEREPI4A IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI4B='1' where INTEREPI4B='Y';
+UPDATE cy_diag2 SET INTEREPI4B='0' where INTEREPI4B<>'1';
+alter table cy_diag2 alter column INTEREPI4B bit null;
+UPDATE cy_diag2 SET INTEREPI4B=0 where INTEREPI4B IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI4C='1' where INTEREPI4C='Y';
+UPDATE cy_diag2 SET INTEREPI4C='0' where INTEREPI4C<>'1';
+alter table cy_diag2 alter column INTEREPI4C bit null;
+UPDATE cy_diag2 SET INTEREPI4C=0 where INTEREPI4C IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI5='1' where INTEREPI5='Y';
+UPDATE cy_diag2 SET INTEREPI5='0' where INTEREPI5<>'1';
+alter table cy_diag2 alter column INTEREPI5 bit null;
+UPDATE cy_diag2 SET INTEREPI5=0 where INTEREPI5 IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI5A='1' where INTEREPI5A='Y';
+UPDATE cy_diag2 SET INTEREPI5A='0' where INTEREPI5A<>'1';
+alter table cy_diag2 alter column INTEREPI5A bit null;
+UPDATE cy_diag2 SET INTEREPI5A=0 where INTEREPI5A IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI5B='1' where INTEREPI5B='Y';
+UPDATE cy_diag2 SET INTEREPI5B='0' where INTEREPI5B<>'1';
+alter table cy_diag2 alter column INTEREPI5B bit null;
+UPDATE cy_diag2 SET INTEREPI5B=0 where INTEREPI5B IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI5C='1' where INTEREPI5C='Y';
+UPDATE cy_diag2 SET INTEREPI5C='0' where INTEREPI5C<>'1';
+alter table cy_diag2 alter column INTEREPI5C bit null;
+UPDATE cy_diag2 SET INTEREPI5C=0 where INTEREPI5C IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI5D='1' where INTEREPI5D='Y';
+UPDATE cy_diag2 SET INTEREPI5D='0' where INTEREPI5D<>'1';
+alter table cy_diag2 alter column INTEREPI5D bit null;
+UPDATE cy_diag2 SET INTEREPI5D=0 where INTEREPI5D IS NULL;
+
+UPDATE cy_diag2 SET INTEREPI6='1' where INTEREPI6='Y';
+UPDATE cy_diag2 SET INTEREPI6='0' where INTEREPI6<>'1';
+alter table cy_diag2 alter column INTEREPI6 bit null;
+UPDATE cy_diag2 SET INTEREPI6=0 where INTEREPI6 IS NULL;
+
+UPDATE cy_diag2 SET HPV_DNA='1' where HPV_DNA='Y';
+UPDATE cy_diag2 SET HPV_DNA='0' where HPV_DNA<>'1';
+alter table cy_diag2 alter column HPV_DNA bit null;
+UPDATE cy_diag2 SET HPV_DNA=0 where HPV_DNA IS NULL;
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='cy_diag2')
+BEGIN
+ALTER TABLE cy_diag2 ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE cy_diag2 ADD CONSTRAINT [PK_cy_diag2] primary key (ID);
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAG3')
+BEGIN
+ALTER TABLE cy_diag2 ADD [DIAG3] [nvarchar](255) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAG3_DESC')
+BEGIN
+ALTER TABLE cy_diag2 ADD [DIAG3_DESC] [nvarchar](255) NULL;
+END
+
+
+--cy_diag3 table
+UPDATE cy_diag3 SET SITE1='1' where SITE1='Y';
+UPDATE cy_diag3 SET SITE1='0' where SITE1<>'1';
+alter table cy_diag3 alter column SITE1 bit null;
+UPDATE cy_diag3 SET SITE1=0 where SITE1 IS NULL;
+
+UPDATE cy_diag3 SET SITE2='1' where SITE2='Y';
+UPDATE cy_diag3 SET SITE2='0' where SITE2<>'1';
+alter table cy_diag3 alter column SITE2 bit null;
+UPDATE cy_diag3 SET SITE2=0 where SITE2 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENA1='1' where SPECIMENA1='Y';
+UPDATE cy_diag3 SET SPECIMENA1='0' where SPECIMENA1<>'1';
+alter table cy_diag3 alter column SPECIMENA1 bit null;
+UPDATE cy_diag3 SET SPECIMENA1=0 where SPECIMENA1 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENA2='1' where SPECIMENA2='Y';
+UPDATE cy_diag3 SET SPECIMENA2='0' where SPECIMENA2<>'1';
+alter table cy_diag3 alter column SPECIMENA2 bit null;
+UPDATE cy_diag3 SET SPECIMENA2=0 where SPECIMENA2 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENA3='1' where SPECIMENA3='Y';
+UPDATE cy_diag3 SET SPECIMENA3='0' where SPECIMENA3<>'1';
+alter table cy_diag3 alter column SPECIMENA3 bit null;
+UPDATE cy_diag3 SET SPECIMENA3=0 where SPECIMENA3 IS NULL;
+
+UPDATE cy_diag3 SET CELLULARC1='1' where CELLULARC1='Y';
+UPDATE cy_diag3 SET CELLULARC1='0' where CELLULARC1<>'1';
+alter table cy_diag3 alter column CELLULARC1 bit null;
+UPDATE cy_diag3 SET CELLULARC1=0 where CELLULARC1 IS NULL;
+
+UPDATE cy_diag3 SET CELLULARC2='1' where CELLULARC2='Y';
+UPDATE cy_diag3 SET CELLULARC2='0' where CELLULARC2<>'1';
+alter table cy_diag3 alter column CELLULARC2 bit null;
+UPDATE cy_diag3 SET CELLULARC2=0 where CELLULARC2 IS NULL;
+
+UPDATE cy_diag3 SET CELLULARC3='1' where CELLULARC3='Y';
+UPDATE cy_diag3 SET CELLULARC3='0' where CELLULARC3<>'1';
+alter table cy_diag3 alter column CELLULARC3 bit null;
+UPDATE cy_diag3 SET CELLULARC3=0 where CELLULARC3 IS NULL;
+
+UPDATE cy_diag3 SET CELLULARC4='1' where CELLULARC4='Y';
+UPDATE cy_diag3 SET CELLULARC4='0' where CELLULARC4<>'1';
+alter table cy_diag3 alter column CELLULARC4 bit null;
+UPDATE cy_diag3 SET CELLULARC4=0 where CELLULARC4 IS NULL;
+
+UPDATE cy_diag3 SET CELLULARC5='1' where CELLULARC5='Y';
+UPDATE cy_diag3 SET CELLULARC5='0' where CELLULARC5<>'1';
+alter table cy_diag3 alter column CELLULARC5 bit null;
+UPDATE cy_diag3 SET CELLULARC5=0 where CELLULARC5 IS NULL;
+
+UPDATE cy_diag3 SET PREPAIR1='1' where PREPAIR1='Y';
+UPDATE cy_diag3 SET PREPAIR1='0' where PREPAIR1<>'1';
+alter table cy_diag3 alter column PREPAIR1 bit null;
+UPDATE cy_diag3 SET PREPAIR1=0 where PREPAIR1 IS NULL;
+
+UPDATE cy_diag3 SET PREPAIR2='1' where PREPAIR2='Y';
+UPDATE cy_diag3 SET PREPAIR2='0' where PREPAIR2<>'1';
+alter table cy_diag3 alter column PREPAIR2 bit null;
+UPDATE cy_diag3 SET PREPAIR2=0 where PREPAIR2 IS NULL;
+
+UPDATE cy_diag3 SET PREPAIR3='1' where PREPAIR3='Y';
+UPDATE cy_diag3 SET PREPAIR3='0' where PREPAIR3<>'1';
+alter table cy_diag3 alter column PREPAIR3 bit null;
+UPDATE cy_diag3 SET PREPAIR3=0 where PREPAIR3 IS NULL;
+
+UPDATE cy_diag3 SET PREPAIR4='1' where PREPAIR4='Y';
+UPDATE cy_diag3 SET PREPAIR4='0' where PREPAIR4<>'1';
+alter table cy_diag3 alter column PREPAIR4 bit null;
+UPDATE cy_diag3 SET PREPAIR4=0 where PREPAIR4 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENQ1='1' where SPECIMENQ1='Y';
+UPDATE cy_diag3 SET SPECIMENQ1='0' where SPECIMENQ1<>'1';
+alter table cy_diag3 alter column SPECIMENQ1 bit null;
+UPDATE cy_diag3 SET SPECIMENQ1=0 where SPECIMENQ1 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENQ2='1' where SPECIMENQ2='Y';
+UPDATE cy_diag3 SET SPECIMENQ2='0' where SPECIMENQ2<>'1';
+alter table cy_diag3 alter column SPECIMENQ2 bit null;
+UPDATE cy_diag3 SET SPECIMENQ2=0 where SPECIMENQ2 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENQ3='1' where SPECIMENQ3='Y';
+UPDATE cy_diag3 SET SPECIMENQ3='0' where SPECIMENQ3<>'1';
+alter table cy_diag3 alter column SPECIMENQ3 bit null;
+UPDATE cy_diag3 SET SPECIMENQ3=0 where SPECIMENQ3 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENQ4='1' where SPECIMENQ4='Y';
+UPDATE cy_diag3 SET SPECIMENQ4='0' where SPECIMENQ4<>'1';
+alter table cy_diag3 alter column SPECIMENQ4 bit null;
+UPDATE cy_diag3 SET SPECIMENQ4=0 where SPECIMENQ4 IS NULL;
+
+UPDATE cy_diag3 SET SPECIMENQ5='1' where SPECIMENQ5='Y';
+UPDATE cy_diag3 SET SPECIMENQ5='0' where SPECIMENQ5<>'1';
+alter table cy_diag3 alter column SPECIMENQ5 bit null;
+UPDATE cy_diag3 SET SPECIMENQ5=0 where SPECIMENQ5 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG='1' where INTERNEG='Y';
+UPDATE cy_diag3 SET INTERNEG='0' where INTERNEG<>'1';
+alter table cy_diag3 alter column INTERNEG bit null;
+UPDATE cy_diag3 SET INTERNEG=0 where INTERNEG IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG1='1' where INTERNEG1='Y';
+UPDATE cy_diag3 SET INTERNEG1='0' where INTERNEG1<>'1';
+alter table cy_diag3 alter column INTERNEG1 bit null;
+UPDATE cy_diag3 SET INTERNEG1=0 where INTERNEG1 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG2='1' where INTERNEG2='Y';
+UPDATE cy_diag3 SET INTERNEG2='0' where INTERNEG2<>'1';
+alter table cy_diag3 alter column INTERNEG2 bit null;
+UPDATE cy_diag3 SET INTERNEG2=0 where INTERNEG2 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG3='1' where INTERNEG3='Y';
+UPDATE cy_diag3 SET INTERNEG3='0' where INTERNEG3<>'1';
+alter table cy_diag3 alter column INTERNEG3 bit null;
+UPDATE cy_diag3 SET INTERNEG3=0 where INTERNEG3 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG4='1' where INTERNEG4='Y';
+UPDATE cy_diag3 SET INTERNEG4='0' where INTERNEG4<>'1';
+alter table cy_diag3 alter column INTERNEG4 bit null;
+UPDATE cy_diag3 SET INTERNEG4=0 where INTERNEG4 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG5='1' where INTERNEG5='Y';
+UPDATE cy_diag3 SET INTERNEG5='0' where INTERNEG5<>'1';
+alter table cy_diag3 alter column INTERNEG5 bit null;
+UPDATE cy_diag3 SET INTERNEG5=0 where INTERNEG5 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG6='1' where INTERNEG6='Y';
+UPDATE cy_diag3 SET INTERNEG6='0' where INTERNEG6<>'1';
+alter table cy_diag3 alter column INTERNEG6 bit null;
+UPDATE cy_diag3 SET INTERNEG6=0 where INTERNEG6 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG7='1' where INTERNEG7='Y';
+UPDATE cy_diag3 SET INTERNEG7='0' where INTERNEG7<>'1';
+alter table cy_diag3 alter column INTERNEG7 bit null;
+UPDATE cy_diag3 SET INTERNEG7=0 where INTERNEG7 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG8='1' where INTERNEG8='Y';
+UPDATE cy_diag3 SET INTERNEG8='0' where INTERNEG8<>'1';
+alter table cy_diag3 alter column INTERNEG8 bit null;
+UPDATE cy_diag3 SET INTERNEG8=0 where INTERNEG8 IS NULL;
+
+UPDATE cy_diag3 SET INTERNEG9='1' where INTERNEG9='Y';
+UPDATE cy_diag3 SET INTERNEG9='0' where INTERNEG9<>'1';
+alter table cy_diag3 alter column INTERNEG9 bit null;
+UPDATE cy_diag3 SET INTERNEG9=0 where INTERNEG9 IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI='1' where INTEREPI='Y';
+UPDATE cy_diag3 SET INTEREPI='0' where INTEREPI<>'1';
+alter table cy_diag3 alter column INTEREPI bit null;
+UPDATE cy_diag3 SET INTEREPI=0 where INTEREPI IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI1='1' where INTEREPI1='Y';
+UPDATE cy_diag3 SET INTEREPI1='0' where INTEREPI1<>'1';
+alter table cy_diag3 alter column INTEREPI1 bit null;
+UPDATE cy_diag3 SET INTEREPI1=0 where INTEREPI1 IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI1A='1' where INTEREPI1A='Y';
+UPDATE cy_diag3 SET INTEREPI1A='0' where INTEREPI1A<>'1';
+alter table cy_diag3 alter column INTEREPI1A bit null;
+UPDATE cy_diag3 SET INTEREPI1A=0 where INTEREPI1A IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI1B='1' where INTEREPI1B='Y';
+UPDATE cy_diag3 SET INTEREPI1B='0' where INTEREPI1B<>'1';
+alter table cy_diag3 alter column INTEREPI1B bit null;
+UPDATE cy_diag3 SET INTEREPI1B=0 where INTEREPI1B IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI2='1' where INTEREPI2='Y';
+UPDATE cy_diag3 SET INTEREPI2='0' where INTEREPI2<>'1';
+alter table cy_diag3 alter column INTEREPI2 bit null;
+UPDATE cy_diag3 SET INTEREPI2=0 where INTEREPI2 IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI2A='1' where INTEREPI2A='Y';
+UPDATE cy_diag3 SET INTEREPI2A='0' where INTEREPI2A<>'1';
+alter table cy_diag3 alter column INTEREPI2A bit null;
+UPDATE cy_diag3 SET INTEREPI2A=0 where INTEREPI2A IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI2B='1' where INTEREPI2B='Y';
+UPDATE cy_diag3 SET INTEREPI2B='0' where INTEREPI2B<>'1';
+alter table cy_diag3 alter column INTEREPI2B bit null;
+UPDATE cy_diag3 SET INTEREPI2B=0 where INTEREPI2B IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI2C='1' where INTEREPI2C='Y';
+UPDATE cy_diag3 SET INTEREPI2C='0' where INTEREPI2C<>'1';
+alter table cy_diag3 alter column INTEREPI2C bit null;
+UPDATE cy_diag3 SET INTEREPI2C=0 where INTEREPI2C IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI3='1' where INTEREPI3='Y';
+UPDATE cy_diag3 SET INTEREPI3='0' where INTEREPI3<>'1';
+alter table cy_diag3 alter column INTEREPI3 bit null;
+UPDATE cy_diag3 SET INTEREPI3=0 where INTEREPI3 IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI4='1' where INTEREPI4='Y';
+UPDATE cy_diag3 SET INTEREPI4='0' where INTEREPI4<>'1';
+alter table cy_diag3 alter column INTEREPI4 bit null;
+UPDATE cy_diag3 SET INTEREPI4=0 where INTEREPI4 IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI4A='1' where INTEREPI4A='Y';
+UPDATE cy_diag3 SET INTEREPI4A='0' where INTEREPI4A<>'1';
+alter table cy_diag3 alter column INTEREPI4A bit null;
+UPDATE cy_diag3 SET INTEREPI4A=0 where INTEREPI4A IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI4B='1' where INTEREPI4B='Y';
+UPDATE cy_diag3 SET INTEREPI4B='0' where INTEREPI4B<>'1';
+alter table cy_diag3 alter column INTEREPI4B bit null;
+UPDATE cy_diag3 SET INTEREPI4B=0 where INTEREPI4B IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI4C='1' where INTEREPI4C='Y';
+UPDATE cy_diag3 SET INTEREPI4C='0' where INTEREPI4C<>'1';
+alter table cy_diag3 alter column INTEREPI4C bit null;
+UPDATE cy_diag3 SET INTEREPI4C=0 where INTEREPI4C IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI5='1' where INTEREPI5='Y';
+UPDATE cy_diag3 SET INTEREPI5='0' where INTEREPI5<>'1';
+alter table cy_diag3 alter column INTEREPI5 bit null;
+UPDATE cy_diag3 SET INTEREPI5=0 where INTEREPI5 IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI5A='1' where INTEREPI5A='Y';
+UPDATE cy_diag3 SET INTEREPI5A='0' where INTEREPI5A<>'1';
+alter table cy_diag3 alter column INTEREPI5A bit null;
+UPDATE cy_diag3 SET INTEREPI5A=0 where INTEREPI5A IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI5B='1' where INTEREPI5B='Y';
+UPDATE cy_diag3 SET INTEREPI5B='0' where INTEREPI5B<>'1';
+alter table cy_diag3 alter column INTEREPI5B bit null;
+UPDATE cy_diag3 SET INTEREPI5B=0 where INTEREPI5B IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI5C='1' where INTEREPI5C='Y';
+UPDATE cy_diag3 SET INTEREPI5C='0' where INTEREPI5C<>'1';
+alter table cy_diag3 alter column INTEREPI5C bit null;
+UPDATE cy_diag3 SET INTEREPI5C=0 where INTEREPI5C IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI5D='1' where INTEREPI5D='Y';
+UPDATE cy_diag3 SET INTEREPI5D='0' where INTEREPI5D<>'1';
+alter table cy_diag3 alter column INTEREPI5D bit null;
+UPDATE cy_diag3 SET INTEREPI5D=0 where INTEREPI5D IS NULL;
+
+UPDATE cy_diag3 SET INTEREPI6='1' where INTEREPI6='Y';
+UPDATE cy_diag3 SET INTEREPI6='0' where INTEREPI6<>'1';
+alter table cy_diag3 alter column INTEREPI6 bit null;
+UPDATE cy_diag3 SET INTEREPI6=0 where INTEREPI6 IS NULL;
+
+UPDATE cy_diag3 SET HPV_DNA='1' where HPV_DNA='Y';
+UPDATE cy_diag3 SET HPV_DNA='0' where HPV_DNA<>'1';
+alter table cy_diag3 alter column HPV_DNA bit null;
+UPDATE cy_diag3 SET HPV_DNA=0 where HPV_DNA IS NULL;
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='cy_diag3')
+BEGIN
+ALTER TABLE cy_diag3 ADD [id] [int] IDENTITY(1,1) NOT NULL;
+ALTER TABLE cy_diag3 ADD CONSTRAINT [PK_cy_diag3] primary key (ID);
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAG3')
+BEGIN
+ALTER TABLE cy_diag3 ADD [DIAG3] [nvarchar](255) NULL;
+END
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='DIAG3_DESC')
+BEGIN
+ALTER TABLE cy_diag3 ADD [DIAG3_DESC] [nvarchar](255) NULL;
+END

@@ -39,6 +39,15 @@ namespace St.Teresa_LIS_2019
         DataSet doctorDataSet3 = new DataSet();
         SqlDataAdapter doctorDataAdapter3;
 
+        private DataSet existCyDiagDataSet1 = null;
+        private SqlDataAdapter existCyDiagDataAdapter1 = null;
+
+        private DataSet existCyDiagDataSet2 = null;
+        private SqlDataAdapter existCyDiagDataAdapter2 = null;
+
+        private DataSet existCyDiagDataSet3 = null;
+        private SqlDataAdapter existCyDiagDataAdapter3 = null;
+
         public class Bxcy_specimen
         {
             public int id { get; set; }
@@ -221,8 +230,20 @@ namespace St.Teresa_LIS_2019
 
         private void button_F5_CY_Diagnosis_Click(object sender, EventArgs e)
         {
-            Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis();
+            Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
+            open.OnCyDiagExit += CyDiagReturn;
             open.Show();
+        }
+
+        private void CyDiagReturn(DataSet existCyDiagDataSet1, DataSet existCyDiagDataSet2, DataSet existCyDiagDataSet3, SqlDataAdapter existCyDiagDataAdapter1, SqlDataAdapter existCyDiagDataAdapter2, SqlDataAdapter existCyDiagDataAdapter3)
+        {
+            this.existCyDiagDataAdapter1 = existCyDiagDataAdapter1;
+            this.existCyDiagDataAdapter2 = existCyDiagDataAdapter2;
+            this.existCyDiagDataAdapter3 = existCyDiagDataAdapter3;
+
+            this.existCyDiagDataSet1 = existCyDiagDataSet1;
+            this.existCyDiagDataSet2 = existCyDiagDataSet2;
+            this.existCyDiagDataSet3 = existCyDiagDataSet3;
         }
 
         private void button_F6_Gynaecologl_Histoy_Click(object sender, EventArgs e)

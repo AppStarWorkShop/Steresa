@@ -21,6 +21,9 @@ namespace St.Teresa_LIS_2019
         public delegate void ClientSelectedSingle(string str);
         public ClientSelectedSingle OnClientSelectedSingle;
 
+        public delegate void ClientSelected(string str, string idStr);
+        public ClientSelected OnClientSelected;
+
         public Form_SelectClient()
         {
             InitializeComponent();
@@ -199,6 +202,10 @@ namespace St.Teresa_LIS_2019
             if (OnClientSelectedSingle != null)
             {
                 OnClientSelectedSingle(clientStr);
+            }
+            if(OnClientSelected != null)
+            {
+                OnClientSelected(clientStr, idStr);
             }
             this.Close();
         }
