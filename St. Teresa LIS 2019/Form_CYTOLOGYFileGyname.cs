@@ -531,8 +531,56 @@ namespace St.Teresa_LIS_2019
                             {
                                 reloadAndBindingDBData(0, currentCaseNo);
                                 button_End.PerformClick();
-                                //reloadAndBindingDBData(currencyManager.Count - 1);
-                                MessageBox.Show("New ebv_specimen saved");
+
+                                if (existCyDiagDataAdapter1 != null && existCyDiagDataSet1 != null && existCyDiagDataAdapter2 != null && existCyDiagDataSet2 != null && existCyDiagDataAdapter3 != null && existCyDiagDataSet3 != null)
+                                {
+                                    foreach (DataRow dr in existCyDiagDataSet1.Tables[0].Rows)
+                                    {
+                                        dr["case_no"] = currentCaseNo;
+                                        dr["PRINT_BY"] = CurrentUser.currentUserId;
+                                        dr["PRINT_AT"] = DateTime.Now.ToString("");
+                                    }
+
+                                    foreach (DataRow dr in existCyDiagDataSet2.Tables[0].Rows)
+                                    {
+                                        dr["case_no"] = currentCaseNo;
+                                        dr["PRINT_BY"] = CurrentUser.currentUserId;
+                                        dr["PRINT_AT"] = DateTime.Now.ToString("");
+                                    }
+
+                                    foreach (DataRow dr in existCyDiagDataSet3.Tables[0].Rows)
+                                    {
+                                        dr["case_no"] = currentCaseNo;
+                                        dr["PRINT_BY"] = CurrentUser.currentUserId;
+                                        dr["PRINT_AT"] = DateTime.Now.ToString("");
+                                    }
+
+                                    bool result1 = DBConn.updateObject(existCyDiagDataAdapter1, existCyDiagDataSet1, "cy_diag1");
+                                    bool result2 = DBConn.updateObject(existCyDiagDataAdapter2, existCyDiagDataSet2, "cy_diag2");
+                                    bool result3 = DBConn.updateObject(existCyDiagDataAdapter3, existCyDiagDataSet3, "cy_diag3");
+
+                                    if (result1 || result2 || result3)
+                                    {
+                                        MessageBox.Show("New case is saved");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("New case is saved, New cy diag save fail or no need to save");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("New case is saved");
+                                }
+
+                                this.existCyDiagDataAdapter1 = null;
+                                this.existCyDiagDataSet1 = null;
+
+                                this.existCyDiagDataAdapter2 = null;
+                                this.existCyDiagDataSet2 = null;
+
+                                this.existCyDiagDataAdapter3 = null;
+                                this.existCyDiagDataSet3 = null;
                             }
                             else
                             {
@@ -559,14 +607,59 @@ namespace St.Teresa_LIS_2019
                             drow["UPDATE_AT"] = DateTime.Now.ToString("");
                             textBox_ID.BindingContext[dt].Position++;
 
-                            if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
+                            bool bxcyUpdateResult = DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen");
+                            bool diagUpdateResult = false;
+
+                            if (existCyDiagDataAdapter1 != null && existCyDiagDataSet1 != null && existCyDiagDataAdapter2 != null && existCyDiagDataSet2 != null && existCyDiagDataAdapter3 != null && existCyDiagDataSet3 != null)
                             {
-                                MessageBox.Show("Bxcy_specimen updated");
+                                foreach (DataRow dr in existCyDiagDataSet1.Tables[0].Rows)
+                                {
+                                    dr["case_no"] = currentCaseNo;
+                                    dr["PRINT_BY"] = CurrentUser.currentUserId;
+                                    dr["PRINT_AT"] = DateTime.Now.ToString("");
+                                }
+
+                                foreach (DataRow dr in existCyDiagDataSet2.Tables[0].Rows)
+                                {
+                                    dr["case_no"] = currentCaseNo;
+                                    dr["PRINT_BY"] = CurrentUser.currentUserId;
+                                    dr["PRINT_AT"] = DateTime.Now.ToString("");
+                                }
+
+                                foreach (DataRow dr in existCyDiagDataSet3.Tables[0].Rows)
+                                {
+                                    dr["case_no"] = currentCaseNo;
+                                    dr["PRINT_BY"] = CurrentUser.currentUserId;
+                                    dr["PRINT_AT"] = DateTime.Now.ToString("");
+                                }
+
+                                bool result1 = DBConn.updateObject(existCyDiagDataAdapter1, existCyDiagDataSet1, "cy_diag1");
+                                bool result2 = DBConn.updateObject(existCyDiagDataAdapter2, existCyDiagDataSet2, "cy_diag2");
+                                bool result3 = DBConn.updateObject(existCyDiagDataAdapter3, existCyDiagDataSet3, "cy_diag3");
+
+                                if (result1 || result2 || result3)
+                                {
+                                    diagUpdateResult = true;
+                                }
+                            }
+
+                            if (!bxcyUpdateResult && !diagUpdateResult)
+                            {
+                                MessageBox.Show("Case record updated fail or no record to update");
                             }
                             else
                             {
-                                MessageBox.Show("Bxcy_specimen updated fail, please contact Admin");
+                                MessageBox.Show("Case record updated");
                             }
+
+                            this.existCyDiagDataAdapter1 = null;
+                            this.existCyDiagDataSet1 = null;
+
+                            this.existCyDiagDataAdapter2 = null;
+                            this.existCyDiagDataSet2 = null;
+
+                            this.existCyDiagDataAdapter3 = null;
+                            this.existCyDiagDataSet3 = null;
 
                             setButtonStatus(PageStatus.STATUS_VIEW);
                             reloadAndBindingDBData(0, currentCaseNo);

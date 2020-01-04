@@ -484,6 +484,7 @@
             this.button_Sign_At_1.Size = new System.Drawing.Size(29, 25);
             this.button_Sign_At_1.TabIndex = 157;
             this.button_Sign_At_1.UseVisualStyleBackColor = true;
+            this.button_Sign_At_1.Click += new System.EventHandler(this.button_Sign_At_1_Click);
             // 
             // textBox_Sign_By_1
             // 
@@ -577,6 +578,7 @@
             // 
             // comboBox_SITE_TYPE_1
             // 
+            this.comboBox_SITE_TYPE_1.DisplayMember = "site";
             this.comboBox_SITE_TYPE_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_SITE_TYPE_1.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_SITE_TYPE_1.FormattingEnabled = true;
@@ -586,6 +588,8 @@
             this.comboBox_SITE_TYPE_1.Size = new System.Drawing.Size(335, 21);
             this.comboBox_SITE_TYPE_1.TabIndex = 159;
             this.comboBox_SITE_TYPE_1.Text = "Cervical liquid-based preparration (ThinPrep)";
+            this.comboBox_SITE_TYPE_1.ValueMember = "site";
+            this.comboBox_SITE_TYPE_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SITE_TYPE_1_SelectionChangeCommitted);
             // 
             // textBox_SITE_TYPE_1
             // 
@@ -651,6 +655,7 @@
             this.comboBox_DIAGNOSIS_3_1.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_3_1.TabIndex = 171;
             this.comboBox_DIAGNOSIS_3_1.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_3_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_3_1_SelectionChangeCommitted);
             // 
             // button_DIAGNOSIS_3_1
             // 
@@ -686,6 +691,7 @@
             this.comboBox_DIAGNOSIS_2_1.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_2_1.TabIndex = 168;
             this.comboBox_DIAGNOSIS_2_1.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_2_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_2_1_SelectionChangeCommitted);
             // 
             // button_DIAGNOSIS_2_1
             // 
@@ -723,7 +729,7 @@
             // 
             // comboBox_DIAGNOSIS_1_1
             // 
-            this.comboBox_DIAGNOSIS_1_1.DisplayMember = "site";
+            this.comboBox_DIAGNOSIS_1_1.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_1_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_1_1.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_DIAGNOSIS_1_1.FormattingEnabled = true;
@@ -733,7 +739,8 @@
             this.comboBox_DIAGNOSIS_1_1.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_1_1.TabIndex = 162;
             this.comboBox_DIAGNOSIS_1_1.Text = "Negative for intraepithelial lesion or malignancy";
-            this.comboBox_DIAGNOSIS_1_1.ValueMember = "site";
+            this.comboBox_DIAGNOSIS_1_1.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_1_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_1_1_SelectionChangeCommitted);
             // 
             // textBox_DIAGNOSIS_1_1
             // 
@@ -1013,9 +1020,6 @@
             // panel_TYPE_OF_PREPARATION_1
             // 
             this.panel_TYPE_OF_PREPARATION_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.textBox_ID3);
-            this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.textBox_ID2);
-            this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.textBox_ID1);
             this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.checkBox_Conventional_Pap_smears_1);
             this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.checkBox_Conventional_Pap_smear_1);
             this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.checkBox_Liquid_based_preparations_1);
@@ -1029,24 +1033,24 @@
             // 
             // textBox_ID3
             // 
-            this.textBox_ID3.Location = new System.Drawing.Point(338, 15);
-            this.textBox_ID3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_ID3.Location = new System.Drawing.Point(414, 487);
+            this.textBox_ID3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_ID3.Name = "textBox_ID3";
             this.textBox_ID3.Size = new System.Drawing.Size(14, 21);
             this.textBox_ID3.TabIndex = 6;
             // 
             // textBox_ID2
             // 
-            this.textBox_ID2.Location = new System.Drawing.Point(312, 14);
-            this.textBox_ID2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_ID2.Location = new System.Drawing.Point(388, 486);
+            this.textBox_ID2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_ID2.Name = "textBox_ID2";
             this.textBox_ID2.Size = new System.Drawing.Size(14, 21);
             this.textBox_ID2.TabIndex = 5;
             // 
             // textBox_ID1
             // 
-            this.textBox_ID1.Location = new System.Drawing.Point(282, 14);
-            this.textBox_ID1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBox_ID1.Location = new System.Drawing.Point(358, 486);
+            this.textBox_ID1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_ID1.Name = "textBox_ID1";
             this.textBox_ID1.Size = new System.Drawing.Size(15, 21);
             this.textBox_ID1.TabIndex = 4;
@@ -1744,6 +1748,7 @@
             // 
             // comboBox_SITE_TYPE_2
             // 
+            this.comboBox_SITE_TYPE_2.DisplayMember = "site";
             this.comboBox_SITE_TYPE_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_SITE_TYPE_2.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_SITE_TYPE_2.FormattingEnabled = true;
@@ -1753,6 +1758,8 @@
             this.comboBox_SITE_TYPE_2.Size = new System.Drawing.Size(335, 21);
             this.comboBox_SITE_TYPE_2.TabIndex = 159;
             this.comboBox_SITE_TYPE_2.Text = "Cervical liquid-based preparration (ThinPrep)";
+            this.comboBox_SITE_TYPE_2.ValueMember = "site";
+            this.comboBox_SITE_TYPE_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SITE_TYPE_2_SelectionChangeCommitted);
             // 
             // textBox_SITE_TYPE_2
             // 
@@ -1818,6 +1825,7 @@
             this.comboBox_DIAGNOSIS_3_2.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_3_2.TabIndex = 171;
             this.comboBox_DIAGNOSIS_3_2.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_3_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_3_2_SelectionChangeCommitted);
             // 
             // button_DIAGNOSIS_3_2
             // 
@@ -1853,6 +1861,7 @@
             this.comboBox_DIAGNOSIS_2_2.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_2_2.TabIndex = 168;
             this.comboBox_DIAGNOSIS_2_2.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_2_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_2_2_SelectionChangeCommitted);
             // 
             // button_DIAGNOSIS_2_2
             // 
@@ -1890,7 +1899,7 @@
             // 
             // comboBox_DIAGNOSIS_1_2
             // 
-            this.comboBox_DIAGNOSIS_1_2.DisplayMember = "site";
+            this.comboBox_DIAGNOSIS_1_2.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_1_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_1_2.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_DIAGNOSIS_1_2.FormattingEnabled = true;
@@ -1900,7 +1909,8 @@
             this.comboBox_DIAGNOSIS_1_2.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_1_2.TabIndex = 162;
             this.comboBox_DIAGNOSIS_1_2.Text = "Negative for intraepithelial lesion or malignancy";
-            this.comboBox_DIAGNOSIS_1_2.ValueMember = "site";
+            this.comboBox_DIAGNOSIS_1_2.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_1_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_1_2_SelectionChangeCommitted);
             // 
             // textBox_DIAGNOSIS_1_2
             // 
@@ -3007,6 +3017,7 @@
             // 
             // comboBox_SITE_TYPE_3
             // 
+            this.comboBox_SITE_TYPE_3.DisplayMember = "site";
             this.comboBox_SITE_TYPE_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_SITE_TYPE_3.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_SITE_TYPE_3.FormattingEnabled = true;
@@ -3016,6 +3027,8 @@
             this.comboBox_SITE_TYPE_3.Size = new System.Drawing.Size(335, 21);
             this.comboBox_SITE_TYPE_3.TabIndex = 159;
             this.comboBox_SITE_TYPE_3.Text = "Cervical liquid-based preparration (ThinPrep)";
+            this.comboBox_SITE_TYPE_3.ValueMember = "site";
+            this.comboBox_SITE_TYPE_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SITE_TYPE_3_SelectionChangeCommitted);
             // 
             // textBox_SITE_TYPE_3
             // 
@@ -3081,6 +3094,7 @@
             this.comboBox_DIAGNOSIS_3_3.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_3_3.TabIndex = 171;
             this.comboBox_DIAGNOSIS_3_3.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_3_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_3_3_SelectionChangeCommitted);
             // 
             // button_DIAGNOSIS_3_3
             // 
@@ -3116,6 +3130,7 @@
             this.comboBox_DIAGNOSIS_2_3.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_2_3.TabIndex = 168;
             this.comboBox_DIAGNOSIS_2_3.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_2_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_2_3_SelectionChangeCommitted);
             // 
             // button_DIAGNOSIS_2_3
             // 
@@ -3153,7 +3168,7 @@
             // 
             // comboBox_DIAGNOSIS_1_3
             // 
-            this.comboBox_DIAGNOSIS_1_3.DisplayMember = "site";
+            this.comboBox_DIAGNOSIS_1_3.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_1_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_1_3.ForeColor = System.Drawing.Color.DarkBlue;
             this.comboBox_DIAGNOSIS_1_3.FormattingEnabled = true;
@@ -3163,7 +3178,8 @@
             this.comboBox_DIAGNOSIS_1_3.Size = new System.Drawing.Size(335, 21);
             this.comboBox_DIAGNOSIS_1_3.TabIndex = 162;
             this.comboBox_DIAGNOSIS_1_3.Text = "Negative for intraepithelial lesion or malignancy";
-            this.comboBox_DIAGNOSIS_1_3.ValueMember = "site";
+            this.comboBox_DIAGNOSIS_1_3.ValueMember = "diag";
+            this.comboBox_DIAGNOSIS_1_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_1_3_SelectionChangeCommitted);
             // 
             // textBox_DIAGNOSIS_1_3
             // 
@@ -4312,6 +4328,9 @@
             this.ClientSize = new System.Drawing.Size(784, 518);
             this.ControlBox = false;
             this.Controls.Add(this.button_Print);
+            this.Controls.Add(this.textBox_ID3);
+            this.Controls.Add(this.textBox_ID2);
+            this.Controls.Add(this.textBox_ID1);
             this.Controls.Add(this.button_Image);
             this.Controls.Add(this.button_Confirm_Exit);
             this.Controls.Add(this.label_Printed_At_Date);
@@ -4322,6 +4341,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form_CytologicalDiagnosis";
             this.Text = "Cytological Diagnosis";
+            this.Load += new System.EventHandler(this.Form_CytologicalDiagnosis_Load);
             this.tabControl_CytologicalDiagnosis.ResumeLayout(false);
             this.tabPage_Primary_Screener.ResumeLayout(false);
             this.tabPage_Primary_Screener.PerformLayout();

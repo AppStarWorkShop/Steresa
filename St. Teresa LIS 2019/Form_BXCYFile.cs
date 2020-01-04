@@ -1979,10 +1979,6 @@ namespace St.Teresa_LIS_2019
                             {
                                 foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
                                 {
-                                    /*if (dr["case_no"] == null || dr["case_no"].ToString() == "")
-                                    {
-                                        dr["case_no"] = currentCaseNo;
-                                    }*/
                                     dr["case_no"] = currentCaseNo;
                                 }
 
