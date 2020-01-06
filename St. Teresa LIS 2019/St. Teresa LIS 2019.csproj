@@ -89,6 +89,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="EhrBarCode.cs" />
     <Compile Include="Form_AdditionalTests.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1642,6 +1642,7 @@
             this.label_BX_CY_SPECIMEN.Size = new System.Drawing.Size(461, 30);
             this.label_BX_CY_SPECIMEN.TabIndex = 6;
             this.label_BX_CY_SPECIMEN.Text = "CYTOLOGY SPECIMEN (Gyname.)";
+            this.label_BX_CY_SPECIMEN.Click += new System.EventHandler(this.label_BX_CY_SPECIMEN_Click);
             // 
             // label_Line_1
             // 

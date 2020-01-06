@@ -12,8 +12,8 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_CytologicalDiagnosis : Form
     {
-      private Form_CYTOLOGYFileGyname fileForm;
-      private String reportWording = "";
+      	private Form_CYTOLOGYFileGyname fileForm;
+      	private String reportWording = "";
 
         private int currentStatus;
         private string caseNo;
@@ -137,32 +137,9 @@ namespace St.Teresa_LIS_2019
                     reloadAndBindingDBData();
                 }
 
-                //if (existCyDiagDataSet1 == null)
-                //{
-                //    currentEditRow1 = cyDiagDataSet1.Tables[0].NewRow();
-                //    initCurrentEditRow(currentEditRow1);
-                //    cyDiagDataSet1.Tables[0].Rows.Clear();
-                //    cyDiagDataSet1.Tables[0].Rows.Add(currentEditRow1);
-                //}
-
-                //if (existCyDiagDataSet2 == null)
-                //{
-                //    currentEditRow2 = cyDiagDataSet2.Tables[0].NewRow();
-                //    initCurrentEditRow(currentEditRow2);
-                //    cyDiagDataSet2.Tables[0].Rows.Clear();
-                //    cyDiagDataSet2.Tables[0].Rows.Add(currentEditRow2);
-                //}
-
-                //if (existCyDiagDataSet3 == null)
-                //{
-                //    currentEditRow3 = cyDiagDataSet3.Tables[0].NewRow();
-                //    initCurrentEditRow(currentEditRow3);
-                //    cyDiagDataSet3.Tables[0].Rows.Clear();
-                //    cyDiagDataSet3.Tables[0].Rows.Add(currentEditRow3);
-                //}
-
-
-                if (currentStatus == PageStatus.STATUS_NEW && existCyDiagDataSet1 == null && existCyDiagDataSet2 == null && existCyDiagDataSet3 == null)
+                if ((currentStatus == PageStatus.STATUS_NEW && existCyDiagDataSet1 == null && existCyDiagDataSet2 == null && existCyDiagDataSet3 == null)
+                    || ((currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT ) && cyDiagDataSet1.Tables[0].Rows.Count == 0
+                    && cyDiagDataSet2.Tables[0].Rows.Count == 0 && cyDiagDataSet3.Tables[0].Rows.Count == 0))
                 {
                     currentEditRow1 = cyDiagDataSet1.Tables[0].NewRow();
                     initCurrentEditRow(currentEditRow1);

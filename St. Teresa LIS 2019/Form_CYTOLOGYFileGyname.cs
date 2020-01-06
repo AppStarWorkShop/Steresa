@@ -51,7 +51,6 @@ namespace St.Teresa_LIS_2019
         private DataSet existCyDiagDataSet3 = null;
         private SqlDataAdapter existCyDiagDataAdapter3 = null;
 
-
         public class Bxcy_specimen
         {
             public int id { get; set; }
@@ -241,27 +240,6 @@ namespace St.Teresa_LIS_2019
             Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
             open.OnCyDiagExit += CyDiagReturn;
             open.Show();
-
-            //if (diagForm == null)
-            //{
-            //  Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
-            //  open.OnCyDiagExit += CyDiagReturn;
-
-            //    //Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis();
-            //    open.Show();
-            //    open.setPreviousFileForm(this);
-            //    if (currentStatus == PageStatus.STATUS_NEW)
-            //    {
-            //        open.setDefaultValue();
-            //    }
-
-            //    diagForm = open;
-            //}
-            //else
-            //{
-            //    diagForm.Show();
-            //}
-
         }
 
         private void CyDiagReturn(DataSet existCyDiagDataSet1, DataSet existCyDiagDataSet2, DataSet existCyDiagDataSet3, SqlDataAdapter existCyDiagDataAdapter1, SqlDataAdapter existCyDiagDataAdapter2, SqlDataAdapter existCyDiagDataAdapter3)
@@ -285,8 +263,8 @@ namespace St.Teresa_LIS_2019
         {
             Form_FindingComments open = new Form_FindingComments();
             open.Show();
-            open.setPreviousForm(this);
-            open.setReportWording(reportWording);
+            //open.setPreviousForm(this);
+            //open.setReportWording(reportWording);
         }
 
         private void button_Amount_HK_Detail_Click(object sender, EventArgs e)
@@ -327,6 +305,7 @@ namespace St.Teresa_LIS_2019
 
                             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
                             setPreviousRecordMark();
+                            reloadCyDiagData();
                         }
                         else
                         {
@@ -380,6 +359,7 @@ namespace St.Teresa_LIS_2019
 
                             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
                             setPreviousRecordMark();
+                            reloadCyDiagData();
                         }
                         else
                         {
@@ -433,6 +413,7 @@ namespace St.Teresa_LIS_2019
 
                             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
                             setPreviousRecordMark();
+                            reloadCyDiagData();
                         }
                         else
                         {
@@ -486,6 +467,7 @@ namespace St.Teresa_LIS_2019
 
                             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
                             setPreviousRecordMark();
+                            reloadCyDiagData();
                         }
                         else
                         {
@@ -560,8 +542,8 @@ namespace St.Teresa_LIS_2019
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                             {
-                                reloadAndBindingDBData(0, currentCaseNo);
-                                button_End.PerformClick();
+                                
+                                //button_End.PerformClick();
 
                                 if (existCyDiagDataAdapter1 != null && existCyDiagDataSet1 != null && existCyDiagDataAdapter2 != null && existCyDiagDataSet2 != null && existCyDiagDataAdapter3 != null && existCyDiagDataSet3 != null)
                                 {
@@ -612,6 +594,8 @@ namespace St.Teresa_LIS_2019
 
                                 this.existCyDiagDataAdapter3 = null;
                                 this.existCyDiagDataSet3 = null;
+
+                                reloadAndBindingDBData(0, currentCaseNo);
                             }
                             else
                             {
@@ -869,6 +853,15 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existCyDiagDataSet1 = null;
+            existCyDiagDataAdapter1 = null;
+
+            existCyDiagDataSet2 = null;
+            existCyDiagDataAdapter2 = null;
+
+            existCyDiagDataSet3 = null;
+            existCyDiagDataAdapter3 = null;
         }
 
         private void button_Edit_Click(object sender, EventArgs e)
@@ -1110,7 +1103,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part
+            // second part 
 
             if (notJumped)
             {
@@ -1421,7 +1414,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part
+            // second part 
 
             if (notJumped)
             {
@@ -1711,6 +1704,14 @@ namespace St.Teresa_LIS_2019
 
                 if (DBConn.executeUpdate(deleteSql))
                 {
+                    existCyDiagDataSet1 = null;
+                    existCyDiagDataAdapter1 = null;
+
+                    existCyDiagDataSet2 = null;
+                    existCyDiagDataAdapter2 = null;
+
+                    existCyDiagDataSet3 = null;
+                    existCyDiagDataAdapter3 = null;
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
                     //currencyManager.Position = 0;
@@ -1802,7 +1803,7 @@ namespace St.Teresa_LIS_2019
 
                         checkBox_Uploaded.Checked = copybxcy_specimen.uploaded.HasValue ? copybxcy_specimen.uploaded.HasValue : false;
                     }
-
+                    reloadCyDiagData();
                     setButtonStatus(PageStatus.STATUS_VIEW);
                 }
             }
@@ -2103,6 +2104,8 @@ namespace St.Teresa_LIS_2019
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
 
             setPreviousRecordMark();
+
+            reloadCyDiagData();
         }
 
         private void reloadDBData(int position = 0)
@@ -3005,7 +3008,102 @@ namespace St.Teresa_LIS_2019
             }
         }
 
-        public void setReportWording(String str)
+        private void label_BX_CY_SPECIMEN_Click(object sender, EventArgs e)
+        {
+            if (existCyDiagDataAdapter1 == null)
+            {
+                Console.WriteLine("Null existCyDiagDataAdapter1");
+            }
+
+            if (existCyDiagDataSet1 == null)
+            {
+                Console.WriteLine("Null existCyDiagDataSet1");
+            }
+
+            if (existCyDiagDataAdapter2 == null)
+            {
+                Console.WriteLine("Null existCyDiagDataAdapter2");
+            }
+
+            if (existCyDiagDataSet2 == null)
+            {
+                Console.WriteLine("Null existCyDiagDataSet2");
+            }
+
+            if (existCyDiagDataAdapter3 == null)
+            {
+                Console.WriteLine("Null existCyDiagDataAdapter3");
+            }
+
+            if (existCyDiagDataSet3 == null)
+            {
+                Console.WriteLine("Null existCyDiagDataSet3");
+            }
+
+            if (existCyDiagDataAdapter1 != null && existCyDiagDataSet1 != null)
+            {
+                var varList = from p in existCyDiagDataSet1.Tables[0].AsEnumerable()
+                              orderby p.Field<int>("id") ascending
+                              select p;
+                foreach (DataRow dr in varList)
+                {
+                    string rowMessage = string.Format("id:{0}, case no.:{1}", dr["id"], dr["case_no"]);
+                    Console.WriteLine(rowMessage);
+                }
+            }
+
+            if (existCyDiagDataAdapter2 != null && existCyDiagDataSet2 != null)
+            {
+                var varList = from p in existCyDiagDataSet2.Tables[0].AsEnumerable()
+                              orderby p.Field<int>("id") ascending
+                              select p;
+                foreach (DataRow dr in varList)
+                {
+                    string rowMessage = string.Format("id:{0}, case no.:{1}", dr["id"], dr["case_no"]);
+                    Console.WriteLine(rowMessage);
+                }
+            }
+
+            if (existCyDiagDataAdapter3 != null && existCyDiagDataSet3 != null)
+            {
+                var varList = from p in existCyDiagDataSet3.Tables[0].AsEnumerable()
+                              orderby p.Field<int>("id") ascending
+                              select p;
+                foreach (DataRow dr in varList)
+                {
+                    string rowMessage = string.Format("id:{0}, case no.:{1}", dr["id"], dr["case_no"]);
+                    Console.WriteLine(rowMessage);
+                }
+            }
+        }
+
+        private void reloadCyDiagData()
+        {
+            existCyDiagDataSet1 = null;
+            existCyDiagDataAdapter1 = null;
+
+            existCyDiagDataSet2 = null;
+            existCyDiagDataAdapter2 = null;
+
+            existCyDiagDataSet3 = null;
+            existCyDiagDataAdapter3 = null;
+            if (textBox_Case_No.Text.Trim() != "")
+            {
+                existCyDiagDataSet1 = new DataSet();
+                string diagSql1 = string.Format("SELECT * FROM [cy_diag1] WHERE case_no = '{0}'", textBox_Case_No.Text.Trim());
+                existCyDiagDataAdapter1 = DBConn.fetchDataIntoDataSet(diagSql1, existCyDiagDataSet1, "cy_diag1");
+
+                existCyDiagDataSet2 = new DataSet();
+                string diagSql2 = string.Format("SELECT * FROM [cy_diag2] WHERE case_no = '{0}'", textBox_Case_No.Text.Trim());
+                existCyDiagDataAdapter2 = DBConn.fetchDataIntoDataSet(diagSql2, existCyDiagDataSet2, "cy_diag2");
+
+                existCyDiagDataSet3 = new DataSet();
+                string diagSql3 = string.Format("SELECT * FROM [cy_diag3] WHERE case_no = '{0}'", textBox_Case_No.Text.Trim());
+                existCyDiagDataAdapter3 = DBConn.fetchDataIntoDataSet(diagSql3, existCyDiagDataSet3, "cy_diag3");
+            }
+        }
+		
+		public void setReportWording(String str)
         {
             reportWording = str;
         }

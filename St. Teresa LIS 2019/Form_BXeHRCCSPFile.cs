@@ -721,9 +721,7 @@ namespace St.Teresa_LIS_2019
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                             {
-                                reloadAndBindingDBData(0, currentCaseNo);
-                                button_End.PerformClick();
-
+                                //button_End.PerformClick();
                                 if (existDiagDataAdapter != null && existDiagDataSet != null)
                                 {
                                     foreach (DataRow dr in existDiagDataSet.Tables["bxcy_diag"].Rows)
@@ -749,6 +747,8 @@ namespace St.Teresa_LIS_2019
                                 this.existDiagDataAdapter = null;
                                 this.existDiagDataSet = null;
                                 this.dtToDelete = null;
+
+                                reloadAndBindingDBData(0, currentCaseNo);
                             }
                             else
                             {
@@ -1832,7 +1832,8 @@ namespace St.Teresa_LIS_2019
 
                 if (DBConn.executeUpdate(deleteSql))
                 {
-                    this.existDiagDataSet = null;
+                    existDiagDataSet = null;
+                    existDiagDataAdapter = null;
                     DataRow rowToDelete = dt.Rows.Find(textBox_ID.Text);
                     rowToDelete.Delete();
                     //currencyManager.Position = 0;
