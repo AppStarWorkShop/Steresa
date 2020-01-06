@@ -238,6 +238,23 @@ namespace St.Teresa_LIS_2019
 
     public static class PatientAgeCalculator
     {
+        public static Double calculate(DateTime? dob)
+        {
+            if (dob == null)
+            {
+                return Double.NaN;
+            }
+            Double age = Double.NaN;
+
+            if (dob != null)
+            {
+                TimeSpan ts = DateTime.Now - (DateTime)dob;
+                age = Math.Round(ts.TotalDays / 365.25, 2);
+            }
+
+            return age;
+        }
+
         public static Double calculate(DateTime dob)
         {
             Double age = Double.NaN;

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_TestHis));
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox_output = new System.Windows.Forms.TextBox();
@@ -40,24 +41,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_caseNo = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBoxOutputPatient = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button_getpatient = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxHNNo = new System.Windows.Forms.TextBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.textBoxOutputPatient = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBox_2d_input = new System.Windows.Forms.TextBox();
+            this.button_2d_convert = new System.Windows.Forms.Button();
+            this.textBox_2d_output = new System.Windows.Forms.TextBox();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
@@ -168,18 +174,90 @@
             this.textBox_caseNo.Name = "textBox_caseNo";
             this.textBox_caseNo.Size = new System.Drawing.Size(100, 20);
             this.textBox_caseNo.TabIndex = 0;
-            this.textBox_caseNo.Text = "BX18/09463";
+            this.textBox_caseNo.Text = "BX17/00807";
+            this.textBox_caseNo.TextChanged += new System.EventHandler(this.textBox_caseNo_TextChanged);
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(776, 426);
+            this.tabControl1.Size = new System.Drawing.Size(776, 447);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox4);
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(768, 400);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Patient";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.textBoxOutputPatient);
+            this.groupBox4.Location = new System.Drawing.Point(6, 111);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(756, 280);
+            this.groupBox4.TabIndex = 2;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Output";
+            // 
+            // textBoxOutputPatient
+            // 
+            this.textBoxOutputPatient.Location = new System.Drawing.Point(3, 19);
+            this.textBoxOutputPatient.Multiline = true;
+            this.textBoxOutputPatient.Name = "textBoxOutputPatient";
+            this.textBoxOutputPatient.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxOutputPatient.Size = new System.Drawing.Size(747, 255);
+            this.textBoxOutputPatient.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.button_getpatient);
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.textBoxHNNo);
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(756, 102);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Input";
+            // 
+            // button_getpatient
+            // 
+            this.button_getpatient.Location = new System.Drawing.Point(237, 18);
+            this.button_getpatient.Name = "button_getpatient";
+            this.button_getpatient.Size = new System.Drawing.Size(75, 42);
+            this.button_getpatient.TabIndex = 6;
+            this.button_getpatient.Text = "&Get";
+            this.button_getpatient.UseVisualStyleBackColor = true;
+            this.button_getpatient.Click += new System.EventHandler(this.button_getpatient_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(0, 22);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(30, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "HN#";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // textBoxHNNo
+            // 
+            this.textBoxHNNo.Location = new System.Drawing.Point(59, 18);
+            this.textBoxHNNo.Name = "textBoxHNNo";
+            this.textBoxHNNo.Size = new System.Drawing.Size(138, 20);
+            this.textBoxHNNo.TabIndex = 0;
+            this.textBoxHNNo.Text = "HN20180142248";
             // 
             // tabPage2
             // 
@@ -223,81 +301,51 @@
             this.maskedTextBox1.TabIndex = 0;
             this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             // 
-            // tabPage3
+            // tabPage4
             // 
-            this.tabPage3.Controls.Add(this.groupBox4);
-            this.tabPage3.Controls.Add(this.groupBox3);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(768, 400);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Patient";
-            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage4.Controls.Add(this.textBox_2d_output);
+            this.tabPage4.Controls.Add(this.button_2d_convert);
+            this.tabPage4.Controls.Add(this.textBox_2d_input);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(768, 421);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Read HD 2D barcode";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // textBox_2d_input
             // 
-            this.groupBox3.Controls.Add(this.button_getpatient);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.textBoxHNNo);
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(756, 102);
-            this.groupBox3.TabIndex = 1;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Input";
+            this.textBox_2d_input.Location = new System.Drawing.Point(15, 16);
+            this.textBox_2d_input.Multiline = true;
+            this.textBox_2d_input.Name = "textBox_2d_input";
+            this.textBox_2d_input.Size = new System.Drawing.Size(733, 121);
+            this.textBox_2d_input.TabIndex = 0;
+            this.textBox_2d_input.Text = resources.GetString("textBox_2d_input.Text");
             // 
-            // button_getpatient
+            // button_2d_convert
             // 
-            this.button_getpatient.Location = new System.Drawing.Point(237, 18);
-            this.button_getpatient.Name = "button_getpatient";
-            this.button_getpatient.Size = new System.Drawing.Size(75, 42);
-            this.button_getpatient.TabIndex = 6;
-            this.button_getpatient.Text = "&Get";
-            this.button_getpatient.UseVisualStyleBackColor = true;
-            this.button_getpatient.Click += new System.EventHandler(this.button_getpatient_Click);
+            this.button_2d_convert.Location = new System.Drawing.Point(673, 143);
+            this.button_2d_convert.Name = "button_2d_convert";
+            this.button_2d_convert.Size = new System.Drawing.Size(75, 23);
+            this.button_2d_convert.TabIndex = 1;
+            this.button_2d_convert.Text = "&Convert";
+            this.button_2d_convert.UseVisualStyleBackColor = true;
+            this.button_2d_convert.Click += new System.EventHandler(this.button_2d_convert_Click);
             // 
-            // label4
+            // textBox_2d_output
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(0, 22);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "HN#";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
-            // textBoxHNNo
-            // 
-            this.textBoxHNNo.Location = new System.Drawing.Point(59, 18);
-            this.textBoxHNNo.Name = "textBoxHNNo";
-            this.textBoxHNNo.Size = new System.Drawing.Size(138, 20);
-            this.textBoxHNNo.TabIndex = 0;
-            this.textBoxHNNo.Text = "HN20180142248";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.textBoxOutputPatient);
-            this.groupBox4.Location = new System.Drawing.Point(6, 111);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(756, 280);
-            this.groupBox4.TabIndex = 2;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Output";
-            // 
-            // textBoxOutputPatient
-            // 
-            this.textBoxOutputPatient.Location = new System.Drawing.Point(3, 19);
-            this.textBoxOutputPatient.Multiline = true;
-            this.textBoxOutputPatient.Name = "textBoxOutputPatient";
-            this.textBoxOutputPatient.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOutputPatient.Size = new System.Drawing.Size(747, 255);
-            this.textBoxOutputPatient.TabIndex = 0;
+            this.textBox_2d_output.Location = new System.Drawing.Point(15, 172);
+            this.textBox_2d_output.Multiline = true;
+            this.textBox_2d_output.Name = "textBox_2d_output";
+            this.textBox_2d_output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_2d_output.Size = new System.Drawing.Size(733, 236);
+            this.textBox_2d_output.TabIndex = 2;
             // 
             // Form_TestHis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 471);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form_TestHis";
             this.Text = "Form_TestHis";
@@ -307,13 +355,15 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -342,5 +392,9 @@
         private System.Windows.Forms.TextBox textBoxHNNo;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox textBoxOutputPatient;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TextBox textBox_2d_output;
+        private System.Windows.Forms.Button button_2d_convert;
+        private System.Windows.Forms.TextBox textBox_2d_input;
     }
 }

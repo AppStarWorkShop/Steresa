@@ -375,9 +375,9 @@
             this.panel_INTERPRETATION_3.SuspendLayout();
             this.panel8.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // tabControl_CytologicalDiagnosis
-            // 
+            //
             this.tabControl_CytologicalDiagnosis.Controls.Add(this.tabPage_Primary_Screener);
             this.tabControl_CytologicalDiagnosis.Controls.Add(this.tabPage_Re_Screener_Supervisor);
             this.tabControl_CytologicalDiagnosis.Controls.Add(this.tabPage_Pathologist);
@@ -388,9 +388,9 @@
             this.tabControl_CytologicalDiagnosis.SelectedIndex = 0;
             this.tabControl_CytologicalDiagnosis.Size = new System.Drawing.Size(788, 478);
             this.tabControl_CytologicalDiagnosis.TabIndex = 1;
-            // 
+            //
             // tabPage_Primary_Screener
-            // 
+            //
             this.tabPage_Primary_Screener.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(233)))), ((int)(((byte)(176)))));
             this.tabPage_Primary_Screener.Controls.Add(this.label_Lock_meg_1);
             this.tabPage_Primary_Screener.Controls.Add(this.label_Locked_1);
@@ -407,9 +407,9 @@
             this.tabPage_Primary_Screener.Size = new System.Drawing.Size(780, 447);
             this.tabPage_Primary_Screener.TabIndex = 0;
             this.tabPage_Primary_Screener.Text = "           Primary Screener            ";
-            // 
+            //
             // label_Lock_meg_1
-            // 
+            //
             this.label_Lock_meg_1.AutoSize = true;
             this.label_Lock_meg_1.BackColor = System.Drawing.Color.Transparent;
             this.label_Lock_meg_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic);
@@ -420,9 +420,9 @@
             this.label_Lock_meg_1.TabIndex = 160;
             this.label_Lock_meg_1.Text = "( This screen was Locked for resd only since it has been signed by the Doctor / P" +
     "athologist.)";
-            // 
+            //
             // label_Locked_1
-            // 
+            //
             this.label_Locked_1.AutoSize = true;
             this.label_Locked_1.BackColor = System.Drawing.Color.Transparent;
             this.label_Locked_1.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
@@ -432,9 +432,9 @@
             this.label_Locked_1.Size = new System.Drawing.Size(103, 17);
             this.label_Locked_1.TabIndex = 12;
             this.label_Locked_1.Text = "*** Locked ***";
-            // 
+            //
             // label_P_1
-            // 
+            //
             this.label_P_1.AutoSize = true;
             this.label_P_1.BackColor = System.Drawing.Color.Transparent;
             this.label_P_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -444,9 +444,9 @@
             this.label_P_1.Size = new System.Drawing.Size(32, 17);
             this.label_P_1.TabIndex = 159;
             this.label_P_1.Text = "P.1";
-            // 
+            //
             // panel_Sign_Primary_Screener
-            // 
+            //
             this.panel_Sign_Primary_Screener.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(224)))), ((int)(((byte)(193)))));
             this.panel_Sign_Primary_Screener.Controls.Add(this.comboBox_Sign_By_1);
             this.panel_Sign_Primary_Screener.Controls.Add(this.button_Sign_At_1);
@@ -459,9 +459,9 @@
             this.panel_Sign_Primary_Screener.Name = "panel_Sign_Primary_Screener";
             this.panel_Sign_Primary_Screener.Size = new System.Drawing.Size(760, 26);
             this.panel_Sign_Primary_Screener.TabIndex = 128;
-            // 
+            //
             // comboBox_Sign_By_1
-            // 
+            //
             this.comboBox_Sign_By_1.DisplayMember = "doctor";
             this.comboBox_Sign_By_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Sign_By_1.ForeColor = System.Drawing.Color.Blue;
@@ -472,9 +472,9 @@
             this.comboBox_Sign_By_1.Size = new System.Drawing.Size(135, 26);
             this.comboBox_Sign_By_1.TabIndex = 158;
             this.comboBox_Sign_By_1.ValueMember = "doctor";
-            // 
+            //
             // button_Sign_At_1
-            // 
+            //
             this.button_Sign_At_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Sign_At_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Sign_At_1.Image = ((System.Drawing.Image)(resources.GetObject("button_Sign_At_1.Image")));
@@ -485,9 +485,9 @@
             this.button_Sign_At_1.TabIndex = 157;
             this.button_Sign_At_1.UseVisualStyleBackColor = true;
             this.button_Sign_At_1.Click += new System.EventHandler(this.button_Sign_At_1_Click);
-            // 
+            //
             // textBox_Sign_By_1
-            // 
+            //
             this.textBox_Sign_By_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Sign_By_1.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Sign_By_1.Location = new System.Drawing.Point(447, 1);
@@ -496,9 +496,9 @@
             this.textBox_Sign_By_1.ReadOnly = true;
             this.textBox_Sign_By_1.Size = new System.Drawing.Size(169, 24);
             this.textBox_Sign_By_1.TabIndex = 63;
-            // 
+            //
             // textBox_Sign_At_1
-            // 
+            //
             this.textBox_Sign_At_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Sign_At_1.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Sign_At_1.Location = new System.Drawing.Point(82, 2);
@@ -507,9 +507,9 @@
             this.textBox_Sign_At_1.Size = new System.Drawing.Size(183, 24);
             this.textBox_Sign_At_1.TabIndex = 156;
             this.textBox_Sign_At_1.Text = "  /  /    :  :    AM";
-            // 
+            //
             // label_Sign_By_1
-            // 
+            //
             this.label_Sign_By_1.AutoSize = true;
             this.label_Sign_By_1.BackColor = System.Drawing.Color.Transparent;
             this.label_Sign_By_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -519,9 +519,9 @@
             this.label_Sign_By_1.Size = new System.Drawing.Size(64, 17);
             this.label_Sign_By_1.TabIndex = 64;
             this.label_Sign_By_1.Text = "Sign By :";
-            // 
+            //
             // label_Sign_At_1
-            // 
+            //
             this.label_Sign_At_1.AutoSize = true;
             this.label_Sign_At_1.BackColor = System.Drawing.Color.Transparent;
             this.label_Sign_At_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -531,9 +531,9 @@
             this.label_Sign_At_1.Size = new System.Drawing.Size(69, 17);
             this.label_Sign_At_1.TabIndex = 61;
             this.label_Sign_At_1.Text = "Sign At  : ";
-            // 
+            //
             // tabControl_Primary_Screener
-            // 
+            //
             this.tabControl_Primary_Screener.Controls.Add(this.tabPage_PREPARATION_SPECIMEN_1);
             this.tabControl_Primary_Screener.Controls.Add(this.tabPage_INTERPRETATION_1);
             this.tabControl_Primary_Screener.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
@@ -543,9 +543,9 @@
             this.tabControl_Primary_Screener.SelectedIndex = 0;
             this.tabControl_Primary_Screener.Size = new System.Drawing.Size(784, 398);
             this.tabControl_Primary_Screener.TabIndex = 127;
-            // 
+            //
             // tabPage_PREPARATION_SPECIMEN_1
-            // 
+            //
             this.tabPage_PREPARATION_SPECIMEN_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(199)))), ((int)(((byte)(220)))));
             this.tabPage_PREPARATION_SPECIMEN_1.Controls.Add(this.panel11);
             this.tabPage_PREPARATION_SPECIMEN_1.Controls.Add(this.panel5);
@@ -562,9 +562,9 @@
             this.tabPage_PREPARATION_SPECIMEN_1.Size = new System.Drawing.Size(776, 370);
             this.tabPage_PREPARATION_SPECIMEN_1.TabIndex = 0;
             this.tabPage_PREPARATION_SPECIMEN_1.Text = "                         PREPARATION & SPECIMEN                        ";
-            // 
+            //
             // panel11
-            // 
+            //
             this.panel11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel11.Controls.Add(this.comboBox_SITE_TYPE_1);
             this.panel11.Controls.Add(this.textBox_SITE_TYPE_1);
@@ -575,9 +575,9 @@
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(388, 69);
             this.panel11.TabIndex = 3;
-            // 
+            //
             // comboBox_SITE_TYPE_1
-            // 
+            //
             this.comboBox_SITE_TYPE_1.DisplayMember = "site";
             this.comboBox_SITE_TYPE_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_SITE_TYPE_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -590,9 +590,9 @@
             this.comboBox_SITE_TYPE_1.Text = "Cervical liquid-based preparration (ThinPrep)";
             this.comboBox_SITE_TYPE_1.ValueMember = "site";
             this.comboBox_SITE_TYPE_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SITE_TYPE_1_SelectionChangeCommitted);
-            // 
+            //
             // textBox_SITE_TYPE_1
-            // 
+            //
             this.textBox_SITE_TYPE_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_SITE_TYPE_1.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_SITE_TYPE_1.Location = new System.Drawing.Point(6, 38);
@@ -601,9 +601,9 @@
             this.textBox_SITE_TYPE_1.Size = new System.Drawing.Size(335, 21);
             this.textBox_SITE_TYPE_1.TabIndex = 159;
             this.textBox_SITE_TYPE_1.Text = "宮頸(ThinPrep)液基簿片技術";
-            // 
+            //
             // label_SITE_TYPE_1
-            // 
+            //
             this.label_SITE_TYPE_1.AutoSize = true;
             this.label_SITE_TYPE_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SITE_TYPE_1.Location = new System.Drawing.Point(3, 2);
@@ -611,9 +611,9 @@
             this.label_SITE_TYPE_1.Size = new System.Drawing.Size(37, 15);
             this.label_SITE_TYPE_1.TabIndex = 0;
             this.label_SITE_TYPE_1.Text = "SITE";
-            // 
+            //
             // button_SITE_TYPE_1
-            // 
+            //
             this.button_SITE_TYPE_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_SITE_TYPE_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_SITE_TYPE_1.Location = new System.Drawing.Point(341, 19);
@@ -623,9 +623,9 @@
             this.button_SITE_TYPE_1.TabIndex = 165;
             this.button_SITE_TYPE_1.Text = "...";
             this.button_SITE_TYPE_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // panel5
-            // 
+            //
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.comboBox_DIAGNOSIS_3_1);
             this.panel5.Controls.Add(this.button_DIAGNOSIS_3_1);
@@ -642,9 +642,9 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(379, 170);
             this.panel5.TabIndex = 6;
-            // 
+            //
             // comboBox_DIAGNOSIS_3_1
-            // 
+            //
             this.comboBox_DIAGNOSIS_3_1.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_3_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_3_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -656,9 +656,9 @@
             this.comboBox_DIAGNOSIS_3_1.TabIndex = 171;
             this.comboBox_DIAGNOSIS_3_1.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_3_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_3_1_SelectionChangeCommitted);
-            // 
+            //
             // button_DIAGNOSIS_3_1
-            // 
+            //
             this.button_DIAGNOSIS_3_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_3_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_3_1.Location = new System.Drawing.Point(338, 107);
@@ -668,9 +668,9 @@
             this.button_DIAGNOSIS_3_1.TabIndex = 170;
             this.button_DIAGNOSIS_3_1.Text = "...";
             this.button_DIAGNOSIS_3_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_DIAGNOSIS_3_1
-            // 
+            //
             this.textBox_DIAGNOSIS_3_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_3_1.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_3_1.Location = new System.Drawing.Point(3, 126);
@@ -678,9 +678,9 @@
             this.textBox_DIAGNOSIS_3_1.Name = "textBox_DIAGNOSIS_3_1";
             this.textBox_DIAGNOSIS_3_1.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_3_1.TabIndex = 169;
-            // 
+            //
             // comboBox_DIAGNOSIS_2_1
-            // 
+            //
             this.comboBox_DIAGNOSIS_2_1.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_2_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_2_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -692,9 +692,9 @@
             this.comboBox_DIAGNOSIS_2_1.TabIndex = 168;
             this.comboBox_DIAGNOSIS_2_1.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_2_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_2_1_SelectionChangeCommitted);
-            // 
+            //
             // button_DIAGNOSIS_2_1
-            // 
+            //
             this.button_DIAGNOSIS_2_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_2_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_2_1.Location = new System.Drawing.Point(338, 62);
@@ -704,9 +704,9 @@
             this.button_DIAGNOSIS_2_1.TabIndex = 167;
             this.button_DIAGNOSIS_2_1.Text = "...";
             this.button_DIAGNOSIS_2_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // button_DIAGNOSIS_1_1
-            // 
+            //
             this.button_DIAGNOSIS_1_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_1_1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_1_1.Location = new System.Drawing.Point(338, 18);
@@ -716,9 +716,9 @@
             this.button_DIAGNOSIS_1_1.TabIndex = 166;
             this.button_DIAGNOSIS_1_1.Text = "...";
             this.button_DIAGNOSIS_1_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_DIAGNOSIS_2_1
-            // 
+            //
             this.textBox_DIAGNOSIS_2_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_2_1.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_2_1.Location = new System.Drawing.Point(3, 82);
@@ -726,9 +726,9 @@
             this.textBox_DIAGNOSIS_2_1.Name = "textBox_DIAGNOSIS_2_1";
             this.textBox_DIAGNOSIS_2_1.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_2_1.TabIndex = 164;
-            // 
+            //
             // comboBox_DIAGNOSIS_1_1
-            // 
+            //
             this.comboBox_DIAGNOSIS_1_1.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_1_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_1_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -741,9 +741,9 @@
             this.comboBox_DIAGNOSIS_1_1.Text = "Negative for intraepithelial lesion or malignancy";
             this.comboBox_DIAGNOSIS_1_1.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_1_1.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_1_1_SelectionChangeCommitted);
-            // 
+            //
             // textBox_DIAGNOSIS_1_1
-            // 
+            //
             this.textBox_DIAGNOSIS_1_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_1_1.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_1_1.Location = new System.Drawing.Point(3, 37);
@@ -752,9 +752,9 @@
             this.textBox_DIAGNOSIS_1_1.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_1_1.TabIndex = 161;
             this.textBox_DIAGNOSIS_1_1.Text = "無癌或癌前期病變";
-            // 
+            //
             // label_DIAGNOSIS_2
-            // 
+            //
             this.label_DIAGNOSIS_2.AutoSize = true;
             this.label_DIAGNOSIS_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_DIAGNOSIS_2.Location = new System.Drawing.Point(3, 4);
@@ -762,9 +762,9 @@
             this.label_DIAGNOSIS_2.Size = new System.Drawing.Size(81, 15);
             this.label_DIAGNOSIS_2.TabIndex = 160;
             this.label_DIAGNOSIS_2.Text = "DIAGNOSIS";
-            // 
+            //
             // panel_CELLULAR_COMPONENT_1
-            // 
+            //
             this.panel_CELLULAR_COMPONENT_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_CELLULAR_COMPONENT_1.Controls.Add(this.checkBox_trophic_pattern_in_menopause_1);
             this.panel_CELLULAR_COMPONENT_1.Controls.Add(this.checkBox_Mainly_intermediate_and_parabasal_cells_1);
@@ -778,9 +778,9 @@
             this.panel_CELLULAR_COMPONENT_1.Name = "panel_CELLULAR_COMPONENT_1";
             this.panel_CELLULAR_COMPONENT_1.Size = new System.Drawing.Size(388, 118);
             this.panel_CELLULAR_COMPONENT_1.TabIndex = 3;
-            // 
+            //
             // checkBox_trophic_pattern_in_menopause_1
-            // 
+            //
             this.checkBox_trophic_pattern_in_menopause_1.AutoSize = true;
             this.checkBox_trophic_pattern_in_menopause_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_trophic_pattern_in_menopause_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -791,9 +791,10 @@
             this.checkBox_trophic_pattern_in_menopause_1.TabIndex = 5;
             this.checkBox_trophic_pattern_in_menopause_1.Text = "Atrophic pattern in menopause";
             this.checkBox_trophic_pattern_in_menopause_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_trophic_pattern_in_menopause_1.CheckedChanged += new System.EventHandler(this.checkBox_trophic_pattern_in_menopause_1_CheckedChanged);
+            //
             // checkBox_Mainly_intermediate_and_parabasal_cells_1
-            // 
+            //
             this.checkBox_Mainly_intermediate_and_parabasal_cells_1.AutoSize = true;
             this.checkBox_Mainly_intermediate_and_parabasal_cells_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_intermediate_and_parabasal_cells_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -804,9 +805,10 @@
             this.checkBox_Mainly_intermediate_and_parabasal_cells_1.TabIndex = 4;
             this.checkBox_Mainly_intermediate_and_parabasal_cells_1.Text = "Mainly intermediate and parabasal cells";
             this.checkBox_Mainly_intermediate_and_parabasal_cells_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Mainly_intermediate_and_parabasal_cells_1.CheckedChanged += new System.EventHandler(this.checkBox_Mainly_intermediate_and_parabasal_cells_1_CheckedChanged);
+            //
             // label_endocervical_component_present_1
-            // 
+            //
             this.label_endocervical_component_present_1.AutoSize = true;
             this.label_endocervical_component_present_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_endocervical_component_present_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -815,9 +817,9 @@
             this.label_endocervical_component_present_1.Size = new System.Drawing.Size(215, 15);
             this.label_endocervical_component_present_1.TabIndex = 2;
             this.label_endocervical_component_present_1.Text = "endocervical component present";
-            // 
+            //
             // checkBox_Mainly_superficial_and_intermediate_cells_1
-            // 
+            //
             this.checkBox_Mainly_superficial_and_intermediate_cells_1.AutoSize = true;
             this.checkBox_Mainly_superficial_and_intermediate_cells_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_superficial_and_intermediate_cells_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -828,9 +830,10 @@
             this.checkBox_Mainly_superficial_and_intermediate_cells_1.TabIndex = 1;
             this.checkBox_Mainly_superficial_and_intermediate_cells_1.Text = "Mainly superficial and intermediate cells";
             this.checkBox_Mainly_superficial_and_intermediate_cells_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Mainly_superficial_and_intermediate_cells_1.CheckedChanged += new System.EventHandler(this.checkBox_Mainly_superficial_and_intermediate_cells_1_CheckedChanged);
+            //
             // label_CELLULAR_COMPONENT_1
-            // 
+            //
             this.label_CELLULAR_COMPONENT_1.AutoSize = true;
             this.label_CELLULAR_COMPONENT_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_CELLULAR_COMPONENT_1.Location = new System.Drawing.Point(3, 0);
@@ -838,9 +841,9 @@
             this.label_CELLULAR_COMPONENT_1.Size = new System.Drawing.Size(168, 15);
             this.label_CELLULAR_COMPONENT_1.TabIndex = 0;
             this.label_CELLULAR_COMPONENT_1.Text = "CELLULAR COMPONENT";
-            // 
+            //
             // checkBox_Transformation_zone_1
-            // 
+            //
             this.checkBox_Transformation_zone_1.AutoSize = true;
             this.checkBox_Transformation_zone_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Transformation_zone_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -851,9 +854,9 @@
             this.checkBox_Transformation_zone_1.TabIndex = 0;
             this.checkBox_Transformation_zone_1.Text = "Transformation zone /";
             this.checkBox_Transformation_zone_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Post_partum_changes_1
-            // 
+            //
             this.checkBox_Post_partum_changes_1.AutoSize = true;
             this.checkBox_Post_partum_changes_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Post_partum_changes_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -864,9 +867,10 @@
             this.checkBox_Post_partum_changes_1.TabIndex = 6;
             this.checkBox_Post_partum_changes_1.Text = "Post-partum changes";
             this.checkBox_Post_partum_changes_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Post_partum_changes_1.CheckedChanged += new System.EventHandler(this.checkBox_Post_partum_changes_1_CheckedChanged);
+            //
             // panel_SPECIMEN_QUALIFIER_1
-            // 
+            //
             this.panel_SPECIMEN_QUALIFIER_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SPECIMEN_QUALIFIER_1.Controls.Add(this.checkBox_Obscured_by_inflammatory_exudates_1);
             this.panel_SPECIMEN_QUALIFIER_1.Controls.Add(this.checkBox_Obscured_by_blood_1);
@@ -879,9 +883,9 @@
             this.panel_SPECIMEN_QUALIFIER_1.Name = "panel_SPECIMEN_QUALIFIER_1";
             this.panel_SPECIMEN_QUALIFIER_1.Size = new System.Drawing.Size(379, 108);
             this.panel_SPECIMEN_QUALIFIER_1.TabIndex = 5;
-            // 
+            //
             // checkBox_Obscured_by_inflammatory_exudates_1
-            // 
+            //
             this.checkBox_Obscured_by_inflammatory_exudates_1.AutoSize = true;
             this.checkBox_Obscured_by_inflammatory_exudates_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Obscured_by_inflammatory_exudates_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -892,9 +896,10 @@
             this.checkBox_Obscured_by_inflammatory_exudates_1.TabIndex = 5;
             this.checkBox_Obscured_by_inflammatory_exudates_1.Text = "Obscured by inflammatory exudates";
             this.checkBox_Obscured_by_inflammatory_exudates_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Obscured_by_inflammatory_exudates_1.CheckedChanged += new System.EventHandler(this.checkBox_Obscured_by_inflammatory_exudates_1_CheckedChanged);
+            //
             // checkBox_Obscured_by_blood_1
-            // 
+            //
             this.checkBox_Obscured_by_blood_1.AutoSize = true;
             this.checkBox_Obscured_by_blood_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Obscured_by_blood_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -905,9 +910,10 @@
             this.checkBox_Obscured_by_blood_1.TabIndex = 3;
             this.checkBox_Obscured_by_blood_1.Text = "Obscured by blood";
             this.checkBox_Obscured_by_blood_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Obscured_by_blood_1.CheckedChanged += new System.EventHandler(this.checkBox_Obscured_by_blood_1_CheckedChanged);
+            //
             // checkBox_Air_drying_artifacts_1
-            // 
+            //
             this.checkBox_Air_drying_artifacts_1.AutoSize = true;
             this.checkBox_Air_drying_artifacts_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Air_drying_artifacts_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -918,9 +924,10 @@
             this.checkBox_Air_drying_artifacts_1.TabIndex = 1;
             this.checkBox_Air_drying_artifacts_1.Text = "Air-drying artifacts";
             this.checkBox_Air_drying_artifacts_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Air_drying_artifacts_1.CheckedChanged += new System.EventHandler(this.checkBox_Air_drying_artifacts_1_CheckedChanged);
+            //
             // checkBox_Thick_smear_1
-            // 
+            //
             this.checkBox_Thick_smear_1.AutoSize = true;
             this.checkBox_Thick_smear_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Thick_smear_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -931,9 +938,10 @@
             this.checkBox_Thick_smear_1.TabIndex = 4;
             this.checkBox_Thick_smear_1.Text = "Thick smear";
             this.checkBox_Thick_smear_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Thick_smear_1.CheckedChanged += new System.EventHandler(this.checkBox_Thick_smear_1_CheckedChanged);
+            //
             // label_SPECIMEN_QUALIFIER_1
-            // 
+            //
             this.label_SPECIMEN_QUALIFIER_1.AutoSize = true;
             this.label_SPECIMEN_QUALIFIER_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SPECIMEN_QUALIFIER_1.Location = new System.Drawing.Point(3, -2);
@@ -941,9 +949,9 @@
             this.label_SPECIMEN_QUALIFIER_1.Size = new System.Drawing.Size(153, 15);
             this.label_SPECIMEN_QUALIFIER_1.TabIndex = 0;
             this.label_SPECIMEN_QUALIFIER_1.Text = "SPECIMEN QUALIFIER";
-            // 
+            //
             // checkBox_Low_squamous_cellularity_1
-            // 
+            //
             this.checkBox_Low_squamous_cellularity_1.AutoSize = true;
             this.checkBox_Low_squamous_cellularity_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Low_squamous_cellularity_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -954,9 +962,10 @@
             this.checkBox_Low_squamous_cellularity_1.TabIndex = 0;
             this.checkBox_Low_squamous_cellularity_1.Text = "Low squamous cellularity";
             this.checkBox_Low_squamous_cellularity_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Low_squamous_cellularity_1.CheckedChanged += new System.EventHandler(this.checkBox_Low_squamous_cellularity_1_CheckedChanged);
+            //
             // panel_SPECIMEN_ADEQUACY_1
-            // 
+            //
             this.panel_SPECIMEN_ADEQUACY_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SPECIMEN_ADEQUACY_1.Controls.Add(this.checkBox_Unsatisfactory_for_evaluation_1);
             this.panel_SPECIMEN_ADEQUACY_1.Controls.Add(this.checkBox_Satisfactory_for_evaluation_but_1);
@@ -967,9 +976,9 @@
             this.panel_SPECIMEN_ADEQUACY_1.Name = "panel_SPECIMEN_ADEQUACY_1";
             this.panel_SPECIMEN_ADEQUACY_1.Size = new System.Drawing.Size(388, 93);
             this.panel_SPECIMEN_ADEQUACY_1.TabIndex = 2;
-            // 
+            //
             // checkBox_Unsatisfactory_for_evaluation_1
-            // 
+            //
             this.checkBox_Unsatisfactory_for_evaluation_1.AutoSize = true;
             this.checkBox_Unsatisfactory_for_evaluation_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Unsatisfactory_for_evaluation_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -980,9 +989,10 @@
             this.checkBox_Unsatisfactory_for_evaluation_1.TabIndex = 2;
             this.checkBox_Unsatisfactory_for_evaluation_1.Text = "Unsatisfactory for evaluation";
             this.checkBox_Unsatisfactory_for_evaluation_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Unsatisfactory_for_evaluation_1.CheckedChanged += new System.EventHandler(this.checkBox_Unsatisfactory_for_evaluation_1_CheckedChanged);
+            //
             // checkBox_Satisfactory_for_evaluation_but_1
-            // 
+            //
             this.checkBox_Satisfactory_for_evaluation_but_1.AutoSize = true;
             this.checkBox_Satisfactory_for_evaluation_but_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Satisfactory_for_evaluation_but_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -993,9 +1003,10 @@
             this.checkBox_Satisfactory_for_evaluation_but_1.TabIndex = 1;
             this.checkBox_Satisfactory_for_evaluation_but_1.Text = "Satisfactory for evaluation but ...";
             this.checkBox_Satisfactory_for_evaluation_but_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Satisfactory_for_evaluation_but_1.CheckedChanged += new System.EventHandler(this.checkBox_Satisfactory_for_evaluation_but_1_CheckedChanged);
+            //
             // label_SPECIMEN_ADEQUACY_1
-            // 
+            //
             this.label_SPECIMEN_ADEQUACY_1.AutoSize = true;
             this.label_SPECIMEN_ADEQUACY_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SPECIMEN_ADEQUACY_1.Location = new System.Drawing.Point(3, 0);
@@ -1003,9 +1014,9 @@
             this.label_SPECIMEN_ADEQUACY_1.Size = new System.Drawing.Size(154, 15);
             this.label_SPECIMEN_ADEQUACY_1.TabIndex = 0;
             this.label_SPECIMEN_ADEQUACY_1.Text = "SPECIMEN ADEQUACY";
-            // 
+            //
             // checkBox_Satisfactory_for_evaluation_1
-            // 
+            //
             this.checkBox_Satisfactory_for_evaluation_1.AutoSize = true;
             this.checkBox_Satisfactory_for_evaluation_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Satisfactory_for_evaluation_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1016,9 +1027,10 @@
             this.checkBox_Satisfactory_for_evaluation_1.TabIndex = 0;
             this.checkBox_Satisfactory_for_evaluation_1.Text = "Satisfactory for evaluation";
             this.checkBox_Satisfactory_for_evaluation_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Satisfactory_for_evaluation_1.CheckedChanged += new System.EventHandler(this.checkBox_Satisfactory_for_evaluation_1_CheckedChanged);
+            //
             // panel_TYPE_OF_PREPARATION_1
-            // 
+            //
             this.panel_TYPE_OF_PREPARATION_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.checkBox_Conventional_Pap_smears_1);
             this.panel_TYPE_OF_PREPARATION_1.Controls.Add(this.checkBox_Conventional_Pap_smear_1);
@@ -1030,33 +1042,33 @@
             this.panel_TYPE_OF_PREPARATION_1.Name = "panel_TYPE_OF_PREPARATION_1";
             this.panel_TYPE_OF_PREPARATION_1.Size = new System.Drawing.Size(379, 86);
             this.panel_TYPE_OF_PREPARATION_1.TabIndex = 4;
-            // 
+            //
             // textBox_ID3
-            // 
+            //
             this.textBox_ID3.Location = new System.Drawing.Point(414, 487);
             this.textBox_ID3.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_ID3.Name = "textBox_ID3";
             this.textBox_ID3.Size = new System.Drawing.Size(14, 21);
             this.textBox_ID3.TabIndex = 6;
-            // 
+            //
             // textBox_ID2
-            // 
+            //
             this.textBox_ID2.Location = new System.Drawing.Point(388, 486);
             this.textBox_ID2.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_ID2.Name = "textBox_ID2";
             this.textBox_ID2.Size = new System.Drawing.Size(14, 21);
             this.textBox_ID2.TabIndex = 5;
-            // 
+            //
             // textBox_ID1
-            // 
+            //
             this.textBox_ID1.Location = new System.Drawing.Point(358, 486);
             this.textBox_ID1.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_ID1.Name = "textBox_ID1";
             this.textBox_ID1.Size = new System.Drawing.Size(15, 21);
             this.textBox_ID1.TabIndex = 4;
-            // 
+            //
             // checkBox_Conventional_Pap_smears_1
-            // 
+            //
             this.checkBox_Conventional_Pap_smears_1.AutoSize = true;
             this.checkBox_Conventional_Pap_smears_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Conventional_Pap_smears_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1067,9 +1079,10 @@
             this.checkBox_Conventional_Pap_smears_1.TabIndex = 3;
             this.checkBox_Conventional_Pap_smears_1.Text = "Conventional Pap smears";
             this.checkBox_Conventional_Pap_smears_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Conventional_Pap_smears_1.CheckedChanged += new System.EventHandler(this.checkBox_Conventional_Pap_smears_1_CheckedChanged);
+            //
             // checkBox_Conventional_Pap_smear_1
-            // 
+            //
             this.checkBox_Conventional_Pap_smear_1.AutoSize = true;
             this.checkBox_Conventional_Pap_smear_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Conventional_Pap_smear_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1080,9 +1093,10 @@
             this.checkBox_Conventional_Pap_smear_1.TabIndex = 2;
             this.checkBox_Conventional_Pap_smear_1.Text = "Conventional Pap smear";
             this.checkBox_Conventional_Pap_smear_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Conventional_Pap_smear_1.CheckedChanged += new System.EventHandler(this.checkBox_Conventional_Pap_smear_1_CheckedChanged);
+            //
             // checkBox_Liquid_based_preparations_1
-            // 
+            //
             this.checkBox_Liquid_based_preparations_1.AutoSize = true;
             this.checkBox_Liquid_based_preparations_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Liquid_based_preparations_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1093,9 +1107,10 @@
             this.checkBox_Liquid_based_preparations_1.TabIndex = 1;
             this.checkBox_Liquid_based_preparations_1.Text = "Liquid-based preparations";
             this.checkBox_Liquid_based_preparations_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Liquid_based_preparations_1.CheckedChanged += new System.EventHandler(this.checkBox_Liquid_based_preparations_1_CheckedChanged);
+            //
             // label_TYPE_OF_PREPARATION_1
-            // 
+            //
             this.label_TYPE_OF_PREPARATION_1.AutoSize = true;
             this.label_TYPE_OF_PREPARATION_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TYPE_OF_PREPARATION_1.Location = new System.Drawing.Point(3, 0);
@@ -1103,9 +1118,9 @@
             this.label_TYPE_OF_PREPARATION_1.Size = new System.Drawing.Size(162, 15);
             this.label_TYPE_OF_PREPARATION_1.TabIndex = 0;
             this.label_TYPE_OF_PREPARATION_1.Text = "TYPE OF PREPARATION";
-            // 
+            //
             // checkBox_Liquid_based_preparation_1
-            // 
+            //
             this.checkBox_Liquid_based_preparation_1.AutoSize = true;
             this.checkBox_Liquid_based_preparation_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Liquid_based_preparation_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1116,9 +1131,10 @@
             this.checkBox_Liquid_based_preparation_1.TabIndex = 0;
             this.checkBox_Liquid_based_preparation_1.Text = "Liquid-based preparation";
             this.checkBox_Liquid_based_preparation_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Liquid_based_preparation_1.CheckedChanged += new System.EventHandler(this.checkBox_Liquid_based_preparation_1_CheckedChanged);
+            //
             // panel_SITE_1
-            // 
+            //
             this.panel_SITE_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SITE_1.Controls.Add(this.checkBox_Vagina_Vault_1);
             this.panel_SITE_1.Controls.Add(this.label_SITE_1);
@@ -1128,9 +1144,9 @@
             this.panel_SITE_1.Name = "panel_SITE_1";
             this.panel_SITE_1.Size = new System.Drawing.Size(388, 86);
             this.panel_SITE_1.TabIndex = 1;
-            // 
+            //
             // checkBox_Vagina_Vault_1
-            // 
+            //
             this.checkBox_Vagina_Vault_1.AutoSize = true;
             this.checkBox_Vagina_Vault_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Vagina_Vault_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1141,9 +1157,10 @@
             this.checkBox_Vagina_Vault_1.TabIndex = 1;
             this.checkBox_Vagina_Vault_1.Text = "Vagina / Vault";
             this.checkBox_Vagina_Vault_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Vagina_Vault_1.CheckedChanged += new System.EventHandler(this.checkBox_Vagina_Vault_1_CheckedChanged);
+            //
             // label_SITE_1
-            // 
+            //
             this.label_SITE_1.AutoSize = true;
             this.label_SITE_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SITE_1.Location = new System.Drawing.Point(3, 0);
@@ -1151,9 +1168,9 @@
             this.label_SITE_1.Size = new System.Drawing.Size(37, 15);
             this.label_SITE_1.TabIndex = 0;
             this.label_SITE_1.Text = "SITE";
-            // 
+            //
             // checkBox_Cervix_1
-            // 
+            //
             this.checkBox_Cervix_1.AutoSize = true;
             this.checkBox_Cervix_1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Cervix_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1164,9 +1181,10 @@
             this.checkBox_Cervix_1.TabIndex = 0;
             this.checkBox_Cervix_1.Text = "Cervix";
             this.checkBox_Cervix_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Cervix_1.CheckedChanged += new System.EventHandler(this.checkBox_Cervix_1_CheckedChanged);
+            //
             // tabPage_INTERPRETATION_1
-            // 
+            //
             this.tabPage_INTERPRETATION_1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(218)))), ((int)(((byte)(177)))));
             this.tabPage_INTERPRETATION_1.Controls.Add(this.panel12);
             this.tabPage_INTERPRETATION_1.Controls.Add(this.panel_HPV_DNA_TESTING_1);
@@ -1178,9 +1196,9 @@
             this.tabPage_INTERPRETATION_1.Size = new System.Drawing.Size(776, 370);
             this.tabPage_INTERPRETATION_1.TabIndex = 1;
             this.tabPage_INTERPRETATION_1.Text = "                               INTERPRETATION                                 ";
-            // 
+            //
             // panel12
-            // 
+            //
             this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel12.Controls.Add(this.checkBox_Other_malignant_neoplasm_1);
             this.panel12.Controls.Add(this.checkBox_Adenocarcinoma_NOS_1);
@@ -1206,9 +1224,9 @@
             this.panel12.Name = "panel12";
             this.panel12.Size = new System.Drawing.Size(379, 362);
             this.panel12.TabIndex = 6;
-            // 
+            //
             // checkBox_Other_malignant_neoplasm_1
-            // 
+            //
             this.checkBox_Other_malignant_neoplasm_1.AutoSize = true;
             this.checkBox_Other_malignant_neoplasm_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Other_malignant_neoplasm_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1220,9 +1238,9 @@
             this.checkBox_Other_malignant_neoplasm_1.TabIndex = 30;
             this.checkBox_Other_malignant_neoplasm_1.Text = "Other malignant neoplasm";
             this.checkBox_Other_malignant_neoplasm_1.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Adenocarcinoma_NOS_1
-            // 
+            //
             this.checkBox_Adenocarcinoma_NOS_1.AutoSize = true;
             this.checkBox_Adenocarcinoma_NOS_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Adenocarcinoma_NOS_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1234,9 +1252,10 @@
             this.checkBox_Adenocarcinoma_NOS_1.TabIndex = 29;
             this.checkBox_Adenocarcinoma_NOS_1.Text = "Adenocarcinoma, NOS";
             this.checkBox_Adenocarcinoma_NOS_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Adenocarcinoma_NOS_1.CheckedChanged += new System.EventHandler(this.checkBox_Adenocarcinoma_NOS_1_CheckedChanged);
+            //
             // checkBox_Endometrial_adenocarcinoma_1
-            // 
+            //
             this.checkBox_Endometrial_adenocarcinoma_1.AutoSize = true;
             this.checkBox_Endometrial_adenocarcinoma_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endometrial_adenocarcinoma_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1248,9 +1267,10 @@
             this.checkBox_Endometrial_adenocarcinoma_1.TabIndex = 28;
             this.checkBox_Endometrial_adenocarcinoma_1.Text = "Endometrial adenocarcinoma";
             this.checkBox_Endometrial_adenocarcinoma_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endometrial_adenocarcinoma_1.CheckedChanged += new System.EventHandler(this.checkBox_Endometrial_adenocarcinoma_1_CheckedChanged);
+            //
             // checkBox_Endocervial_adenocarcinoma_1
-            // 
+            //
             this.checkBox_Endocervial_adenocarcinoma_1.AutoSize = true;
             this.checkBox_Endocervial_adenocarcinoma_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endocervial_adenocarcinoma_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1262,11 +1282,13 @@
             this.checkBox_Endocervial_adenocarcinoma_1.TabIndex = 27;
             this.checkBox_Endocervial_adenocarcinoma_1.Text = "Endocervial adenocarcinoma";
             this.checkBox_Endocervial_adenocarcinoma_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endocervial_adenocarcinoma_1.CheckedChanged += new System.EventHandler(this.checkBox_Endocervial_adenocarcinoma_1_CheckedChanged);
+            //
             // checkBox_Adenocarcinoma_1
-            // 
+            //
             this.checkBox_Adenocarcinoma_1.AutoSize = true;
             this.checkBox_Adenocarcinoma_1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Adenocarcinoma_1.Enabled = false;
             this.checkBox_Adenocarcinoma_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Adenocarcinoma_1.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Adenocarcinoma_1.Location = new System.Drawing.Point(25, 246);
@@ -1276,9 +1298,9 @@
             this.checkBox_Adenocarcinoma_1.TabIndex = 26;
             this.checkBox_Adenocarcinoma_1.Text = "Adenocarcinoma";
             this.checkBox_Adenocarcinoma_1.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Endocervial_adenocarcinoma_in_situ_1
-            // 
+            //
             this.checkBox_Endocervial_adenocarcinoma_in_situ_1.AutoSize = true;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1290,9 +1312,10 @@
             this.checkBox_Endocervial_adenocarcinoma_in_situ_1.TabIndex = 25;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_1.Text = "Endocervial adenocarcinoma-in-situ";
             this.checkBox_Endocervial_adenocarcinoma_in_situ_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endocervial_adenocarcinoma_in_situ_1.CheckedChanged += new System.EventHandler(this.checkBox_Endocervial_adenocarcinoma_in_situ_1_CheckedChanged);
+            //
             // checkBox_Atypical_endometrial_cells_NOS_1
-            // 
+            //
             this.checkBox_Atypical_endometrial_cells_NOS_1.AutoSize = true;
             this.checkBox_Atypical_endometrial_cells_NOS_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_endometrial_cells_NOS_1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1304,9 +1327,10 @@
             this.checkBox_Atypical_endometrial_cells_NOS_1.TabIndex = 24;
             this.checkBox_Atypical_endometrial_cells_NOS_1.Text = "Atypical endometrial cells, NOS";
             this.checkBox_Atypical_endometrial_cells_NOS_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_endometrial_cells_NOS_1.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_endometrial_cells_NOS_1_CheckedChanged);
+            //
             // checkBox_Atypical_endocervical_cells_NOS_1
-            // 
+            //
             this.checkBox_Atypical_endocervical_cells_NOS_1.AutoSize = true;
             this.checkBox_Atypical_endocervical_cells_NOS_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_endocervical_cells_NOS_1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1318,11 +1342,13 @@
             this.checkBox_Atypical_endocervical_cells_NOS_1.TabIndex = 23;
             this.checkBox_Atypical_endocervical_cells_NOS_1.Text = "Atypical endocervical cells, NOS / favour neoplastic";
             this.checkBox_Atypical_endocervical_cells_NOS_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_endocervical_cells_NOS_1.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_endocervical_cells_NOS_1_CheckedChanged);
+            //
             // checkBox_Atypical_glandular_cells_1
-            // 
+            //
             this.checkBox_Atypical_glandular_cells_1.AutoSize = true;
             this.checkBox_Atypical_glandular_cells_1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Atypical_glandular_cells_1.Enabled = false;
             this.checkBox_Atypical_glandular_cells_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Atypical_glandular_cells_1.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Atypical_glandular_cells_1.Location = new System.Drawing.Point(25, 180);
@@ -1332,9 +1358,10 @@
             this.checkBox_Atypical_glandular_cells_1.TabIndex = 22;
             this.checkBox_Atypical_glandular_cells_1.Text = "Atypical glandular cells";
             this.checkBox_Atypical_glandular_cells_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_glandular_cells_1.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_glandular_cells_1_CheckedChanged);
+            //
             // checkBox_Atypical_glandular_cells_NOS_1
-            // 
+            //
             this.checkBox_Atypical_glandular_cells_NOS_1.AutoSize = true;
             this.checkBox_Atypical_glandular_cells_NOS_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_glandular_cells_NOS_1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1346,9 +1373,10 @@
             this.checkBox_Atypical_glandular_cells_NOS_1.TabIndex = 21;
             this.checkBox_Atypical_glandular_cells_NOS_1.Text = "Atypical glandular cells, NOS / favour neoplastic";
             this.checkBox_Atypical_glandular_cells_NOS_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_glandular_cells_NOS_1.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_glandular_cells_NOS_1_CheckedChanged);
+            //
             // checkBox_Squamous_cell_carcinoma_1
-            // 
+            //
             this.checkBox_Squamous_cell_carcinoma_1.AutoSize = true;
             this.checkBox_Squamous_cell_carcinoma_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Squamous_cell_carcinoma_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1360,9 +1388,10 @@
             this.checkBox_Squamous_cell_carcinoma_1.TabIndex = 20;
             this.checkBox_Squamous_cell_carcinoma_1.Text = "Squamous cell carcinoma";
             this.checkBox_Squamous_cell_carcinoma_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Squamous_cell_carcinoma_1.CheckedChanged += new System.EventHandler(this.checkBox_Squamous_cell_carcinoma_1_CheckedChanged);
+            //
             // checkBox_HSIL_1
-            // 
+            //
             this.checkBox_HSIL_1.AutoSize = true;
             this.checkBox_HSIL_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_HSIL_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1374,9 +1403,10 @@
             this.checkBox_HSIL_1.TabIndex = 19;
             this.checkBox_HSIL_1.Text = "HSIL, with features suspicious for invasion";
             this.checkBox_HSIL_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_HSIL_1.CheckedChanged += new System.EventHandler(this.checkBox_HSIL_1_CheckedChanged);
+            //
             // checkBox_High_grade_SIL_1
-            // 
+            //
             this.checkBox_High_grade_SIL_1.AutoSize = true;
             this.checkBox_High_grade_SIL_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_High_grade_SIL_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1388,11 +1418,13 @@
             this.checkBox_High_grade_SIL_1.TabIndex = 18;
             this.checkBox_High_grade_SIL_1.Text = "High-grade SIL (including CIN or VAIN II - III)";
             this.checkBox_High_grade_SIL_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_High_grade_SIL_1.CheckedChanged += new System.EventHandler(this.checkBox_High_grade_SIL_1_CheckedChanged);
+            //
             // checkBox_Squamous_intraepithelial_lesion_SIL_1
-            // 
+            //
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.AutoSize = true;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Squamous_intraepithelial_lesion_SIL_1.Enabled = false;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.Location = new System.Drawing.Point(25, 96);
@@ -1402,9 +1434,9 @@
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.TabIndex = 17;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.Text = "Squamous intraepithelial lesion (SIL)";
             this.checkBox_Squamous_intraepithelial_lesion_SIL_1.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Low_grade_SIL_1
-            // 
+            //
             this.checkBox_Low_grade_SIL_1.AutoSize = true;
             this.checkBox_Low_grade_SIL_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Low_grade_SIL_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1416,9 +1448,10 @@
             this.checkBox_Low_grade_SIL_1.TabIndex = 16;
             this.checkBox_Low_grade_SIL_1.Text = "Low-grade SIL (including HPV, CIN or VAIN I)";
             this.checkBox_Low_grade_SIL_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Low_grade_SIL_1.CheckedChanged += new System.EventHandler(this.checkBox_Low_grade_SIL_1_CheckedChanged);
+            //
             // checkBox_ASC_H_1
-            // 
+            //
             this.checkBox_ASC_H_1.AutoSize = true;
             this.checkBox_ASC_H_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_ASC_H_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1430,11 +1463,13 @@
             this.checkBox_ASC_H_1.TabIndex = 15;
             this.checkBox_ASC_H_1.Text = "ASC-H";
             this.checkBox_ASC_H_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_ASC_H_1.CheckedChanged += new System.EventHandler(this.checkBox_ASC_H_1_CheckedChanged);
+            //
             // checkBox_Atypical_squamous_cells_1
-            // 
+            //
             this.checkBox_Atypical_squamous_cells_1.AutoSize = true;
             this.checkBox_Atypical_squamous_cells_1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Atypical_squamous_cells_1.Enabled = false;
             this.checkBox_Atypical_squamous_cells_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Atypical_squamous_cells_1.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Atypical_squamous_cells_1.Location = new System.Drawing.Point(25, 43);
@@ -1444,9 +1479,9 @@
             this.checkBox_Atypical_squamous_cells_1.TabIndex = 14;
             this.checkBox_Atypical_squamous_cells_1.Text = "Atypical squamous cells";
             this.checkBox_Atypical_squamous_cells_1.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_ASC_US_1
-            // 
+            //
             this.checkBox_ASC_US_1.AutoSize = true;
             this.checkBox_ASC_US_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_ASC_US_1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1458,11 +1493,13 @@
             this.checkBox_ASC_US_1.TabIndex = 13;
             this.checkBox_ASC_US_1.Text = "ASC-US";
             this.checkBox_ASC_US_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_ASC_US_1.CheckedChanged += new System.EventHandler(this.checkBox_ASC_US_1_CheckedChanged);
+            //
             // checkBox_EPITHELIAL_CELL_ABNORMALITIES_1
-            // 
+            //
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.AutoSize = true;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Enabled = false;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Location = new System.Drawing.Point(4, 25);
@@ -1472,9 +1509,9 @@
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.TabIndex = 12;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Text = "EPITHELIAL CELL ABNORMALITIES";
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.UseVisualStyleBackColor = false;
-            // 
+            //
             // panel_HPV_DNA_TESTING_1
-            // 
+            //
             this.panel_HPV_DNA_TESTING_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_HPV_DNA_TESTING_1.Controls.Add(this.checkBox_HPV_DNA_TESTING_1);
             this.panel_HPV_DNA_TESTING_1.Location = new System.Drawing.Point(6, 314);
@@ -1482,9 +1519,9 @@
             this.panel_HPV_DNA_TESTING_1.Name = "panel_HPV_DNA_TESTING_1";
             this.panel_HPV_DNA_TESTING_1.Size = new System.Drawing.Size(379, 53);
             this.panel_HPV_DNA_TESTING_1.TabIndex = 6;
-            // 
+            //
             // checkBox_HPV_DNA_TESTING_1
-            // 
+            //
             this.checkBox_HPV_DNA_TESTING_1.AutoSize = true;
             this.checkBox_HPV_DNA_TESTING_1.Font = new System.Drawing.Font("Microsoft New Tai Lue", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_HPV_DNA_TESTING_1.ForeColor = System.Drawing.Color.Blue;
@@ -1495,9 +1532,9 @@
             this.checkBox_HPV_DNA_TESTING_1.TabIndex = 0;
             this.checkBox_HPV_DNA_TESTING_1.Text = "HPV DNA TESTING";
             this.checkBox_HPV_DNA_TESTING_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // panel_INTERPRETATION_1
-            // 
+            //
             this.panel_INTERPRETATION_1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_INTERPRETATION_1.Controls.Add(this.checkBox_Others_eg_follicular_cervicitis_RT_effect_1);
             this.panel_INTERPRETATION_1.Controls.Add(this.checkBox_Endometrial_cells_1);
@@ -1517,9 +1554,9 @@
             this.panel_INTERPRETATION_1.Name = "panel_INTERPRETATION_1";
             this.panel_INTERPRETATION_1.Size = new System.Drawing.Size(379, 310);
             this.panel_INTERPRETATION_1.TabIndex = 5;
-            // 
+            //
             // checkBox_Others_eg_follicular_cervicitis_RT_effect_1
-            // 
+            //
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_1.AutoSize = true;
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1530,9 +1567,9 @@
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_1.TabIndex = 11;
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_1.Text = "Others (e.g. follicular cervicitis, RT effect)";
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Endometrial_cells_1
-            // 
+            //
             this.checkBox_Endometrial_cells_1.AutoSize = true;
             this.checkBox_Endometrial_cells_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Endometrial_cells_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1543,9 +1580,9 @@
             this.checkBox_Endometrial_cells_1.TabIndex = 10;
             this.checkBox_Endometrial_cells_1.Text = "Endometrial cells";
             this.checkBox_Endometrial_cells_1.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Actinomyces_1
-            // 
+            //
             this.checkBox_Actinomyces_1.AutoSize = true;
             this.checkBox_Actinomyces_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Actinomyces_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1556,9 +1593,10 @@
             this.checkBox_Actinomyces_1.TabIndex = 9;
             this.checkBox_Actinomyces_1.Text = "Actinomyces";
             this.checkBox_Actinomyces_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Actinomyces_1.CheckedChanged += new System.EventHandler(this.checkBox_Actinomyces_1_CheckedChanged);
+            //
             // checkBox_Trichomonas_vaginalis_1
-            // 
+            //
             this.checkBox_Trichomonas_vaginalis_1.AutoSize = true;
             this.checkBox_Trichomonas_vaginalis_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Trichomonas_vaginalis_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1569,9 +1607,10 @@
             this.checkBox_Trichomonas_vaginalis_1.TabIndex = 8;
             this.checkBox_Trichomonas_vaginalis_1.Text = "Trichomonas vaginalis";
             this.checkBox_Trichomonas_vaginalis_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Trichomonas_vaginalis_1.CheckedChanged += new System.EventHandler(this.checkBox_Trichomonas_vaginalis_1_CheckedChanged);
+            //
             // checkBox_Candida_Monilia_1
-            // 
+            //
             this.checkBox_Candida_Monilia_1.AutoSize = true;
             this.checkBox_Candida_Monilia_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Candida_Monilia_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1582,9 +1621,10 @@
             this.checkBox_Candida_Monilia_1.TabIndex = 7;
             this.checkBox_Candida_Monilia_1.Text = "Candida (Monilia)";
             this.checkBox_Candida_Monilia_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Candida_Monilia_1.CheckedChanged += new System.EventHandler(this.checkBox_Candida_Monilia_1_CheckedChanged);
+            //
             // checkBox_Herpes_simplex_virus_1
-            // 
+            //
             this.checkBox_Herpes_simplex_virus_1.AutoSize = true;
             this.checkBox_Herpes_simplex_virus_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Herpes_simplex_virus_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1595,9 +1635,10 @@
             this.checkBox_Herpes_simplex_virus_1.TabIndex = 6;
             this.checkBox_Herpes_simplex_virus_1.Text = "Herpes simplex virus";
             this.checkBox_Herpes_simplex_virus_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Herpes_simplex_virus_1.CheckedChanged += new System.EventHandler(this.checkBox_Herpes_simplex_virus_1_CheckedChanged);
+            //
             // label_with_inflammation_1
-            // 
+            //
             this.label_with_inflammation_1.AutoSize = true;
             this.label_with_inflammation_1.BackColor = System.Drawing.Color.Transparent;
             this.label_with_inflammation_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1607,9 +1648,9 @@
             this.label_with_inflammation_1.Size = new System.Drawing.Size(130, 18);
             this.label_with_inflammation_1.TabIndex = 5;
             this.label_with_inflammation_1.Text = "with inflammation";
-            // 
+            //
             // label_LESION_OR_MALIGNANCY_1
-            // 
+            //
             this.label_LESION_OR_MALIGNANCY_1.AutoSize = true;
             this.label_LESION_OR_MALIGNANCY_1.BackColor = System.Drawing.Color.Transparent;
             this.label_LESION_OR_MALIGNANCY_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold);
@@ -1619,9 +1660,9 @@
             this.label_LESION_OR_MALIGNANCY_1.Size = new System.Drawing.Size(194, 18);
             this.label_LESION_OR_MALIGNANCY_1.TabIndex = 4;
             this.label_LESION_OR_MALIGNANCY_1.Text = "LESION OR MALIGNANCY";
-            // 
+            //
             // checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1
-            // 
+            //
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.AutoSize = true;
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1632,9 +1673,10 @@
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.TabIndex = 3;
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.Text = "Shift in flora suggestive of bacterial vaginosis";
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.CheckedChanged += new System.EventHandler(this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1_CheckedChanged);
+            //
             // checkBox_Normal_flora_1
-            // 
+            //
             this.checkBox_Normal_flora_1.AutoSize = true;
             this.checkBox_Normal_flora_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Normal_flora_1.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1645,9 +1687,10 @@
             this.checkBox_Normal_flora_1.TabIndex = 2;
             this.checkBox_Normal_flora_1.Text = "Normal flora";
             this.checkBox_Normal_flora_1.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Normal_flora_1.CheckedChanged += new System.EventHandler(this.checkBox_Normal_flora_1_CheckedChanged);
+            //
             // checkBox_Reactive_cellular_changes_associated_1
-            // 
+            //
             this.checkBox_Reactive_cellular_changes_associated_1.AutoSize = true;
             this.checkBox_Reactive_cellular_changes_associated_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Reactive_cellular_changes_associated_1.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1659,9 +1702,9 @@
             this.checkBox_Reactive_cellular_changes_associated_1.TabIndex = 1;
             this.checkBox_Reactive_cellular_changes_associated_1.Text = "Reactive cellular changes associated";
             this.checkBox_Reactive_cellular_changes_associated_1.UseVisualStyleBackColor = false;
-            // 
+            //
             // label_INTERPRETATION_1
-            // 
+            //
             this.label_INTERPRETATION_1.AutoSize = true;
             this.label_INTERPRETATION_1.BackColor = System.Drawing.Color.Transparent;
             this.label_INTERPRETATION_1.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1671,9 +1714,9 @@
             this.label_INTERPRETATION_1.Size = new System.Drawing.Size(139, 18);
             this.label_INTERPRETATION_1.TabIndex = 0;
             this.label_INTERPRETATION_1.Text = "INTERPRETATION";
-            // 
+            //
             // checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1
-            // 
+            //
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.AutoSize = true;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1685,9 +1728,10 @@
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.TabIndex = 0;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Text = "NEGATIVE FOR INTRAEPITHELIAL";
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.CheckedChanged += new System.EventHandler(this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1_CheckedChanged);
+            //
             // tabPage_Re_Screener_Supervisor
-            // 
+            //
             this.tabPage_Re_Screener_Supervisor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(227)))), ((int)(((byte)(199)))));
             this.tabPage_Re_Screener_Supervisor.Controls.Add(this.tabControl_Re_Screener_Supervisor);
             this.tabPage_Re_Screener_Supervisor.Controls.Add(this.label_Locked_meg_2);
@@ -1701,9 +1745,9 @@
             this.tabPage_Re_Screener_Supervisor.Size = new System.Drawing.Size(780, 447);
             this.tabPage_Re_Screener_Supervisor.TabIndex = 1;
             this.tabPage_Re_Screener_Supervisor.Text = "       Re-Screener / Supervisor       ";
-            // 
+            //
             // tabControl_Re_Screener_Supervisor
-            // 
+            //
             this.tabControl_Re_Screener_Supervisor.Controls.Add(this.tabPage_PREPARATION_SPECIMEN_2);
             this.tabControl_Re_Screener_Supervisor.Controls.Add(this.tabPage_INTERPRETATION_2);
             this.tabControl_Re_Screener_Supervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
@@ -1713,9 +1757,9 @@
             this.tabControl_Re_Screener_Supervisor.SelectedIndex = 0;
             this.tabControl_Re_Screener_Supervisor.Size = new System.Drawing.Size(784, 398);
             this.tabControl_Re_Screener_Supervisor.TabIndex = 165;
-            // 
+            //
             // tabPage_PREPARATION_SPECIMEN_2
-            // 
+            //
             this.tabPage_PREPARATION_SPECIMEN_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(193)))), ((int)(((byte)(211)))));
             this.tabPage_PREPARATION_SPECIMEN_2.Controls.Add(this.panel14);
             this.tabPage_PREPARATION_SPECIMEN_2.Controls.Add(this.panel1);
@@ -1732,9 +1776,9 @@
             this.tabPage_PREPARATION_SPECIMEN_2.Size = new System.Drawing.Size(776, 370);
             this.tabPage_PREPARATION_SPECIMEN_2.TabIndex = 0;
             this.tabPage_PREPARATION_SPECIMEN_2.Text = "                         PREPARATION & SPECIMEN                        ";
-            // 
+            //
             // panel14
-            // 
+            //
             this.panel14.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel14.Controls.Add(this.comboBox_SITE_TYPE_2);
             this.panel14.Controls.Add(this.textBox_SITE_TYPE_2);
@@ -1745,9 +1789,9 @@
             this.panel14.Name = "panel14";
             this.panel14.Size = new System.Drawing.Size(388, 69);
             this.panel14.TabIndex = 9;
-            // 
+            //
             // comboBox_SITE_TYPE_2
-            // 
+            //
             this.comboBox_SITE_TYPE_2.DisplayMember = "site";
             this.comboBox_SITE_TYPE_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_SITE_TYPE_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1760,9 +1804,9 @@
             this.comboBox_SITE_TYPE_2.Text = "Cervical liquid-based preparration (ThinPrep)";
             this.comboBox_SITE_TYPE_2.ValueMember = "site";
             this.comboBox_SITE_TYPE_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SITE_TYPE_2_SelectionChangeCommitted);
-            // 
+            //
             // textBox_SITE_TYPE_2
-            // 
+            //
             this.textBox_SITE_TYPE_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_SITE_TYPE_2.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_SITE_TYPE_2.Location = new System.Drawing.Point(6, 38);
@@ -1771,9 +1815,9 @@
             this.textBox_SITE_TYPE_2.Size = new System.Drawing.Size(335, 21);
             this.textBox_SITE_TYPE_2.TabIndex = 159;
             this.textBox_SITE_TYPE_2.Text = "宮頸(ThinPrep)液基簿片技術";
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(3, 2);
@@ -1781,9 +1825,9 @@
             this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 0;
             this.label4.Text = "SITE";
-            // 
+            //
             // button_SITE_TYPE_2
-            // 
+            //
             this.button_SITE_TYPE_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_SITE_TYPE_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_SITE_TYPE_2.Location = new System.Drawing.Point(341, 19);
@@ -1793,9 +1837,9 @@
             this.button_SITE_TYPE_2.TabIndex = 165;
             this.button_SITE_TYPE_2.Text = "...";
             this.button_SITE_TYPE_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // panel1
-            // 
+            //
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.comboBox_DIAGNOSIS_3_2);
             this.panel1.Controls.Add(this.button_DIAGNOSIS_3_2);
@@ -1812,9 +1856,9 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(379, 170);
             this.panel1.TabIndex = 8;
-            // 
+            //
             // comboBox_DIAGNOSIS_3_2
-            // 
+            //
             this.comboBox_DIAGNOSIS_3_2.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_3_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_3_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1826,9 +1870,9 @@
             this.comboBox_DIAGNOSIS_3_2.TabIndex = 171;
             this.comboBox_DIAGNOSIS_3_2.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_3_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_3_2_SelectionChangeCommitted);
-            // 
+            //
             // button_DIAGNOSIS_3_2
-            // 
+            //
             this.button_DIAGNOSIS_3_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_3_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_3_2.Location = new System.Drawing.Point(338, 107);
@@ -1838,9 +1882,9 @@
             this.button_DIAGNOSIS_3_2.TabIndex = 170;
             this.button_DIAGNOSIS_3_2.Text = "...";
             this.button_DIAGNOSIS_3_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_DIAGNOSIS_3_2
-            // 
+            //
             this.textBox_DIAGNOSIS_3_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_3_2.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_3_2.Location = new System.Drawing.Point(3, 126);
@@ -1848,9 +1892,9 @@
             this.textBox_DIAGNOSIS_3_2.Name = "textBox_DIAGNOSIS_3_2";
             this.textBox_DIAGNOSIS_3_2.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_3_2.TabIndex = 169;
-            // 
+            //
             // comboBox_DIAGNOSIS_2_2
-            // 
+            //
             this.comboBox_DIAGNOSIS_2_2.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_2_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_2_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1862,9 +1906,9 @@
             this.comboBox_DIAGNOSIS_2_2.TabIndex = 168;
             this.comboBox_DIAGNOSIS_2_2.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_2_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_2_2_SelectionChangeCommitted);
-            // 
+            //
             // button_DIAGNOSIS_2_2
-            // 
+            //
             this.button_DIAGNOSIS_2_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_2_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_2_2.Location = new System.Drawing.Point(338, 62);
@@ -1874,9 +1918,9 @@
             this.button_DIAGNOSIS_2_2.TabIndex = 167;
             this.button_DIAGNOSIS_2_2.Text = "...";
             this.button_DIAGNOSIS_2_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // button_DIAGNOSIS_1_2
-            // 
+            //
             this.button_DIAGNOSIS_1_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_1_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_1_2.Location = new System.Drawing.Point(338, 18);
@@ -1886,9 +1930,9 @@
             this.button_DIAGNOSIS_1_2.TabIndex = 166;
             this.button_DIAGNOSIS_1_2.Text = "...";
             this.button_DIAGNOSIS_1_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_DIAGNOSIS_2_2
-            // 
+            //
             this.textBox_DIAGNOSIS_2_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_2_2.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_2_2.Location = new System.Drawing.Point(3, 82);
@@ -1896,9 +1940,9 @@
             this.textBox_DIAGNOSIS_2_2.Name = "textBox_DIAGNOSIS_2_2";
             this.textBox_DIAGNOSIS_2_2.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_2_2.TabIndex = 164;
-            // 
+            //
             // comboBox_DIAGNOSIS_1_2
-            // 
+            //
             this.comboBox_DIAGNOSIS_1_2.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_1_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_1_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1911,9 +1955,9 @@
             this.comboBox_DIAGNOSIS_1_2.Text = "Negative for intraepithelial lesion or malignancy";
             this.comboBox_DIAGNOSIS_1_2.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_1_2.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_1_2_SelectionChangeCommitted);
-            // 
+            //
             // textBox_DIAGNOSIS_1_2
-            // 
+            //
             this.textBox_DIAGNOSIS_1_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_1_2.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_1_2.Location = new System.Drawing.Point(3, 37);
@@ -1922,9 +1966,9 @@
             this.textBox_DIAGNOSIS_1_2.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_1_2.TabIndex = 161;
             this.textBox_DIAGNOSIS_1_2.Text = "無癌或癌前期病變";
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 4);
@@ -1932,9 +1976,9 @@
             this.label1.Size = new System.Drawing.Size(81, 15);
             this.label1.TabIndex = 160;
             this.label1.Text = "DIAGNOSIS";
-            // 
+            //
             // panel4
-            // 
+            //
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.checkBox_trophic_pattern_in_menopause_2);
             this.panel4.Controls.Add(this.checkBox_Mainly_intermediate_and_parabasal_cells_2);
@@ -1948,9 +1992,9 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(388, 118);
             this.panel4.TabIndex = 7;
-            // 
+            //
             // checkBox_trophic_pattern_in_menopause_2
-            // 
+            //
             this.checkBox_trophic_pattern_in_menopause_2.AutoSize = true;
             this.checkBox_trophic_pattern_in_menopause_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_trophic_pattern_in_menopause_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1961,22 +2005,23 @@
             this.checkBox_trophic_pattern_in_menopause_2.TabIndex = 5;
             this.checkBox_trophic_pattern_in_menopause_2.Text = "Atrophic pattern in menopause";
             this.checkBox_trophic_pattern_in_menopause_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_trophic_pattern_in_menopause_2.CheckedChanged += new System.EventHandler(this.checkBox_trophic_pattern_in_menopause_2_CheckedChanged);
+            //
             // checkBox_Mainly_intermediate_and_parabasal_cells_2
-            // 
+            //
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.AutoSize = true;
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Location = new System.Drawing.Point(6, 64);
-            this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Location = new System.Drawing.Point(6, 69);
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Name = "checkBox_Mainly_intermediate_and_parabasal_cells_2";
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Size = new System.Drawing.Size(283, 19);
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.TabIndex = 4;
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Text = "Mainly intermediate and parabasal cells";
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Mainly_intermediate_and_parabasal_cells_2.CheckedChanged += new System.EventHandler(this.checkBox_Mainly_intermediate_and_parabasal_cells_2_CheckedChanged);
+            //
             // label2
-            // 
+            //
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -1985,22 +2030,22 @@
             this.label2.Size = new System.Drawing.Size(215, 15);
             this.label2.TabIndex = 2;
             this.label2.Text = "endocervical component present";
-            // 
+            //
             // checkBox_Mainly_superficial_and_intermediate_cells_2
-            // 
+            //
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.AutoSize = true;
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.checkBox_Mainly_superficial_and_intermediate_cells_2.Location = new System.Drawing.Point(6, 48);
-            this.checkBox_Mainly_superficial_and_intermediate_cells_2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox_Mainly_superficial_and_intermediate_cells_2.Location = new System.Drawing.Point(6, 52);
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.Name = "checkBox_Mainly_superficial_and_intermediate_cells_2";
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.Size = new System.Drawing.Size(286, 19);
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.TabIndex = 1;
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.Text = "Mainly superficial and intermediate cells";
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Mainly_superficial_and_intermediate_cells_2.CheckedChanged += new System.EventHandler(this.checkBox_Mainly_superficial_and_intermediate_cells_2_CheckedChanged);
+            //
             // label3
-            // 
+            //
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(3, 0);
@@ -2008,9 +2053,9 @@
             this.label3.Size = new System.Drawing.Size(168, 15);
             this.label3.TabIndex = 0;
             this.label3.Text = "CELLULAR COMPONENT";
-            // 
+            //
             // checkBox_Transformation_zone_2
-            // 
+            //
             this.checkBox_Transformation_zone_2.AutoSize = true;
             this.checkBox_Transformation_zone_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Transformation_zone_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2021,9 +2066,9 @@
             this.checkBox_Transformation_zone_2.TabIndex = 0;
             this.checkBox_Transformation_zone_2.Text = "Transformation zone /";
             this.checkBox_Transformation_zone_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Post_partum_changes_2
-            // 
+            //
             this.checkBox_Post_partum_changes_2.AutoSize = true;
             this.checkBox_Post_partum_changes_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Post_partum_changes_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2034,9 +2079,10 @@
             this.checkBox_Post_partum_changes_2.TabIndex = 6;
             this.checkBox_Post_partum_changes_2.Text = "Post-partum changes";
             this.checkBox_Post_partum_changes_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Post_partum_changes_2.CheckedChanged += new System.EventHandler(this.checkBox_Post_partum_changes_2_CheckedChanged);
+            //
             // panel_SPECIMEN_QUALIFIER_2
-            // 
+            //
             this.panel_SPECIMEN_QUALIFIER_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SPECIMEN_QUALIFIER_2.Controls.Add(this.checkBox_Obscured_by_inflammatory_exudates_2);
             this.panel_SPECIMEN_QUALIFIER_2.Controls.Add(this.checkBox_Obscured_by_blood_2);
@@ -2049,9 +2095,9 @@
             this.panel_SPECIMEN_QUALIFIER_2.Name = "panel_SPECIMEN_QUALIFIER_2";
             this.panel_SPECIMEN_QUALIFIER_2.Size = new System.Drawing.Size(379, 108);
             this.panel_SPECIMEN_QUALIFIER_2.TabIndex = 5;
-            // 
+            //
             // checkBox_Obscured_by_inflammatory_exudates_2
-            // 
+            //
             this.checkBox_Obscured_by_inflammatory_exudates_2.AutoSize = true;
             this.checkBox_Obscured_by_inflammatory_exudates_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Obscured_by_inflammatory_exudates_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2062,9 +2108,10 @@
             this.checkBox_Obscured_by_inflammatory_exudates_2.TabIndex = 5;
             this.checkBox_Obscured_by_inflammatory_exudates_2.Text = "Obscured by inflammatory exudates";
             this.checkBox_Obscured_by_inflammatory_exudates_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Obscured_by_inflammatory_exudates_2.CheckedChanged += new System.EventHandler(this.checkBox_Obscured_by_inflammatory_exudates_2_CheckedChanged);
+            //
             // checkBox_Obscured_by_blood_2
-            // 
+            //
             this.checkBox_Obscured_by_blood_2.AutoSize = true;
             this.checkBox_Obscured_by_blood_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Obscured_by_blood_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2075,9 +2122,10 @@
             this.checkBox_Obscured_by_blood_2.TabIndex = 3;
             this.checkBox_Obscured_by_blood_2.Text = "Obscured by blood";
             this.checkBox_Obscured_by_blood_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Obscured_by_blood_2.CheckedChanged += new System.EventHandler(this.checkBox_Obscured_by_blood_2_CheckedChanged);
+            //
             // checkBox_Air_drying_artifacts_2
-            // 
+            //
             this.checkBox_Air_drying_artifacts_2.AutoSize = true;
             this.checkBox_Air_drying_artifacts_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Air_drying_artifacts_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2088,9 +2136,10 @@
             this.checkBox_Air_drying_artifacts_2.TabIndex = 1;
             this.checkBox_Air_drying_artifacts_2.Text = "Air-drying artifacts";
             this.checkBox_Air_drying_artifacts_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Air_drying_artifacts_2.CheckedChanged += new System.EventHandler(this.checkBox_Air_drying_artifacts_2_CheckedChanged);
+            //
             // checkBox_Thick_smear_2
-            // 
+            //
             this.checkBox_Thick_smear_2.AutoSize = true;
             this.checkBox_Thick_smear_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Thick_smear_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2101,9 +2150,10 @@
             this.checkBox_Thick_smear_2.TabIndex = 4;
             this.checkBox_Thick_smear_2.Text = "Thick smear";
             this.checkBox_Thick_smear_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Thick_smear_2.CheckedChanged += new System.EventHandler(this.checkBox_Thick_smear_2_CheckedChanged);
+            //
             // label_SPECIMEN_QUALIFIER_2
-            // 
+            //
             this.label_SPECIMEN_QUALIFIER_2.AutoSize = true;
             this.label_SPECIMEN_QUALIFIER_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SPECIMEN_QUALIFIER_2.Location = new System.Drawing.Point(3, -2);
@@ -2111,9 +2161,9 @@
             this.label_SPECIMEN_QUALIFIER_2.Size = new System.Drawing.Size(153, 15);
             this.label_SPECIMEN_QUALIFIER_2.TabIndex = 0;
             this.label_SPECIMEN_QUALIFIER_2.Text = "SPECIMEN QUALIFIER";
-            // 
+            //
             // checkBox_Low_squamous_cellularity_2
-            // 
+            //
             this.checkBox_Low_squamous_cellularity_2.AutoSize = true;
             this.checkBox_Low_squamous_cellularity_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Low_squamous_cellularity_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2124,9 +2174,10 @@
             this.checkBox_Low_squamous_cellularity_2.TabIndex = 0;
             this.checkBox_Low_squamous_cellularity_2.Text = "Low squamous cellularity";
             this.checkBox_Low_squamous_cellularity_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Low_squamous_cellularity_2.CheckedChanged += new System.EventHandler(this.checkBox_Low_squamous_cellularity_2_CheckedChanged);
+            //
             // panel_SPECIMEN_ADEQUACY_2
-            // 
+            //
             this.panel_SPECIMEN_ADEQUACY_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SPECIMEN_ADEQUACY_2.Controls.Add(this.checkBox_Unsatisfactory_for_evaluation_2);
             this.panel_SPECIMEN_ADEQUACY_2.Controls.Add(this.checkBox_Satisfactory_for_evaluation_but_2);
@@ -2137,9 +2188,9 @@
             this.panel_SPECIMEN_ADEQUACY_2.Name = "panel_SPECIMEN_ADEQUACY_2";
             this.panel_SPECIMEN_ADEQUACY_2.Size = new System.Drawing.Size(388, 93);
             this.panel_SPECIMEN_ADEQUACY_2.TabIndex = 2;
-            // 
+            //
             // checkBox_Unsatisfactory_for_evaluation_2
-            // 
+            //
             this.checkBox_Unsatisfactory_for_evaluation_2.AutoSize = true;
             this.checkBox_Unsatisfactory_for_evaluation_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Unsatisfactory_for_evaluation_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2150,9 +2201,10 @@
             this.checkBox_Unsatisfactory_for_evaluation_2.TabIndex = 2;
             this.checkBox_Unsatisfactory_for_evaluation_2.Text = "Unsatisfactory for evaluation";
             this.checkBox_Unsatisfactory_for_evaluation_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Unsatisfactory_for_evaluation_2.CheckedChanged += new System.EventHandler(this.checkBox_Unsatisfactory_for_evaluation_2_CheckedChanged);
+            //
             // checkBox_Satisfactory_for_evaluation_but_2
-            // 
+            //
             this.checkBox_Satisfactory_for_evaluation_but_2.AutoSize = true;
             this.checkBox_Satisfactory_for_evaluation_but_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Satisfactory_for_evaluation_but_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2163,9 +2215,10 @@
             this.checkBox_Satisfactory_for_evaluation_but_2.TabIndex = 1;
             this.checkBox_Satisfactory_for_evaluation_but_2.Text = "Satisfactory for evaluation but ...";
             this.checkBox_Satisfactory_for_evaluation_but_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Satisfactory_for_evaluation_but_2.CheckedChanged += new System.EventHandler(this.checkBox_Satisfactory_for_evaluation_but_2_CheckedChanged);
+            //
             // label_SPECIMEN_ADEQUACY_2
-            // 
+            //
             this.label_SPECIMEN_ADEQUACY_2.AutoSize = true;
             this.label_SPECIMEN_ADEQUACY_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SPECIMEN_ADEQUACY_2.Location = new System.Drawing.Point(3, 0);
@@ -2173,9 +2226,9 @@
             this.label_SPECIMEN_ADEQUACY_2.Size = new System.Drawing.Size(154, 15);
             this.label_SPECIMEN_ADEQUACY_2.TabIndex = 0;
             this.label_SPECIMEN_ADEQUACY_2.Text = "SPECIMEN ADEQUACY";
-            // 
+            //
             // checkBox_Satisfactory_for_evaluation_2
-            // 
+            //
             this.checkBox_Satisfactory_for_evaluation_2.AutoSize = true;
             this.checkBox_Satisfactory_for_evaluation_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Satisfactory_for_evaluation_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2186,9 +2239,10 @@
             this.checkBox_Satisfactory_for_evaluation_2.TabIndex = 0;
             this.checkBox_Satisfactory_for_evaluation_2.Text = "Satisfactory for evaluation";
             this.checkBox_Satisfactory_for_evaluation_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Satisfactory_for_evaluation_2.CheckedChanged += new System.EventHandler(this.checkBox_Satisfactory_for_evaluation_2_CheckedChanged);
+            //
             // panel_TYPE_OF_PREPARATION_2
-            // 
+            //
             this.panel_TYPE_OF_PREPARATION_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_TYPE_OF_PREPARATION_2.Controls.Add(this.checkBox_Conventional_Pap_smears_2);
             this.panel_TYPE_OF_PREPARATION_2.Controls.Add(this.checkBox_Conventional_Pap_smear_2);
@@ -2200,9 +2254,9 @@
             this.panel_TYPE_OF_PREPARATION_2.Name = "panel_TYPE_OF_PREPARATION_2";
             this.panel_TYPE_OF_PREPARATION_2.Size = new System.Drawing.Size(379, 86);
             this.panel_TYPE_OF_PREPARATION_2.TabIndex = 4;
-            // 
+            //
             // checkBox_Conventional_Pap_smears_2
-            // 
+            //
             this.checkBox_Conventional_Pap_smears_2.AutoSize = true;
             this.checkBox_Conventional_Pap_smears_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Conventional_Pap_smears_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2213,9 +2267,10 @@
             this.checkBox_Conventional_Pap_smears_2.TabIndex = 3;
             this.checkBox_Conventional_Pap_smears_2.Text = "Conventional Pap smears";
             this.checkBox_Conventional_Pap_smears_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Conventional_Pap_smears_2.CheckedChanged += new System.EventHandler(this.checkBox_Conventional_Pap_smears_2_CheckedChanged);
+            //
             // checkBox_Conventional_Pap_smear_2
-            // 
+            //
             this.checkBox_Conventional_Pap_smear_2.AutoSize = true;
             this.checkBox_Conventional_Pap_smear_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Conventional_Pap_smear_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2226,9 +2281,10 @@
             this.checkBox_Conventional_Pap_smear_2.TabIndex = 2;
             this.checkBox_Conventional_Pap_smear_2.Text = "Conventional Pap smear";
             this.checkBox_Conventional_Pap_smear_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Conventional_Pap_smear_2.CheckedChanged += new System.EventHandler(this.checkBox_Conventional_Pap_smear_2_CheckedChanged);
+            //
             // checkBox_Liquid_based_preparations_2
-            // 
+            //
             this.checkBox_Liquid_based_preparations_2.AutoSize = true;
             this.checkBox_Liquid_based_preparations_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Liquid_based_preparations_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2239,9 +2295,10 @@
             this.checkBox_Liquid_based_preparations_2.TabIndex = 1;
             this.checkBox_Liquid_based_preparations_2.Text = "Liquid-based preparations";
             this.checkBox_Liquid_based_preparations_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Liquid_based_preparations_2.CheckedChanged += new System.EventHandler(this.checkBox_Liquid_based_preparations_2_CheckedChanged);
+            //
             // label_TYPE_OF_PREPARATION_2
-            // 
+            //
             this.label_TYPE_OF_PREPARATION_2.AutoSize = true;
             this.label_TYPE_OF_PREPARATION_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TYPE_OF_PREPARATION_2.Location = new System.Drawing.Point(3, 0);
@@ -2249,9 +2306,9 @@
             this.label_TYPE_OF_PREPARATION_2.Size = new System.Drawing.Size(162, 15);
             this.label_TYPE_OF_PREPARATION_2.TabIndex = 0;
             this.label_TYPE_OF_PREPARATION_2.Text = "TYPE OF PREPARATION";
-            // 
+            //
             // checkBox_Liquid_based_preparation_2
-            // 
+            //
             this.checkBox_Liquid_based_preparation_2.AutoSize = true;
             this.checkBox_Liquid_based_preparation_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Liquid_based_preparation_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2262,9 +2319,10 @@
             this.checkBox_Liquid_based_preparation_2.TabIndex = 0;
             this.checkBox_Liquid_based_preparation_2.Text = "Liquid-based preparation";
             this.checkBox_Liquid_based_preparation_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Liquid_based_preparation_2.CheckedChanged += new System.EventHandler(this.checkBox_Liquid_based_preparation_2_CheckedChanged);
+            //
             // panel_SITE_2
-            // 
+            //
             this.panel_SITE_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SITE_2.Controls.Add(this.checkBox_Vagina_Vault_2);
             this.panel_SITE_2.Controls.Add(this.label_SITE_2);
@@ -2274,9 +2332,9 @@
             this.panel_SITE_2.Name = "panel_SITE_2";
             this.panel_SITE_2.Size = new System.Drawing.Size(388, 86);
             this.panel_SITE_2.TabIndex = 1;
-            // 
+            //
             // checkBox_Vagina_Vault_2
-            // 
+            //
             this.checkBox_Vagina_Vault_2.AutoSize = true;
             this.checkBox_Vagina_Vault_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Vagina_Vault_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2287,9 +2345,10 @@
             this.checkBox_Vagina_Vault_2.TabIndex = 1;
             this.checkBox_Vagina_Vault_2.Text = "Vagina / Vault";
             this.checkBox_Vagina_Vault_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Vagina_Vault_2.CheckedChanged += new System.EventHandler(this.checkBox_Vagina_Vault_2_CheckedChanged);
+            //
             // label_SITE_2
-            // 
+            //
             this.label_SITE_2.AutoSize = true;
             this.label_SITE_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SITE_2.Location = new System.Drawing.Point(3, 0);
@@ -2297,9 +2356,9 @@
             this.label_SITE_2.Size = new System.Drawing.Size(37, 15);
             this.label_SITE_2.TabIndex = 0;
             this.label_SITE_2.Text = "SITE";
-            // 
+            //
             // checkBox_Cervix_2
-            // 
+            //
             this.checkBox_Cervix_2.AutoSize = true;
             this.checkBox_Cervix_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Cervix_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2310,9 +2369,10 @@
             this.checkBox_Cervix_2.TabIndex = 0;
             this.checkBox_Cervix_2.Text = "Cervix";
             this.checkBox_Cervix_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Cervix_2.CheckedChanged += new System.EventHandler(this.checkBox_Cervix_2_CheckedChanged);
+            //
             // tabPage_INTERPRETATION_2
-            // 
+            //
             this.tabPage_INTERPRETATION_2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(204)))), ((int)(((byte)(201)))));
             this.tabPage_INTERPRETATION_2.Controls.Add(this.panel2);
             this.tabPage_INTERPRETATION_2.Controls.Add(this.panel3);
@@ -2324,9 +2384,9 @@
             this.tabPage_INTERPRETATION_2.Size = new System.Drawing.Size(776, 370);
             this.tabPage_INTERPRETATION_2.TabIndex = 1;
             this.tabPage_INTERPRETATION_2.Text = "                               INTERPRETATION                                 ";
-            // 
+            //
             // panel2
-            // 
+            //
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.checkBox_Other_malignant_neoplasm_2);
             this.panel2.Controls.Add(this.checkBox_Adenocarcinoma_NOS_2);
@@ -2352,9 +2412,9 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(379, 362);
             this.panel2.TabIndex = 6;
-            // 
+            //
             // checkBox_Other_malignant_neoplasm_2
-            // 
+            //
             this.checkBox_Other_malignant_neoplasm_2.AutoSize = true;
             this.checkBox_Other_malignant_neoplasm_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Other_malignant_neoplasm_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2366,9 +2426,9 @@
             this.checkBox_Other_malignant_neoplasm_2.TabIndex = 30;
             this.checkBox_Other_malignant_neoplasm_2.Text = "Other malignant neoplasm";
             this.checkBox_Other_malignant_neoplasm_2.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Adenocarcinoma_NOS_2
-            // 
+            //
             this.checkBox_Adenocarcinoma_NOS_2.AutoSize = true;
             this.checkBox_Adenocarcinoma_NOS_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Adenocarcinoma_NOS_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2380,9 +2440,10 @@
             this.checkBox_Adenocarcinoma_NOS_2.TabIndex = 29;
             this.checkBox_Adenocarcinoma_NOS_2.Text = "Adenocarcinoma, NOS";
             this.checkBox_Adenocarcinoma_NOS_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Adenocarcinoma_NOS_2.CheckedChanged += new System.EventHandler(this.checkBox_Adenocarcinoma_NOS_2_CheckedChanged);
+            //
             // checkBox_Endometrial_adenocarcinoma_2
-            // 
+            //
             this.checkBox_Endometrial_adenocarcinoma_2.AutoSize = true;
             this.checkBox_Endometrial_adenocarcinoma_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endometrial_adenocarcinoma_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2394,9 +2455,10 @@
             this.checkBox_Endometrial_adenocarcinoma_2.TabIndex = 28;
             this.checkBox_Endometrial_adenocarcinoma_2.Text = "Endometrial adenocarcinoma";
             this.checkBox_Endometrial_adenocarcinoma_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endometrial_adenocarcinoma_2.CheckedChanged += new System.EventHandler(this.checkBox_Endometrial_adenocarcinoma_2_CheckedChanged);
+            //
             // checkBox_Endocervial_adenocarcinoma_2
-            // 
+            //
             this.checkBox_Endocervial_adenocarcinoma_2.AutoSize = true;
             this.checkBox_Endocervial_adenocarcinoma_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endocervial_adenocarcinoma_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2408,11 +2470,13 @@
             this.checkBox_Endocervial_adenocarcinoma_2.TabIndex = 27;
             this.checkBox_Endocervial_adenocarcinoma_2.Text = "Endocervial adenocarcinoma";
             this.checkBox_Endocervial_adenocarcinoma_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endocervial_adenocarcinoma_2.CheckedChanged += new System.EventHandler(this.checkBox_Endocervial_adenocarcinoma_2_CheckedChanged);
+            //
             // checkBox_Adenocarcinoma_2
-            // 
+            //
             this.checkBox_Adenocarcinoma_2.AutoSize = true;
             this.checkBox_Adenocarcinoma_2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Adenocarcinoma_2.Enabled = false;
             this.checkBox_Adenocarcinoma_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Adenocarcinoma_2.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Adenocarcinoma_2.Location = new System.Drawing.Point(25, 246);
@@ -2422,9 +2486,9 @@
             this.checkBox_Adenocarcinoma_2.TabIndex = 26;
             this.checkBox_Adenocarcinoma_2.Text = "Adenocarcinoma";
             this.checkBox_Adenocarcinoma_2.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Endocervial_adenocarcinoma_in_situ_2
-            // 
+            //
             this.checkBox_Endocervial_adenocarcinoma_in_situ_2.AutoSize = true;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2436,9 +2500,10 @@
             this.checkBox_Endocervial_adenocarcinoma_in_situ_2.TabIndex = 25;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_2.Text = "Endocervial adenocarcinoma-in-situ";
             this.checkBox_Endocervial_adenocarcinoma_in_situ_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endocervial_adenocarcinoma_in_situ_2.CheckedChanged += new System.EventHandler(this.checkBox_Endocervial_adenocarcinoma_in_situ_2_CheckedChanged);
+            //
             // checkBox_Atypical_endometrial_cells_NOS_2
-            // 
+            //
             this.checkBox_Atypical_endometrial_cells_NOS_2.AutoSize = true;
             this.checkBox_Atypical_endometrial_cells_NOS_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_endometrial_cells_NOS_2.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2450,9 +2515,10 @@
             this.checkBox_Atypical_endometrial_cells_NOS_2.TabIndex = 24;
             this.checkBox_Atypical_endometrial_cells_NOS_2.Text = "Atypical endometrial cells, NOS";
             this.checkBox_Atypical_endometrial_cells_NOS_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_endometrial_cells_NOS_2.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_endometrial_cells_NOS_2_CheckedChanged);
+            //
             // checkBox_Atypical_endocervical_cells_NOS_2
-            // 
+            //
             this.checkBox_Atypical_endocervical_cells_NOS_2.AutoSize = true;
             this.checkBox_Atypical_endocervical_cells_NOS_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_endocervical_cells_NOS_2.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2464,11 +2530,13 @@
             this.checkBox_Atypical_endocervical_cells_NOS_2.TabIndex = 23;
             this.checkBox_Atypical_endocervical_cells_NOS_2.Text = "Atypical endocervical cells, NOS / favour neoplastic";
             this.checkBox_Atypical_endocervical_cells_NOS_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_endocervical_cells_NOS_2.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_endocervical_cells_NOS_2_CheckedChanged);
+            //
             // checkBox_Atypical_glandular_cells_2
-            // 
+            //
             this.checkBox_Atypical_glandular_cells_2.AutoSize = true;
             this.checkBox_Atypical_glandular_cells_2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Atypical_glandular_cells_2.Enabled = false;
             this.checkBox_Atypical_glandular_cells_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Atypical_glandular_cells_2.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Atypical_glandular_cells_2.Location = new System.Drawing.Point(25, 180);
@@ -2478,9 +2546,9 @@
             this.checkBox_Atypical_glandular_cells_2.TabIndex = 22;
             this.checkBox_Atypical_glandular_cells_2.Text = "Atypical glandular cells";
             this.checkBox_Atypical_glandular_cells_2.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Atypical_glandular_cells_NOS_2
-            // 
+            //
             this.checkBox_Atypical_glandular_cells_NOS_2.AutoSize = true;
             this.checkBox_Atypical_glandular_cells_NOS_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_glandular_cells_NOS_2.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2492,9 +2560,10 @@
             this.checkBox_Atypical_glandular_cells_NOS_2.TabIndex = 21;
             this.checkBox_Atypical_glandular_cells_NOS_2.Text = "Atypical glandular cells, NOS / favour neoplastic";
             this.checkBox_Atypical_glandular_cells_NOS_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_glandular_cells_NOS_2.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_glandular_cells_NOS_2_CheckedChanged);
+            //
             // checkBox_Squamous_cell_carcinoma_2
-            // 
+            //
             this.checkBox_Squamous_cell_carcinoma_2.AutoSize = true;
             this.checkBox_Squamous_cell_carcinoma_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Squamous_cell_carcinoma_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2506,9 +2575,10 @@
             this.checkBox_Squamous_cell_carcinoma_2.TabIndex = 20;
             this.checkBox_Squamous_cell_carcinoma_2.Text = "Squamous cell carcinoma";
             this.checkBox_Squamous_cell_carcinoma_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Squamous_cell_carcinoma_2.CheckedChanged += new System.EventHandler(this.checkBox_Squamous_cell_carcinoma_2_CheckedChanged);
+            //
             // checkBox_HSIL_2
-            // 
+            //
             this.checkBox_HSIL_2.AutoSize = true;
             this.checkBox_HSIL_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_HSIL_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2520,9 +2590,10 @@
             this.checkBox_HSIL_2.TabIndex = 19;
             this.checkBox_HSIL_2.Text = "HSIL, with features suspicious for invasion";
             this.checkBox_HSIL_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_HSIL_2.CheckedChanged += new System.EventHandler(this.checkBox_HSIL_2_CheckedChanged);
+            //
             // checkBox_High_grade_SIL_2
-            // 
+            //
             this.checkBox_High_grade_SIL_2.AutoSize = true;
             this.checkBox_High_grade_SIL_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_High_grade_SIL_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2534,11 +2605,13 @@
             this.checkBox_High_grade_SIL_2.TabIndex = 18;
             this.checkBox_High_grade_SIL_2.Text = "High-grade SIL (including CIN or VAIN II - III)";
             this.checkBox_High_grade_SIL_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_High_grade_SIL_2.CheckedChanged += new System.EventHandler(this.checkBox_High_grade_SIL_2_CheckedChanged);
+            //
             // checkBox_Squamous_intraepithelial_lesion_SIL_2
-            // 
+            //
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.AutoSize = true;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Squamous_intraepithelial_lesion_SIL_2.Enabled = false;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.Location = new System.Drawing.Point(25, 96);
@@ -2548,9 +2621,9 @@
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.TabIndex = 17;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.Text = "Squamous intraepithelial lesion (SIL)";
             this.checkBox_Squamous_intraepithelial_lesion_SIL_2.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Low_grade_SIL_2
-            // 
+            //
             this.checkBox_Low_grade_SIL_2.AutoSize = true;
             this.checkBox_Low_grade_SIL_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Low_grade_SIL_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2562,9 +2635,10 @@
             this.checkBox_Low_grade_SIL_2.TabIndex = 16;
             this.checkBox_Low_grade_SIL_2.Text = "Low-grade SIL (including HPV, CIN or VAIN I)";
             this.checkBox_Low_grade_SIL_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Low_grade_SIL_2.CheckedChanged += new System.EventHandler(this.checkBox_Low_grade_SIL_2_CheckedChanged);
+            //
             // checkBox_ASC_H_2
-            // 
+            //
             this.checkBox_ASC_H_2.AutoSize = true;
             this.checkBox_ASC_H_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_ASC_H_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2576,11 +2650,13 @@
             this.checkBox_ASC_H_2.TabIndex = 15;
             this.checkBox_ASC_H_2.Text = "ASC-H";
             this.checkBox_ASC_H_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_ASC_H_2.CheckedChanged += new System.EventHandler(this.checkBox_ASC_H_2_CheckedChanged);
+            //
             // checkBox_Atypical_squamous_cells_2
-            // 
+            //
             this.checkBox_Atypical_squamous_cells_2.AutoSize = true;
             this.checkBox_Atypical_squamous_cells_2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Atypical_squamous_cells_2.Enabled = false;
             this.checkBox_Atypical_squamous_cells_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Atypical_squamous_cells_2.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Atypical_squamous_cells_2.Location = new System.Drawing.Point(25, 43);
@@ -2590,9 +2666,9 @@
             this.checkBox_Atypical_squamous_cells_2.TabIndex = 14;
             this.checkBox_Atypical_squamous_cells_2.Text = "Atypical squamous cells";
             this.checkBox_Atypical_squamous_cells_2.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_ASC_US_2
-            // 
+            //
             this.checkBox_ASC_US_2.AutoSize = true;
             this.checkBox_ASC_US_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_ASC_US_2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2604,11 +2680,13 @@
             this.checkBox_ASC_US_2.TabIndex = 13;
             this.checkBox_ASC_US_2.Text = "ASC-US";
             this.checkBox_ASC_US_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_ASC_US_2.CheckedChanged += new System.EventHandler(this.checkBox_ASC_US_2_CheckedChanged);
+            //
             // checkBox_EPITHELIAL_CELL_ABNORMALITIES_2
-            // 
+            //
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.AutoSize = true;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Enabled = false;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Location = new System.Drawing.Point(4, 25);
@@ -2618,9 +2696,9 @@
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.TabIndex = 12;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Text = "EPITHELIAL CELL ABNORMALITIES";
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.UseVisualStyleBackColor = false;
-            // 
+            //
             // panel3
-            // 
+            //
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.checkBox_HPV_DNA_TESTING_2);
             this.panel3.Location = new System.Drawing.Point(6, 314);
@@ -2628,9 +2706,9 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(379, 53);
             this.panel3.TabIndex = 6;
-            // 
+            //
             // checkBox_HPV_DNA_TESTING_2
-            // 
+            //
             this.checkBox_HPV_DNA_TESTING_2.AutoSize = true;
             this.checkBox_HPV_DNA_TESTING_2.Font = new System.Drawing.Font("Microsoft New Tai Lue", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_HPV_DNA_TESTING_2.ForeColor = System.Drawing.Color.Blue;
@@ -2641,9 +2719,9 @@
             this.checkBox_HPV_DNA_TESTING_2.TabIndex = 0;
             this.checkBox_HPV_DNA_TESTING_2.Text = "HPV DNA TESTING";
             this.checkBox_HPV_DNA_TESTING_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // panel_INTERPRETATION_2
-            // 
+            //
             this.panel_INTERPRETATION_2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_INTERPRETATION_2.Controls.Add(this.checkBox_Others_eg_follicular_cervicitis_RT_effect_2);
             this.panel_INTERPRETATION_2.Controls.Add(this.checkBox_Endometrial_cells_2);
@@ -2663,9 +2741,9 @@
             this.panel_INTERPRETATION_2.Name = "panel_INTERPRETATION_2";
             this.panel_INTERPRETATION_2.Size = new System.Drawing.Size(379, 310);
             this.panel_INTERPRETATION_2.TabIndex = 5;
-            // 
+            //
             // checkBox_Others_eg_follicular_cervicitis_RT_effect_2
-            // 
+            //
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_2.AutoSize = true;
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2676,9 +2754,9 @@
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_2.TabIndex = 11;
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_2.Text = "Others (e.g. follicular cervicitis, RT effect)";
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Endometrial_cells_2
-            // 
+            //
             this.checkBox_Endometrial_cells_2.AutoSize = true;
             this.checkBox_Endometrial_cells_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Endometrial_cells_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2689,9 +2767,9 @@
             this.checkBox_Endometrial_cells_2.TabIndex = 10;
             this.checkBox_Endometrial_cells_2.Text = "Endometrial cells";
             this.checkBox_Endometrial_cells_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Actinomyces_2
-            // 
+            //
             this.checkBox_Actinomyces_2.AutoSize = true;
             this.checkBox_Actinomyces_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Actinomyces_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2702,9 +2780,10 @@
             this.checkBox_Actinomyces_2.TabIndex = 9;
             this.checkBox_Actinomyces_2.Text = "Actinomyces";
             this.checkBox_Actinomyces_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Actinomyces_2.CheckedChanged += new System.EventHandler(this.checkBox_Actinomyces_2_CheckedChanged);
+            //
             // checkBox_Trichomonas_vaginalis_2
-            // 
+            //
             this.checkBox_Trichomonas_vaginalis_2.AutoSize = true;
             this.checkBox_Trichomonas_vaginalis_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Trichomonas_vaginalis_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2715,9 +2794,10 @@
             this.checkBox_Trichomonas_vaginalis_2.TabIndex = 8;
             this.checkBox_Trichomonas_vaginalis_2.Text = "Trichomonas vaginalis";
             this.checkBox_Trichomonas_vaginalis_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Trichomonas_vaginalis_2.CheckedChanged += new System.EventHandler(this.checkBox_Trichomonas_vaginalis_2_CheckedChanged);
+            //
             // checkBox_Candida_Monilia_2
-            // 
+            //
             this.checkBox_Candida_Monilia_2.AutoSize = true;
             this.checkBox_Candida_Monilia_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Candida_Monilia_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2728,9 +2808,10 @@
             this.checkBox_Candida_Monilia_2.TabIndex = 7;
             this.checkBox_Candida_Monilia_2.Text = "Candida (Monilia)";
             this.checkBox_Candida_Monilia_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Candida_Monilia_2.CheckedChanged += new System.EventHandler(this.checkBox_Candida_Monilia_2_CheckedChanged);
+            //
             // checkBox_Herpes_simplex_virus_2
-            // 
+            //
             this.checkBox_Herpes_simplex_virus_2.AutoSize = true;
             this.checkBox_Herpes_simplex_virus_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Herpes_simplex_virus_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2741,9 +2822,10 @@
             this.checkBox_Herpes_simplex_virus_2.TabIndex = 6;
             this.checkBox_Herpes_simplex_virus_2.Text = "Herpes simplex virus";
             this.checkBox_Herpes_simplex_virus_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Herpes_simplex_virus_2.CheckedChanged += new System.EventHandler(this.checkBox_Herpes_simplex_virus_2_CheckedChanged);
+            //
             // label_with_inflammation_2
-            // 
+            //
             this.label_with_inflammation_2.AutoSize = true;
             this.label_with_inflammation_2.BackColor = System.Drawing.Color.Transparent;
             this.label_with_inflammation_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2753,9 +2835,9 @@
             this.label_with_inflammation_2.Size = new System.Drawing.Size(130, 18);
             this.label_with_inflammation_2.TabIndex = 5;
             this.label_with_inflammation_2.Text = "with inflammation";
-            // 
+            //
             // label_LESION_OR_MALIGNANCY_2
-            // 
+            //
             this.label_LESION_OR_MALIGNANCY_2.AutoSize = true;
             this.label_LESION_OR_MALIGNANCY_2.BackColor = System.Drawing.Color.Transparent;
             this.label_LESION_OR_MALIGNANCY_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold);
@@ -2765,9 +2847,9 @@
             this.label_LESION_OR_MALIGNANCY_2.Size = new System.Drawing.Size(194, 18);
             this.label_LESION_OR_MALIGNANCY_2.TabIndex = 4;
             this.label_LESION_OR_MALIGNANCY_2.Text = "LESION OR MALIGNANCY";
-            // 
+            //
             // checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2
-            // 
+            //
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.AutoSize = true;
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2778,9 +2860,10 @@
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.TabIndex = 3;
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.Text = "Shift in flora suggestive of bacterial vaginosis";
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.CheckedChanged += new System.EventHandler(this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2_CheckedChanged);
+            //
             // checkBox_Normal_flora_2
-            // 
+            //
             this.checkBox_Normal_flora_2.AutoSize = true;
             this.checkBox_Normal_flora_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Normal_flora_2.ForeColor = System.Drawing.Color.DarkBlue;
@@ -2791,9 +2874,10 @@
             this.checkBox_Normal_flora_2.TabIndex = 2;
             this.checkBox_Normal_flora_2.Text = "Normal flora";
             this.checkBox_Normal_flora_2.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Normal_flora_2.CheckedChanged += new System.EventHandler(this.checkBox_Normal_flora_2_CheckedChanged);
+            //
             // checkBox_Reactive_cellular_changes_associated_2
-            // 
+            //
             this.checkBox_Reactive_cellular_changes_associated_2.AutoSize = true;
             this.checkBox_Reactive_cellular_changes_associated_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Reactive_cellular_changes_associated_2.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2805,9 +2889,9 @@
             this.checkBox_Reactive_cellular_changes_associated_2.TabIndex = 1;
             this.checkBox_Reactive_cellular_changes_associated_2.Text = "Reactive cellular changes associated";
             this.checkBox_Reactive_cellular_changes_associated_2.UseVisualStyleBackColor = false;
-            // 
+            //
             // label_INTERPRETATION_2
-            // 
+            //
             this.label_INTERPRETATION_2.AutoSize = true;
             this.label_INTERPRETATION_2.BackColor = System.Drawing.Color.Transparent;
             this.label_INTERPRETATION_2.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2817,9 +2901,9 @@
             this.label_INTERPRETATION_2.Size = new System.Drawing.Size(139, 18);
             this.label_INTERPRETATION_2.TabIndex = 0;
             this.label_INTERPRETATION_2.Text = "INTERPRETATION";
-            // 
+            //
             // checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2
-            // 
+            //
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.AutoSize = true;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -2831,9 +2915,10 @@
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.TabIndex = 0;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Text = "NEGATIVE FOR INTRAEPITHELIAL";
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.CheckedChanged += new System.EventHandler(this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2_CheckedChanged);
+            //
             // label_Locked_meg_2
-            // 
+            //
             this.label_Locked_meg_2.AutoSize = true;
             this.label_Locked_meg_2.BackColor = System.Drawing.Color.Transparent;
             this.label_Locked_meg_2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic);
@@ -2844,9 +2929,9 @@
             this.label_Locked_meg_2.TabIndex = 164;
             this.label_Locked_meg_2.Text = "( This screen was Locked for resd only since it has been signed by the Doctor / P" +
     "athologist.)";
-            // 
+            //
             // label_Locked_2
-            // 
+            //
             this.label_Locked_2.AutoSize = true;
             this.label_Locked_2.BackColor = System.Drawing.Color.Transparent;
             this.label_Locked_2.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
@@ -2856,9 +2941,9 @@
             this.label_Locked_2.Size = new System.Drawing.Size(103, 17);
             this.label_Locked_2.TabIndex = 163;
             this.label_Locked_2.Text = "*** Locked ***";
-            // 
+            //
             // label_P_2
-            // 
+            //
             this.label_P_2.AutoSize = true;
             this.label_P_2.BackColor = System.Drawing.Color.Transparent;
             this.label_P_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -2868,9 +2953,9 @@
             this.label_P_2.Size = new System.Drawing.Size(32, 17);
             this.label_P_2.TabIndex = 162;
             this.label_P_2.Text = "P.2";
-            // 
+            //
             // panel13
-            // 
+            //
             this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(224)))), ((int)(((byte)(193)))));
             this.panel13.Controls.Add(this.comboBox_Sign_By_2);
             this.panel13.Controls.Add(this.button_Sign_At_2);
@@ -2883,9 +2968,9 @@
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(760, 26);
             this.panel13.TabIndex = 161;
-            // 
+            //
             // comboBox_Sign_By_2
-            // 
+            //
             this.comboBox_Sign_By_2.DisplayMember = "doctor";
             this.comboBox_Sign_By_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Sign_By_2.ForeColor = System.Drawing.Color.Blue;
@@ -2896,9 +2981,9 @@
             this.comboBox_Sign_By_2.Size = new System.Drawing.Size(135, 26);
             this.comboBox_Sign_By_2.TabIndex = 158;
             this.comboBox_Sign_By_2.ValueMember = "doctor";
-            // 
+            //
             // button_Sign_At_2
-            // 
+            //
             this.button_Sign_At_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Sign_At_2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Sign_At_2.Image = ((System.Drawing.Image)(resources.GetObject("button_Sign_At_2.Image")));
@@ -2908,9 +2993,9 @@
             this.button_Sign_At_2.Size = new System.Drawing.Size(29, 25);
             this.button_Sign_At_2.TabIndex = 157;
             this.button_Sign_At_2.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_Sign_By_2
-            // 
+            //
             this.textBox_Sign_By_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Sign_By_2.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Sign_By_2.Location = new System.Drawing.Point(447, 1);
@@ -2919,9 +3004,9 @@
             this.textBox_Sign_By_2.ReadOnly = true;
             this.textBox_Sign_By_2.Size = new System.Drawing.Size(169, 24);
             this.textBox_Sign_By_2.TabIndex = 63;
-            // 
+            //
             // textBox_Sign_At_2
-            // 
+            //
             this.textBox_Sign_At_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Sign_At_2.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Sign_At_2.Location = new System.Drawing.Point(82, 2);
@@ -2930,9 +3015,9 @@
             this.textBox_Sign_At_2.Size = new System.Drawing.Size(183, 24);
             this.textBox_Sign_At_2.TabIndex = 156;
             this.textBox_Sign_At_2.Text = "  /  /    :  :    AM";
-            // 
+            //
             // label_Sign_By
-            // 
+            //
             this.label_Sign_By.AutoSize = true;
             this.label_Sign_By.BackColor = System.Drawing.Color.Transparent;
             this.label_Sign_By.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -2942,9 +3027,9 @@
             this.label_Sign_By.Size = new System.Drawing.Size(64, 17);
             this.label_Sign_By.TabIndex = 64;
             this.label_Sign_By.Text = "Sign By :";
-            // 
+            //
             // label_Sign_At_2
-            // 
+            //
             this.label_Sign_At_2.AutoSize = true;
             this.label_Sign_At_2.BackColor = System.Drawing.Color.Transparent;
             this.label_Sign_At_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -2954,9 +3039,9 @@
             this.label_Sign_At_2.Size = new System.Drawing.Size(69, 17);
             this.label_Sign_At_2.TabIndex = 61;
             this.label_Sign_At_2.Text = "Sign At  : ";
-            // 
+            //
             // tabPage_Pathologist
-            // 
+            //
             this.tabPage_Pathologist.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(183)))), ((int)(((byte)(217)))), ((int)(((byte)(230)))));
             this.tabPage_Pathologist.Controls.Add(this.tabControl_Pathologist_Medlab);
             this.tabPage_Pathologist.Controls.Add(this.label_Locked_meg_3);
@@ -2970,9 +3055,9 @@
             this.tabPage_Pathologist.Size = new System.Drawing.Size(780, 447);
             this.tabPage_Pathologist.TabIndex = 2;
             this.tabPage_Pathologist.Text = "                Pathologist               ";
-            // 
+            //
             // tabControl_Pathologist_Medlab
-            // 
+            //
             this.tabControl_Pathologist_Medlab.Controls.Add(this.tabPage_PREPARATION_SPECIMEN_3);
             this.tabControl_Pathologist_Medlab.Controls.Add(this.tabPage_INTERPRETATION_3);
             this.tabControl_Pathologist_Medlab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
@@ -2982,9 +3067,9 @@
             this.tabControl_Pathologist_Medlab.SelectedIndex = 0;
             this.tabControl_Pathologist_Medlab.Size = new System.Drawing.Size(784, 398);
             this.tabControl_Pathologist_Medlab.TabIndex = 165;
-            // 
+            //
             // tabPage_PREPARATION_SPECIMEN_3
-            // 
+            //
             this.tabPage_PREPARATION_SPECIMEN_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(223)))), ((int)(((byte)(154)))));
             this.tabPage_PREPARATION_SPECIMEN_3.Controls.Add(this.panel15);
             this.tabPage_PREPARATION_SPECIMEN_3.Controls.Add(this.panel9);
@@ -3001,9 +3086,9 @@
             this.tabPage_PREPARATION_SPECIMEN_3.Size = new System.Drawing.Size(776, 370);
             this.tabPage_PREPARATION_SPECIMEN_3.TabIndex = 0;
             this.tabPage_PREPARATION_SPECIMEN_3.Text = "                         PREPARATION & SPECIMEN                        ";
-            // 
+            //
             // panel15
-            // 
+            //
             this.panel15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel15.Controls.Add(this.comboBox_SITE_TYPE_3);
             this.panel15.Controls.Add(this.textBox_SITE_TYPE_3);
@@ -3014,9 +3099,9 @@
             this.panel15.Name = "panel15";
             this.panel15.Size = new System.Drawing.Size(388, 69);
             this.panel15.TabIndex = 10;
-            // 
+            //
             // comboBox_SITE_TYPE_3
-            // 
+            //
             this.comboBox_SITE_TYPE_3.DisplayMember = "site";
             this.comboBox_SITE_TYPE_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_SITE_TYPE_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3029,9 +3114,9 @@
             this.comboBox_SITE_TYPE_3.Text = "Cervical liquid-based preparration (ThinPrep)";
             this.comboBox_SITE_TYPE_3.ValueMember = "site";
             this.comboBox_SITE_TYPE_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_SITE_TYPE_3_SelectionChangeCommitted);
-            // 
+            //
             // textBox_SITE_TYPE_3
-            // 
+            //
             this.textBox_SITE_TYPE_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_SITE_TYPE_3.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_SITE_TYPE_3.Location = new System.Drawing.Point(6, 38);
@@ -3040,9 +3125,9 @@
             this.textBox_SITE_TYPE_3.Size = new System.Drawing.Size(335, 21);
             this.textBox_SITE_TYPE_3.TabIndex = 159;
             this.textBox_SITE_TYPE_3.Text = "宮頸(ThinPrep)液基簿片技術";
-            // 
+            //
             // label8
-            // 
+            //
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(3, 2);
@@ -3050,9 +3135,9 @@
             this.label8.Size = new System.Drawing.Size(37, 15);
             this.label8.TabIndex = 0;
             this.label8.Text = "SITE";
-            // 
+            //
             // button_SITE_TYPE_3
-            // 
+            //
             this.button_SITE_TYPE_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_SITE_TYPE_3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_SITE_TYPE_3.Location = new System.Drawing.Point(341, 19);
@@ -3062,9 +3147,9 @@
             this.button_SITE_TYPE_3.TabIndex = 165;
             this.button_SITE_TYPE_3.Text = "...";
             this.button_SITE_TYPE_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // panel9
-            // 
+            //
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel9.Controls.Add(this.comboBox_DIAGNOSIS_3_3);
             this.panel9.Controls.Add(this.button_DIAGNOSIS_3_3);
@@ -3081,9 +3166,9 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(379, 170);
             this.panel9.TabIndex = 8;
-            // 
+            //
             // comboBox_DIAGNOSIS_3_3
-            // 
+            //
             this.comboBox_DIAGNOSIS_3_3.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_3_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_3_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3095,9 +3180,9 @@
             this.comboBox_DIAGNOSIS_3_3.TabIndex = 171;
             this.comboBox_DIAGNOSIS_3_3.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_3_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_3_3_SelectionChangeCommitted);
-            // 
+            //
             // button_DIAGNOSIS_3_3
-            // 
+            //
             this.button_DIAGNOSIS_3_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_3_3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_3_3.Location = new System.Drawing.Point(338, 107);
@@ -3107,9 +3192,9 @@
             this.button_DIAGNOSIS_3_3.TabIndex = 170;
             this.button_DIAGNOSIS_3_3.Text = "...";
             this.button_DIAGNOSIS_3_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_DIAGNOSIS_3_3
-            // 
+            //
             this.textBox_DIAGNOSIS_3_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_3_3.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_3_3.Location = new System.Drawing.Point(3, 126);
@@ -3117,9 +3202,9 @@
             this.textBox_DIAGNOSIS_3_3.Name = "textBox_DIAGNOSIS_3_3";
             this.textBox_DIAGNOSIS_3_3.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_3_3.TabIndex = 169;
-            // 
+            //
             // comboBox_DIAGNOSIS_2_3
-            // 
+            //
             this.comboBox_DIAGNOSIS_2_3.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_2_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_2_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3131,9 +3216,9 @@
             this.comboBox_DIAGNOSIS_2_3.TabIndex = 168;
             this.comboBox_DIAGNOSIS_2_3.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_2_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_2_3_SelectionChangeCommitted);
-            // 
+            //
             // button_DIAGNOSIS_2_3
-            // 
+            //
             this.button_DIAGNOSIS_2_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_2_3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_2_3.Location = new System.Drawing.Point(338, 62);
@@ -3143,9 +3228,9 @@
             this.button_DIAGNOSIS_2_3.TabIndex = 167;
             this.button_DIAGNOSIS_2_3.Text = "...";
             this.button_DIAGNOSIS_2_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // button_DIAGNOSIS_1_3
-            // 
+            //
             this.button_DIAGNOSIS_1_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_DIAGNOSIS_1_3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_DIAGNOSIS_1_3.Location = new System.Drawing.Point(338, 18);
@@ -3155,9 +3240,9 @@
             this.button_DIAGNOSIS_1_3.TabIndex = 166;
             this.button_DIAGNOSIS_1_3.Text = "...";
             this.button_DIAGNOSIS_1_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_DIAGNOSIS_2_3
-            // 
+            //
             this.textBox_DIAGNOSIS_2_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_2_3.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_2_3.Location = new System.Drawing.Point(3, 82);
@@ -3165,9 +3250,9 @@
             this.textBox_DIAGNOSIS_2_3.Name = "textBox_DIAGNOSIS_2_3";
             this.textBox_DIAGNOSIS_2_3.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_2_3.TabIndex = 164;
-            // 
+            //
             // comboBox_DIAGNOSIS_1_3
-            // 
+            //
             this.comboBox_DIAGNOSIS_1_3.DisplayMember = "diag";
             this.comboBox_DIAGNOSIS_1_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_DIAGNOSIS_1_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3180,9 +3265,9 @@
             this.comboBox_DIAGNOSIS_1_3.Text = "Negative for intraepithelial lesion or malignancy";
             this.comboBox_DIAGNOSIS_1_3.ValueMember = "diag";
             this.comboBox_DIAGNOSIS_1_3.SelectionChangeCommitted += new System.EventHandler(this.comboBox_DIAGNOSIS_1_3_SelectionChangeCommitted);
-            // 
+            //
             // textBox_DIAGNOSIS_1_3
-            // 
+            //
             this.textBox_DIAGNOSIS_1_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_DIAGNOSIS_1_3.ForeColor = System.Drawing.Color.DarkBlue;
             this.textBox_DIAGNOSIS_1_3.Location = new System.Drawing.Point(3, 37);
@@ -3191,9 +3276,9 @@
             this.textBox_DIAGNOSIS_1_3.Size = new System.Drawing.Size(335, 21);
             this.textBox_DIAGNOSIS_1_3.TabIndex = 161;
             this.textBox_DIAGNOSIS_1_3.Text = "無癌或癌前期病變";
-            // 
+            //
             // label5
-            // 
+            //
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(3, 4);
@@ -3201,9 +3286,9 @@
             this.label5.Size = new System.Drawing.Size(81, 15);
             this.label5.TabIndex = 160;
             this.label5.Text = "DIAGNOSIS";
-            // 
+            //
             // panel10
-            // 
+            //
             this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel10.Controls.Add(this.checkBox_trophic_pattern_in_menopause_3);
             this.panel10.Controls.Add(this.checkBox_Mainly_intermediate_and_parabasal_cells_3);
@@ -3217,9 +3302,9 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(388, 118);
             this.panel10.TabIndex = 7;
-            // 
+            //
             // checkBox_trophic_pattern_in_menopause_3
-            // 
+            //
             this.checkBox_trophic_pattern_in_menopause_3.AutoSize = true;
             this.checkBox_trophic_pattern_in_menopause_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_trophic_pattern_in_menopause_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3230,9 +3315,10 @@
             this.checkBox_trophic_pattern_in_menopause_3.TabIndex = 5;
             this.checkBox_trophic_pattern_in_menopause_3.Text = "Atrophic pattern in menopause";
             this.checkBox_trophic_pattern_in_menopause_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_trophic_pattern_in_menopause_3.CheckedChanged += new System.EventHandler(this.checkBox_trophic_pattern_in_menopause_3_CheckedChanged);
+            //
             // checkBox_Mainly_intermediate_and_parabasal_cells_3
-            // 
+            //
             this.checkBox_Mainly_intermediate_and_parabasal_cells_3.AutoSize = true;
             this.checkBox_Mainly_intermediate_and_parabasal_cells_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_intermediate_and_parabasal_cells_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3243,9 +3329,10 @@
             this.checkBox_Mainly_intermediate_and_parabasal_cells_3.TabIndex = 4;
             this.checkBox_Mainly_intermediate_and_parabasal_cells_3.Text = "Mainly intermediate and parabasal cells";
             this.checkBox_Mainly_intermediate_and_parabasal_cells_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Mainly_intermediate_and_parabasal_cells_3.CheckedChanged += new System.EventHandler(this.checkBox_Mainly_intermediate_and_parabasal_cells_3_CheckedChanged);
+            //
             // label6
-            // 
+            //
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3254,9 +3341,9 @@
             this.label6.Size = new System.Drawing.Size(215, 15);
             this.label6.TabIndex = 2;
             this.label6.Text = "endocervical component present";
-            // 
+            //
             // checkBox_Mainly_superficial_and_intermediate_cells_3
-            // 
+            //
             this.checkBox_Mainly_superficial_and_intermediate_cells_3.AutoSize = true;
             this.checkBox_Mainly_superficial_and_intermediate_cells_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_superficial_and_intermediate_cells_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3267,9 +3354,10 @@
             this.checkBox_Mainly_superficial_and_intermediate_cells_3.TabIndex = 1;
             this.checkBox_Mainly_superficial_and_intermediate_cells_3.Text = "Mainly superficial and intermediate cells";
             this.checkBox_Mainly_superficial_and_intermediate_cells_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Mainly_superficial_and_intermediate_cells_3.CheckedChanged += new System.EventHandler(this.checkBox_Mainly_superficial_and_intermediate_cells_3_CheckedChanged);
+            //
             // label7
-            // 
+            //
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(3, 0);
@@ -3277,9 +3365,9 @@
             this.label7.Size = new System.Drawing.Size(168, 15);
             this.label7.TabIndex = 0;
             this.label7.Text = "CELLULAR COMPONENT";
-            // 
+            //
             // checkBox_Transformation_zone_3
-            // 
+            //
             this.checkBox_Transformation_zone_3.AutoSize = true;
             this.checkBox_Transformation_zone_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Transformation_zone_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3290,9 +3378,9 @@
             this.checkBox_Transformation_zone_3.TabIndex = 0;
             this.checkBox_Transformation_zone_3.Text = "Transformation zone /";
             this.checkBox_Transformation_zone_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Post_partum_changes_3
-            // 
+            //
             this.checkBox_Post_partum_changes_3.AutoSize = true;
             this.checkBox_Post_partum_changes_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Post_partum_changes_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3303,9 +3391,10 @@
             this.checkBox_Post_partum_changes_3.TabIndex = 6;
             this.checkBox_Post_partum_changes_3.Text = "Post-partum changes";
             this.checkBox_Post_partum_changes_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Post_partum_changes_3.CheckedChanged += new System.EventHandler(this.checkBox_Post_partum_changes_3_CheckedChanged);
+            //
             // panel_SPECIMEN_QUALIFIER_3
-            // 
+            //
             this.panel_SPECIMEN_QUALIFIER_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SPECIMEN_QUALIFIER_3.Controls.Add(this.checkBox_Obscured_by_inflammatory_exudates_3);
             this.panel_SPECIMEN_QUALIFIER_3.Controls.Add(this.checkBox_Obscured_by_blood_3);
@@ -3318,9 +3407,9 @@
             this.panel_SPECIMEN_QUALIFIER_3.Name = "panel_SPECIMEN_QUALIFIER_3";
             this.panel_SPECIMEN_QUALIFIER_3.Size = new System.Drawing.Size(379, 108);
             this.panel_SPECIMEN_QUALIFIER_3.TabIndex = 5;
-            // 
+            //
             // checkBox_Obscured_by_inflammatory_exudates_3
-            // 
+            //
             this.checkBox_Obscured_by_inflammatory_exudates_3.AutoSize = true;
             this.checkBox_Obscured_by_inflammatory_exudates_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Obscured_by_inflammatory_exudates_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3331,9 +3420,10 @@
             this.checkBox_Obscured_by_inflammatory_exudates_3.TabIndex = 5;
             this.checkBox_Obscured_by_inflammatory_exudates_3.Text = "Obscured by inflammatory exudates";
             this.checkBox_Obscured_by_inflammatory_exudates_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Obscured_by_inflammatory_exudates_3.CheckedChanged += new System.EventHandler(this.checkBox_Obscured_by_inflammatory_exudates_3_CheckedChanged);
+            //
             // checkBox_Obscured_by_blood_3
-            // 
+            //
             this.checkBox_Obscured_by_blood_3.AutoSize = true;
             this.checkBox_Obscured_by_blood_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Obscured_by_blood_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3344,9 +3434,10 @@
             this.checkBox_Obscured_by_blood_3.TabIndex = 3;
             this.checkBox_Obscured_by_blood_3.Text = "Obscured by blood";
             this.checkBox_Obscured_by_blood_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Obscured_by_blood_3.CheckedChanged += new System.EventHandler(this.checkBox_Obscured_by_blood_3_CheckedChanged);
+            //
             // checkBox_Air_drying_artifacts_3
-            // 
+            //
             this.checkBox_Air_drying_artifacts_3.AutoSize = true;
             this.checkBox_Air_drying_artifacts_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Air_drying_artifacts_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3357,9 +3448,10 @@
             this.checkBox_Air_drying_artifacts_3.TabIndex = 1;
             this.checkBox_Air_drying_artifacts_3.Text = "Air-drying artifacts";
             this.checkBox_Air_drying_artifacts_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Air_drying_artifacts_3.CheckedChanged += new System.EventHandler(this.checkBox_Air_drying_artifacts_3_CheckedChanged);
+            //
             // checkBox_Thick_smear_3
-            // 
+            //
             this.checkBox_Thick_smear_3.AutoSize = true;
             this.checkBox_Thick_smear_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Thick_smear_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3370,9 +3462,10 @@
             this.checkBox_Thick_smear_3.TabIndex = 4;
             this.checkBox_Thick_smear_3.Text = "Thick smear";
             this.checkBox_Thick_smear_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Thick_smear_3.CheckedChanged += new System.EventHandler(this.checkBox_Thick_smear_3_CheckedChanged);
+            //
             // label_SPECIMEN_QUALIFIER_3
-            // 
+            //
             this.label_SPECIMEN_QUALIFIER_3.AutoSize = true;
             this.label_SPECIMEN_QUALIFIER_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SPECIMEN_QUALIFIER_3.Location = new System.Drawing.Point(3, -2);
@@ -3380,9 +3473,9 @@
             this.label_SPECIMEN_QUALIFIER_3.Size = new System.Drawing.Size(153, 15);
             this.label_SPECIMEN_QUALIFIER_3.TabIndex = 0;
             this.label_SPECIMEN_QUALIFIER_3.Text = "SPECIMEN QUALIFIER";
-            // 
+            //
             // checkBox_Low_squamous_cellularity_3
-            // 
+            //
             this.checkBox_Low_squamous_cellularity_3.AutoSize = true;
             this.checkBox_Low_squamous_cellularity_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Low_squamous_cellularity_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3393,9 +3486,10 @@
             this.checkBox_Low_squamous_cellularity_3.TabIndex = 0;
             this.checkBox_Low_squamous_cellularity_3.Text = "Low squamous cellularity";
             this.checkBox_Low_squamous_cellularity_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Low_squamous_cellularity_3.CheckedChanged += new System.EventHandler(this.checkBox_Low_squamous_cellularity_3_CheckedChanged);
+            //
             // panel_SPECIMEN_ADEQUACY_3
-            // 
+            //
             this.panel_SPECIMEN_ADEQUACY_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SPECIMEN_ADEQUACY_3.Controls.Add(this.checkBox_Unsatisfactory_for_evaluation_3);
             this.panel_SPECIMEN_ADEQUACY_3.Controls.Add(this.checkBox_Satisfactory_for_evaluation_but_3);
@@ -3406,9 +3500,9 @@
             this.panel_SPECIMEN_ADEQUACY_3.Name = "panel_SPECIMEN_ADEQUACY_3";
             this.panel_SPECIMEN_ADEQUACY_3.Size = new System.Drawing.Size(388, 93);
             this.panel_SPECIMEN_ADEQUACY_3.TabIndex = 2;
-            // 
+            //
             // checkBox_Unsatisfactory_for_evaluation_3
-            // 
+            //
             this.checkBox_Unsatisfactory_for_evaluation_3.AutoSize = true;
             this.checkBox_Unsatisfactory_for_evaluation_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Unsatisfactory_for_evaluation_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3419,9 +3513,10 @@
             this.checkBox_Unsatisfactory_for_evaluation_3.TabIndex = 2;
             this.checkBox_Unsatisfactory_for_evaluation_3.Text = "Unsatisfactory for evaluation";
             this.checkBox_Unsatisfactory_for_evaluation_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Unsatisfactory_for_evaluation_3.CheckedChanged += new System.EventHandler(this.checkBox_Unsatisfactory_for_evaluation_3_CheckedChanged);
+            //
             // checkBox_Satisfactory_for_evaluation_but_3
-            // 
+            //
             this.checkBox_Satisfactory_for_evaluation_but_3.AutoSize = true;
             this.checkBox_Satisfactory_for_evaluation_but_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Satisfactory_for_evaluation_but_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3432,9 +3527,10 @@
             this.checkBox_Satisfactory_for_evaluation_but_3.TabIndex = 1;
             this.checkBox_Satisfactory_for_evaluation_but_3.Text = "Satisfactory for evaluation but ...";
             this.checkBox_Satisfactory_for_evaluation_but_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Satisfactory_for_evaluation_but_3.CheckedChanged += new System.EventHandler(this.checkBox_Satisfactory_for_evaluation_but_3_CheckedChanged);
+            //
             // label_SPECIMEN_ADEQUACY_3
-            // 
+            //
             this.label_SPECIMEN_ADEQUACY_3.AutoSize = true;
             this.label_SPECIMEN_ADEQUACY_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SPECIMEN_ADEQUACY_3.Location = new System.Drawing.Point(3, 0);
@@ -3442,9 +3538,9 @@
             this.label_SPECIMEN_ADEQUACY_3.Size = new System.Drawing.Size(154, 15);
             this.label_SPECIMEN_ADEQUACY_3.TabIndex = 0;
             this.label_SPECIMEN_ADEQUACY_3.Text = "SPECIMEN ADEQUACY";
-            // 
+            //
             // checkBox_Satisfactory_for_evaluation_3
-            // 
+            //
             this.checkBox_Satisfactory_for_evaluation_3.AutoSize = true;
             this.checkBox_Satisfactory_for_evaluation_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Satisfactory_for_evaluation_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3455,9 +3551,10 @@
             this.checkBox_Satisfactory_for_evaluation_3.TabIndex = 0;
             this.checkBox_Satisfactory_for_evaluation_3.Text = "Satisfactory for evaluation";
             this.checkBox_Satisfactory_for_evaluation_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Satisfactory_for_evaluation_3.CheckedChanged += new System.EventHandler(this.checkBox_Satisfactory_for_evaluation_3_CheckedChanged);
+            //
             // panel_TYPE_OF_PREPARATION_3
-            // 
+            //
             this.panel_TYPE_OF_PREPARATION_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_TYPE_OF_PREPARATION_3.Controls.Add(this.checkBox_Conventional_Pap_smears_3);
             this.panel_TYPE_OF_PREPARATION_3.Controls.Add(this.checkBox_Conventional_Pap_smear_3);
@@ -3469,9 +3566,9 @@
             this.panel_TYPE_OF_PREPARATION_3.Name = "panel_TYPE_OF_PREPARATION_3";
             this.panel_TYPE_OF_PREPARATION_3.Size = new System.Drawing.Size(379, 86);
             this.panel_TYPE_OF_PREPARATION_3.TabIndex = 4;
-            // 
+            //
             // checkBox_Conventional_Pap_smears_3
-            // 
+            //
             this.checkBox_Conventional_Pap_smears_3.AutoSize = true;
             this.checkBox_Conventional_Pap_smears_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Conventional_Pap_smears_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3482,9 +3579,10 @@
             this.checkBox_Conventional_Pap_smears_3.TabIndex = 3;
             this.checkBox_Conventional_Pap_smears_3.Text = "Conventional Pap smears";
             this.checkBox_Conventional_Pap_smears_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Conventional_Pap_smears_3.CheckedChanged += new System.EventHandler(this.checkBox_Conventional_Pap_smears_3_CheckedChanged);
+            //
             // checkBox_Conventional_Pap_smear_3
-            // 
+            //
             this.checkBox_Conventional_Pap_smear_3.AutoSize = true;
             this.checkBox_Conventional_Pap_smear_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Conventional_Pap_smear_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3495,9 +3593,10 @@
             this.checkBox_Conventional_Pap_smear_3.TabIndex = 2;
             this.checkBox_Conventional_Pap_smear_3.Text = "Conventional Pap smear";
             this.checkBox_Conventional_Pap_smear_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Conventional_Pap_smear_3.CheckedChanged += new System.EventHandler(this.checkBox_Conventional_Pap_smear_3_CheckedChanged);
+            //
             // checkBox_Liquid_based_preparations_3
-            // 
+            //
             this.checkBox_Liquid_based_preparations_3.AutoSize = true;
             this.checkBox_Liquid_based_preparations_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Liquid_based_preparations_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3508,9 +3607,10 @@
             this.checkBox_Liquid_based_preparations_3.TabIndex = 1;
             this.checkBox_Liquid_based_preparations_3.Text = "Liquid-based preparations";
             this.checkBox_Liquid_based_preparations_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Liquid_based_preparations_3.CheckedChanged += new System.EventHandler(this.checkBox_Liquid_based_preparations_3_CheckedChanged);
+            //
             // label_TYPE_OF_PREPARATION_3
-            // 
+            //
             this.label_TYPE_OF_PREPARATION_3.AutoSize = true;
             this.label_TYPE_OF_PREPARATION_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_TYPE_OF_PREPARATION_3.Location = new System.Drawing.Point(3, 0);
@@ -3518,9 +3618,9 @@
             this.label_TYPE_OF_PREPARATION_3.Size = new System.Drawing.Size(162, 15);
             this.label_TYPE_OF_PREPARATION_3.TabIndex = 0;
             this.label_TYPE_OF_PREPARATION_3.Text = "TYPE OF PREPARATION";
-            // 
+            //
             // checkBox_Liquid_based_preparation_3
-            // 
+            //
             this.checkBox_Liquid_based_preparation_3.AutoSize = true;
             this.checkBox_Liquid_based_preparation_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Liquid_based_preparation_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3531,9 +3631,10 @@
             this.checkBox_Liquid_based_preparation_3.TabIndex = 0;
             this.checkBox_Liquid_based_preparation_3.Text = "Liquid-based preparation";
             this.checkBox_Liquid_based_preparation_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Liquid_based_preparation_3.CheckedChanged += new System.EventHandler(this.checkBox_Liquid_based_preparation_3_CheckedChanged);
+            //
             // panel_SITE_3
-            // 
+            //
             this.panel_SITE_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_SITE_3.Controls.Add(this.checkBox_Vagina_Vault_3);
             this.panel_SITE_3.Controls.Add(this.label_SITE_3);
@@ -3543,9 +3644,9 @@
             this.panel_SITE_3.Name = "panel_SITE_3";
             this.panel_SITE_3.Size = new System.Drawing.Size(388, 86);
             this.panel_SITE_3.TabIndex = 1;
-            // 
+            //
             // checkBox_Vagina_Vault_3
-            // 
+            //
             this.checkBox_Vagina_Vault_3.AutoSize = true;
             this.checkBox_Vagina_Vault_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Vagina_Vault_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3556,9 +3657,10 @@
             this.checkBox_Vagina_Vault_3.TabIndex = 1;
             this.checkBox_Vagina_Vault_3.Text = "Vagina / Vault";
             this.checkBox_Vagina_Vault_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Vagina_Vault_3.CheckedChanged += new System.EventHandler(this.checkBox_Vagina_Vault_3_CheckedChanged);
+            //
             // label_SITE_3
-            // 
+            //
             this.label_SITE_3.AutoSize = true;
             this.label_SITE_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_SITE_3.Location = new System.Drawing.Point(3, 0);
@@ -3566,9 +3668,9 @@
             this.label_SITE_3.Size = new System.Drawing.Size(37, 15);
             this.label_SITE_3.TabIndex = 0;
             this.label_SITE_3.Text = "SITE";
-            // 
+            //
             // checkBox_Cervix_3
-            // 
+            //
             this.checkBox_Cervix_3.AutoSize = true;
             this.checkBox_Cervix_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Cervix_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3579,9 +3681,10 @@
             this.checkBox_Cervix_3.TabIndex = 0;
             this.checkBox_Cervix_3.Text = "Cervix";
             this.checkBox_Cervix_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Cervix_3.CheckedChanged += new System.EventHandler(this.checkBox_Cervix_3_CheckedChanged);
+            //
             // tabPage_INTERPRETATION_3
-            // 
+            //
             this.tabPage_INTERPRETATION_3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(188)))), ((int)(((byte)(218)))));
             this.tabPage_INTERPRETATION_3.Controls.Add(this.panel6);
             this.tabPage_INTERPRETATION_3.Controls.Add(this.panel7);
@@ -3593,9 +3696,9 @@
             this.tabPage_INTERPRETATION_3.Size = new System.Drawing.Size(776, 370);
             this.tabPage_INTERPRETATION_3.TabIndex = 1;
             this.tabPage_INTERPRETATION_3.Text = "                               INTERPRETATION                                 ";
-            // 
+            //
             // panel6
-            // 
+            //
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel6.Controls.Add(this.checkBox_Other_malignant_neoplasm_3);
             this.panel6.Controls.Add(this.checkBox_Adenocarcinoma_NOS_3);
@@ -3621,9 +3724,9 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(379, 362);
             this.panel6.TabIndex = 6;
-            // 
+            //
             // checkBox_Other_malignant_neoplasm_3
-            // 
+            //
             this.checkBox_Other_malignant_neoplasm_3.AutoSize = true;
             this.checkBox_Other_malignant_neoplasm_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Other_malignant_neoplasm_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3635,9 +3738,9 @@
             this.checkBox_Other_malignant_neoplasm_3.TabIndex = 30;
             this.checkBox_Other_malignant_neoplasm_3.Text = "Other malignant neoplasm";
             this.checkBox_Other_malignant_neoplasm_3.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Adenocarcinoma_NOS_3
-            // 
+            //
             this.checkBox_Adenocarcinoma_NOS_3.AutoSize = true;
             this.checkBox_Adenocarcinoma_NOS_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Adenocarcinoma_NOS_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3649,9 +3752,10 @@
             this.checkBox_Adenocarcinoma_NOS_3.TabIndex = 29;
             this.checkBox_Adenocarcinoma_NOS_3.Text = "Adenocarcinoma, NOS";
             this.checkBox_Adenocarcinoma_NOS_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Adenocarcinoma_NOS_3.CheckedChanged += new System.EventHandler(this.checkBox_Adenocarcinoma_NOS_3_CheckedChanged);
+            //
             // checkBox_Endometrial_adenocarcinoma_3
-            // 
+            //
             this.checkBox_Endometrial_adenocarcinoma_3.AutoSize = true;
             this.checkBox_Endometrial_adenocarcinoma_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endometrial_adenocarcinoma_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3663,9 +3767,10 @@
             this.checkBox_Endometrial_adenocarcinoma_3.TabIndex = 28;
             this.checkBox_Endometrial_adenocarcinoma_3.Text = "Endometrial adenocarcinoma";
             this.checkBox_Endometrial_adenocarcinoma_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endometrial_adenocarcinoma_3.CheckedChanged += new System.EventHandler(this.checkBox_Endometrial_adenocarcinoma_3_CheckedChanged);
+            //
             // checkBox_Endocervial_adenocarcinoma_3
-            // 
+            //
             this.checkBox_Endocervial_adenocarcinoma_3.AutoSize = true;
             this.checkBox_Endocervial_adenocarcinoma_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endocervial_adenocarcinoma_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3677,11 +3782,13 @@
             this.checkBox_Endocervial_adenocarcinoma_3.TabIndex = 27;
             this.checkBox_Endocervial_adenocarcinoma_3.Text = "Endocervial adenocarcinoma";
             this.checkBox_Endocervial_adenocarcinoma_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endocervial_adenocarcinoma_3.CheckedChanged += new System.EventHandler(this.checkBox_Endocervial_adenocarcinoma_3_CheckedChanged);
+            //
             // checkBox_Adenocarcinoma_3
-            // 
+            //
             this.checkBox_Adenocarcinoma_3.AutoSize = true;
             this.checkBox_Adenocarcinoma_3.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Adenocarcinoma_3.Enabled = false;
             this.checkBox_Adenocarcinoma_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Adenocarcinoma_3.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Adenocarcinoma_3.Location = new System.Drawing.Point(25, 246);
@@ -3691,9 +3798,9 @@
             this.checkBox_Adenocarcinoma_3.TabIndex = 26;
             this.checkBox_Adenocarcinoma_3.Text = "Adenocarcinoma";
             this.checkBox_Adenocarcinoma_3.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Endocervial_adenocarcinoma_in_situ_3
-            // 
+            //
             this.checkBox_Endocervial_adenocarcinoma_in_situ_3.AutoSize = true;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3705,9 +3812,10 @@
             this.checkBox_Endocervial_adenocarcinoma_in_situ_3.TabIndex = 25;
             this.checkBox_Endocervial_adenocarcinoma_in_situ_3.Text = "Endocervial adenocarcinoma-in-situ";
             this.checkBox_Endocervial_adenocarcinoma_in_situ_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Endocervial_adenocarcinoma_in_situ_3.CheckedChanged += new System.EventHandler(this.checkBox_Endocervial_adenocarcinoma_in_situ_3_CheckedChanged);
+            //
             // checkBox_Atypical_endometrial_cells_NOS_3
-            // 
+            //
             this.checkBox_Atypical_endometrial_cells_NOS_3.AutoSize = true;
             this.checkBox_Atypical_endometrial_cells_NOS_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_endometrial_cells_NOS_3.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3719,9 +3827,10 @@
             this.checkBox_Atypical_endometrial_cells_NOS_3.TabIndex = 24;
             this.checkBox_Atypical_endometrial_cells_NOS_3.Text = "Atypical endometrial cells, NOS";
             this.checkBox_Atypical_endometrial_cells_NOS_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_endometrial_cells_NOS_3.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_endometrial_cells_NOS_3_CheckedChanged);
+            //
             // checkBox_Atypical_endocervical_cells_NOS_3
-            // 
+            //
             this.checkBox_Atypical_endocervical_cells_NOS_3.AutoSize = true;
             this.checkBox_Atypical_endocervical_cells_NOS_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_endocervical_cells_NOS_3.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3733,11 +3842,13 @@
             this.checkBox_Atypical_endocervical_cells_NOS_3.TabIndex = 23;
             this.checkBox_Atypical_endocervical_cells_NOS_3.Text = "Atypical endocervical cells, NOS / favour neoplastic";
             this.checkBox_Atypical_endocervical_cells_NOS_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_endocervical_cells_NOS_3.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_endocervical_cells_NOS_3_CheckedChanged);
+            //
             // checkBox_Atypical_glandular_cells_3
-            // 
+            //
             this.checkBox_Atypical_glandular_cells_3.AutoSize = true;
             this.checkBox_Atypical_glandular_cells_3.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Atypical_glandular_cells_3.Enabled = false;
             this.checkBox_Atypical_glandular_cells_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Atypical_glandular_cells_3.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Atypical_glandular_cells_3.Location = new System.Drawing.Point(25, 180);
@@ -3747,9 +3858,9 @@
             this.checkBox_Atypical_glandular_cells_3.TabIndex = 22;
             this.checkBox_Atypical_glandular_cells_3.Text = "Atypical glandular cells";
             this.checkBox_Atypical_glandular_cells_3.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Atypical_glandular_cells_NOS_3
-            // 
+            //
             this.checkBox_Atypical_glandular_cells_NOS_3.AutoSize = true;
             this.checkBox_Atypical_glandular_cells_NOS_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Atypical_glandular_cells_NOS_3.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3761,9 +3872,10 @@
             this.checkBox_Atypical_glandular_cells_NOS_3.TabIndex = 21;
             this.checkBox_Atypical_glandular_cells_NOS_3.Text = "Atypical glandular cells, NOS / favour neoplastic";
             this.checkBox_Atypical_glandular_cells_NOS_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Atypical_glandular_cells_NOS_3.CheckedChanged += new System.EventHandler(this.checkBox_Atypical_glandular_cells_NOS_3_CheckedChanged);
+            //
             // checkBox_Squamous_cell_carcinoma_3
-            // 
+            //
             this.checkBox_Squamous_cell_carcinoma_3.AutoSize = true;
             this.checkBox_Squamous_cell_carcinoma_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Squamous_cell_carcinoma_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3775,9 +3887,10 @@
             this.checkBox_Squamous_cell_carcinoma_3.TabIndex = 20;
             this.checkBox_Squamous_cell_carcinoma_3.Text = "Squamous cell carcinoma";
             this.checkBox_Squamous_cell_carcinoma_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Squamous_cell_carcinoma_3.CheckedChanged += new System.EventHandler(this.checkBox_Squamous_cell_carcinoma_3_CheckedChanged);
+            //
             // checkBox_HSIL_3
-            // 
+            //
             this.checkBox_HSIL_3.AutoSize = true;
             this.checkBox_HSIL_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_HSIL_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3789,9 +3902,10 @@
             this.checkBox_HSIL_3.TabIndex = 19;
             this.checkBox_HSIL_3.Text = "HSIL, with features suspicious for invasion";
             this.checkBox_HSIL_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_HSIL_3.CheckedChanged += new System.EventHandler(this.checkBox_HSIL_3_CheckedChanged);
+            //
             // checkBox_High_grade_SIL_3
-            // 
+            //
             this.checkBox_High_grade_SIL_3.AutoSize = true;
             this.checkBox_High_grade_SIL_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_High_grade_SIL_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3803,11 +3917,13 @@
             this.checkBox_High_grade_SIL_3.TabIndex = 18;
             this.checkBox_High_grade_SIL_3.Text = "High-grade SIL (including CIN or VAIN II - III)";
             this.checkBox_High_grade_SIL_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_High_grade_SIL_3.CheckedChanged += new System.EventHandler(this.checkBox_High_grade_SIL_3_CheckedChanged);
+            //
             // checkBox_Squamous_intraepithelial_lesion_SIL_3
-            // 
+            //
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.AutoSize = true;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Squamous_intraepithelial_lesion_SIL_3.Enabled = false;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.Location = new System.Drawing.Point(25, 96);
@@ -3817,9 +3933,9 @@
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.TabIndex = 17;
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.Text = "Squamous intraepithelial lesion (SIL)";
             this.checkBox_Squamous_intraepithelial_lesion_SIL_3.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_Low_grade_SIL_3
-            // 
+            //
             this.checkBox_Low_grade_SIL_3.AutoSize = true;
             this.checkBox_Low_grade_SIL_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Low_grade_SIL_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3831,9 +3947,10 @@
             this.checkBox_Low_grade_SIL_3.TabIndex = 16;
             this.checkBox_Low_grade_SIL_3.Text = "Low-grade SIL (including HPV, CIN or VAIN I)";
             this.checkBox_Low_grade_SIL_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_Low_grade_SIL_3.CheckedChanged += new System.EventHandler(this.checkBox_Low_grade_SIL_3_CheckedChanged);
+            //
             // checkBox_ASC_H_3
-            // 
+            //
             this.checkBox_ASC_H_3.AutoSize = true;
             this.checkBox_ASC_H_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_ASC_H_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3845,11 +3962,13 @@
             this.checkBox_ASC_H_3.TabIndex = 15;
             this.checkBox_ASC_H_3.Text = "ASC-H";
             this.checkBox_ASC_H_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_ASC_H_3.CheckedChanged += new System.EventHandler(this.checkBox_ASC_H_3_CheckedChanged);
+            //
             // checkBox_Atypical_squamous_cells_3
-            // 
+            //
             this.checkBox_Atypical_squamous_cells_3.AutoSize = true;
             this.checkBox_Atypical_squamous_cells_3.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_Atypical_squamous_cells_3.Enabled = false;
             this.checkBox_Atypical_squamous_cells_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Atypical_squamous_cells_3.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_Atypical_squamous_cells_3.Location = new System.Drawing.Point(25, 43);
@@ -3859,9 +3978,9 @@
             this.checkBox_Atypical_squamous_cells_3.TabIndex = 14;
             this.checkBox_Atypical_squamous_cells_3.Text = "Atypical squamous cells";
             this.checkBox_Atypical_squamous_cells_3.UseVisualStyleBackColor = false;
-            // 
+            //
             // checkBox_ASC_US_3
-            // 
+            //
             this.checkBox_ASC_US_3.AutoSize = true;
             this.checkBox_ASC_US_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_ASC_US_3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -3873,11 +3992,13 @@
             this.checkBox_ASC_US_3.TabIndex = 13;
             this.checkBox_ASC_US_3.Text = "ASC-US";
             this.checkBox_ASC_US_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_ASC_US_3.CheckedChanged += new System.EventHandler(this.checkBox_ASC_US_3_CheckedChanged);
+            //
             // checkBox_EPITHELIAL_CELL_ABNORMALITIES_3
-            // 
+            //
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.AutoSize = true;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.BackColor = System.Drawing.Color.Transparent;
+            this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Enabled = false;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.ForeColor = System.Drawing.Color.Blue;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Location = new System.Drawing.Point(4, 25);
@@ -3887,9 +4008,9 @@
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.TabIndex = 12;
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Text = "EPITHELIAL CELL ABNORMALITIES";
             this.checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.UseVisualStyleBackColor = false;
-            // 
+            //
             // panel7
-            // 
+            //
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel7.Controls.Add(this.checkBox_HPV_DNA_TESTING_3);
             this.panel7.Location = new System.Drawing.Point(6, 314);
@@ -3897,9 +4018,9 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(379, 53);
             this.panel7.TabIndex = 6;
-            // 
+            //
             // checkBox_HPV_DNA_TESTING_3
-            // 
+            //
             this.checkBox_HPV_DNA_TESTING_3.AutoSize = true;
             this.checkBox_HPV_DNA_TESTING_3.Font = new System.Drawing.Font("Microsoft New Tai Lue", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_HPV_DNA_TESTING_3.ForeColor = System.Drawing.Color.Blue;
@@ -3910,9 +4031,9 @@
             this.checkBox_HPV_DNA_TESTING_3.TabIndex = 0;
             this.checkBox_HPV_DNA_TESTING_3.Text = "HPV DNA TESTING";
             this.checkBox_HPV_DNA_TESTING_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // panel_INTERPRETATION_3
-            // 
+            //
             this.panel_INTERPRETATION_3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel_INTERPRETATION_3.Controls.Add(this.checkBox_Others_eg_follicular_cervicitis_RT_effect_3);
             this.panel_INTERPRETATION_3.Controls.Add(this.checkBox_Endometrial_cells_3);
@@ -3932,9 +4053,9 @@
             this.panel_INTERPRETATION_3.Name = "panel_INTERPRETATION_3";
             this.panel_INTERPRETATION_3.Size = new System.Drawing.Size(379, 310);
             this.panel_INTERPRETATION_3.TabIndex = 5;
-            // 
+            //
             // checkBox_Others_eg_follicular_cervicitis_RT_effect_3
-            // 
+            //
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_3.AutoSize = true;
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3945,9 +4066,9 @@
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_3.TabIndex = 11;
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_3.Text = "Others (e.g. follicular cervicitis, RT effect)";
             this.checkBox_Others_eg_follicular_cervicitis_RT_effect_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Endometrial_cells_3
-            // 
+            //
             this.checkBox_Endometrial_cells_3.AutoSize = true;
             this.checkBox_Endometrial_cells_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Endometrial_cells_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3958,9 +4079,9 @@
             this.checkBox_Endometrial_cells_3.TabIndex = 10;
             this.checkBox_Endometrial_cells_3.Text = "Endometrial cells";
             this.checkBox_Endometrial_cells_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // checkBox_Actinomyces_3
-            // 
+            //
             this.checkBox_Actinomyces_3.AutoSize = true;
             this.checkBox_Actinomyces_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Actinomyces_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3971,9 +4092,10 @@
             this.checkBox_Actinomyces_3.TabIndex = 9;
             this.checkBox_Actinomyces_3.Text = "Actinomyces";
             this.checkBox_Actinomyces_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Actinomyces_3.CheckedChanged += new System.EventHandler(this.checkBox_Actinomyces_3_CheckedChanged);
+            //
             // checkBox_Trichomonas_vaginalis_3
-            // 
+            //
             this.checkBox_Trichomonas_vaginalis_3.AutoSize = true;
             this.checkBox_Trichomonas_vaginalis_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Trichomonas_vaginalis_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3984,9 +4106,10 @@
             this.checkBox_Trichomonas_vaginalis_3.TabIndex = 8;
             this.checkBox_Trichomonas_vaginalis_3.Text = "Trichomonas vaginalis";
             this.checkBox_Trichomonas_vaginalis_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Trichomonas_vaginalis_3.CheckedChanged += new System.EventHandler(this.checkBox_Trichomonas_vaginalis_3_CheckedChanged);
+            //
             // checkBox_Candida_Monilia_3
-            // 
+            //
             this.checkBox_Candida_Monilia_3.AutoSize = true;
             this.checkBox_Candida_Monilia_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Candida_Monilia_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -3997,9 +4120,10 @@
             this.checkBox_Candida_Monilia_3.TabIndex = 7;
             this.checkBox_Candida_Monilia_3.Text = "Candida (Monilia)";
             this.checkBox_Candida_Monilia_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Candida_Monilia_3.CheckedChanged += new System.EventHandler(this.checkBox_Candida_Monilia_3_CheckedChanged);
+            //
             // checkBox_Herpes_simplex_virus_3
-            // 
+            //
             this.checkBox_Herpes_simplex_virus_3.AutoSize = true;
             this.checkBox_Herpes_simplex_virus_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Herpes_simplex_virus_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -4010,9 +4134,10 @@
             this.checkBox_Herpes_simplex_virus_3.TabIndex = 6;
             this.checkBox_Herpes_simplex_virus_3.Text = "Herpes simplex virus";
             this.checkBox_Herpes_simplex_virus_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Herpes_simplex_virus_3.CheckedChanged += new System.EventHandler(this.checkBox_Herpes_simplex_virus_3_CheckedChanged);
+            //
             // label_with_inflammation_3
-            // 
+            //
             this.label_with_inflammation_3.AutoSize = true;
             this.label_with_inflammation_3.BackColor = System.Drawing.Color.Transparent;
             this.label_with_inflammation_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4022,9 +4147,9 @@
             this.label_with_inflammation_3.Size = new System.Drawing.Size(130, 18);
             this.label_with_inflammation_3.TabIndex = 5;
             this.label_with_inflammation_3.Text = "with inflammation";
-            // 
+            //
             // label_LESION_OR_MALIGNANCY_3
-            // 
+            //
             this.label_LESION_OR_MALIGNANCY_3.AutoSize = true;
             this.label_LESION_OR_MALIGNANCY_3.BackColor = System.Drawing.Color.Transparent;
             this.label_LESION_OR_MALIGNANCY_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold);
@@ -4034,9 +4159,9 @@
             this.label_LESION_OR_MALIGNANCY_3.Size = new System.Drawing.Size(194, 18);
             this.label_LESION_OR_MALIGNANCY_3.TabIndex = 4;
             this.label_LESION_OR_MALIGNANCY_3.Text = "LESION OR MALIGNANCY";
-            // 
+            //
             // checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3
-            // 
+            //
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.AutoSize = true;
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -4047,9 +4172,10 @@
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.TabIndex = 3;
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Text = "Shift in flora suggestive of bacterial vaginosis";
             this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.CheckedChanged += new System.EventHandler(this.checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3_CheckedChanged);
+            //
             // checkBox_Normal_flora_3
-            // 
+            //
             this.checkBox_Normal_flora_3.AutoSize = true;
             this.checkBox_Normal_flora_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Normal_flora_3.ForeColor = System.Drawing.Color.DarkBlue;
@@ -4060,9 +4186,10 @@
             this.checkBox_Normal_flora_3.TabIndex = 2;
             this.checkBox_Normal_flora_3.Text = "Normal flora";
             this.checkBox_Normal_flora_3.UseVisualStyleBackColor = true;
-            // 
+            this.checkBox_Normal_flora_3.CheckedChanged += new System.EventHandler(this.checkBox_Normal_flora_3_CheckedChanged);
+            //
             // checkBox_Reactive_cellular_changes_associated_3
-            // 
+            //
             this.checkBox_Reactive_cellular_changes_associated_3.AutoSize = true;
             this.checkBox_Reactive_cellular_changes_associated_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_Reactive_cellular_changes_associated_3.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4074,9 +4201,9 @@
             this.checkBox_Reactive_cellular_changes_associated_3.TabIndex = 1;
             this.checkBox_Reactive_cellular_changes_associated_3.Text = "Reactive cellular changes associated";
             this.checkBox_Reactive_cellular_changes_associated_3.UseVisualStyleBackColor = false;
-            // 
+            //
             // label_INTERPRETATION_3
-            // 
+            //
             this.label_INTERPRETATION_3.AutoSize = true;
             this.label_INTERPRETATION_3.BackColor = System.Drawing.Color.Transparent;
             this.label_INTERPRETATION_3.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4086,9 +4213,9 @@
             this.label_INTERPRETATION_3.Size = new System.Drawing.Size(139, 18);
             this.label_INTERPRETATION_3.TabIndex = 0;
             this.label_INTERPRETATION_3.Text = "INTERPRETATION";
-            // 
+            //
             // checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3
-            // 
+            //
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.AutoSize = true;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.BackColor = System.Drawing.Color.Transparent;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -4100,9 +4227,10 @@
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.TabIndex = 0;
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Text = "NEGATIVE FOR INTRAEPITHELIAL";
             this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.UseVisualStyleBackColor = false;
-            // 
+            this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.CheckedChanged += new System.EventHandler(this.checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3_CheckedChanged);
+            //
             // label_Locked_meg_3
-            // 
+            //
             this.label_Locked_meg_3.AutoSize = true;
             this.label_Locked_meg_3.BackColor = System.Drawing.Color.Transparent;
             this.label_Locked_meg_3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Italic);
@@ -4113,9 +4241,9 @@
             this.label_Locked_meg_3.TabIndex = 164;
             this.label_Locked_meg_3.Text = "( This screen was Locked for resd only since it has been signed by the Doctor / P" +
     "athologist.)";
-            // 
+            //
             // label_Locked_3
-            // 
+            //
             this.label_Locked_3.AutoSize = true;
             this.label_Locked_3.BackColor = System.Drawing.Color.Transparent;
             this.label_Locked_3.Font = new System.Drawing.Font("Arial", 11.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
@@ -4125,9 +4253,9 @@
             this.label_Locked_3.Size = new System.Drawing.Size(103, 17);
             this.label_Locked_3.TabIndex = 163;
             this.label_Locked_3.Text = "*** Locked ***";
-            // 
+            //
             // label_P_3
-            // 
+            //
             this.label_P_3.AutoSize = true;
             this.label_P_3.BackColor = System.Drawing.Color.Transparent;
             this.label_P_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4137,9 +4265,9 @@
             this.label_P_3.Size = new System.Drawing.Size(32, 17);
             this.label_P_3.TabIndex = 162;
             this.label_P_3.Text = "P.3";
-            // 
+            //
             // panel8
-            // 
+            //
             this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(247)))), ((int)(((byte)(224)))), ((int)(((byte)(193)))));
             this.panel8.Controls.Add(this.comboBox_Sign_By_3);
             this.panel8.Controls.Add(this.button_Sign_At_3);
@@ -4152,9 +4280,9 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(760, 26);
             this.panel8.TabIndex = 161;
-            // 
+            //
             // comboBox_Sign_By_3
-            // 
+            //
             this.comboBox_Sign_By_3.DisplayMember = "doctor";
             this.comboBox_Sign_By_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.comboBox_Sign_By_3.ForeColor = System.Drawing.Color.Blue;
@@ -4165,9 +4293,9 @@
             this.comboBox_Sign_By_3.Size = new System.Drawing.Size(135, 26);
             this.comboBox_Sign_By_3.TabIndex = 158;
             this.comboBox_Sign_By_3.ValueMember = "doctor";
-            // 
+            //
             // button_Sign_At_3
-            // 
+            //
             this.button_Sign_At_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_Sign_At_3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Sign_At_3.Image = ((System.Drawing.Image)(resources.GetObject("button_Sign_At_3.Image")));
@@ -4177,9 +4305,9 @@
             this.button_Sign_At_3.Size = new System.Drawing.Size(29, 25);
             this.button_Sign_At_3.TabIndex = 157;
             this.button_Sign_At_3.UseVisualStyleBackColor = true;
-            // 
+            //
             // textBox_Sign_By_3
-            // 
+            //
             this.textBox_Sign_By_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Sign_By_3.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Sign_By_3.Location = new System.Drawing.Point(447, 1);
@@ -4188,9 +4316,9 @@
             this.textBox_Sign_By_3.ReadOnly = true;
             this.textBox_Sign_By_3.Size = new System.Drawing.Size(169, 24);
             this.textBox_Sign_By_3.TabIndex = 63;
-            // 
+            //
             // textBox_Sign_At_3
-            // 
+            //
             this.textBox_Sign_At_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox_Sign_At_3.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Sign_At_3.Location = new System.Drawing.Point(82, 2);
@@ -4199,9 +4327,9 @@
             this.textBox_Sign_At_3.Size = new System.Drawing.Size(183, 24);
             this.textBox_Sign_At_3.TabIndex = 156;
             this.textBox_Sign_At_3.Text = "  /  /    :  :    AM";
-            // 
+            //
             // label_Sign_By_3
-            // 
+            //
             this.label_Sign_By_3.AutoSize = true;
             this.label_Sign_By_3.BackColor = System.Drawing.Color.Transparent;
             this.label_Sign_By_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4211,9 +4339,9 @@
             this.label_Sign_By_3.Size = new System.Drawing.Size(64, 17);
             this.label_Sign_By_3.TabIndex = 64;
             this.label_Sign_By_3.Text = "Sign By :";
-            // 
+            //
             // label_Sign_At_3
-            // 
+            //
             this.label_Sign_At_3.AutoSize = true;
             this.label_Sign_At_3.BackColor = System.Drawing.Color.Transparent;
             this.label_Sign_At_3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4223,9 +4351,9 @@
             this.label_Sign_At_3.Size = new System.Drawing.Size(69, 17);
             this.label_Sign_At_3.TabIndex = 61;
             this.label_Sign_At_3.Text = "Sign At  : ";
-            // 
+            //
             // label_Printed_By
-            // 
+            //
             this.label_Printed_By.AutoSize = true;
             this.label_Printed_By.BackColor = System.Drawing.Color.Transparent;
             this.label_Printed_By.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4235,9 +4363,9 @@
             this.label_Printed_By.Size = new System.Drawing.Size(81, 17);
             this.label_Printed_By.TabIndex = 159;
             this.label_Printed_By.Text = "Printed By :";
-            // 
+            //
             // label_Printed_At
-            // 
+            //
             this.label_Printed_At.AutoSize = true;
             this.label_Printed_At.BackColor = System.Drawing.Color.Transparent;
             this.label_Printed_At.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4247,9 +4375,9 @@
             this.label_Printed_At.Size = new System.Drawing.Size(78, 17);
             this.label_Printed_At.TabIndex = 160;
             this.label_Printed_At.Text = "Printed At :";
-            // 
+            //
             // label_Printed_By_No
-            // 
+            //
             this.label_Printed_By_No.AutoSize = true;
             this.label_Printed_By_No.BackColor = System.Drawing.Color.Transparent;
             this.label_Printed_By_No.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4259,9 +4387,9 @@
             this.label_Printed_By_No.Size = new System.Drawing.Size(26, 17);
             this.label_Printed_By_No.TabIndex = 161;
             this.label_Printed_By_No.Text = "(0)";
-            // 
+            //
             // label_Printed_At_Date
-            // 
+            //
             this.label_Printed_At_Date.AutoSize = true;
             this.label_Printed_At_Date.BackColor = System.Drawing.Color.Transparent;
             this.label_Printed_At_Date.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
@@ -4271,9 +4399,9 @@
             this.label_Printed_At_Date.Size = new System.Drawing.Size(100, 17);
             this.label_Printed_At_Date.TabIndex = 162;
             this.label_Printed_At_Date.Text = "  /  /      :  :  AM";
-            // 
+            //
             // button_Confirm_Exit
-            // 
+            //
             this.button_Confirm_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Confirm_Exit.ForeColor = System.Drawing.Color.DarkRed;
             this.button_Confirm_Exit.Image = ((System.Drawing.Image)(resources.GetObject("button_Confirm_Exit.Image")));
@@ -4287,9 +4415,9 @@
             this.button_Confirm_Exit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Confirm_Exit.UseVisualStyleBackColor = true;
             this.button_Confirm_Exit.Click += new System.EventHandler(this.button_Confirm_Exit_Click);
-            // 
+            //
             // button_Image
-            // 
+            //
             this.button_Image.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Image.ForeColor = System.Drawing.Color.Black;
             this.button_Image.Image = ((System.Drawing.Image)(resources.GetObject("button_Image.Image")));
@@ -4303,9 +4431,9 @@
             this.button_Image.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Image.UseVisualStyleBackColor = true;
             this.button_Image.Click += new System.EventHandler(this.button_Image_Click);
-            // 
+            //
             // button_Print
-            // 
+            //
             this.button_Print.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.button_Print.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button_Print.Image = ((System.Drawing.Image)(resources.GetObject("button_Print.Image")));
@@ -4319,9 +4447,9 @@
             this.button_Print.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.button_Print.UseVisualStyleBackColor = true;
             this.button_Print.Click += new System.EventHandler(this.button_Print_Click);
-            // 
+            //
             // Form_CytologicalDiagnosis
-            // 
+            //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(212)))), ((int)(((byte)(190)))));

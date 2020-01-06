@@ -342,5 +342,33 @@ namespace St.Teresa_LIS_2019
                 textBoxOutputPatient.Text = r;
             }
         }
+
+        private void textBox_caseNo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button_2d_convert_Click(object sender, EventArgs e)
+        {
+            textBox_2d_output.Text = "";
+
+            if (textBox_2d_input.Text == "")
+            {
+                MessageBox.Show("The input text box is null");
+            }
+            else
+            {
+                EhrBarCode br = EhrBarCode.getInstance(textBox_2d_input.Text);
+                if (br == null)
+                {
+                    textBox_2d_output.Text = "The 2D barcode is invalid";
+                }
+                else
+                {
+                    textBox_2d_output.Text = br.ToString();
+                }
+                
+            }
+        }
     }
 }

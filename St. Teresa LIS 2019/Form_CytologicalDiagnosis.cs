@@ -12,6 +12,9 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_CytologicalDiagnosis : Form
     {
+      private Form_CYTOLOGYFileGyname fileForm;
+      private String reportWording = "";
+
         private int currentStatus;
         private string caseNo;
 
@@ -47,6 +50,64 @@ namespace St.Teresa_LIS_2019
             InitializeComponent();
         }
 
+        public void setPreviousFileForm(Form_CYTOLOGYFileGyname fileForm)
+        {
+            this.fileForm = fileForm;
+        }
+
+        private void initCurrentEditRow(DataRow currentEditRow)
+        {
+            currentEditRow["site1"] = false;
+            currentEditRow["site2"] = false;
+            currentEditRow["specimena1"] = false;
+            currentEditRow["specimena2"] = false;
+            currentEditRow["specimena3"] = false;
+            currentEditRow["cellularc1"] = false;
+            currentEditRow["cellularc2"] = false;
+            currentEditRow["cellularc3"] = false;
+            currentEditRow["cellularc4"] = false;
+            currentEditRow["cellularc5"] = false;
+            currentEditRow["prepair1"] = false;
+            currentEditRow["prepair2"] = false;
+            currentEditRow["prepair3"] = false;
+            currentEditRow["prepair4"] = false;
+            currentEditRow["specimenq1"] = false;
+            currentEditRow["specimenq2"] = false;
+            currentEditRow["specimenq3"] = false;
+            currentEditRow["specimenq4"] = false;
+            currentEditRow["specimenq5"] = false;
+            currentEditRow["interneg"] = false;
+            currentEditRow["interneg1"] = false;
+            currentEditRow["interneg2"] = false;
+            currentEditRow["interneg3"] = false;
+            currentEditRow["interneg4"] = false;
+            currentEditRow["interneg5"] = false;
+            currentEditRow["interneg6"] = false;
+            currentEditRow["interneg7"] = false;
+            currentEditRow["interneg8"] = false;
+            currentEditRow["interneg9"] = false;
+            currentEditRow["hpv_dna"] = false;
+            currentEditRow["interepi"] = false;
+            currentEditRow["interepi1"] = false;
+            currentEditRow["interepi1a"] = false;
+            currentEditRow["interepi1b"] = false;
+            currentEditRow["interepi2"] = false;
+            currentEditRow["interepi2a"] = false;
+            currentEditRow["interepi2b"] = false;
+            currentEditRow["interepi2c"] = false;
+            currentEditRow["interepi3"] = false;
+            currentEditRow["interepi4"] = false;
+            currentEditRow["interepi4a"] = false;
+            currentEditRow["interepi4b"] = false;
+            currentEditRow["interepi4c"] = false;
+            currentEditRow["interepi5"] = false;
+            currentEditRow["interepi5a"] = false;
+            currentEditRow["interepi5b"] = false;
+            currentEditRow["interepi5c"] = false;
+            currentEditRow["interepi5d"] = false;
+            currentEditRow["interepi6"] = false;
+        }
+
         public Form_CytologicalDiagnosis(string caseNo, int status, DataSet existCyDiagDataSet1 = null, DataSet existCyDiagDataSet2 = null, DataSet existCyDiagDataSet3 = null, SqlDataAdapter existCyDiagDataAdapter1 = null, SqlDataAdapter existCyDiagDataAdapter2 = null, SqlDataAdapter existCyDiagDataAdapter3 = null)
         {
             this.caseNo = caseNo;
@@ -76,164 +137,45 @@ namespace St.Teresa_LIS_2019
                     reloadAndBindingDBData();
                 }
 
+                //if (existCyDiagDataSet1 == null)
+                //{
+                //    currentEditRow1 = cyDiagDataSet1.Tables[0].NewRow();
+                //    initCurrentEditRow(currentEditRow1);
+                //    cyDiagDataSet1.Tables[0].Rows.Clear();
+                //    cyDiagDataSet1.Tables[0].Rows.Add(currentEditRow1);
+                //}
+
+                //if (existCyDiagDataSet2 == null)
+                //{
+                //    currentEditRow2 = cyDiagDataSet2.Tables[0].NewRow();
+                //    initCurrentEditRow(currentEditRow2);
+                //    cyDiagDataSet2.Tables[0].Rows.Clear();
+                //    cyDiagDataSet2.Tables[0].Rows.Add(currentEditRow2);
+                //}
+
+                //if (existCyDiagDataSet3 == null)
+                //{
+                //    currentEditRow3 = cyDiagDataSet3.Tables[0].NewRow();
+                //    initCurrentEditRow(currentEditRow3);
+                //    cyDiagDataSet3.Tables[0].Rows.Clear();
+                //    cyDiagDataSet3.Tables[0].Rows.Add(currentEditRow3);
+                //}
+
+
                 if (currentStatus == PageStatus.STATUS_NEW && existCyDiagDataSet1 == null && existCyDiagDataSet2 == null && existCyDiagDataSet3 == null)
                 {
                     currentEditRow1 = cyDiagDataSet1.Tables[0].NewRow();
-                    currentEditRow1["site1"] = false;
-                    currentEditRow1["site2"] = false;
-                    currentEditRow1["specimena1"] = false;
-                    currentEditRow1["specimena2"] = false;
-                    currentEditRow1["specimena3"] = false;
-                    currentEditRow1["cellularc1"] = false;
-                    currentEditRow1["cellularc2"] = false;
-                    currentEditRow1["cellularc3"] = false;
-                    currentEditRow1["cellularc4"] = false;
-                    currentEditRow1["cellularc5"] = false;
-                    currentEditRow1["prepair1"] = false;
-                    currentEditRow1["prepair2"] = false;
-                    currentEditRow1["prepair3"] = false;
-                    currentEditRow1["prepair4"] = false;
-                    currentEditRow1["specimenq1"] = false;
-                    currentEditRow1["specimenq2"] = false;
-                    currentEditRow1["specimenq3"] = false;
-                    currentEditRow1["specimenq4"] = false;
-                    currentEditRow1["specimenq5"] = false;
-                    currentEditRow1["interneg"] = false;
-                    currentEditRow1["interneg1"] = false;
-                    currentEditRow1["interneg2"] = false;
-                    currentEditRow1["interneg3"] = false;
-                    currentEditRow1["interneg4"] = false;
-                    currentEditRow1["interneg5"] = false;
-                    currentEditRow1["interneg6"] = false;
-                    currentEditRow1["interneg7"] = false;
-                    currentEditRow1["interneg8"] = false;
-                    currentEditRow1["interneg9"] = false;
-                    currentEditRow1["hpv_dna"] = false;
-                    currentEditRow1["interepi"] = false;
-                    currentEditRow1["interepi1"] = false;
-                    currentEditRow1["interepi1a"] = false;
-                    currentEditRow1["interepi1b"] = false;
-                    currentEditRow1["interepi2"] = false;
-                    currentEditRow1["interepi2a"] = false;
-                    currentEditRow1["interepi2b"] = false;
-                    currentEditRow1["interepi2c"] = false;
-                    currentEditRow1["interepi3"] = false;
-                    currentEditRow1["interepi4"] = false;
-                    currentEditRow1["interepi4a"] = false;
-                    currentEditRow1["interepi4b"] = false;
-                    currentEditRow1["interepi4c"] = false;
-                    currentEditRow1["interepi5"] = false;
-                    currentEditRow1["interepi5a"] = false;
-                    currentEditRow1["interepi5b"] = false;
-                    currentEditRow1["interepi5c"] = false;
-                    currentEditRow1["interepi5d"] = false;
-                    currentEditRow1["interepi6"] = false;
+                    initCurrentEditRow(currentEditRow1);
                     cyDiagDataSet1.Tables[0].Rows.Clear();
                     cyDiagDataSet1.Tables[0].Rows.Add(currentEditRow1);
 
                     currentEditRow2 = cyDiagDataSet2.Tables[0].NewRow();
-                    currentEditRow2["site1"] = false;
-                    currentEditRow2["site2"] = false;
-                    currentEditRow2["specimena1"] = false;
-                    currentEditRow2["specimena2"] = false;
-                    currentEditRow2["specimena3"] = false;
-                    currentEditRow2["cellularc1"] = false;
-                    currentEditRow2["cellularc2"] = false;
-                    currentEditRow2["cellularc3"] = false;
-                    currentEditRow2["cellularc4"] = false;
-                    currentEditRow2["cellularc5"] = false;
-                    currentEditRow2["prepair1"] = false;
-                    currentEditRow2["prepair2"] = false;
-                    currentEditRow2["prepair3"] = false;
-                    currentEditRow2["prepair4"] = false;
-                    currentEditRow2["specimenq1"] = false;
-                    currentEditRow2["specimenq2"] = false;
-                    currentEditRow2["specimenq3"] = false;
-                    currentEditRow2["specimenq4"] = false;
-                    currentEditRow2["specimenq5"] = false;
-                    currentEditRow2["interneg"] = false;
-                    currentEditRow2["interneg1"] = false;
-                    currentEditRow2["interneg2"] = false;
-                    currentEditRow2["interneg3"] = false;
-                    currentEditRow2["interneg4"] = false;
-                    currentEditRow2["interneg5"] = false;
-                    currentEditRow2["interneg6"] = false;
-                    currentEditRow2["interneg7"] = false;
-                    currentEditRow2["interneg8"] = false;
-                    currentEditRow2["interneg9"] = false;
-                    currentEditRow2["hpv_dna"] = false;
-                    currentEditRow2["interepi"] = false;
-                    currentEditRow2["interepi1"] = false;
-                    currentEditRow2["interepi1a"] = false;
-                    currentEditRow2["interepi1b"] = false;
-                    currentEditRow2["interepi2"] = false;
-                    currentEditRow2["interepi2a"] = false;
-                    currentEditRow2["interepi2b"] = false;
-                    currentEditRow2["interepi2c"] = false;
-                    currentEditRow2["interepi3"] = false;
-                    currentEditRow2["interepi4"] = false;
-                    currentEditRow2["interepi4a"] = false;
-                    currentEditRow2["interepi4b"] = false;
-                    currentEditRow2["interepi4c"] = false;
-                    currentEditRow2["interepi5"] = false;
-                    currentEditRow2["interepi5a"] = false;
-                    currentEditRow2["interepi5b"] = false;
-                    currentEditRow2["interepi5c"] = false;
-                    currentEditRow2["interepi5d"] = false;
-                    currentEditRow2["interepi6"] = false;
+                    initCurrentEditRow(currentEditRow2);
                     cyDiagDataSet2.Tables[0].Rows.Clear();
                     cyDiagDataSet2.Tables[0].Rows.Add(currentEditRow2);
 
                     currentEditRow3 = cyDiagDataSet3.Tables[0].NewRow();
-                    currentEditRow3["site1"] = false;
-                    currentEditRow3["site2"] = false;
-                    currentEditRow3["specimena1"] = false;
-                    currentEditRow3["specimena2"] = false;
-                    currentEditRow3["specimena3"] = false;
-                    currentEditRow3["cellularc1"] = false;
-                    currentEditRow3["cellularc2"] = false;
-                    currentEditRow3["cellularc3"] = false;
-                    currentEditRow3["cellularc4"] = false;
-                    currentEditRow3["cellularc5"] = false;
-                    currentEditRow3["prepair1"] = false;
-                    currentEditRow3["prepair2"] = false;
-                    currentEditRow3["prepair3"] = false;
-                    currentEditRow3["prepair4"] = false;
-                    currentEditRow3["specimenq1"] = false;
-                    currentEditRow3["specimenq2"] = false;
-                    currentEditRow3["specimenq3"] = false;
-                    currentEditRow3["specimenq4"] = false;
-                    currentEditRow3["specimenq5"] = false;
-                    currentEditRow3["interneg"] = false;
-                    currentEditRow3["interneg1"] = false;
-                    currentEditRow3["interneg2"] = false;
-                    currentEditRow3["interneg3"] = false;
-                    currentEditRow3["interneg4"] = false;
-                    currentEditRow3["interneg5"] = false;
-                    currentEditRow3["interneg6"] = false;
-                    currentEditRow3["interneg7"] = false;
-                    currentEditRow3["interneg8"] = false;
-                    currentEditRow3["interneg9"] = false;
-                    currentEditRow3["hpv_dna"] = false;
-                    currentEditRow3["interepi"] = false;
-                    currentEditRow3["interepi1"] = false;
-                    currentEditRow3["interepi1a"] = false;
-                    currentEditRow3["interepi1b"] = false;
-                    currentEditRow3["interepi2"] = false;
-                    currentEditRow3["interepi2a"] = false;
-                    currentEditRow3["interepi2b"] = false;
-                    currentEditRow3["interepi2c"] = false;
-                    currentEditRow3["interepi3"] = false;
-                    currentEditRow3["interepi4"] = false;
-                    currentEditRow3["interepi4a"] = false;
-                    currentEditRow3["interepi4b"] = false;
-                    currentEditRow3["interepi4c"] = false;
-                    currentEditRow3["interepi5"] = false;
-                    currentEditRow3["interepi5a"] = false;
-                    currentEditRow3["interepi5b"] = false;
-                    currentEditRow3["interepi5c"] = false;
-                    currentEditRow3["interepi5d"] = false;
-                    currentEditRow3["interepi6"] = false;
+                    initCurrentEditRow(currentEditRow3);
                     cyDiagDataSet3.Tables[0].Rows.Clear();
                     cyDiagDataSet3.Tables[0].Rows.Add(currentEditRow3);
                 }
@@ -255,6 +197,16 @@ namespace St.Teresa_LIS_2019
             {
                 OnCyDiagExit(cyDiagDataSet1, cyDiagDataSet2, cyDiagDataSet3, cyDiagDataAdapter1, cyDiagDataAdapter2, cyDiagDataAdapter3);
             }
+
+            reportWording = "";
+            generateReportWording();
+            if (fileForm != null)
+            {
+                fileForm.setReportWording(reportWording);
+            }
+            
+            //this.Hide();
+
             this.Close();
         }
 
@@ -262,6 +214,1807 @@ namespace St.Teresa_LIS_2019
         {
             Form_GynaecologicalCytologyReport open = new Form_GynaecologicalCytologyReport();
             open.Show();
+        }
+
+
+        private void checkBox_Cervix_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Cervix_1.Checked)
+            {
+                checkBox_Vagina_Vault_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Vagina_Vault_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Vagina_Vault_1.Checked)
+            {
+                checkBox_Cervix_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Cervix_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Cervix_2.Checked)
+            {
+                checkBox_Vagina_Vault_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Vagina_Vault_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Vagina_Vault_2.Checked)
+            {
+                checkBox_Cervix_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Cervix_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Cervix_3.Checked)
+            {
+                checkBox_Vagina_Vault_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Vagina_Vault_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Vagina_Vault_3.Checked)
+            {
+                checkBox_Cervix_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Satisfactory_for_evaluation_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Satisfactory_for_evaluation_1.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_but_1.Checked = false;
+                checkBox_Unsatisfactory_for_evaluation_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Satisfactory_for_evaluation_but_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Satisfactory_for_evaluation_but_1.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_1.Checked = false;
+                checkBox_Unsatisfactory_for_evaluation_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Unsatisfactory_for_evaluation_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Unsatisfactory_for_evaluation_1.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_1.Checked = false;
+                checkBox_Satisfactory_for_evaluation_but_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Satisfactory_for_evaluation_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Satisfactory_for_evaluation_2.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_but_2.Checked = false;
+                checkBox_Unsatisfactory_for_evaluation_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Satisfactory_for_evaluation_but_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Satisfactory_for_evaluation_but_2.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_2.Checked = false;
+                checkBox_Unsatisfactory_for_evaluation_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Unsatisfactory_for_evaluation_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Unsatisfactory_for_evaluation_2.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_2.Checked = false;
+                checkBox_Satisfactory_for_evaluation_but_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Satisfactory_for_evaluation_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Satisfactory_for_evaluation_3.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_but_3.Checked = false;
+                checkBox_Unsatisfactory_for_evaluation_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Satisfactory_for_evaluation_but_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Satisfactory_for_evaluation_but_3.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_3.Checked = false;
+                checkBox_Unsatisfactory_for_evaluation_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Unsatisfactory_for_evaluation_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Unsatisfactory_for_evaluation_3.Checked)
+            {
+                checkBox_Satisfactory_for_evaluation_3.Checked = false;
+                checkBox_Satisfactory_for_evaluation_but_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Mainly_superficial_and_intermediate_cells_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Mainly_superficial_and_intermediate_cells_1.Checked)
+            {
+                checkBox_Mainly_intermediate_and_parabasal_cells_1.Checked = false;
+                checkBox_trophic_pattern_in_menopause_1.Checked = false;
+                checkBox_Post_partum_changes_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Mainly_intermediate_and_parabasal_cells_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Mainly_intermediate_and_parabasal_cells_1.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_1.Checked = false;
+                checkBox_trophic_pattern_in_menopause_1.Checked = false;
+                checkBox_Post_partum_changes_1.Checked = false;
+            }
+        }
+
+        private void checkBox_trophic_pattern_in_menopause_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_trophic_pattern_in_menopause_1.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_1.Checked = false;
+                checkBox_Mainly_intermediate_and_parabasal_cells_1.Checked = false;
+                checkBox_Post_partum_changes_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Post_partum_changes_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Post_partum_changes_1.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_1.Checked = false;
+                checkBox_Mainly_intermediate_and_parabasal_cells_1.Checked = false;
+                checkBox_trophic_pattern_in_menopause_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Mainly_superficial_and_intermediate_cells_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Mainly_superficial_and_intermediate_cells_2.Checked)
+            {
+                checkBox_Mainly_intermediate_and_parabasal_cells_2.Checked = false;
+                checkBox_trophic_pattern_in_menopause_2.Checked = false;
+                checkBox_Post_partum_changes_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Mainly_intermediate_and_parabasal_cells_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Mainly_intermediate_and_parabasal_cells_2.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_2.Checked = false;
+                checkBox_trophic_pattern_in_menopause_2.Checked = false;
+                checkBox_Post_partum_changes_2.Checked = false;
+            }
+        }
+
+        private void checkBox_trophic_pattern_in_menopause_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_trophic_pattern_in_menopause_2.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_2.Checked = false;
+                checkBox_Mainly_intermediate_and_parabasal_cells_2.Checked = false;
+                checkBox_Post_partum_changes_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Post_partum_changes_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Post_partum_changes_2.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_2.Checked = false;
+                checkBox_Mainly_intermediate_and_parabasal_cells_2.Checked = false;
+                checkBox_trophic_pattern_in_menopause_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Mainly_superficial_and_intermediate_cells_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Mainly_superficial_and_intermediate_cells_3.Checked)
+            {
+                checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked = false;
+                checkBox_trophic_pattern_in_menopause_3.Checked = false;
+                checkBox_Post_partum_changes_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Mainly_intermediate_and_parabasal_cells_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_3.Checked = false;
+                checkBox_trophic_pattern_in_menopause_3.Checked = false;
+                checkBox_Post_partum_changes_3.Checked = false;
+            }
+        }
+
+        private void checkBox_trophic_pattern_in_menopause_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_trophic_pattern_in_menopause_3.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_3.Checked = false;
+                checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked = false;
+                checkBox_Post_partum_changes_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Post_partum_changes_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Post_partum_changes_3.Checked)
+            {
+                checkBox_Mainly_superficial_and_intermediate_cells_3.Checked = false;
+                checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked = false;
+                checkBox_trophic_pattern_in_menopause_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Liquid_based_preparation_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Liquid_based_preparation_1.Checked)
+            {
+                checkBox_Liquid_based_preparations_1.Checked = false;
+                checkBox_Conventional_Pap_smear_1.Checked = false;
+                checkBox_Conventional_Pap_smears_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Liquid_based_preparations_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Liquid_based_preparations_1.Checked)
+            {
+                checkBox_Liquid_based_preparation_1.Checked = false;
+                checkBox_Conventional_Pap_smear_1.Checked = false;
+                checkBox_Conventional_Pap_smears_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Conventional_Pap_smear_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Conventional_Pap_smear_1.Checked)
+            {
+                checkBox_Liquid_based_preparation_1.Checked = false;
+                checkBox_Liquid_based_preparations_1.Checked = false;
+                checkBox_Conventional_Pap_smears_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Conventional_Pap_smears_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Conventional_Pap_smears_1.Checked)
+            {
+                checkBox_Liquid_based_preparation_1.Checked = false;
+                checkBox_Liquid_based_preparations_1.Checked = false;
+                checkBox_Conventional_Pap_smear_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Liquid_based_preparation_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Liquid_based_preparation_2.Checked)
+            {
+                checkBox_Liquid_based_preparations_2.Checked = false;
+                checkBox_Conventional_Pap_smear_2.Checked = false;
+                checkBox_Conventional_Pap_smears_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Liquid_based_preparations_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Liquid_based_preparations_2.Checked)
+            {
+                checkBox_Liquid_based_preparation_2.Checked = false;
+                checkBox_Conventional_Pap_smear_2.Checked = false;
+                checkBox_Conventional_Pap_smears_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Conventional_Pap_smear_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Conventional_Pap_smear_2.Checked)
+            {
+                checkBox_Liquid_based_preparation_2.Checked = false;
+                checkBox_Liquid_based_preparations_2.Checked = false;
+                checkBox_Conventional_Pap_smears_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Conventional_Pap_smears_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Conventional_Pap_smears_2.Checked)
+            {
+                checkBox_Liquid_based_preparation_2.Checked = false;
+                checkBox_Liquid_based_preparations_2.Checked = false;
+                checkBox_Conventional_Pap_smear_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Liquid_based_preparation_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Liquid_based_preparation_3.Checked)
+            {
+                checkBox_Liquid_based_preparations_3.Checked = false;
+                checkBox_Conventional_Pap_smear_3.Checked = false;
+                checkBox_Conventional_Pap_smears_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Liquid_based_preparations_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Liquid_based_preparations_3.Checked)
+            {
+                checkBox_Liquid_based_preparation_3.Checked = false;
+                checkBox_Conventional_Pap_smear_3.Checked = false;
+                checkBox_Conventional_Pap_smears_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Conventional_Pap_smear_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Conventional_Pap_smear_3.Checked)
+            {
+                checkBox_Liquid_based_preparation_3.Checked = false;
+                checkBox_Liquid_based_preparations_3.Checked = false;
+                checkBox_Conventional_Pap_smears_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Conventional_Pap_smears_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Conventional_Pap_smears_3.Checked)
+            {
+                checkBox_Liquid_based_preparation_3.Checked = false;
+                checkBox_Liquid_based_preparations_3.Checked = false;
+                checkBox_Conventional_Pap_smear_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Low_squamous_cellularity_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Low_squamous_cellularity_1.Checked)
+            {
+                checkBox_Air_drying_artifacts_1.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_1.Checked = false;
+                checkBox_Obscured_by_blood_1.Checked = false;
+                checkBox_Thick_smear_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Air_drying_artifacts_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Air_drying_artifacts_1.Checked)
+            {
+                checkBox_Low_squamous_cellularity_1.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_1.Checked = false;
+                checkBox_Obscured_by_blood_1.Checked = false;
+                checkBox_Thick_smear_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Obscured_by_inflammatory_exudates_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Obscured_by_inflammatory_exudates_1.Checked)
+            {
+                checkBox_Low_squamous_cellularity_1.Checked = false;
+                checkBox_Air_drying_artifacts_1.Checked = false;
+                checkBox_Obscured_by_blood_1.Checked = false;
+                checkBox_Thick_smear_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Obscured_by_blood_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Obscured_by_blood_1.Checked)
+            {
+                checkBox_Low_squamous_cellularity_1.Checked = false;
+                checkBox_Air_drying_artifacts_1.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_1.Checked = false;
+                checkBox_Thick_smear_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Thick_smear_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Thick_smear_1.Checked)
+            {
+                checkBox_Low_squamous_cellularity_1.Checked = false;
+                checkBox_Air_drying_artifacts_1.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_1.Checked = false;
+                checkBox_Obscured_by_blood_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Low_squamous_cellularity_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Low_squamous_cellularity_2.Checked)
+            {
+                checkBox_Air_drying_artifacts_2.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_2.Checked = false;
+                checkBox_Obscured_by_blood_2.Checked = false;
+                checkBox_Thick_smear_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Air_drying_artifacts_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Air_drying_artifacts_2.Checked)
+            {
+                checkBox_Low_squamous_cellularity_2.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_2.Checked = false;
+                checkBox_Obscured_by_blood_2.Checked = false;
+                checkBox_Thick_smear_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Obscured_by_inflammatory_exudates_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Obscured_by_inflammatory_exudates_2.Checked)
+            {
+                checkBox_Low_squamous_cellularity_2.Checked = false;
+                checkBox_Air_drying_artifacts_2.Checked = false;
+                checkBox_Obscured_by_blood_2.Checked = false;
+                checkBox_Thick_smear_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Obscured_by_blood_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Obscured_by_blood_2.Checked)
+            {
+                checkBox_Low_squamous_cellularity_2.Checked = false;
+                checkBox_Air_drying_artifacts_2.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_2.Checked = false;
+                checkBox_Thick_smear_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Thick_smear_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Thick_smear_2.Checked)
+            {
+                checkBox_Low_squamous_cellularity_2.Checked = false;
+                checkBox_Air_drying_artifacts_2.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_2.Checked = false;
+                checkBox_Obscured_by_blood_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Low_squamous_cellularity_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Low_squamous_cellularity_3.Checked)
+            {
+                checkBox_Air_drying_artifacts_3.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_3.Checked = false;
+                checkBox_Obscured_by_blood_3.Checked = false;
+                checkBox_Thick_smear_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Air_drying_artifacts_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Air_drying_artifacts_3.Checked)
+            {
+                checkBox_Low_squamous_cellularity_3.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_3.Checked = false;
+                checkBox_Obscured_by_blood_3.Checked = false;
+                checkBox_Thick_smear_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Obscured_by_inflammatory_exudates_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Obscured_by_inflammatory_exudates_3.Checked)
+            {
+                checkBox_Low_squamous_cellularity_3.Checked = false;
+                checkBox_Air_drying_artifacts_3.Checked = false;
+                checkBox_Obscured_by_blood_3.Checked = false;
+                checkBox_Thick_smear_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Obscured_by_blood_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Obscured_by_blood_3.Checked)
+            {
+                checkBox_Low_squamous_cellularity_3.Checked = false;
+                checkBox_Air_drying_artifacts_3.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_3.Checked = false;
+                checkBox_Thick_smear_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Thick_smear_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Thick_smear_3.Checked)
+            {
+                checkBox_Low_squamous_cellularity_3.Checked = false;
+                checkBox_Air_drying_artifacts_3.Checked = false;
+                checkBox_Obscured_by_inflammatory_exudates_3.Checked = false;
+                checkBox_Obscured_by_blood_3.Checked = false;
+            }
+        }
+
+        private void checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked)
+            {
+                IEnumerable<CheckBox> checkBoxes = panel12.Controls.OfType<CheckBox>();
+                foreach (CheckBox cb in checkBoxes)
+                {
+                    cb.Checked = false;
+                }
+            }
+        }
+
+        private void checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked)
+            {
+                IEnumerable<CheckBox> checkBoxes = panel2.Controls.OfType<CheckBox>();
+                foreach (CheckBox cb in checkBoxes)
+                {
+                    cb.Checked = false;
+                }
+            }
+        }
+
+        private void checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked)
+            {
+                IEnumerable<CheckBox> checkBoxes = panel6.Controls.OfType<CheckBox>();
+                foreach (CheckBox cb in checkBoxes)
+                {
+                    cb.Checked = false;
+                }
+            }
+        }
+
+        private void checkBox_Normal_flora_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Normal_flora_1.Checked)
+            {
+                checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.Checked = false;
+                checkBox_Herpes_simplex_virus_1.Checked = false;
+                checkBox_Candida_Monilia_1.Checked = false;
+                checkBox_Trichomonas_vaginalis_1.Checked = false;
+                checkBox_Actinomyces_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Normal_flora_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Normal_flora_2.Checked)
+            {
+                checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.Checked = false;
+                checkBox_Herpes_simplex_virus_2.Checked = false;
+                checkBox_Candida_Monilia_2.Checked = false;
+                checkBox_Trichomonas_vaginalis_2.Checked = false;
+                checkBox_Actinomyces_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Normal_flora_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Normal_flora_3.Checked)
+            {
+                checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Checked = false;
+                checkBox_Herpes_simplex_virus_3.Checked = false;
+                checkBox_Candida_Monilia_3.Checked = false;
+                checkBox_Trichomonas_vaginalis_3.Checked = false;
+                checkBox_Actinomyces_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.Checked)
+            {
+                checkBox_Normal_flora_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Herpes_simplex_virus_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Herpes_simplex_virus_1.Checked)
+            {
+                checkBox_Normal_flora_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Candida_Monilia_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Candida_Monilia_1.Checked)
+            {
+                checkBox_Normal_flora_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Trichomonas_vaginalis_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Trichomonas_vaginalis_1.Checked)
+            {
+                checkBox_Normal_flora_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Actinomyces_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Actinomyces_1.Checked)
+            {
+                checkBox_Normal_flora_1.Checked = false;
+            }
+        }
+
+        private void checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.Checked)
+            {
+                checkBox_Normal_flora_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Herpes_simplex_virus_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Herpes_simplex_virus_2.Checked)
+            {
+                checkBox_Normal_flora_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Candida_Monilia_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Candida_Monilia_2.Checked)
+            {
+                checkBox_Normal_flora_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Trichomonas_vaginalis_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Trichomonas_vaginalis_2.Checked)
+            {
+                checkBox_Normal_flora_2.Checked = false;
+
+            }
+        }
+
+        private void checkBox_Actinomyces_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Actinomyces_2.Checked)
+            {
+                checkBox_Normal_flora_2.Checked = false;
+            }
+        }
+
+        private void checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Checked)
+            {
+                checkBox_Normal_flora_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Herpes_simplex_virus_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Herpes_simplex_virus_3.Checked)
+            {
+                checkBox_Normal_flora_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Candida_Monilia_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Candida_Monilia_3.Checked)
+            {
+                checkBox_Normal_flora_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Trichomonas_vaginalis_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Trichomonas_vaginalis_3.Checked)
+            {
+                checkBox_Normal_flora_3.Checked = false;
+            }
+        }
+
+        private void checkBox_Actinomyces_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Actinomyces_3.Checked)
+            {
+                checkBox_Normal_flora_3.Checked = false;
+            }
+        }
+
+        private void checkBox_ASC_US_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ASC_US_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Atypical_squamous_cells_1.Checked = true;
+
+                checkBox_ASC_H_1.Checked = false;
+                checkBox_Low_grade_SIL_1.Checked = false;
+                checkBox_High_grade_SIL_1.Checked = false;
+                checkBox_HSIL_1.Checked = false;
+                checkBox_Squamous_cell_carcinoma_1.Checked = false;
+            }
+
+            //update_checkBox_Atypical_squamous_cells_1();
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+
+
+        }
+
+        private void checkBox_ASC_H_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ASC_H_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Atypical_squamous_cells_1.Checked = true;
+
+                checkBox_ASC_US_1.Checked = false;
+                checkBox_Low_grade_SIL_1.Checked = false;
+                checkBox_High_grade_SIL_1.Checked = false;
+                checkBox_HSIL_1.Checked = false;
+                checkBox_Squamous_cell_carcinoma_1.Checked = false;
+            }
+
+            //update_checkBox_Atypical_squamous_cells_1();
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Low_grade_SIL_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Low_grade_SIL_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked = true;
+
+                checkBox_ASC_US_1.Checked = false;
+                checkBox_ASC_H_1.Checked = false;
+                checkBox_High_grade_SIL_1.Checked = false;
+                checkBox_HSIL_1.Checked = false;
+                checkBox_Squamous_cell_carcinoma_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_High_grade_SIL_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_High_grade_SIL_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked = true;
+
+                checkBox_ASC_US_1.Checked = false;
+                checkBox_ASC_H_1.Checked = false;
+                checkBox_Low_grade_SIL_1.Checked = false;
+                checkBox_HSIL_1.Checked = false;
+                checkBox_Squamous_cell_carcinoma_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_HSIL_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_HSIL_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked = true;
+
+                checkBox_ASC_US_1.Checked = false;
+                checkBox_ASC_H_1.Checked = false;
+                checkBox_Low_grade_SIL_1.Checked = false;
+                checkBox_High_grade_SIL_1.Checked = false;
+                checkBox_Squamous_cell_carcinoma_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Squamous_cell_carcinoma_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Squamous_cell_carcinoma_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+
+                checkBox_ASC_US_1.Checked = false;
+                checkBox_ASC_H_1.Checked = false;
+                checkBox_Low_grade_SIL_1.Checked = false;
+                checkBox_High_grade_SIL_1.Checked = false;
+                checkBox_HSIL_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Atypical_glandular_cells_NOS_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_glandular_cells_NOS_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Atypical_glandular_cells_1.Checked = true;
+
+                checkBox_Atypical_endocervical_cells_NOS_1.Checked = false;
+                checkBox_Atypical_endometrial_cells_NOS_1.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_1.Checked = false;
+                checkBox_Endometrial_adenocarcinoma_1.Checked = false;
+                checkBox_Adenocarcinoma_NOS_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Atypical_endocervical_cells_NOS_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_endocervical_cells_NOS_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Atypical_glandular_cells_1.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_1.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Endocervial_adenocarcinoma_in_situ_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Adenocarcinoma_1.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_1.Checked = false;
+                checkBox_Atypical_endocervical_cells_NOS_1.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Endocervial_adenocarcinoma_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endocervial_adenocarcinoma_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Adenocarcinoma_1.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_1.Checked = false;
+                checkBox_Atypical_endocervical_cells_NOS_1.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Atypical_endometrial_cells_NOS_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_endometrial_cells_NOS_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Atypical_glandular_cells_1.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_1.Checked = false;
+                checkBox_Endometrial_adenocarcinoma_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Endometrial_adenocarcinoma_1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endometrial_adenocarcinoma_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+                checkBox_Adenocarcinoma_1.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_1.Checked = false;
+                checkBox_Atypical_endometrial_cells_NOS_1.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void checkBox_Atypical_glandular_cells_1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox_Adenocarcinoma_NOS_1_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = true;
+            checkBox_Adenocarcinoma_1.Checked = true;
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1();
+        }
+
+        private void update_checkBox_Atypical_squamous_cells_1()
+        {
+            checkBox_Atypical_squamous_cells_1.Checked = checkBox_ASC_US_1.Checked || checkBox_ASC_H_1.Checked;
+        }
+
+        private void update_checkBox_Squamous_intraepithelial_lesion_SIL_1()
+        {
+            checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked = checkBox_Low_grade_SIL_1.Checked ||
+                checkBox_High_grade_SIL_1.Checked ||
+                checkBox_HSIL_1.Checked
+                ;
+        }
+
+        private void update_checkBox_Atypical_glandular_cells_1()
+        {
+            checkBox_Atypical_glandular_cells_1.Checked = checkBox_Atypical_glandular_cells_NOS_1.Checked ||
+                checkBox_Atypical_endocervical_cells_NOS_1.Checked ||
+                checkBox_Atypical_endometrial_cells_NOS_1.Checked
+                ;
+        }
+
+        private void update_checkBox_Adenocarcinoma_1()
+        {
+            checkBox_Adenocarcinoma_1.Checked = checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked ||
+                checkBox_Endocervial_adenocarcinoma_1.Checked ||
+                checkBox_Endometrial_adenocarcinoma_1.Checked ||
+                checkBox_Adenocarcinoma_NOS_1.Checked
+                ;
+        }
+
+        private void update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_1()
+        {
+            update_checkBox_Atypical_squamous_cells_1();
+            update_checkBox_Squamous_intraepithelial_lesion_SIL_1();
+            update_checkBox_Atypical_glandular_cells_1();
+            update_checkBox_Adenocarcinoma_1();
+
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked = checkBox_Atypical_squamous_cells_1.Checked ||
+                checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked ||
+                checkBox_Squamous_cell_carcinoma_1.Checked ||
+                checkBox_Atypical_glandular_cells_1.Checked ||
+                checkBox_Adenocarcinoma_1.Checked
+                ;
+
+            if (checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = false;
+            }
+            else
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = true;
+            }
+        }
+
+        private void update_checkBox_Atypical_squamous_cells_2()
+        {
+            checkBox_Atypical_squamous_cells_2.Checked = checkBox_ASC_US_2.Checked || checkBox_ASC_H_2.Checked;
+        }
+
+        private void update_checkBox_Squamous_intraepithelial_lesion_SIL_2()
+        {
+            checkBox_Squamous_intraepithelial_lesion_SIL_2.Checked = checkBox_Low_grade_SIL_2.Checked ||
+                checkBox_High_grade_SIL_2.Checked ||
+                checkBox_HSIL_2.Checked
+                ;
+        }
+
+        private void update_checkBox_Atypical_glandular_cells_2()
+        {
+            checkBox_Atypical_glandular_cells_2.Checked = checkBox_Atypical_glandular_cells_NOS_2.Checked ||
+                checkBox_Atypical_endocervical_cells_NOS_2.Checked ||
+                checkBox_Atypical_endometrial_cells_NOS_2.Checked
+                ;
+        }
+
+        private void update_checkBox_Adenocarcinoma_2()
+        {
+            checkBox_Adenocarcinoma_2.Checked = checkBox_Endocervial_adenocarcinoma_in_situ_2.Checked ||
+                checkBox_Endocervial_adenocarcinoma_2.Checked ||
+                checkBox_Endometrial_adenocarcinoma_2.Checked ||
+                checkBox_Adenocarcinoma_NOS_2.Checked
+                ;
+        }
+
+        private void update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2()
+        {
+            update_checkBox_Atypical_squamous_cells_2();
+            update_checkBox_Squamous_intraepithelial_lesion_SIL_2();
+            update_checkBox_Atypical_glandular_cells_2();
+            update_checkBox_Adenocarcinoma_2();
+
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = checkBox_Atypical_squamous_cells_2.Checked ||
+                checkBox_Squamous_intraepithelial_lesion_SIL_2.Checked ||
+                checkBox_Squamous_cell_carcinoma_2.Checked ||
+                checkBox_Atypical_glandular_cells_2.Checked ||
+                checkBox_Adenocarcinoma_2.Checked
+                ;
+
+            if (checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+            }
+            else
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = true;
+            }
+        }
+
+        private void checkBox_ASC_US_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ASC_US_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Atypical_squamous_cells_2.Checked = true;
+
+                checkBox_ASC_H_2.Checked = false;
+                checkBox_Low_grade_SIL_2.Checked = false;
+                checkBox_High_grade_SIL_2.Checked = false;
+                checkBox_HSIL_2.Checked = false;
+                checkBox_Squamous_cell_carcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_ASC_H_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ASC_H_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Atypical_squamous_cells_2.Checked = true;
+
+                checkBox_ASC_US_2.Checked = false;
+                checkBox_Low_grade_SIL_2.Checked = false;
+                checkBox_High_grade_SIL_2.Checked = false;
+                checkBox_HSIL_2.Checked = false;
+                checkBox_Squamous_cell_carcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Low_grade_SIL_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Low_grade_SIL_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_2.Checked = true;
+
+                checkBox_ASC_US_2.Checked = false;
+                checkBox_ASC_H_2.Checked = false;
+                checkBox_High_grade_SIL_2.Checked = false;
+                checkBox_HSIL_2.Checked = false;
+                checkBox_Squamous_cell_carcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_High_grade_SIL_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_High_grade_SIL_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_2.Checked = true;
+
+                checkBox_ASC_US_2.Checked = false;
+                checkBox_ASC_H_2.Checked = false;
+                checkBox_Low_grade_SIL_2.Checked = false;
+                checkBox_HSIL_2.Checked = false;
+                checkBox_Squamous_cell_carcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_HSIL_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_HSIL_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_2.Checked = true;
+
+                checkBox_ASC_US_2.Checked = false;
+                checkBox_ASC_H_2.Checked = false;
+                checkBox_Low_grade_SIL_2.Checked = false;
+                checkBox_High_grade_SIL_2.Checked = false;
+                checkBox_Squamous_cell_carcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Squamous_cell_carcinoma_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Squamous_cell_carcinoma_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+
+                checkBox_ASC_US_2.Checked = false;
+                checkBox_ASC_H_2.Checked = false;
+                checkBox_Low_grade_SIL_2.Checked = false;
+                checkBox_High_grade_SIL_2.Checked = false;
+                checkBox_HSIL_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Atypical_glandular_cells_NOS_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_glandular_cells_NOS_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Atypical_glandular_cells_2.Checked = true;
+
+                checkBox_Atypical_endocervical_cells_NOS_2.Checked = false;
+                checkBox_Atypical_endometrial_cells_NOS_2.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_2.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_2.Checked = false;
+                checkBox_Endometrial_adenocarcinoma_2.Checked = false;
+                checkBox_Adenocarcinoma_NOS_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Atypical_endocervical_cells_NOS_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_endocervical_cells_NOS_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Atypical_glandular_cells_2.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_2.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_2.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Atypical_endometrial_cells_NOS_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_endometrial_cells_NOS_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Atypical_glandular_cells_2.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_2.Checked = false;
+                checkBox_Endometrial_adenocarcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Endocervial_adenocarcinoma_in_situ_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endocervial_adenocarcinoma_in_situ_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Adenocarcinoma_2.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_2.Checked = false;
+                checkBox_Atypical_endocervical_cells_NOS_2.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Endocervial_adenocarcinoma_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endocervial_adenocarcinoma_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Adenocarcinoma_2.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_2.Checked = false;
+                checkBox_Atypical_endocervical_cells_NOS_2.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Endometrial_adenocarcinoma_2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endometrial_adenocarcinoma_2.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+                checkBox_Adenocarcinoma_2.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_2.Checked = false;
+                checkBox_Atypical_endometrial_cells_NOS_2.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        private void checkBox_Adenocarcinoma_NOS_2_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = true;
+            checkBox_Adenocarcinoma_2.Checked = true;
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_2();
+        }
+
+        //--------------
+
+        private void update_checkBox_Atypical_squamous_cells_3()
+        {
+            checkBox_Atypical_squamous_cells_3.Checked = checkBox_ASC_US_3.Checked || checkBox_ASC_H_3.Checked;
+        }
+
+        private void update_checkBox_Squamous_intraepithelial_lesion_SIL_3()
+        {
+            checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked = checkBox_Low_grade_SIL_3.Checked ||
+                checkBox_High_grade_SIL_3.Checked ||
+                checkBox_HSIL_3.Checked
+                ;
+        }
+
+        private void update_checkBox_Atypical_glandular_cells_3()
+        {
+            checkBox_Atypical_glandular_cells_3.Checked = checkBox_Atypical_glandular_cells_NOS_3.Checked ||
+                checkBox_Atypical_endocervical_cells_NOS_3.Checked ||
+                checkBox_Atypical_endometrial_cells_NOS_3.Checked
+                ;
+        }
+
+        private void update_checkBox_Adenocarcinoma_3()
+        {
+            checkBox_Adenocarcinoma_3.Checked = checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked ||
+                checkBox_Endocervial_adenocarcinoma_3.Checked ||
+                checkBox_Endometrial_adenocarcinoma_3.Checked ||
+                checkBox_Adenocarcinoma_NOS_3.Checked
+                ;
+        }
+
+        private void update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3()
+        {
+            update_checkBox_Atypical_squamous_cells_3();
+            update_checkBox_Squamous_intraepithelial_lesion_SIL_3();
+            update_checkBox_Atypical_glandular_cells_3();
+            update_checkBox_Adenocarcinoma_3();
+
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = checkBox_Atypical_squamous_cells_3.Checked ||
+                checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked ||
+                checkBox_Squamous_cell_carcinoma_3.Checked ||
+                checkBox_Atypical_glandular_cells_3.Checked ||
+                checkBox_Adenocarcinoma_3.Checked
+                ;
+
+            if (checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+            }
+            else
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = true;
+            }
+        }
+
+        private void checkBox_ASC_US_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ASC_US_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Atypical_squamous_cells_3.Checked = true;
+
+                checkBox_ASC_H_3.Checked = false;
+                checkBox_Low_grade_SIL_3.Checked = false;
+                checkBox_High_grade_SIL_3.Checked = false;
+                checkBox_HSIL_3.Checked = false;
+                checkBox_Squamous_cell_carcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_ASC_H_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_ASC_H_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Atypical_squamous_cells_3.Checked = true;
+
+                checkBox_ASC_US_3.Checked = false;
+                checkBox_Low_grade_SIL_3.Checked = false;
+                checkBox_High_grade_SIL_3.Checked = false;
+                checkBox_HSIL_3.Checked = false;
+                checkBox_Squamous_cell_carcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Low_grade_SIL_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Low_grade_SIL_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked = true;
+
+                checkBox_ASC_US_3.Checked = false;
+                checkBox_ASC_H_3.Checked = false;
+                checkBox_High_grade_SIL_3.Checked = false;
+                checkBox_HSIL_3.Checked = false;
+                checkBox_Squamous_cell_carcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_High_grade_SIL_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_High_grade_SIL_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked = true;
+
+                checkBox_ASC_US_3.Checked = false;
+                checkBox_ASC_H_3.Checked = false;
+                checkBox_Low_grade_SIL_3.Checked = false;
+                checkBox_HSIL_3.Checked = false;
+                checkBox_Squamous_cell_carcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_HSIL_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_HSIL_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked = true;
+
+                checkBox_ASC_US_3.Checked = false;
+                checkBox_ASC_H_3.Checked = false;
+                checkBox_Low_grade_SIL_3.Checked = false;
+                checkBox_High_grade_SIL_3.Checked = false;
+                checkBox_Squamous_cell_carcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Squamous_cell_carcinoma_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Squamous_cell_carcinoma_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+
+                checkBox_ASC_US_3.Checked = false;
+                checkBox_ASC_H_3.Checked = false;
+                checkBox_Low_grade_SIL_3.Checked = false;
+                checkBox_High_grade_SIL_3.Checked = false;
+                checkBox_HSIL_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Atypical_glandular_cells_NOS_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_glandular_cells_NOS_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Atypical_glandular_cells_3.Checked = true;
+
+                checkBox_Atypical_endocervical_cells_NOS_3.Checked = false;
+                checkBox_Atypical_endometrial_cells_NOS_3.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_3.Checked = false;
+                checkBox_Endometrial_adenocarcinoma_3.Checked = false;
+                checkBox_Adenocarcinoma_NOS_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Atypical_endocervical_cells_NOS_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_endocervical_cells_NOS_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Atypical_glandular_cells_3.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Atypical_endometrial_cells_NOS_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Atypical_endometrial_cells_NOS_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Atypical_glandular_cells_3.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = false;
+                checkBox_Endometrial_adenocarcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Endocervial_adenocarcinoma_in_situ_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Adenocarcinoma_3.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = false;
+                checkBox_Atypical_endocervical_cells_NOS_3.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Endocervial_adenocarcinoma_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endocervial_adenocarcinoma_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Adenocarcinoma_3.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = false;
+                checkBox_Atypical_endocervical_cells_NOS_3.Checked = false;
+                checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Endometrial_adenocarcinoma_3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox_Endometrial_adenocarcinoma_3.Checked)
+            {
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = false;
+
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+                checkBox_Adenocarcinoma_3.Checked = true;
+
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = false;
+                checkBox_Atypical_endometrial_cells_NOS_3.Checked = false;
+            }
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        private void checkBox_Adenocarcinoma_NOS_3_CheckedChanged(object sender, EventArgs e)
+        {
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = true;
+            checkBox_Adenocarcinoma_3.Checked = true;
+
+            update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
+        }
+
+        public void setDefaultValue()
+        {
+            checkBox_Cervix_1.Checked = true;
+            checkBox_Cervix_2.Checked = true;
+            checkBox_Cervix_3.Checked = true;
+
+            checkBox_Satisfactory_for_evaluation_1.Checked = true;
+            checkBox_Satisfactory_for_evaluation_2.Checked = true;
+            checkBox_Satisfactory_for_evaluation_3.Checked = true;
+
+            checkBox_Transformation_zone_1.Checked = true;
+            checkBox_Transformation_zone_2.Checked = true;
+            checkBox_Transformation_zone_3.Checked = true;
+
+            checkBox_Mainly_superficial_and_intermediate_cells_1.Checked = true;
+            checkBox_Mainly_superficial_and_intermediate_cells_2.Checked = true;
+            checkBox_Mainly_superficial_and_intermediate_cells_3.Checked = true;
+
+            checkBox_Liquid_based_preparation_1.Checked = true;
+            checkBox_Liquid_based_preparation_2.Checked = true;
+            checkBox_Liquid_based_preparation_3.Checked = true;
+
+            checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked = true;
+            checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = true;
+            checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = true;
+
+            checkBox_Normal_flora_1.Checked = true;
+            checkBox_Normal_flora_2.Checked = true;
+            checkBox_Normal_flora_3.Checked = true;
+
+        }
+
+        private void generateReportWording()
+        {
+            if (checkBox_Cervix_3.Checked)
+            {
+                addReportWording("The cervical");
+            }
+            if (checkBox_Vagina_Vault_3.Checked)
+            {
+                addReportWording("The vaginal/vault");
+            }
+
+
+            if (checkBox_Liquid_based_preparation_3.Checked)
+            {
+                addReportWording("liquid-based preparation is");
+            }
+            if (checkBox_Liquid_based_preparations_3.Checked)
+            {
+                addReportWording("liquid-based preparations are");
+            }
+            if (checkBox_Conventional_Pap_smear_3.Checked)
+            {
+                addReportWording("conventional Pap smear is");
+            }
+            if (checkBox_Conventional_Pap_smears_3.Checked)
+            {
+                addReportWording("conventional Pap smears are");
+            }
+
+
+            if (checkBox_Satisfactory_for_evaluation_3.Checked)
+            {
+                addReportWording("satisfactory for evaluation.");
+            }
+            if (checkBox_Satisfactory_for_evaluation_but_3.Checked)
+            {
+                addReportWording("satisfactory for evaluation but limited by");
+            }
+            if (checkBox_Unsatisfactory_for_evaluation_3.Checked)
+            {
+                addReportWording("unsatisfactory for evaluation due to");
+            }
+
+
+            if (checkBox_Low_squamous_cellularity_3.Checked)
+            {
+                addReportWording("low squamous cellularity.");
+            }
+            if (checkBox_Air_drying_artifacts_3.Checked)
+            {
+                addReportWording("air-drying artefacts.");
+            }
+            if (checkBox_Obscured_by_inflammatory_exudates_3.Checked)
+            {
+                addReportWording("obscuring inflammatory exudates.");
+            }
+            if (checkBox_Obscured_by_blood_3.Checked)
+            {
+                addReportWording("obscuring blood.");
+            }
+            if (checkBox_Thick_smear_3.Checked)
+            {
+                addReportWording("thick smear.");
+            }
+
+
+            if (checkBox_Transformation_zone_3.Checked)
+            {
+                addReportWording("Both ectocervical and transformation zone components are present.");
+            }
+            if (checkBox_Mainly_superficial_and_intermediate_cells_3.Checked)
+            {
+                addReportWording("The squamous cell population consists mainly of superficial and intermediate cells.");
+            }
+            if (checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked)
+            {
+                addReportWording("The squamous cell population consists mainly of intermediate and parabasal cells.");
+            }
+            if (checkBox_trophic_pattern_in_menopause_3.Checked)
+            {
+                addReportWording("The squamous cell population shows a predominance of parabasal cells, consistent with atrophic pattern related to menopausal changes.");
+            }
+            if (checkBox_Post_partum_changes_3.Checked)
+            {
+                addReportWording("The squamous cell population shows a predominance of parabasal cells, consistent with post-partum status.");
+            }
+
+
+            if (checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked)
+            {
+                addReportWording("There is no cytological evidence of koilocytosis, significant nuclear atypia or malignancy.");
+            }
+            if (checkBox_Reactive_cellular_changes_associated_3.Checked)
+            {
+                addReportWording("Some of the squamous and metaplastic cells show reactive cellular changes secondary to inflammation.");
+            }
+            if (checkBox_Normal_flora_3.Checked)
+            {
+                addReportWording("The microbiological flora is within normal limits, with no Trichomonas, Herpes simplex virus, Candida or Actinomyces identified.");
+            }
+            if (checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Checked)
+            {
+                addReportWording("\"Clue\" cells are present, consistent with a shift in flora to coccobacilli. The possibility of bacterial vaginosis needs to be excluded.");
+            }
+            if (checkBox_Herpes_simplex_virus_3.Checked)
+            {
+                addReportWording("Some of the squamous cells show cellular changes including ground-glass nuclei, nuclear molding and sometimes multinucleation. These findings are consistent with Herpes simplex virus infection.");
+            }
+            if (checkBox_Candida_Monilia_3.Checked)
+            {
+                addReportWording("Fungal organisms morphologically consistent with Candida species are identified.");
+            }
+            if (checkBox_Trichomonas_vaginalis_3.Checked)
+            {
+                addReportWording(" Trichomonas vaginalis are identified in the background.");
+            }
+            if (checkBox_Actinomyces_3.Checked)
+            {
+                addReportWording("Clumps of bacteria morphologically consistent with Actinomyces species are identified.");
+            }
+            if (checkBox_Endometrial_cells_3.Checked)
+            {
+                addReportWording("Small clumps of exfoliated bland-looking endometrial cells are present.");
+            }
+
+
+            if (checkBox_ASC_US_3.Checked)
+            {
+                addReportWording("Some squamous cells show mild nuclear atypia including nuclear enlargement. The significance is undetermined. Advise repeat gynaecological cytology at 4- to 6-month intervals and consider further diagnostic follow-up procedures (e.g. colposcopy) if the abnormality persists. Triage with HPV DNA testing may also be useful.");
+            }
+            if (checkBox_ASC_H_3.Checked)
+            {
+                addReportWording("Some squamous cells show nuclear atypia with enlarged hyperchromatic nuclei and increased nuclear-to-cytoplasmic ratio. The possibility of an underlying high-grade squamous intraepithelial lesion cannot be excluded. Advise colposcopy and biopsy as clinically indicated.");
+            }
+            if (checkBox_Low_grade_SIL_3.Checked)
+            {
+                addReportWording("Some abnormal squamous cells with koilocytosis and focal mild dyskaryosis are seen, consistent with low-grade squamous intraepithelial lesion. Advise further investigations (e.g. colposcopy and biopsy) as clinically indicated.");
+            }
+            if (checkBox_High_grade_SIL_3.Checked)
+            {
+                addReportWording("Some abnormal squamous cells with enlarged hyperchromatic nuclei, increased nuclear-to-cytoplasmic ratio, coarse chromatin and irregular nuclear outlines are seen, consistent with high-grade squamous intraepithelial lesion. Advise colposcopy as clinically indicated.");
+            }
+            if (checkBox_HSIL_3.Checked)
+            {
+                addReportWording("Some abnormal squamous cells with enlarged hyperchromatic nuclei, increased nuclear-to-cytoplasmic ratio, coarse chromatin and irregular nuclear outlines are seen, consistent with high-grade squamous intraepithelial lesion. Some of these cells also show suspicious cytological features, including dyskeratosis and focal presence of distinct nucleoli. The possibility of underlying stromal invasion cannot be excluded. Advise colposcopy as clinically indicated.");
+            }
+            if (checkBox_Squamous_cell_carcinoma_3.Checked)
+            {
+                addReportWording("Some abnormal squamous cells with enlarged hyperchromatic nuclei, increased nuclear-to-cytoplasmic ratio, coarse chromatin and irregular nuclear outlines are seen. In addition, some of these cells also contain distinct nucleoli and syncytial cytoplasm, associated with tumour diathesis. The overall features are compatible with squamous cell carcinoma. Advise biopsy if gross tumour is seen or refer for colposcopy if no gross abnormality is detected.");
+            }
+            if (checkBox_Atypical_glandular_cells_NOS_3.Checked)
+            {
+                addReportWording("Some clusters of atypical glandular cells with enlarged hyperchromatic nuclei, increased nuclear-to-cytoplasmic ratio, distinct nucleoli and focal nuclear overlapping are seen. As a significant percentage of patients with this interpretation have underlying high-grade squamous intraepithelial lesion or glandular abnormalities, further diagnostic follow-up procedures (e.g. colposcopy, endometrial sampling) are suggested as clinically indicated.");
+            }
+            if (checkBox_Atypical_endocervical_cells_NOS_3.Checked)
+            {
+                addReportWording("Some sheets of atypical glandular cells, likely of endocervical origin, with enlarged nuclei, increased nuclear-to-cytoplasmic ratio, distinct nucleoli and focal nuclear overlapping are seen. As a significant percentage of patients with this interpretation have underlying high-grade squamous intraepithelial lesion or glandular abnormalities, further diagnostic follow-up procedures (e.g. colposcopy) are suggested as clinically indicated.");
+            }
+            if (checkBox_Atypical_endometrial_cells_NOS_3.Checked)
+            {
+                addReportWording("Some clusters of atypical endometrial cells with slightly enlarged nuclei, distinct nucleoli and cytoplasmic vacuoles are seen. Advise endometrial sampling in order to rule out possible underlying endometrial pathology.");
+            }
+            if (checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked)
+            {
+                addReportWording("Sheets of abnormal endocervical cells with enlarged nuclei, increased nuclear-to-cytoplasmic ratio, thickened nuclear outlines, distinct nucleoli, focal nuclear overlapping and sometimes feathery changes are seen. The overall features are highly suggestive of endocervical adenocarcinoma-in-situ. Advise colposcopy (with endocervical assessment) as clinically indicated.");
+            }
+            if (checkBox_Endocervial_adenocarcinoma_3.Checked)
+            {
+                addReportWording("Sheets of abnormal endocervical cells with enlarged nuclei, increased nuclear-to-cytoplasmic ratio, thickened nuclear outlines, distinct nucleoli, focal nuclear overlapping and sometimes feathery changes are seen. In addition, some of these cells are arranged in three-dimensional clusters, with increased nuclear pleomorphism and associated tumour diathesis. The overall features are highly suggestive of endocervical adenocarcinoma. Advise biopsy if gross tumour is seen or refer for colposcopy if no gross abnormality is detected.");
+            }
+            if (checkBox_Endometrial_adenocarcinoma_3.Checked)
+            {
+                addReportWording("Some clusters of atypical to suspicious endometrial cells with enlarged nuclei, distinct nucleoli, cytoplasmic vacuoles and engulfed polymorphs are seen. The overall features are highly suggestive of endometrial adenocarcinoma. Advise endometrial sampling.");
+            }
+            if (checkBox_Adenocarcinoma_NOS_3.Checked)
+            {
+                addReportWording("Some three-dimensional clusters of suspicious glandular cells with enlarged pleomorphic nuclei, increased nuclear-to-cytoplasmic ratio, prominent nucleoli and focal nuclear palisading are seen. The overall features are compatible with adenocarcinoma. The primary origin (endocervical versus endometrial) however cannot be ascertained here. Advise further investigation for histological assessment.");
+            }
+            if (checkBox_HPV_DNA_TESTING_3.Checked)
+            {
+                addReportWording("A further report on HPV DNA testing result will follow.");
+            }
+        }
+
+        private void addReportWording(String i)
+        {
+            if (reportWording == "")
+            {
+                reportWording = i.Trim();
+            }
+            else
+            {
+                reportWording = reportWording + " " + i.Trim();
+            }
         }
 
         private void Form_CytologicalDiagnosis_Load(object sender, EventArgs e)
@@ -2223,6 +3976,7 @@ namespace St.Teresa_LIS_2019
             checkBox_Adenocarcinoma_NOS_3.DataBindings.Add("Checked", dt3, "interepi5d", false);
 
             checkBox_Other_malignant_neoplasm_3.DataBindings.Add("Checked", dt3, "interepi6", false);
+
         }
     }
 }

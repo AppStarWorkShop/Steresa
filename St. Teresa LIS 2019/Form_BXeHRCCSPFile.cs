@@ -237,6 +237,63 @@ namespace St.Teresa_LIS_2019
             existDiagDataAdapter = null;
         }
 
+        public void ehr2dBarcodeCopy(EhrBarCode br, Boolean sthPatient)
+        {
+            setButtonStatus(PageStatus.STATUS_NEW);
+            currentEditRow = bxcy_specimenDataSet.Tables["bxcy_specimen"].NewRow();
+            currentEditRow["id"] = -1;
+            currentEditRow["patient"] = br.surname + " " + br.givenName;
+            
+            currentEditRow["Pat_sex"] = br.sex;
+
+            currentEditRow["fz_section"] = 0;
+            currentEditRow["uploaded"] = 0;
+            currentEditRow["supp"] = 0;
+            currentEditRow["DATE"] = DateTime.Now;
+
+            currentEditRow["CNAME"] = br.getChiNamePlain();
+            currentEditRow["PAT_SEX"] = br.sex;
+            currentEditRow["PAT_BIRTH"] = br.getDobInDate();
+            if (br.getDobInDate() != null)
+            {
+                currentEditRow["Pat_age"] = PatientAgeCalculator.calculate(br.getDobInDate());
+            }
+            else
+            {
+                currentEditRow["Pat_age"] = 0;
+            }
+            
+            currentEditRow["PAT_HKID"] = br.getHkidWithBracket();
+
+            currentEditRow["doctor_ic"] = br.getDoctorNamePlain();
+            currentEditRow["inv_no"] = br.hcpId;
+
+            currentEditRow["client"] = br.getHciNamePlain();
+            currentEditRow["institute"] = br.hciId;
+
+            currentEditRow["date"] = br.getRequestDatePlain();
+            currentEditRow["inv_date"] = br.getRequestDatePlain();
+            currentEditRow["discharge"] = br.getRequestDatePlain();
+
+            currentEditRow["lab_ref"] = br.referralNo;
+            currentEditRow["Remind"] = br.ehrNo;
+            currentEditRow["bed_room"] = br.organization;
+
+            currentEditRow["snopcode_t"] = "COLON";
+
+            currentEditRow["ETHNIC"] = "Chinese";
+            //currentEditRow["PAT_SEQ"] = mDr["PAT_SEQ"];
+            //currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
+            
+            
+
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
+            bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existDiagDataSet = null;
+            existDiagDataAdapter = null;
+        }
+
         public void patientNameCopy(string patientName)
         {
             setButtonStatus(PageStatus.STATUS_NEW);
@@ -654,8 +711,12 @@ namespace St.Teresa_LIS_2019
                         {
                             string currentCaseNo = textBox_Case_No.Text.Trim();
                             currentEditRow["ISSUE_BY"] = CurrentUser.currentUserId;
+                            currentEditRow["ISSUE_AT"] = DateTime.Now.ToString("");
                             currentEditRow["UPDATE_BY"] = CurrentUser.currentUserId;
                             currentEditRow["UPDATE_AT"] = DateTime.Now.ToString("");
+                            textBox_Record_Key.Text = "STHH" + currentCaseNo.Replace("/", "");
+                            currentEditRow["receipt"] = textBox_Record_Key.Text;
+
                             textBox_ID.BindingContext[dt].Position++;
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
@@ -1013,6 +1074,7 @@ namespace St.Teresa_LIS_2019
             copybxcy_specimen.remind = textBox_eHR_No.Text;
             copybxcy_specimen.receipt = textBox_Record_Key.Text;
             copybxcy_specimen.inv_date = textBox_Date_Requested.Text;
+            copybxcy_specimen.discharge = textBox_Date_Collected.Text;
 
             copybxcy_specimen.rpt_date = textBox_Rpt_Date.Text;
             copybxcy_specimen.snopcode_t = comboBox_Snop_T1.Text;
@@ -1738,6 +1800,7 @@ namespace St.Teresa_LIS_2019
                 copybxcy_specimen.remind = textBox_eHR_No.Text;
                 copybxcy_specimen.receipt = textBox_Record_Key.Text;
                 copybxcy_specimen.inv_date = textBox_Date_Requested.Text;
+                copybxcy_specimen.discharge = textBox_Date_Collected.Text;
 
                 copybxcy_specimen.rpt_date = textBox_Rpt_Date.Text;
                 copybxcy_specimen.snopcode_t = comboBox_Snop_T1.Text;
@@ -1836,6 +1899,7 @@ namespace St.Teresa_LIS_2019
                         textBox_eHR_No.Text = copybxcy_specimen.remind;
                         textBox_Record_Key.Text = copybxcy_specimen.receipt;
                         textBox_Date_Requested.Text = copybxcy_specimen.inv_date;
+                        textBox_Date_Collected.Text = copybxcy_specimen.discharge;
 
                         textBox_Rpt_Date.Text = copybxcy_specimen.rpt_date;
                         comboBox_Snop_T1.Text = copybxcy_specimen.snopcode_t;
@@ -1923,6 +1987,7 @@ namespace St.Teresa_LIS_2019
             textBox_eHR_No.DataBindings.Clear();
             textBox_Record_Key.DataBindings.Clear();
             textBox_Date_Requested.DataBindings.Clear();
+            textBox_Date_Collected.DataBindings.Clear();
 
             textBox_Rpt_Date.DataBindings.Clear();
             comboBox_Snop_T1.DataBindings.Clear();
@@ -2074,14 +2139,14 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             //comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_HKID.DataBindings.Add("Text", dt, "PAT_HKID", false);
-            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             //comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
@@ -2105,8 +2170,10 @@ namespace St.Teresa_LIS_2019
             textBox_eHR_No.DataBindings.Add("Text", dt, "Remind", false);
             textBox_Record_Key.DataBindings.Add("Text", dt, "RECEIPT", false);
             textBox_Date_Requested.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            
 
-            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
+            //textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
+            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
@@ -2123,7 +2190,7 @@ namespace St.Teresa_LIS_2019
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
             textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy hh:mm:ss");
             //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
             label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
 
@@ -2137,6 +2204,8 @@ namespace St.Teresa_LIS_2019
             label_Print_By.DataBindings.Add("Text", dt, "print_by", false);
 
             button_Printed.Text = string.Format("Printed:{0}", label_Printed.Text.Trim() == "" ? "0" : label_Printed.Text.Trim());
+
+            textBox_Date_Collected.DataBindings.Add("Text", dt, "discharge", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
 
             setPreviousRecordMark();
 
@@ -2700,7 +2769,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
-            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            textBox_Rpt_Date.Text = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
@@ -2850,31 +2919,39 @@ namespace St.Teresa_LIS_2019
 
         private void textBox_Case_No_KeyUp(object sender, KeyEventArgs e)
         {
-            if (textBox_Case_No.Text.Trim().ToLower() == "b")
+            if (textBox_Case_No.Text.Trim().ToLower() == "d")
             {
-                textBox_Case_No.Text = string.Format("BX{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+                textBox_Case_No.Text = string.Format("D{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+                textBox_Case_No.Focus();
+                textBox_Case_No.SelectionStart = textBox_Case_No.Text.Length;
+                textBox_Case_No.SelectionLength = 0;
             }
-            else
-            {
-                if (textBox_Case_No.Text.Trim().ToLower() == "c")
-                {
-                    textBox_Case_No.Text = string.Format("CY{0}-", DateTime.Now.ToString("yyyy").Substring(2));
-                }
-                else
-                {
-                    if (textBox_Case_No.Text.Trim().ToLower() == "m")
-                    {
-                        textBox_Case_No.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
-                    }
-                    else
-                    {
-                        if (textBox_Case_No.Text.Trim().ToLower() == "d")
-                        {
-                            textBox_Case_No.Text = string.Format("D{0}-", DateTime.Now.ToString("yyyy").Substring(2));
-                        }
-                    }
-                }
-            }
+
+            //if (textBox_Case_No.Text.Trim().ToLower() == "b")
+            //{
+            //    textBox_Case_No.Text = string.Format("BX{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+            //}
+            //else
+            //{
+            //    if (textBox_Case_No.Text.Trim().ToLower() == "c")
+            //    {
+            //        textBox_Case_No.Text = string.Format("CY{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            //    }
+            //    else
+            //    {
+            //        if (textBox_Case_No.Text.Trim().ToLower() == "m")
+            //        {
+            //            textBox_Case_No.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
+            //        }
+            //        else
+            //        {
+            //            if (textBox_Case_No.Text.Trim().ToLower() == "d")
+            //            {
+            //                textBox_Case_No.Text = string.Format("D{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         private void comboBox_Sign_By_Dr_1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

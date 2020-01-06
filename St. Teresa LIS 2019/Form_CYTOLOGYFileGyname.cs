@@ -30,6 +30,8 @@ namespace St.Teresa_LIS_2019
         private bool m_isEntering2 = false;
         private bool m_isEntering3 = false;
 
+        private String reportWording = "";
+
         DataSet doctorDataSet1 = new DataSet();
         SqlDataAdapter doctorDataAdapter1;
 
@@ -39,6 +41,7 @@ namespace St.Teresa_LIS_2019
         DataSet doctorDataSet3 = new DataSet();
         SqlDataAdapter doctorDataAdapter3;
 
+        private Form_CytologicalDiagnosis diagForm;
         private DataSet existCyDiagDataSet1 = null;
         private SqlDataAdapter existCyDiagDataAdapter1 = null;
 
@@ -47,6 +50,7 @@ namespace St.Teresa_LIS_2019
 
         private DataSet existCyDiagDataSet3 = null;
         private SqlDataAdapter existCyDiagDataAdapter3 = null;
+
 
         public class Bxcy_specimen
         {
@@ -225,6 +229,10 @@ namespace St.Teresa_LIS_2019
 
         private void button_Exit_Click(object sender, EventArgs e)
         {
+            if (diagForm != null)
+            {
+                diagForm.Close();
+            }
             this.Close();
         }
 
@@ -233,6 +241,27 @@ namespace St.Teresa_LIS_2019
             Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
             open.OnCyDiagExit += CyDiagReturn;
             open.Show();
+
+            //if (diagForm == null)
+            //{
+            //  Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
+            //  open.OnCyDiagExit += CyDiagReturn;
+
+            //    //Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis();
+            //    open.Show();
+            //    open.setPreviousFileForm(this);
+            //    if (currentStatus == PageStatus.STATUS_NEW)
+            //    {
+            //        open.setDefaultValue();
+            //    }
+
+            //    diagForm = open;
+            //}
+            //else
+            //{
+            //    diagForm.Show();
+            //}
+
         }
 
         private void CyDiagReturn(DataSet existCyDiagDataSet1, DataSet existCyDiagDataSet2, DataSet existCyDiagDataSet3, SqlDataAdapter existCyDiagDataAdapter1, SqlDataAdapter existCyDiagDataAdapter2, SqlDataAdapter existCyDiagDataAdapter3)
@@ -256,6 +285,8 @@ namespace St.Teresa_LIS_2019
         {
             Form_FindingComments open = new Form_FindingComments();
             open.Show();
+            open.setPreviousForm(this);
+            open.setReportWording(reportWording);
         }
 
         private void button_Amount_HK_Detail_Click(object sender, EventArgs e)
@@ -1079,7 +1110,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part 
+            // second part
 
             if (notJumped)
             {
@@ -1390,7 +1421,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part 
+            // second part
 
             if (notJumped)
             {
@@ -2972,6 +3003,11 @@ namespace St.Teresa_LIS_2019
                     e.Cancel = true;
                 }
             }
+        }
+
+        public void setReportWording(String str)
+        {
+            reportWording = str;
         }
     }
 }
