@@ -857,6 +857,8 @@
     <None Include="Report\19 PRIVATE CY.rdlc" />
     <None Include="Report\BodyCyPrivateEN - Copy.rdlc" />
     <None Include="Report\BodyCyPrivateEN.rdlc" />
+    <None Include="Report\01 STH DH.rdlc" />
+    <None Include="Report\BodyENDH.rdlc" />
     <EmbeddedResource Include="ShowPicture.resx">
       <DependentUpon>ShowPicture.cs</DependentUpon>
     </EmbeddedResource>

@@ -53,7 +53,7 @@ namespace St.Teresa_LIS_2019
 
             foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
             {
-                dt.Rows.Add(new object[] { mDr["doctor"], mDr["cname"], mDr["initial"], mDr["address1"], mDr["tel1"], mDr["fax"], mDr["opd"], mDr["contact"], mDr["id"], mDr["doctor_id"] });
+                dt.Rows.Add(new object[] { mDr["doctor"].ToString().Trim(), mDr["cname"], mDr["initial"], mDr["address1"], mDr["tel1"], mDr["fax"], mDr["opd"], mDr["contact"], mDr["id"], mDr["doctor_id"] });
             }
 
             dataGridView1.DataSource = dt;
@@ -73,11 +73,22 @@ namespace St.Teresa_LIS_2019
                 }
                 return true;
             }
+            else if (keyData == Keys.Up || keyData == Keys.Down)
+            {
+                if (textBox_Serch_Doctor.Focused)
+                {
+                    dataGridView1.Focus();
+                }
+            }
             else
             {
-                if (textBox_Serch_Doctor.Text != "" && textBox_Serch_Doctor.Text.Length >= 2)
+                if (textBox_Serch_Doctor.Focused)
                 {
-                    this.search(textBox_Serch_Doctor.Text + keyData.ToString());
+                    if (textBox_Serch_Doctor.Text != "" && textBox_Serch_Doctor.Text.Length >= 2)
+                    {
+                        this.search(textBox_Serch_Doctor.Text + keyData.ToString());
+                        
+                    }
                 }
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -166,7 +177,7 @@ namespace St.Teresa_LIS_2019
 
             foreach (DataRow mDr in doctorDataSet.Tables["doctor"].Rows)
             {
-                dt.Rows.Add(new object[] { mDr["doctor"], mDr["cname"], mDr["initial"], mDr["address1"], mDr["tel1"], mDr["fax"], mDr["opd"], mDr["contact"], mDr["id"], mDr["doctor_id"] });
+                dt.Rows.Add(new object[] { mDr["doctor"].ToString().Trim(), mDr["cname"], mDr["initial"], mDr["address1"], mDr["tel1"], mDr["fax"], mDr["opd"], mDr["contact"], mDr["id"], mDr["doctor_id"] });
             }
 
             dataGridView1.DataSource = dt;

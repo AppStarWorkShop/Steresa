@@ -16,9 +16,14 @@ namespace St.Teresa_LIS_2019
         public const String SEARCH_TYPE_PATIENT = "PATIENT";
         public const String SEARCH_TYPE_PAT_HKID = "PAT_HKID";
         public const String SEARCH_TYPE_LAB_REF = "LAB_REF";
+        public const String SEARCH_TYPE_HD_BARCODE = "HD_BARCODE";
         public const String SEARCH_TYPE_CLIENT = "CLIENT";
         public const String SEARCH_TYPE_DOCTOR_ID = "DOCTOR_ID";
         public const String SEARCH_TYPE_CASE_NO = "CASE_NO";
+
+        public const String CASE_TYPE_BX_CY = "BX/CY";
+        public const String CASE_TYPE_CY_G = "CY-G";
+        public const String CASE_TYPE_D = "D";
 
         public const int DATE_MODE_ALL = 1;
         public const int DATE_MODE_7_DAYS = 2;
@@ -43,6 +48,7 @@ namespace St.Teresa_LIS_2019
         public Boolean initSearch = false; // updated by Eric Leung
 
         private HisPatient currentHisPatient = null;
+        private EhrBarCode ehrBr = null;
 
         //int pageSize = 30;     //每页显示行数
         int pageSize = 100;     //每页显示行数
@@ -300,6 +306,20 @@ namespace St.Teresa_LIS_2019
                     currentHisPatient = null;
                     break;
                 case SEARCH_TYPE_LAB_REF:
+                    contentSearching = SEARCH_TYPE_HD_BARCODE;
+                    labelSearching = "2 D Barcode:";
+                    //buttonF3_Edit_Record.Enabled = false;
+                    button_F5_New_Patient.Enabled = false;
+                    button_F2_New_Record.Enabled = false;
+                    //button_F6_View_Record.Enabled = false;
+                    currentHisPatient = null;
+                    textBox_Search_Type.Multiline = true;
+                    textBox_Search_Type.Height = 23*5;
+                    textBox_Search_Type.CharacterCasing = CharacterCasing.Normal;
+                    textBox_Search_Type.Text = "";
+                    label2.Text = CASE_TYPE_D;
+                    break;
+                case SEARCH_TYPE_HD_BARCODE:
                     contentSearching = SEARCH_TYPE_CLIENT;
                     labelSearching = "Client:";
                     buttonF3_Edit_Record.Enabled = true;
@@ -307,6 +327,11 @@ namespace St.Teresa_LIS_2019
                     button_F2_New_Record.Enabled = true;
                     button_F6_View_Record.Enabled = true;
                     currentHisPatient = null;
+                    textBox_Search_Type.Multiline = false;
+                    textBox_Search_Type.Height = 23;
+                    textBox_Search_Type.CharacterCasing = CharacterCasing.Upper;
+                    textBox_Search_Type.Text = "";
+                    label2.Text = CASE_TYPE_BX_CY;
                     break;
                 case SEARCH_TYPE_CLIENT:
                     contentSearching = SEARCH_TYPE_DOCTOR_ID;
@@ -330,6 +355,13 @@ namespace St.Teresa_LIS_2019
             setButtonStatus();
             if (contentSearching == SEARCH_TYPE_LAB_REF)
             {
+                buttonF3_Edit_Record.Enabled = false;
+                button_F6_View_Record.Enabled = false;
+            }
+            else if (contentSearching == SEARCH_TYPE_HD_BARCODE)
+            {
+                button_F5_New_Patient.Enabled = false;
+                button_F2_New_Record.Enabled = false;
                 buttonF3_Edit_Record.Enabled = false;
                 button_F6_View_Record.Enabled = false;
             }
@@ -528,6 +560,48 @@ namespace St.Teresa_LIS_2019
 
                     }
                 }
+                else if (contentSearching == SEARCH_TYPE_HD_BARCODE)
+                {
+                    // search by HD 2D barcode
+                    button_F5_New_Patient.Enabled = false;
+                    button_F2_New_Record.Enabled = false;
+                    radioButton_Data_All.Checked = true;
+
+                    EhrBarCode br = EhrBarCode.getInstance(textBox_Search_Type.Text.Trim());
+                    if (br == null)
+                    {
+                        MessageBox.Show("The 2D barcode is invalid and cannot be processed!");
+                    }
+                    else
+                    {
+                        //MessageBox.Show("2D barcode referral No is " + br.referralNo);
+
+                        String hkid = br.getHkidWithBracket();
+                        
+                        if (hkid != null)
+                        {
+                            // search by HKID
+                            whereStr = SEARCH_TYPE_PAT_HKID;
+                            whereVal = hkid;
+                            loadDataGridViewDate();
+
+                            if (dataGridView1 != null && dataGridView1.RowCount > 0)
+                            {
+                                button_F2_New_Record.Enabled = true;
+                                button_F5_New_Patient.Enabled = false;
+
+                                MessageBox.Show("found matched cases based on HKID");
+                            }
+                            else
+                            {
+                                button_F2_New_Record.Enabled = false;
+                                button_F5_New_Patient.Enabled = true;
+                            }
+                        }
+
+                        ehrBr = br;
+                    }
+                }
                 else
                 {
                     searchRecord();
@@ -618,7 +692,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_F2_New_Record_Click(object sender, EventArgs e)
         {
-            if (label2.Text == "BX/CY")
+            if (label2.Text == CASE_TYPE_BX_CY)
             {
                 
                 if (contentSearching == SEARCH_TYPE_LAB_REF)
@@ -669,13 +743,13 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (label2.Text == "D")
+                if (label2.Text == CASE_TYPE_D)
                 {
                     Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile();
                     open.Show();
                     open.patientCopy(textBox_Search_Type.Text.Trim());
                 }
-                else
+                else if (label2.Text == CASE_TYPE_CY_G)
                 {
                     Form_CYTOLOGYFileGyname open = new Form_CYTOLOGYFileGyname();
                     open.Show();
@@ -747,7 +821,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_F5_New_Patient_Click(object sender, EventArgs e)
         {
-            if (label2.Text == "BX/CY")
+            if (label2.Text == CASE_TYPE_BX_CY)
             {
                 Form_BXCYFile open = new Form_BXCYFile(true);
                 open.Show();
@@ -762,13 +836,17 @@ namespace St.Teresa_LIS_2019
             }
             else
             {
-                if (label2.Text == "D")
+                if (label2.Text == CASE_TYPE_D)
                 {
                     Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile(true);
                     open.Show();
-                    if (contentSearching == SEARCH_TYPE_PATIENT)
+                    if (contentSearching == SEARCH_TYPE_HD_BARCODE)
                     {
-                        open.patientNameCopy(textBox_Search_Type.Text.Trim());
+                        //open.patientNameCopy(textBox_Search_Type.Text.Trim());
+                        if (ehrBr != null)
+                        {
+                            open.ehr2dBarcodeCopy(ehrBr, false);
+                        }
                     }
                     else
                     {
@@ -858,19 +936,19 @@ namespace St.Teresa_LIS_2019
         }
         private void button_F9_Set_BX_CY_Click(object sender, EventArgs e)
         {
-            if(label2.Text == "BX/CY")
+            if(label2.Text == CASE_TYPE_BX_CY)
             {
-                label2.Text = "CY-G";
+                label2.Text = CASE_TYPE_CY_G;
             }
             else
             {
-                if (label2.Text == "CY-G")
+                if (label2.Text == CASE_TYPE_CY_G)
                 {
-                    label2.Text = "D";
+                    label2.Text = CASE_TYPE_D;
                 }
                 else
                 {
-                    label2.Text = "BX/CY";
+                    label2.Text = CASE_TYPE_BX_CY;
                 }
             }
         }
@@ -948,7 +1026,8 @@ namespace St.Teresa_LIS_2019
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;
-            
+            label2.Text = CASE_TYPE_BX_CY;
+
         }
 
         private void button_BB_Click(object sender, EventArgs e)
@@ -960,6 +1039,7 @@ namespace St.Teresa_LIS_2019
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;
+            label2.Text = CASE_TYPE_BX_CY;
         }
 
         private void button_CY_Click(object sender, EventArgs e)
@@ -971,6 +1051,7 @@ namespace St.Teresa_LIS_2019
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;
+            label2.Text = CASE_TYPE_BX_CY;
         }
 
         private void button_CC_Click(object sender, EventArgs e)
@@ -982,6 +1063,7 @@ namespace St.Teresa_LIS_2019
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;
+            label2.Text = CASE_TYPE_BX_CY;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -993,6 +1075,7 @@ namespace St.Teresa_LIS_2019
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;
+            label2.Text = CASE_TYPE_BX_CY;
         }
 
         private void LoadData()
@@ -1052,6 +1135,7 @@ namespace St.Teresa_LIS_2019
             textBox_Search_Type.Focus();
             textBox_Search_Type.SelectionStart = textBox_Search_Type.Text.Length;
             textBox_Search_Type.SelectionLength = 0;
+            label2.Text = CASE_TYPE_D;
         }
 
         private void radioButton_Data_From_CheckedChanged(object sender, EventArgs e)
@@ -1187,6 +1271,9 @@ namespace St.Teresa_LIS_2019
                     break;
 
                 case SEARCH_TYPE_LAB_REF:
+                    break;
+
+                case SEARCH_TYPE_HD_BARCODE:
                     break;
 
                 default:

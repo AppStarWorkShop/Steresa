@@ -240,6 +240,37 @@ namespace St.Teresa_LIS_2019
             Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
             open.OnCyDiagExit += CyDiagReturn;
             open.Show();
+
+            if (textBox_Case_No.Text != "")
+            {
+                String countSql = " cy_diag1 where case_no = '" + textBox_Case_No.Text.Trim() + "'";
+                if (DBConn.getSqlRecordCount(countSql) == 0)
+                {
+                    open.setDefaultValue();
+                }
+            }
+
+
+            //if (diagForm == null)
+            //{
+            //  Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
+            //  open.OnCyDiagExit += CyDiagReturn;
+
+            //    //Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis();
+            //    open.Show();
+            //    open.setPreviousFileForm(this);
+            //    if (currentStatus == PageStatus.STATUS_NEW)
+            //    {
+            //        open.setDefaultValue();
+            //    }
+
+            //    diagForm = open;
+            //}
+            //else
+            //{
+            //    diagForm.Show();
+            //}
+
         }
 
         private void CyDiagReturn(DataSet existCyDiagDataSet1, DataSet existCyDiagDataSet2, DataSet existCyDiagDataSet3, SqlDataAdapter existCyDiagDataAdapter1, SqlDataAdapter existCyDiagDataAdapter2, SqlDataAdapter existCyDiagDataAdapter3)
@@ -542,7 +573,7 @@ namespace St.Teresa_LIS_2019
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                             {
-                                
+
                                 //button_End.PerformClick();
 
                                 if (existCyDiagDataAdapter1 != null && existCyDiagDataSet1 != null && existCyDiagDataAdapter2 != null && existCyDiagDataSet2 != null && existCyDiagDataAdapter3 != null && existCyDiagDataSet3 != null)
@@ -738,6 +769,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
             currentEditRow["DATE"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -757,6 +789,7 @@ namespace St.Teresa_LIS_2019
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
             currentEditRow["DATE"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -770,12 +803,17 @@ namespace St.Teresa_LIS_2019
             currentEditRow["id"] = -1;
             currentEditRow["Pat_age"] = 0;
             currentEditRow["Pat_sex"] = "M";
-            currentEditRow["CLIENT"] = "ST. Teresa's Hospital";
-            currentEditRow["Institute"] = "ST. Teresa's Hospital";
+            currentEditRow["CLIENT"] = Form_BXCYFile.DEFAULT_CLIENT;
+            currentEditRow["Institute"] = Form_BXCYFile.DEFAULT_INSTITUTE;
 
             currentEditRow["fz_section"] = 0;
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
+
+            currentEditRow["date"] = DateTime.Now;
+            currentEditRow["INV_DATE"] = DateTime.Now;
+
+            currentEditRow["Cyto_Type"] = "G";
 
             DataSet copyBxcyDataSet = new DataSet();
 
@@ -791,10 +829,23 @@ namespace St.Teresa_LIS_2019
                 currentEditRow["PAT_SEQ"] = mDr["PAT_SEQ"];
                 currentEditRow["CNAME"] = mDr["CNAME"];
                 currentEditRow["PAT_BIRTH"] = mDr["PAT_BIRTH"];
-                currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
+                if (mDr["PAT_BIRTH"] != null)
+                {
+                    DateTime dob = (DateTime)mDr["PAT_BIRTH"];
+                    Double age = PatientAgeCalculator.calculate(dob);
+                    if (age != Double.NaN)
+                    {
+                        currentEditRow["PAT_AGE"] = age;
+                    }
+                }
+
+                //currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
+
+
                 currentEditRow["PAT_SEX"] = mDr["PAT_SEX"];
                 currentEditRow["PAT_HKID"] = mDr["PAT_HKID"];
             }
+            //currentEditRow[""] = "Cervical liquid-based preparration (ThinPrep)";
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
@@ -1103,7 +1154,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part 
+            // second part
 
             if (notJumped)
             {
@@ -1414,7 +1465,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part 
+            // second part
 
             if (notJumped)
             {
@@ -2031,14 +2082,14 @@ namespace St.Teresa_LIS_2019
 
             textBox_ID.DataBindings.Add("Text", dt, "id", false);
             textBox_Case_No.DataBindings.Add("Text", dt, "CASE_NO", false);
-            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_Date.DataBindings.Add("Text", dt, "DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
             comboBox_Ethnic.DataBindings.Add("SelectedValue", dt, "ETHNIC", false);
             comboBox_cytoType.DataBindings.Add("SelectedValue", dt, "Cyto_Type", false);
             textBox_Patient.DataBindings.Add("Text", dt, "PATIENT", false);
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_HKID.DataBindings.Add("Text", dt, "PAT_HKID", false);
-            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", "ddMMyyyy");
+            textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
             //comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
@@ -2065,10 +2116,10 @@ namespace St.Teresa_LIS_2019
 
             textBox_Involce_No.DataBindings.Add("Text", dt, "Inv_no", false);
             //textBox_Receipt.DataBindings.Add("Text", dt, "RECEIPT", false);
-            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Invoice_Date.DataBindings.Add("Text", dt, "INV_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
             textBox_Amount_HK.DataBindings.Add("Text", dt, "INV_AMT", false);
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
-            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
 
             textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
@@ -2085,9 +2136,9 @@ namespace St.Teresa_LIS_2019
             textBox_Cytology.DataBindings.Add("Text", dt, "initial", false);
 
             textBox_Updated_By_1.DataBindings.Add("Text", dt, "update_by", false);
-            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Updated_At.DataBindings.Add("Text", dt, "update_at", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
             textBox_Issued_By.DataBindings.Add("Text", dt, "issue_by", false);
-            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", "dd/MM/yyyy");
+            textBox_Issued_At.DataBindings.Add("Text", dt, "issue_at", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
             //textBox_Rpt_Date.DataBindings.Add("Text", dt, "rpt_date", false);
 
             label_Printed.DataBindings.Add("Text", dt, "print_ctr", false);
@@ -2548,7 +2599,7 @@ namespace St.Teresa_LIS_2019
                     DateTime recordDate;
                     if (DateTime.TryParse(reader.GetValue(4).ToString(), out recordDate))
                     {
-                        textBox_DOB.Text = recordDate.ToString("yyyy/MM/dd");
+                        textBox_DOB.Text = recordDate.ToString(DateUtil.FORMAT_DEFAULT_DATE);
                     }
                     textBox_Age.Text = reader.GetValue(5).ToString();
                     textBox_Sex.Text = reader.GetValue(6).ToString();
@@ -2677,7 +2728,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
-            textBox_Rpt_Date.Text = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss");
+            textBox_Rpt_Date.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME);
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);
@@ -2854,31 +2905,15 @@ namespace St.Teresa_LIS_2019
 
         private void textBox_Case_No_KeyUp(object sender, KeyEventArgs e)
         {
-            if (textBox_Case_No.Text.Trim().ToLower() == "b")
+            if (textBox_Case_No.Text.Trim().ToLower() == "c")
             {
-                textBox_Case_No.Text = string.Format("BX{0}/", DateTime.Now.ToString("yyyy").Substring(2));
+                textBox_Case_No.Text = string.Format("CY{0}-", DateTime.Now.ToString(DateUtil.FORMAT_YEAR).Substring(2));
+                textBox_Case_No.Focus();
+                textBox_Case_No.SelectionStart = textBox_Case_No.Text.Length;
+                textBox_Case_No.SelectionLength = 0;
             }
-            else
-            {
-                if (textBox_Case_No.Text.Trim().ToLower() == "c")
-                {
-                    textBox_Case_No.Text = string.Format("CY{0}-", DateTime.Now.ToString("yyyy").Substring(2));
-                }
-                else
-                {
-                    if (textBox_Case_No.Text.Trim().ToLower() == "m")
-                    {
-                        textBox_Case_No.Text = string.Format("MP{0}-", DateTime.Now.ToString("yyyy").Substring(2));
-                    }
-                    else
-                    {
-                        if (textBox_Case_No.Text.Trim().ToLower() == "d")
-                        {
-                            textBox_Case_No.Text = string.Format("D{0}-", DateTime.Now.ToString("yyyy").Substring(2));
-                        }
-                    }
-                }
-            }
+
+            
         }
 
         private void comboBox_Sign_By_Dr_1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -2951,7 +2986,8 @@ namespace St.Teresa_LIS_2019
                 m_isEntering3 = false;
                 string search = ((ComboBox)sender).Text.Trim();
 
-                string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                //string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
+                string sqlFull = string.Format("SELECT TOP 1 doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
                 doctorDataAdapter3 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet3, "sign_doctor");
 
                 if (doctorDataSet3.Tables["sign_doctor"].Rows.Count > 0)
@@ -2996,7 +3032,7 @@ namespace St.Teresa_LIS_2019
             {
                 DateTime dDate;
                 CultureInfo ci = new CultureInfo("en-IE");
-                if (textBox_Paid_Date.Text.Length == 10 && DateTime.TryParseExact(textBox_Paid_Date.Text, "dd/MM/yyyy", ci, DateTimeStyles.None, out dDate))
+                if (textBox_Paid_Date.Text.Length == 10 && DateTime.TryParseExact(textBox_Paid_Date.Text, DateUtil.FORMAT_DEFAULT_DATE, ci, DateTimeStyles.None, out dDate))
                 {
                     textBox_Paid_Up.Text = PaymentStatus.PAID_YES;
 
@@ -3102,10 +3138,15 @@ namespace St.Teresa_LIS_2019
                 existCyDiagDataAdapter3 = DBConn.fetchDataIntoDataSet(diagSql3, existCyDiagDataSet3, "cy_diag3");
             }
         }
-		
+
 		public void setReportWording(String str)
         {
             reportWording = str;
+        }
+
+        private void label_Sign_By_Dr_3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

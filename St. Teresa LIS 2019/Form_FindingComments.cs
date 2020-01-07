@@ -11,13 +11,30 @@ namespace St.Teresa_LIS_2019
 {
     public partial class Form_FindingComments : Form
     {
+        
+        private Form_CYTOLOGYFileGyname previousForm;
+
         public Form_FindingComments()
         {
             InitializeComponent();
         }
 
+        public void setPreviousForm(Form_CYTOLOGYFileGyname previousForm)
+        {
+            this.previousForm = previousForm;
+        }
+
+        public void setReportWording(String w)
+        {
+            textBox_Gynecological_History.Text = w;
+        }
+
         private void button_F8_Confirm_Exit_Click(object sender, EventArgs e)
         {
+            if (previousForm != null)
+            {
+                previousForm.setReportWording(textBox_Gynecological_History.Text);
+            }
             this.Close();
         }
 

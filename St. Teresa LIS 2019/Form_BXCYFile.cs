@@ -3541,18 +3541,9 @@ namespace St.Teresa_LIS_2019
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            if (keyData == Keys.Enter)
+            if (textBox_Patient_s_Clinical_History.Focused || textBox_Remarks.Focused)
             {
-                foreach (Control c in this.Controls)
-                {
-                    if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
-                    {
-                        keyData = Keys.Tab;
-                    }
-                }
-            }
-            else
-            {
+                //MessageBox.Show("The ");
                 if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
                 {
                     foreach (Control c in this.Controls)
@@ -3564,6 +3555,37 @@ namespace St.Teresa_LIS_2019
                     }
                 }
             }
+            else
+            {
+                if (keyData == Keys.Enter)
+                {
+                    foreach (Control c in this.Controls)
+                    {
+                        if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                        {
+
+                            keyData = Keys.Tab;
+
+
+                        }
+                    }
+                }
+                else
+                {
+                    if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+                    {
+                        foreach (Control c in this.Controls)
+                        {
+                            if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                            {
+                                keyData = (Keys.LButton | Keys.Shift | Keys.Tab);
+                            }
+                        }
+                    }
+                }
+            }
+
+            
             return base.ProcessDialogKey(keyData);
         }
 
@@ -3812,9 +3834,9 @@ namespace St.Teresa_LIS_2019
 
         private void textBox_Case_No_KeyUp(object sender, KeyEventArgs e)
         {
-            if (textBox_Case_No.Text.Trim().ToLower() == "b")
+            if (textBox_Case_No.Text.Trim().ToLower() == "bx")
             {
-                if (textBox_Case_No.Text.Length == 1)
+                if (textBox_Case_No.Text.Length == 2)
                 {
                     textBox_Case_No.Text = string.Format("BX{0}/", DateTime.Now.ToString("yyyy").Substring(2));
                     textBox_Case_No.Focus();

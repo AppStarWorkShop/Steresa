@@ -327,4 +327,17 @@ namespace St.Teresa_LIS_2019
         }
     }
 
+    public class DateUtil
+    {
+        public const String FORMAT_YEAR = "yyyy";
+        public const String FORMAT_MONTH = "MM";
+        public const String FORMAT_DAY = "dd";
+        public const String FORMAT_HOUR = "hh";
+        public const String FORMAT_MINUTE = "mm";
+        public const String FORMAT_SECOND = "ss";
+
+        public const string FORMAT_DEFAULT_DATE = FORMAT_DAY + "/" + FORMAT_MONTH + "/" + FORMAT_YEAR;
+        public const string FORMAT_DEFAULT_DATE_TIME = FORMAT_DEFAULT_DATE + " " + FORMAT_HOUR + ":" + FORMAT_MINUTE + ":" + FORMAT_SECOND;
+    }
+
 }

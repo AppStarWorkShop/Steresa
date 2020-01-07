@@ -1796,6 +1796,28 @@ namespace St.Teresa_LIS_2019
             checkBox_Normal_flora_2.Checked = true;
             checkBox_Normal_flora_3.Checked = true;
 
+            comboBox_SITE_TYPE_1.Text = "Cervical liquid-based preparation (ThinPrep)";
+            comboBox_SITE_TYPE_2.Text = "Cervical liquid-based preparation (ThinPrep)";
+            comboBox_SITE_TYPE_3.Text = "Cervical liquid-based preparation (ThinPrep)";
+
+            textBox_SITE_TYPE_1.Text = "宮頸(ThinPrep)液基簿片技術";
+            textBox_SITE_TYPE_2.Text = "宮頸(ThinPrep)液基簿片技術";
+            textBox_SITE_TYPE_3.Text = "宮頸(ThinPrep)液基簿片技術";
+
+            comboBox_DIAGNOSIS_1_1.Text = "Negative for intraepithelial lesion or malignancy";
+            comboBox_DIAGNOSIS_1_2.Text = "Negative for intraepithelial lesion or malignancy";
+            comboBox_DIAGNOSIS_1_3.Text = "Negative for intraepithelial lesion or malignancy";
+
+            comboBox_DIAGNOSIS_2_1.Text = "";
+            comboBox_DIAGNOSIS_3_1.Text = "";
+            comboBox_DIAGNOSIS_2_2.Text = "";
+            comboBox_DIAGNOSIS_3_2.Text = "";
+            comboBox_DIAGNOSIS_2_3.Text = "";
+            comboBox_DIAGNOSIS_3_3.Text = "";
+
+            textBox_DIAGNOSIS_1_1.Text = "無癌或癌前期病變";
+            textBox_DIAGNOSIS_1_2.Text = "無癌或癌前期病變";
+            textBox_DIAGNOSIS_1_3.Text = "無癌或癌前期病變";
         }
 
         private void generateReportWording()
@@ -2379,6 +2401,9 @@ namespace St.Teresa_LIS_2019
                     button_Sign_At_1.Enabled = true;
                     button_Sign_At_2.Enabled = true;
                     button_Sign_At_3.Enabled = true;
+
+                    // some check boxes should be updated by the system only
+                    disableNonEditableCheckboxes();
                 }
                 else
                 {
@@ -2569,9 +2594,35 @@ namespace St.Teresa_LIS_2019
                         button_Sign_At_1.Enabled = true;
                         button_Sign_At_2.Enabled = true;
                         button_Sign_At_3.Enabled = true;
+
+                        // some check boxes should be updated by the system only
+                        disableNonEditableCheckboxes();
                     }
                 }
             }
+        }
+
+        public void disableNonEditableCheckboxes()
+        {
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Enabled = false;
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Enabled = false;
+            checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Enabled = false;
+
+            checkBox_Atypical_squamous_cells_1.Enabled = false;
+            checkBox_Atypical_squamous_cells_2.Enabled = false;
+            checkBox_Atypical_squamous_cells_3.Enabled = false;
+
+            checkBox_Squamous_intraepithelial_lesion_SIL_1.Enabled = false;
+            checkBox_Squamous_intraepithelial_lesion_SIL_2.Enabled = false;
+            checkBox_Squamous_intraepithelial_lesion_SIL_3.Enabled = false;
+
+            checkBox_Atypical_glandular_cells_1.Enabled = false;
+            checkBox_Atypical_glandular_cells_2.Enabled = false;
+            checkBox_Atypical_glandular_cells_3.Enabled = false;
+
+            checkBox_Adenocarcinoma_1.Enabled = false;
+            checkBox_Adenocarcinoma_2.Enabled = false;
+            checkBox_Adenocarcinoma_3.Enabled = false;
         }
 
         private void comboBox_SITE_TYPE_1_SelectionChangeCommitted(object sender, EventArgs e)
@@ -2744,11 +2795,26 @@ namespace St.Teresa_LIS_2019
 
         private void button_Sign_At_1_Click(object sender, EventArgs e)
         {
-            if(dt1 != null && dt2 != null)
+            textBox_Sign_At_1.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME);
+            textBox_Sign_By_1.Text = CurrentUser.currentUserId;
+
+            //if (dt1 != null && dt1.Rows.Count == 0)
+            //{
+            //    MessageBox.Show("There are no existing row under");
+            //    return;
+            //}
+
+            //if (dt1 != null)
+            //{
+            //    dt1.Rows[0]["sign_at"] = DateTime.Now;
+            //    dt1.Rows[0]["sign_id"] = CurrentUser.currentUserId;
+            //}
+
+            if (dt1 != null && dt2 != null)
             {
-                dt2.Rows[0]["sign_at"] = dt1.Rows[0]["sign_at"];
-                dt2.Rows[0]["sign_id"] = dt1.Rows[0]["sign_id"];
-                dt2.Rows[0]["sign_by"] = dt1.Rows[0]["sign_by"];
+                //dt2.Rows[0]["sign_at"] = dt1.Rows[0]["sign_at"];
+                //dt2.Rows[0]["sign_id"] = dt1.Rows[0]["sign_id"];
+                //dt2.Rows[0]["sign_by"] = dt1.Rows[0]["sign_by"];
                 dt2.Rows[0]["site"] = dt1.Rows[0]["site"];
                 dt2.Rows[0]["site_desc"] = dt1.Rows[0]["site_desc"];
                 dt2.Rows[0]["diag1"] = dt1.Rows[0]["diag1"];
@@ -2810,9 +2876,9 @@ namespace St.Teresa_LIS_2019
 
             if (dt1 != null && dt3 != null)
             {
-                dt3.Rows[0]["sign_at"] = dt1.Rows[0]["sign_at"];
-                dt3.Rows[0]["sign_id"] = dt1.Rows[0]["sign_id"];
-                dt3.Rows[0]["sign_by"] = dt1.Rows[0]["sign_by"];
+                //dt3.Rows[0]["sign_at"] = dt1.Rows[0]["sign_at"];
+                //dt3.Rows[0]["sign_id"] = dt1.Rows[0]["sign_id"];
+                //dt3.Rows[0]["sign_by"] = dt1.Rows[0]["sign_by"];
                 dt3.Rows[0]["site"] = dt1.Rows[0]["site"];
                 dt3.Rows[0]["site_desc"] = dt1.Rows[0]["site_desc"];
                 dt3.Rows[0]["diag1"] = dt1.Rows[0]["diag1"];
@@ -2871,6 +2937,95 @@ namespace St.Teresa_LIS_2019
                 dt3.Rows[0]["interepi5d"] = dt1.Rows[0]["interepi5d"];
                 dt3.Rows[0]["interepi6"] = dt1.Rows[0]["interepi6"];
             }
+        }
+
+        private void button_Sign_At_2_Click(object sender, EventArgs e)
+        {
+            textBox_Sign_At_2.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME);
+            textBox_Sign_By_2.Text = CurrentUser.currentUserId;
+            if (dt2 != null)
+            {
+                dt2.Rows[0]["sign_at"] = DateTime.Now;
+                dt2.Rows[0]["sign_id"] = CurrentUser.currentUserId;
+            }
+
+            if (dt2 != null && dt3 != null)
+            {
+                dt3.Rows[0]["site"] = dt2.Rows[0]["site"];
+                dt3.Rows[0]["site_desc"] = dt2.Rows[0]["site_desc"];
+                dt3.Rows[0]["diag1"] = dt2.Rows[0]["diag1"];
+                dt3.Rows[0]["diag1_desc"] = dt2.Rows[0]["diag1_desc"];
+                dt3.Rows[0]["diag2"] = dt2.Rows[0]["diag2"];
+                dt3.Rows[0]["diag2_desc"] = dt2.Rows[0]["diag2_desc"];
+                dt3.Rows[0]["diag3"] = dt2.Rows[0]["diag3"];
+                dt3.Rows[0]["diag3_desc"] = dt2.Rows[0]["diag3_desc"];
+                dt3.Rows[0]["site1"] = dt2.Rows[0]["site1"];
+                dt3.Rows[0]["site2"] = dt2.Rows[0]["site2"];
+                dt3.Rows[0]["specimena1"] = dt2.Rows[0]["specimena1"];
+                dt3.Rows[0]["specimena2"] = dt2.Rows[0]["specimena2"];
+                dt3.Rows[0]["specimena3"] = dt2.Rows[0]["specimena3"];
+                dt3.Rows[0]["cellularc1"] = dt2.Rows[0]["cellularc1"];
+                dt3.Rows[0]["cellularc2"] = dt2.Rows[0]["cellularc2"];
+                dt3.Rows[0]["cellularc3"] = dt2.Rows[0]["cellularc3"];
+                dt3.Rows[0]["cellularc4"] = dt2.Rows[0]["cellularc4"];
+                dt3.Rows[0]["cellularc5"] = dt2.Rows[0]["cellularc5"];
+                dt3.Rows[0]["prepair1"] = dt2.Rows[0]["prepair1"];
+                dt3.Rows[0]["prepair2"] = dt2.Rows[0]["prepair2"];
+                dt3.Rows[0]["prepair3"] = dt2.Rows[0]["prepair3"];
+                dt3.Rows[0]["prepair4"] = dt2.Rows[0]["prepair4"];
+                dt3.Rows[0]["specimenq1"] = dt2.Rows[0]["specimenq1"];
+                dt3.Rows[0]["specimenq2"] = dt2.Rows[0]["specimenq2"];
+                dt3.Rows[0]["specimenq3"] = dt2.Rows[0]["specimenq3"];
+                dt3.Rows[0]["specimenq4"] = dt2.Rows[0]["specimenq4"];
+                dt3.Rows[0]["specimenq5"] = dt2.Rows[0]["specimenq5"];
+                dt3.Rows[0]["interneg"] = dt2.Rows[0]["interneg"];
+                dt3.Rows[0]["interneg1"] = dt2.Rows[0]["interneg1"];
+                dt3.Rows[0]["interneg2"] = dt2.Rows[0]["interneg2"];
+                dt3.Rows[0]["interneg3"] = dt2.Rows[0]["interneg3"];
+                dt3.Rows[0]["interneg4"] = dt2.Rows[0]["interneg4"];
+                dt3.Rows[0]["interneg5"] = dt2.Rows[0]["interneg5"];
+                dt3.Rows[0]["interneg6"] = dt2.Rows[0]["interneg6"];
+                dt3.Rows[0]["interneg7"] = dt2.Rows[0]["interneg7"];
+                dt3.Rows[0]["interneg8"] = dt2.Rows[0]["interneg8"];
+                dt3.Rows[0]["interneg9"] = dt2.Rows[0]["interneg9"];
+                dt3.Rows[0]["hpv_dna"] = dt2.Rows[0]["hpv_dna"];
+                dt3.Rows[0]["interepi"] = dt2.Rows[0]["interepi"];
+                dt3.Rows[0]["interepi1"] = dt2.Rows[0]["interepi1"];
+                dt3.Rows[0]["interepi1a"] = dt2.Rows[0]["interepi1a"];
+                dt3.Rows[0]["interepi1b"] = dt2.Rows[0]["interepi1b"];
+                dt3.Rows[0]["interepi2"] = dt2.Rows[0]["interepi2"];
+                dt3.Rows[0]["interepi2a"] = dt2.Rows[0]["interepi2a"];
+                dt3.Rows[0]["interepi2b"] = dt2.Rows[0]["interepi2b"];
+                dt3.Rows[0]["interepi2c"] = dt2.Rows[0]["interepi2c"];
+                dt3.Rows[0]["interepi3"] = dt2.Rows[0]["interepi3"];
+                dt3.Rows[0]["interepi4"] = dt2.Rows[0]["interepi4"];
+                dt3.Rows[0]["interepi4a"] = dt2.Rows[0]["interepi4a"];
+                dt3.Rows[0]["interepi4b"] = dt2.Rows[0]["interepi4b"];
+                dt3.Rows[0]["interepi4c"] = dt2.Rows[0]["interepi4c"];
+                dt3.Rows[0]["interepi5"] = dt2.Rows[0]["interepi5"];
+                dt3.Rows[0]["interepi5a"] = dt2.Rows[0]["interepi5a"];
+                dt3.Rows[0]["interepi5b"] = dt2.Rows[0]["interepi5b"];
+                dt3.Rows[0]["interepi5c"] = dt2.Rows[0]["interepi5c"];
+                dt3.Rows[0]["interepi5d"] = dt2.Rows[0]["interepi5d"];
+                dt3.Rows[0]["interepi6"] = dt2.Rows[0]["interepi6"];
+            }
+
+        }
+
+        private void button_Sign_At_3_Click(object sender, EventArgs e)
+        {
+            textBox_Sign_At_3.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME);
+            textBox_Sign_By_3.Text = CurrentUser.currentUserId;
+            if (dt3 != null)
+            {
+                dt3.Rows[0]["sign_at"] = DateTime.Now;
+                dt3.Rows[0]["sign_id"] = CurrentUser.currentUserId;
+            }
+        }
+
+        private void comboBox_DIAGNOSIS_3_1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void reloadAndBindingDBData()
@@ -3092,19 +3247,27 @@ namespace St.Teresa_LIS_2019
             checkBox_Adenocarcinoma_NOS_3.DataBindings.Clear();
             checkBox_Other_malignant_neoplasm_3.DataBindings.Clear();
 
+            String screenerSql = "select user_name as doctor from [user] where SCREENER1 = 'T' order by user_name";
+            DataSet screenerDataSet1 = new DataSet();
+            SqlDataAdapter screenerDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(screenerSql, screenerDataSet1, "sign_doctor");
+            DataTable doctorDt1 = new DataTable();
+            doctorDt1.Columns.Add("doctor");
+            DataTable doctorDt2 = doctorDt1.Clone();
+            foreach (DataRow mDr in screenerDataSet1.Tables["sign_doctor"].Rows)
+            {
+                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
+            }
+
             string doctorSql1 = "SELECT doctor FROM [sign_doctor] order by doctor";
             DataSet doctorDataSet1 = new DataSet();
             SqlDataAdapter doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql1, doctorDataSet1, "sign_doctor");
 
-            DataTable doctorDt1 = new DataTable();
-            doctorDt1.Columns.Add("doctor");
-            DataTable doctorDt2 = doctorDt1.Clone();
-            DataTable doctorDt3 = doctorDt1.Clone();
+            DataTable doctorDt3 = new DataTable();
+            doctorDt3.Columns.Add("doctor");
 
             foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
             {
-                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
-                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
                 doctorDt3.Rows.Add(new object[] { mDr["doctor"] });
             }
 
@@ -3632,19 +3795,27 @@ namespace St.Teresa_LIS_2019
             checkBox_Adenocarcinoma_NOS_3.DataBindings.Clear();
             checkBox_Other_malignant_neoplasm_3.DataBindings.Clear();
 
+            String screenerSql = "select user_name as doctor from [user] where SCREENER1 = 'T' order by user_name";
+            DataSet screenerDataSet1 = new DataSet();
+            SqlDataAdapter screenerDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(screenerSql, screenerDataSet1, "sign_doctor");
+            DataTable doctorDt1 = new DataTable();
+            doctorDt1.Columns.Add("doctor");
+            DataTable doctorDt2 = doctorDt1.Clone();
+            foreach (DataRow mDr in screenerDataSet1.Tables["sign_doctor"].Rows)
+            {
+                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
+            }
+
             string doctorSql1 = "SELECT doctor FROM [sign_doctor] order by doctor";
             DataSet doctorDataSet1 = new DataSet();
             SqlDataAdapter doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql1, doctorDataSet1, "sign_doctor");
 
-            DataTable doctorDt1 = new DataTable();
-            doctorDt1.Columns.Add("doctor");
-            DataTable doctorDt2 = doctorDt1.Clone();
-            DataTable doctorDt3 = doctorDt1.Clone();
+            DataTable doctorDt3 = new DataTable();
+            doctorDt3.Columns.Add("doctor");
 
             foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
             {
-                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
-                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
                 doctorDt3.Rows.Add(new object[] { mDr["doctor"] });
             }
 

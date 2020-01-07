@@ -98,8 +98,9 @@
             this.textBox_Search_Type.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.textBox_Search_Type.ForeColor = System.Drawing.Color.Blue;
             this.textBox_Search_Type.Location = new System.Drawing.Point(14, 28);
+            this.textBox_Search_Type.Multiline = true;
             this.textBox_Search_Type.Name = "textBox_Search_Type";
-            this.textBox_Search_Type.Size = new System.Drawing.Size(254, 27);
+            this.textBox_Search_Type.Size = new System.Drawing.Size(289, 23);
             this.textBox_Search_Type.TabIndex = 50;
             this.textBox_Search_Type.TextChanged += new System.EventHandler(this.textBox_Search_Type_TextChanged);
             this.textBox_Search_Type.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox_Search_Type_KeyUp);
@@ -572,6 +573,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(216)))), ((int)(((byte)(171)))));
             this.ClientSize = new System.Drawing.Size(1008, 730);
             this.ControlBox = false;
+            this.Controls.Add(this.textBox_Search_Type);
             this.Controls.Add(this.dateTimePicker_To);
             this.Controls.Add(this.dateTimePicker_From);
             this.Controls.Add(this.label2);
@@ -601,7 +603,6 @@
             this.Controls.Add(this.button_F4_Daily_Report);
             this.Controls.Add(this.button_BX);
             this.Controls.Add(this.button_Exit);
-            this.Controls.Add(this.textBox_Search_Type);
             this.Controls.Add(this.label_Search_Type);
             this.KeyPreview = true;
             this.Name = "Form_BXCYRecordSearch";
