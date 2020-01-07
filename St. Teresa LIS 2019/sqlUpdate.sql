@@ -2956,3 +2956,26 @@ IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND L
 BEGIN
 ALTER TABLE cy_diag3 ADD [DIAG3_DESC] [nvarchar](255) NULL;
 END
+
+
+IF NOT EXISTS(SELECT a.name FROM syscolumns a,sysobjects b WHERE a.id=b.id AND LTRIM(a.name) = 'id' AND LTRIM(b.name)='reportContent')
+BEGIN
+ALTER TABLE cy_diag3 ADD [reportContent] [nvarchar](max) NULL;
+END
+
+
+--findingCommentsReport table
+IF  NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[findingCommentsReport]') AND type in (N'U'))
+CREATE TABLE [dbo].[findingCommentsReport](
+	[key] [nvarchar](255) NULL,
+	[description] [nvarchar](1000) NULL,
+	[UPDATE_BY] [nvarchar](255) NULL,
+	[UPDATE_AT] [datetime] NULL,
+	[UPDATE_CTR] [nvarchar](255) NULL,
+	[id] [int] IDENTITY(1,1) NOT NULL,
+ CONSTRAINT [PK_findingCommentsReport] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO

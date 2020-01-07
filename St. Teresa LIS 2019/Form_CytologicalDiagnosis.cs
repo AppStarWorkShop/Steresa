@@ -55,6 +55,60 @@ namespace St.Teresa_LIS_2019
             this.fileForm = fileForm;
         }
 
+        
+
+        public Form_CytologicalDiagnosis(string caseNo, int status, DataSet existCyDiagDataSet1 = null, DataSet existCyDiagDataSet2 = null, DataSet existCyDiagDataSet3 = null, SqlDataAdapter existCyDiagDataAdapter1 = null, SqlDataAdapter existCyDiagDataAdapter2 = null, SqlDataAdapter existCyDiagDataAdapter3 = null)
+        {
+            this.caseNo = caseNo;
+            this.currentStatus = status;
+            this.existCyDiagDataSet1 = existCyDiagDataSet1;
+            this.existCyDiagDataSet2 = existCyDiagDataSet2;
+            this.existCyDiagDataSet3 = existCyDiagDataSet3;
+
+            this.existCyDiagDataAdapter1 = existCyDiagDataAdapter1;
+            this.existCyDiagDataAdapter2 = existCyDiagDataAdapter2;
+            this.existCyDiagDataAdapter3 = existCyDiagDataAdapter3;
+            InitializeComponent();
+            setButtonStatus(currentStatus);
+
+            if (currentStatus == PageStatus.STATUS_VIEW)
+            {
+                reloadAndBindingDBData();
+            }
+            else
+            {
+                if (existCyDiagDataSet1 != null && existCyDiagDataSet2 != null && existCyDiagDataSet3 != null)
+                {
+                    reloadAndBindingDBDataWithExistDataSet();
+                }
+                else
+                {
+                    reloadAndBindingDBData();
+                }
+
+                if ((currentStatus == PageStatus.STATUS_NEW && existCyDiagDataSet1 == null && existCyDiagDataSet2 == null && existCyDiagDataSet3 == null)
+                    || ((currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT ) && cyDiagDataSet1.Tables[0].Rows.Count == 0
+                    && cyDiagDataSet2.Tables[0].Rows.Count == 0 && cyDiagDataSet3.Tables[0].Rows.Count == 0))
+                {
+                    currentEditRow1 = cyDiagDataSet1.Tables[0].NewRow();
+                    initCurrentEditRow(currentEditRow1);
+                    cyDiagDataSet1.Tables[0].Rows.Clear();
+                    cyDiagDataSet1.Tables[0].Rows.Add(currentEditRow1);
+
+                    currentEditRow2 = cyDiagDataSet2.Tables[0].NewRow();
+                    initCurrentEditRow(currentEditRow2);
+                    cyDiagDataSet2.Tables[0].Rows.Clear();
+                    cyDiagDataSet2.Tables[0].Rows.Add(currentEditRow2);
+
+                    currentEditRow3 = cyDiagDataSet3.Tables[0].NewRow();
+                    initCurrentEditRow(currentEditRow3);
+                    cyDiagDataSet3.Tables[0].Rows.Clear();
+                    cyDiagDataSet3.Tables[0].Rows.Add(currentEditRow3);
+
+                }
+            }
+        }
+
         private void initCurrentEditRow(DataRow currentEditRow)
         {
             currentEditRow["site1"] = false;
@@ -108,57 +162,6 @@ namespace St.Teresa_LIS_2019
             currentEditRow["interepi6"] = false;
         }
 
-        public Form_CytologicalDiagnosis(string caseNo, int status, DataSet existCyDiagDataSet1 = null, DataSet existCyDiagDataSet2 = null, DataSet existCyDiagDataSet3 = null, SqlDataAdapter existCyDiagDataAdapter1 = null, SqlDataAdapter existCyDiagDataAdapter2 = null, SqlDataAdapter existCyDiagDataAdapter3 = null)
-        {
-            this.caseNo = caseNo;
-            this.currentStatus = status;
-            this.existCyDiagDataSet1 = existCyDiagDataSet1;
-            this.existCyDiagDataSet2 = existCyDiagDataSet2;
-            this.existCyDiagDataSet3 = existCyDiagDataSet3;
-
-            this.existCyDiagDataAdapter1 = existCyDiagDataAdapter1;
-            this.existCyDiagDataAdapter2 = existCyDiagDataAdapter2;
-            this.existCyDiagDataAdapter3 = existCyDiagDataAdapter3;
-            InitializeComponent();
-            setButtonStatus(currentStatus);
-
-            if (currentStatus == PageStatus.STATUS_VIEW)
-            {
-                reloadAndBindingDBData();
-            }
-            else
-            {
-                if (existCyDiagDataSet1 != null && existCyDiagDataSet2 != null && existCyDiagDataSet3 != null)
-                {
-                    reloadAndBindingDBDataWithExistDataSet();
-                }
-                else
-                {
-                    reloadAndBindingDBData();
-                }
-
-                if ((currentStatus == PageStatus.STATUS_NEW && existCyDiagDataSet1 == null && existCyDiagDataSet2 == null && existCyDiagDataSet3 == null)
-                    || ((currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT ) && cyDiagDataSet1.Tables[0].Rows.Count == 0
-                    && cyDiagDataSet2.Tables[0].Rows.Count == 0 && cyDiagDataSet3.Tables[0].Rows.Count == 0))
-                {
-                    currentEditRow1 = cyDiagDataSet1.Tables[0].NewRow();
-                    initCurrentEditRow(currentEditRow1);
-                    cyDiagDataSet1.Tables[0].Rows.Clear();
-                    cyDiagDataSet1.Tables[0].Rows.Add(currentEditRow1);
-
-                    currentEditRow2 = cyDiagDataSet2.Tables[0].NewRow();
-                    initCurrentEditRow(currentEditRow2);
-                    cyDiagDataSet2.Tables[0].Rows.Clear();
-                    cyDiagDataSet2.Tables[0].Rows.Add(currentEditRow2);
-
-                    currentEditRow3 = cyDiagDataSet3.Tables[0].NewRow();
-                    initCurrentEditRow(currentEditRow3);
-                    cyDiagDataSet3.Tables[0].Rows.Clear();
-                    cyDiagDataSet3.Tables[0].Rows.Add(currentEditRow3);
-                }
-            }
-        }
-
         private void button_Image_Click(object sender, EventArgs e)
         {
             Form_Picture open = new Form_Picture();
@@ -177,6 +180,11 @@ namespace St.Teresa_LIS_2019
 
             reportWording = "";
             generateReportWording();
+            if (dt3.Rows.Count > 0)
+            {
+                dt3.Rows[0]["reportContent"] = reportWording;
+            }
+
             if (fileForm != null)
             {
                 fileForm.setReportWording(reportWording);
@@ -3250,9 +3258,13 @@ namespace St.Teresa_LIS_2019
             String screenerSql = "select user_name as doctor from [user] where SCREENER1 = 'T' order by user_name";
             DataSet screenerDataSet1 = new DataSet();
             SqlDataAdapter screenerDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(screenerSql, screenerDataSet1, "sign_doctor");
+
             DataTable doctorDt1 = new DataTable();
             doctorDt1.Columns.Add("doctor");
             DataTable doctorDt2 = doctorDt1.Clone();
+
+            doctorDt1.Rows.Add(new object[] { "" });
+            doctorDt2.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in screenerDataSet1.Tables["sign_doctor"].Rows)
             {
                 doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
@@ -3265,6 +3277,7 @@ namespace St.Teresa_LIS_2019
 
             DataTable doctorDt3 = new DataTable();
             doctorDt3.Columns.Add("doctor");
+            doctorDt3.Rows.Add(new object[] { "" });
 
             foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
             {
@@ -3285,6 +3298,9 @@ namespace St.Teresa_LIS_2019
             DataTable siteDt2 = siteDt1.Clone();
             DataTable siteDt3 = siteDt1.Clone();
 
+            siteDt1.Rows.Add(new object[] { "", "" });
+            siteDt2.Rows.Add(new object[] { "", "" });
+            siteDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in siteDataSet.Tables["cy_site"].Rows)
             {
                 siteDt1.Rows.Add(new object[] { mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim() });
@@ -3312,6 +3328,15 @@ namespace St.Teresa_LIS_2019
             DataTable diagDt8 = diagDt1.Clone();
             DataTable diagDt9 = diagDt1.Clone();
 
+            diagDt1.Rows.Add(new object[] { "", "" });
+            diagDt2.Rows.Add(new object[] { "", "" });
+            diagDt3.Rows.Add(new object[] { "", "" });
+            diagDt4.Rows.Add(new object[] { "", "" });
+            diagDt5.Rows.Add(new object[] { "", "" });
+            diagDt6.Rows.Add(new object[] { "", "" });
+            diagDt7.Rows.Add(new object[] { "", "" });
+            diagDt8.Rows.Add(new object[] { "", "" });
+            diagDt9.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in diagDataSet.Tables["cy_diag"].Rows)
             {
                 diagDt1.Rows.Add(new object[] { mDr["diag"].ToString().Trim(), mDr["desc"].ToString().Trim() });
@@ -3798,9 +3823,13 @@ namespace St.Teresa_LIS_2019
             String screenerSql = "select user_name as doctor from [user] where SCREENER1 = 'T' order by user_name";
             DataSet screenerDataSet1 = new DataSet();
             SqlDataAdapter screenerDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(screenerSql, screenerDataSet1, "sign_doctor");
+
             DataTable doctorDt1 = new DataTable();
             doctorDt1.Columns.Add("doctor");
             DataTable doctorDt2 = doctorDt1.Clone();
+
+            doctorDt1.Rows.Add(new object[] { "" });
+            doctorDt2.Rows.Add(new object[] { "" });
             foreach (DataRow mDr in screenerDataSet1.Tables["sign_doctor"].Rows)
             {
                 doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
@@ -3813,6 +3842,7 @@ namespace St.Teresa_LIS_2019
 
             DataTable doctorDt3 = new DataTable();
             doctorDt3.Columns.Add("doctor");
+            doctorDt3.Rows.Add(new object[] { "" });
 
             foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
             {
@@ -3833,6 +3863,9 @@ namespace St.Teresa_LIS_2019
             DataTable siteDt2 = siteDt1.Clone();
             DataTable siteDt3 = siteDt1.Clone();
 
+            siteDt1.Rows.Add(new object[] { "", "" });
+            siteDt2.Rows.Add(new object[] { "", "" });
+            siteDt3.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in siteDataSet.Tables["cy_site"].Rows)
             {
                 siteDt1.Rows.Add(new object[] { mDr["site"].ToString().Trim(), mDr["desc"].ToString().Trim() });
@@ -3860,6 +3893,15 @@ namespace St.Teresa_LIS_2019
             DataTable diagDt8 = diagDt1.Clone();
             DataTable diagDt9 = diagDt1.Clone();
 
+            diagDt1.Rows.Add(new object[] { "", "" });
+            diagDt2.Rows.Add(new object[] { "", "" });
+            diagDt3.Rows.Add(new object[] { "", "" });
+            diagDt4.Rows.Add(new object[] { "", "" });
+            diagDt5.Rows.Add(new object[] { "", "" });
+            diagDt6.Rows.Add(new object[] { "", "" });
+            diagDt7.Rows.Add(new object[] { "", "" });
+            diagDt8.Rows.Add(new object[] { "", "" });
+            diagDt9.Rows.Add(new object[] { "", "" });
             foreach (DataRow mDr in diagDataSet.Tables["cy_diag"].Rows)
             {
                 diagDt1.Rows.Add(new object[] { mDr["diag"].ToString().Trim(), mDr["desc"].ToString().Trim() });

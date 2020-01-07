@@ -240,7 +240,6 @@ namespace St.Teresa_LIS_2019
             Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
             open.OnCyDiagExit += CyDiagReturn;
             open.Show();
-
             if (textBox_Case_No.Text != "")
             {
                 String countSql = " cy_diag1 where case_no = '" + textBox_Case_No.Text.Trim() + "'";
@@ -282,6 +281,51 @@ namespace St.Teresa_LIS_2019
             this.existCyDiagDataSet1 = existCyDiagDataSet1;
             this.existCyDiagDataSet2 = existCyDiagDataSet2;
             this.existCyDiagDataSet3 = existCyDiagDataSet3;
+
+            if(existCyDiagDataSet1 != null)
+            {
+                if (existCyDiagDataSet1.Tables[0].Rows.Count > 0)
+                {
+                    try
+                    {
+                        comboBox_Sign_By_Dr_1.SelectedValue = existCyDiagDataSet1.Tables[0].Rows[0]["SIGN_BY"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+
+            if (existCyDiagDataSet2 != null)
+            {
+                if (existCyDiagDataSet2.Tables[0].Rows.Count > 0)
+                {
+                    try
+                    {
+                        comboBox_Sign_By_Dr_2.SelectedValue = existCyDiagDataSet2.Tables[0].Rows[0]["SIGN_BY"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
+
+            if (existCyDiagDataSet3 != null)
+            {
+                if (existCyDiagDataSet3.Tables[0].Rows.Count > 0)
+                {
+                    try
+                    {
+                        comboBox_Sign_By_Dr_3.SelectedValue = existCyDiagDataSet3.Tables[0].Rows[0]["SIGN_BY"].ToString();
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                }
+            }
         }
 
         private void button_F6_Gynaecologl_Histoy_Click(object sender, EventArgs e)
@@ -292,10 +336,16 @@ namespace St.Teresa_LIS_2019
 
         private void button_F10_Findings_and_Comments_Click(object sender, EventArgs e)
         {
-            Form_FindingComments open = new Form_FindingComments();
+            Form_FindingComments open = new Form_FindingComments(currentStatus, existCyDiagDataSet3, existCyDiagDataAdapter3);
+            open.OnFindingCommentsExit += FindingCommentsReturn;
             open.Show();
-            //open.setPreviousForm(this);
-            //open.setReportWording(reportWording);
+        }
+
+        private void FindingCommentsReturn(DataSet existCyDiagDataSet3, SqlDataAdapter existCyDiagDataAdapter3)
+        {
+            this.existCyDiagDataAdapter3 = existCyDiagDataAdapter3;
+
+            this.existCyDiagDataSet3 = existCyDiagDataSet3;
         }
 
         private void button_Amount_HK_Detail_Click(object sender, EventArgs e)
@@ -573,7 +623,7 @@ namespace St.Teresa_LIS_2019
 
                             if (DBConn.updateObject(dataAdapter, bxcy_specimenDataSet, "bxcy_specimen"))
                             {
-
+                                
                                 //button_End.PerformClick();
 
                                 if (existCyDiagDataAdapter1 != null && existCyDiagDataSet1 != null && existCyDiagDataAdapter2 != null && existCyDiagDataSet2 != null && existCyDiagDataAdapter3 != null && existCyDiagDataSet3 != null)
@@ -773,6 +823,15 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existCyDiagDataSet1 = null;
+            existCyDiagDataAdapter1 = null;
+
+            existCyDiagDataSet2 = null;
+            existCyDiagDataAdapter2 = null;
+
+            existCyDiagDataSet3 = null;
+            existCyDiagDataAdapter3 = null;
         }
 
         public void patientNameCopy(string patientName)
@@ -789,10 +848,18 @@ namespace St.Teresa_LIS_2019
             currentEditRow["uploaded"] = 0;
             currentEditRow["supp"] = 0;
             currentEditRow["DATE"] = DateTime.Now;
-            currentEditRow["INV_DATE"] = DateTime.Now;
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existCyDiagDataSet1 = null;
+            existCyDiagDataAdapter1 = null;
+
+            existCyDiagDataSet2 = null;
+            existCyDiagDataAdapter2 = null;
+
+            existCyDiagDataSet3 = null;
+            existCyDiagDataAdapter3 = null;
         }
 
         public void patientCopy(string caseNo)
@@ -838,17 +905,21 @@ namespace St.Teresa_LIS_2019
                         currentEditRow["PAT_AGE"] = age;
                     }
                 }
-
-                //currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
-
-
                 currentEditRow["PAT_SEX"] = mDr["PAT_SEX"];
                 currentEditRow["PAT_HKID"] = mDr["PAT_HKID"];
             }
-            //currentEditRow[""] = "Cervical liquid-based preparration (ThinPrep)";
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existCyDiagDataSet1 = null;
+            existCyDiagDataAdapter1 = null;
+
+            existCyDiagDataSet2 = null;
+            existCyDiagDataAdapter2 = null;
+
+            existCyDiagDataSet3 = null;
+            existCyDiagDataAdapter3 = null;
         }
 
         public void patientCopyWithPatientInfo(string patientNo, string patientHKID, string patientName)
@@ -887,6 +958,15 @@ namespace St.Teresa_LIS_2019
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
+
+            existCyDiagDataSet1 = null;
+            existCyDiagDataAdapter1 = null;
+
+            existCyDiagDataSet2 = null;
+            existCyDiagDataAdapter2 = null;
+
+            existCyDiagDataSet3 = null;
+            existCyDiagDataAdapter3 = null;
         }
 
         private void button_New_Click(object sender, EventArgs e)
@@ -1154,7 +1234,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part
+            // second part 
 
             if (notJumped)
             {
@@ -1465,7 +1545,7 @@ namespace St.Teresa_LIS_2019
                 }
             }
 
-            // second part
+            // second part 
 
             if (notJumped)
             {
@@ -2986,7 +3066,6 @@ namespace St.Teresa_LIS_2019
                 m_isEntering3 = false;
                 string search = ((ComboBox)sender).Text.Trim();
 
-                //string sqlFull = string.Format("SELECT doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
                 string sqlFull = string.Format("SELECT TOP 1 doctor FROM [sign_doctor] WHERE doc_no = '{0}' order by doctor ", search);
                 doctorDataAdapter3 = DBConn.fetchDataIntoDataSetSelectOnly(sqlFull, doctorDataSet3, "sign_doctor");
 
