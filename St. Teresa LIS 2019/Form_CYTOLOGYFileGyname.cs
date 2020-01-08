@@ -240,14 +240,14 @@ namespace St.Teresa_LIS_2019
             Form_CytologicalDiagnosis open = new Form_CytologicalDiagnosis(textBox_Case_No.Text.Trim(), currentStatus, existCyDiagDataSet1, existCyDiagDataSet2, existCyDiagDataSet3, existCyDiagDataAdapter1, existCyDiagDataAdapter2, existCyDiagDataAdapter3);
             open.OnCyDiagExit += CyDiagReturn;
             open.Show();
-            if (textBox_Case_No.Text != "")
+            /*if (textBox_Case_No.Text != "")
             {
                 String countSql = " cy_diag1 where case_no = '" + textBox_Case_No.Text.Trim() + "'";
                 if (DBConn.getSqlRecordCount(countSql) == 0)
                 {
                     open.setDefaultValue();
                 }
-            }
+            }*/
 
 
             //if (diagForm == null)
@@ -1108,17 +1108,7 @@ namespace St.Teresa_LIS_2019
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            if (keyData == Keys.Enter)
-            {
-                foreach (Control c in this.Controls)
-                {
-                    if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
-                    {
-                        keyData = Keys.Tab;
-                    }
-                }
-            }
-            else
+            if (textBox_Patient_s_Clinical_History.Focused || textBox_Remarks.Focused)
             {
                 if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
                 {
@@ -1127,6 +1117,32 @@ namespace St.Teresa_LIS_2019
                         if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
                         {
                             keyData = (Keys.LButton | Keys.Shift | Keys.Tab);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (keyData == Keys.Enter)
+                {
+                    foreach (Control c in this.Controls)
+                    {
+                        if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                        {
+                            keyData = Keys.Tab;
+                        }
+                    }
+                }
+                else
+                {
+                    if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+                    {
+                        foreach (Control c in this.Controls)
+                        {
+                            if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                            {
+                                keyData = (Keys.LButton | Keys.Shift | Keys.Tab);
+                            }
                         }
                     }
                 }
@@ -2118,7 +2134,7 @@ namespace St.Teresa_LIS_2019
 
             comboBox_Ethnic.DataSource = ethnicDt;
 
-            string doctorSql1 = "SELECT doctor FROM [sign_doctor] order by doctor";
+            /*string doctorSql1 = "SELECT doctor FROM [sign_doctor] order by doctor";
             doctorDataSet1 = new DataSet();
             doctorDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(doctorSql1, doctorDataSet1, "sign_doctor");
 
@@ -2144,6 +2160,24 @@ namespace St.Teresa_LIS_2019
                 doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
             }
 
+            comboBox_Sign_By_Dr_2.DataSource = doctorDt2;*/
+
+            String screenerSql = "select user_name as doctor from [user] where SCREENER1 = 'T' order by user_name";
+            DataSet screenerDataSet1 = new DataSet();
+            SqlDataAdapter screenerDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(screenerSql, screenerDataSet1, "user");
+
+            DataTable doctorDt1 = new DataTable();
+            doctorDt1.Columns.Add("doctor");
+            DataTable doctorDt2 = doctorDt1.Clone();
+
+            doctorDt1.Rows.Add(new object[] { "" });
+            doctorDt2.Rows.Add(new object[] { "" });
+            foreach (DataRow mDr in screenerDataSet1.Tables["user"].Rows)
+            {
+                doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
+                doctorDt2.Rows.Add(new object[] { mDr["doctor"] });
+            }
+            comboBox_Sign_By_Dr_1.DataSource = doctorDt1;
             comboBox_Sign_By_Dr_2.DataSource = doctorDt2;
 
             string doctorSql3 = "SELECT doctor FROM [sign_doctor] order by doctor";
@@ -2153,7 +2187,8 @@ namespace St.Teresa_LIS_2019
             DataTable doctorDt3 = new DataTable();
             doctorDt3.Columns.Add("doctor");
 
-            foreach (DataRow mDr in doctorDataSet1.Tables["sign_doctor"].Rows)
+            doctorDt3.Rows.Add(new object[] { "" });
+            foreach (DataRow mDr in doctorDataSet3.Tables["sign_doctor"].Rows)
             {
                 doctorDt3.Rows.Add(new object[] { mDr["doctor"] });
             }
@@ -2169,7 +2204,9 @@ namespace St.Teresa_LIS_2019
             textBox_PatSeq.DataBindings.Add("Text", dt, "PAT_SEQ", false);
             textBox_Chinese_Name.DataBindings.Add("Text", dt, "CNAME", false);
             textBox_HKID.DataBindings.Add("Text", dt, "PAT_HKID", false);
+
             textBox_DOB.DataBindings.Add("Text", dt, "PAT_BIRTH", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
+
             //comboBox_Class.DataBindings.Add("SelectedValue", dt, "Class", false);
             textBox_Age.DataBindings.Add("Text", dt, "PAT_AGE", false);
             textBox_Sex.DataBindings.Add("Text", dt, "PAT_SEX", false);
@@ -2201,7 +2238,7 @@ namespace St.Teresa_LIS_2019
             textBox_Paid_Up.DataBindings.Add("Text", dt, "PAY_UP", false);
             textBox_Paid_Date.DataBindings.Add("Text", dt, "PAY_DATE", true, DataSourceUpdateMode.OnPropertyChanged, "", DateUtil.FORMAT_DEFAULT_DATE);
 
-            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false);
+            textBox_Rpt_Date.DataBindings.Add("Text", dt, "Rpt_date", false, DataSourceUpdateMode.Never, DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME), DateUtil.FORMAT_DEFAULT_DATE_TIME, System.Globalization.CultureInfo.InvariantCulture);
             comboBox_Snop_T1.DataBindings.Add("SelectedValue", dt, "snopcode_t", false);
             comboBox_Snop_T2.DataBindings.Add("SelectedValue", dt, "snopcode_t2", false);
             comboBox_Snop_T3.DataBindings.Add("SelectedValue", dt, "snopcode_t3", false);
@@ -3003,7 +3040,7 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_Sign_By_Dr_1_TextChanged(object sender, EventArgs e)
         {
-            if (m_isEntering1)
+            /*if (m_isEntering1)
             {
                 m_isEntering1 = false;
                 string search = ((ComboBox)sender).Text.Trim();
@@ -3022,7 +3059,7 @@ namespace St.Teresa_LIS_2019
 
                     }
                 }
-            }
+            }*/
         }
 
         private void comboBox_Sign_By_Dr_2_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -3032,7 +3069,7 @@ namespace St.Teresa_LIS_2019
 
         private void comboBox_Sign_By_Dr_2_TextChanged(object sender, EventArgs e)
         {
-            if (m_isEntering2)
+            /*if (m_isEntering2)
             {
                 m_isEntering2 = false;
                 string search = ((ComboBox)sender).Text.Trim();
@@ -3051,7 +3088,7 @@ namespace St.Teresa_LIS_2019
 
                     }
                 }
-            }
+            }*/
         }
 
         private void comboBox_Sign_By_Dr_3_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)

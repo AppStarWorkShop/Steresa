@@ -111,17 +111,17 @@ namespace St.Teresa_LIS_2019
 
         private void initCurrentEditRow(DataRow currentEditRow)
         {
-            currentEditRow["site1"] = false;
+            currentEditRow["site1"] = true;
             currentEditRow["site2"] = false;
-            currentEditRow["specimena1"] = false;
+            currentEditRow["specimena1"] = true;
             currentEditRow["specimena2"] = false;
             currentEditRow["specimena3"] = false;
-            currentEditRow["cellularc1"] = false;
-            currentEditRow["cellularc2"] = false;
+            currentEditRow["cellularc1"] = true;
+            currentEditRow["cellularc2"] = true;
             currentEditRow["cellularc3"] = false;
             currentEditRow["cellularc4"] = false;
             currentEditRow["cellularc5"] = false;
-            currentEditRow["prepair1"] = false;
+            currentEditRow["prepair1"] = true;
             currentEditRow["prepair2"] = false;
             currentEditRow["prepair3"] = false;
             currentEditRow["prepair4"] = false;
@@ -130,9 +130,9 @@ namespace St.Teresa_LIS_2019
             currentEditRow["specimenq3"] = false;
             currentEditRow["specimenq4"] = false;
             currentEditRow["specimenq5"] = false;
-            currentEditRow["interneg"] = false;
+            currentEditRow["interneg"] = true;
             currentEditRow["interneg1"] = false;
-            currentEditRow["interneg2"] = false;
+            currentEditRow["interneg2"] = true;
             currentEditRow["interneg3"] = false;
             currentEditRow["interneg4"] = false;
             currentEditRow["interneg5"] = false;
@@ -160,6 +160,11 @@ namespace St.Teresa_LIS_2019
             currentEditRow["interepi5c"] = false;
             currentEditRow["interepi5d"] = false;
             currentEditRow["interepi6"] = false;
+
+            currentEditRow["site"] = "Cervical liquid-based preparation (ThinPrep)";
+            currentEditRow["site_desc"] = "宮頸(ThinPrep)液基簿片技術";
+            currentEditRow["diag1"] = "Negative for intraepithelial lesion or malignancy";
+            currentEditRow["diag1_desc"] = "無癌或癌前期病變";
         }
 
         private void button_Image_Click(object sender, EventArgs e)
@@ -1774,7 +1779,7 @@ namespace St.Teresa_LIS_2019
             update_checkBox_EPITHELIAL_CELL_ABNORMALITIES_3();
         }
 
-        public void setDefaultValue()
+        /*public void setDefaultValue()
         {
             checkBox_Cervix_1.Checked = true;
             checkBox_Cervix_2.Checked = true;
@@ -1826,7 +1831,7 @@ namespace St.Teresa_LIS_2019
             textBox_DIAGNOSIS_1_1.Text = "無癌或癌前期病變";
             textBox_DIAGNOSIS_1_2.Text = "無癌或癌前期病變";
             textBox_DIAGNOSIS_1_3.Text = "無癌或癌前期病變";
-        }
+        }*/
 
         private void generateReportWording()
         {
@@ -3497,7 +3502,7 @@ namespace St.Teresa_LIS_2019
 
             String screenerSql = "select user_name as doctor from [user] where SCREENER1 = 'T' order by user_name";
             DataSet screenerDataSet1 = new DataSet();
-            SqlDataAdapter screenerDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(screenerSql, screenerDataSet1, "sign_doctor");
+            SqlDataAdapter screenerDataAdapter1 = DBConn.fetchDataIntoDataSetSelectOnly(screenerSql, screenerDataSet1, "user");
 
             DataTable doctorDt1 = new DataTable();
             doctorDt1.Columns.Add("doctor");
@@ -3505,7 +3510,7 @@ namespace St.Teresa_LIS_2019
 
             doctorDt1.Rows.Add(new object[] { "" });
             doctorDt2.Rows.Add(new object[] { "" });
-            foreach (DataRow mDr in screenerDataSet1.Tables["sign_doctor"].Rows)
+            foreach (DataRow mDr in screenerDataSet1.Tables["user"].Rows)
             {
                 doctorDt1.Rows.Add(new object[] { mDr["doctor"] });
                 doctorDt2.Rows.Add(new object[] { mDr["doctor"] });

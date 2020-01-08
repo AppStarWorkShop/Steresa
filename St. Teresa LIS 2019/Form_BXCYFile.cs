@@ -3543,7 +3543,6 @@ namespace St.Teresa_LIS_2019
         {
             if (textBox_Patient_s_Clinical_History.Focused || textBox_Remarks.Focused)
             {
-                //MessageBox.Show("The ");
                 if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
                 {
                     foreach (Control c in this.Controls)
@@ -3563,10 +3562,7 @@ namespace St.Teresa_LIS_2019
                     {
                         if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
                         {
-
                             keyData = Keys.Tab;
-
-
                         }
                     }
                 }
@@ -3584,7 +3580,6 @@ namespace St.Teresa_LIS_2019
                     }
                 }
             }
-
             
             return base.ProcessDialogKey(keyData);
         }

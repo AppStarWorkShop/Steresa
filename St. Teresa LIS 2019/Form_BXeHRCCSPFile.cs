@@ -1164,17 +1164,7 @@ namespace St.Teresa_LIS_2019
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            if (keyData == Keys.Enter)
-            {
-                foreach (Control c in this.Controls)
-                {
-                    if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
-                    {
-                        keyData = Keys.Tab;
-                    }
-                }
-            }
-            else
+            if (textBox_Patient_s_Clinical_History.Focused || textBox_Remarks.Focused)
             {
                 if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
                 {
@@ -1183,6 +1173,32 @@ namespace St.Teresa_LIS_2019
                         if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
                         {
                             keyData = (Keys.LButton | Keys.Shift | Keys.Tab);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (keyData == Keys.Enter)
+                {
+                    foreach (Control c in this.Controls)
+                    {
+                        if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                        {
+                            keyData = Keys.Tab;
+                        }
+                    }
+                }
+                else
+                {
+                    if (keyData == (Keys.LButton | Keys.Shift | Keys.Enter))
+                    {
+                        foreach (Control c in this.Controls)
+                        {
+                            if (c is System.Windows.Forms.TextBox || c is System.Windows.Forms.ComboBox || c is System.Windows.Forms.MaskedTextBox)
+                            {
+                                keyData = (Keys.LButton | Keys.Shift | Keys.Tab);
+                            }
                         }
                     }
                 }
