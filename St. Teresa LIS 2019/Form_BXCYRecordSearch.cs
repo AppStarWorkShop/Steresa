@@ -747,7 +747,18 @@ namespace St.Teresa_LIS_2019
                 {
                     Form_BXeHRCCSPFile open = new Form_BXeHRCCSPFile();
                     open.Show();
-                    open.patientCopy(textBox_Search_Type.Text.Trim());
+                    if (contentSearching == SEARCH_TYPE_HD_BARCODE)
+                    {
+                        if (ehrBr != null)
+                        {
+                            open.ehr2dBarcodeCopy(ehrBr, false);
+                        }
+                    }
+                    else
+                    {
+                        open.newRecord();
+                    }
+                    //open.patientCopy(textBox_Search_Type.Text.Trim());
                 }
                 else if (label2.Text == CASE_TYPE_CY_G)
                 {

@@ -1989,7 +1989,7 @@
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.AutoSize = true;
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Location = new System.Drawing.Point(6, 75);
+            this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Location = new System.Drawing.Point(6, 70);
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Name = "checkBox_Mainly_intermediate_and_parabasal_cells_2";
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.Size = new System.Drawing.Size(283, 19);
             this.checkBox_Mainly_intermediate_and_parabasal_cells_2.TabIndex = 4;
@@ -2013,7 +2013,7 @@
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.AutoSize = true;
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.ForeColor = System.Drawing.Color.DarkBlue;
-            this.checkBox_Mainly_superficial_and_intermediate_cells_2.Location = new System.Drawing.Point(6, 56);
+            this.checkBox_Mainly_superficial_and_intermediate_cells_2.Location = new System.Drawing.Point(6, 53);
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.Name = "checkBox_Mainly_superficial_and_intermediate_cells_2";
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.Size = new System.Drawing.Size(286, 19);
             this.checkBox_Mainly_superficial_and_intermediate_cells_2.TabIndex = 1;

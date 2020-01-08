@@ -2111,7 +2111,7 @@ namespace St.Teresa_LIS_2019
                 checkBox_Liquid_based_preparation_2.Enabled = false;
                 checkBox_Liquid_based_preparations_2.Enabled = false;
                 checkBox_Conventional_Pap_smear_2.Enabled = false;
-                checkBox_Conventional_Pap_smear_2.Enabled = false;
+                checkBox_Conventional_Pap_smears_2.Enabled = false;
                 checkBox_Low_squamous_cellularity_2.Enabled = false;
                 checkBox_Air_drying_artifacts_2.Enabled = false;
                 checkBox_Obscured_by_inflammatory_exudates_2.Enabled = false;
@@ -2173,7 +2173,7 @@ namespace St.Teresa_LIS_2019
                 checkBox_Liquid_based_preparation_3.Enabled = false;
                 checkBox_Liquid_based_preparations_3.Enabled = false;
                 checkBox_Conventional_Pap_smear_3.Enabled = false;
-                checkBox_Conventional_Pap_smear_3.Enabled = false;
+                checkBox_Conventional_Pap_smears_3.Enabled = false;
                 checkBox_Low_squamous_cellularity_3.Enabled = false;
                 checkBox_Air_drying_artifacts_3.Enabled = false;
                 checkBox_Obscured_by_inflammatory_exudates_3.Enabled = false;
@@ -2301,7 +2301,7 @@ namespace St.Teresa_LIS_2019
                     checkBox_Liquid_based_preparation_2.Enabled = true;
                     checkBox_Liquid_based_preparations_2.Enabled = true;
                     checkBox_Conventional_Pap_smear_2.Enabled = true;
-                    checkBox_Conventional_Pap_smear_2.Enabled = true;
+                    checkBox_Conventional_Pap_smears_2.Enabled = true;
                     checkBox_Low_squamous_cellularity_2.Enabled = true;
                     checkBox_Air_drying_artifacts_2.Enabled = true;
                     checkBox_Obscured_by_inflammatory_exudates_2.Enabled = true;
@@ -2363,7 +2363,7 @@ namespace St.Teresa_LIS_2019
                     checkBox_Liquid_based_preparation_3.Enabled = true;
                     checkBox_Liquid_based_preparations_3.Enabled = true;
                     checkBox_Conventional_Pap_smear_3.Enabled = true;
-                    checkBox_Conventional_Pap_smear_3.Enabled = true;
+                    checkBox_Conventional_Pap_smears_3.Enabled = true;
                     checkBox_Low_squamous_cellularity_3.Enabled = true;
                     checkBox_Air_drying_artifacts_3.Enabled = true;
                     checkBox_Obscured_by_inflammatory_exudates_3.Enabled = true;
@@ -2880,6 +2880,65 @@ namespace St.Teresa_LIS_2019
                 dt2.Rows[0]["interepi5c"] = dt1.Rows[0]["interepi5c"];
                 dt2.Rows[0]["interepi5d"] = dt1.Rows[0]["interepi5d"];
                 dt2.Rows[0]["interepi6"] = dt1.Rows[0]["interepi6"];
+
+                checkBox_Cervix_2.Checked = checkBox_Cervix_1.Checked;
+                checkBox_Vagina_Vault_2.Checked = checkBox_Vagina_Vault_1.Checked;
+                checkBox_Satisfactory_for_evaluation_2.Checked = checkBox_Satisfactory_for_evaluation_1.Checked;
+                checkBox_Satisfactory_for_evaluation_but_2.Checked = checkBox_Satisfactory_for_evaluation_but_1.Checked;
+                checkBox_Unsatisfactory_for_evaluation_2.Checked = checkBox_Unsatisfactory_for_evaluation_1.Checked;
+                checkBox_Transformation_zone_2.Checked = checkBox_Transformation_zone_1.Checked;
+                checkBox_Mainly_superficial_and_intermediate_cells_2.Checked = checkBox_Mainly_superficial_and_intermediate_cells_1.Checked;
+                checkBox_Mainly_intermediate_and_parabasal_cells_2.Checked = checkBox_Mainly_intermediate_and_parabasal_cells_1.Checked;
+                checkBox_trophic_pattern_in_menopause_2.Checked = checkBox_trophic_pattern_in_menopause_1.Checked;
+                checkBox_Post_partum_changes_2.Checked = checkBox_Post_partum_changes_1.Checked;
+                checkBox_Liquid_based_preparation_2.Checked = checkBox_Liquid_based_preparation_1.Checked;
+                checkBox_Liquid_based_preparations_2.Checked = checkBox_Liquid_based_preparations_1.Checked;
+                checkBox_Conventional_Pap_smear_2.Checked = checkBox_Conventional_Pap_smear_1.Checked;
+                checkBox_Conventional_Pap_smears_2.Checked = checkBox_Conventional_Pap_smears_1.Checked;
+                checkBox_Low_squamous_cellularity_2.Checked = checkBox_Low_squamous_cellularity_1.Checked;
+                checkBox_Air_drying_artifacts_2.Checked = checkBox_Air_drying_artifacts_1.Checked;
+                checkBox_Obscured_by_inflammatory_exudates_2.Checked = checkBox_Obscured_by_inflammatory_exudates_1.Checked;
+                checkBox_Obscured_by_blood_2.Checked = checkBox_Obscured_by_blood_1.Checked;
+                checkBox_Thick_smear_2.Checked = checkBox_Thick_smear_1.Checked;
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked = checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked;
+                checkBox_Reactive_cellular_changes_associated_2.Checked = checkBox_Reactive_cellular_changes_associated_1.Checked;
+                checkBox_Normal_flora_2.Checked = checkBox_Normal_flora_1.Checked;
+                checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.Checked = checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.Checked;
+                checkBox_Herpes_simplex_virus_2.Checked = checkBox_Herpes_simplex_virus_1.Checked;
+                checkBox_Candida_Monilia_2.Checked = checkBox_Candida_Monilia_1.Checked;
+                checkBox_Trichomonas_vaginalis_2.Checked = checkBox_Trichomonas_vaginalis_1.Checked;
+                checkBox_Actinomyces_2.Checked = checkBox_Actinomyces_1.Checked;
+                checkBox_Endometrial_cells_2.Checked = checkBox_Endometrial_cells_1.Checked;
+                checkBox_Others_eg_follicular_cervicitis_RT_effect_2.Checked = checkBox_Others_eg_follicular_cervicitis_RT_effect_1.Checked;
+                checkBox_HPV_DNA_TESTING_2.Checked = checkBox_HPV_DNA_TESTING_1.Checked;
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked = checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked;
+                checkBox_Atypical_squamous_cells_2.Checked = checkBox_Atypical_squamous_cells_1.Checked;
+                checkBox_ASC_US_2.Checked = checkBox_ASC_US_1.Checked;
+                checkBox_ASC_H_2.Checked = checkBox_ASC_H_1.Checked;
+                checkBox_Squamous_intraepithelial_lesion_SIL_2.Checked = checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked;
+                checkBox_Low_grade_SIL_2.Checked = checkBox_Low_grade_SIL_1.Checked;
+                checkBox_High_grade_SIL_2.Checked = checkBox_High_grade_SIL_1.Checked;
+                checkBox_HSIL_2.Checked = checkBox_HSIL_1.Checked;
+                checkBox_Squamous_cell_carcinoma_2.Checked = checkBox_Squamous_cell_carcinoma_1.Checked;
+                checkBox_Atypical_glandular_cells_2.Checked = checkBox_Atypical_glandular_cells_1.Checked;
+                checkBox_Atypical_glandular_cells_NOS_2.Checked = checkBox_Atypical_glandular_cells_NOS_1.Checked;
+                checkBox_Atypical_endocervical_cells_NOS_2.Checked = checkBox_Atypical_endocervical_cells_NOS_1.Checked;
+                checkBox_Atypical_endometrial_cells_NOS_2.Checked = checkBox_Atypical_endometrial_cells_NOS_1.Checked;
+                checkBox_Adenocarcinoma_2.Checked = checkBox_Adenocarcinoma_1.Checked;
+                checkBox_Endocervial_adenocarcinoma_in_situ_2.Checked = checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked;
+                checkBox_Endocervial_adenocarcinoma_2.Checked = checkBox_Endocervial_adenocarcinoma_1.Checked;
+                checkBox_Endometrial_adenocarcinoma_2.Checked = checkBox_Endometrial_adenocarcinoma_1.Checked;
+                checkBox_Adenocarcinoma_NOS_2.Checked = checkBox_Adenocarcinoma_NOS_1.Checked;
+                checkBox_Other_malignant_neoplasm_2.Checked = checkBox_Other_malignant_neoplasm_1.Checked;
+
+                comboBox_SITE_TYPE_2.Text = comboBox_SITE_TYPE_1.Text;
+                textBox_SITE_TYPE_2.Text = textBox_SITE_TYPE_1.Text;
+                comboBox_DIAGNOSIS_1_2.Text = comboBox_DIAGNOSIS_1_1.Text;
+                textBox_DIAGNOSIS_1_2.Text = textBox_DIAGNOSIS_1_1.Text;
+                comboBox_DIAGNOSIS_2_2.Text = comboBox_DIAGNOSIS_2_1.Text;
+                textBox_DIAGNOSIS_2_2.Text = textBox_DIAGNOSIS_2_1.Text;
+                comboBox_DIAGNOSIS_3_2.Text = comboBox_DIAGNOSIS_3_1.Text;
+                textBox_DIAGNOSIS_3_2.Text = textBox_DIAGNOSIS_3_1.Text;
             }
 
             if (dt1 != null && dt3 != null)
@@ -2944,6 +3003,124 @@ namespace St.Teresa_LIS_2019
                 dt3.Rows[0]["interepi5c"] = dt1.Rows[0]["interepi5c"];
                 dt3.Rows[0]["interepi5d"] = dt1.Rows[0]["interepi5d"];
                 dt3.Rows[0]["interepi6"] = dt1.Rows[0]["interepi6"];
+
+                checkBox_Cervix_3.Checked = checkBox_Cervix_1.Checked;
+                checkBox_Vagina_Vault_3.Checked = checkBox_Vagina_Vault_1.Checked;
+                checkBox_Satisfactory_for_evaluation_3.Checked = checkBox_Satisfactory_for_evaluation_1.Checked;
+                checkBox_Satisfactory_for_evaluation_but_3.Checked = checkBox_Satisfactory_for_evaluation_but_1.Checked;
+                checkBox_Unsatisfactory_for_evaluation_3.Checked = checkBox_Unsatisfactory_for_evaluation_1.Checked;
+                checkBox_Transformation_zone_3.Checked = checkBox_Transformation_zone_1.Checked;
+                checkBox_Mainly_superficial_and_intermediate_cells_3.Checked = checkBox_Mainly_superficial_and_intermediate_cells_1.Checked;
+                checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked = checkBox_Mainly_intermediate_and_parabasal_cells_1.Checked;
+                checkBox_trophic_pattern_in_menopause_3.Checked = checkBox_trophic_pattern_in_menopause_1.Checked;
+                checkBox_Post_partum_changes_3.Checked = checkBox_Post_partum_changes_1.Checked;
+                checkBox_Liquid_based_preparation_3.Checked = checkBox_Liquid_based_preparation_1.Checked;
+                checkBox_Liquid_based_preparations_3.Checked = checkBox_Liquid_based_preparations_1.Checked;
+                checkBox_Conventional_Pap_smear_3.Checked = checkBox_Conventional_Pap_smear_1.Checked;
+                checkBox_Conventional_Pap_smears_3.Checked = checkBox_Conventional_Pap_smears_1.Checked;
+                checkBox_Low_squamous_cellularity_3.Checked = checkBox_Low_squamous_cellularity_1.Checked;
+                checkBox_Air_drying_artifacts_3.Checked = checkBox_Air_drying_artifacts_1.Checked;
+                checkBox_Obscured_by_inflammatory_exudates_3.Checked = checkBox_Obscured_by_inflammatory_exudates_1.Checked;
+                checkBox_Obscured_by_blood_3.Checked = checkBox_Obscured_by_blood_1.Checked;
+                checkBox_Thick_smear_3.Checked = checkBox_Thick_smear_1.Checked;
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked;
+                checkBox_Reactive_cellular_changes_associated_3.Checked = checkBox_Reactive_cellular_changes_associated_1.Checked;
+                checkBox_Normal_flora_3.Checked = checkBox_Normal_flora_1.Checked;
+                checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Checked = checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.Checked;
+                checkBox_Herpes_simplex_virus_3.Checked = checkBox_Herpes_simplex_virus_1.Checked;
+                checkBox_Candida_Monilia_3.Checked = checkBox_Candida_Monilia_1.Checked;
+                checkBox_Trichomonas_vaginalis_3.Checked = checkBox_Trichomonas_vaginalis_1.Checked;
+                checkBox_Actinomyces_3.Checked = checkBox_Actinomyces_1.Checked;
+                checkBox_Endometrial_cells_3.Checked = checkBox_Endometrial_cells_1.Checked;
+                checkBox_Others_eg_follicular_cervicitis_RT_effect_3.Checked = checkBox_Others_eg_follicular_cervicitis_RT_effect_1.Checked;
+                checkBox_HPV_DNA_TESTING_3.Checked = checkBox_HPV_DNA_TESTING_1.Checked;
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked;
+                checkBox_Atypical_squamous_cells_3.Checked = checkBox_Atypical_squamous_cells_1.Checked;
+                checkBox_ASC_US_3.Checked = checkBox_ASC_US_1.Checked;
+                checkBox_ASC_H_3.Checked = checkBox_ASC_H_1.Checked;
+                checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked = checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked;
+                checkBox_Low_grade_SIL_3.Checked = checkBox_Low_grade_SIL_1.Checked;
+                checkBox_High_grade_SIL_3.Checked = checkBox_High_grade_SIL_1.Checked;
+                checkBox_HSIL_3.Checked = checkBox_HSIL_1.Checked;
+                checkBox_Squamous_cell_carcinoma_3.Checked = checkBox_Squamous_cell_carcinoma_1.Checked;
+                checkBox_Atypical_glandular_cells_3.Checked = checkBox_Atypical_glandular_cells_1.Checked;
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = checkBox_Atypical_glandular_cells_NOS_1.Checked;
+                checkBox_Atypical_endocervical_cells_NOS_3.Checked = checkBox_Atypical_endocervical_cells_NOS_1.Checked;
+                checkBox_Atypical_endometrial_cells_NOS_3.Checked = checkBox_Atypical_endometrial_cells_NOS_1.Checked;
+                checkBox_Adenocarcinoma_3.Checked = checkBox_Adenocarcinoma_1.Checked;
+                checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked = checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked;
+                checkBox_Endocervial_adenocarcinoma_3.Checked = checkBox_Endocervial_adenocarcinoma_1.Checked;
+                checkBox_Endometrial_adenocarcinoma_3.Checked = checkBox_Endometrial_adenocarcinoma_1.Checked;
+                checkBox_Adenocarcinoma_NOS_3.Checked = checkBox_Adenocarcinoma_NOS_1.Checked;
+                checkBox_Other_malignant_neoplasm_3.Checked = checkBox_Other_malignant_neoplasm_1.Checked;
+
+                comboBox_SITE_TYPE_3.Text = comboBox_SITE_TYPE_1.Text;
+                textBox_SITE_TYPE_3.Text = textBox_SITE_TYPE_1.Text;
+                comboBox_DIAGNOSIS_1_3.Text = comboBox_DIAGNOSIS_1_1.Text;
+                textBox_DIAGNOSIS_1_3.Text = textBox_DIAGNOSIS_1_1.Text;
+                comboBox_DIAGNOSIS_2_3.Text = comboBox_DIAGNOSIS_2_1.Text;
+                textBox_DIAGNOSIS_2_3.Text = textBox_DIAGNOSIS_2_1.Text;
+                comboBox_DIAGNOSIS_3_3.Text = comboBox_DIAGNOSIS_3_1.Text;
+                textBox_DIAGNOSIS_3_3.Text = textBox_DIAGNOSIS_3_1.Text;
+
+                checkBox_Cervix_3.Checked = checkBox_Cervix_1.Checked;
+                checkBox_Vagina_Vault_3.Checked = checkBox_Vagina_Vault_1.Checked;
+                checkBox_Satisfactory_for_evaluation_3.Checked = checkBox_Satisfactory_for_evaluation_1.Checked;
+                checkBox_Satisfactory_for_evaluation_but_3.Checked = checkBox_Satisfactory_for_evaluation_but_1.Checked;
+                checkBox_Unsatisfactory_for_evaluation_3.Checked = checkBox_Unsatisfactory_for_evaluation_1.Checked;
+                checkBox_Transformation_zone_3.Checked = checkBox_Transformation_zone_1.Checked;
+                checkBox_Mainly_superficial_and_intermediate_cells_3.Checked = checkBox_Mainly_superficial_and_intermediate_cells_1.Checked;
+                checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked = checkBox_Mainly_intermediate_and_parabasal_cells_1.Checked;
+                checkBox_trophic_pattern_in_menopause_3.Checked = checkBox_trophic_pattern_in_menopause_1.Checked;
+                checkBox_Post_partum_changes_3.Checked = checkBox_Post_partum_changes_1.Checked;
+                checkBox_Liquid_based_preparation_3.Checked = checkBox_Liquid_based_preparation_1.Checked;
+                checkBox_Liquid_based_preparations_3.Checked = checkBox_Liquid_based_preparations_1.Checked;
+                checkBox_Conventional_Pap_smear_3.Checked = checkBox_Conventional_Pap_smear_1.Checked;
+                checkBox_Conventional_Pap_smears_3.Checked = checkBox_Conventional_Pap_smears_1.Checked;
+                checkBox_Low_squamous_cellularity_3.Checked = checkBox_Low_squamous_cellularity_1.Checked;
+                checkBox_Air_drying_artifacts_3.Checked = checkBox_Air_drying_artifacts_1.Checked;
+                checkBox_Obscured_by_inflammatory_exudates_3.Checked = checkBox_Obscured_by_inflammatory_exudates_1.Checked;
+                checkBox_Obscured_by_blood_3.Checked = checkBox_Obscured_by_blood_1.Checked;
+                checkBox_Thick_smear_3.Checked = checkBox_Thick_smear_1.Checked;
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_1.Checked;
+                checkBox_Reactive_cellular_changes_associated_3.Checked = checkBox_Reactive_cellular_changes_associated_1.Checked;
+                checkBox_Normal_flora_3.Checked = checkBox_Normal_flora_1.Checked;
+                checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Checked = checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_1.Checked;
+                checkBox_Herpes_simplex_virus_3.Checked = checkBox_Herpes_simplex_virus_1.Checked;
+                checkBox_Candida_Monilia_3.Checked = checkBox_Candida_Monilia_1.Checked;
+                checkBox_Trichomonas_vaginalis_3.Checked = checkBox_Trichomonas_vaginalis_1.Checked;
+                checkBox_Actinomyces_3.Checked = checkBox_Actinomyces_1.Checked;
+                checkBox_Endometrial_cells_3.Checked = checkBox_Endometrial_cells_1.Checked;
+                checkBox_Others_eg_follicular_cervicitis_RT_effect_3.Checked = checkBox_Others_eg_follicular_cervicitis_RT_effect_1.Checked;
+                checkBox_HPV_DNA_TESTING_3.Checked = checkBox_HPV_DNA_TESTING_1.Checked;
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = checkBox_EPITHELIAL_CELL_ABNORMALITIES_1.Checked;
+                checkBox_Atypical_squamous_cells_3.Checked = checkBox_Atypical_squamous_cells_1.Checked;
+                checkBox_ASC_US_3.Checked = checkBox_ASC_US_1.Checked;
+                checkBox_ASC_H_3.Checked = checkBox_ASC_H_1.Checked;
+                checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked = checkBox_Squamous_intraepithelial_lesion_SIL_1.Checked;
+                checkBox_Low_grade_SIL_3.Checked = checkBox_Low_grade_SIL_1.Checked;
+                checkBox_High_grade_SIL_3.Checked = checkBox_High_grade_SIL_1.Checked;
+                checkBox_HSIL_3.Checked = checkBox_HSIL_1.Checked;
+                checkBox_Squamous_cell_carcinoma_3.Checked = checkBox_Squamous_cell_carcinoma_1.Checked;
+                checkBox_Atypical_glandular_cells_3.Checked = checkBox_Atypical_glandular_cells_1.Checked;
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = checkBox_Atypical_glandular_cells_NOS_1.Checked;
+                checkBox_Atypical_endocervical_cells_NOS_3.Checked = checkBox_Atypical_endocervical_cells_NOS_1.Checked;
+                checkBox_Atypical_endometrial_cells_NOS_3.Checked = checkBox_Atypical_endometrial_cells_NOS_1.Checked;
+                checkBox_Adenocarcinoma_3.Checked = checkBox_Adenocarcinoma_1.Checked;
+                checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked = checkBox_Endocervial_adenocarcinoma_in_situ_1.Checked;
+                checkBox_Endocervial_adenocarcinoma_3.Checked = checkBox_Endocervial_adenocarcinoma_1.Checked;
+                checkBox_Endometrial_adenocarcinoma_3.Checked = checkBox_Endometrial_adenocarcinoma_1.Checked;
+                checkBox_Adenocarcinoma_NOS_3.Checked = checkBox_Adenocarcinoma_NOS_1.Checked;
+                checkBox_Other_malignant_neoplasm_3.Checked = checkBox_Other_malignant_neoplasm_1.Checked;
+
+                comboBox_SITE_TYPE_3.Text = comboBox_SITE_TYPE_1.Text;
+                textBox_SITE_TYPE_3.Text = textBox_SITE_TYPE_1.Text;
+                comboBox_DIAGNOSIS_1_3.Text = comboBox_DIAGNOSIS_1_1.Text;
+                textBox_DIAGNOSIS_1_3.Text = textBox_DIAGNOSIS_1_1.Text;
+                comboBox_DIAGNOSIS_2_3.Text = comboBox_DIAGNOSIS_2_1.Text;
+                textBox_DIAGNOSIS_2_3.Text = textBox_DIAGNOSIS_2_1.Text;
+                comboBox_DIAGNOSIS_3_3.Text = comboBox_DIAGNOSIS_3_1.Text;
+                textBox_DIAGNOSIS_3_3.Text = textBox_DIAGNOSIS_3_1.Text;
             }
         }
 
@@ -3016,6 +3193,65 @@ namespace St.Teresa_LIS_2019
                 dt3.Rows[0]["interepi5c"] = dt2.Rows[0]["interepi5c"];
                 dt3.Rows[0]["interepi5d"] = dt2.Rows[0]["interepi5d"];
                 dt3.Rows[0]["interepi6"] = dt2.Rows[0]["interepi6"];
+
+                checkBox_Cervix_3.Checked = checkBox_Cervix_2.Checked;
+                checkBox_Vagina_Vault_3.Checked = checkBox_Vagina_Vault_2.Checked;
+                checkBox_Satisfactory_for_evaluation_3.Checked = checkBox_Satisfactory_for_evaluation_2.Checked;
+                checkBox_Satisfactory_for_evaluation_but_3.Checked = checkBox_Satisfactory_for_evaluation_but_2.Checked;
+                checkBox_Unsatisfactory_for_evaluation_3.Checked = checkBox_Unsatisfactory_for_evaluation_2.Checked;
+                checkBox_Transformation_zone_3.Checked = checkBox_Transformation_zone_2.Checked;
+                checkBox_Mainly_superficial_and_intermediate_cells_3.Checked = checkBox_Mainly_superficial_and_intermediate_cells_2.Checked;
+                checkBox_Mainly_intermediate_and_parabasal_cells_3.Checked = checkBox_Mainly_intermediate_and_parabasal_cells_2.Checked;
+                checkBox_trophic_pattern_in_menopause_3.Checked = checkBox_trophic_pattern_in_menopause_2.Checked;
+                checkBox_Post_partum_changes_3.Checked = checkBox_Post_partum_changes_2.Checked;
+                checkBox_Liquid_based_preparation_3.Checked = checkBox_Liquid_based_preparation_2.Checked;
+                checkBox_Liquid_based_preparations_3.Checked = checkBox_Liquid_based_preparations_2.Checked;
+                checkBox_Conventional_Pap_smear_3.Checked = checkBox_Conventional_Pap_smear_2.Checked;
+                checkBox_Conventional_Pap_smears_3.Checked = checkBox_Conventional_Pap_smears_2.Checked;
+                checkBox_Low_squamous_cellularity_3.Checked = checkBox_Low_squamous_cellularity_2.Checked;
+                checkBox_Air_drying_artifacts_3.Checked = checkBox_Air_drying_artifacts_2.Checked;
+                checkBox_Obscured_by_inflammatory_exudates_3.Checked = checkBox_Obscured_by_inflammatory_exudates_2.Checked;
+                checkBox_Obscured_by_blood_3.Checked = checkBox_Obscured_by_blood_2.Checked;
+                checkBox_Thick_smear_3.Checked = checkBox_Thick_smear_2.Checked;
+                checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_3.Checked = checkBox_NEGATIVE_FOR_INTRAEPITHELIAL_2.Checked;
+                checkBox_Reactive_cellular_changes_associated_3.Checked = checkBox_Reactive_cellular_changes_associated_2.Checked;
+                checkBox_Normal_flora_3.Checked = checkBox_Normal_flora_2.Checked;
+                checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_3.Checked = checkBox_Shift_in_flora_suggestive_of_bacterial_vaginosis_2.Checked;
+                checkBox_Herpes_simplex_virus_3.Checked = checkBox_Herpes_simplex_virus_2.Checked;
+                checkBox_Candida_Monilia_3.Checked = checkBox_Candida_Monilia_2.Checked;
+                checkBox_Trichomonas_vaginalis_3.Checked = checkBox_Trichomonas_vaginalis_2.Checked;
+                checkBox_Actinomyces_3.Checked = checkBox_Actinomyces_2.Checked;
+                checkBox_Endometrial_cells_3.Checked = checkBox_Endometrial_cells_2.Checked;
+                checkBox_Others_eg_follicular_cervicitis_RT_effect_3.Checked = checkBox_Others_eg_follicular_cervicitis_RT_effect_2.Checked;
+                checkBox_HPV_DNA_TESTING_3.Checked = checkBox_HPV_DNA_TESTING_2.Checked;
+                checkBox_EPITHELIAL_CELL_ABNORMALITIES_3.Checked = checkBox_EPITHELIAL_CELL_ABNORMALITIES_2.Checked;
+                checkBox_Atypical_squamous_cells_3.Checked = checkBox_Atypical_squamous_cells_2.Checked;
+                checkBox_ASC_US_3.Checked = checkBox_ASC_US_2.Checked;
+                checkBox_ASC_H_3.Checked = checkBox_ASC_H_2.Checked;
+                checkBox_Squamous_intraepithelial_lesion_SIL_3.Checked = checkBox_Squamous_intraepithelial_lesion_SIL_2.Checked;
+                checkBox_Low_grade_SIL_3.Checked = checkBox_Low_grade_SIL_2.Checked;
+                checkBox_High_grade_SIL_3.Checked = checkBox_High_grade_SIL_2.Checked;
+                checkBox_HSIL_3.Checked = checkBox_HSIL_2.Checked;
+                checkBox_Squamous_cell_carcinoma_3.Checked = checkBox_Squamous_cell_carcinoma_2.Checked;
+                checkBox_Atypical_glandular_cells_3.Checked = checkBox_Atypical_glandular_cells_2.Checked;
+                checkBox_Atypical_glandular_cells_NOS_3.Checked = checkBox_Atypical_glandular_cells_NOS_2.Checked;
+                checkBox_Atypical_endocervical_cells_NOS_3.Checked = checkBox_Atypical_endocervical_cells_NOS_2.Checked;
+                checkBox_Atypical_endometrial_cells_NOS_3.Checked = checkBox_Atypical_endometrial_cells_NOS_2.Checked;
+                checkBox_Adenocarcinoma_3.Checked = checkBox_Adenocarcinoma_2.Checked;
+                checkBox_Endocervial_adenocarcinoma_in_situ_3.Checked = checkBox_Endocervial_adenocarcinoma_in_situ_2.Checked;
+                checkBox_Endocervial_adenocarcinoma_3.Checked = checkBox_Endocervial_adenocarcinoma_2.Checked;
+                checkBox_Endometrial_adenocarcinoma_3.Checked = checkBox_Endometrial_adenocarcinoma_2.Checked;
+                checkBox_Adenocarcinoma_NOS_3.Checked = checkBox_Adenocarcinoma_NOS_2.Checked;
+                checkBox_Other_malignant_neoplasm_3.Checked = checkBox_Other_malignant_neoplasm_2.Checked;
+
+                comboBox_SITE_TYPE_3.Text = comboBox_SITE_TYPE_2.Text;
+                textBox_SITE_TYPE_3.Text = textBox_SITE_TYPE_2.Text;
+                comboBox_DIAGNOSIS_1_3.Text = comboBox_DIAGNOSIS_1_2.Text;
+                textBox_DIAGNOSIS_1_3.Text = textBox_DIAGNOSIS_1_2.Text;
+                comboBox_DIAGNOSIS_2_3.Text = comboBox_DIAGNOSIS_2_2.Text;
+                textBox_DIAGNOSIS_2_3.Text = textBox_DIAGNOSIS_2_2.Text;
+                comboBox_DIAGNOSIS_3_3.Text = comboBox_DIAGNOSIS_3_2.Text;
+                textBox_DIAGNOSIS_3_3.Text = textBox_DIAGNOSIS_3_2.Text;
             }
 
         }
@@ -3024,10 +3260,14 @@ namespace St.Teresa_LIS_2019
         {
             textBox_Sign_At_3.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME);
             textBox_Sign_By_3.Text = CurrentUser.currentUserId;
+            comboBox_Sign_By_3.Text = CurrentUser.currentUserName;
             if (dt3 != null)
             {
                 dt3.Rows[0]["sign_at"] = DateTime.Now;
                 dt3.Rows[0]["sign_id"] = CurrentUser.currentUserId;
+                dt3.Rows[0]["sign_by"] = CurrentUser.currentUserId;
+
+                
             }
         }
 
