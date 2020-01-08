@@ -282,7 +282,9 @@ namespace St.Teresa_LIS_2019
                     reloadAndBindingDBData();
                 }
 
-                if (currentStatus == PageStatus.STATUS_NEW && existDataSet == null && existDiagDataAdapter == null)
+                if (currentStatus == PageStatus.STATUS_NEW && existDataSet == null && existDiagDataAdapter == null
+                    || ((currentStatus == PageStatus.STATUS_EDIT || currentStatus == PageStatus.STATUS_ADVANCE_EDIT) 
+                    && bxcy_diagDataSet.Tables[0].Rows.Count == 0))
                 {
                     isSameGroupNewRecord = false;
 

@@ -3271,8 +3271,6 @@ namespace St.Teresa_LIS_2019
                 dt3.Rows[0]["sign_at"] = DateTime.Now;
                 dt3.Rows[0]["sign_id"] = CurrentUser.currentUserId;
                 dt3.Rows[0]["sign_by"] = CurrentUser.currentUserId;
-
-                
             }
         }
 
