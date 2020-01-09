@@ -122,7 +122,8 @@ namespace St.Teresa_LIS_2019
             currentStatus = status;
             if (status == PageStatus.STATUS_VIEW)
             {
-                textBox_Gynecological_History.Enabled = false;
+                //textBox_Gynecological_History.Enabled = false;
+                textBox_Gynecological_History.ReadOnly = true;
                 comboBox_Add.Enabled = false;
             }
             else
@@ -130,6 +131,7 @@ namespace St.Teresa_LIS_2019
                 if (status == PageStatus.STATUS_NEW)
                 {
                     textBox_Gynecological_History.Enabled = true;
+                    textBox_Gynecological_History.ReadOnly = false;
                     comboBox_Add.Enabled = true;
                 }
                 else
@@ -137,6 +139,7 @@ namespace St.Teresa_LIS_2019
                     if (status == PageStatus.STATUS_EDIT)
                     {
                         textBox_Gynecological_History.Enabled = true;
+                        textBox_Gynecological_History.ReadOnly = false;
                         comboBox_Add.Enabled = true;
                     }
                 }

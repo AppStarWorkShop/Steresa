@@ -2845,7 +2845,7 @@ namespace St.Teresa_LIS_2019
 
         private void button_Rpt_Date_Tick_Click(object sender, EventArgs e)
         {
-            textBox_Rpt_Date.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME);
+            textBox_Rpt_Date.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME_WITHOUT_SECOND);
 
             textBox_Rpt_Date.Focus();
             textBox_Rpt_Date.Select(textBox_Rpt_Date.TextLength, 0);

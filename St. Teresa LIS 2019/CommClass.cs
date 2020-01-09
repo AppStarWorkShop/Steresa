@@ -340,7 +340,9 @@ namespace St.Teresa_LIS_2019
         public static string[] dateTimeFormat = { "yyyyMMdd hh:mm:ss", "yyyy/MM/dd hh:mm:ss", "yyyy-MM-dd hh:mm:ss", "ddMMyyyy hh:mm:ss", "dd/MM/yyyy hh:mm:ss", "MMddyyyy hh:mm:ss", "MM/dd/yyyy hh:mm:ss" };
 
         public const string FORMAT_DEFAULT_DATE = FORMAT_DAY + "/" + FORMAT_MONTH + "/" + FORMAT_YEAR;
+        public const string FORMAT_DEFAULT_DATE_TIME_WITHOUT_SECOND = FORMAT_DEFAULT_DATE + " " + FORMAT_HOUR + ":" + FORMAT_MINUTE;
         public const string FORMAT_DEFAULT_DATE_TIME = FORMAT_DEFAULT_DATE + " " + FORMAT_HOUR + ":" + FORMAT_MINUTE + ":" + FORMAT_SECOND;
+
     }
 
 }

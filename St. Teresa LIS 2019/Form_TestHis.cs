@@ -370,5 +370,16 @@ namespace St.Teresa_LIS_2019
                 
             }
         }
+
+        private void maskedTextBox2_Validating(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            maskedTextBox1.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE_TIME_WITHOUT_SECOND);
+            maskedTextBox2.Text = DateTime.Now.ToString(DateUtil.FORMAT_DEFAULT_DATE);
+        }
     }
 }

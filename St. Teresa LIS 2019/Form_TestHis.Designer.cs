@@ -48,13 +48,15 @@
             this.button_getpatient = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxHNNo = new System.Windows.Forms.TextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.textBox_2d_output = new System.Windows.Forms.TextBox();
+            this.button_2d_convert = new System.Windows.Forms.Button();
+            this.textBox_2d_input = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.textBox_2d_input = new System.Windows.Forms.TextBox();
-            this.button_2d_convert = new System.Windows.Forms.Button();
-            this.textBox_2d_output = new System.Windows.Forms.TextBox();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -62,8 +64,8 @@
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabPage1
@@ -73,7 +75,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(768, 400);
+            this.tabPage1.Size = new System.Drawing.Size(768, 421);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Report";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -195,7 +197,7 @@
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(768, 400);
+            this.tabPage3.Size = new System.Drawing.Size(768, 421);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Patient";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -259,14 +261,56 @@
             this.textBoxHNNo.TabIndex = 0;
             this.textBoxHNNo.Text = "HN20180142248";
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.textBox_2d_output);
+            this.tabPage4.Controls.Add(this.button_2d_convert);
+            this.tabPage4.Controls.Add(this.textBox_2d_input);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(768, 421);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Read HD 2D barcode";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // textBox_2d_output
+            // 
+            this.textBox_2d_output.Location = new System.Drawing.Point(15, 172);
+            this.textBox_2d_output.Multiline = true;
+            this.textBox_2d_output.Name = "textBox_2d_output";
+            this.textBox_2d_output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_2d_output.Size = new System.Drawing.Size(733, 236);
+            this.textBox_2d_output.TabIndex = 2;
+            // 
+            // button_2d_convert
+            // 
+            this.button_2d_convert.Location = new System.Drawing.Point(673, 143);
+            this.button_2d_convert.Name = "button_2d_convert";
+            this.button_2d_convert.Size = new System.Drawing.Size(75, 23);
+            this.button_2d_convert.TabIndex = 1;
+            this.button_2d_convert.Text = "&Convert";
+            this.button_2d_convert.UseVisualStyleBackColor = true;
+            this.button_2d_convert.Click += new System.EventHandler(this.button_2d_convert_Click);
+            // 
+            // textBox_2d_input
+            // 
+            this.textBox_2d_input.Location = new System.Drawing.Point(15, 16);
+            this.textBox_2d_input.Multiline = true;
+            this.textBox_2d_input.Name = "textBox_2d_input";
+            this.textBox_2d_input.Size = new System.Drawing.Size(733, 121);
+            this.textBox_2d_input.TabIndex = 0;
+            this.textBox_2d_input.Text = resources.GetString("textBox_2d_input.Text");
+            // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button3);
+            this.tabPage2.Controls.Add(this.maskedTextBox2);
             this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.maskedTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(768, 400);
+            this.tabPage2.Size = new System.Drawing.Size(768, 421);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -295,51 +339,30 @@
             // maskedTextBox1
             // 
             this.maskedTextBox1.Location = new System.Drawing.Point(116, 70);
-            this.maskedTextBox1.Mask = "00/00/0000";
+            this.maskedTextBox1.Mask = "00/00/0000 90:00";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(207, 20);
             this.maskedTextBox1.TabIndex = 0;
             this.maskedTextBox1.ValidatingType = typeof(System.DateTime);
             // 
-            // tabPage4
+            // maskedTextBox2
             // 
-            this.tabPage4.Controls.Add(this.textBox_2d_output);
-            this.tabPage4.Controls.Add(this.button_2d_convert);
-            this.tabPage4.Controls.Add(this.textBox_2d_input);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(768, 421);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Read HD 2D barcode";
-            this.tabPage4.UseVisualStyleBackColor = true;
+            this.maskedTextBox2.Location = new System.Drawing.Point(421, 69);
+            this.maskedTextBox2.Mask = "##/##/#### ##:##";
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox2.TabIndex = 2;
+            this.maskedTextBox2.Validating += new System.ComponentModel.CancelEventHandler(this.maskedTextBox2_Validating);
             // 
-            // textBox_2d_input
+            // button3
             // 
-            this.textBox_2d_input.Location = new System.Drawing.Point(15, 16);
-            this.textBox_2d_input.Multiline = true;
-            this.textBox_2d_input.Name = "textBox_2d_input";
-            this.textBox_2d_input.Size = new System.Drawing.Size(733, 121);
-            this.textBox_2d_input.TabIndex = 0;
-            this.textBox_2d_input.Text = resources.GetString("textBox_2d_input.Text");
-            // 
-            // button_2d_convert
-            // 
-            this.button_2d_convert.Location = new System.Drawing.Point(673, 143);
-            this.button_2d_convert.Name = "button_2d_convert";
-            this.button_2d_convert.Size = new System.Drawing.Size(75, 23);
-            this.button_2d_convert.TabIndex = 1;
-            this.button_2d_convert.Text = "&Convert";
-            this.button_2d_convert.UseVisualStyleBackColor = true;
-            this.button_2d_convert.Click += new System.EventHandler(this.button_2d_convert_Click);
-            // 
-            // textBox_2d_output
-            // 
-            this.textBox_2d_output.Location = new System.Drawing.Point(15, 172);
-            this.textBox_2d_output.Multiline = true;
-            this.textBox_2d_output.Name = "textBox_2d_output";
-            this.textBox_2d_output.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox_2d_output.Size = new System.Drawing.Size(733, 236);
-            this.textBox_2d_output.TabIndex = 2;
+            this.button3.Location = new System.Drawing.Point(248, 109);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "populate";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form_TestHis
             // 
@@ -360,10 +383,10 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -396,5 +419,7 @@
         private System.Windows.Forms.TextBox textBox_2d_output;
         private System.Windows.Forms.Button button_2d_convert;
         private System.Windows.Forms.TextBox textBox_2d_input;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.Button button3;
     }
 }

@@ -282,10 +282,11 @@ namespace St.Teresa_LIS_2019
             currentEditRow["snopcode_t"] = "COLON";
 
             currentEditRow["ETHNIC"] = "Chinese";
+            currentEditRow["snopcode_T"] = "COLON";
             //currentEditRow["PAT_SEQ"] = mDr["PAT_SEQ"];
             //currentEditRow["PAT_AGE"] = mDr["PAT_AGE"];
-            
-            
+
+
 
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Clear();
             bxcy_specimenDataSet.Tables["bxcy_specimen"].Rows.Add(currentEditRow);
